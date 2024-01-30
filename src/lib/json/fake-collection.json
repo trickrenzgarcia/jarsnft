@@ -1,0 +1,89 @@
+{
+  "result": {
+    "data": {
+      "collections": [
+        {
+          "collection": "conservative-shanghai-permanent",
+          "name": "Conservative Shanghai Permanent",
+          "description": "Mhz complex expert voice ash center assess swift pad",
+          "image_url": "",
+          "banner_image_url": "",
+          "owner": "0x14784bdb0ef529bc03dad3f4c6784e0e0c514fd3",
+          "safelist_status": "not_requested",
+          "category": "",
+          "is_disabled": false,
+          "is_nsfw": false,
+          "trait_offers_enabled": false,
+          "collection_offers_enabled": true,
+          "jarsnft_url": "https://opensea.io/collection/conservative-shanghai-permanent",
+          "project_url": "",
+          "wiki_url": "",
+          "discord_url": "",
+          "telegram_url": "",
+          "twitter_username": "",
+          "instagram_username": "",
+          "contracts": [
+            {
+              "address": "0x0b03d48177eeb1fc07d9a0f8f8e20988b689eb91",
+              "chain": "zora"
+            }
+          ]
+        },
+        {
+          "collection": "the-house-of-peace",
+          "name": "the house of peace",
+          "description": "",
+          "image_url": "https://raw.seadn.io/files/0c945a8c01d8322b5163487968bd9c1b.jpg",
+          "banner_image_url": "",
+          "owner": "0x034d4be915752d744eddbb3525187279b7ae0f5e",
+          "safelist_status": "not_requested",
+          "category": "",
+          "is_disabled": false,
+          "is_nsfw": false,
+          "trait_offers_enabled": false,
+          "collection_offers_enabled": false,
+          "jarsnft_url": "https://opensea.io/collection/the-house-of-peace",
+          "project_url": "",
+          "wiki_url": "",
+          "discord_url": "",
+          "telegram_url": "",
+          "twitter_username": "",
+          "instagram_username": "",
+          "contracts": [
+            {
+              "address": "0x70ecacfe1511716db00ae441f87ef8bb47dca85c",
+              "chain": "matic"
+            }
+          ]
+        },
+        {
+          "collection": "recipients-4",
+          "name": "Recipients",
+          "description": "",
+          "image_url": "",
+          "banner_image_url": "",
+          "owner": "0xcbe3fb827fc6b40d3ec1015a2b12c7ec4891eaac",
+          "safelist_status": "not_requested",
+          "category": "",
+          "is_disabled": false,
+          "is_nsfw": false,
+          "trait_offers_enabled": false,
+          "collection_offers_enabled": true,
+          "jarsnft_url": "https://opensea.io/collection/recipients-4",
+          "project_url": "",
+          "wiki_url": "",
+          "discord_url": "",
+          "telegram_url": "",
+          "twitter_username": "",
+          "instagram_username": "",
+          "contracts": [
+            {
+              "address": "0x7d8fdb7319279eb6146389fe7c4da8da3a2bc7df",
+              "chain": "zora"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
