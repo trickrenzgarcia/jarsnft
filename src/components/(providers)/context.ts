@@ -5,6 +5,10 @@ export const CollectionsContext = createContext<NFTCollection[] | undefined>(
   undefined
 );
 
+export const CollectionContext = createContext<NFTCollection | undefined>(
+  undefined
+);
+
 export const MultiCollectionContext = createContext<
   MultiCollectionContextProps | undefined
 >(undefined);
@@ -42,4 +46,16 @@ export function useMultiCollection(category: Category) {
     default:
       throw new Error("Multicollection category is undefined!");
   }
+}
+
+export function useCollectionContext() {
+  const collection = useContext(CollectionContext);
+
+  if (collection === undefined) {
+    throw new Error(
+      "The collection context is undefined, wrap in CollectionContext.Provider"
+    );
+  }
+
+  return collection;
 }

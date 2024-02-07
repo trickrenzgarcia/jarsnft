@@ -1,5 +1,17 @@
 import fakeCollection from "@/lib/json/fake-collection.json";
-import { NFTCollection } from "@/types";
+import { GetUserResponse, NFTCollection } from "@/types";
+
+export async function fetchApi(url: string) {
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+    },
+    cache: "no-store",
+  });
+  const data = await response.json();
+  return data as GetUserResponse;
+}
 
 export async function fetchFromAPI(url: URL, cacheTime?: number) {
   const options: RequestInit = {

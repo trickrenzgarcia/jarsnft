@@ -8,12 +8,14 @@ import {
   useContract,
   useLogout,
   useUser,
-  useAddress
+  useAddress,
+  useAuth
 } from "@thirdweb-dev/react"
 import { useTheme } from 'next-themes'
+import { AuthLoginButton, ConnectWeb3, LoginButton } from '../(interfaces)'
+import { Button } from '../ui/button'
 
 export default function Navbar() {
-  const nextTheme = useTheme()
 
   return (
     <nav className="w-full h-[70px] px-[1.2rem] py-[0.8rem] flex justify-between fixed z-50 top-0 left-0 dark:bg-gray-900 bg-opacity-100 backdrop-blur-2xl">
@@ -40,11 +42,9 @@ export default function Navbar() {
         </div>
 
         <div>
-          <ConnectWallet 
-            hideTestnetFaucet
-            switchToActiveChain
-            theme={nextTheme.theme}
-          />
+          {/* <LoginButton /> */}
+          {/* <AuthLoginButton /> */}
+          <ConnectWeb3 />
         </div>
         
       </div>

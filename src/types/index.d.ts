@@ -132,6 +132,17 @@ type MultiCollectionContextProps = {
   photography: NFTCollection[];
 };
 
+export type GetUserResponse = {
+  success: boolean;
+  user?: {
+    id: number;
+    email: string;
+    name: string;
+    address: string;
+    createdAt: Date;
+  };
+};
+
 export {
   AppConfig,
   NFTCollections,

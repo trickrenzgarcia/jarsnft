@@ -1,2 +1,6 @@
 export { default as NFTCarousel } from "./NFTCarousel"
 export { default as NFTContentWrapper } from "./NFTContentWrapper"
+export { default as NFTCollection } from "./NFTCollection"
+export { default as LoginButton } from "./LoginButton"
+export { default as AuthLoginButton } from "./AuthLoginButton"
+export { default as ConnectWeb3 } from "./ConnectWeb3" 

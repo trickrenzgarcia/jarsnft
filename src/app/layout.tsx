@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import {
+  SessionProvider,
   ThemeProvider,
   ThirdwebProvider
 } from '@/components/(providers)';
@@ -35,18 +36,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn("antialiased overflow-x-hidden w-screen", poppins.className)}>
-        <ThirdwebProvider>
-          <ThemeProvider
-            attribute='class'
-            defaultTheme='system'
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Navbar />
-              {children}
-            <Footer />
-          </ThemeProvider>
-        </ThirdwebProvider>
+          <ThirdwebProvider>
+            <ThemeProvider
+              attribute='class'
+              defaultTheme='system'
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Navbar />
+                {children}
+              <Footer />
+            </ThemeProvider>
+          </ThirdwebProvider>
       </body>
     </html>
   );
