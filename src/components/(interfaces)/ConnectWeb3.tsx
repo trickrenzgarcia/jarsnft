@@ -1,7 +1,7 @@
 "use client"
 
 import { fetchApi } from '@/lib/ctx'
-import { ConnectWallet, Web3Button, useLogin } from '@thirdweb-dev/react'
+import { ConnectWallet, Web3Button, useAuth, useLogin } from '@thirdweb-dev/react'
 import React, { useEffect, useState } from 'react'
 import { LoginButton } from '.'
 import { signIn, signOut, useSession } from 'next-auth/react'
@@ -14,6 +14,11 @@ type UserResponse = {
 
 export default function ConnectWeb3() {
   const { login, isLoading } = useLogin()
+  const auth = useAuth()
+  const { data } = useSession()
+  useEffect(() => {
+    console.log(data)
+  }, [])
 
   return (
     <div>
@@ -21,9 +26,10 @@ export default function ConnectWeb3() {
         btnTitle='ConnectWeb3'
         auth={{
           onLogin(token) {
-            console.log(token)
+            console.log("Authorization ", token)
           },
         }}
+        
       />
     </div>
   )

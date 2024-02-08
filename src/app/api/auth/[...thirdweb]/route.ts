@@ -1,4 +1,7 @@
+import type { ThirdwebAuthUser } from "@thirdweb-dev/auth/next";
+
 import { ThirdwebAuthAppRouter } from "@thirdweb-dev/auth/next";
+import { authSession } from "@thirdweb-dev/auth/next-auth";
 import { PrivateKeyWallet } from "@thirdweb-dev/auth/evm";
 
 export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
@@ -26,6 +29,13 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
         },
         body: JSON.stringify({ nonce: nonce }),
       });
+    },
+  },
+  callbacks: {
+    onUser: async (user: ThirdwebAuthUser) => {
+      console.log(user, "from api route callbacks: onUser(user) => onUser");
+
+      return user;
     },
   },
 });
