@@ -19,12 +19,6 @@ export default function Footer() {
             <Link href='/' className='hover:underline'>Fees</Link>
           </div>
           <div className='flex flex-col gap-y-5'>
-            <h1 className='font-semibold mb-1'>Marketplace</h1>
-            <Link href='/category/art' className='hover:underline'>Art</Link>
-            <Link href='/category/photography' className='hover:underline'>Photography</Link>
-            <Link href='/category/pfps' className='hover:underline'>PFPs</Link>
-          </div>
-          <div className='flex flex-col gap-y-5'>
             <h1 className='font-semibold mb-1'>Help</h1>
             <Link href='/learn' className='hover:underline'>What is NFT?</Link>
             <Link href='/learn' className='hover:underline'>How to buy an NFT</Link>
@@ -32,6 +26,17 @@ export default function Footer() {
             <Link href='/learn' className='hover:underline'>What are blockchain gas fees?</Link>
             <Link href='/learn' className='hover:underline'>What is a blockchain?</Link>
           </div>
+          <div className='flex flex-col gap-y-5'>
+            <h1 className='font-semibold mb-1'>Company</h1>
+            <Link href='/' className='hover:underline'>About</Link>
+            <Link href='/' className='hover:underline'>Team</Link>
+          </div>
+          {/* <div className='flex flex-col gap-y-5'>
+            <h1 className='font-semibold mb-1'>Marketplace</h1>
+            <Link href='/category/art' className='hover:underline'>Art</Link>
+            <Link href='/category/photography' className='hover:underline'>Photography</Link>
+            <Link href='/category/pfps' className='hover:underline'>PFPs</Link>
+          </div> */}
         </div>
 
         <div className='px-20'>
@@ -49,9 +54,17 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="copyright w-full p-8 mt-10 text-white flex flex-col items-center bg-gray-900">
-          <h1 className='font-extrabold text-2xl'>JarsNFT</h1>
-          <p className='text-xs text-gray-600'>Copyright © 2024 JarsNFT</p>
+        <div className="copyright px-20 mt-24 mb-6">
+          <hr className='h-[1px] bg-slate-900 border-slate-900 dark:bg-white dark:border-white' />
+          <ul className='mt-4 flex'>
+            <div className="left">
+              <li>© 2023 Alrae, Jeffrey, Patrick, Rigor</li>
+            </div>
+            <div className="right ml-auto flex gap-4">
+              <li><Link href="/" className='hover:underline'>Privacy Policy</Link></li>
+              <li><Link href="/" className='hover:underline'>Terms of Service</Link></li>
+            </div>
+          </ul>
         </div>
       </section>
     </footer>
