@@ -1,17 +1,12 @@
-import { NFTContentWrapper } from '@/components/(interfaces)';
-import { CollectionsProvider } from '@/components/(providers)';
-import { getCollections } from '@/lib/ctx';
+import { Navbar, PopularCollections, Footer } from "@/components/(layout)";
 
 export default async function Home() {
-  const collections = getCollections()
 
   return (
-    <main className="mt-10">
-      <div className="2xl:w-[1456px] xl:w-[1280px] lg:w-[1024px] md:w-[768px] mx-auto">
-        <CollectionsProvider value={collections}>
-          <NFTContentWrapper title='Popular Collection'/>
-        </CollectionsProvider>
-      </div>
+    <main className="">
+      <Navbar />
+      <PopularCollections />
+      <Footer />
     </main>
   );
 }
