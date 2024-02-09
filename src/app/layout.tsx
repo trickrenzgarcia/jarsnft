@@ -8,7 +8,6 @@ import {
 } from '@/components/(providers)';
 import { cn } from '@/lib/utils';
 import { appConfig as config } from '@/lib/config';
-import { Footer, Navbar } from '@/components/(layout)';
 
 const poppins = Poppins({ weight: "500", subsets: ["latin"] });
 
@@ -43,9 +42,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <Navbar />
                 {children}
-              <Footer />
             </ThemeProvider>
           </ThirdwebProvider>
       </body>
