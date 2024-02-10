@@ -1,6 +1,9 @@
-import { Navbar, Hero, PopularCollections, Footer } from "@/components/(layout)";
+import { Navbar, Hero, PopularCollections } from "@/components/(layout)";
+import dynamic from "next/dynamic";
 
 export default async function Home() {
+
+  const Footer = dynamic(() => import("@/components/(layout)/Footer"), { ssr: false })
 
   return (
     <main className="">
