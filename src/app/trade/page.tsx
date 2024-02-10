@@ -5,7 +5,7 @@ import { ArtTrend, BuySellNFT, NFTCategories, PhotoTrend, TradeHero } from '.'
 const Trade = () => {
     return (
         <>
-            <Navbar />
+            <Navbar display={"sticky"} />
             <TradeHero />
             <BuySellNFT />
             <ArtTrend />

@@ -4,7 +4,7 @@ export default async function Home() {
 
   return (
     <main className="">
-      <Navbar />
+      <Navbar display={"fixed"} />
       <Hero />
       <PopularCollections />
       <Footer />
