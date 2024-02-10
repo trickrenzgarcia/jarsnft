@@ -6,7 +6,9 @@ import heroBanner from '../../../public/assets/hero-icon.svg'
 export default function Hero() {
     return (
         <section className='flex flex-col'>
-            <Image src={heroBanner} alt='image of a banner' /> {/* gumana kahit walang width, height? */}
+            <div className="relative w-auto h-[450px]">
+                <Image src={heroBanner} fill objectFit='cover' alt='image of a banner' /> {/* gumana kahit walang width, height? */}
+            </div>
             <div className="absolute mt-48 ml-28">
                 <h1 className='text-[2rem] font-bold'>Unlock the Future: Collect, Create,</h1>
                 <h1 className='text-[2rem] font-bold'>and Conquer with NFTs!</h1>
