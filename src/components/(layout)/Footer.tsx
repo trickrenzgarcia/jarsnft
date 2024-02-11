@@ -5,14 +5,9 @@ import Link from 'next/link';
 import { FaFacebookF, FaDiscord, FaTwitter, FaInstagram, FaGithub } from 'react-icons/fa'
 import { Moon, Sun } from "lucide-react"
 import { IconType } from 'react-icons';
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
-
 
 export default function Footer() {
-
   return (
-    
-
     <footer className=''> {/* pt-32 px-20 pb-10 */}
       <section className=''> {/* max-w-screen-xl mx-auto */}
         <div className='pt-32 px-20 pb-10 grid grid-cols-3 gap-x-5 gap-y-10 mb-14'>
