@@ -34,10 +34,9 @@ export default function Navbar({ display }: NavbarProps) {
             <Link href='/'>
               <h1 className='font-extrabold text-2xl'>Jarsnft</h1>
             </Link>
-
           </div>
 
-          <div className='hidden lg:flex'>
+          <div className='hidden lg:flex ml-36 gap-1 xl:mr-5'>
             <Link href='/create' className='px-3 font-semibold hover:text-zinc-500 cursor-pointer'>Create</Link>
             <Link href="/collection" className='px-3 font-semibold hover:text-zinc-500 cursor-pointer'>Collections</Link>
             <Link href="/trade" className='px-3 font-semibold hover:text-zinc-500 cursor-pointer'>Trade</Link>
