@@ -19,9 +19,8 @@ interface NFTCarouselProps {
   collections: NFTCollection[]
 }
 
-export default function NFTCarousel() {
-  const collections = useCollectionsContext()
-  
+export default function NFTCarousel({ collections }: NFTCarouselProps) {
+
   return (
     <Carousel className="w-full" 
       opts={{
