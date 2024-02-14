@@ -7,6 +7,8 @@ import { Moon, Sun } from "lucide-react"
 import { IconType } from 'react-icons';
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 import { cn } from '@/lib/utils';
+import { VariantProps } from 'class-variance-authority';
+import { Slot } from '@radix-ui/react-slot';
 
 export default function Footer() {
 
@@ -78,30 +80,30 @@ export default function Footer() {
                     footer: "border-t-[1px] border-[#292f46] mr-5 ml-5",
                     }}>
                       
-                    <ModalContent>{(onClosePrivacy) => (
+                    <ModalContent>{(onClosePrivacy: any) => (
                     <>
                     <ModalHeader className="flex flex-col gap-1 ml-5">Privacy Policy</ModalHeader>
                     <ModalBody>
-                      <p className='font-black pb-2 mb-1'> 
+                      <P> 
                       Last Updated: February 12, 2024 
-                      </p>
+                      </P>
                       <p>
                       JARS NFT, Inc.JARS (“JARS”, “we”, “us”, or “our”) is committed to protecting your privacy. We have prepared this Privacy Policy to describe to you our practices regarding the information we collect, use, and share in connection with &nbsp; 
                       our website, mobile app, and other services we and our affiliates provide to you (collectively, the &quot;Service&quot;).
                       </p>
-                      <p className='font-black pt-2 pb-2'>1. Types of Information We Collect</p>
-                      <p className='font-black pt-2 pb-2'>2. Use of Your Information</p>
-                      <p className='font-black pt-2 pb-2'>3. Disclosure of Your Information</p>
-                      <p className='font-black pt-2 pb-2'>4. Third-Party Websites</p>
-                      <p className='font-black pt-2 pb-2'>5. Third-Party Wallets</p>
-                      <p className='font-black pt-2 pb-2'>6. Your Choices Regarding Information</p>
-                      <p className='font-black pt-2 pb-2'>7. Data Access and Control</p>
-                      <p className='font-black pt-2 pb-2'>8. Data Retention</p>
-                      <p className='font-black pt-2 pb-2'>9. Security</p>
-                      <p className='font-black pt-2 pb-2'>10. Minors</p>
-                      <p className='font-black pt-2 pb-2'>11. Users Outside of the United States</p>
-                      <p className='font-black pt-2 pb-2'>12. Changes to This Privacy Policy</p>
-                      <p className='font-black pt-2 pb-2'>13. Questions; Contacting Us; Reporting Violations</p>
+                      <P>1. Types of Information We Collect</P>
+                      <P>2. Use of Your Information</P>
+                      <P>3. Disclosure of Your Information</P>
+                      <P>4. Third-Party Websites</P>
+                      <P>5. Third-Party Wallets</P>
+                      <P>6. Your Choices Regarding Information</P>
+                      <P>7. Data Access and Control</P>
+                      <P>8. Data Retention</P>
+                      <P>9. Security</P>
+                      <P>10. Minors</P>
+                      <P>11. Users Outside of the United States</P>
+                      <P>12. Changes to This Privacy Policy</P>
+                      <P>13. Questions; Contacting Us; Reporting Violations</P>
                     </ModalBody>
                     <ModalFooter>
                       <Button className= "mt-5" onPress={onClosePrivacy}>
@@ -122,30 +124,30 @@ export default function Footer() {
                 footer: "border-t-[1px] border-[#292f46] mr-5 ml-5",
                 }}>
                   
-                <ModalContent>{(onCloseTerms) => (
+                <ModalContent>{(onCloseTerms: any) => (
                 <>
                 <ModalHeader className="flex flex-col gap-1 ml-5">Terms And Conditions</ModalHeader>
                 <ModalBody>
-                  <p className='font-black pb-2 mb-1'> 
+                  <P> 
                   Last Updated: February 12, 2024 
-                  </p>
+                  </P>
                   <p>
                   JARS NFT, JARS INC. (“JARS”, “we”, “us”, or “our”) have prepared this Terms and Conditions to describe to you our practices regarding the information we collect, use, and share in connection with &nbsp; 
                   our website, mobile app, and other services we and our affiliates provide to you (collectively, the &quot;Service&quot;).
                   </p>
-                  <p className={cnPrivacy}>1. Types of Information We Collect</p>
-                  <p className='font-black pt-2 pb-2'>2. Use of Your Information</p>
-                  <p className='font-black pt-2 pb-2'>3. Disclosure of Your Information</p>
-                  <p className='font-black pt-2 pb-2'>4. Third-Party Websites</p>
-                  <p className='font-black pt-2 pb-2'>5. Third-Party Wallets</p>
-                  <p className='font-black pt-2 pb-2'>6. Your Choices Regarding Information</p>
-                  <p className='font-black pt-2 pb-2'>7. Data Access and Control</p>
-                  <p className='font-black pt-2 pb-2'>8. Data Retention</p>
-                  <p className='font-black pt-2 pb-2'>9. Security</p>
-                  <p className='font-black pt-2 pb-2'>10. Minors</p>
-                  <p className='font-black pt-2 pb-2'>11. Users Outside of the United States</p>
-                  <p className='font-black pt-2 pb-2'>12. Changes to This Privacy Policy</p>
-                  <p className='font-black pt-2 pb-2'>13. Questions; Contacting Us; Reporting Violations</p>
+                  <P>1. Types of Information We Collect</P>
+                  <P>2. Use of Your Information</P>
+                  <P>3. Disclosure of Your Information</P>
+                  <P>4. Third-Party Websites</P>
+                  <P>5. Third-Party Wallets</P>
+                  <P>6. Your Choices Regarding Information</P>
+                  <P>7. Data Access and Control</P>
+                  <P>8. Data Retention</P>
+                  <P>9. Security</P>
+                  <P>10. Minors</P>
+                  <P>11. Users Outside of the United States</P>
+                  <P>12. Changes to This Privacy Policy</P>
+                  <P>13. Questions; Contacting Us; Reporting Violations</P>
                   
                 </ModalBody>
                 <ModalFooter>
@@ -165,9 +167,9 @@ export default function Footer() {
   )
 }
 
-const cnPrivacy = cn('font-black pt-2 pb-2')
-function P() {
-  <p className={cnPrivacy}>kcvzcvz</p>
+function P(props: React.HTMLAttributes<HTMLParagraphElement>) {
+  const { className, children, ...otherProps } = props
+  return <p className={cn(className + "font-black pt-2 pb-2")} {...otherProps}>{children}</p>
 }
 
 function SocialLinkButton({ Icon, link }: { Icon: IconType, link: string }) {
@@ -184,7 +186,7 @@ function ModeToggle() {
   const { setTheme, theme } = useTheme()
 
   return (
-    <div className='w-[50px] h-[50px] bg-[#d9d9d9] dark:text-[#444444] text-2xl rounded-[10px]  cursor-pointer'>
+    <div className='w-[50px] h-[50px] bg-[#d9d9d9] dark:bg-slate-900 dark:text-gray-500 text-2xl rounded-[10px] cursor-pointer'>
       {theme === "dark" ? (
         <div className='w-full h-full flex items-center justify-center' onClick={() => setTheme("light")}>
           <Moon className='h-6 w-6' />
