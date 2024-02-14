@@ -101,7 +101,7 @@ export default function Footer() {
                       <P>8. Data Retention</P>
                       <P>9. Security</P>
                       <P>10. Minors</P>
-                      <P>11. Users Outside of the United States</P>
+                      <P>11. Users Outside of the Philippines</P>
                       <P>12. Changes to This Privacy Policy</P>
                       <P>13. Questions; Contacting Us; Reporting Violations</P>
                     </ModalBody>
@@ -129,26 +129,34 @@ export default function Footer() {
                 <ModalHeader className="flex flex-col gap-1 ml-5">Terms And Conditions</ModalHeader>
                 <ModalBody>
                   <P> 
-                  Last Updated: February 12, 2024 
+                  Last Updated: February 14, 2024 
                   </P>
                   <p>
-                  JARS NFT, JARS INC. (“JARS”, “we”, “us”, or “our”) have prepared this Terms and Conditions to describe to you our practices regarding the information we collect, use, and share in connection with &nbsp; 
-                  our website, mobile app, and other services we and our affiliates provide to you (collectively, the &quot;Service&quot;).
+                  By accessing or using our Service, you agree to comply with and be bound by these Terms and Conditions. Please carefully read through the following terms, and if you do not agree with any part of them, refrain from accessing or using our Service.
                   </p>
                   <P>1. Types of Information We Collect</P>
-                  <P>2. Use of Your Information</P>
-                  <P>3. Disclosure of Your Information</P>
-                  <P>4. Third-Party Websites</P>
-                  <P>5. Third-Party Wallets</P>
-                  <P>6. Your Choices Regarding Information</P>
-                  <P>7. Data Access and Control</P>
-                  <P>8. Data Retention</P>
-                  <P>9. Security</P>
-                  <P>10. Minors</P>
-                  <P>11. Users Outside of the United States</P>
+                  <P>2. Accessing the Service</P>
+                  <P>3. Ownership</P>
+                  <P>4. License to Access and Use Our Service and Content</P>
+                  <P>5. Third-Party Content, Agreements, and Services</P>
+                  <P>6. User Conduct</P>
+                  <P>7. Intellectual Property Rights</P>
+                  <P>8. Communication Preferences</P>
+                  <P>9. App Terms</P>
+                  <P>10. Indemnification</P>
+                  <P>11. Disclaimers</P>
                   <P>12. Changes to This Privacy Policy</P>
-                  <P>13. Questions; Contacting Us; Reporting Violations</P>
-                  
+                  <P>13. Limitation of Liability</P>
+                  <P>14. Privacy Policy</P>
+                  <P>15. Modifications to the Services</P>
+                  <P>16. Dispute Resolution; Arbitration</P>
+                  <P>17. Governing Law and Venue</P>
+                  <P>18. Termination</P>
+                  <P>19. Severability</P>
+                  <P>20. Injunctive Relief</P>
+                  <P>21. Export Laws</P>
+                  <P>22. Survival</P>
+                  <P>23. Miscellaneous</P>
                 </ModalBody>
                 <ModalFooter>
                   <Button className= "mt-5" onPress={onCloseTerms}>
