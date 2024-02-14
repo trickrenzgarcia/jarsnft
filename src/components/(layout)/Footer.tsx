@@ -6,6 +6,7 @@ import { FaFacebookF, FaDiscord, FaTwitter, FaInstagram, FaGithub } from 'react-
 import { Moon, Sun } from "lucide-react"
 import { IconType } from 'react-icons';
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+import { cn } from '@/lib/utils';
 
 export default function Footer() {
 
@@ -114,7 +115,7 @@ export default function Footer() {
               <li><Button onPress={onOpenTerms}>Terms and Service</Button></li>
                 <Modal isOpen={isTermsOpen} onOpenChange={onOpenChangeTerms} 
                 classNames={{
-                body: "py-5 px-5",
+                body: "py-5 px-5 mx-5 my-5",
                 backdrop: "bg-[#121212]/50 backdrop-opacity-40",
                 base: "border-[#ffffff] bg-[#131418] dark:bg-[#d9d9d9] text-[#ffffff] dark:text-[#131418]",
                 header: "border-b-[1px] border-[#292f46] py-5 mr-5 ",
@@ -129,10 +130,10 @@ export default function Footer() {
                   Last Updated: February 12, 2024 
                   </p>
                   <p>
-                  JARS NFT, Inc.JARS (“JARS”, “we”, “us”, or “our”) is committed to protecting your privacy. We have prepared this Privacy Policy to describe to you our practices regarding the information we collect, use, and share in connection with &nbsp; 
+                  JARS NFT, JARS INC. (“JARS”, “we”, “us”, or “our”) have prepared this Terms and Conditions to describe to you our practices regarding the information we collect, use, and share in connection with &nbsp; 
                   our website, mobile app, and other services we and our affiliates provide to you (collectively, the &quot;Service&quot;).
                   </p>
-                  <p className='font-black pt-2 pb-2'>1. Types of Information We Collect</p>
+                  <p className={cnPrivacy}>1. Types of Information We Collect</p>
                   <p className='font-black pt-2 pb-2'>2. Use of Your Information</p>
                   <p className='font-black pt-2 pb-2'>3. Disclosure of Your Information</p>
                   <p className='font-black pt-2 pb-2'>4. Third-Party Websites</p>
@@ -145,6 +146,7 @@ export default function Footer() {
                   <p className='font-black pt-2 pb-2'>11. Users Outside of the United States</p>
                   <p className='font-black pt-2 pb-2'>12. Changes to This Privacy Policy</p>
                   <p className='font-black pt-2 pb-2'>13. Questions; Contacting Us; Reporting Violations</p>
+                  
                 </ModalBody>
                 <ModalFooter>
                   <Button className= "mt-5" onPress={onCloseTerms}>
@@ -161,6 +163,11 @@ export default function Footer() {
       </section>
     </footer>
   )
+}
+
+const cnPrivacy = cn('font-black pt-2 pb-2')
+function P() {
+  <p className={cnPrivacy}>kcvzcvz</p>
 }
 
 function SocialLinkButton({ Icon, link }: { Icon: IconType, link: string }) {
