@@ -30,7 +30,8 @@ export async function fetchFromAPI(url: URL, cacheTime?: number) {
   return data;
 }
 
-export function getCollections() {
+export async function getCollections() {
+  await new Promise((resolve, reject) => setTimeout(resolve, 2000));
   const response = fakeCollection.result.data.collections as NFTCollection[];
   return response;
 }

@@ -1,15 +1,16 @@
-"use client"
-
 import React from 'react'
 import NFTCarousel from './NFTCarousel'
 import { NFTCollection } from '@/types'
+import { getCollections } from '@/lib/ctx'
 
 
-function NFTContentWrapper({ title }: { title: string }) {
+async function NFTContentWrapper({ title }: { title: string }) {
+  const collections = await getCollections();
+
   return (
     <section className='pt-8 pb-12'>
       <h2 className='font-bold text-2xl text-center md:text-left mb-3'>{title}</h2>
-      <NFTCarousel />
+      <NFTCarousel collections={collections}/>
     </section>
   )
 }
