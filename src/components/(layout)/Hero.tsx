@@ -9,7 +9,7 @@ export default function Hero() {
             <div className="relative w-auto h-[450px]">
                 <Image src={heroBanner} fill objectFit='cover' alt='image of a banner' /> {/* gumana kahit walang width, height? */}
             </div>
-            <div className="absolute mt-48 ml-28">
+            <div className="absolute mt-48 m-10 md:ml-28">
                 <h1 className='text-[2rem] font-bold'>Unlock the Future: Collect, Create,</h1>
                 <h1 className='text-[2rem] font-bold'>and Conquer with NFTs!</h1>
                 <button className='mt-6 bg-white bg-opacity-90 dark:bg-gray-700 dark:bg-opacity-90 

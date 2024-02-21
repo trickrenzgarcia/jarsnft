@@ -11,7 +11,7 @@ import { VariantProps } from 'class-variance-authority';
 import { Slot } from '@radix-ui/react-slot';
 
 export default function Footer() {
-
+  const { setTheme, theme } = useTheme()
   const { isOpen: isPrivacyPolicyOpen, onOpen: onOpenPrivacy, onOpenChange: onOpenChangePrivacy ,onClose: onClosePrivacy } = useDisclosure();
   const { isOpen: isTermsOpen, onOpen: onOpenTerms, onOpenChange: onOpenChangeTerms, onClose: onCloseTerms } = useDisclosure();
 
@@ -58,13 +58,13 @@ export default function Footer() {
               <SocialLinkButton Icon={FaGithub} link='https://github.com/BroJavaDevs' />
             </div>
             <div>
-              <ModeToggle />
+              <ModeToggle setTheme={setTheme} theme={theme} />
             </div>
           </div>
         </div>
 
-        <div className="copyright px-20 mt-24 mb-5">
-          <hr className='h-[1px] bg-slate-900 border-slate-900 dark:bg-white dark:border-white' />
+        <div className="copyright px-20 mt-24 pb-5">
+          <hr className='h-[1px] ' />
           <ul className='mt-5 flex'>
             <div className="left">
               <li>© 2023 Alrae, Jeffrey, Patrick, Rigor</li>
@@ -183,18 +183,21 @@ function P(props: React.HTMLAttributes<HTMLParagraphElement>) {
 function SocialLinkButton({ Icon, link }: { Icon: IconType, link: string }) {
   return (
     <Link href={link}>
-      <div className='w-[50px] h-[50px] bg-[#d9d9d9] dark:bg-slate-900 dark:text-gray-500 text-2xl rounded-[10px] flex items-center justify-center'>
+      <div className='w-[50px] h-[50px] bg-gray-200 dark:bg-card text-2xl rounded-[10px] flex items-center justify-center'>
         <Icon />
       </div>
     </Link>
   )
 }
 
-function ModeToggle() {
-  const { setTheme, theme } = useTheme()
-
+type ModeToggleProps = {
+  setTheme: (theme: string) => void,
+  theme: string | undefined
+}
+function ModeToggle({ setTheme, theme } : ModeToggleProps) {
+  
   return (
-    <div className='w-[50px] h-[50px] bg-[#d9d9d9] dark:bg-slate-900 dark:text-gray-500 text-2xl rounded-[10px] cursor-pointer'>
+    <div className='w-[50px] h-[50px] bg-gray-200 dark:bg-card text-2xl rounded-[10px] cursor-pointer'>
       {theme === "dark" ? (
         <div className='w-full h-full flex items-center justify-center' onClick={() => setTheme("light")}>
           <Moon className='h-6 w-6' />

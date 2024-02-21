@@ -6,7 +6,7 @@ export default async function Home() {
   const Footer = dynamic(() => import("@/components/(layout)/Footer"), { ssr: false })
 
   return (
-    <main className="">
+    <main className="bg-background">
       <Navbar display={"fixed"} />
       <Hero />
       <PopularCollections />
