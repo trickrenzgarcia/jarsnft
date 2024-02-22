@@ -41,9 +41,7 @@ export default function NFTCarousel({ collections }: NFTCarouselProps) {
                     <div className='truncate'>
                       <p className="truncate font-medium">{collection.name}</p>
                     </div>
-                    <div>
-                      <MdVerified className='text-xl' />
-                    </div>
+                    <div><MdVerified className='text-xl'/></div>
                   </div>
                   <div className='w-full flex justify-between text-sm'>
                     <div>
