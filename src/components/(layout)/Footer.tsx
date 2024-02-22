@@ -182,7 +182,7 @@ function P(props: React.HTMLAttributes<HTMLParagraphElement>) {
 
 function SocialLinkButton({ Icon, link }: { Icon: IconType, link: string }) {
   return (
-    <Link href={link}>
+    <Link href={link} target='_blank'>
       <div className='w-[50px] h-[50px] bg-gray-200 dark:bg-card text-2xl rounded-[10px] flex items-center justify-center'>
         <Icon />
       </div>

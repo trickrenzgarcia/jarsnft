@@ -24,7 +24,7 @@ export default function Navbar({ display }: NavbarProps) {
 
   return (
     <nav className={`${display} w-full h-[70px] px-[1.2rem] py-[0.8rem] flex justify-between z-50 top-0 left-0 
-    bg-white bg-opacity-75 dark:bg-gray-900 dark:bg-opacity-75 backdrop-blur-sm border-b-2`}>
+      bg-white dark:bg-opacity-100 dark:bg-background border-b-2`}>
       <div className="flex flex-row justify-between items-center w-full max-w-screen-2xl mx-auto">
 
         {/* Left-side  */}

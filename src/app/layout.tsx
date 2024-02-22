@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { inter } from "@/lib/fonts";
 import "./globals.css";
 import {
   SessionProvider,
@@ -8,8 +8,6 @@ import {
 } from '@/components/(providers)';
 import { cn } from '@/lib/utils';
 import { appConfig as config } from '@/lib/config';
-
-const poppins = Poppins({ weight: "500", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(config.url.base),
@@ -34,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("antialiased overflow-x-hidden w-screen", poppins.className)}>
+      <body className={cn("antialiased overflow-x-hidden w-screen", inter.className)}>
           <ThirdwebProvider>
             <ThemeProvider
               attribute='class'
