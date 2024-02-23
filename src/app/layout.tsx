@@ -33,16 +33,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn("antialiased overflow-x-hidden w-screen", inter.className)}>
-          <ThirdwebProvider>
-            <ThemeProvider
-              attribute='class'
-              defaultTheme='system'
-              enableSystem
-              disableTransitionOnChange
-            >
-                {children}
-            </ThemeProvider>
-          </ThirdwebProvider>
+        <ThirdwebProvider>
+          <ThemeProvider
+            attribute='class'
+            defaultTheme='system'
+            enableSystem
+            disableTransitionOnChange
+          >
+              {children}
+          </ThemeProvider>
+        </ThirdwebProvider>
       </body>
     </html>
   );

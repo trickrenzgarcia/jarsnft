@@ -37,6 +37,20 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
 
       return user;
     },
+    onLogin: (address: string) => {
+      console.log(address);
+
+      const session = {
+        address: address,
+        permissions: ["admin"],
+      };
+
+      return session;
+    },
+    onLogout: async (user) => {
+      console.log("user Logout", user);
+      return null;
+    },
   },
 });
 
