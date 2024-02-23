@@ -7,8 +7,6 @@ import { Moon, Sun } from "lucide-react"
 import { IconType } from 'react-icons';
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 import { cn } from '@/lib/utils';
-import { VariantProps } from 'class-variance-authority';
-import { Slot } from '@radix-ui/react-slot';
 
 export default function Footer() {
   const { setTheme, theme } = useTheme()
@@ -29,8 +27,8 @@ export default function Footer() {
           <div className='flex flex-col gap-y-5'>
             <h1 className='font-semibold mb-1'>Help</h1>
             <Link href='/learn' className='hover:underline'>What is NFT?</Link>
-            <Link href='/learn' className='hover:underline'>How to buy an NFT</Link>
-            <Link href='/learn' className='hover:underline'>How to sell an NFT</Link>
+            <Link href='/learn/buying-nfts' className='hover:underline'>How to buy an NFT</Link>
+            <Link href='/learn/selling-nfts' className='hover:underline'>How to sell an NFT</Link>
             <Link href='/learn' className='hover:underline'>What are blockchain gas fees?</Link>
             <Link href='/learn' className='hover:underline'>What is a blockchain?</Link>
           </div>
