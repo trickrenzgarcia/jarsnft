@@ -23,7 +23,7 @@ export default function ConnectWeb3() {
   return (
     <div>
       <ConnectWallet 
-        btnTitle='ConnectWeb3'
+        btnTitle='Connect Wallet'
         auth={{
           onLogin(token) {
             console.log("Authorization ", token)

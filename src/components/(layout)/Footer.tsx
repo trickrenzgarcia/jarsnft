@@ -69,7 +69,8 @@ export default function Footer() {
             </div>
             <div className="right ml-auto flex gap-4">
               <li><Button onPress={onOpenPrivacy}>Privacy Policy</Button></li>
-                <Modal isOpen={isPrivacyPolicyOpen} onOpenChange={onOpenChangePrivacy} 
+                <Modal isOpen={isPrivacyPolicyOpen} onOpenChange={onOpenChangePrivacy}
+                  scrollBehavior='outside' size='3xl' backdrop='blur'
                   classNames={{
                     body: "py-5 px-5",
                     backdrop: "bg-[#121212]/50 backdrop-opacity-40",
@@ -83,10 +84,10 @@ export default function Footer() {
                     <ModalHeader className="flex flex-col gap-1 ml-5">Privacy Policy</ModalHeader>
                     <ModalBody>
                       <P> 
-                      Last Updated: February 12, 2024 
+                      Last Updated: February 23, 2024 
                       </P>
                       <p>
-                      JARS NFT, Inc.JARS (“JARS”, “we”, “us”, or “our”) is committed to protecting your privacy. We have prepared this Privacy Policy to describe to you our practices regarding the information we collect, use, and share in connection with &nbsp; 
+                      JARS NFT, Inc.JARS (“JARS”, “we”, “us”, or “our”) is committed to protecting your privacy. We have prepared this Privacy Policy to describe to you our practices regarding the information we collect, use, and share in connection with 
                       our website, mobile app, and other services we and our affiliates provide to you (collectively, the &quot;Service&quot;).
                       </p>
                       <P>1. Types of Information We Collect</P>
@@ -104,7 +105,7 @@ export default function Footer() {
                       <P>13. Questions; Contacting Us; Reporting Violations</P>
                     </ModalBody>
                     <ModalFooter>
-                      <Button className= "mt-5" onPress={onClosePrivacy}>
+                      <Button onPress={onClosePrivacy}>
                         Okay, I understand
                       </Button>
                     </ModalFooter>
@@ -113,7 +114,8 @@ export default function Footer() {
                     </ModalContent>
                 </Modal>
               <li><Button onPress={onOpenTerms}>Terms and Service</Button></li>
-                <Modal isOpen={isTermsOpen} onOpenChange={onOpenChangeTerms} 
+                <Modal isOpen={isTermsOpen} onOpenChange={onOpenChangeTerms}
+                scrollBehavior='outside' size='3xl' backdrop='blur'
                 classNames={{
                 body: "py-5 px-5 mx-5 my-5",
                 backdrop: "bg-[#121212]/50 backdrop-opacity-40",
@@ -127,12 +129,11 @@ export default function Footer() {
                 <ModalHeader className="flex flex-col gap-1 ml-5">Terms And Conditions</ModalHeader>
                 <ModalBody>
                   <P> 
-                  Last Updated: February 14, 2024 
+                  Last Updated: February 23, 2024
                   </P>
-                  <p>
-                  By accessing or using our Service, you agree to comply with and be bound by these Terms and Conditions. Please carefully read through the following terms, and if you do not agree with any part of them, refrain from accessing or using our Service.
-                  </p>
-                  <P>1. Types of Information We Collect</P>
+                  <P>1. Introduction</P>
+                  <P>Welcome to JARS, owned and operated by Alrae, Jeffrey, Patrick, Rigor, Inc. d/b/a JARS (“JARS,” “we,” “us”, or “our”). These Terms of Service (“Terms”) govern your access to and use of the JARS website(s),software, tools, features, or functionalities provided on or in connection with our services; including without limitation using our services to view, explore, help display and create NFTs, and using our tools, at your own discretion, to connect directly with others to mint, purchase, sell, or transfer NFTs on public blockchains (collectively, the “Service”). “NFT” in these Terms means a non-fungible token or similar digital item implemented on a blockchain (such as the Ethereum blockchain), which uses smart contracts to link to or otherwise be associated with certain content or data.</P>
+                  <p>BY CLICKING TO ACCEPT, SIGN, AND/OR USING OUR SERVICE, YOU AGREE TO BE BOUND BY THESE TERMS AND ALL OF THE TERMS INCORPORATED HEREIN BY REFERENCE. IF YOU DO NOT AGREE TO THESE TERMS, YOU MAY NOT ACCESS OR USE THE SERVICE.</p>
                   <P>2. Accessing the Service</P>
                   <P>3. Ownership</P>
                   <P>4. License to Access and Use Our Service and Content</P>
@@ -157,8 +158,8 @@ export default function Footer() {
                   <P>23. Miscellaneous</P>
                 </ModalBody>
                 <ModalFooter>
-                  <Button className= "mt-5" onPress={onCloseTerms}>
-                    Okay, I understand
+                  <Button onPress={onCloseTerms}>
+                    I Agree
                   </Button>
                 </ModalFooter>
                 </>
