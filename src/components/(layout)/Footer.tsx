@@ -63,57 +63,60 @@ export default function Footer() {
 
         <div className="copyright px-20 mt-24 pb-5">
           <hr className='h-[1px] ' />
-          <ul className='mt-5 flex'>
-            <div className="left">
-              <li>© 2023 Alrae, Jeffrey, Patrick, Rigor</li>
-            </div>
+          <ul className='mt-5 flex justify-between'>
+            <li>
+              <div className="left">
+                © 2023 Alrae, Jeffrey, Patrick, Rigor
+              </div>
+            </li>
+            <li>
             <div className="right ml-auto flex gap-4">
-              <li><Button onPress={onOpenPrivacy}>Privacy Policy</Button></li>
-                <Modal isOpen={isPrivacyPolicyOpen} onOpenChange={onOpenChangePrivacy}
-                  scrollBehavior='outside' size='3xl' backdrop='blur'
-                  classNames={{
-                    body: "py-5 px-5",
-                    backdrop: "bg-[#121212]/50 backdrop-opacity-40",
-                    base: "border-[#ffffff] bg-[#131418] dark:bg-[#d9d9d9] text-[#ffffff] dark:text-[#131418]",
-                    header: "border-b-[1px] border-[#292f46] py-5 mr-5 ",
-                    footer: "border-t-[1px] border-[#292f46] mr-5 ml-5",
-                    }}>
-                      
-                    <ModalContent>{(onClosePrivacy: any) => (
-                    <>
-                    <ModalHeader className="flex flex-col gap-1 ml-5">Privacy Policy</ModalHeader>
-                    <ModalBody>
-                      <P> 
-                      Last Updated: February 23, 2024 
-                      </P>
-                      <p>
-                      JARS NFT, Inc.JARS (“JARS”, “we”, “us”, or “our”) is committed to protecting your privacy. We have prepared this Privacy Policy to describe to you our practices regarding the information we collect, use, and share in connection with 
-                      our website, mobile app, and other services we and our affiliates provide to you (collectively, the &quot;Service&quot;).
-                      </p>
-                      <P>1. Types of Information We Collect</P>
-                      <P>2. Use of Your Information</P>
-                      <P>3. Disclosure of Your Information</P>
-                      <P>4. Third-Party Websites</P>
-                      <P>5. Third-Party Wallets</P>
-                      <P>6. Your Choices Regarding Information</P>
-                      <P>7. Data Access and Control</P>
-                      <P>8. Data Retention</P>
-                      <P>9. Security</P>
-                      <P>10. Minors</P>
-                      <P>11. Users Outside of the Philippines</P>
-                      <P>12. Changes to This Privacy Policy</P>
-                      <P>13. Questions; Contacting Us; Reporting Violations</P>
-                    </ModalBody>
-                    <ModalFooter>
-                      <Button onPress={onClosePrivacy}>
-                        Okay, I understand
-                      </Button>
-                    </ModalFooter>
-                    </>
-                    )}
-                    </ModalContent>
-                </Modal>
-              <li><Button onPress={onOpenTerms}>Terms and Service</Button></li>
+              <Button onPress={onOpenPrivacy}>Privacy Policy</Button>
+              <Modal isOpen={isPrivacyPolicyOpen} onOpenChange={onOpenChangePrivacy}
+                scrollBehavior='outside' size='3xl' backdrop='blur'
+                classNames={{
+                  body: "py-5 px-5",
+                  backdrop: "bg-[#121212]/50 backdrop-opacity-40",
+                  base: "border-[#ffffff] bg-[#131418] dark:bg-[#d9d9d9] text-[#ffffff] dark:text-[#131418]",
+                  header: "border-b-[1px] border-[#292f46] py-5 mr-5 ",
+                  footer: "border-t-[1px] border-[#292f46] mr-5 ml-5",
+                  }}>
+                    
+                  <ModalContent>{(onClosePrivacy: any) => (
+                  <>
+                  <ModalHeader className="flex flex-col gap-1 ml-5">Privacy Policy</ModalHeader>
+                  <ModalBody>
+                    <P> 
+                    Last Updated: February 23, 2024 
+                    </P>
+                    <p>
+                    JARS NFT, Inc.JARS (“JARS”, “we”, “us”, or “our”) is committed to protecting your privacy. We have prepared this Privacy Policy to describe to you our practices regarding the information we collect, use, and share in connection with 
+                    our website, mobile app, and other services we and our affiliates provide to you (collectively, the &quot;Service&quot;).
+                    </p>
+                    <P>1. Types of Information We Collect</P>
+                    <P>2. Use of Your Information</P>
+                    <P>3. Disclosure of Your Information</P>
+                    <P>4. Third-Party Websites</P>
+                    <P>5. Third-Party Wallets</P>
+                    <P>6. Your Choices Regarding Information</P>
+                    <P>7. Data Access and Control</P>
+                    <P>8. Data Retention</P>
+                    <P>9. Security</P>
+                    <P>10. Minors</P>
+                    <P>11. Users Outside of the Philippines</P>
+                    <P>12. Changes to This Privacy Policy</P>
+                    <P>13. Questions; Contacting Us; Reporting Violations</P>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button onPress={onClosePrivacy}>
+                      Okay, I understand
+                    </Button>
+                  </ModalFooter>
+                  </>
+                  )}
+                  </ModalContent>
+              </Modal>
+              <Button onPress={onOpenTerms}>Terms and Service</Button>
                 <Modal isOpen={isTermsOpen} onOpenChange={onOpenChangeTerms}
                 scrollBehavior='outside' size='3xl' backdrop='blur'
                 classNames={{
@@ -166,7 +169,8 @@ export default function Footer() {
                 )}
                 </ModalContent>
                 </Modal>
-            </div>
+              </div>
+            </li>
           </ul>
         </div>
       </section>
