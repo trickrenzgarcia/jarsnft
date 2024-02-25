@@ -7,8 +7,7 @@ import { Moon, Sun } from "lucide-react"
 import { IconType } from 'react-icons';
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 import { cn } from '@/lib/utils';
-import { VariantProps } from 'class-variance-authority';
-import { Slot } from '@radix-ui/react-slot';
+import { ModeToggle } from '../(interfaces)';
 
 export default function Footer() {
   const { setTheme, theme } = useTheme()
@@ -29,8 +28,8 @@ export default function Footer() {
           <div className='flex flex-col gap-y-5'>
             <h1 className='font-semibold mb-1'>Help</h1>
             <Link href='/learn' className='hover:underline'>What is NFT?</Link>
-            <Link href='/learn' className='hover:underline'>How to buy an NFT</Link>
-            <Link href='/learn' className='hover:underline'>How to sell an NFT</Link>
+            <Link href='/learn/buying-nfts' className='hover:underline'>How to buy an NFT</Link>
+            <Link href='/learn/selling-nfts' className='hover:underline'>How to sell an NFT</Link>
             <Link href='/learn' className='hover:underline'>What are blockchain gas fees?</Link>
             <Link href='/learn' className='hover:underline'>What is a blockchain?</Link>
           </div>
@@ -65,57 +64,62 @@ export default function Footer() {
 
         <div className="copyright px-20 mt-24 pb-5">
           <hr className='h-[1px] ' />
-          <ul className='mt-5 flex'>
-            <div className="left">
-              <li>© 2023 Alrae, Jeffrey, Patrick, Rigor</li>
-            </div>
+          <ul className='mt-5 flex justify-between'>
+            <li>
+              <div className="left">
+                © 2023 Alrae, Jeffrey, Patrick, Rigor
+              </div>
+            </li>
+            <li>
             <div className="right ml-auto flex gap-4">
-              <li><Button onPress={onOpenPrivacy}>Privacy Policy</Button></li>
-                <Modal isOpen={isPrivacyPolicyOpen} onOpenChange={onOpenChangePrivacy} 
-                  classNames={{
-                    body: "py-5 px-5",
-                    backdrop: "bg-[#121212]/50 backdrop-opacity-40",
-                    base: "border-[#ffffff] bg-[#131418] dark:bg-[#d9d9d9] text-[#ffffff] dark:text-[#131418]",
-                    header: "border-b-[1px] border-[#292f46] py-5 mr-5 ",
-                    footer: "border-t-[1px] border-[#292f46] mr-5 ml-5",
-                    }}>
-                      
-                    <ModalContent>{(onClosePrivacy: any) => (
-                    <>
-                    <ModalHeader className="flex flex-col gap-1 ml-5">Privacy Policy</ModalHeader>
-                    <ModalBody>
-                      <P> 
-                      Last Updated: February 12, 2024 
-                      </P>
-                      <p>
-                      JARS NFT, Inc.JARS (“JARS”, “we”, “us”, or “our”) is committed to protecting your privacy. We have prepared this Privacy Policy to describe to you our practices regarding the information we collect, use, and share in connection with &nbsp; 
-                      our website, mobile app, and other services we and our affiliates provide to you (collectively, the &quot;Service&quot;).
-                      </p>
-                      <P>1. Types of Information We Collect</P>
-                      <P>2. Use of Your Information</P>
-                      <P>3. Disclosure of Your Information</P>
-                      <P>4. Third-Party Websites</P>
-                      <P>5. Third-Party Wallets</P>
-                      <P>6. Your Choices Regarding Information</P>
-                      <P>7. Data Access and Control</P>
-                      <P>8. Data Retention</P>
-                      <P>9. Security</P>
-                      <P>10. Minors</P>
-                      <P>11. Users Outside of the Philippines</P>
-                      <P>12. Changes to This Privacy Policy</P>
-                      <P>13. Questions; Contacting Us; Reporting Violations</P>
-                    </ModalBody>
-                    <ModalFooter>
-                      <Button className= "mt-5" onPress={onClosePrivacy}>
-                        Okay, I understand
-                      </Button>
-                    </ModalFooter>
-                    </>
-                    )}
-                    </ModalContent>
-                </Modal>
-              <li><Button onPress={onOpenTerms}>Terms and Service</Button></li>
-                <Modal isOpen={isTermsOpen} onOpenChange={onOpenChangeTerms} 
+              <Button onPress={onOpenPrivacy}>Privacy Policy</Button>
+              <Modal isOpen={isPrivacyPolicyOpen} onOpenChange={onOpenChangePrivacy}
+                scrollBehavior='outside' size='3xl' backdrop='blur'
+                classNames={{
+                  body: "py-5 px-5",
+                  backdrop: "bg-[#121212]/50 backdrop-opacity-40",
+                  base: "border-[#ffffff] bg-[#131418] dark:bg-[#d9d9d9] text-[#ffffff] dark:text-[#131418]",
+                  header: "border-b-[1px] border-[#292f46] py-5 mr-5 ",
+                  footer: "border-t-[1px] border-[#292f46] mr-5 ml-5",
+                  }}>
+                    
+                  <ModalContent>{(onClosePrivacy: any) => (
+                  <>
+                  <ModalHeader className="flex flex-col gap-1 ml-5">Privacy Policy</ModalHeader>
+                  <ModalBody>
+                    <P> 
+                    Last Updated: February 23, 2024 
+                    </P>
+                    <p>
+                    JARS NFT, Inc.JARS (“JARS”, “we”, “us”, or “our”) is committed to protecting your privacy. We have prepared this Privacy Policy to describe to you our practices regarding the information we collect, use, and share in connection with 
+                    our website, mobile app, and other services we and our affiliates provide to you (collectively, the &quot;Service&quot;).
+                    </p>
+                    <P>1. Types of Information We Collect</P>
+                    <P>2. Use of Your Information</P>
+                    <P>3. Disclosure of Your Information</P>
+                    <P>4. Third-Party Websites</P>
+                    <P>5. Third-Party Wallets</P>
+                    <P>6. Your Choices Regarding Information</P>
+                    <P>7. Data Access and Control</P>
+                    <P>8. Data Retention</P>
+                    <P>9. Security</P>
+                    <P>10. Minors</P>
+                    <P>11. Users Outside of the Philippines</P>
+                    <P>12. Changes to This Privacy Policy</P>
+                    <P>13. Questions; Contacting Us; Reporting Violations</P>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button onPress={onClosePrivacy}>
+                      Okay, I understand
+                    </Button>
+                  </ModalFooter>
+                  </>
+                  )}
+                  </ModalContent>
+              </Modal>
+              <Button onPress={onOpenTerms}>Terms and Service</Button>
+                <Modal isOpen={isTermsOpen} onOpenChange={onOpenChangeTerms}
+                scrollBehavior='outside' size='3xl' backdrop='blur'
                 classNames={{
                 body: "py-5 px-5 mx-5 my-5",
                 backdrop: "bg-[#121212]/50 backdrop-opacity-40",
@@ -129,12 +133,11 @@ export default function Footer() {
                 <ModalHeader className="flex flex-col gap-1 ml-5">Terms And Conditions</ModalHeader>
                 <ModalBody>
                   <P> 
-                  Last Updated: February 14, 2024 
+                  Last Updated: February 23, 2024
                   </P>
-                  <p>
-                  By accessing or using our Service, you agree to comply with and be bound by these Terms and Conditions. Please carefully read through the following terms, and if you do not agree with any part of them, refrain from accessing or using our Service.
-                  </p>
-                  <P>1. Types of Information We Collect</P>
+                  <P>1. Introduction</P>
+                  <P>Welcome to JARS, owned and operated by Alrae, Jeffrey, Patrick, Rigor, Inc. d/b/a JARS (“JARS,” “we,” “us”, or “our”). These Terms of Service (“Terms”) govern your access to and use of the JARS website(s),software, tools, features, or functionalities provided on or in connection with our services; including without limitation using our services to view, explore, help display and create NFTs, and using our tools, at your own discretion, to connect directly with others to mint, purchase, sell, or transfer NFTs on public blockchains (collectively, the “Service”). “NFT” in these Terms means a non-fungible token or similar digital item implemented on a blockchain (such as the Ethereum blockchain), which uses smart contracts to link to or otherwise be associated with certain content or data.</P>
+                  <p>BY CLICKING TO ACCEPT, SIGN, AND/OR USING OUR SERVICE, YOU AGREE TO BE BOUND BY THESE TERMS AND ALL OF THE TERMS INCORPORATED HEREIN BY REFERENCE. IF YOU DO NOT AGREE TO THESE TERMS, YOU MAY NOT ACCESS OR USE THE SERVICE.</p>
                   <P>2. Accessing the Service</P>
                   <P>3. Ownership</P>
                   <P>4. License to Access and Use Our Service and Content</P>
@@ -159,15 +162,16 @@ export default function Footer() {
                   <P>23. Miscellaneous</P>
                 </ModalBody>
                 <ModalFooter>
-                  <Button className= "mt-5" onPress={onCloseTerms}>
-                    Okay, I understand
+                  <Button onPress={onCloseTerms}>
+                    I Agree
                   </Button>
                 </ModalFooter>
                 </>
                 )}
                 </ModalContent>
                 </Modal>
-            </div>
+              </div>
+            </li>
           </ul>
         </div>
       </section>
@@ -187,27 +191,5 @@ function SocialLinkButton({ Icon, link }: { Icon: IconType, link: string }) {
         <Icon />
       </div>
     </Link>
-  )
-}
-
-type ModeToggleProps = {
-  setTheme: (theme: string) => void,
-  theme: string | undefined
-}
-function ModeToggle({ setTheme, theme } : ModeToggleProps) {
-  
-  return (
-    <div className='w-[50px] h-[50px] bg-gray-200 dark:bg-card text-2xl rounded-[10px] cursor-pointer'>
-      {theme === "dark" ? (
-        <div className='w-full h-full flex items-center justify-center' onClick={() => setTheme("light")}>
-          <Moon className='h-6 w-6' />
-        </div>
-
-      ) : (
-        <div className='w-full h-full flex items-center justify-center' onClick={() => setTheme("dark")}>
-          <Sun className='h-6 w-6' />
-        </div>
-      )}
-    </div>
   )
 }

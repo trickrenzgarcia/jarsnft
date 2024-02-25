@@ -29,8 +29,14 @@ function NFTCarouselSkeleton() {
                 <CardContent className="flex aspect-[1.25/1] items-center justify-center">
                   <Skeleton className='w-full h-full rounded-t-xl'/>
                 </CardContent>
-                <CardFooter className='pt-1'>
-                  <Skeleton className="w-full h-3"/>
+                <CardFooter className='pt-3 pb-5 flex flex-col items-start'>
+                  <Skeleton className="w-full h-5"/>
+                  <div className='pt-3 w-full grid grid-cols-2 gap-2'>
+                    <Skeleton className='w-12 h-4' />
+                    <Skeleton className='w-full h-4' />
+                    <Skeleton className='w-20 h-4' />
+                    <Skeleton className='w-[80%] h-4' />
+                  </div>
                 </CardFooter>
               </Card>
             </div>

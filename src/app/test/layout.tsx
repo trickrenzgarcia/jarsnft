@@ -18,6 +18,9 @@ export default function TestLayout({ children }: { children: React.ReactNode }) 
             <li className="hover:underline">
               <Link href='/test/messages'>Messages</Link>
             </li>
+            <li className="hover:underline">
+              <Link href='/test/spline'>Spline 3D</Link>
+            </li>
           </ul>
         </div>
         <div className='basis-[80%]'>
