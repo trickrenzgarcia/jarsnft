@@ -44,13 +44,12 @@ const ConnectWeb3 = () => {
 
 
 const LoginWelcomeScreen = () => {
-  const welcomeText = "Welcome to jarsnft".split(" ");
-  const router = useRouter()
+
   return (
-    <div className='w-full hidden md:flex flex-col '>
+    <div className='w-full h-full hidden md:flex flex-col overflow-hidden'>
       <div className='relative w-auto'>
         <video
-          className='w-full h-auto opacity-50'
+          className='w-full opacity-50'
           preload='false'
           playsInline
           loop
@@ -61,7 +60,7 @@ const LoginWelcomeScreen = () => {
         >
         </video>
       </div>
-      <div className='absolute flex flex-col w-full h-full items-center mt-64'>
+      <div className='absolute flex flex-col w-full h-full items-center justify-center'>
         <motion.div
           animate={{
           scale: [1, 1.8, 1.8, 1, 1],
@@ -75,19 +74,7 @@ const LoginWelcomeScreen = () => {
             
           }}
         >
-          <h1 className='text-2xl font-bold'>{welcomeText.map((el, i) => (
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{
-                duration: 0.25,
-                delay: i / 10
-              }}
-              key={i}
-            >
-            {el}{" "}
-            </motion.span>
-          ))}</h1>
+          <h1 className='text-2xl font-bold mt-36'>Welcome to jarsnft</h1>
         </motion.div>
         <p className='mt-2 font-medium'>Connect your wallet to trade NFTs.</p>
         <Link 

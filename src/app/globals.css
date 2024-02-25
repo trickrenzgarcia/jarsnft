@@ -79,7 +79,7 @@
   /* Handle */
   ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: #757575;
+    background: #aeaeae;
   }
 
   /* Dark mode styles */

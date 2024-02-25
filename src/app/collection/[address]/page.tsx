@@ -1,5 +1,8 @@
 import { NFTCollection } from '@/components/(interfaces)'
+import { Navbar } from '@/components/(layout)'
 import React from 'react'
+import NFTMetadata from '../_components/NFTMetadata'
+import Image from 'next/image'
 
 type CollectionParams = {
   params: { address: string }
@@ -7,10 +10,14 @@ type CollectionParams = {
 
 export default function CollectionPage({ params: { address }}: CollectionParams) {
   return (
-    <main className='mt-20'>
-      <div>
-        <h1>NFT Collection: {address}</h1>
-        <NFTCollection contract={address} />
+    <main>
+      <header>
+        <Navbar display='fixed'/>
+      </header>
+      <div className='relative w-auto h-[250px] md:h-[500px]'>
+        <Image src="/assets/collection_banner.webp" fill style={{
+          objectFit: "cover"
+        }} alt='Collection Banner' />
       </div>
     </main>
   )
