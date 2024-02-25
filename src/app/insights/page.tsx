@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/(layout)";
 
-export default function insightPage(){
+export default function InsightPage(){
     return(
         <div>
             <Navbar display='fixed' />

@@ -1,4 +1,4 @@
-import { Poppins, Inter, Rubik } from "next/font/google";
+import { Poppins, Inter, Rubik, Open_Sans } from "next/font/google";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -15,4 +15,6 @@ const rubik = Rubik({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-export { poppins, inter, rubik };
+const open_sans = Open_Sans({ subsets: ["latin"] });
+
+export { poppins, inter, rubik, open_sans };
