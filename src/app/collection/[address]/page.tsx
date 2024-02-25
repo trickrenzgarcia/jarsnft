@@ -14,11 +14,15 @@ export default function CollectionPage({ params: { address }}: CollectionParams)
       <header>
         <Navbar display='fixed'/>
       </header>
-      <div className='relative w-auto h-[250px] md:h-[500px]'>
-        <Image src="/assets/collection_banner.webp" fill style={{
-          objectFit: "cover"
-        }} alt='Collection Banner' />
-      </div>
+      <main className='h-[2000px]'>
+        <div className='relative w-auto h-[250px] md:h-[500px]'>
+          <Image src="/assets/collection_banner.webp" fill style={{
+            objectFit: "cover"
+          }} alt='Collection Banner' />
+        </div>
+        <div>adsadasd</div>
+      </main>
+      
     </main>
   )
 }
