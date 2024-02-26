@@ -73,7 +73,7 @@ export default function Footer() {
               <div className="right ml-auto flex gap-4">
                 <Button onPress={onOpenPrivacy}>Privacy Policy</Button>
                 <Modal isOpen={isPrivacyPolicyOpen} onOpenChange={onOpenChangePrivacy}
-                  scrollBehavior='outside' size='3xl' backdrop='blur'
+                  scrollBehavior='inside' size='3xl' backdrop='opaque'
                   classNames={{
                     body: "py-5 px-5",
                     backdrop: "bg-[#121212]/50 backdrop-opacity-40",
@@ -118,7 +118,7 @@ export default function Footer() {
                 </Modal>
                 <Button onPress={onOpenTerms}>Terms and Service</Button>
                 <Modal isOpen={isTermsOpen} onOpenChange={onOpenChangeTerms}
-                  scrollBehavior='outside' size='3xl' backdrop='blur'
+                  scrollBehavior='inside' size='3xl' backdrop='opaque'
                   classNames={{
                     body: "py-5 px-5 mx-5 my-5",
                     backdrop: "bg-[#121212]/50 backdrop-opacity-40",
