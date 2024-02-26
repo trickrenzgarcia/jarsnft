@@ -1,9 +1,9 @@
 import { NFTContentWrapper } from "@/components/(interfaces)";
-import {Navbar} from "@/components/(layout)";
+import { Navbar } from "@/components/(layout)";
 import NewsCover from "@/components/(layout)/NewsCover";
 
-export default function insightPage(){  
-    return(
+export default function insightPage() {
+    return (
         <div>
             {/* To Do: Add card for each article and a pop up screen */}
             <Navbar display='fixed' />
