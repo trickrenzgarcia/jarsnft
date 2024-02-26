@@ -18,11 +18,11 @@ export default function NFTBannerMetadata() {
     bannerImg: "/assets/collection_banner.webp",
     description: "Pudgy Penguins is a collection of 8,888 NFTs, accelerating Web3 innovation through IP utilization and community empowerment. Embodying love, empathy, & compassion, the Pudgy Penguins are a beacon of good vibes & positivity for everyone. Each holder receives exclusive access to experiences, events, IP licensing opportunities and more.ssssssssssss asdddddddds sssssssssssssssssssssssd asssssssssssssssssssss sdasdasdaw awdawdawd awdawdawd awdawdwadadawd awd awd awd awdwdwad awdaws sssssssssda sdasdasdasd asd asdasdasd asd asdasdas dasdasdasdas dasdasdasdasd sddddddddddasd saasdasda sdasdasdas",
     project_url: "",
-    wiki_url: "sadas",
-    discord_url: "asd",
-    telegram_url: "sdas",
-    twitter_username: "sda",
-    instagram_username: "sda",
+    wiki_url: "https://wiki.com",
+    discord_url: "https://discord.gg",
+    telegram_url: "https://telegram.com",
+    twitter_username: "https://twitter.com",
+    instagram_username: "https://instagram.com",
   })
 
   return (
@@ -63,7 +63,7 @@ export default function NFTBannerMetadata() {
             <div className=''>sdasd</div>
           </section>
 
-          <section className='w-full flex justify-between '>
+          <section className='w-full flex justify-between'>
             <div className='w-[500px]'>
               <Socials social={{
                 wiki_url: data.wiki_url,
