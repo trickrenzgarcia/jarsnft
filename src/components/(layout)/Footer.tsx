@@ -85,8 +85,8 @@ export default function Footer() {
                     
                   <ModalContent>{(onClosePrivacy: any) => (
                   <>
-                  <ModalHeader className="flex flex-col gap-1 ml-5">Privacy Policy</ModalHeader>
-                  <ModalBody>
+                  <ModalHeader className="flex flex-col gap-1 mx-5">Privacy Policy</ModalHeader>
+                  <ModalBody className='mx-5'>
                     <P> 
                     Last Updated: February 23, 2024 
                     </P>
@@ -130,8 +130,8 @@ export default function Footer() {
                   
                 <ModalContent>{(onCloseTerms: any) => (
                 <>
-                <ModalHeader className="flex flex-col gap-1 ml-5">Terms And Conditions</ModalHeader>
-                <ModalBody>
+                <ModalHeader className="flex flex-col gap-1 mx-5">Terms And Conditions</ModalHeader>
+                <ModalBody className='mx-5'>
                   <P> 
                   Last Updated: February 23, 2024
                   </P>

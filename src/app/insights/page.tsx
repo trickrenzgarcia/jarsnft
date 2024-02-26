@@ -5,7 +5,7 @@ import NewsCover from "@/components/(layout)/NewsCover";
 export default function insightPage(){  
     return(
         <div>
-            {/* To Do: Add card for each article and a pop up screen when clicked */}
+            {/* To Do: Add card for each article and a pop up screen */}
             <Navbar display='fixed' />
             <NewsCover />
             <NFTContentWrapper title='Popular Collection' />

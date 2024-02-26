@@ -1,8 +1,8 @@
 import { NFTCollection } from '@/components/(interfaces)'
 import { Navbar } from '@/components/(layout)'
 import React from 'react'
-import NFTMetadata from '../_components/NFTMetadata'
-import Image from 'next/image'
+import NFTBannerMetadata from '../_components/NFTBannerMetadata'
+
 
 type CollectionParams = {
   params: { address: string }
@@ -11,17 +11,9 @@ type CollectionParams = {
 export default function CollectionPage({ params: { address }}: CollectionParams) {
   return (
     <main>
-      <header>
-        <Navbar display='fixed'/>
-      </header>
-      <main className='h-[2000px]'>
-        <div className='relative w-auto h-[250px] md:h-[500px]'>
-          <Image src="/assets/collection_banner.webp" fill style={{
-            objectFit: "cover"
-          }} alt='Collection Banner' />
-        </div>
-        <div>adsadasd</div>
-      </main>
+      <Navbar display="fixed"/>
+      <div className='w-full mb-[70px]'/> {/* To remove overlaps between navbar and contents */}
+      <NFTBannerMetadata />
       
     </main>
   )
