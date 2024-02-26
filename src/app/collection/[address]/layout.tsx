@@ -6,14 +6,16 @@ import { env } from '@/lib/env.mjs';
 import { getMetadata } from '@/lib/ctx';
 import { notFound } from 'next/navigation';
 import { Separator } from '@/components/ui/separator';
+import { Input } from '@nextui-org/react';
 
-export async function generateStaticParams() {
-  const metadatas: MetadataSchema[] = await fetch(env.NEXT_PUBLIC_BACKEND_URL+"/metadata/all").then((res) => res.json())
+// For better user experience SSG (Static Site Generation)
+// export async function generateStaticParams() {
+//   const metadatas: MetadataSchema[] = await fetch(env.NEXT_PUBLIC_BACKEND_URL+"/metadata/all").then((res) => res.json())
 
-  return metadatas.map((data: MetadataSchema) => ({
-    address: data.cid
-  }))
-}
+//   return metadatas.map((data: MetadataSchema) => ({
+//     address: data.cid
+//   }))
+// }
 
 type CollectionParams = {
   params: { address: string },
@@ -34,11 +36,14 @@ export default async function CollectionLayout({ params: { address }, children }
       <Suspense fallback={<LoadingMetadata />}>
         <NFTBannerMetadata metadata={data} />
       </Suspense>
-      <div className='w-full'>
+      <div className='w-full pl-6'>
         <section className='hidden md:block w-[350px]'>
-          <Separator className='w-full ' />
+          <Separator className='w-full my-3 bg-zinc-800' />
+          <div className='flex justify-between'>
+            <Input />
+          </div>
         </section>
-        <section>
+        <section className='w-full'>
           {children}
         </section>
       </div>

@@ -29,6 +29,7 @@ export default function RootLayout({
 }:Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body className={cn("antialiased overflow-x-hidden w-screen", inter.className)}>
