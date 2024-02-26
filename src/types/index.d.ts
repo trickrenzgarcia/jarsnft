@@ -85,6 +85,8 @@ type NFTCollections = {
 };
 
 type NFTCollection = {
+  id: number;
+  cid: string;
   collection: string;
   name: string;
   description: string;
@@ -104,10 +106,6 @@ type NFTCollection = {
   telegram_url: string;
   twitter_username: string;
   instagram_username: string;
-  contracts: {
-    address: string;
-    chain: string;
-  }[];
 };
 
 type NFTContentWrapperProps = {
@@ -141,6 +139,31 @@ export type GetUserResponse = {
     address: string;
     createdAt: Date;
   };
+};
+
+export type MetadataSchema = {
+  id: number;
+  cid: string;
+  collection: string;
+  name: string;
+  description: string;
+  image_url: string;
+  banner_image_url: string;
+  owner: string;
+  safelist_status: string;
+  category: string;
+  is_disabled: boolean;
+  is_nsfw: boolean;
+  trait_offers_enabled: boolean;
+  collection_offers_enabled: boolean;
+  jarsnft_url: string;
+  project_url: string;
+  wiki_url: string;
+  discord_url: string;
+  telegram_url: string;
+  twitter_username: string;
+  instagram_username: string;
+  created_at: string | Date;
 };
 
 export {

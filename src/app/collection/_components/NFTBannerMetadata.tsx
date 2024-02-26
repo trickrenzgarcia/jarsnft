@@ -8,42 +8,47 @@ import { ReadMore } from './ReadMore';
 import React from 'react';
 import Link from 'next/link';
 import { FaDiscord, FaEthereum, FaInstagram, FaTelegram, FaTwitter, FaWikipediaW } from 'react-icons/fa';
+import TooltipMsg from '@/components/(interfaces)/TooltipMsg';
+import { MetadataSchema } from '@/types';
 
-export default function NFTBannerMetadata() {
+type BannerMetadataProps = {
+  metadata: MetadataSchema
+}
 
+export default function NFTBannerMetadata({ metadata }: BannerMetadataProps) {
   const [data] = React.useState({
-    name: "Jajars",
+    name: metadata.name,
     amountOfNfts: 100,
-    img: "/assets/jars256.png",
+    img: metadata.image_url,
     bannerImg: "/assets/collection_banner.webp",
-    description: "Pudgy Penguins is a collection of 8,888 NFTs, accelerating Web3 innovation through IP utilization and community empowerment. Embodying love, empathy, & compassion, the Pudgy Penguins are a beacon of good vibes & positivity for everyone. Each holder receives exclusive access to experiences, events, IP licensing opportunities and more.ssssssssssss asdddddddds sssssssssssssssssssssssd asssssssssssssssssssss sdasdasdaw awdawdawd awdawdawd awdawdwadadawd awd awd awd awdwdwad awdaws sssssssssda sdasdasdasd asd asdasdasd asd asdasdas dasdasdasdas dasdasdasdasd sddddddddddasd saasdasda sdasdasdas",
+    description: metadata.description,
     project_url: "",
-    wiki_url: "https://wiki.com",
-    discord_url: "https://discord.gg",
-    telegram_url: "https://telegram.com",
-    twitter_username: "https://twitter.com",
-    instagram_username: "https://instagram.com",
+    wiki_url: metadata.wiki_url,
+    discord_url: metadata.discord_url,
+    telegram_url: metadata.telegram_url,
+    twitter_username: metadata.twitter_username,
+    instagram_username: metadata.instagram_username,
   })
 
   const [details] = React.useState([
     { detail: "Floor", value: 10 },
     { detail: "24h Vol", value: 1170 },
     { detail: "7d Vol", value: 7280 },
-    { detail: "Total Vol 100%", value: 1230240 }
+    { detail: "Total Vol", value: 1230240 }
   ])
 
 
   return (
-    <main className='w-full flex flex-col'>
+    <main className='w-full flex flex-col bg-slate-600 dark:bg-background text-white'>
         <div className='relative w-auto h-[200px] md:h-[400px] '>
           <Image src={data.bannerImg} fill style={{
               objectFit: "cover"
             }} 
             alt='Collection Banner'
-            className='opacity-100 md:opacity-50 dark:md:opacity-30'
+            className='opacity-100 md:opacity-65 dark:md:opacity-30'
           />
         </div>
-        <div className='absolute hidden md:block w-full h-[400px] px-7 py-6 shadow-[inset_0_-50px_100px_rgba(255,255,255,1)] dark:shadow-[inset_0_-50px_100px_rgba(10,10,10,1)]'>
+        <div className='absolute hidden md:block w-full h-[400px] px-7 py-6 dark:shadow-[inset_0_-50px_100px_rgba(10,10,10,1)]'>
 
           <section className='flex justify-between mb-4'>
             <div className='flex items-center gap-3'>
@@ -54,23 +59,23 @@ export default function NFTBannerMetadata() {
                 className='border rounded-xl'
               />
               <div className={cn('w-[500px]', open_sans.className)}>
-                <h1 className={cn('truncate font-bold text-3xl flex items-center gap-2')}>
-                  <span>{data.name}</span>
-                  <MdVerified className='text-blue-500' />
-                </h1>
+                <div className='w-full flex gap-1 items-center font-semibold text-2xl'>
+                  <div className='truncate'>
+                    <h2 className='truncate'>{data.name}</h2>
+                  </div>
+                  <TooltipMsg message='Verified'>
+                    <div className='rounded-sm hover:bg-slate-500/30 p-1 cursor-pointer'>
+                      <MdVerified className='text-blue-500'/>
+                    </div>
+                  </TooltipMsg>
+                  
+                </div>
+                
                 <p className='font-bold'>A collection of {data.amountOfNfts} Jajars nft</p>
               </div>
             </div>
-            <div className='hidden lg:flex items-center gap-6'>
-              {details.map((detail, i) => (
-                <div key={i} className={cn(poppins.className, 'w-[110px]')}>
-                  <h1 className='text-2xl flex font-semibold'>
-                    <FaEthereum />
-                    <span>{formatNumber(detail.value)}</span>
-                  </h1>
-                  <p className='text-sm'>{detail.detail}</p>
-                </div>
-              ))}
+            <div className=''>
+              
             </div>
 
           </section>
@@ -80,7 +85,17 @@ export default function NFTBannerMetadata() {
               <ReadMore id='collection-description' text={data.description} amountOfWords={24}
               />
             </div>
-            <div className=''>sdasd</div>
+            <div className='hidden lg:flex items-center gap-6 pl-3'>
+              {details.map((detail, i) => (
+                <div key={i} className={cn(poppins.className, 'w-[110px]')}>
+                  <h1 className='text-2xl flex font-semibold'>
+                    <FaEthereum />
+                    <span>{formatNumber(detail.value)}</span>
+                  </h1>
+                  <p className='text-sm text-gray-300 dark:text-gray-500 font-normal'>{detail.detail}</p>
+                </div>
+              ))}
+            </div>
           </section>
 
           <section className='w-full flex justify-between'>
@@ -118,7 +133,7 @@ function Socials({ social }: { social: Social }) {
   return (
     <div className={cn('flex gap-2', hidden)}>
       {wiki_url && (
-        <Link href={wiki_url} className='hover:bg-slate-700/40 rounded-md' target='_blank'>
+        <Link href={wiki_url} className='hover:bg-slate-700/60 dark:hover:bg-slate-700/40 rounded-md' target='_blank'>
           <div className='w-[33px] h-[33px] flex justify-center items-center'>
             <FaWikipediaW />
           </div>

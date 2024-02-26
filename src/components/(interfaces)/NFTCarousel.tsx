@@ -31,7 +31,7 @@ export default function NFTCarousel({ collections }: NFTCarouselProps) {
         {collections.map((collection, index) => (
           <CarouselItem key={index} className='basis-1/2 md:basis-1/3 lg:basis-1/5 xl:basis-1/6'>
             <div className="cursor-pointer hover:-translate-y-1 duration-100 ease-out">
-            <Link href={`/collection/${collection.contracts[0].address}`} >
+            <Link href={`/collection/${collection.cid}`} >
               <Card className='hover:bg-opacity-65 rounded-2xl'>
                 <CardContent className="flex aspect-[1.25/1] items-center justify-center">
                   <Image src={collection.image_url || "https://st7yvhbtkj4kdnf3vwyncrotnch5e5b5yuga3um6thhfhgg7fwgq.arweave.net/lP-KnDNSeKG0u62w0UXTaI_SdD3FDA3RnpnOU5jfLY0?ext=png"} alt='' width={2000} height={2000} loading='eager' style={{objectFit: "cover"}} className='w-full h-full rounded-t-2xl'/>

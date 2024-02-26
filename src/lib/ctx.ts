@@ -1,5 +1,11 @@
 import fakeCollection from "@/lib/json/fake-collection.json";
-import { GetUserResponse, NFTCollection } from "@/types";
+import { GetUserResponse, MetadataSchema, NFTCollection } from "@/types";
+import { env } from "./env.mjs";
+
+const BASE_URL =
+  process.env.NODE_ENV === "development"
+    ? env.NEXT_PUBLIC_BACKEND_URL
+    : env.NEXT_PUBLIC_BACKEND_URL;
 
 export async function fetchApi(url: string) {
   const response = await fetch(url, {
@@ -31,7 +37,24 @@ export async function fetchFromAPI(url: URL, cacheTime?: number) {
 }
 
 export async function getCollections() {
-  await new Promise((resolve, reject) => setTimeout(resolve, 2000));
-  const response = fakeCollection.result.data.collections as NFTCollection[];
-  return response;
+  const response = await fetch(`${BASE_URL}/collections`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = (await response.json()) as NFTCollection[];
+  return data || null;
+}
+
+export async function getMetadata(contract: string) {
+  const response = await fetch(`${BASE_URL}/metadata/${contract}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = (await response.json()) as MetadataSchema;
+  return data || null;
 }
