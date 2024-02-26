@@ -1,8 +1,8 @@
-import {Navbar} from "@/components/(layout)";
-import NewsCover from "@/components/(layout)/newsCover";
+import { Navbar } from "@/components/(layout)";
+import NewsCover from "@/components/(layout)/NewsCover";
 
-export default function InsightPage(){
-    return(
+export default function InsightPage() {
+    return (
         <div>
             <Navbar display='fixed' />
             <NewsCover />
