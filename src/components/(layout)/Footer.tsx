@@ -35,7 +35,7 @@ export default function Footer() {
           <div className='flex flex-col gap-y-5'>
             <h1 className='font-semibold mb-1'>Company</h1>
             <Link href='/' className='hover:underline'>About</Link>
-            <Link href='/' className='hover:underline'>Team</Link>
+            <Link href='/team' className='hover:underline'>Team</Link>
           </div>
           {/* <div className='flex flex-col gap-y-5'>
             <h1 className='font-semibold mb-1'>Marketplace</h1>

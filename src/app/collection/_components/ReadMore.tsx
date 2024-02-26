@@ -34,7 +34,7 @@ export const ReadMore = ({ id, text, amountOfWords = 36 }: ReadMoreProps) => {
             {endText}
           </span>
           <span
-            className='text-violet-400 ml-2'
+            className='font-bold ml-2 hover:text-purple-600'
             role="button"
             tabIndex={0}
             aria-expanded={isExpanded}
@@ -42,7 +42,7 @@ export const ReadMore = ({ id, text, amountOfWords = 36 }: ReadMoreProps) => {
             onKeyDown={handleKeyboard}
             onClick={() => setIsExpanded(!isExpanded)}
           >
-            {isExpanded ? 'show less' : 'show more'}
+            {isExpanded ? 'Show less' : 'Read more'}
           </span>
         </>
       )}

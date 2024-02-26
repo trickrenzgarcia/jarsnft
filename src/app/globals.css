@@ -84,6 +84,7 @@
 
   /* Dark mode styles */
   .dark ::-webkit-scrollbar-track {
+    border-radius: 10px;
     background: #161616;
     margin: 2px;
   }
