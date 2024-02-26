@@ -53,6 +53,9 @@ export default function NFTBannerMetadata() {
                 <p className='font-bold'>A collection of {data.amountOfNfts} Jajars nft</p>
               </div>
             </div>
+            <div>
+
+            </div>
           </section>
 
           <section className='w-full flex justify-between mb-3'>
