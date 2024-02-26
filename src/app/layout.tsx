@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { inter } from "@/lib/fonts";
 import "./globals.css";
 import {
-  SessionProvider,
   ThemeProvider,
   ThirdwebProvider
 } from '@/components/(providers)';
