@@ -1,13 +1,13 @@
 "use client"
 
-import { open_sans } from '@/lib/fonts';
-import { cn } from '@/lib/utils';
+import { open_sans, poppins } from '@/lib/fonts';
+import { cn, formatNumber } from '@/lib/utils';
 import Image from 'next/image';
 import { MdVerified } from 'react-icons/md'
 import { ReadMore } from './ReadMore';
 import React from 'react';
 import Link from 'next/link';
-import { FaDiscord, FaInstagram, FaTelegram, FaTwitter, FaWikipediaW } from 'react-icons/fa';
+import { FaDiscord, FaEthereum, FaInstagram, FaTelegram, FaTwitter, FaWikipediaW } from 'react-icons/fa';
 
 export default function NFTBannerMetadata() {
 
@@ -24,6 +24,14 @@ export default function NFTBannerMetadata() {
     twitter_username: "https://twitter.com",
     instagram_username: "https://instagram.com",
   })
+
+  const [details] = React.useState([
+    { detail: "Floor", value: 10 },
+    { detail: "24h Vol", value: 1170 },
+    { detail: "7d Vol", value: 7280 },
+    { detail: "Total Vol 100%", value: 1230240 }
+  ])
+
 
   return (
     <main className='w-full flex flex-col'>
@@ -45,7 +53,7 @@ export default function NFTBannerMetadata() {
                 alt='Collection image'
                 className='border rounded-xl'
               />
-              <div className={cn('w-[600px]', open_sans.className)}>
+              <div className={cn('w-[500px]', open_sans.className)}>
                 <h1 className={cn('truncate font-bold text-3xl flex items-center gap-2')}>
                   <span>{data.name}</span>
                   <MdVerified className='text-blue-500' />
@@ -53,9 +61,18 @@ export default function NFTBannerMetadata() {
                 <p className='font-bold'>A collection of {data.amountOfNfts} Jajars nft</p>
               </div>
             </div>
-            <div>
-
+            <div className='hidden lg:flex items-center gap-6'>
+              {details.map((detail, i) => (
+                <div key={i} className={cn(poppins.className, 'w-[110px]')}>
+                  <h1 className='text-2xl flex font-semibold'>
+                    <FaEthereum />
+                    <span>{formatNumber(detail.value)}</span>
+                  </h1>
+                  <p className='text-sm'>{detail.detail}</p>
+                </div>
+              ))}
             </div>
+
           </section>
 
           <section className='w-full flex justify-between mb-3'>
