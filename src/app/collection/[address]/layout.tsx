@@ -7,6 +7,7 @@ import { getMetadata } from '@/lib/ctx';
 import { notFound } from 'next/navigation';
 import { Separator } from '@/components/ui/separator';
 import { Input } from '@nextui-org/react';
+import PriceRangeValue from '../_components/PriceRangeValue';
 
 // For better user experience SSG (Static Site Generation)
 // export async function generateStaticParams() {
@@ -36,14 +37,14 @@ export default async function CollectionLayout({ params: { address }, children }
       <Suspense fallback={<LoadingMetadata />}>
         <NFTBannerMetadata metadata={data} />
       </Suspense>
-      <div className='w-full pl-6'>
-        <section className='hidden md:block w-[350px]'>
+      <div className='w-full flex items-start'>
+        <section className='sticky hidden md:block w-[380px] min-w-[380px] overflow-y-auto top-[100px] left-0 h-auto px-6 border-r border-zinc-800'>
           <Separator className='w-full my-3 bg-zinc-800' />
-          <div className='flex justify-between'>
-            <Input />
+          <div className=''>
+            <PriceRangeValue />
           </div>
         </section>
-        <section className='w-full'>
+        <section className='relative p-6'>
           {children}
         </section>
       </div>
