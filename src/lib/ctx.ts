@@ -1,11 +1,14 @@
 import fakeCollection from "@/lib/json/fake-collection.json";
 import { GetUserResponse, MetadataSchema, NFTCollection } from "@/types";
 import { env } from "./env.mjs";
+import { ApiResponse, User } from "@/types/ctx.types";
 
-const BASE_URL =
+export const BASE_URL =
   process.env.NODE_ENV === "development"
     ? env.NEXT_PUBLIC_BACKEND_URL
     : env.NEXT_PUBLIC_BACKEND_URL;
+
+export const authToken = process.env.JWT_AUTH_TOKEN as string;
 
 export async function fetchApi(url: string) {
   const response = await fetch(url, {
@@ -57,4 +60,49 @@ export async function getMetadata(contract: string) {
 
   const data = (await response.json()) as MetadataSchema;
   return data || null;
+}
+
+
+export async function createUser({ address }: { address: string }) {
+  const response = await fetch(`${BASE_URL}/user/create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${authToken}`,
+    },
+    body: JSON.stringify({ address: address }),
+  });
+
+  const data: ApiResponse<User> = (await response.json()) as ApiResponse<User> ;
+  return data
+}
+
+export async function getUser(address: string) {
+  const response = await fetch(`${BASE_URL}/user/${address}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${authToken}`,
+    }
+  });
+
+  const data: ApiResponse<User> = (await response.json()) as ApiResponse<User> ;
+
+  return data
+}
+
+export async function userExists(address: string) {
+  const response = await fetch(`${BASE_URL}/user/${address}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${authToken}`,
+    }
+  });
+
+  const data: ApiResponse<User> = (await response.json()) as ApiResponse<User>;
+
+  if(!data.data) return false;
+
+  return data
 }

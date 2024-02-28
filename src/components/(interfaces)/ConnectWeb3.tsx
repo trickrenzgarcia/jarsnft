@@ -18,7 +18,6 @@ type UserResponse = {
 
 const ConnectWeb3 = () => {
   const { data } = useSession()
-  console.log(data)
   return (
     <div>
       <ConnectWallet
@@ -26,11 +25,11 @@ const ConnectWeb3 = () => {
         modalTitle="JarsNFT"
         auth={{
           async onLogin(token) {
-            console.log("Authorization ", token)
+            //console.log("Authorization ", token)
           },
-          onLogout() {
-              
-          },
+          async onLogout() {
+            console.log("Logout")
+          }
         }}
         switchToActiveChain={true}
         showThirdwebBranding={false}
