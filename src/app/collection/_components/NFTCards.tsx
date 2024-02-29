@@ -13,16 +13,18 @@ import {
 } from "@/components/ui/card"
 import Image from 'next/image'
 import Link from 'next/link'
+import { useSession } from 'next-auth/react'
 
 export default function NFTCards({ address }: { address: string }) {
   const { contract } = useContract(address)
   const { data, isError, isLoading } = useNFTs(contract)
+  const session = useSession()
+
+  console.log(session.data)
 
   if(isError) return <ErrorNFTCards />
 
   if(isLoading) return <LoadingNFTCards />
-
-  console.log(data)
 
   if(data) return (
     <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>

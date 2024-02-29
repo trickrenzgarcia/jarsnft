@@ -5,6 +5,13 @@ import { PrivateKeyWallet } from "@thirdweb-dev/auth/evm";
 import * as db from "@/lib/ctx"
 import { ApiResponse, User } from "@/types/ctx.types";
 
+/* 
+  1. Validate nonce
+  2. onLogin() - 
+  3. onToken() -
+  4. onUser() -
+*/
+
 async function validateNonce(nonce: string) {
   const response = await fetch("http://localhost:5000/nonce/validate", {
     method: "POST",
@@ -26,6 +33,7 @@ async function validateNonce(nonce: string) {
     body: JSON.stringify({ nonce: nonce }),
   });
 
+  console.log("Validated nonce");
 }
 
 export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
@@ -36,11 +44,6 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
     validateNonce: validateNonce,
   },
   callbacks: {
-    onUser: async (user: ThirdwebAuthUser) => {
-      console.log(user, "from api route callbacks: onUser(user) => onUser");
-
-      return user;
-    },
     onLogin: async (address: string) => {
       if(!await db.userExists(address)) {
         // IF no user exists, THEN create user
@@ -53,8 +56,16 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
         address: address,
         user: user.data
       };
-
+      console.log("onLogin()")
       return session;
+    },
+    onToken(token) {
+      console.log(token)
+      return token;
+    },
+    onUser: async (user: ThirdwebAuthUser) => {
+      console.log("onUser()")
+      return user;
     },
   },
 });
