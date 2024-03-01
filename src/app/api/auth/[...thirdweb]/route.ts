@@ -38,7 +38,7 @@ async function validateNonce(nonce: string) {
 
 export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
   domain: "http://localhost:3000",
-  wallet: new PrivateKeyWallet(process.env.THIRDWEB_AUTH_PRIVATE_KEY || ""),
+  wallet: new PrivateKeyWallet(process.env.THIRDWEB_AUTH_PRIVATE_KEY as string, "sepolia"),
   authOptions: {
     //Check in database or storage if nonce exists
     validateNonce: validateNonce,
