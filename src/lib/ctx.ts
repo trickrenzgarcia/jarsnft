@@ -88,7 +88,7 @@ export async function getUser(address: string) {
 
   const data: ApiResponse<User> = (await response.json()) as ApiResponse<User> ;
 
-  return data
+  return data.data
 }
 
 export async function userExists(address: string) {

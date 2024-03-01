@@ -1,10 +1,11 @@
 // @ts ctx types for database
 
 export type User = {
-    name?: string;
-    email?: string;
+    name: string;
+    email: string;
     address: string;
-    createdAt?: Date;
+    is_listed: boolean;
+    createdAt: string;
 }
 
 export type ApiResponse<T> = {

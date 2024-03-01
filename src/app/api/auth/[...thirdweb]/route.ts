@@ -49,24 +49,24 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
         // IF no user exists, THEN create user
         await db.createUser({ address: address });
       }
+      const user = await db.getUser(address);
 
-      const user: any = await db.getUser(address);
-      
       const session = {
-        address: address,
-        user: user.data
-      };
-      console.log("onLogin()")
-      return session;
+        email: user.email,
+        name: user.name,
+        is_listed: user.is_listed,
+        create_at: user.createdAt
+      }
+      
+      return session
     },
     onToken(token) {
-      console.log(token)
       return token;
     },
     onUser: async (user: ThirdwebAuthUser) => {
-      console.log("onUser()")
+      
       return user;
-    },
+    }
   },
 });
 
