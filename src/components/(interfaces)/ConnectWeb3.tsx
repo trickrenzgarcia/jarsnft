@@ -10,6 +10,11 @@ import Spline from "@splinetool/react-spline"
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import CreateUserDialog from './CreateUserDialog'
+
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
 
 type UserResponse = {
   success: boolean,
@@ -17,19 +22,21 @@ type UserResponse = {
 }
 
 const ConnectWeb3 = () => {
-  const { data } = useSession()
-  console.log(data)
+  const [openCreateUser, setOpenCreateUser] = useState<boolean>(false)
+  const router = useRouter()
+
   return (
     <div>
       <ConnectWallet
         btnTitle="Login"
         modalTitle="JarsNFT"
         auth={{
-          async onLogin(token) {
-            console.log("Authorization ", token)
+          onLogin: (address: string) => {
+            
           },
           onLogout() {
-              
+            console.log("user logged out")
+            //signOut()
           },
         }}
         switchToActiveChain={true}
@@ -38,6 +45,34 @@ const ConnectWeb3 = () => {
         modalTitleIconUrl=''
         
       />
+      <Dialog open={openCreateUser}>
+        <DialogTrigger asChild ></DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Edit profile</DialogTitle>
+            <DialogDescription>
+              Make changes to your profile here. Click save when you're done.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="name" className="text-right">
+                Name
+              </Label>
+              <Input id="name" value="Pedro Duarte" className="col-span-3" />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="username" className="text-right">
+                Username
+              </Label>
+              <Input id="username" value="@peduarte" className="col-span-3" />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button type="submit">Save changes</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

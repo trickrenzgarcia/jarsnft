@@ -5,7 +5,7 @@ type CollectionParams = {
 }
 
 export default async function CollectionPage({ params: { address }}: CollectionParams) {
-
+  
   return (
     <main className='h-[1000px]'>
       <NFTCards address={address} />

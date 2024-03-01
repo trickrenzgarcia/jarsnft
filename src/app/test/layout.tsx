@@ -11,7 +11,7 @@ export default function TestLayout({ children }: { children: React.ReactNode }) 
       <div className='flex'>
         <div className='basis-[20%] border-r-2 p-7'>
           <h2 className='font-bold mb-2'>Test Links</h2>
-          <ul>
+          <ul className='mb-2'>
             <li className="hover:underline">
               <Link href='/test/likes'>Likes</Link>
             </li>
@@ -20,6 +20,12 @@ export default function TestLayout({ children }: { children: React.ReactNode }) 
             </li>
             <li className="hover:underline">
               <Link href='/test/spline'>Spline 3D</Link>
+            </li>
+          </ul>
+          <h2 className='font-bold mb-2'>UI</h2>
+          <ul className='mb-2'>
+            <li className="hover:underline">
+              <Link href='/test/ui/card'>Card</Link>
             </li>
           </ul>
         </div>

@@ -1,0 +1,28 @@
+# To build docker images use this commands
+# NOTE: Make sure you have installed docker in your local machine
+# docker build -f Dockerfile.dev -t jarsnft-dev:1.0 .
+
+FROM node:18.17.1
+
+WORKDIR /app
+
+COPY package*.json .
+
+# If no changes on npm like no dependencies new added.
+
+COPY . .
+
+RUN npm install
+
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]
+
+# Check docker images exists
+# docker images
+
+# Run docker container
+# docker run -d -p 3000:3000 jarsnft-dev:1.0
+
+# Check Running container
+# docker ps
