@@ -41,7 +41,7 @@ export default function Navbar({ display }: NavbarProps) {
             <Link href="/collection" className='px-3 font-semibold hover:text-zinc-500 cursor-pointer'>Collections</Link>
             <Link href="/trade" className='px-3 font-semibold hover:text-zinc-500 cursor-pointer'>Trade</Link>
             <Link href="/coin" className='px-3 font-semibold hover:text-zinc-500 cursor-pointer'>Coin Analytics</Link>
-            <Link href="/learn" className='px-3 font-semibold hover:text-zinc-500 cursor-pointer'>Learn</Link>
+            <Link href="/learn" className='px-3 font-semibold hover:text-zinc-500 cursor-pointer'>Insights</Link>
           </div>
         </div>
 
