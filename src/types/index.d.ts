@@ -1,4 +1,4 @@
-import { NFT as ThirdwebNFT } from "@thirdweb-dev/react";
+import { CustomContractMetadata, NFT as ThirdwebNFT } from "@thirdweb-dev/react";
 import { z } from "zod";
 
 export type NFT = ThirdwebNFT;
@@ -165,6 +165,12 @@ export type MetadataSchema = {
   instagram_username: string;
   created_at: string | Date;
 };
+
+export type ContractMetadata = {
+  data: CustomContractMetadata | unknown;
+  isLoading: boolean;
+  isError: boolean;
+}
 
 export {
   AppConfig,

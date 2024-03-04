@@ -10,25 +10,16 @@ import Link from 'next/link';
 import { FaDiscord, FaEthereum, FaInstagram, FaTelegram, FaTwitter, FaWikipediaW } from 'react-icons/fa';
 import TooltipMsg from '@/components/(interfaces)/TooltipMsg';
 import { MetadataSchema } from '@/types';
+import { CustomContractMetadata } from '@thirdweb-dev/sdk';
+import { useContract, useMetadata } from '@thirdweb-dev/react';
 
 type BannerMetadataProps = {
-  metadata: MetadataSchema
+  address: string
 }
 
-export default function NFTBannerMetadata({ metadata }: BannerMetadataProps) {
-  const [data] = React.useState({
-    name: metadata.name,
-    amountOfNfts: 100,
-    img: metadata.image_url,
-    bannerImg: "/assets/collection_banner.webp",
-    description: metadata.description,
-    project_url: "",
-    wiki_url: metadata.wiki_url,
-    discord_url: metadata.discord_url,
-    telegram_url: metadata.telegram_url,
-    twitter_username: metadata.twitter_username,
-    instagram_username: metadata.instagram_username,
-  })
+export default function NFTBannerMetadata({ address }: BannerMetadataProps) {
+  const { contract } = useContract(address)
+  const { data } : { data: CustomContractMetadata} = useMetadata(contract)
 
   const [details] = React.useState([
     { detail: "Floor", value: 10 },
@@ -38,82 +29,85 @@ export default function NFTBannerMetadata({ metadata }: BannerMetadataProps) {
   ])
 
 
-  return (
-    <main className='w-full flex flex-col bg-slate-600 dark:bg-background text-white'>
-        <div className='relative w-auto h-[200px] md:h-[400px] '>
-          <Image src={data.bannerImg} fill style={{
-              objectFit: "cover"
-            }} 
-            alt='Collection Banner'
-            className='opacity-100 md:opacity-65 dark:md:opacity-30'
-          />
-        </div>
-        <div className='absolute hidden md:block w-full h-[400px] px-7 py-6 dark:shadow-[inset_0_-50px_100px_rgba(10,10,10,1)]'>
-
-          <section className='flex justify-between mb-4'>
-            <div className='flex items-center gap-3'>
-              <Image 
-                src={data.img}
-                width={125} height={125} 
-                alt='Collection image'
-                className='border rounded-xl'
-              />
-              <div className={cn('w-[500px]', open_sans.className)}>
-                <div className='w-full flex gap-1 items-center font-semibold text-2xl'>
-                  <div className='truncate'>
-                    <h2 className='truncate'>{data.name}</h2>
-                  </div>
-                  <TooltipMsg message='Verified'>
-                    <div className='rounded-sm hover:bg-slate-500/30 p-1 cursor-pointer'>
-                      <MdVerified className='text-blue-500'/>
-                    </div>
-                  </TooltipMsg>
-                  
-                </div>
-                
-                <p className='font-bold'>A collection of {data.amountOfNfts} Jajars nft</p>
-              </div>
-            </div>
-            <div className=''>
-              
-            </div>
-
-          </section>
-
-          <section className='w-full flex justify-between mb-3'>
-            <div className='w-[500px] h-[160px] overflow-x-hidden dark:text-gray-300 text-sm font-semibold'>
-              <ReadMore id='collection-description' text={data.description} amountOfWords={24}
-              />
-            </div>
-            <div className='hidden lg:flex items-center gap-6 pl-3'>
-              {details.map((detail, i) => (
-                <div key={i} className={cn(poppins.className, 'w-[110px]')}>
-                  <h1 className='text-2xl flex font-semibold'>
-                    <FaEthereum />
-                    <span>{formatNumber(detail.value)}</span>
-                  </h1>
-                  <p className='text-sm text-gray-300 dark:text-gray-500 font-normal'>{detail.detail}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className='w-full flex justify-between'>
-            <div className='w-[500px]'>
-              <Socials social={{
-                wiki_url: data.wiki_url,
-                discord_url: data.discord_url,
-                telegram_url: data.telegram_url,
-                twitter_username: data.twitter_username,
-                instagram_username: data.instagram_username
+  if(data) {
+    return (
+      <main className='w-full flex flex-col bg-slate-600 dark:bg-background text-white'>
+          <div className='relative w-auto h-[200px] md:h-[400px] '>
+            <Image src={data.bannerImg as string || "/assets/collection_banner_placeholder.png"} fill style={{
+                objectFit: "cover"
               }} 
-              />
-            </div>
-          </section>
-
-        </div>
-      </main>
-  )
+              alt='Collection Banner'
+              className='opacity-100 md:opacity-65 dark:md:opacity-30'
+            />
+          </div>
+          <div className='absolute hidden md:block w-full h-[400px] px-7 py-6 dark:shadow-[inset_0_-50px_100px_rgba(10,10,10,1)]'>
+  
+            <section className='flex justify-between mb-4'>
+              <div className='flex items-center gap-3'>
+                <Image 
+                  src={data.image as string || "/assets/image_not_found.jpg"}
+                  width={125} height={125} 
+                  alt=''
+                  className='border rounded-xl aspect-square object-fill'
+                />
+                <div className={cn('w-[500px]', open_sans.className)}>
+                  <div className='w-full flex gap-1 items-center font-semibold text-2xl'>
+                    <div className='truncate'>
+                      <h2 className='truncate'>{data.name}</h2>
+                    </div>
+                    <TooltipMsg message='Verified'>
+                      <div className='rounded-sm hover:bg-slate-500/30 p-1 cursor-pointer'>
+                        <MdVerified className='text-blue-500'/>
+                      </div>
+                    </TooltipMsg>
+                    
+                  </div>
+                  
+                  <p className='font-bold'>A collection of {100} Jajars nft</p>
+                </div>
+              </div>
+              <div className=''>
+                
+              </div>
+  
+            </section>
+  
+            <section className='w-full flex justify-between mb-3'>
+              <div className='w-[500px] h-[160px] overflow-x-hidden dark:text-gray-300 text-sm font-semibold'>
+                <ReadMore id='collection-description' text={data.description as string || ""} amountOfWords={24}
+                />
+              </div>
+              <div className='hidden lg:flex items-center gap-6 pl-3'>
+                {details.map((detail, i) => (
+                  <div key={i} className={cn(poppins.className, 'w-[110px]')}>
+                    <h1 className='text-2xl flex font-semibold'>
+                      <FaEthereum />
+                      <span>{formatNumber(detail.value)}</span>
+                    </h1>
+                    <p className='text-sm text-gray-300 dark:text-gray-500 font-normal'>{detail.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+  
+            <section className='w-full flex justify-between'>
+              <div className='w-[500px]'>
+                <Socials social={{
+                  wiki_url: data.wiki_url as string,
+                  discord_url: data.discord_url as string,
+                  telegram_url: data.telegram_url as string,
+                  twitter_username: data.twitter_username as string,
+                  instagram_username: data.instagram_username as string
+                }} 
+                />
+              </div>
+            </section>
+  
+          </div>
+        </main>
+    )
+  }
+  
 }
 
 type Social = {
