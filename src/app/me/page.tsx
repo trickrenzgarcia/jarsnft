@@ -5,11 +5,8 @@ import ClientWrapper from './_components/ClientWrapper'
 export default function AccountPage() {
 
   return (
-		<ClientWrapper>
-			<ProfileBanner />
-			<main className='h-screen'>
+		<main className='h-screen'>
 
-			</main>
-		</ClientWrapper>
+		</main>
   )
 }

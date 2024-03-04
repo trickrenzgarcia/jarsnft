@@ -3,10 +3,10 @@
 import NoConnectedWallet from "./NoConnectedWallet"
 import { useUser } from "@thirdweb-dev/react"
 import LoadingBackground from "./LoadingBackground"
+import ProfileProvider from "../_provider/ProfileProvider"
 
 export default function ClientWrapper({ children }: { children: React.ReactNode}) {
     const { user, isLoading, isLoggedIn } = useUser()
-    console.log(user)
 
     if(isLoading) {
         return <LoadingBackground />
@@ -18,9 +18,9 @@ export default function ClientWrapper({ children }: { children: React.ReactNode}
 
     if(isLoggedIn) {
         return (
-            <div>
+            <ProfileProvider value={user}>
                 {children}
-            </div>
+            </ProfileProvider>
         )
     }
     
