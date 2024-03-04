@@ -48,7 +48,7 @@ export default function Navbar({ display }: NavbarProps) {
         <div>
           {/* <LoginButton /> */}
           {/* <AuthLoginButton /> */}
-          <ConnectWeb3 />
+          <ConnectWeb3 btnTitle="Connect" />
         </div>
 
       </div>

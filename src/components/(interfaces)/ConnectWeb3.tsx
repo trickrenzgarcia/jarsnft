@@ -1,16 +1,12 @@
 "use client"
 
-import { fetchApi } from '@/lib/ctx'
-import { ConnectWallet, Web3Button, darkTheme, lightTheme, useAuth, useLogin } from '@thirdweb-dev/react'
-import React, { useEffect, useState, memo } from 'react'
-import { LoginButton } from '.'
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { ConnectWallet } from '@thirdweb-dev/react'
+import React, { useState} from 'react'
+import { signOut } from 'next-auth/react'
 import { Button } from '../ui/button'
-import Spline from "@splinetool/react-spline"
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import CreateUserDialog from './CreateUserDialog'
 
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog'
 import { Label } from '@/components/ui/label'
@@ -21,23 +17,22 @@ type UserResponse = {
   user: any
 }
 
-const ConnectWeb3 = () => {
+const ConnectWeb3 = ({ btnTitle}: { btnTitle: string | undefined }) => {
   const [openCreateUser, setOpenCreateUser] = useState<boolean>(false)
   const router = useRouter()
 
   return (
     <div>
       <ConnectWallet
-        btnTitle="Login"
+        btnTitle={btnTitle}
         modalTitle="JarsNFT"
         auth={{
           onLogin: (address: string) => {
             
           },
-          onLogout() {
-            console.log("user logged out")
-            //signOut()
-          },
+          onLogout: () => {
+            router.refresh()
+          }
         }}
         switchToActiveChain={true}
         showThirdwebBranding={false}
@@ -124,4 +119,4 @@ const LoginWelcomeScreen = () => {
   )
 }
 
-export default memo(ConnectWeb3)
+export default ConnectWeb3

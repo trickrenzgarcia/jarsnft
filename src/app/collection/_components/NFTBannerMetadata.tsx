@@ -17,10 +17,23 @@ type BannerMetadataProps = {
   address: string
 }
 
+type QueryMetadata = {
+  data: CustomContractMetadata,
+  isLoading: boolean,
+  isError: boolean
+}
 export default function NFTBannerMetadata({ address }: BannerMetadataProps) {
   const { contract } = useContract(address)
-  const { data } : { data: CustomContractMetadata} = useMetadata(contract)
+  const { data: metadata, isLoading, isError } = useMetadata(contract) as QueryMetadata
 
+  // Database to be handled by the backend
+  const [socials] = React.useState({
+    wiki_url: "https://en.wikipedia.org/wiki/Non-fungible_token",
+    discord_url: "https://discord.com/invite/3Z3VJ3j",
+    telegram_url: "https://t.me/nonfungible",
+    twitter_username: "https://twitter.com/nonfungible",
+    instagram_username: "https://www.instagram.com/nonfungible/"
+  })
   const [details] = React.useState([
     { detail: "Floor", value: 10 },
     { detail: "24h Vol", value: 1170 },
@@ -29,11 +42,11 @@ export default function NFTBannerMetadata({ address }: BannerMetadataProps) {
   ])
 
 
-  if(data) {
+  if(metadata) {
     return (
       <main className='w-full flex flex-col bg-slate-600 dark:bg-background text-white'>
           <div className='relative w-auto h-[200px] md:h-[400px] '>
-            <Image src={data.bannerImg as string || "/assets/collection_banner_placeholder.png"} fill style={{
+            <Image src={"/assets/collection_banner_placeholder.png"} fill style={{
                 objectFit: "cover"
               }} 
               alt='Collection Banner'
@@ -45,7 +58,7 @@ export default function NFTBannerMetadata({ address }: BannerMetadataProps) {
             <section className='flex justify-between mb-4'>
               <div className='flex items-center gap-3'>
                 <Image 
-                  src={data.image as string || "/assets/image_not_found.jpg"}
+                  src={metadata.image || "/assets/image_not_found.jpg"}
                   width={125} height={125} 
                   alt=''
                   className='border rounded-xl aspect-square object-fill'
@@ -53,7 +66,7 @@ export default function NFTBannerMetadata({ address }: BannerMetadataProps) {
                 <div className={cn('w-[500px]', open_sans.className)}>
                   <div className='w-full flex gap-1 items-center font-semibold text-2xl'>
                     <div className='truncate'>
-                      <h2 className='truncate'>{data.name}</h2>
+                      <h2 className='truncate'>{metadata.name}</h2>
                     </div>
                     <TooltipMsg message='Verified'>
                       <div className='rounded-sm hover:bg-slate-500/30 p-1 cursor-pointer'>
@@ -63,7 +76,7 @@ export default function NFTBannerMetadata({ address }: BannerMetadataProps) {
                     
                   </div>
                   
-                  <p className='font-bold'>A collection of {100} Jajars nft</p>
+                  <p className='font-bold'>A collection of {100} NFTs.</p>
                 </div>
               </div>
               <div className=''>
@@ -74,7 +87,7 @@ export default function NFTBannerMetadata({ address }: BannerMetadataProps) {
   
             <section className='w-full flex justify-between mb-3'>
               <div className='w-[500px] h-[160px] overflow-x-hidden dark:text-gray-300 text-sm font-semibold'>
-                <ReadMore id='collection-description' text={data.description as string || ""} amountOfWords={24}
+                <ReadMore id='collection-description' text={metadata.description || ""} amountOfWords={24}
                 />
               </div>
               <div className='hidden lg:flex items-center gap-6 pl-3'>
@@ -93,11 +106,11 @@ export default function NFTBannerMetadata({ address }: BannerMetadataProps) {
             <section className='w-full flex justify-between'>
               <div className='w-[500px]'>
                 <Socials social={{
-                  wiki_url: data.wiki_url as string,
-                  discord_url: data.discord_url as string,
-                  telegram_url: data.telegram_url as string,
-                  twitter_username: data.twitter_username as string,
-                  instagram_username: data.instagram_username as string
+                  wiki_url: socials.wiki_url as string,
+                  discord_url: socials.discord_url as string,
+                  telegram_url: socials.telegram_url as string,
+                  twitter_username: socials.twitter_username as string,
+                  instagram_username: socials.instagram_username as string
                 }} 
                 />
               </div>
