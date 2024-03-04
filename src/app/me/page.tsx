@@ -1,12 +1,13 @@
 import React from 'react'
-import ProfileBanner from './_components/ProfileBanner'
-import ClientWrapper from './_components/ClientWrapper'
+import TabsWrapper from './_components/TabsWrapper'
 
 export default function AccountPage() {
 
   return (
 		<main className='h-screen'>
-
+			<div className='flex w-full flex-col mx-6'>
+				<TabsWrapper />
+			</div>
 		</main>
   )
 }

@@ -172,6 +172,25 @@ export type ContractMetadata = {
   isError: boolean;
 }
 
+export type Profile = {
+  address: string;
+  data: {
+    address: string;
+    session: {
+      name: string;
+      email: string;
+      is_listed: boolean;
+      create_at: string | Date;
+    }
+  },
+  session: {
+    name: string;
+    email: string;
+    is_listed: boolean;
+    create_at: string | Date;
+  }
+}
+
 export {
   AppConfig,
   NFTCollections,
