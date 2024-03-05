@@ -11,21 +11,8 @@ import {
   useAddress,
   useSwitchAccount,
 } from "@thirdweb-dev/react";
-import { ConnectWeb3, ProfileButton } from "../(interfaces)";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "../ui/button";
+import { ConnectWeb3, CreateUserDialog, ProfileButton } from "../(interfaces)";
 import { Profile } from "@/types";
-import { Spinner } from "@nextui-org/react";
 
 type DisplayType = "fixed" | "sticky";
 
@@ -101,46 +88,8 @@ export default function Navbar({ display }: NavbarProps) {
         </div>
       </div>
       {isLoggedIn && !user.session.is_listed && (
-        (<CreateNewUser isOpenCreate={!user.session.is_listed} />)
+        (<CreateUserDialog isOpenCreate={!user.session.is_listed} />)
       )}
     </nav>
-  );
-}
-
-function CreateNewUser({ isOpenCreate }: { isOpenCreate: boolean }) {
-  const { logout, isLoading } = useLogout();
-  return (
-    <Dialog open={isOpenCreate}>
-      <DialogTrigger asChild></DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Create profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input id="name" value="" placeholder="Enter name" className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="email" className="text-right">
-              Email
-            </Label>
-            <Input id="email" value="" placeholder="alan_turing@gmail.com" className="col-span-3" />
-          </div>
-        </div>
-        <DialogFooter>
-          <div className="flex flex-col w-full justify-center items-center gap-3">
-            <Button type="submit">Create</Button>
-            <Button variant="ghost" onClick={() => logout()}>{isLoading ? <Spinner /> : "Logout"}</Button>
-            <Link href="/learn/getting-started#installing-wallet" className="text-left">New to wallet?</Link>
-          </div>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
   );
 }

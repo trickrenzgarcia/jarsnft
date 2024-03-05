@@ -77,6 +77,22 @@ export async function createUser({ address }: { address: string }) {
   return data
 }
 
+export async function updateUser({ address, name, email, is_listed }: 
+  { address: string | FormDataEntryValue | null, name: string | FormDataEntryValue | null, email: string | FormDataEntryValue | null, is_listed: boolean }) {
+  const response = await fetch(`${BASE_URL}/user/update`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${authToken}`,
+    },
+    body: JSON.stringify({ address, name, email, is_listed }),
+  });
+
+  const data: ApiResponse<User> = (await response.json()) as ApiResponse<User> ;
+
+  return data
+}
+
 export async function getUser(address: string) {
   const response = await fetch(`${BASE_URL}/user/${address}`, {
     method: "GET",

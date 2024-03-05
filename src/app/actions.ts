@@ -1,5 +1,6 @@
 "use server";
 
+import { updateUser } from "@/lib/ctx";
 import { revalidateTag } from "next/cache";
 
 export const addLikes = async (amount: number) => {
@@ -18,3 +19,19 @@ export const addLikes = async (amount: number) => {
 
   revalidateTag("likes");
 };
+
+export async function createUser(formData: FormData) {
+
+  const rawFormData = {
+    address: formData.get('address'),
+    name: formData.get('name'),
+    email: formData.get('email'),
+    is_listed: true
+  }
+
+  // mutate data
+  const updated = await updateUser(rawFormData);
+  
+  return updated;
+  // revalidate cache
+}
