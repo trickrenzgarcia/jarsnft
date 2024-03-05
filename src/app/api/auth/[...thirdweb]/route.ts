@@ -64,9 +64,11 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
       return token;
     },
     onUser: async (user: ThirdwebAuthUser) => {
-      
+      const dbUser = await db.getUser(user.address);
+      user.session.is_listed = dbUser.is_listed
+      console.log(user)
       return user;
-    }
+    },
   },
 });
 

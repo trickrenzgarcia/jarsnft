@@ -79,11 +79,7 @@ export default function Navbar({ display }: NavbarProps) {
 
         <div className="flex items-center">
           {(isLoggedIn && (
-            <>
-              {user.session.is_listed && (
-                <ProfileButton address={user?.address || "default"} />
-              )}
-            </>
+            <ProfileButton address={user?.address || "default"} />
           )) || <ConnectWeb3 btnTitle="Connect" />}
         </div>
       </div>

@@ -19,6 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
+import { Button as NextButton } from "@nextui-org/react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useLogout, useUser } from "@thirdweb-dev/react";
@@ -33,6 +34,7 @@ import { useSession } from "next-auth/react";
 import { createUser } from "@/app/actions";
 import { useState } from "react";
 import { Profile } from "@/types";
+import { cn } from "@/lib/utils";
 
 const formCreateUserSchema = z.object({
   name: z
@@ -58,6 +60,7 @@ export default function CreateUserDialog({
   isOpenCreate: boolean;
 }) {
   const [loading, setLoading] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(isOpenCreate);
   const { user, isLoggedIn, isLoading: sessionLoading } = useUser() as UserProfile
   // Logout/Disconnect the wallet
   const { logout, isLoading } = useLogout();
@@ -76,24 +79,15 @@ export default function CreateUserDialog({
   const handleCreateUser = async (values: z.infer<typeof formCreateUserSchema>) => {
     if (!isLoggedIn) return;
 
-    setLoading(true);
-
     const formData: FormData = new FormData();
     formData.set("address", user.data.address);
     formData.set("name", values.name);
     formData.set("email", values.email);
 
     try {
-      const updatedData = await createUser(formData);
-      //console.log(updatedData);
-      console.log(session)
-      await update({ ...session, user: { ...session?.user, session: { ...session?.user.session, 
-        is_listed: true
-      }, data: { ...session?.user.data, session: { ...session?.user.data.session, is_listed: true } } } });
+      await createUser(formData);
     } catch (error) {
       console.log(error)
-    } finally {
-      setLoading(false);
     }
   }
 
@@ -101,12 +95,14 @@ export default function CreateUserDialog({
 
   // Define the form submit handler function
   async function onSubmit(values: z.infer<typeof formCreateUserSchema>) {
+    setLoading(true);
     await handleCreateUser(values)
+    setDialogOpen(false);
   }
 
   
   return (
-    <Dialog open={isOpenCreate}>
+    <Dialog open={dialogOpen}>
       <DialogTrigger asChild></DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -148,7 +144,11 @@ export default function CreateUserDialog({
 
             <DialogFooter>
               <div className="flex flex-col w-full justify-center items-center gap-3">
-                <Button type="submit">Create</Button>
+                <NextButton type="submit" disabled={loading}
+                  isLoading={loading}
+                  spinner={<Spinner />}
+                  className={cn(loading ? "cursor-not-allowed": "cursor-pointer")}
+                >{!loading && "Create"}</NextButton>
                 <Button variant="ghost" onClick={() => logout()}>
                   {isLoading ? <Spinner /> : "Logout"}
                 </Button>
