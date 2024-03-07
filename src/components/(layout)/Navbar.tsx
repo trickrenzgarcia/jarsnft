@@ -63,7 +63,7 @@ export default function Navbar({ display }: NavbarProps) {
               Trade
             </Link>
             <Link
-              href="/coin"
+              href="/coins"
               className="px-3 font-semibold hover:text-zinc-500 cursor-pointer"
             >
               Coin Analytics
