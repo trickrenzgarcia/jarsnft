@@ -13,12 +13,10 @@ import {
 } from "@/components/ui/card"
 import Image from 'next/image'
 import Link from 'next/link'
-import { useSession } from 'next-auth/react'
 
 export default function NFTCards({ address }: { address: string }) {
   const { contract } = useContract(address)
   const { data: nfts, isError, isLoading } = useNFTs(contract)
-  const { data } = useSession()
 
   if(isError) return <ErrorNFTCards />
 
