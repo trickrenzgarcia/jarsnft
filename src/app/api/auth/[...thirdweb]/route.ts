@@ -3,8 +3,7 @@ import { ThirdwebAuthAppRouter } from "@thirdweb-dev/auth/next";
 import { PrivateKeyWallet } from "@thirdweb-dev/auth/evm";
 
 import * as db from "@/lib/ctx"
-import { ApiResponse, User } from "@/types/ctx.types";
-
+import { ProfileData } from "@/types/users";
 /* 
   1. Validate nonce
   2. onLogin() - 
@@ -63,11 +62,9 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
     onToken(token) {
       return token;
     },
-    onUser: async (user: ThirdwebAuthUser) => {
+    onUser: async (user: ThirdwebAuthUser<any, { is_listed: boolean }>) => {
       const dbUser = await db.getUser(user.address);
-      user.session.is_listed = dbUser.is_listed
-      console.log(user)
-      return user;
+      return {...user, session: { ...user.session, is_listed: dbUser.is_listed }}
     },
   },
 });

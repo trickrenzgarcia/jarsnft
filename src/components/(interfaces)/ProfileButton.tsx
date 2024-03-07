@@ -1,6 +1,7 @@
 "use client"
 
-import { Button, ButtonGroup, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Spinner} from '@nextui-org/react'
+import { ButtonGroup, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Spinner} from '@nextui-org/react'
+import { Button } from "@/components/ui/button"
 import React from 'react'
 import { MinidentIconImg } from '.'
 import { CgDetailsMore } from "react-icons/cg";
@@ -40,9 +41,8 @@ export default function ProfileButton({ address }: {address: string}) {
               # Settings <br />
               # Disconnect Wallet <br />
             </p>
-            <Button fullWidth radius='none'
+            <Button
               onClick={() => logout()}
-              isLoading={isLoading}
             >Disconnect</Button>
           </div>
               

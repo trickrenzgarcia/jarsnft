@@ -33,7 +33,7 @@ import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
 import { createUser } from "@/app/actions";
 import { useState } from "react";
-import { Profile } from "@/types";
+import { Profile } from "@/types/users";
 import { cn } from "@/lib/utils";
 
 const formCreateUserSchema = z.object({

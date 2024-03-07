@@ -12,7 +12,6 @@ import AddressClipboard from "@/components/(interfaces)/AddressClipboard";
 
 
 export default function ProfileBanner() {
-  const [isTooltipOpen, setIsTooltipOpen] = React.useState(false);
   const profile = useProfileContext();
 
   return (

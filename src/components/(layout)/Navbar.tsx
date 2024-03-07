@@ -12,7 +12,7 @@ import {
   useSwitchAccount,
 } from "@thirdweb-dev/react";
 import { ConnectWeb3, CreateUserDialog, ProfileButton } from "../(interfaces)";
-import { Profile } from "@/types";
+import { ProfileQuery } from "@/types/users";
 
 type DisplayType = "fixed" | "sticky";
 
@@ -20,11 +20,7 @@ interface NavbarProps {
   display: DisplayType;
 }
 
-interface ProfileQuery {
-  user: Profile;
-  isLoading: boolean;
-  isLoggedIn: boolean;
-}
+
 
 export default function Navbar({ display }: NavbarProps) {
   const { user, isLoading, isLoggedIn } = useUser() as ProfileQuery;

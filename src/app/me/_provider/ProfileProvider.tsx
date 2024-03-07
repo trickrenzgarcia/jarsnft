@@ -1,6 +1,6 @@
 "use client"
 
-import { Profile } from "@/types";
+import { Profile } from "@/types/users";
 import { Json } from "@thirdweb-dev/auth";
 import { UserWithData } from "@thirdweb-dev/react";
 import { createContext, use } from "react";
