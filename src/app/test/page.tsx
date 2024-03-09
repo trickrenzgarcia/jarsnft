@@ -6,8 +6,8 @@ const jars = new UsersApi("http://localhost:5000", {
 })
 
 export default async function TestPage() {
-  const { user, error } = await jars.getUser("0x12314")
-  console.log(user)
+  const { user, error } = await jars.getUser("0x1234");
+  console.log(error);
   return (
     <main>
       

@@ -11,23 +11,30 @@ type User = {
     email: string;
     is_listed: boolean;
     createdAt: string;
-} | undefined;
+};
 
 type ApiError = {
     message: string;
     status: number;
-} | undefined;
+} | ZError | undefined;
 
-type ApiResponse<T = User, E = ApiError> = {
-    user?: T;
+type ZError = {
+    validator: string;
+    code: string | number;
+    message: string;
+    path: [string];
+}[]
+
+type ApiResponse<T = User | User[], E = ApiError | ZError> = {
+    user: T;
     error?: E;
 }
 
-
 class JarsClientService {
-    constructor(private baseUrl: string | URL, private headers: JarsHeaders) {}
+    constructor(private baseUrl: string, private headers: JarsHeaders) {}
 
-    async request<T, E>(endpoint: string, config?: RequestInit): Promise<ApiResponse<T | undefined, E>> {
+    
+    async request<T, E>(endpoint: string, config?: RequestInit): Promise<ApiResponse<T, E>> {
         const response = await fetch(`${this.baseUrl}${endpoint}`, {
             headers: {
                 "Content-Type": this.headers.contentType,
@@ -35,13 +42,12 @@ class JarsClientService {
             },
             ...config
         });
-        
-        if(!response.ok) {
-            const { message } = await response.json();
-            return { error: { message: message, status: response.status } } as ApiResponse<T, E>;
-        }
 
-        return await { user: response.json() } as ApiResponse<T, E>;
+        if(!response.ok) {
+            return { error: await response.json() } as ApiResponse<T, E>;
+        }
+        
+        return { user: await response.json() } as ApiResponse<T, E>;
     }
 }
 
@@ -50,12 +56,37 @@ export class UsersApi extends JarsClientService {
         super(baseUrl, headers);
     }
 
+    async getAllUsers() {
+        return await this.request<User[], ApiError>("/user/all");
+    }
+
     async getUser(address: string) {
-        return await this.request<User, ApiError>(`/user/${address}`);
+        return await this.request<User, ApiError>(`/user/${address}`, {
+            method: "GET",
+        });
+    }
+
+    async isUserExists(address: string) {
+        const { user } = await this.request(`/user/${address}`);
+        
+        if(!user) return false;
+
+        return true;
+    }
+
+    async updateUser(address: string, data: Omit<User, "id" | "uid" | "createdAt"> & { email: string, name: string }) {
+        return await this.request<User, ApiError>(`/user/update`, {
+            method: "PUT",
+            body: JSON.stringify({
+                email: data.email,
+                name: data.name,
+                is_listed: true,
+                address: address
+            })
+        })
     }
 
     async createUser(address: string) {
-        console.log(address)
         return await this.request<User, ApiError>(`/user/create`, {
             method: "POST",
             body: JSON.stringify({ address: address })

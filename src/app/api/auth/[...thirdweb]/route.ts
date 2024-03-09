@@ -2,8 +2,8 @@ import type { ThirdwebAuthUser } from "@thirdweb-dev/auth/next";
 import { ThirdwebAuthAppRouter } from "@thirdweb-dev/auth/next";
 import { PrivateKeyWallet } from "@thirdweb-dev/auth/evm";
 
-import * as db from "@/lib/ctx"
-import { ProfileData } from "@/types/users";
+import { dbUser } from "@/lib/ctx";
+
 /* 
   1. Validate nonce
   2. onLogin() - 
@@ -40,31 +40,30 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
   wallet: new PrivateKeyWallet(process.env.THIRDWEB_AUTH_PRIVATE_KEY as string, "sepolia"),
   authOptions: {
     //Check in database or storage if nonce exists
-    validateNonce: validateNonce,
+    //validateNonce: validateNonce,
   },
   callbacks: {
     onLogin: async (address: string) => {
-      if(!await db.userExists(address)) {
-        // IF no user exists, THEN create user
-        await db.createUser({ address: address });
+      if(!await dbUser.isUserExists(address)) {
+        await dbUser.createUser(address);
       }
-      const user = await db.getUser(address);
+
+      const { user } = await dbUser.getUser(address);
 
       const session = {
         email: user.email,
         name: user.name,
         is_listed: user.is_listed,
-        create_at: user.createdAt
+        create_at: user.createdAt,
       }
-      
       return session
     },
     onToken(token) {
       return token;
     },
     onUser: async (user: ThirdwebAuthUser<any, { is_listed: boolean }>) => {
-      const dbUser = await db.getUser(user.address);
-      return {...user, session: { ...user.session, is_listed: dbUser.is_listed }}
+      const { user: u } = await dbUser.getUser(user.address);
+      return {...user, session: { ...user.session, is_listed: u.is_listed }}
     },
   },
 });

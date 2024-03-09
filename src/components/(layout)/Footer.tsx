@@ -8,6 +8,7 @@ import { IconType } from 'react-icons';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { cn } from '@/lib/utils';
 import { ModeToggle } from '../(interfaces)';
+import { Separator } from '../ui/separator';
 
 export default function Footer() {
   const { setTheme, theme } = useTheme()
@@ -16,8 +17,9 @@ export default function Footer() {
 
   return (
     <footer className=''> {/* pt-32 px-20 pb-10 */}
+    <Separator className='w-full h-[2px]' />
       <section className=''> {/* max-w-screen-xl mx-auto */}
-        <div className='pt-32 px-20 pb-10 grid grid-cols-3 gap-x-5 gap-y-10 mb-14'>
+        <div className='pt-32 px-8 lg:px-20 pb-10 grid grid-cols-3 gap-x-5 gap-y-10 mb-14'>
           <div className='flex flex-col gap-y-5'>
             <h1 className='font-semibold mb-1'>Resource</h1>
             <Link href='/learn/getting-started' className='hover:underline'>Getting Started</Link>
@@ -45,7 +47,7 @@ export default function Footer() {
           </div> */}
         </div>
 
-        <div className='px-20'>
+        <div className='px-8 lg:px-20 mb-24'>
           <h1 className='text-2xl font-semibold mb-3'>Join us</h1>
           <div className="flex justify-between">
             <div className='flex gap-2'>
@@ -61,9 +63,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="copyright px-20 mt-24 pb-5">
-          <hr className='h-[1px] ' />
-          <ul className='mt-5 flex justify-between'>
+        <Separator className='w-full h-[2px]' />
+
+        <div className="copyright px-8 lg:px-20 pb-5">
+          <ul className='mt-5 flex flex-col md:flex-row justify-between'>
             <li>
               <div className="left">
                 © 2023 Alrae, Jeffrey, Patrick, Rigor

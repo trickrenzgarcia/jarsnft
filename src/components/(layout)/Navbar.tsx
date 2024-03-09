@@ -24,7 +24,6 @@ interface NavbarProps {
 
 export default function Navbar({ display }: NavbarProps) {
   const { user, isLoading, isLoggedIn } = useUser() as ProfileQuery;
-
   return (
     <nav
       className={`${display} w-full h-[70px] px-[1.2rem] py-[0.8rem] flex justify-between z-50 top-0 left-0 
@@ -75,12 +74,13 @@ export default function Navbar({ display }: NavbarProps) {
 
         <div className="flex items-center">
           {(isLoggedIn && (
-            <ProfileButton address={user?.address || "default"} />
+            <ProfileButton user={user} isUserLoading={isLoading} />
           )) || <ConnectWeb3 btnTitle="Connect" />}
+          {/* <ProfileButton user={user} isUserLoading={isLoading} /> */}
         </div>
       </div>
-      {isLoggedIn && !user.session.is_listed && (
-        (<CreateUserDialog isOpenCreate={!user.session.is_listed} />)
+      {isLoggedIn && !user.data.session.is_listed && (
+        (<CreateUserDialog isOpenCreate={!user.data.session.is_listed} />)
       )}
     </nav>
   );
