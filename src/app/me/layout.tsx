@@ -11,14 +11,14 @@ export default function AccountLayout({ children } : { children: React.ReactNode
   return (
     <main>
         <header>
-            <Navbar display='fixed' />
+          <Navbar display='fixed' />
         </header>
 
         <div className='w-full mb-[70px]'/> 
         <ClientWrapper>
 			    <ProfileBanner />
           <main>
-              {children}
+            {children}
           </main>
         </ClientWrapper>
     </main>

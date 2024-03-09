@@ -7,7 +7,7 @@ import ProfileProvider from "../_provider/ProfileProvider"
 
 export default function ClientWrapper({ children }: { children: React.ReactNode}) {
     const { user, isLoading, isLoggedIn } = useUser()
-
+    
     if(isLoading) {
         return <LoadingBackground />
     }
