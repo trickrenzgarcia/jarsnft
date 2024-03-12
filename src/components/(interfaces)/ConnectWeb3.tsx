@@ -25,14 +25,6 @@ const ConnectWeb3 = ({ btnTitle}: { btnTitle: string | undefined }) => {
       <ConnectWallet
         btnTitle={btnTitle}
         modalTitle="JarsNFT"
-        auth={{
-          onLogin: (address: string) => {
-            
-          },
-          onLogout: () => {
-            router.refresh()
-          }
-        }}
         switchToActiveChain={true}
         showThirdwebBranding={false}
         welcomeScreen={() => <LoginWelcomeScreen />}

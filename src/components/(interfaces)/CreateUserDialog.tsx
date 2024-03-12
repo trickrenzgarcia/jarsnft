@@ -31,7 +31,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
-import { createUser } from "@/app/actions";
+import { updateUser } from "@/app/actions";
 import { useState } from "react";
 import { Profile } from "@/types/users";
 import { cn } from "@/lib/utils";
@@ -85,7 +85,7 @@ export default function CreateUserDialog({
     formData.set("email", values.email);
 
     try {
-      await createUser(formData);
+      await updateUser(formData);
     } catch (error) {
       console.log(error)
     }

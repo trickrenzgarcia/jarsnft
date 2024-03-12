@@ -2,7 +2,7 @@ import type { ThirdwebAuthUser } from "@thirdweb-dev/auth/next";
 import { ThirdwebAuthAppRouter } from "@thirdweb-dev/auth/next";
 import { PrivateKeyWallet } from "@thirdweb-dev/auth/evm";
 
-import { dbUser } from "@/lib/ctx";
+import { jars } from "@/lib/core/api";
 
 /* 
   1. Validate nonce
@@ -44,26 +44,29 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
   },
   callbacks: {
     onLogin: async (address: string) => {
-      if(!await dbUser.isUserExists(address)) {
-        await dbUser.createUser(address);
+      if(!await jars.isUserExists(address)) {
+        await jars.createUser(address);
+        
       }
-
-      const { user } = await dbUser.getUser(address);
-
+      
+      const { name, email, is_listed, created_at } = await jars.getUser(address);
+      console.log("Error", name, email, is_listed)
       const session = {
-        email: user.email,
-        name: user.name,
-        is_listed: user.is_listed,
-        create_at: user.createdAt,
+        email: email,
+        name: name,
+        is_listed: is_listed,
+        create_at: created_at,
       }
       return session
     },
     onToken(token) {
+      console.log(token)
       return token;
     },
     onUser: async (user: ThirdwebAuthUser<any, { is_listed: boolean }>) => {
-      const { user: u } = await dbUser.getUser(user.address);
-      return {...user, session: { ...user.session, is_listed: u.is_listed }}
+      console.log(user)
+      const apiUser = await jars.getUser(user.address);
+      return {...user, session: { ...user.session, is_listed: apiUser.is_listed }}
     },
   },
 });

@@ -1,7 +1,28 @@
 "use server";
 
-import { updateUser } from "@/lib/ctx";
+import { BASE_URL } from "@/lib/ctx";
 import { revalidateTag } from "next/cache";
+
+import { JarsAPI } from "@/lib/core/api";
+
+const jars = new JarsAPI(BASE_URL, {
+  secretKey: process.env.JWT_AUTH_TOKEN as string,
+});
+
+export const updateUser = async (formData: FormData) => {
+  const rawFormData = {
+    address: formData.get("address") as string,
+    name: formData.get("name") as string,
+    email: formData.get("email") as string
+  }
+  const { address, email, name } = rawFormData; 
+  
+  await jars.updateUser(address, {
+    name: name,
+    email: email,
+  });
+  revalidateTag("user");
+}
 
 export const addLikes = async (amount: number) => {
   if (!amount) return;
@@ -19,19 +40,3 @@ export const addLikes = async (amount: number) => {
 
   revalidateTag("likes");
 };
-
-export async function createUser(formData: FormData) {
-
-  const rawFormData = {
-    address: formData.get('address'),
-    name: formData.get('name'),
-    email: formData.get('email'),
-    is_listed: true
-  }
-
-  // mutate data
-  const updated = await updateUser(rawFormData);
-  
-  return updated;
-  // revalidate cache
-}

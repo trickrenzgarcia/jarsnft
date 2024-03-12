@@ -1,13 +1,14 @@
-import { UsersApi } from "@/lib/api"
+import { JarsAPI } from "@/lib/core/api";
+import { revalidateTag } from "next/cache";
+import { updateUser } from "../actions";
 
-const jars = new UsersApi("http://localhost:5000", {
-  contentType: "application/json",
-  secretKey: process.env.JWT_AUTH_TOKEN as string
+export const jars = new JarsAPI("http://localhost:5000", {
+    secretKey: process.env.JWT_AUTH_TOKEN as string
 })
 
 export default async function TestPage() {
-  const { user, error } = await jars.getUser("0x1234");
-  console.log(error);
+  const getU = await jars.getUser("0x18a583Eb4D800ACc57067274e6b496db7Bd7E1Fd");
+  console.log(getU)
   return (
     <main>
       

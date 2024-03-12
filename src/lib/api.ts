@@ -33,7 +33,6 @@ type ApiResponse<T = User | User[], E = ApiError | ZError> = {
 class JarsClientService {
     constructor(private baseUrl: string, private headers: JarsHeaders) {}
 
-    
     async request<T, E>(endpoint: string, config?: RequestInit): Promise<ApiResponse<T, E>> {
         const response = await fetch(`${this.baseUrl}${endpoint}`, {
             headers: {
