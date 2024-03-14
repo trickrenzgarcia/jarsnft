@@ -1,9 +1,9 @@
+"use client"
+
 import React from 'react'
 
-const TradeHero = () => {
+export default function TradeHero() {
     return (
         <div>TradeHero</div>
     )
 }
-
-export default TradeHero

@@ -1,20 +1,15 @@
-import { Navbar, Footer } from '@/components/(layout)'
-import React from 'react'
-import { ArtTrend, BuySellNFT, NFTCategories, PhotoTrend, TradeHero } from '.'
+"use client"
 
-const Trade = () => {
+import { ArtTrend, BuySellNFT, NFTCategories, PhotoTrend, TradeHero } from './_components'
 
+export default function TradePage() {
     return (
-        <>
-            <Navbar display={"sticky"} />
+        <main className='container'>
             <TradeHero />
             <BuySellNFT />
             <ArtTrend />
             <PhotoTrend />
             <NFTCategories />
-            <Footer />
-        </>
+        </main>
     )
 }
-
-export default Trade
