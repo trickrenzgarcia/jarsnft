@@ -1,23 +1,22 @@
 "use client"
 
-import { useTheme } from 'next-themes';
 import Link from 'next/link';
-import { FaFacebookF, FaDiscord, FaTwitter, FaInstagram, FaGithub } from 'react-icons/fa'
-import { IconType } from 'react-icons';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { cn } from '@/lib/utils';
-import { ModeToggle } from '../(interfaces)';
 import { Separator } from '../ui/separator';
+import dynamic from 'next/dynamic';
 
 export default function Footer() {
-  const { setTheme, theme } = useTheme()
   const { isOpen: isPrivacyPolicyOpen, onOpen: onOpenPrivacy, onOpenChange: onOpenChangePrivacy, onClose: onClosePrivacy } = useDisclosure();
   const { isOpen: isTermsOpen, onOpen: onOpenTerms, onOpenChange: onOpenChangeTerms, onClose: onCloseTerms } = useDisclosure();
+
+  const SocialLinkButtons = dynamic(() => import("../(interfaces)/SocialLinkButtons"));
 
   return (
     <footer>
       <Separator className='w-full h-[2px]' />
       <section>
+
         {/* Resource Help Company Columns */}
         <div className='pt-32 px-8 lg:px-20 pb-10 grid grid-cols-3 gap-x-5 gap-y-10 mb-14'>
           <div className='flex flex-col gap-y-5'>
@@ -41,22 +40,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Social Media Links and Change Theme Button */}
-        <div className='px-8 lg:px-20 mb-24'>
-          <h1 className='text-2xl font-semibold mb-3'>Join us</h1>
-          <div className="flex justify-between">
-            <div className='flex gap-2'>
-              <SocialLinkButton Icon={FaFacebookF} link='' />
-              <SocialLinkButton Icon={FaDiscord} link='https://discord.gg/scBduTZyGd' />
-              <SocialLinkButton Icon={FaTwitter} link='' />
-              <SocialLinkButton Icon={FaInstagram} link='' />
-              <SocialLinkButton Icon={FaGithub} link='https://github.com/BroJavaDevs' />
-            </div>
-            <div>
-              <ModeToggle setTheme={setTheme} theme={theme} />
-            </div>
-          </div>
-        </div>
+        <SocialLinkButtons />
 
         <Separator className='w-full h-[2px]' />
 
@@ -180,14 +164,4 @@ export default function Footer() {
 function P(props: React.HTMLAttributes<HTMLParagraphElement>) {
   const { className, children, ...otherProps } = props
   return <p className={cn(className + "font-black pt-2 pb-2")} {...otherProps}>{children}</p>
-}
-
-function SocialLinkButton({ Icon, link }: { Icon: IconType, link: string }) {
-  return (
-    <Link href={link} target='_blank'>
-      <div className='w-[50px] h-[50px] bg-gray-200 dark:bg-card text-2xl rounded-[10px] flex items-center justify-center'>
-        <Icon />
-      </div>
-    </Link>
-  )
 }
