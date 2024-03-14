@@ -20,8 +20,6 @@ interface NavbarProps {
   display: DisplayType;
 }
 
-
-
 export default function Navbar({ display }: NavbarProps) {
   const { user, isLoading, isLoggedIn } = useUser() as ProfileQuery;
   return (
@@ -34,7 +32,7 @@ export default function Navbar({ display }: NavbarProps) {
         <div className="flex items-center">
           <div className="">
             <Link href="/">
-              <h1 className="font-extrabold text-2xl">Jarsnft</h1>
+              <h1 className="font-extrabold text-2xl">JarsNFT</h1>
             </Link>
           </div>
 
@@ -42,36 +40,27 @@ export default function Navbar({ display }: NavbarProps) {
             <Link
               href="/create"
               className="px-3 font-semibold hover:text-zinc-500 cursor-pointer"
-            >
-              Create
-            </Link>
+            >Create</Link>
             <Link
               href="/collection"
               className="px-3 font-semibold hover:text-zinc-500 cursor-pointer"
-            >
-              Collections
-            </Link>
+            >Collections</Link>
             <Link
               href="/trade"
               className="px-3 font-semibold hover:text-zinc-500 cursor-pointer"
-            >
-              Trade
-            </Link>
+            >Trade</Link>
             <Link
               href="/coins"
               className="px-3 font-semibold hover:text-zinc-500 cursor-pointer"
-            >
-              Coin Analytics
-            </Link>
+            >Coin Analytics</Link>
             <Link
               href="/learn"
               className="px-3 font-semibold hover:text-zinc-500 cursor-pointer"
-            >
-              Insights
-            </Link>
+            >Insights</Link>
           </div>
         </div>
 
+        {/* Right-side */}
         <div className="flex items-center">
           {(isLoggedIn && (
             <ProfileButton user={user} isUserLoading={isLoading} />
@@ -79,6 +68,7 @@ export default function Navbar({ display }: NavbarProps) {
           {/* <ProfileButton user={user} isUserLoading={isLoading} /> */}
         </div>
       </div>
+
       {isLoggedIn && !user.data.session.is_listed && (
         (<CreateUserDialog isOpenCreate={!user.data.session.is_listed} />)
       )}
