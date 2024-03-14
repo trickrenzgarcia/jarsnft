@@ -13,10 +13,9 @@ export default function Footer() {
   const SocialLinkButtons = dynamic(() => import("../(interfaces)/SocialLinkButtons"));
 
   return (
-    <footer>
+    <footer className='mt-12'>
       <Separator className='w-full h-[2px]' />
       <section>
-
         {/* Resource Help Company Columns */}
         <div className='pt-32 px-8 lg:px-20 pb-10 grid grid-cols-3 gap-x-5 gap-y-10 mb-14'>
           <div className='flex flex-col gap-y-5'>
