@@ -3,7 +3,6 @@
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { FaFacebookF, FaDiscord, FaTwitter, FaInstagram, FaGithub } from 'react-icons/fa'
-import { Moon, Sun } from "lucide-react"
 import { IconType } from 'react-icons';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { cn } from '@/lib/utils';
@@ -16,9 +15,10 @@ export default function Footer() {
   const { isOpen: isTermsOpen, onOpen: onOpenTerms, onOpenChange: onOpenChangeTerms, onClose: onCloseTerms } = useDisclosure();
 
   return (
-    <footer className=''> {/* pt-32 px-20 pb-10 */}
-    <Separator className='w-full h-[2px]' />
-      <section className=''> {/* max-w-screen-xl mx-auto */}
+    <footer>
+      <Separator className='w-full h-[2px]' />
+      <section>
+        {/* Resource Help Company Columns */}
         <div className='pt-32 px-8 lg:px-20 pb-10 grid grid-cols-3 gap-x-5 gap-y-10 mb-14'>
           <div className='flex flex-col gap-y-5'>
             <h1 className='font-semibold mb-1'>Resource</h1>
@@ -39,14 +39,9 @@ export default function Footer() {
             <Link href='/' className='hover:underline'>About</Link>
             <Link href='/team' className='hover:underline'>Team</Link>
           </div>
-          {/* <div className='flex flex-col gap-y-5'>
-            <h1 className='font-semibold mb-1'>Marketplace</h1>
-            <Link href='/category/art' className='hover:underline'>Art</Link>
-            <Link href='/category/photography' className='hover:underline'>Photography</Link>
-            <Link href='/category/pfps' className='hover:underline'>PFPs</Link>
-          </div> */}
         </div>
 
+        {/* Social Media Links and Change Theme Button */}
         <div className='px-8 lg:px-20 mb-24'>
           <h1 className='text-2xl font-semibold mb-3'>Join us</h1>
           <div className="flex justify-between">
@@ -65,7 +60,8 @@ export default function Footer() {
 
         <Separator className='w-full h-[2px]' />
 
-        <div className="copyright px-8 lg:px-20 pb-5">
+        {/* Copyright */}
+        <div className="px-8 lg:px-20 pb-5">
           <ul className='mt-5 flex flex-col md:flex-row justify-between'>
             <li>
               <div className="left">
