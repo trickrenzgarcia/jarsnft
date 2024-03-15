@@ -1,6 +1,4 @@
-import { Navbar } from '@/components/(layout)'
 import { SideNavLeft, SideNavRight, LearnNavbar, PageNavbarTitle } from './_components';
-import { MdHome, MdOutlineKeyboardArrowRight } from 'react-icons/md';
 
 type LearnProps = {
   children: React.ReactNode

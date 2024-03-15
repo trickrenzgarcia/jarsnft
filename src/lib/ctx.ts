@@ -1,4 +1,3 @@
-import fakeCollection from "@/lib/json/fake-collection.json";
 import { GetUserResponse, MetadataSchema, NFTCollection } from "@/types";
 import { env } from "./env.mjs";
 import { ApiResponse, User } from "@/types/ctx.types";

@@ -1,6 +1,6 @@
 import { Navbar, Hero, Footer, PopularCollections } from "@/components/(layout)";
-import { BASE_URL, authToken } from "@/lib/ctx";
-import { useSession } from "next-auth/react";
+// { BASE_URL, authToken } from "@/lib/ctx";
+// { useSession } from "next-auth/react";
 
 export default async function Home() {
 
