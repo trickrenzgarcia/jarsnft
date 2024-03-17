@@ -2,6 +2,10 @@
 
 export default function PhotoTrend() {
     return (
-        <div>PhotoTrend</div>
+        <>
+            <div className="my-10">
+                <p>PhotoTrend</p>
+            </div>
+        </>
     )
 }
