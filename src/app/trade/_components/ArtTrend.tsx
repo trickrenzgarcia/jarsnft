@@ -4,7 +4,7 @@ export default function ArtTrend() {
     return (
         <>
             <div className="my-10">
-                <p>ArtTrend</p>
+                <p className="font-bold text-xl">ArtTrend</p>
             </div>
         </>
     )

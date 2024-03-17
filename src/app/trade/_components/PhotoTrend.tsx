@@ -4,7 +4,7 @@ export default function PhotoTrend() {
     return (
         <>
             <div className="my-10">
-                <p>PhotoTrend</p>
+                <p className="font-bold text-xl">PhotoTrend</p>
             </div>
         </>
     )
