@@ -20,8 +20,9 @@ export default function ProfileButton({ user, isUserLoading }: { user: Profile, 
       <ButtonGroup className='gap-2'>
         <Sheet>
           <SheetTrigger asChild>
-            <div className='p-2 h-full rounded-md hover:bg-slate-300 hover:dark:bg-slate-800 cursor-pointer'>
+            <div className='p-2 flex max-w-[150px] gap-1 items-center h-full rounded-md hover:bg-slate-300 hover:dark:bg-slate-800 cursor-pointer'>
               <MinidentIconImg address={user.data.address} width={30} height={30} />
+              <h2 className='truncate font-semibold'>{user.session.name}</h2>
             </div>
           </SheetTrigger>
           <SheetContent>
@@ -34,9 +35,9 @@ export default function ProfileButton({ user, isUserLoading }: { user: Profile, 
                       <Skeleton className='w-full h-4 rounded-full'/>
                     </div>
                     :
-                    <div className='flex items-center gap-3'>
+                    <div className='flex items-center gap-3 w-full'>
                       <MinidentIconImg address={user.data.address} height={50} width={50} />
-                      <span className='font-bold'>{user.session.name}</span>
+                      <span className='font-bold truncate'>{user.session.name}</span>
                   </div>}
                 </Link>
               </div>
@@ -44,6 +45,19 @@ export default function ProfileButton({ user, isUserLoading }: { user: Profile, 
                 <section>General</section>
                 <section>NFTs</section>
                 <section>Wallet</section>
+                <div className="grid gap-4">
+              <div className="space-y-2">
+                <h4 className="font-medium leading-none">Navigation</h4>
+                <p className="text-sm text-muted-foreground">
+                  # Create <br />
+                  # Collections <br />
+                  # Trade <br />
+                  # Coin Analytics <br />
+                  # Insights <br />
+                </p>
+              </div>
+                
+            </div>
                 <Button
                   onClick={() => logout()}
                   disabled={logoutLoading}
@@ -56,33 +70,16 @@ export default function ProfileButton({ user, isUserLoading }: { user: Profile, 
         </Sheet>
           
 
-        <Sheet>
+        {/* <Sheet>
           <SheetTrigger asChild>
             <div className='p-2 h-full rounded-md hover:bg-slate-300 hover:dark:bg-slate-800 cursor-pointer'>
               <CgDetailsMore className='text-3xl' />
             </div>
           </SheetTrigger>
           <SheetContent>
-            <div className="grid gap-4">
-              <div className="space-y-2">
-                <h4 className="font-medium leading-none">Profile</h4>
-                <p className="text-sm text-muted-foreground">
-                  # Create <br />
-                  # Collections <br />
-                  # Trade <br />
-                  # Coin Analytics <br />
-                  # Insights <br />
-                </p>
-                <Button
-                  onClick={() => logout()}
-                  disabled={logoutLoading}
-                  className='w-full'
-                >{logoutLoading ? <Spinner /> : "Disconnect" }</Button>
-              </div>
-                
-            </div>
+            
           </SheetContent>
-        </Sheet>
+        </Sheet> */}
         
       </ButtonGroup>
     </div>
