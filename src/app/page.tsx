@@ -6,7 +6,7 @@ export default async function Home() {
 
   return (
     <main className="bg-background">
-      <Navbar display={"fixed"} />
+      <Navbar display={"sticky"} />
       <Hero />
       <PopularCollections />
       <Footer />
