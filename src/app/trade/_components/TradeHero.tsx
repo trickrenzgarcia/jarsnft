@@ -7,25 +7,25 @@ import React from 'react'
 export default function TradeHero() {
     return (
         <>
-            <div className='flex justify-center gap-8 mb-16'>
+            <div className='flex md:flex-row flex-col justify-center gap-8 mb-16'>
                 {/* Left-side */}
-                <section className='flex flex-col w-[500px] gap-4'>
+                <section className='flex flex-col md:w-[500px] w-auto md:mb-0 mb-12 md:text-start text-center gap-4'>
                     {/* Hero Text */}
                     <div>
                         <h1 className='text-[2rem] font-bold'>Trade Rare</h1>
                         <h1 className='text-[2rem] font-bold'>Collection of NFTs</h1>
                     </div>
 
-                    <p>Embark on a journey through our exclusive NFT collection, where rare and exceptional digital assets await discovery and ownership.</p>
+                    <p className='md:mb-0 mb-4'>Embark on a journey through our exclusive NFT collection, where rare and exceptional digital assets await discovery and ownership.</p>
 
                     {/* Buy & Sell Buttons */}
-                    <section className='flex gap-4'>
+                    <section className='flex gap-4 md:m-0 m-auto'>
                         <Link href='#' className='text-white text-center rounded-lg w-24 py-2 bg-purple-700 hover:bg-purple-600 active:bg-purple-800'>Buy</Link>
                         <Link href='#' className='text-white text-center rounded-lg w-24 py-2 bg-purple-700 hover:bg-purple-600 active:bg-purple-800'>Sell</Link>
                     </section>
 
                     {/* Statistics */}
-                    <section className='flex gap-8 mt-6'>
+                    <section className='flex gap-8 mt-6 md:justify-normal justify-around'>
                         <div className="flex flex-col">
                             <h1 className='text-2xl font-bold'>P388M</h1>
                             <p>Trading Volume</p>
@@ -42,7 +42,7 @@ export default function TradeHero() {
                 </section>
 
                 {/* Right-side */}
-                <section className='flex flex-col w-[500px]'>
+                <section className='flex flex-col md:w-[500px] w-auto'>
                     {/* Join */}
                     <section className='flex mb-8'>
                         <Image src="/assets/JarsLogo.png" width={100} height={100} alt="Jars Logo" />
@@ -54,7 +54,7 @@ export default function TradeHero() {
                     </section>
 
                     {/* Images */}
-                    <div className='relative h-72 w-96 left-16'>
+                    <div className='relative h-72 md:w-96 md:left-16 md:m-0 w-80 m-auto'>
                         <Image className='absolute top-1/2 left-1/2 translate-x-[-30%] translate-y-[-32%] z-10' src="/assets/ex1.png" width={200} height={300} alt="unggoy" />
                         <Image className='absolute top-1/4 left-1/4 translate-x-[-30%] translate-y-[-32%]' src="/assets/ex2.png" width={200} height={300} alt="babae" />
                     </div>
