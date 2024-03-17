@@ -19,7 +19,7 @@ export default function TradeHero() {
                     <p>Embark on a journey through our exclusive NFT collection, where rare and exceptional digital assets await discovery and ownership.</p>
 
                     {/* Buy & Sell Buttons */}
-                    <section className='flex gap-6'>
+                    <section className='flex gap-4'>
                         <Link href='#' className='text-white text-center rounded-lg w-24 py-2 bg-purple-700 hover:bg-purple-600 active:bg-purple-800'>Buy</Link>
                         <Link href='#' className='text-white text-center rounded-lg w-24 py-2 bg-purple-700 hover:bg-purple-600 active:bg-purple-800'>Sell</Link>
                     </section>
