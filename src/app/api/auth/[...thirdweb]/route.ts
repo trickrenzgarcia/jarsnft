@@ -49,22 +49,20 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
         
       }
       
-      const { name, email, is_listed, created_at } = await jars.getUser(address);
-      console.log("Error", name, email, is_listed)
+      const user = await jars.getUser(address);
+      console.log(user);
       const session = {
-        email: email,
-        name: name,
-        is_listed: is_listed,
-        create_at: created_at,
+        email: user.email,
+        name: user.name,
+        is_listed: user.is_listed,
+        create_at: user.createdAt,
       }
       return session
     },
     onToken(token) {
-      console.log(token)
       return token;
     },
     onUser: async (user: ThirdwebAuthUser<any, { is_listed: boolean }>) => {
-      console.log(user)
       const apiUser = await jars.getUser(user.address);
       return {...user, session: { ...user.session, is_listed: apiUser.is_listed }}
     },
