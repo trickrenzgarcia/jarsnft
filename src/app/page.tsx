@@ -1,11 +1,8 @@
-import { Navbar, Hero, PopularCollections } from "@/components/(layout)";
-import { BASE_URL, authToken } from "@/lib/ctx";
-import { useSession } from "next-auth/react";
-import dynamic from "next/dynamic";
+import { Navbar, Hero, Footer, PopularCollections } from "@/components/(layout)";
+// { BASE_URL, authToken } from "@/lib/ctx";
+// { useSession } from "next-auth/react";
 
 export default async function Home() {
-  
-  const Footer = dynamic(() => import("@/components/(layout)/Footer"), { ssr: false })
 
   return (
     <main className="bg-background">

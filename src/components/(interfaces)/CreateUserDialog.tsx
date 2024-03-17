@@ -20,7 +20,6 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Button as NextButton } from "@nextui-org/react";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useLogout, useUser } from "@thirdweb-dev/react";
 import { Spinner } from "@nextui-org/react";
@@ -64,7 +63,7 @@ export default function CreateUserDialog({
   const { user, isLoggedIn, isLoading: sessionLoading } = useUser() as UserProfile
   // Logout/Disconnect the wallet
   const { logout, isLoading } = useLogout();
-  const { data:session, update } = useSession()
+  const { data: session, update } = useSession()
 
   // Define the form with zod schema.
   const form = useForm<z.infer<typeof formCreateUserSchema>>({
@@ -91,7 +90,7 @@ export default function CreateUserDialog({
     }
   }
 
-  
+
 
   // Define the form submit handler function
   async function onSubmit(values: z.infer<typeof formCreateUserSchema>) {
@@ -100,7 +99,7 @@ export default function CreateUserDialog({
     setDialogOpen(false);
   }
 
-  
+
   return (
     <Dialog open={dialogOpen}>
       <DialogTrigger asChild></DialogTrigger>
@@ -147,7 +146,7 @@ export default function CreateUserDialog({
                 <NextButton type="submit" disabled={loading}
                   isLoading={loading}
                   spinner={<Spinner />}
-                  className={cn(loading ? "cursor-not-allowed": "cursor-pointer")}
+                  className={cn(loading ? "cursor-not-allowed" : "cursor-pointer")}
                 >{!loading && "Create"}</NextButton>
                 <Button variant="ghost" onClick={() => logout()}>
                   {isLoading ? <Spinner /> : "Logout"}

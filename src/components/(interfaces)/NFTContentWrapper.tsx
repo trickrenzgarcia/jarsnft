@@ -8,9 +8,9 @@ async function NFTContentWrapper({ title }: { title: string }) {
   const collections = await getCollections();
 
   return (
-    <section className='pt-8 pb-12'>
+    <section>
       <h2 className='font-bold text-2xl text-center md:text-left mb-3'>{title}</h2>
-      <NFTCarousel collections={collections}/>
+      <NFTCarousel collections={collections} />
     </section>
   )
 }

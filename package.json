@@ -33,7 +33,7 @@
     "framer-motion": "^11.0.5",
     "lucide-react": "^0.316.0",
     "minidenticons": "^4.2.1",
-    "next": "14.1.0",
+    "next": "^14.1.3",
     "next-auth": "^4.24.5",
     "next-themes": "^0.2.1",
     "pino-pretty": "^10.3.1",

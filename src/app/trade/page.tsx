@@ -1,23 +1,20 @@
-import { Navbar } from '@/components/(layout)'
-import React from 'react'
-import { ArtTrend, BuySellNFT, NFTCategories, PhotoTrend, TradeHero } from '.'
-import dynamic from 'next/dynamic'
+"use client"
 
-const Trade = () => {
+import { Separator } from '@/components/ui/separator'
+import { ArtTrend, BuySellNFT, NFTCategories, PhotoTrend, TradeHero } from './_components'
 
-    const Footer = dynamic(() => import("@/components/(layout)/Footer"), { ssr: false })
-
+export default function TradePage() {
     return (
-        <>
-            <Navbar display={"sticky"} />
+        <main className='container'>
             <TradeHero />
+            <Separator className='w-full h-[2px]' />
             <BuySellNFT />
+            <Separator className='w-full h-[2px]' />
             <ArtTrend />
+            <Separator className='w-full h-[2px]' />
             <PhotoTrend />
+            <Separator className='w-full h-[2px]' />
             <NFTCategories />
-            <Footer />
-        </>
+        </main>
     )
 }
-
-export default Trade

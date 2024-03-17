@@ -14,8 +14,7 @@ import { Sepolia } from '@thirdweb-dev/chains'
 import { env } from '@/lib/env.mjs';
 import { SessionProvider } from 'next-auth/react';
 
-
-export default function ThirdwebProvider({ children } : { children: React.ReactNode }) {
+export default function ThirdwebProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <SessionProvider>
@@ -41,6 +40,6 @@ export default function ThirdwebProvider({ children } : { children: React.ReactN
         {children}
       </ThirdwebProviderLayout>
     </SessionProvider>
-    
+
   )
 }

@@ -1,5 +1,3 @@
-import { Json } from "@thirdweb-dev/auth";
-
 /**
  * The Profile type is a custom type for the Session/ ProfileProvider
  * 

@@ -3,9 +3,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { rightNavList } from '../_metadata'
-import { cn } from '@/lib/utils'
-
-
 
 export default function SideNavRight() {
   const path = usePathname()

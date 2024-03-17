@@ -1,9 +1,9 @@
 import { JarsAPI } from "@/lib/core/api";
-import { revalidateTag } from "next/cache";
-import { updateUser } from "../actions";
+// { revalidateTag } from "next/cache";
+// { updateUser } from "../actions";
 
 export const jars = new JarsAPI("http://localhost:5000", {
-    secretKey: process.env.JWT_AUTH_TOKEN as string
+  secretKey: process.env.JWT_AUTH_TOKEN as string
 })
 
 export default async function TestPage() {
@@ -11,7 +11,7 @@ export default async function TestPage() {
   console.log(getU)
   return (
     <main>
-      
+
     </main>
   )
 }

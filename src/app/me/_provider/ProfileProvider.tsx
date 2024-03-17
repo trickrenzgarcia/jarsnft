@@ -5,10 +5,9 @@ import { Json } from "@thirdweb-dev/auth";
 import { UserWithData } from "@thirdweb-dev/react";
 import { createContext, use } from "react";
 
-
 interface ProfileProviderProps {
-    children: React.ReactNode,
-    value: UserWithData<Json, Json> | undefined
+  children: React.ReactNode,
+  value: UserWithData<Json, Json> | undefined
 }
 
 const ProfileContext = createContext<UserWithData<Json, Json> | undefined>(undefined);
@@ -16,7 +15,7 @@ const ProfileContext = createContext<UserWithData<Json, Json> | undefined>(undef
 export default function ProfileProvider({ children, value }: ProfileProviderProps) {
   return (
     <ProfileContext.Provider value={value}>
-        {children}
+      {children}
     </ProfileContext.Provider>
   )
 }
