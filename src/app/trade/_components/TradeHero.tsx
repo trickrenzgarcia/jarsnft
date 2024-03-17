@@ -12,7 +12,7 @@ export default function TradeHero() {
                 <section className='flex flex-col md:w-[500px] w-auto md:mb-0 mb-12 md:text-start text-center gap-4'>
                     {/* Hero Text */}
                     <div>
-                        <h1 className='text-[2rem] font-bold'>Trade Rare</h1>
+                        <h1 className='text-[2rem] font-bold'>Trade <span className='text-purple-700'>Rare</span></h1>
                         <h1 className='text-[2rem] font-bold'>Collection of NFTs</h1>
                     </div>
 
@@ -28,15 +28,15 @@ export default function TradeHero() {
                     <section className='flex gap-8 mt-6 md:justify-normal justify-around'>
                         <div className="flex flex-col">
                             <h1 className='text-2xl font-bold'>P388M</h1>
-                            <p>Trading Volume</p>
+                            <p className='font-semibold text-purple-700'>Trading Volume</p>
                         </div>
                         <div className="flex flex-col">
                             <h1 className='text-2xl font-bold'>106K</h1>
-                            <p>NFT Creators</p>
+                            <p className='font-semibold text-purple-700'>NFT Creators</p>
                         </div>
                         <div className="flex flex-col">
                             <h1 className='text-2xl font-bold'>2.4M</h1>
-                            <p>Total Users</p>
+                            <p className='font-semibold text-purple-700'>Total Users</p>
                         </div>
                     </section>
                 </section>
