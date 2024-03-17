@@ -19,7 +19,7 @@ type User = {
     name: string;
     email: string;
     is_listed: boolean;
-    created_at: string;
+    createdAt: string;
 }
 
 export class JarsAPI {
