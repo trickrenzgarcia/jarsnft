@@ -1,9 +1,11 @@
 "use client"
 
-import React from 'react'
-
 export default function NFTCategories() {
     return (
-        <div>NFTCategories</div>
+        <>
+            <div className="my-10">
+                <p>NFTCategories</p>
+            </div>
+        </>
     )
 }

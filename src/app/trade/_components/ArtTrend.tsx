@@ -1,9 +1,11 @@
 "use client"
 
-import React from 'react'
-
 export default function ArtTrend() {
     return (
-        <div>ArtTrend</div>
+        <>
+            <div className="my-10">
+                <p>ArtTrend</p>
+            </div>
+        </>
     )
 }

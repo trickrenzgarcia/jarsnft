@@ -1,9 +1,11 @@
 "use client"
 
-import React from 'react'
-
 export default function BuySellNFT() {
     return (
-        <div>BuySellNFT</div>
+        <>
+            <div className="my-10">
+                <p>BuySellNFT</p>
+            </div>
+        </>
     )
 }
