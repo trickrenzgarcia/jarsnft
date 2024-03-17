@@ -23,7 +23,7 @@ export default function Navbar({ display }: NavbarProps) {
   const { user, isLoading, isLoggedIn } = useUser() as ProfileQuery;
   return (
     <nav
-      className={`${display} w-full h-[70px] px-[1.2rem] py-[0.8rem] mb-12 flex justify-between z-50 top-0 left-0 
+      className={`${display} w-full h-[70px] px-[1.2rem] py-[0.8rem] flex justify-between z-50 top-0 left-0 
       bg-white dark:bg-opacity-100 dark:bg-background border-b-2`}
     >
       <div className="flex flex-row justify-between items-center w-full max-w-screen-2xl mx-auto">
