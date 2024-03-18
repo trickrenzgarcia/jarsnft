@@ -14,8 +14,8 @@ import NFTCard from "./NFTCard"
 export default function BuySellNFT() {
     return (
         <>
-            <div className="my-10">
-                <p className="font-bold text-xl mb-10">Buy & Sell NFTs</p>
+            <div className="mt-14 mb-20">
+                <p className="font-bold text-xl mb-12">Buy & Sell NFTs</p>
                 <div className="grid grid-cols-3 mx-6 gap-6">
                     <Card className="flex flex-col justify-around mx-auto w-80 h-[480px]">
                         <CardHeader>

@@ -6,7 +6,7 @@ import Link from 'next/link'
 export default function TradeHero() {
     return (
         <>
-            <div className='flex md:flex-row flex-col justify-center gap-8 mt-12 mb-16'>
+            <div className='flex md:flex-row flex-col justify-center gap-8 my-20'>
                 {/* Left-side */}
                 <section className='flex flex-col md:w-[500px] w-auto md:mb-0 mb-12 md:text-start text-center gap-4'>
                     {/* Hero Text */}
