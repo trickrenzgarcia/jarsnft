@@ -9,24 +9,31 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import Image from "next/image"
+import Link from "next/link"
 
 interface NFTCardProps {
     logo: string,
     image: string,
     name: string,
+    collectionLink: string,
+    itemLink: string,
     floor: string,
     volume: string,
     verified: boolean
 }
 
-export default function NFTCard({ logo, image, name, floor, volume, verified }: NFTCardProps) {
+export default function NFTCard({ logo, image, name, collectionLink, itemLink, floor, volume, verified }: NFTCardProps) {
     return (
         <Card className="mx-auto w-80 h-[480px]">
             <CardHeader className="relative h-80">
-                <Image src={image} fill objectFit="cover" alt="NFT" />
-                <div className="absolute top-[17rem] rounded-md bg-white h-16 w-16 z-10">
-                    <Image className="p-[0.15rem]" src={logo} fill alt="logo" />
-                </div>
+                <Link href={itemLink}>
+                    <Image src={image} fill objectFit="cover" alt="NFT" />
+                </Link>
+                <Link href={collectionLink}>
+                    <div className="absolute top-[17rem] rounded-md bg-white h-16 w-16 z-10">
+                        <Image className="p-[0.15rem]" src={logo} fill alt="logo" />
+                    </div>
+                </Link>
             </CardHeader>
 
             <CardFooter className="flex flex-col mt-10 items-start gap-4">
