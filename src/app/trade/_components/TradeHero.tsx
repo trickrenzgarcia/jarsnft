@@ -11,11 +11,11 @@ export default function TradeHero() {
                 <section className='flex flex-col md:w-[500px] w-auto md:mb-0 mb-12 md:text-start text-center gap-4'>
                     {/* Hero Text */}
                     <div>
-                        <h1 className='text-[2rem] font-bold'>Trade <span className='text-purple-700'>Rare</span></h1>
-                        <h1 className='text-[2rem] font-bold'>Collection of NFTs</h1>
+                        <h1 className='text-5xl font-bold'>Trade <span className='text-purple-700'>Rare</span></h1>
+                        <h1 className='text-5xl font-bold'>Collection of NFTs</h1>
                     </div>
 
-                    <p className='md:mb-0 mb-4'>Embark on a journey through our exclusive NFT collection, where rare and exceptional digital assets await discovery and ownership.</p>
+                    <p className='my-2'>Embark on a journey through our exclusive NFT collection, where rare and exceptional digital assets await discovery and ownership.</p>
 
                     {/* Buy & Sell Buttons */}
                     <section className='flex gap-4 md:m-0 m-auto'>
