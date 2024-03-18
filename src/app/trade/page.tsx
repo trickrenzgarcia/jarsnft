@@ -1,20 +1,35 @@
-"use client"
-
 import { Separator } from '@/components/ui/separator'
 import { ArtTrend, BuySellNFT, NFTCategories, PhotoTrend, TradeHero } from './_components'
+import { Suspense } from 'react'
 
-export default function TradePage() {
+export default async function TradePage() {
     return (
         <main className='container'>
             <TradeHero />
+
             <Separator className='w-full h-[2px]' />
-            <BuySellNFT />
+
+            <Suspense fallback={<div>Loading...</div>}>
+                <BuySellNFT />
+            </Suspense>
+
             <Separator className='w-full h-[2px]' />
-            <ArtTrend />
+
+            <Suspense fallback={<div>Loading...</div>}>
+                <ArtTrend />
+            </Suspense>
+            
             <Separator className='w-full h-[2px]' />
-            <PhotoTrend />
+
+            <Suspense fallback={<div>Loading...</div>}>
+                <PhotoTrend />
+            </Suspense>
+            
             <Separator className='w-full h-[2px]' />
-            <NFTCategories />
+
+            <Suspense fallback={<div>Loading...</div>}>
+                <NFTCategories />
+            </Suspense>
         </main>
     )
 }

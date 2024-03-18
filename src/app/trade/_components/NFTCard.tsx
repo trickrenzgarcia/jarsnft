@@ -24,10 +24,10 @@ interface NFTCardProps {
 
 export default function NFTCard({ logo, image, name, collectionLink, itemLink, floor, volume, verified }: NFTCardProps) {
     return (
-        <Card className="mx-auto w-80 h-[480px]">
+        <Card className="mx-auto h-[480px]">
             <CardHeader className="relative h-80">
                 <Link href={itemLink}>
-                    <Image src={image} fill objectFit="cover" alt="NFT" />
+                    <Image src={image} fill objectFit="cover" alt="NFT" className="rounded-t-lg" />
                 </Link>
                 <Link href={collectionLink}>
                     <div className="absolute top-[17rem] rounded-md bg-white h-16 w-16 z-10">
