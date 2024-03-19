@@ -8,11 +8,11 @@ const Home: NextPage = () => {
   return (
     <div className='min-h-screen'>
       <Navbar display='sticky'/>
-      <div className='mt-10'/>
+      <div className='ml-12 mx-1 px-5 py-5'/>
       <TopHeader/>
-      <div className='mt-10'/>
+      <div className='mt-5'/>
       <Trending/>
-      <div className='mt-20'/>
+      <div className='mt-10'/>
       <CMCTable/>
     </div>
   )
