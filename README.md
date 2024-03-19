@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+MOR / Thesis Project by Alrae, Patrick, Jeffrey, Rigor  
 
 ## Getting Started
 
@@ -16,18 +16,20 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npx depcheck --detailed
+#Generate a report of all the unused packages in the project and any missing dependencies
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+ncu -u 
+#Generate a list of all the packages the project that can be updated
 
-## Learn More
+npm prune
+#Removes the packages that are no longer listed in package.json file and are not in use.
 
-To learn more about Next.js, take a look at the following resources:
+npx npm-check-updates -u -a --prune
+#Will automatically update all the packages and remove the unnecessary packages.
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 ## Deploy on Vercel
 
