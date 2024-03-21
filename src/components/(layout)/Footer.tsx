@@ -41,16 +41,16 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="px-8 lg:px-20 pb-5">
-          <ul className='mt-5 flex flex-col md:flex-row justify-between'>
+          <ul className='mt-5 flex flex-col md:flex-row justify-between items-center gap-8 md:gap-0'>
             {/* Left-side */}
-            <li>
+            <li className='w-fit'>
               <div>
                 © 2023 Alrae, Jeffrey, Patrick, Rigor
               </div>
             </li>
 
             {/* Right-side */}
-            <li>
+            <li className='w-fit'>
               <PrivacyTermsButtons />
             </li>
           </ul>
