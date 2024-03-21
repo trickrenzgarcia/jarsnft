@@ -25,7 +25,6 @@ type QueryMetadata = {
 export default function NFTBannerMetadata({ address }: BannerMetadataProps) {
   const { contract } = useContract(address)
   const { data: metadata, isLoading, isError } = useMetadata(contract) as QueryMetadata
-
   // Database to be handled by the backend
   const [socials] = React.useState({
     wiki_url: "https://en.wikipedia.org/wiki/Non-fungible_token",

@@ -1,6 +1,7 @@
 import React from 'react'
 import NFTCreateContractCard from '../_components/NFTCreateContractCard'
 import DetailsCard from '../_components/DetailsCard'
+import { Form } from '@/components/ui/form'
 
 export default function DeployContractPage() {
   return (
@@ -12,7 +13,7 @@ export default function DeployContractPage() {
             />
         </section>
         <section className='hidden lg:block'>
-            <DetailsCard title="Once your contract deployment is complete, you'll have the ability to:" />
+          <DetailsCard title="Once your contract deployment is complete, you'll have the ability to:" />
         </section>
         
     </main>

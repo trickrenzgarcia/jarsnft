@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import { Separator } from '../ui/separator';
-import dynamic from 'next/dynamic';
+import PrivacyTermsButtons from "../(interfaces)/PrivacyTermsButtons"
+import SocialLinkButtons from '../(interfaces)/SocialLinkButtons';
+
 
 export default function Footer() {
-  const SocialLinkButtons = dynamic(() => import("../(interfaces)/SocialLinkButtons"));
-  const PrivacyTermsButtons = dynamic(() => import("../(interfaces)/PrivacyTermsButtons"));
 
   return (
     <footer className='mt-12'>

@@ -34,3 +34,34 @@ export function shortenAddress(address: string): string {
     return address;
   }
 }
+
+/** 
+ * Shortens the file name by keeping the first `first` characters and the last `last` characters
+ * @param fileName The file name to be shortened
+ * @param first The number of characters to keep from the start of the file name
+ * @param last The number of characters to keep from the end of the file name
+ * @default first 10
+ * @default last 5
+ * @returns The shortened file name
+*/
+export function shortenFileName(fileName: string, first: number = 10, last: number = 5): string {
+  // Check if fileName length is greater than 24
+  if (fileName.length > 24) {
+    // Extracting file name without extension
+    const nameWithoutExtension = fileName.substring(0, fileName.lastIndexOf('.'));
+
+    // Extracting file extension
+    const fileExtension = fileName.substring(fileName.lastIndexOf('.'));
+
+    // Determine the length to truncate the file name to fit the total length of 24
+    const middleChars = 24 - first - last - 3; // Subtracting 3 for the ellipsis
+
+    // Constructing the truncated file name
+    const truncatedFileName = nameWithoutExtension.substring(0, first) + "..." + nameWithoutExtension.substring(nameWithoutExtension.length - middleChars) + nameWithoutExtension.substring(nameWithoutExtension.length - last) + fileExtension;
+
+    return truncatedFileName;
+  } else {
+    // Return the original file name if its length is not greater than 24
+    return fileName;
+  }
+}

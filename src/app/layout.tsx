@@ -7,6 +7,7 @@ import {
 } from '@/components/(providers)';
 import { cn } from '@/lib/utils';
 import { appConfig as config } from '@/lib/config';
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   metadataBase: new URL(config.url.base),
@@ -41,6 +42,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
               {children}
+              <Toaster richColors />
           </ThemeProvider>
         </ThirdwebProvider>
       </body>
