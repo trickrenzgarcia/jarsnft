@@ -19,7 +19,7 @@ import { Accept, useDropzone } from "react-dropzone";
 import Image from "next/image";
 import React, { useState, useCallback } from "react";
 import { FaRegImage } from "react-icons/fa";
-import { shortenFileName } from "@/lib/utils";
+import { cn, shortenFileName } from "@/lib/utils";
 import {
   Form,
   FormControl,
@@ -32,6 +32,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ACCEPTED_IMAGE_TYPES } from "@/types/constant";
 import { FaExclamationCircle } from "react-icons/fa";
+import { Textarea } from "@/components/ui/textarea";
 
 type NFTCreateContractCardProps = {
   title: string;
@@ -46,10 +47,10 @@ const ContractSchema = z.object({
     message: "Required field.",
   }),
   symbol: z.string().optional(),
-  // description: z.string().optional(),
+  description: z.string().optional(),
   // app_uri: z.string().min(1),
   // external_link: z.string().min(1),
-  // fee_recipient: z.string().min(1),
+  fee_recipient: z.string().min(1),
   // seller_fee_basis_points: z.number().min(0).max(100),
   // primary_sale_recipient: z.string().min(1),
   // trusted_forwarders: z.array(z.string()).optional(),
@@ -87,6 +88,16 @@ export default function NFTCreateContractCard({
         acceptedFiles[0].type.startsWith("image/")
       ) {
         const file = acceptedFiles[0];
+
+        // Check MIME type
+        if(!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
+          toast.error("Invalid file type. Please upload an image file.", {
+            position: "top-center",
+            closeButton: true,
+          });
+          return;
+        }
+
         const reader = new FileReader();
         reader.onload = (event: ProgressEvent<FileReader>) => {
           setUploadImage(event.target?.result?.toString() || "");
@@ -101,7 +112,7 @@ export default function NFTCreateContractCard({
         });
       }
     },
-    [setUploadImage, setFileName]
+    [setUploadImage, setFileName, form]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -147,7 +158,7 @@ export default function NFTCreateContractCard({
               name="image"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-bold flex items-center gap-1">Logo Image (<FormMessage />)</FormLabel>
+                  <FormLabel className="font-bold flex items-center gap-1">Logo Image</FormLabel>
                   <FormControl>
                     <>
                       <Input
@@ -162,7 +173,7 @@ export default function NFTCreateContractCard({
                         style={{ display: "none" }}
                       />
                       <div
-                        className="cursor-pointer h-[150px] flex gap-3 items-center p-5 rounded-md border border-dashed hover:border-solid dark:hover:border-gray-500"
+                        className={cn("cursor-pointer h-[150px] flex gap-3 items-center p-5 rounded-md border border-dashed ", form.formState.errors.image ? "border-solid border-red-500" : "hover:border-solid dark:hover:border-gray-500")}
                         {...getRootProps()}
                         onClick={(event) => {
                           event.preventDefault();
@@ -172,7 +183,7 @@ export default function NFTCreateContractCard({
                           fileInput.click();
                         }}
                       >
-                        <Avatar className="w-[98px] h-[98px] rounded-md">
+                        <Avatar className="w-[98px] h-[98px] rounded-md border">
                           {uploadImage ? (
                             <AvatarImage
                               className="aspect-auto"
@@ -211,13 +222,13 @@ export default function NFTCreateContractCard({
               )}
             />
             <div className="grid grid-cols-12 gap-3 pt-5">
-              <div className="col-span-10">
+              <div className="col-span-9 md:col-span-10">
                 <FormField 
                   control={form.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-bold flex items-center gap-1">Name (<FormMessage />)</FormLabel>
+                      <FormLabel className="font-bold flex items-center gap-1">Name</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -229,13 +240,13 @@ export default function NFTCreateContractCard({
                   )}
                 />
               </div>
-              <div className="col-span-2">
+              <div className="col-span-3 md:col-span-2">
                 <FormField 
                   control={form.control}
                   name="symbol"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-bold">Symbol</FormLabel>
+                      <FormLabel className="font-bold flex items-center gap-1">Symbol</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -243,12 +254,50 @@ export default function NFTCreateContractCard({
                           placeholder="HAV"
                         />
                       </FormControl>
-                      <FormDescription className="italic">Optional</FormDescription>
-                      
+
                     </FormItem>
                   )}
                 />
               </div>
+            </div>
+
+            <div className="pt-5">
+              <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="font-bold flex items-center gap-1">Description</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        {...field}
+                        id="description"
+                        placeholder="Enter the description of your NFT contract (Optional)"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div className="pt-5">
+              <FormField
+                control={form.control}
+                name="fee_recipient"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="font-bold flex items-center gap-1">Royalties</FormLabel>
+                    <FormDescription className="text-sm">Determine the address that should receive the revenue from royalties earned from secondary sales of the assets.</FormDescription>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        id="fee_recipient"
+                        placeholder=""
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
             </div>
             
             <Button type="submit">Create</Button>
