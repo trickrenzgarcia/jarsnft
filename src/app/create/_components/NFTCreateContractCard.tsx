@@ -31,39 +31,31 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { ACCEPTED_IMAGE_TYPES } from "@/types/constant";
+import { FaExclamationCircle } from "react-icons/fa";
 
 type NFTCreateContractCardProps = {
   title: string;
   description: string;
 };
 
-
-
-const FormContractSchema = z.object({
-  name: z.string().min(1),
-  image: z.object({
-    type: z.string().refine(
-      (value) =>
-        ACCEPTED_IMAGE_TYPES.includes(value.split("/")[1]),
-    ),
-    size: z.number().min(0, {
-      message: "File size must be greater than 0.",
-    }).refine(
-      (value) => value <= 10000000,
-      {
-        message: `Max file size is ${10000000} bytes.`,
-      }
-    ),
+const ContractSchema = z.object({
+  name: z.string().min(1, {
+    message: "Required field.",
+  }).max(100, { message: "Name must be less than 100 characters."}),
+  image: z.instanceof(File, {
+    message: "Required field.",
   }),
   symbol: z.string().optional(),
-  description: z.string().optional(),
-  app_uri: z.string().min(1),
-  external_link: z.string().min(1),
-  fee_recipient: z.string().min(1),
-  seller_fee_basis_points: z.number().min(0).max(100),
-  primary_sale_recipient: z.string().min(1),
-  trusted_forwarders: z.array(z.string()).optional(),
+  // description: z.string().optional(),
+  // app_uri: z.string().min(1),
+  // external_link: z.string().min(1),
+  // fee_recipient: z.string().min(1),
+  // seller_fee_basis_points: z.number().min(0).max(100),
+  // primary_sale_recipient: z.string().min(1),
+  // trusted_forwarders: z.array(z.string()).optional(),
 });
+
+type FormContract = z.infer<typeof ContractSchema>;
 
 export default function NFTCreateContractCard({
   title,
@@ -72,29 +64,21 @@ export default function NFTCreateContractCard({
   const [uploadImage, setUploadImage] = useState<string | null>(null);
   const [fileName, setFileName] = useState("");
 
-  const form = useForm<z.infer<typeof FormContractSchema>>({
-    resolver: zodResolver(FormContractSchema),
+  const form = useForm<FormContract>({
+    resolver: zodResolver(ContractSchema),
     defaultValues: {
-      name: "",
-      image: {
-        type: "",
-        size: 0,
-      },
+      //name: "",
+      image: undefined,
       symbol: "",
-      description: "",
-      app_uri: "",
-      external_link: "",
-      fee_recipient: "",
-      seller_fee_basis_points: 0,
-      primary_sale_recipient: "",
-      trusted_forwarders: [],
+      // description: "",
+      // app_uri: "",
+      // external_link: "",
+      // fee_recipient: "",
+      // seller_fee_basis_points: 0,
+      // primary_sale_recipient: "",
+      // trusted_forwarders: [],
     },
   });
-
-  function onSubmitCreateContract(data: z.infer<typeof FormContractSchema>) {
-    console.log(data.image);
-    console.log("Hello");
-  }
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
@@ -106,6 +90,7 @@ export default function NFTCreateContractCard({
         const reader = new FileReader();
         reader.onload = (event: ProgressEvent<FileReader>) => {
           setUploadImage(event.target?.result?.toString() || "");
+          form.setValue("image", file);
         };
         reader.readAsDataURL(file);
         setFileName(file.name);
@@ -130,6 +115,7 @@ export default function NFTCreateContractCard({
       const reader = new FileReader();
       reader.onload = (event: ProgressEvent<FileReader>) => {
         setUploadImage(event.target?.result?.toString() || "");
+        form.setValue("image", file);
       };
       reader.readAsDataURL(file);
       setFileName(file.name);
@@ -141,6 +127,10 @@ export default function NFTCreateContractCard({
     }
   };
 
+  function submitCreateContract(data: FormContract) {
+    console.log(data, "Submitted!");
+  }
+
   return (
     <Card className="max-w-[640px]">
       <CardHeader>
@@ -151,65 +141,116 @@ export default function NFTCreateContractCard({
       </CardHeader>
       <CardContent className="px-5">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmitCreateContract)}>
+          <form onSubmit={form.handleSubmit(submitCreateContract)}>
             <FormField
               control={form.control}
-              name="image.type"
+              name="image"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Logo</FormLabel>
+                  <FormLabel className="font-bold flex items-center gap-1">Logo Image (<FormMessage />)</FormLabel>
                   <FormControl>
-                    <Input type="file" accept="image/*"  {...field} />
-                  </FormControl>
-                  <FormDescription>
-                    <div
-                      className="cursor-pointer h-[150px] flex gap-3 items-center p-5 rounded-md border border-dashed hover:border-solid dark:hover:border-gray-500"
-                      {...getRootProps()}
-                      onClick={(event) => {
-                        event.preventDefault();
-                        const fileInput = document.getElementById(
-                          "picture"
-                        ) as HTMLInputElement;
-                        fileInput.click();
-                      }}
-                    >
-                      <Avatar className="w-[98px] h-[98px] rounded-md">
-                        {uploadImage ? (
-                          <AvatarImage
-                            className="aspect-auto"
-                            src={uploadImage}
-                            alt="@image_collection"
-                          />
-                        ) : (
-                          <AvatarFallback className="w-[98px] h-[98px] rounded-md">
-                            <FaRegImage />
-                          </AvatarFallback>
-                        )}
-                      </Avatar>
-                      <div className="flex flex-col">
-                        <h2 className="text-sm font-bold">
-                          {shortenFileName(fileName) ||
-                            "Drag and drop or click to upload"}
-                        </h2>
-                        {!fileName && (
-                          <span>
-                            <p className="text-sm">
-                              You may change this after deploying your contract.
-                            </p>
-                            <p className="text-sm">
-                              Recommended size: 350 x 350. File types: JPG, PNG,
-                              SVG, or GIF
-                            </p>
-                          </span>
-                        )}
+                    <>
+                      <Input
+                        {...getInputProps()}
+                        {...form.register("image")}
+                        //ref={form.register("image").ref}
+                        id="picture"
+                        className="w-full h-full"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageOnChange}
+                        style={{ display: "none" }}
+                      />
+                      <div
+                        className="cursor-pointer h-[150px] flex gap-3 items-center p-5 rounded-md border border-dashed hover:border-solid dark:hover:border-gray-500"
+                        {...getRootProps()}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          const fileInput = document.getElementById(
+                            "picture"
+                          ) as HTMLInputElement;
+                          fileInput.click();
+                        }}
+                      >
+                        <Avatar className="w-[98px] h-[98px] rounded-md">
+                          {uploadImage ? (
+                            <AvatarImage
+                              className="aspect-auto"
+                              src={uploadImage}
+                              alt="@image_collection"
+                            />
+                          ) : (
+                            <AvatarFallback className="w-[98px] h-[98px] rounded-md">
+                              <FaRegImage />
+                            </AvatarFallback>
+                          )}
+                        </Avatar>
+                        <div className="flex flex-col">
+                          <h2 className="text-sm font-bold">
+                            {shortenFileName(fileName) ||
+                              "Drag and drop or click to upload"}
+                          </h2>
+                          {!fileName && (
+                            <span>
+                              <p className="text-sm">
+                                You may change this after deploying your
+                                contract.
+                              </p>
+                              <p className="text-sm">
+                                Recommended size: 350 x 350. File types: JPG,
+                                PNG, SVG, or GIF
+                              </p>
+                            </span>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </FormDescription>
-                  <FormMessage />
+                    </>
+                  </FormControl>
+                  
                 </FormItem>
               )}
             />
-
+            <div className="grid grid-cols-12 gap-3 pt-5">
+              <div className="col-span-10">
+                <FormField 
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-bold flex items-center gap-1">Name (<FormMessage />)</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          id="name"
+                          placeholder="Enter the name of your NFT contract"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="col-span-2">
+                <FormField 
+                  control={form.control}
+                  name="symbol"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-bold">Symbol</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          id="symbol"
+                          placeholder="HAV"
+                        />
+                      </FormControl>
+                      <FormDescription className="italic">Optional</FormDescription>
+                      
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            
             <Button type="submit">Create</Button>
           </form>
         </Form>
@@ -217,17 +258,3 @@ export default function NFTCreateContractCard({
     </Card>
   );
 }
-
-
-
-
-{/* <Input
-  {...getInputProps()}
-  {...field}
-  id="picture"
-  className="w-full h-full"
-  type="file"
-  accept="image/*"
-  onChange={handleImageOnChange}
-  style={{ display: "none" }}
-/> */}

@@ -5,7 +5,7 @@ import { Form } from '@/components/ui/form'
 
 export default function DeployContractPage() {
   return (
-    <main className='w-full flex flex-col md:flex-row justify-center py-8 gap-5'>
+    <main className='w-full flex flex-col mx-auto md:flex-row justify-center md:py-8 gap-5'>
         <section>
             <NFTCreateContractCard 
                 title='Create NFT Collection'
