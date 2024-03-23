@@ -1,5 +1,7 @@
 "use client";
 
+import { ethers } from 'ethers'; // ethers v5^
+
 import {
   Card,
   CardContent,
@@ -15,9 +17,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Input } from "@/components/ui/input";
-import { Accept, useDropzone } from "react-dropzone";
+import { useDropzone } from "react-dropzone";
 import Image from "next/image";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { FaRegImage } from "react-icons/fa";
 import { cn, shortenFileName } from "@/lib/utils";
 import {
@@ -29,32 +31,47 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button";
 import { ACCEPTED_IMAGE_TYPES } from "@/types/constant";
 import { FaExclamationCircle } from "react-icons/fa";
 import { Textarea } from "@/components/ui/textarea";
-import { useAddress } from "@thirdweb-dev/react";
+import { useAddress, useContract, useSDK } from "@thirdweb-dev/react";
+import { CreateNFTCollectionDialog } from "./CreateNFTCollectionDialog";
+import { Spinner } from '@nextui-org/react';
 
 type NFTCreateContractCardProps = {
   title: string;
   description: string;
 };
 
-const addressOrENSSchema = z.string().regex(/^0x[a-fA-F0-9]{40}$/, "Input is not a valid address or ENS name.").min(1, "ENS name cannot be empty.")
+const ethAddressSchema = z.string().refine((value) => ethers.utils.isAddress(value), {
+  message: "Input is not a valid address or ENS name."
+})
 
 const ContractSchema = z.object({
   name: z.string().min(1, "Required field.").max(100, "Name must be less than 100 characters."),
   image: z.instanceof(File, {
     message: "Required field.",
   }),
-  symbol: z.string().min(1),
+  symbol: z.string().optional(),
   description: z.string().optional(),
-  // app_uri: z.string().min(1),
-  // external_link: z.string().min(1),
-  fee_recipient: addressOrENSSchema,
+  app_uri: z.string().optional(),
+  external_link: z.string().optional(),
+  fee_recipient: ethAddressSchema,
   seller_fee_basis_points: z.string().regex(/^(100(\.0{1,3})?|0+(\.\d{1,3})?|([1-9]?\d(\.\d{1,3})?))$/, "Invalid percentage."),
-  primary_sale_recipient: addressOrENSSchema,
-  // trusted_forwarders: z.array(z.string()).optional(),
+  primary_sale_recipient: ethAddressSchema,
+  trusted_forwarders: z.array(z.string()).optional(),
 });
 
 type FormContract = z.infer<typeof ContractSchema>;
@@ -63,20 +80,32 @@ export default function NFTCreateContractCard({
   title,
   description,
 }: NFTCreateContractCardProps) {
+  const address = useAddress();
+  const sdk = useSDK();
   const [uploadImage, setUploadImage] = useState<string | null>(null);
   const [fileName, setFileName] = useState("");
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    if(address) {
+      form.setValue("fee_recipient", address);
+      form.setValue("primary_sale_recipient", address);
+    }
+  }, [address])
 
   const form = useForm<FormContract>({
     resolver: zodResolver(ContractSchema),
     defaultValues: {
-      //name: "",
+      name: "",
       image: undefined,
       symbol: "",
-      // description: "",
-      // app_uri: "",
-      // external_link: "",
-      fee_recipient: "",
-      seller_fee_basis_points: "0.00"
+      description: "",
+      app_uri: "",
+      external_link: "",
+      fee_recipient: address,
+      seller_fee_basis_points: "0.00",
+      primary_sale_recipient: address,
+      trusted_forwarders: [],
     }
   });
 
@@ -145,8 +174,6 @@ export default function NFTCreateContractCard({
         return; // Do nothing if the input is empty
     }
 
-    
-
     // Regular expression to match any character from A-Z or any special character
     const regex = /^[A-Za-z!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]*$/;
 
@@ -166,27 +193,41 @@ export default function NFTCreateContractCard({
     }
   }
 
-  function handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const inputValue = e.target.value.trim(); // Trim whitespace
+  const name = form.watch("name");
+  const words = name.split(" ");
+  const initials = words.map(word => word.charAt(0).toUpperCase());
+  const acronym = initials.join("");
 
-    // Split the input value into an array of words
-    const words = inputValue.split(" ");
-    
-    // Map over the words array and extract the first letter of each word
-    const initials = words.map(word => word.charAt(0).toUpperCase());
-    
-    // Join the extracted initials together to form the acronym
-    const acronym = initials.join("");
-
-    if(acronym.length > 0) {
-      form.setValue("symbol", acronym);
-    } else {
-      form.setValue("symbol", "");
-    }
+  if(acronym.length > 0) {
+    form.setValue("symbol", acronym);
+  } else {
+    form.setValue("symbol", "");
   }
+  
 
-  function submitCreateContract(data: FormContract) {
-    console.log(data, "Submitted!");
+  const submitCreateContract = async (data: FormContract) => {
+    const seller_fee_basis_points = parseFloat(data.seller_fee_basis_points) * 100;
+    const image = new File([data.image], data.image.name, { type: data.image.type })
+    try {
+      setLoading(true);
+      const contractAddress = await sdk?.deployer.deployNFTCollection({
+        name: data.name,
+        image: image,
+        primary_sale_recipient: data.primary_sale_recipient,
+        symbol: data.symbol,
+        platform_fee_recipient: address,
+        external_link: data.external_link,
+        app_uri: data.app_uri,
+        fee_recipient: data.fee_recipient,
+        description: data.description,
+        platform_fee_basis_points: seller_fee_basis_points,
+        seller_fee_basis_points: seller_fee_basis_points,
+        trusted_forwarders: data.trusted_forwarders,
+      });
+    } catch (error) {
+      //await submitCreateContract(data)
+      setLoading(false);
+    }
   }
 
   return (
@@ -205,7 +246,7 @@ export default function NFTCreateContractCard({
               name="image"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-bold flex items-center gap-1">Logo Image</FormLabel>
+                  <FormLabel className="font-semibold flex items-center gap-1 text-md"><span className="text-red-400">*</span>Logo Image</FormLabel>
                   <FormControl>
                     <>
                       <Input
@@ -268,20 +309,20 @@ export default function NFTCreateContractCard({
                 </FormItem>
               )}
             />
-            <div className="grid grid-cols-12 gap-3 pt-5">
+            <div className="grid grid-cols-12 gap-3 pt-8">
               <div className="col-span-9 md:col-span-10">
                 <FormField 
                   control={form.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-bold flex items-center gap-1">Name</FormLabel>
+                      <FormLabel className="font-semibold flex items-center gap-1 text-md"><span className="text-red-400">*</span>Name</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           id="name"
-                          placeholder="Enter the name of your NFT contract"
-                          onChange={handleNameChange}
+                          placeholder="Collection Name"
+                          className={cn(form.formState.errors.name && "border-red-500")}
                         />
                       </FormControl>
                     </FormItem>
@@ -294,12 +335,12 @@ export default function NFTCreateContractCard({
                   name="symbol"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-bold flex items-center gap-1">Symbol</FormLabel>
+                      <FormLabel className="font-semibold flex items-center gap-1 text-md">Symbol</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           id="symbol"
-                          placeholder="HAV (Optional)"
+                          placeholder="(Optional)"
                         />
                       </FormControl>
 
@@ -309,13 +350,13 @@ export default function NFTCreateContractCard({
               </div>
             </div>
 
-            <div className="pt-5">
+            <div className="pt-8">
               <FormField
                 control={form.control}
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="font-bold flex items-center gap-1">Description</FormLabel>
+                    <FormLabel className="font-semibold flex items-center gap-1 text-md">Description</FormLabel>
                     <FormControl>
                       <Textarea
                         {...field}
@@ -328,48 +369,53 @@ export default function NFTCreateContractCard({
               />
             </div>
 
-            <div className="pt-5 grid grid-cols-12 gap-3">
-              <div className="col-span-9 md:col-span-10">
+            <div className="pt-8 grid grid-cols-12 gap-3">
+              <div className="col-span-8 md:col-span-9">
                 <FormField
                   control={form.control}
                   name="fee_recipient"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-bold flex items-center gap-1">Royalties</FormLabel>
-                      
+                      <FormLabel className="font-semibold flex items-center gap-1 text-md">Royalties</FormLabel>
+                      <FormDescription className="text-sm italic">Determine the address that should receive the revenue from royalties earned from secondary sales of the assets.</FormDescription>
+                      <FormLabel className="font-semibold flex items-center gap-1"><span className="text-red-400">*</span>Recipient Address </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           id="fee_recipient"
                           placeholder="address"
+                          className={cn(form.formState.errors.fee_recipient && "border-red-500")}
                         />
                       </FormControl>
-                      <FormDescription className="text-sm italic">Determine the address that should receive the revenue from royalties earned from secondary sales of the assets.</FormDescription>
                     </FormItem>
                   )}
                 />
               </div>
-              <div className="col-span-3 md:col-span-2">
+              <div className="col-span-4 md:col-span-3 flex items-end">
                 <FormField
                   control={form.control}
                   name="seller_fee_basis_points"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-bold flex items-center gap-1">Percentage</FormLabel>
+                      <FormLabel className="font-semibold flex items-center gap-1">Percentage</FormLabel>
                       <FormControl>
-                        <Input
-                          {...form.register("seller_fee_basis_points")}
-                          id="seller_fee_basis_points"
-                          placeholder="0.00"
-                          maxLength={5}
-                          onChange={handlePercentageChange}
-                          onKeyDown={(e) => {
-                            if(e.key === ' ') {
-                              e.preventDefault();
-                              return;
-                            }
-                          }}
-                        />
+                        <div className="flex items-center">
+                          <Input
+                            {...form.register("seller_fee_basis_points")}
+                            id="seller_fee_basis_points"
+                            placeholder="0.00"
+                            maxLength={5}
+                            onChange={handlePercentageChange}
+                            className={cn(form.formState.errors.seller_fee_basis_points && "border-red-500")}
+                            onKeyDown={(e) => {
+                              if(e.key === ' ') {
+                                e.preventDefault();
+                                return;
+                              }
+                            }}
+                          />
+                          <span className="p-1">%</span>
+                        </div>
                       </FormControl>
                     </FormItem>
                   )}
@@ -377,8 +423,50 @@ export default function NFTCreateContractCard({
               </div>
               
             </div>
+
+            <div className="pt-8">
+              <FormField
+                control={form.control}
+                name="primary_sale_recipient"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="font-semibold flex items-center gap-1 text-md">Primary Sale Recipient</FormLabel>
+                    <FormDescription className="text-sm italic">Determine the address that should receive the revenue from the primary sale of the assets.</FormDescription>
+                    <FormLabel className="font-semibold flex items-center gap-1"><span className="text-red-400">*</span>Recipient Address </FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        id="primary_sale_recipient"
+                        placeholder="address"
+                        className={cn(form.formState.errors.primary_sale_recipient && "border-red-500")}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div className='flex justify-end'>
+              <Button type="submit">Create Collection</Button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="outline" id="submitDialog" style={{ display: "none" }}>Open Dialog</Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      {loading && (<Spinner />)}
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    {!loading && (<AlertDialogCancel>Cancel</AlertDialogCancel>)}
+                    <AlertDialogAction disabled={loading}>Continue</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
             
-            <Button type="submit">Create</Button>
           </form>
         </Form>
       </CardContent>

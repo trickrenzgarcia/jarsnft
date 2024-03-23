@@ -7,7 +7,7 @@ export default function DeployContractPage() {
   return (
     <main className='w-full flex flex-col mx-auto md:flex-row justify-center md:py-8 gap-5'>
         <section>
-            <NFTCreateContractCard 
+            <NFTCreateContractCard
                 title='Create NFT Collection'
                 description='The NFT Collection contract is suitable for when you want to have a collection of unique NFTs, but not "drop" or "release" them for your community to claim.'
             />
