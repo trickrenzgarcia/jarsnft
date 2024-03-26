@@ -12,6 +12,7 @@ type MinidenticonImgProps = {
   lightness?: number;
 } & React.HTMLAttributes<HTMLImageElement>
 
+
 const MinidenticonImg = ({ address, width = 50, height = 50, saturation, lightness, ...props }: MinidenticonImgProps) => {
 
     const svgURI = useMemo(

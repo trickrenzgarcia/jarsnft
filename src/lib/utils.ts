@@ -20,13 +20,13 @@ export function formatNumber(number: number): string {
   );
 }
 
-export function shortenAddress(address: string): string {
+export function shortenAddress(address: string, char1: number = 6, char2: number = 4): string {
   // Check if the address has at least 10 characters
   if (address.length >= 10) {
     // Extract the first 6 characters
-    const start = address.slice(0, 6);
+    const start = address.slice(0, char1);
     // Extract the last 4 characters
-    const end = address.slice(-4);
+    const end = address.slice(-char2);
     // Return the shortened address
     return `${start}...${end}`;
   } else {
