@@ -1,5 +1,5 @@
 /**
- * The Profile type is a custom type for the Session/ ProfileProvider
+ * The Profile type is a custom type for the Session/ ProfileProvider or UserProvider
  * 
  * ```jsx
  * import { useUser } from "@thirdweb-dev/react";
@@ -7,7 +7,7 @@
  * const { user, isLoggedIn, isLoading } = useUser() as ProfileQuery;
  * ```
  *
- * @type Profile
+ * @type Profile or User
  *
  */
 export type Profile = {

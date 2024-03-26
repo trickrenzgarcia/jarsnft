@@ -3,7 +3,8 @@ import { inter } from "@/lib/fonts";
 import "./globals.css";
 import {
   ThemeProvider,
-  ThirdwebProvider
+  ThirdwebProvider,
+  UserProvider
 } from '@/components/(providers)';
 import { cn } from '@/lib/utils';
 import { appConfig as config } from '@/lib/config';
@@ -41,8 +42,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <UserProvider>
               {children}
               <Toaster richColors />
+            </UserProvider>
           </ThemeProvider>
         </ThirdwebProvider>
       </body>
