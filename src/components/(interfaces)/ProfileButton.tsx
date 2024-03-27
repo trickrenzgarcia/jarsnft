@@ -9,7 +9,7 @@ import Link from 'next/link'
 
 import { useLogout, useUser } from '@thirdweb-dev/react';
 import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet'
-import { Profile, ProfileQuery } from '@/types/users'
+import { Profile } from '@/types/users'
 import { Skeleton } from '../ui/skeleton'
 
 export default function ProfileButton({ user, isUserLoading }: { user: Profile, isUserLoading: boolean}) {
