@@ -26,7 +26,7 @@ export default function ProfileCard({ user }: { user: Profile }) {
     <Card className="max-w-[300px] w-[300px] mb-5 bg-default-200 dark:bg-neutral-900">
       <CardHeader className="w-full flex flex-col items-center">
         <div className="border-2 border-purple-600 rounded-full">
-          <MinidentIconImg address={user.address} width={100} height={100} />
+          <MinidentIconImg address={user.data.address} width={100} height={100} />
         </div>
         <h1 className="w-full truncate text-center font-semibold text-xl py-2">
           {user.data.session.name}

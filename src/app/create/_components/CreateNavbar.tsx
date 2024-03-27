@@ -1,15 +1,13 @@
 "use client"
 
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { IoArrowBack } from "react-icons/io5";
+import { IoArrowBack, IoCopy } from "react-icons/io5";
 import { useUserContext } from '@/components/(providers)'
-import { ConnectWeb3, MinidentIconImg } from '@/components/(interfaces)'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { ConnectWeb3, MinidentIconImg, TooltipMsg } from '@/components/(interfaces)'
 import { Skeleton } from '@/components/ui/skeleton'
+import { shortenAddress } from '@/lib/utils'
 
 export default function CreateNavbar() {
   const router = useRouter()
@@ -31,19 +29,22 @@ export default function CreateNavbar() {
         
         <div className='block lg:hidden'>
           {isLoading && <Skeleton className='h-9 w-9 rounded-full'/> ||
-          <Sheet>
-            <SheetTrigger asChild>
-              {(!user && <ConnectWeb3 btnTitle='Connect Wallet' />) || 
-              (user && (
-                <div className='cursor-pointer'>
-                  <MinidentIconImg address={user.data.address} width={36} height={36} />
-                </div> 
-              ))}
-            </SheetTrigger>
-            <SheetContent>
-
-            </SheetContent>
-          </Sheet>
+          (!user && <ConnectWeb3 btnTitle='Connect Wallet' />) || 
+          (user && (
+            <TooltipMsg message='Copy' delay={100}>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigator.clipboard.writeText(user.data.address);
+                }}
+                className='flex items-center cursor-pointer gap-2'
+              >
+                <MinidentIconImg address={user.data.address} width={36} height={36} />
+                <p>{shortenAddress(user.data.address, 4, 3)}</p>
+                <IoCopy className='cursor-pointer' />
+              </button>
+            </TooltipMsg>
+          ))
           }
         </div>
       </div>
