@@ -13,10 +13,10 @@ export default function PageNavbar() {
   return (
     <div className='flex items-center gap-2'>
       <Link href='/learn'>
-        <MdHome className='text-xl' />
+        <MdHome className='text-xl opacity-[.40]' />
       </Link>
-      <MdOutlineKeyboardArrowRight className='text-xl'/>
-      <PageNavTitle path={path}/>
+      <MdOutlineKeyboardArrowRight className='text-xl opacity-[.40]'/>
+      <PageNavTitle path={path} />
     </div>
   )
 }
@@ -31,5 +31,5 @@ function PageNavTitle({ path }: { path: LearnPaths}) {
     else if(path=="/learn/faq") return "FAQs"
   }
 
-  return <h2>{title()}</h2>
+  return <h2 className='text-[#A519D7]'>{title()}</h2>
 }

@@ -1,4 +1,5 @@
 import { SideNavLeft, SideNavRight, LearnNavbar, PageNavbarTitle } from './_components';
+import {Footer} from "@/components/(layout)";
 
 type LearnProps = {
   children: React.ReactNode
@@ -19,6 +20,7 @@ export default function LearnLayout({ children }: LearnProps) {
           <SideNavRight />
         </main>
       </div>
+      <Footer/>
     </main>
   )
 }
