@@ -49,6 +49,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useAddress, useContract, useSDK } from "@thirdweb-dev/react";
 import { CreateNFTCollectionDialog } from "./CreateNFTCollectionDialog";
 import { Spinner } from '@nextui-org/react';
+import { useUserContext } from '@/components/(providers)';
 
 type NFTCreateContractCardProps = {
   title: string;
@@ -81,17 +82,11 @@ export default function NFTCreateContractCard({
   description,
 }: NFTCreateContractCardProps) {
   const address = useAddress();
+  const { user } = useUserContext();
   const sdk = useSDK();
   const [uploadImage, setUploadImage] = useState<string | null>(null);
   const [fileName, setFileName] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    if(address) {
-      form.setValue("fee_recipient", address);
-      form.setValue("primary_sale_recipient", address);
-    }
-  }, [address])
 
   const form = useForm<FormContract>({
     resolver: zodResolver(ContractSchema),
@@ -102,7 +97,7 @@ export default function NFTCreateContractCard({
       description: "",
       app_uri: "",
       external_link: "",
-      fee_recipient: address,
+      fee_recipient: user.address,
       seller_fee_basis_points: "0.00",
       primary_sale_recipient: address,
       trusted_forwarders: [],

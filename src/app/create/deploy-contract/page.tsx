@@ -4,19 +4,22 @@ import NFTCreateContractCard from "../_components/NFTCreateContractCard";
 import DetailsCard from "../_components/DetailsCard";
 import ProfileCard from "../_components/ProfileCard";
 import { useUserContext } from "@/components/(providers)";
-import { motion } from "framer-motion";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Loading } from "@/components/(skeletons)";
+import NoConnectedWallet from "@/app/me/_components/NoConnectedWallet";
 
 export default function DeployContractPage() {
-  const { user, isLoading } = useUserContext();
+  const { user, isLoading, isLoggedIn } = useUserContext();
 
   if(isLoading) {
     return (
       <div className="w-full flex flex-col h-[calc(100vh-57px)] items-center justify-center">
-        <LoadingLogo />
-        <h1>Loading...</h1>
+        <Loading animation="bouncy" />
       </div>
     );
+  }
+
+  if(!isLoggedIn) {
+    return <NoConnectedWallet />
   }
 
   return (
@@ -32,16 +35,5 @@ export default function DeployContractPage() {
         <DetailsCard title="Once your contract deployment is complete, you'll have the ability to:" />
       </section>
     </main>
-  );
-}
-
-function LoadingLogo() {
-  return (
-    <motion.div
-      className="w-14 h-14 self-center"
-      // initial={{ opacity: 0.1, borderRadius: "10%", rotate: 180, backgroundColor: "#EB8253" }}
-      animate={{ opacity: 1, borderRadius: ['10%', '50%', '10%', '50%', '10%'], rotate: [180, 0, 180, 0, 180], backgroundColor: ['#EB8253', '#A3CCC1'] }}
-      transition={{ duration: 5, repeat: Infinity, ease: "easeOut" }}
-    ></motion.div>
   );
 }
