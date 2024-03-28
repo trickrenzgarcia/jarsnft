@@ -81,10 +81,10 @@ export default function NFTCreateContractCard({
   title,
   description,
 }: NFTCreateContractCardProps) {
-  const address = useAddress();
   const { user } = useUserContext();
   const sdk = useSDK();
   const [uploadImage, setUploadImage] = useState<string | null>(null);
+  const [symbol, setSymbol] = useState<string>("");
   const [fileName, setFileName] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -99,7 +99,7 @@ export default function NFTCreateContractCard({
       external_link: "",
       fee_recipient: user.address,
       seller_fee_basis_points: "0.00",
-      primary_sale_recipient: address,
+      primary_sale_recipient: user.address,
       trusted_forwarders: [],
     }
   });
@@ -193,13 +193,14 @@ export default function NFTCreateContractCard({
   const initials = words.map(word => word.charAt(0).toUpperCase());
   const acronym = initials.join("");
 
-  if(acronym.length > 0) {
-    form.setValue("symbol", acronym);
-  } else {
-    form.setValue("symbol", "");
-  }
+  useEffect(() => {
+    if(acronym.length !== 0) {
+      form.setValue("symbol", acronym);
+    } else {
+      form.setValue("symbol", form.getValues("symbol")?.toUpperCase());
+    }
+  }, [acronym])
   
-
   const submitCreateContract = async (data: FormContract) => {
     const seller_fee_basis_points = parseFloat(data.seller_fee_basis_points) * 100;
     const image = new File([data.image], data.image.name, { type: data.image.type })
@@ -210,12 +211,12 @@ export default function NFTCreateContractCard({
         image: image,
         primary_sale_recipient: data.primary_sale_recipient,
         symbol: data.symbol,
-        platform_fee_recipient: address,
+        platform_fee_recipient: process.env.PLATFORM_ADDRESS,
         external_link: data.external_link,
         app_uri: data.app_uri,
         fee_recipient: data.fee_recipient,
         description: data.description,
-        platform_fee_basis_points: seller_fee_basis_points,
+        platform_fee_basis_points: 100,
         seller_fee_basis_points: seller_fee_basis_points,
         trusted_forwarders: data.trusted_forwarders,
       });
@@ -442,7 +443,9 @@ export default function NFTCreateContractCard({
             </div>
 
             <div className='flex justify-end'>
-              <Button type="submit">Create Collection</Button>
+              <Button type="submit" onClick={(e) => {
+                if(loading) document.getElementById("submitDialog")?.click();
+              }}>Create Collection</Button>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button variant="outline" id="submitDialog" style={{ display: "none" }}>Open Dialog</Button>
