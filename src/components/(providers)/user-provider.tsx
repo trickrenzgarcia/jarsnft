@@ -44,7 +44,7 @@ export function useUserContext() {
     }
 
     return user as ProfileQuery;
-  }, [user]);
+  }, [user?.user, user?.isLoggedIn, user?.isLoading]);
 
   return userContextValue;
 }

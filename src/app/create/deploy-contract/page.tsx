@@ -10,6 +10,10 @@ import NoConnectedWallet from "@/app/me/_components/NoConnectedWallet";
 export default function DeployContractPage() {
   const { user, isLoading, isLoggedIn } = useUserContext();
 
+  if(!user) {
+    return <NoConnectedWallet />
+  }
+
   if(isLoading) {
     return (
       <div className="w-full flex flex-col h-[calc(100vh-57px)] items-center justify-center">
