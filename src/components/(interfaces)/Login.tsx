@@ -3,7 +3,7 @@
 import {
     useUser,
 } from "@thirdweb-dev/react";
-import { ConnectWeb3, CreateUserDialog, ProfileButton } from "../(interfaces)";
+import { ConnectWeb3, CreateUserDialog, ProfileButton } from ".";
 import { ProfileQuery } from "@/types/users";
 
 export default function Login() {

@@ -11,5 +11,5 @@ export { default as MinidentIconImg } from "./MinidentIconImg"
 export { default as CreateUserDialog } from "./CreateUserDialog"
 export { default as SocialLinkButtons } from "./SocialLinkButtons"
 export { default as PrivacyTermsButtons } from "./PrivacyTermsButtons"
-
+export { default as Login } from "./Login"
 export { default as WaveBgAnimation } from "./WaveBgAnimation"
