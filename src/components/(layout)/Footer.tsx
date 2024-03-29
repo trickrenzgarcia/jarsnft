@@ -1,10 +1,7 @@
-"use client"
-
 import Link from 'next/link';
 import { Separator } from '../ui/separator';
 import PrivacyTermsButtons from "../(interfaces)/PrivacyTermsButtons"
 import SocialLinkButtons from '../(interfaces)/SocialLinkButtons';
-
 
 export default function Footer() {
 
