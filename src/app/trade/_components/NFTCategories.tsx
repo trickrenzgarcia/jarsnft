@@ -1,5 +1,3 @@
-"use client"
-
 import NFTCardCategories from "./NFTCardCategories"
 
 export default function NFTCategories() {
