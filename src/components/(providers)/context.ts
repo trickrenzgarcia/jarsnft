@@ -1,3 +1,5 @@
+"use client"
+
 import { MultiCollectionContextProps, NFTCollection } from "@/types";
 import { createContext, useContext } from "react";
 

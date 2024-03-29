@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function TestLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Navbar display='fixed' />
+      <Navbar />
       <div className='w-full h-[300px] flex justify-center items-center border-b-2'>
         <h1 className='text-4xl font-bold'>This Page is for testing components</h1>
       </div>

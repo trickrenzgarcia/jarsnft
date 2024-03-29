@@ -1,4 +1,3 @@
-"use client"
 import { useMedia } from "react-use"
 import { NFTCard } from "../_types";
 import NFTCarousel from "./NFTCarousel";
@@ -14,7 +13,7 @@ export default function BuySellNFT({ collections }: { collections: NFTCard[] }) 
           <NFTCarousel
             align="start"
             collections={collections}
-            withExtra 
+            withExtra
           />
         </div>
 

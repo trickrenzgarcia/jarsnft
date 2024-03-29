@@ -1,16 +1,14 @@
-"use client"
-
-import { 
+import {
   Tooltip,
   TooltipContent,
-  TooltipProvider, 
+  TooltipProvider,
   TooltipTrigger
 
 } from '@/components/ui/tooltip'
 
 type Props = {
   message: string;
-  delay?: number; 
+  delay?: number;
 } & React.HTMLAttributes<HTMLParagraphElement>;
 
 export default function TooltipMsg(props: Props) {
