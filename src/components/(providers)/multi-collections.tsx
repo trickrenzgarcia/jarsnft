@@ -1,3 +1,5 @@
+"use client"
+
 import { MultiCollectionContextProps } from '@/types'
 import React from 'react'
 import { MultiCollectionContext } from './context'

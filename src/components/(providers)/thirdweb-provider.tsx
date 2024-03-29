@@ -1,3 +1,5 @@
+"use client"
+
 import {
   ThirdwebProvider as ThirdwebProviderLayout,
   metamaskWallet,
