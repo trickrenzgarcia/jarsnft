@@ -1,5 +1,4 @@
 import { NFTCard as NFTCardType } from "../_types"
-import NFTCard from "./NFTCard"
 import NFTCarousel from "./NFTCarousel"
 
 export default function PhotoTrend({ collections }: { collections: NFTCardType[] }) {
