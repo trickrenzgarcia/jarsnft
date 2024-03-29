@@ -1,29 +1,10 @@
-"use client";
-
 import Link from "next/link";
-import {
-  ConnectWallet,
-  useLogin,
-  useContract,
-  useLogout,
-  useUser,
-  useAddress,
-  useSwitchAccount,
-} from "@thirdweb-dev/react";
-import { ConnectWeb3, CreateUserDialog, ProfileButton } from "../(interfaces)";
-import { ProfileQuery } from "@/types/users";
+import Login from "./Login";
 
-type DisplayType = "fixed" | "sticky";
-
-interface NavbarProps {
-  display: DisplayType;
-}
-
-export default function Navbar({ display }: NavbarProps) {
-  const { user, isLoading, isLoggedIn } = useUser() as ProfileQuery;
+export default function Navbar() {
   return (
     <nav
-      className={`${display} w-full h-[70px] px-[1.2rem] py-[0.8rem] flex justify-between z-50 top-0 left-0 
+      className={`sticky w-full h-[70px] px-[1.2rem] py-[0.8rem] flex justify-between z-50 top-0 left-0 
       bg-white dark:bg-opacity-100 dark:bg-background border-b-2`}
     >
       <div className="flex flex-row justify-between items-center w-full max-w-screen-2xl mx-auto">
@@ -60,17 +41,8 @@ export default function Navbar({ display }: NavbarProps) {
         </div>
 
         {/* Right-side */}
-        <div className="flex items-center">
-          {(isLoggedIn && (
-            <ProfileButton user={user} isUserLoading={isLoading} />
-          )) || <ConnectWeb3 btnTitle="Connect" />}
-          {/* <ProfileButton user={user} isUserLoading={isLoading} /> */}
-        </div>
+        <Login />
       </div>
-
-      {isLoggedIn && !user.data.session.is_listed && (
-        (<CreateUserDialog isOpenCreate={!user.data.session.is_listed} />)
-      )}
     </nav>
   );
 }

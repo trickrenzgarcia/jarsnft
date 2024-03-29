@@ -7,20 +7,20 @@ export const metadata: Metadata = {
   title: "Your Profile | JarsNFT",
 };
 
-export default function AccountLayout({ children } : { children: React.ReactNode }) {
+export default function AccountLayout({ children }: { children: React.ReactNode }) {
   return (
     <main>
-        <header>
-          <Navbar display='fixed' />
-        </header>
+      <header>
+        <Navbar />
+      </header>
 
-        <div className='w-full mb-[70px]'/> 
-        <ClientWrapper>
-			    <ProfileBanner />
-          <main>
-            {children}
-          </main>
-        </ClientWrapper>
+      <div className='w-full mb-[70px]' />
+      <ClientWrapper>
+        <ProfileBanner />
+        <main>
+          {children}
+        </main>
+      </ClientWrapper>
     </main>
   )
 }
