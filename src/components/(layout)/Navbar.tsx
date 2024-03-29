@@ -3,7 +3,8 @@ import { Login } from "@/components/(interfaces)"
 
 export default function Navbar() {
   return (
-    <nav className="sticky container top-0 flex justify-between p-6 z-50 bg-background border-b-1 border-slate-800">
+    <nav className="sticky container top-0 flex justify-between px-6 py-4 z-50 bg-background/80 
+    backdrop-blur-md border-b-1 border-slate-800">
       {/* Left-side  */}
       <div className="flex items-center">
         <div className="">
