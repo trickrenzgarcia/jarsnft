@@ -115,8 +115,8 @@ const page = () => {
         <div>
           <h1 className="text-lg md:text-7xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold p-5">Our Story</h1>
           <p className='relative font-regular text-sm sm:text-xl text-zinc-500 tracking-wide mb-8 text-left max-w-2xl antialiased leading-loose'>
-          We are just students when we tackle this project it so hard for us beginners to grab a latest technology trend but we are eager and passionate to create a platform wherein artists and traders will have opportunities. It took as years to finish this project but we are determined to finish it!
-          We would'nt be able to finish this without the help of almighty god and our family who support us all the way. We are so grateful to have them in our lives. We are so excited to share this platform to the world and we hope that this will help a lot of people to have a better future.
+          We are just students when we tackle this project it so hard for us beginners to grab a latest technology trend but we are eager and passionate to create a platform wherein artists and traders will have opportunities. It took us years to finish this project but we are determined to finish it!
+          We wouldn&#39;t be able to finish this without the help of almighty God and our family who support us all the way. We are so grateful to have them in our lives. We are so excited to share this platform to the world and we hope that this will help a lot of people to have a better future.
           </p>
         </div>
         <div>
