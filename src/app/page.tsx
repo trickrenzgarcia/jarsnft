@@ -1,10 +1,14 @@
-import { Navbar, Hero, Footer, PopularCollections } from "@/components/(layout)";
+import {
+  Navbar,
+  Hero,
+  Footer,
+  PopularCollections,
+} from "@/components/(layout)";
 
 export default async function Home() {
-
   return (
     <main className="bg-background">
-      <Navbar display={"sticky"} />
+      <Navbar />
       <Hero />
       <PopularCollections />
       <Footer />

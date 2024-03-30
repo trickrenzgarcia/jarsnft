@@ -20,7 +20,11 @@ export function formatNumber(number: number): string {
   );
 }
 
-export function shortenAddress(address: string, char1: number = 6, char2: number = 4): string {
+export function shortenAddress(
+  address: string,
+  char1: number = 6,
+  char2: number = 4,
+): string {
   // Check if the address has at least 10 characters
   if (address.length >= 10) {
     // Extract the first 6 characters
@@ -35,7 +39,7 @@ export function shortenAddress(address: string, char1: number = 6, char2: number
   }
 }
 
-/** 
+/**
  * Shortens the file name by keeping the first `first` characters and the last `last` characters
  * @param fileName The file name to be shortened
  * @param first The number of characters to keep from the start of the file name
@@ -43,21 +47,35 @@ export function shortenAddress(address: string, char1: number = 6, char2: number
  * @default first 10
  * @default last 5
  * @returns The shortened file name
-*/
-export function shortenFileName(fileName: string, first: number = 10, last: number = 5): string {
+ */
+export function shortenFileName(
+  fileName: string,
+  first: number = 10,
+  last: number = 5,
+): string {
   // Check if fileName length is greater than 24
   if (fileName.length > 24) {
     // Extracting file name without extension
-    const nameWithoutExtension = fileName.substring(0, fileName.lastIndexOf('.'));
+    const nameWithoutExtension = fileName.substring(
+      0,
+      fileName.lastIndexOf("."),
+    );
 
     // Extracting file extension
-    const fileExtension = fileName.substring(fileName.lastIndexOf('.'));
+    const fileExtension = fileName.substring(fileName.lastIndexOf("."));
 
     // Determine the length to truncate the file name to fit the total length of 24
     const middleChars = 24 - first - last - 3; // Subtracting 3 for the ellipsis
 
     // Constructing the truncated file name
-    const truncatedFileName = nameWithoutExtension.substring(0, first) + "..." + nameWithoutExtension.substring(nameWithoutExtension.length - middleChars) + nameWithoutExtension.substring(nameWithoutExtension.length - last) + fileExtension;
+    const truncatedFileName =
+      nameWithoutExtension.substring(0, first) +
+      "..." +
+      nameWithoutExtension.substring(
+        nameWithoutExtension.length - middleChars,
+      ) +
+      nameWithoutExtension.substring(nameWithoutExtension.length - last) +
+      fileExtension;
 
     return truncatedFileName;
   } else {

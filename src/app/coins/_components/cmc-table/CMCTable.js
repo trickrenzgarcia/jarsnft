@@ -7,11 +7,11 @@ import useAxios from "@/app/coins/api/useAxios";
 
 const CMCTable = () => {
   const { response } = useAxios(
-    "coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=7d&locale=en&x_cg_demo_api_key=CG-Kt6d2R6fUzMk9o7qE8AvSa7F"
+    "coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=7d&locale=en&x_cg_demo_api_key=CG-Kt6d2R6fUzMk9o7qE8AvSa7F",
   );
 
   return (
-    <div className="text-white font-bold">
+    <div className="font-bold text-white">
       <div className="mx-auto max-w-screen-2xl">
         <table className="w-full">
           <CMCtableHeader />

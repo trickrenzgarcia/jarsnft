@@ -1,11 +1,7 @@
-"use client"
+"use client";
 
-import Spline from '@splinetool/react-spline'
+import Spline from "@splinetool/react-spline";
 
 export default function SplinePage() {
-  return (
-    <div className='container'>
-      
-    </div>
-  )
+  return <div className="container"></div>;
 }

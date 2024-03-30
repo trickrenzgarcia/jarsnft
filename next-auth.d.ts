@@ -4,7 +4,7 @@ type AuthSession = {
   email: string | null;
   is_listed: boolean;
   name: string | null;
-}
+};
 
 declare module "next-auth" {
   interface Session {
@@ -13,9 +13,9 @@ declare module "next-auth" {
       address?: string;
       data: {
         address: string;
-        session: AuthSession
+        session: AuthSession;
       };
-      session: AuthSession
+      session: AuthSession;
       [key: string]: string;
     };
   }

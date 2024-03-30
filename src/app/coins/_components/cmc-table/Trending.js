@@ -31,14 +31,14 @@ const Trending = async () => {
             </h1>
           </div>
           <br />
-          <div className="flex ml-2 mt-1">
+          <div className="flex items-center">
             <p>
               The Global Crypto Market Cap is ${formattedMarketCapUSD} Trillion,
-              a &nbsp;{" "}
+              a
             </p>
             <span
               className={`flex gap-1 ${
-                percentageChange < 0 ? "text-[#ff3a33]" : "text-green-400"
+                percentageChange < 0 ? "text-red-500" : "text-green-400"
               }`}
             >
               {" "}
@@ -49,11 +49,15 @@ const Trending = async () => {
               )}
               {roundTwoDecimalPlaces(percentageChange)} %
             </span>
-            <p> &nbsp; decrease over the last day.</p>
+            <p> decrease over the last day.</p>
           </div>
           <br />
           <div className={styles.flexCenter}>
-            <TrendingCard title="Trending Coins (24h)" icon={fire} type="coins"/>
+            <TrendingCard
+              title="Trending Coins (24h)"
+              icon={fire}
+              type="coins"
+            />
             <TrendingCard title="Top NFTs (24h)" icon={up} type="nfts" />
             <FearAndGreedCard title="Fear and Greed Index" icon={greed} />
           </div>

@@ -60,10 +60,14 @@ export default function CreateUserDialog({
 }) {
   const [loading, setLoading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(isOpenCreate);
-  const { user, isLoggedIn, isLoading: sessionLoading } = useUser() as UserProfile
+  const {
+    user,
+    isLoggedIn,
+    isLoading: sessionLoading,
+  } = useUser() as UserProfile;
   // Logout/Disconnect the wallet
   const { logout, isLoading } = useLogout();
-  const { data: session, update } = useSession()
+  const { data: session, update } = useSession();
 
   // Define the form with zod schema.
   const form = useForm<z.infer<typeof formCreateUserSchema>>({
@@ -75,7 +79,9 @@ export default function CreateUserDialog({
   });
 
   // handle the form submit with async
-  const handleCreateUser = async (values: z.infer<typeof formCreateUserSchema>) => {
+  const handleCreateUser = async (
+    values: z.infer<typeof formCreateUserSchema>,
+  ) => {
     if (!isLoggedIn) return;
 
     const formData: FormData = new FormData();
@@ -86,19 +92,16 @@ export default function CreateUserDialog({
     try {
       await updateUser(formData);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-
-
+  };
 
   // Define the form submit handler function
   async function onSubmit(values: z.infer<typeof formCreateUserSchema>) {
     setLoading(true);
-    await handleCreateUser(values)
+    await handleCreateUser(values);
     setDialogOpen(false);
   }
-
 
   return (
     <Dialog open={dialogOpen}>
@@ -142,12 +145,18 @@ export default function CreateUserDialog({
             />
 
             <DialogFooter>
-              <div className="flex flex-col w-full justify-center items-center gap-3">
-                <NextButton type="submit" disabled={loading}
+              <div className="flex w-full flex-col items-center justify-center gap-3">
+                <NextButton
+                  type="submit"
+                  disabled={loading}
                   isLoading={loading}
                   spinner={<Spinner />}
-                  className={cn(loading ? "cursor-not-allowed" : "cursor-pointer")}
-                >{!loading && "Create"}</NextButton>
+                  className={cn(
+                    loading ? "cursor-not-allowed" : "cursor-pointer",
+                  )}
+                >
+                  {!loading && "Create"}
+                </NextButton>
                 <Button variant="ghost" onClick={() => logout()}>
                   {isLoading ? <Spinner /> : "Logout"}
                 </Button>

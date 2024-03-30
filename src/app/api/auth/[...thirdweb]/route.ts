@@ -37,18 +37,20 @@ async function validateNonce(nonce: string) {
 
 export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
   domain: "http://localhost:3000",
-  wallet: new PrivateKeyWallet(process.env.THIRDWEB_AUTH_PRIVATE_KEY as string, "sepolia"),
+  wallet: new PrivateKeyWallet(
+    process.env.THIRDWEB_AUTH_PRIVATE_KEY as string,
+    "sepolia",
+  ),
   authOptions: {
     //Check in database or storage if nonce exists
     //validateNonce: validateNonce,
   },
   callbacks: {
     onLogin: async (address: string) => {
-      if(!await jars.isUserExists(address)) {
+      if (!(await jars.isUserExists(address))) {
         await jars.createUser(address);
-        
       }
-      
+
       const user = await jars.getUser(address);
       console.log(user);
       const session = {
@@ -56,15 +58,18 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
         name: user.name,
         is_listed: user.is_listed,
         create_at: user.createdAt,
-      }
-      return session
+      };
+      return session;
     },
     onToken(token) {
       return token;
     },
     onUser: async (user: ThirdwebAuthUser<any, { is_listed: boolean }>) => {
       const apiUser = await jars.getUser(user.address);
-      return {...user, session: { ...user.session, is_listed: apiUser.is_listed }}
+      return {
+        ...user,
+        session: { ...user.session, is_listed: apiUser.is_listed },
+      };
     },
   },
 });

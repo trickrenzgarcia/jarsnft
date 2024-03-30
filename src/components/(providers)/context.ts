@@ -1,12 +1,14 @@
+"use client";
+
 import { MultiCollectionContextProps, NFTCollection } from "@/types";
 import { createContext, useContext } from "react";
 
 export const CollectionsContext = createContext<NFTCollection[] | undefined>(
-  undefined
+  undefined,
 );
 
 export const CollectionContext = createContext<NFTCollection | undefined>(
-  undefined
+  undefined,
 );
 
 export const MultiCollectionContext = createContext<
@@ -18,7 +20,7 @@ export function useCollectionsContext() {
 
   if (collections === undefined) {
     throw new Error(
-      "The collections context is undefined, wrap in CollectionsContext.Provider"
+      "The collections context is undefined, wrap in CollectionsContext.Provider",
     );
   }
 
@@ -53,7 +55,7 @@ export function useCollectionContext() {
 
   if (collection === undefined) {
     throw new Error(
-      "The collection context is undefined, wrap in CollectionContext.Provider"
+      "The collection context is undefined, wrap in CollectionContext.Provider",
     );
   }
 

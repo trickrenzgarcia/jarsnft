@@ -1,0 +1,71 @@
+/* ********************* Image Waves ************************ */
+.waveDiv {
+  position: absolute;
+  overflow: hidden;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.wave-content-wrapper {
+  height: calc(100vh - 57px);
+  width: 100%;
+  position: absolute;
+  overflow: hidden;
+  bottom: -1px;
+  background-image: linear-gradient(to top, var(--background) 30%, #ffffff 90%);
+}
+.first-wave {
+  z-index: 3;
+  opacity: 0.5;
+}
+.second-wave {
+  z-index: 2;
+  opacity: 0.75;
+}
+.third-wave {
+  z-index: 1;
+}
+.wave-image {
+  width: 200%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  background-repeat: repeat no-repeat;
+  background-position: 0 bottom;
+  transform-origin: center bottom;
+}
+.first-image {
+  background-size: 50% 100px;
+}
+.animation-wave .first-image {
+  animation: move-wave 3s;
+  -webkit-animation: move-wave 3s;
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+}
+.second-image {
+  background-size: 50% 120px;
+}
+.animation-wave .second-image {
+  animation: waves 10s linear infinite;
+}
+.third-image {
+  background-size: 50% 140px;
+}
+.animation-wave .third-image {
+  animation: waves 15s linear infinite;
+}
+
+@keyframes waves {
+  0% {
+    transform: translateX(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(-25%) scaleY(0.55);
+  }
+  100% {
+    transform: translateX(-50%) scaleY(1);
+  }
+}

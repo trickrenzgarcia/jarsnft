@@ -1,4 +1,4 @@
-MOR / Thesis Project by Alrae, Patrick, Jeffrey, Rigor  
+MOR / Thesis Project by Alrae, Patrick, Jeffrey, Rigor
 
 ## Getting Started
 
@@ -20,7 +20,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 npx depcheck --detailed
 #Generate a report of all the unused packages in the project and any missing dependencies
 
-ncu -u 
+ncu -u
 #Generate a list of all the packages the project that can be updated
 
 npm prune
@@ -29,7 +29,6 @@ npm prune
 npx npm-check-updates -u -a --prune
 #Will automatically update all the packages and remove the unnecessary packages.
 ```
-
 
 ## Deploy on Vercel
 

@@ -2,18 +2,17 @@ import { SideNavLeft, SideNavRight, LearnNavbar, PageNavbarTitle } from './_comp
 import {Footer} from "@/components/(layout)";
 
 type LearnProps = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 export default function LearnLayout({ children }: LearnProps) {
-
   return (
-    <main className='flex-1'>
+    <main className="flex-1">
       <LearnNavbar />
-      <div className='container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10 border-t-2'>
+      <div className="container flex-1 items-start border-t-2 md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
         <SideNavLeft />
-        <main className='relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]'>
-          <div className='mx-auto w-full min-w-0 h-[2000px]'>
+        <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+          <div className="mx-auto h-[2000px] w-full min-w-0">
             <PageNavbarTitle />
             {children}
           </div>
@@ -22,5 +21,5 @@ export default function LearnLayout({ children }: LearnProps) {
       </div>
       <Footer/>
     </main>
-  )
+  );
 }

@@ -3,7 +3,7 @@ import { upperCase } from "../../api/currencyFunctions";
 
 const CoinNameRow = ({ name, icon, symbol }) => {
   return (
-    <div className="flex w-full ml-14">
+    <div className="ml-14 flex w-full">
       <Image
         src={icon}
         alt={name}

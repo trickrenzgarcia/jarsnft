@@ -1,45 +1,52 @@
-"use client"
+"use client";
 
 import { ProfileQuery } from "@/types/users";
 import { Json } from "@thirdweb-dev/auth";
 import { UserWithData, useUser } from "@thirdweb-dev/react";
-import { createContext, use } from "react";
-
-interface UserProviderProps {
-    children: React.ReactNode,
-    value: {
-      user: UserWithData<Json, Json> | undefined,
-      isLoading: boolean,
-      isLoggedIn: boolean
-    }
-}
+import { createContext, use, useMemo } from "react";
 
 type UserContextProps = {
-  user: UserWithData<Json, Json> | undefined,
-  isLoading: boolean,
-  isLoggedIn: boolean
-}
+  user: UserWithData<Json, Json> | undefined;
+  isLoading: boolean;
+  isLoggedIn: boolean;
+};
 
-const UserContext = createContext<UserContextProps>({ user: undefined, isLoading: false, isLoggedIn: false });
+const UserContext = createContext<UserContextProps | undefined>(undefined);
 
-export default function UserProvider({ children }: { children: React.ReactNode }) {
-  const user = useUser() 
+export default function UserProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const user = useUser();
+
+  // Memoize the user value
+  const userMemo = useMemo(() => {
+    return {
+      user: user.user,
+      isLoading: user.isLoading,
+      isLoggedIn: user.isLoggedIn,
+    };
+  }, [user.isLoading, user.isLoggedIn, user.user]);
 
   return (
-    <UserContext.Provider value={user}>
-      {children}
-    </UserContext.Provider>
-  )
+    <UserContext.Provider value={userMemo}>{children}</UserContext.Provider>
+  );
 }
 
 export function useUserContext() {
   const user = use(UserContext);
 
-  if (user === undefined) {
-    throw new Error(
-      "The user context is undefined, wrap in UserContext.Provider"
-    );
-  }
+  // Memoize the returned value
+  const userContextValue = useMemo(() => {
+    if (user === undefined) {
+      throw new Error(
+        "The user context is undefined, wrap in UserContext.Provider",
+      );
+    }
 
-  return user as ProfileQuery;
+    return user as ProfileQuery;
+  }, [user?.user, user?.isLoggedIn, user?.isLoading]);
+
+  return userContextValue;
 }

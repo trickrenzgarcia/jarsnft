@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function MintingPage() {
-  return (
-    <main className='w-full'>
-
-    </main>
-  )
+  return <main className="w-full"></main>;
 }

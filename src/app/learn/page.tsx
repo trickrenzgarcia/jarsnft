@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { PageNextButton } from './_components'
 // import { rightNavList } from '../_metadata'
@@ -29,5 +29,5 @@ export default function Page() {
 
       <PageNextButton title='Getting Started' href='/learn/getting-started' />
     </div>
-  )
+  );
 }

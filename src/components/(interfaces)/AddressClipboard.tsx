@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { shortenAddress } from "@/lib/utils";
 import { Button, ButtonGroup, Tooltip } from "@nextui-org/react";
@@ -7,12 +7,12 @@ import React, { useState } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
 type Props = {
-    address: string;
-    content: string;
-}
+  address: string;
+  content: string;
+};
 
 export default function AddressClipboard({ address, content }: Props) {
-    const [isTooltipOpen, setIsTooltipOpen] = useState(false);
+  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
   return (
     <ButtonGroup className="gap-[2px]" radius="sm">
       <Tooltip
@@ -33,7 +33,7 @@ export default function AddressClipboard({ address, content }: Props) {
         <Link
           href={`https://sepolia.etherscan.io/address/${address}`}
           target="_blank"
-          className="w-full h-full flex items-center justify-center"
+          className="flex h-full w-full items-center justify-center"
         >
           <FaExternalLinkAlt className="text-lg text-gray-400" />
         </Link>

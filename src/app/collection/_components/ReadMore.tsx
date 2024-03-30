@@ -1,25 +1,25 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 interface ReadMoreProps {
-  id: string
-  text: string
-  amountOfWords?: number
+  id: string;
+  text: string;
+  amountOfWords?: number;
 }
 
 export const ReadMore = ({ id, text, amountOfWords = 36 }: ReadMoreProps) => {
-  const [isExpanded, setIsExpanded] = useState(false)
-  const splittedText = text.split(' ')
-  const itCanOverflow = splittedText.length > amountOfWords
+  const [isExpanded, setIsExpanded] = useState(false);
+  const splittedText = text.split(" ");
+  const itCanOverflow = splittedText.length > amountOfWords;
   const beginText = itCanOverflow
-    ? splittedText.slice(0, amountOfWords - 1).join(' ')
-    : text
-  const endText = splittedText.slice(amountOfWords - 1).join(' ')
-  
+    ? splittedText.slice(0, amountOfWords - 1).join(" ")
+    : text;
+  const endText = splittedText.slice(amountOfWords - 1).join(" ");
+
   const handleKeyboard = (e: React.KeyboardEvent<HTMLSpanElement>) => {
-    if (e.code === 'Space' || e.code === 'Enter') {
-      setIsExpanded(!isExpanded)
+    if (e.code === "Space" || e.code === "Enter") {
+      setIsExpanded(!isExpanded);
     }
-  }
+  };
 
   return (
     <p id={id}>
@@ -27,14 +27,14 @@ export const ReadMore = ({ id, text, amountOfWords = 36 }: ReadMoreProps) => {
       {itCanOverflow && (
         <>
           {!isExpanded && <span>... </span>}
-          <span 
-            className={`${!isExpanded ? 'hidden' : ''}`} 
+          <span
+            className={`${!isExpanded ? "hidden" : ""}`}
             aria-hidden={!isExpanded}
           >
             {endText}
           </span>
           <span
-            className='font-bold ml-2 hover:text-purple-600'
+            className="ml-2 font-bold hover:text-purple-600"
             role="button"
             tabIndex={0}
             aria-expanded={isExpanded}
@@ -42,10 +42,10 @@ export const ReadMore = ({ id, text, amountOfWords = 36 }: ReadMoreProps) => {
             onKeyDown={handleKeyboard}
             onClick={() => setIsExpanded(!isExpanded)}
           >
-            {isExpanded ? 'Show less' : 'Read more'}
+            {isExpanded ? "Show less" : "Read more"}
           </span>
         </>
       )}
     </p>
-  )
-}
+  );
+};
