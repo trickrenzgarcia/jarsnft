@@ -4,32 +4,32 @@ import { PrivacyTermsButtons, SocialLinkButtons, FooterColumn } from "../(interf
 export default function Footer() {
   //#region Column links
   type LinkType = {
-    href: string, style: string, description: string
+    href: string, description: string
   }
 
   const marketplaceLinks: Array<LinkType> = [
-    { href: "", style: "hover:underline", description: "Art NFTs" },
-    { href: "", style: "hover:underline", description: "Photography NFTs" },
-    { href: "", style: "hover:underline", description: "Profile Picture NFTs" },
+    { href: "/category/art", description: "Art NFTs" },
+    { href: "/category/photography", description: "Photography NFTs" },
+    { href: "/category/pfp", description: "Profile Picture NFTs" },
   ];
 
   const resourceLinks: Array<LinkType> = [
-    { href: "", style: "hover:underline", description: "Getting Started" },
-    { href: "", style: "hover:underline", description: "Insights" },
-    { href: "", style: "hover:underline", description: "FAQs" },
+    { href: "/learn/getting-started", description: "Getting Started" },
+    { href: "/insights", description: "Insights" },
+    { href: "/learn/faq", description: "FAQs" },
   ];
 
   const helpLinks: Array<LinkType> = [
-    { href: "", style: "hover:underline", description: "What is NFT?" },
-    { href: "", style: "hover:underline", description: "How to buy an NFT" },
-    { href: "", style: "hover:underline", description: "How to sell an NFT" },
-    { href: "", style: "hover:underline", description: "What are blockchain gas fees?" },
-    { href: "", style: "hover:underline", description: "What is a blockchain?" },
+    { href: "", description: "What is NFT?" },
+    { href: "/learn/buying-nfts", description: "How to buy an NFT?" },
+    { href: "/learn/selling-nfts", description: "How to sell an NFT?" },
+    { href: "", description: "What are blockchain gas fees?" },
+    { href: "", description: "What is a blockchain?" },
   ];
 
   const companyLinks: Array<LinkType> = [
-    { href: "", style: "hover:underline", description: "About" },
-    { href: "", style: "hover:underline", description: "Team" },
+    { href: "/about", description: "About" },
+    { href: "/team", description: "Team" },
   ];
   //#endregion
 
@@ -47,10 +47,10 @@ export default function Footer() {
 
           {/* Column Links */}
           <div className='grid grid-cols-4 col-span-2 gap-x-8'>
-            <FooterColumn divStyle="flex flex-col gap-y-5" titleStyle="font-semibold mb-1" titleName="Marketplace" linkArray={marketplaceLinks} />
-            <FooterColumn divStyle="flex flex-col gap-y-5" titleStyle="font-semibold mb-1" titleName="Resource" linkArray={resourceLinks} />
-            <FooterColumn divStyle="flex flex-col gap-y-5" titleStyle="font-semibold mb-1" titleName="Help" linkArray={helpLinks} />
-            <FooterColumn divStyle="flex flex-col gap-y-5" titleStyle="font-semibold mb-1" titleName="Company" linkArray={companyLinks} />
+            <FooterColumn titleName="Marketplace" linkArray={marketplaceLinks} />
+            <FooterColumn titleName="Resource" linkArray={resourceLinks} />
+            <FooterColumn titleName="Help" linkArray={helpLinks} />
+            <FooterColumn titleName="Company" linkArray={companyLinks} />
           </div>
         </div>
 
