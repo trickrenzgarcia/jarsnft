@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Profile } from "@/types/users";
 import { Json } from "@thirdweb-dev/auth";
@@ -6,18 +6,21 @@ import { UserWithData } from "@thirdweb-dev/react";
 import { createContext, use } from "react";
 
 interface ProfileProviderProps {
-  children: React.ReactNode,
-  value: UserWithData<Json, Json> | undefined
+  children: React.ReactNode;
+  value: UserWithData<Json, Json> | undefined;
 }
 
-const ProfileContext = createContext<UserWithData<Json, Json> | undefined>(undefined);
+const ProfileContext = createContext<UserWithData<Json, Json> | undefined>(
+  undefined,
+);
 
-export default function ProfileProvider({ children, value }: ProfileProviderProps) {
+export default function ProfileProvider({
+  children,
+  value,
+}: ProfileProviderProps) {
   return (
-    <ProfileContext.Provider value={value}>
-      {children}
-    </ProfileContext.Provider>
-  )
+    <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>
+  );
 }
 
 export function useProfileContext() {
@@ -25,7 +28,7 @@ export function useProfileContext() {
 
   if (profile === undefined) {
     throw new Error(
-      "The profile context is undefined, wrap in ProfileContext.Provider"
+      "The profile context is undefined, wrap in ProfileContext.Provider",
     );
   }
 

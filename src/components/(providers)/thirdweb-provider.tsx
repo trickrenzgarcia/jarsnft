@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   ThirdwebProvider as ThirdwebProviderLayout,
@@ -8,14 +8,17 @@ import {
   trustWallet,
   bloctoWallet,
   phantomWallet,
-  safeWallet
+  safeWallet,
 } from "@thirdweb-dev/react";
-import { Sepolia } from '@thirdweb-dev/chains'
-import { env } from '@/lib/env.mjs';
-import { SessionProvider } from 'next-auth/react';
+import { Sepolia } from "@thirdweb-dev/chains";
+import { env } from "@/lib/env.mjs";
+import { SessionProvider } from "next-auth/react";
 
-export default function ThirdwebProvider({ children }: { children: React.ReactNode }) {
-
+export default function ThirdwebProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <SessionProvider>
       <ThirdwebProviderLayout
@@ -30,16 +33,15 @@ export default function ThirdwebProvider({ children }: { children: React.ReactNo
           trustWallet(),
           bloctoWallet(),
           phantomWallet(),
-          safeWallet()
+          safeWallet(),
         ]}
         authConfig={{
           domain: env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN,
-          authUrl: "/api/auth"
+          authUrl: "/api/auth",
         }}
       >
         {children}
       </ThirdwebProviderLayout>
     </SessionProvider>
-
-  )
+  );
 }

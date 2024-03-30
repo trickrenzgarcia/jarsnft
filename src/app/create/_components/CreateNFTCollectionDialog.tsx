@@ -1,26 +1,26 @@
-"use client"
+"use client";
 
 import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-  } from "@/components/ui/alert-dialog"
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
-  import { Button } from "@/components/ui/button"
- 
+import { Button } from "@/components/ui/button";
+
 export function CreateNFTCollectionDialog({ loading }: { loading: boolean }) {
-  
-  
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="outline" type="submit">Create Collection</Button>
+        <Button variant="outline" type="submit">
+          Create Collection
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -36,5 +36,5 @@ export function CreateNFTCollectionDialog({ loading }: { loading: boolean }) {
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  )
+  );
 }

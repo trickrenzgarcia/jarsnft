@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogClose,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -19,50 +19,55 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useAddress, useAuth, useConnect, metamaskWallet } from '@thirdweb-dev/react'
-import { useSession, signIn, signOut } from 'next-auth/react'
-import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  useAddress,
+  useAuth,
+  useConnect,
+  metamaskWallet,
+} from "@thirdweb-dev/react";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 const formSchema = z.object({
   name: z.string().min(3, {
-    message: 'Name must be at least 3 characters.'
+    message: "Name must be at least 3 characters.",
   }),
-  email: z.string().email()
-})
+  email: z.string().email(),
+});
 
 const metamaskConfig = metamaskWallet();
 
 export default function LoginButton() {
-  const nextTheme = useTheme()
-  const address = useAddress()
-  const connect = useConnect()
-  const auth = useAuth()
+  const nextTheme = useTheme();
+  const address = useAddress();
+  const connect = useConnect();
+  const auth = useAuth();
   const { data: session } = useSession();
   const [isOpen, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    if(session?.user.address){
-      setOpen(true)
+    if (session?.user.address) {
+      setOpen(true);
     }
-  }, [session])
+  }, [session]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      email: ""
-    }
-  })
+      email: "",
+    },
+  });
 
   function onSubmitForm(values: z.infer<typeof formSchema>) {
-    console.log("login submitted!")
+    console.log("login submitted!");
   }
 
   async function loginWithWallet() {
@@ -79,7 +84,7 @@ export default function LoginButton() {
 
   return (
     <>
-      <Dialog defaultOpen={false} open={isOpen} >
+      <Dialog defaultOpen={false} open={isOpen}>
         <DialogTrigger onClick={() => setOpen(true)}></DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -94,11 +99,11 @@ export default function LoginButton() {
               <FormField
                 control={form.control}
                 name="email"
-                render={({field}) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder='Email' {...field} />
+                      <Input placeholder="Email" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -107,11 +112,11 @@ export default function LoginButton() {
               <FormField
                 control={form.control}
                 name="name"
-                render={({field}) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input placeholder='Name' {...field} />
+                      <Input placeholder="Name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -122,19 +127,19 @@ export default function LoginButton() {
           </Form>
         </DialogContent>
       </Dialog>
-      {address ? 
-      (
+      {address ? (
         <Button onClick={() => loginWithWallet()}>Login</Button>
-      )
-      : 
-      (
-        <Button onClick={async () => {
-          await connect(metamaskConfig, {
-            chainId: 11155111
-          })
-        }}>Connect Wallet</Button>
+      ) : (
+        <Button
+          onClick={async () => {
+            await connect(metamaskConfig, {
+              chainId: 11155111,
+            });
+          }}
+        >
+          Connect Wallet
+        </Button>
       )}
-      
     </>
-  )
+  );
 }

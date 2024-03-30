@@ -1,15 +1,15 @@
-import { Navbar, Footer } from '@/components/(layout)'
+import { Navbar, Footer } from "@/components/(layout)";
 
 type TradeProps = {
-    children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 export default function TradeLayout({ children }: TradeProps) {
-    return (
-        <body>
-            <Navbar />
-            {children}
-            <Footer />
-        </body>
-    )
+  return (
+    <body>
+      <Navbar />
+      {children}
+      <Footer />
+    </body>
+  );
 }

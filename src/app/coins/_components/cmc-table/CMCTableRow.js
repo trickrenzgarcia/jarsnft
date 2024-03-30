@@ -43,7 +43,7 @@ const CMCTableRow = ({
         </td>
         <td>
           <p
-            className={`flex gap-1 w-full text-center ${
+            className={`flex w-full gap-1 text-center ${
               hRate < 0 ? "text-[#ff3a33]" : "text-green-400"
             }`}
           >
@@ -54,7 +54,7 @@ const CMCTableRow = ({
         </td>
         <td>
           <p
-            className={`flex gap-1 w-full text-center ${
+            className={`flex w-full gap-1 text-center ${
               dRate < 0 ? "text-[#ff3a33]" : "text-green-400"
             }`}
           >

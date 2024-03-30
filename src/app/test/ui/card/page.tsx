@@ -1,20 +1,24 @@
-import React from 'react'
+import React from "react";
 
 export default function UICard() {
   return (
-    <div className='p-4 flex'>
-        <div className='bg-blue-900 w-fit h-[150px]'>
-          <div className='flex group h-full'>
-            <div className="w-[150px] h-full z-10">Image card</div>
-            <div className="w-[150px] h-full hidden group-hover:flex absolute top-0 left-0 z-20">show when hover the Image card</div>
+    <div className="flex p-4">
+      <div className="h-[150px] w-fit bg-blue-900">
+        <div className="group flex h-full">
+          <div className="z-10 h-full w-[150px]">Image card</div>
+          <div className="absolute left-0 top-0 z-20 hidden h-full w-[150px] group-hover:flex">
+            show when hover the Image card
           </div>
         </div>
-        <div className='bg-blue-900 w-fit h-[150px]'>
-          <div className='flex group h-full'>
-            <div className="w-[150px] h-full z-10">Image card</div>
-            <div className="w-[150px] h-full hidden group-hover:flex absolute top-0 left-0 z-20">show when hover the Image card</div>
+      </div>
+      <div className="h-[150px] w-fit bg-blue-900">
+        <div className="group flex h-full">
+          <div className="z-10 h-full w-[150px]">Image card</div>
+          <div className="absolute left-0 top-0 z-20 hidden h-full w-[150px] group-hover:flex">
+            show when hover the Image card
           </div>
         </div>
+      </div>
     </div>
-  )
+  );
 }

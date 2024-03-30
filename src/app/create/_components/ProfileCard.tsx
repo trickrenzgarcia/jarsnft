@@ -1,6 +1,10 @@
 "use client";
 
-import { ConnectWeb3, MinidentIconImg, TooltipMsg } from "@/components/(interfaces)";
+import {
+  ConnectWeb3,
+  MinidentIconImg,
+  TooltipMsg,
+} from "@/components/(interfaces)";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { shortenAddress } from "@/lib/utils";
@@ -9,26 +13,30 @@ import { minidenticon } from "minidenticons";
 import { IoCopy } from "react-icons/io5";
 
 export default function ProfileCard({ user }: { user: Profile }) {
-  if (!user) { 
+  if (!user) {
     return (
-      <Card className="max-w-[300px] w-[300px] mb-5 bg-default-200 dark:bg-neutral-900">
-        <CardHeader className="w-full flex flex-col items-center">
+      <Card className="mb-5 w-[300px] max-w-[300px] bg-default-200 dark:bg-neutral-900">
+        <CardHeader className="flex w-full flex-col items-center">
           <CardTitle className="text-red-400">No Wallet Detected!</CardTitle>
         </CardHeader>
-        <CardContent className="pb-5 flex justify-center">
+        <CardContent className="flex justify-center pb-5">
           <ConnectWeb3 btnTitle="Connect Wallet" />
         </CardContent>
       </Card>
-    )
-  };
+    );
+  }
 
   return (
-    <Card className="max-w-[300px] w-[300px] mb-5 bg-default-200 dark:bg-neutral-900">
-      <CardHeader className="w-full flex flex-col items-center">
-        <div className="border-2 border-purple-600 rounded-full">
-          <MinidentIconImg address={user.data.address} width={100} height={100} />
+    <Card className="mb-5 w-[300px] max-w-[300px] bg-default-200 dark:bg-neutral-900">
+      <CardHeader className="flex w-full flex-col items-center">
+        <div className="rounded-full border-2 border-purple-600">
+          <MinidentIconImg
+            address={user.data.address}
+            width={100}
+            height={100}
+          />
         </div>
-        <h1 className="w-full truncate text-center font-semibold text-xl py-2">
+        <h1 className="w-full truncate py-2 text-center text-xl font-semibold">
           {user.data.session.name}
         </h1>
         <div className="flex items-center gap-2">

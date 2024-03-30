@@ -33,7 +33,8 @@ const Trending = async () => {
           <br />
           <div className="flex items-center">
             <p>
-              The Global Crypto Market Cap is ${formattedMarketCapUSD} Trillion, a
+              The Global Crypto Market Cap is ${formattedMarketCapUSD} Trillion,
+              a
             </p>
             <span
               className={`flex gap-1 ${
@@ -52,7 +53,11 @@ const Trending = async () => {
           </div>
           <br />
           <div className={styles.flexCenter}>
-            <TrendingCard title="Trending Coins (24h)" icon={fire} type="coins"/>
+            <TrendingCard
+              title="Trending Coins (24h)"
+              icon={fire}
+              type="coins"
+            />
             <TrendingCard title="Top NFTs (24h)" icon={up} type="nfts" />
             <FearAndGreedCard title="Fear and Greed Index" icon={greed} />
           </div>

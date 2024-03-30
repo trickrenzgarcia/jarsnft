@@ -1,4 +1,7 @@
-import { CustomContractMetadata, NFT as ThirdwebNFT } from "@thirdweb-dev/react";
+import {
+  CustomContractMetadata,
+  NFT as ThirdwebNFT,
+} from "@thirdweb-dev/react";
 import { z } from "zod";
 
 export type NFT = ThirdwebNFT;
@@ -20,7 +23,7 @@ const CollectionMetadataOutput: z.ZodObject<{
             `0x${string}`,
             z.ZodTypeDef,
             `${string}.eth` | `${string}.cb.id`
-          >
+          >,
         ]
       >
     >
@@ -170,7 +173,7 @@ export type ContractMetadata = {
   data: CustomContractMetadata | unknown;
   isLoading: boolean;
   isError: boolean;
-}
+};
 
 export {
   AppConfig,

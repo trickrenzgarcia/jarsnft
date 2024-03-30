@@ -1,27 +1,26 @@
-"use client"
+"use client";
 
-import NoConnectedWallet from "./NoConnectedWallet"
-import { useUser } from "@thirdweb-dev/react"
-import LoadingBackground from "./LoadingBackground"
-import ProfileProvider from "../_provider/ProfileProvider"
+import NoConnectedWallet from "./NoConnectedWallet";
+import { useUser } from "@thirdweb-dev/react";
+import LoadingBackground from "./LoadingBackground";
+import ProfileProvider from "../_provider/ProfileProvider";
 
-export default function ClientWrapper({ children }: { children: React.ReactNode}) {
-    const { user, isLoading, isLoggedIn } = useUser()
-    
-    if(isLoading) {
-        return <LoadingBackground />
-    }
+export default function ClientWrapper({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const { user, isLoading, isLoggedIn } = useUser();
 
-    if(!isLoggedIn) {
-        return <NoConnectedWallet />
-    }
+  if (isLoading) {
+    return <LoadingBackground />;
+  }
 
-    if(isLoggedIn) {
-        return (
-            <ProfileProvider value={user}>
-                {children}
-            </ProfileProvider>
-        )
-    }
-    
+  if (!isLoggedIn) {
+    return <NoConnectedWallet />;
+  }
+
+  if (isLoggedIn) {
+    return <ProfileProvider value={user}>{children}</ProfileProvider>;
+  }
 }

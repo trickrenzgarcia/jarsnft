@@ -7,7 +7,6 @@ export const BASE_URL: string =
     ? env.NEXT_PUBLIC_BACKEND_URL
     : env.NEXT_PUBLIC_BACKEND_URL;
 
-
 export const authToken = process.env.JWT_AUTH_TOKEN as string;
 
 export async function fetchApi(url: string) {
@@ -62,35 +61,43 @@ export async function getMetadata(contract: string) {
   return data || null;
 }
 
-
 export async function createUser({ address }: { address: string }) {
   const response = await fetch(`${BASE_URL}/user/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${authToken}`,
+      Authorization: `Bearer ${authToken}`,
     },
     body: JSON.stringify({ address: address }),
   });
 
-  const data: ApiResponse<User> = (await response.json()) as ApiResponse<User> ;
-  return data
+  const data: ApiResponse<User> = (await response.json()) as ApiResponse<User>;
+  return data;
 }
 
-export async function updateUser({ address, name, email, is_listed }: 
-  { address: string | FormDataEntryValue | null, name: string | FormDataEntryValue | null, email: string | FormDataEntryValue | null, is_listed: boolean }) {
+export async function updateUser({
+  address,
+  name,
+  email,
+  is_listed,
+}: {
+  address: string | FormDataEntryValue | null;
+  name: string | FormDataEntryValue | null;
+  email: string | FormDataEntryValue | null;
+  is_listed: boolean;
+}) {
   const response = await fetch(`${BASE_URL}/user/update`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${authToken}`,
+      Authorization: `Bearer ${authToken}`,
     },
     body: JSON.stringify({ address, name, email, is_listed }),
   });
 
-  const data: ApiResponse<User> = (await response.json()) as ApiResponse<User> ;
+  const data: ApiResponse<User> = (await response.json()) as ApiResponse<User>;
 
-  return data
+  return data;
 }
 
 export async function getUser(address: string) {
@@ -98,13 +105,13 @@ export async function getUser(address: string) {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${authToken}`,
-    }
+      Authorization: `Bearer ${authToken}`,
+    },
   });
 
-  const data: ApiResponse<User> = (await response.json()) as ApiResponse<User> ;
+  const data: ApiResponse<User> = (await response.json()) as ApiResponse<User>;
 
-  return data.data
+  return data.data;
 }
 
 export async function userExists(address: string) {
@@ -112,13 +119,13 @@ export async function userExists(address: string) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${authToken}`,
-    }
+      Authorization: `Bearer ${authToken}`,
+    },
   });
 
   const data: ApiResponse<User> = (await response.json()) as ApiResponse<User>;
 
-  if(!data.data) return false;
+  if (!data.data) return false;
 
-  return data
+  return data;
 }

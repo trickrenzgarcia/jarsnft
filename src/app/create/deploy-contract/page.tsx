@@ -10,24 +10,20 @@ import NoConnectedWallet from "@/app/me/_components/NoConnectedWallet";
 export default function DeployContractPage() {
   const { user, isLoading, isLoggedIn } = useUserContext();
 
-  if(!user) {
-    return <NoConnectedWallet />
-  }
-
-  if(isLoading) {
+  if (isLoading) {
     return (
-      <div className="w-full flex flex-col h-[calc(100vh-57px)] items-center justify-center">
+      <div className="flex h-[calc(100vh-57px)] w-full flex-col items-center justify-center">
         <Loading animation="bouncy" />
       </div>
     );
   }
 
-  if(!isLoggedIn) {
-    return <NoConnectedWallet />
+  if (!isLoggedIn) {
+    return <NoConnectedWallet />;
   }
 
   return (
-    <main className="w-full flex flex-col mx-auto md:flex-row justify-center md:py-8 gap-5">
+    <main className="mx-auto flex w-full flex-col justify-center gap-5 md:flex-row md:py-8">
       <section>
         <NFTCreateContractCard
           title="Create NFT Collection"
@@ -35,7 +31,9 @@ export default function DeployContractPage() {
         />
       </section>
       <section className="hidden lg:block">
-        {(isLoading && <>Loading ProfileCard...</>) || <ProfileCard user={user} />}
+        {(isLoading && <>Loading ProfileCard...</>) || (
+          <ProfileCard user={user} />
+        )}
         <DetailsCard title="Once your contract deployment is complete, you'll have the ability to:" />
       </section>
     </main>

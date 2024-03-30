@@ -1,5 +1,3 @@
 export default function ErrorNFTCards() {
-  return (
-    <div>ErrorNFTCards</div>
-  )
+  return <div>ErrorNFTCards</div>;
 }

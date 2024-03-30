@@ -28,25 +28,29 @@ export default function TabsWrapper() {
               </Chip>
             </div>
           }
-        >Content</Tab>
+        >
+          Content
+        </Tab>
         <Tab
           key="collections"
           title={
             <div className="flex items-center space-x-2">
               <span>Collections</span>
-              <Chip size="sm" variant="faded">0</Chip>
+              <Chip size="sm" variant="faded">
+                0
+              </Chip>
             </div>
           }
           content="Owned NFTs"
-        >
-
-        </Tab>
+        ></Tab>
         <Tab
           key="created"
           title={
             <div className="flex items-center space-x-2">
               <span>Created</span>
-              <Chip size="sm" variant="faded">0</Chip>
+              <Chip size="sm" variant="faded">
+                0
+              </Chip>
             </div>
           }
           content="Owned NFTs"

@@ -2,9 +2,8 @@ import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger
-
-} from '@/components/ui/tooltip'
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type Props = {
   message: string;
@@ -12,8 +11,8 @@ type Props = {
 } & React.HTMLAttributes<HTMLParagraphElement>;
 
 export default function TooltipMsg(props: Props) {
-  const { children, delay = 700, ...otherProps } = props
-  const message = props.message
+  const { children, delay = 700, ...otherProps } = props;
+  const message = props.message;
   return (
     <TooltipProvider>
       <Tooltip delayDuration={delay}>
@@ -25,5 +24,5 @@ export default function TooltipMsg(props: Props) {
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
-  )
+  );
 }

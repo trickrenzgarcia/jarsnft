@@ -13,16 +13,16 @@ export const updateUser = async (formData: FormData) => {
   const rawFormData = {
     address: formData.get("address") as string,
     name: formData.get("name") as string,
-    email: formData.get("email") as string
-  }
-  const { address, email, name } = rawFormData; 
-  
+    email: formData.get("email") as string,
+  };
+  const { address, email, name } = rawFormData;
+
   await jars.updateUser(address, {
     name: name,
     email: email,
   });
   revalidateTag("user");
-}
+};
 
 export const addLikes = async (amount: number) => {
   if (!amount) return;

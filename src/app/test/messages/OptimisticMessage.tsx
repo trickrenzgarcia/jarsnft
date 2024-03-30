@@ -1,19 +1,20 @@
-"use client"
+"use client";
 
-import { useOptimistic } from 'react'
+import { useOptimistic } from "react";
 
-type Message = { message: string}
+type Message = { message: string };
 
-export default function OptimisticMessage({ messages }: { messages: Message[] }) {
+export default function OptimisticMessage({
+  messages,
+}: {
+  messages: Message[];
+}) {
   const [optimisticMessages, addOptimisticMessage] = useOptimistic<Message[]>(
     messages,
     (state: Message[], newMessage: string) => {
-      return [
-        ...state,
-        { message: newMessage },
-      ]
-    }
-  )
+      return [...state, { message: newMessage }];
+    },
+  );
 
-  return <div></div>
+  return <div></div>;
 }

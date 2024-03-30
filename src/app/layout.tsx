@@ -4,10 +4,10 @@ import "./globals.css";
 import {
   ThemeProvider,
   ThirdwebProvider,
-  UserProvider
-} from '@/components/(providers)';
-import { cn } from '@/lib/utils';
-import { appConfig as config } from '@/lib/config';
+  UserProvider,
+} from "@/components/(providers)";
+import { cn } from "@/lib/utils";
+import { appConfig as config } from "@/lib/config";
 import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
@@ -23,22 +23,26 @@ export const metadata: Metadata = {
     title: config.name,
     description: config.description,
     siteName: config.name,
-  }
+  },
 };
 
 export default function RootLayout({
   children,
-}:Readonly<{
+}: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
-      <body className={cn("antialiased overflow-x-hidden w-screen", inter.className)}>
+      <body
+        className={cn(
+          "w-screen overflow-x-hidden antialiased",
+          inter.className,
+        )}
+      >
         <ThirdwebProvider>
           <ThemeProvider
-            attribute='class'
-            defaultTheme='system'
+            attribute="class"
+            defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >

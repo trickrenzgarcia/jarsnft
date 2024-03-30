@@ -1,6 +1,6 @@
 "use client";
 
-import { ethers } from 'ethers'; // ethers v5^
+import { ethers } from "ethers"; // ethers v5^
 
 import {
   Card,
@@ -41,16 +41,16 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { ACCEPTED_IMAGE_TYPES } from "@/types/constant";
 import { FaExclamationCircle } from "react-icons/fa";
 import { Textarea } from "@/components/ui/textarea";
 import { useAddress, useContract, useSDK } from "@thirdweb-dev/react";
 import { CreateNFTCollectionDialog } from "./CreateNFTCollectionDialog";
-import { Divider, Spinner } from '@nextui-org/react';
-import { useUserContext } from '@/components/(providers)';
-import { Separator } from '@/components/ui/separator';
+import { Divider, Spinner } from "@nextui-org/react";
+import { useUserContext } from "@/components/(providers)";
+import { Separator } from "@/components/ui/separator";
 import { FaCheck } from "react-icons/fa";
 import { MdErrorOutline } from "react-icons/md";
 import { IoMdRefresh } from "react-icons/io";
@@ -60,12 +60,17 @@ type NFTCreateContractCardProps = {
   description: string;
 };
 
-const ethAddressSchema = z.string().refine((value) => ethers.utils.isAddress(value), {
-  message: "Input is not a valid address or ENS name."
-})
+const ethAddressSchema = z
+  .string()
+  .refine((value) => ethers.utils.isAddress(value), {
+    message: "Input is not a valid address or ENS name.",
+  });
 
 const ContractSchema = z.object({
-  name: z.string().min(1, "Required field.").max(100, "Name must be less than 100 characters."),
+  name: z
+    .string()
+    .min(1, "Required field.")
+    .max(100, "Name must be less than 100 characters."),
   image: z.instanceof(File, {
     message: "Required field.",
   }),
@@ -74,7 +79,12 @@ const ContractSchema = z.object({
   app_uri: z.string().optional(),
   external_link: z.string().optional(),
   fee_recipient: ethAddressSchema,
-  seller_fee_basis_points: z.string().regex(/^(100(\.0{1,3})?|0+(\.\d{1,3})?|([1-9]?\d(\.\d{1,3})?))$/, "Invalid percentage."),
+  seller_fee_basis_points: z
+    .string()
+    .regex(
+      /^(100(\.0{1,3})?|0+(\.\d{1,3})?|([1-9]?\d(\.\d{1,3})?))$/,
+      "Invalid percentage.",
+    ),
   primary_sale_recipient: ethAddressSchema,
   trusted_forwarders: z.array(z.string()).optional(),
 });
@@ -90,7 +100,9 @@ export default function NFTCreateContractCard({
   const [uploadImage, setUploadImage] = useState<string | null>(null);
   const [symbol, setSymbol] = useState<string>("");
   const [fileName, setFileName] = useState("");
-  const [contractState, setContractState] = useState<"idle" | "ongoing" | "accepted" | "completed">("idle");
+  const [contractState, setContractState] = useState<
+    "idle" | "ongoing" | "accepted" | "completed"
+  >("idle");
   const [contractError, setContractError] = useState<boolean>(false);
   const [contractText, setContractText] = useState<string | undefined>("");
 
@@ -107,7 +119,7 @@ export default function NFTCreateContractCard({
       seller_fee_basis_points: "0.00",
       primary_sale_recipient: user.address,
       trusted_forwarders: [],
-    }
+    },
   });
 
   const onDrop = useCallback(
@@ -119,7 +131,7 @@ export default function NFTCreateContractCard({
         const file = acceptedFiles[0];
 
         // Check MIME type
-        if(!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
+        if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
           toast.error("Invalid file type. Please upload an image file.", {
             position: "top-center",
             closeButton: true,
@@ -141,7 +153,7 @@ export default function NFTCreateContractCard({
         });
       }
     },
-    [setUploadImage, setFileName, form]
+    [setUploadImage, setFileName, form],
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -172,7 +184,7 @@ export default function NFTCreateContractCard({
 
     // Check if the input value is empty
     if (inputValue === "") {
-        return; // Do nothing if the input is empty
+      return; // Do nothing if the input is empty
     }
 
     // Regular expression to match any character from A-Z or any special character
@@ -180,8 +192,8 @@ export default function NFTCreateContractCard({
 
     // Check if the input value is alphabetic or contains special characters
     if (regex.test(inputValue)) {
-        e.target.value = "0.00";
-        return;
+      e.target.value = "0.00";
+      return;
     }
 
     // Convert the input value to a number
@@ -189,28 +201,31 @@ export default function NFTCreateContractCard({
 
     // Check if the input value is a number and greater than 100.0
     if (!isNaN(inputValueAsNumber) && inputValueAsNumber > 100.0) {
-        e.target.value = "100.0";
-        return;
+      e.target.value = "100.0";
+      return;
     }
   }
 
   const name = form.watch("name");
   const words = name.split(" ");
-  const initials = words.map(word => word.charAt(0).toUpperCase());
+  const initials = words.map((word) => word.charAt(0).toUpperCase());
   const acronym = initials.join("");
 
   useEffect(() => {
-    if(acronym.length !== 0) {
+    if (acronym.length !== 0) {
       form.setValue("symbol", acronym);
     } else {
       form.setValue("symbol", form.getValues("symbol")?.toUpperCase());
     }
-  }, [acronym])
-  
+  }, [acronym]);
+
   const submitCreateContract = async (data: FormContract) => {
     setContractState("ongoing");
-    const seller_fee_basis_points: number = parseFloat(data.seller_fee_basis_points) * 100;
-    const image = new File([data.image], data.image.name, { type: data.image.type })
+    const seller_fee_basis_points: number =
+      parseFloat(data.seller_fee_basis_points) * 100;
+    const image = new File([data.image], data.image.name, {
+      type: data.image.type,
+    });
     try {
       const contractAddress = await sdk?.deployer.deployNFTCollection({
         name: data.name,
@@ -227,11 +242,9 @@ export default function NFTCreateContractCard({
         trusted_forwarders: data.trusted_forwarders,
       });
       setContractError(false);
-      if(contractAddress?.includes("0x")) {
+      if (contractAddress?.includes("0x")) {
         setContractState("completed");
-        
-        
-      } else if(contractAddress !== "") {
+      } else if (contractAddress !== "") {
         setContractState("accepted");
         setContractText(contractAddress);
         toast.success("Contract Processing...", {
@@ -247,12 +260,12 @@ export default function NFTCreateContractCard({
       setContractState("idle");
       setContractError(true);
     }
-  }
+  };
 
   return (
     <Card className="max-w-[640px]">
       <CardHeader>
-        <CardTitle className="text-lg md:text-2xl lg:text-3xl font-bold">
+        <CardTitle className="text-lg font-bold md:text-2xl lg:text-3xl">
           {title}
         </CardTitle>
         <CardDescription>{description}</CardDescription>
@@ -265,7 +278,9 @@ export default function NFTCreateContractCard({
               name="image"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold flex items-center gap-1 text-md"><span className="text-red-400">*</span>Logo Image</FormLabel>
+                  <FormLabel className="text-md flex items-center gap-1 font-semibold">
+                    <span className="text-red-400">*</span>Logo Image
+                  </FormLabel>
                   <FormControl>
                     <>
                       <Input
@@ -273,24 +288,29 @@ export default function NFTCreateContractCard({
                         {...form.register("image")}
                         //ref={form.register("image").ref}
                         id="picture"
-                        className="w-full h-full"
+                        className="h-full w-full"
                         type="file"
                         accept="image/*"
                         onChange={handleImageOnChange}
                         style={{ display: "none" }}
                       />
                       <div
-                        className={cn("cursor-pointer h-[150px] flex gap-3 items-center p-5 rounded-md border border-dashed ", form.formState.errors.image ? "border-solid border-red-500" : "hover:border-solid dark:hover:border-gray-500")}
+                        className={cn(
+                          "flex h-[150px] cursor-pointer items-center gap-3 rounded-md border border-dashed p-5 ",
+                          form.formState.errors.image
+                            ? "border-solid border-red-500"
+                            : "hover:border-solid dark:hover:border-gray-500",
+                        )}
                         {...getRootProps()}
                         onClick={(event) => {
                           event.preventDefault();
                           const fileInput = document.getElementById(
-                            "picture"
+                            "picture",
                           ) as HTMLInputElement;
                           fileInput.click();
                         }}
                       >
-                        <Avatar className="w-[98px] h-[98px] rounded-md border">
+                        <Avatar className="h-[98px] w-[98px] rounded-md border">
                           {uploadImage ? (
                             <AvatarImage
                               className="aspect-auto"
@@ -298,7 +318,7 @@ export default function NFTCreateContractCard({
                               alt="@image_collection"
                             />
                           ) : (
-                            <AvatarFallback className="w-[98px] h-[98px] rounded-md">
+                            <AvatarFallback className="h-[98px] w-[98px] rounded-md">
                               <FaRegImage />
                             </AvatarFallback>
                           )}
@@ -324,24 +344,27 @@ export default function NFTCreateContractCard({
                       </div>
                     </>
                   </FormControl>
-                  
                 </FormItem>
               )}
             />
             <div className="grid grid-cols-12 gap-3 pt-8">
               <div className="col-span-9 md:col-span-10">
-                <FormField 
+                <FormField
                   control={form.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-semibold flex items-center gap-1 text-md"><span className="text-red-400">*</span>Name</FormLabel>
+                      <FormLabel className="text-md flex items-center gap-1 font-semibold">
+                        <span className="text-red-400">*</span>Name
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           id="name"
                           placeholder="Collection Name"
-                          className={cn(form.formState.errors.name && "border-red-500")}
+                          className={cn(
+                            form.formState.errors.name && "border-red-500",
+                          )}
                         />
                       </FormControl>
                     </FormItem>
@@ -349,12 +372,14 @@ export default function NFTCreateContractCard({
                 />
               </div>
               <div className="col-span-3 md:col-span-2">
-                <FormField 
+                <FormField
                   control={form.control}
                   name="symbol"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-semibold flex items-center gap-1 text-md">Symbol</FormLabel>
+                      <FormLabel className="text-md flex items-center gap-1 font-semibold">
+                        Symbol
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -362,7 +387,6 @@ export default function NFTCreateContractCard({
                           placeholder="(Optional)"
                         />
                       </FormControl>
-
                     </FormItem>
                   )}
                 />
@@ -375,7 +399,9 @@ export default function NFTCreateContractCard({
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="font-semibold flex items-center gap-1 text-md">Description</FormLabel>
+                    <FormLabel className="text-md flex items-center gap-1 font-semibold">
+                      Description
+                    </FormLabel>
                     <FormControl>
                       <Textarea
                         {...field}
@@ -388,35 +414,48 @@ export default function NFTCreateContractCard({
               />
             </div>
 
-            <div className="pt-8 grid grid-cols-12 gap-3">
+            <div className="grid grid-cols-12 gap-3 pt-8">
               <div className="col-span-8 md:col-span-9">
                 <FormField
                   control={form.control}
                   name="fee_recipient"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-semibold flex items-center gap-1 text-md">Royalties</FormLabel>
-                      <FormDescription className="text-sm italic">Determine the address that should receive the revenue from royalties earned from secondary sales of the assets.</FormDescription>
-                      <FormLabel className="font-semibold flex items-center gap-1"><span className="text-red-400">*</span>Recipient Address </FormLabel>
+                      <FormLabel className="text-md flex items-center gap-1 font-semibold">
+                        Royalties
+                      </FormLabel>
+                      <FormDescription className="text-sm italic">
+                        Determine the address that should receive the revenue
+                        from royalties earned from secondary sales of the
+                        assets.
+                      </FormDescription>
+                      <FormLabel className="flex items-center gap-1 font-semibold">
+                        <span className="text-red-400">*</span>Recipient Address{" "}
+                      </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           id="fee_recipient"
                           placeholder="address"
-                          className={cn(form.formState.errors.fee_recipient && "border-red-500")}
+                          className={cn(
+                            form.formState.errors.fee_recipient &&
+                              "border-red-500",
+                          )}
                         />
                       </FormControl>
                     </FormItem>
                   )}
                 />
               </div>
-              <div className="col-span-4 md:col-span-3 flex items-end">
+              <div className="col-span-4 flex items-end md:col-span-3">
                 <FormField
                   control={form.control}
                   name="seller_fee_basis_points"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-semibold flex items-center gap-1">Percentage</FormLabel>
+                      <FormLabel className="flex items-center gap-1 font-semibold">
+                        Percentage
+                      </FormLabel>
                       <FormControl>
                         <div className="flex items-center">
                           <Input
@@ -425,9 +464,12 @@ export default function NFTCreateContractCard({
                             placeholder="0.00"
                             maxLength={5}
                             onChange={handlePercentageChange}
-                            className={cn(form.formState.errors.seller_fee_basis_points && "border-red-500")}
+                            className={cn(
+                              form.formState.errors.seller_fee_basis_points &&
+                                "border-red-500",
+                            )}
                             onKeyDown={(e) => {
-                              if(e.key === ' ') {
+                              if (e.key === " ") {
                                 e.preventDefault();
                                 return;
                               }
@@ -440,7 +482,6 @@ export default function NFTCreateContractCard({
                   )}
                 />
               </div>
-              
             </div>
 
             <div className="pt-8">
@@ -449,15 +490,25 @@ export default function NFTCreateContractCard({
                 name="primary_sale_recipient"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="font-semibold flex items-center gap-1 text-md">Primary Sale Recipient</FormLabel>
-                    <FormDescription className="text-sm italic">Determine the address that should receive the revenue from the primary sale of the assets.</FormDescription>
-                    <FormLabel className="font-semibold flex items-center gap-1"><span className="text-red-400">*</span>Recipient Address </FormLabel>
+                    <FormLabel className="text-md flex items-center gap-1 font-semibold">
+                      Primary Sale Recipient
+                    </FormLabel>
+                    <FormDescription className="text-sm italic">
+                      Determine the address that should receive the revenue from
+                      the primary sale of the assets.
+                    </FormDescription>
+                    <FormLabel className="flex items-center gap-1 font-semibold">
+                      <span className="text-red-400">*</span>Recipient Address{" "}
+                    </FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         id="primary_sale_recipient"
                         placeholder="address"
-                        className={cn(form.formState.errors.primary_sale_recipient && "border-red-500")}
+                        className={cn(
+                          form.formState.errors.primary_sale_recipient &&
+                            "border-red-500",
+                        )}
                       />
                     </FormControl>
                   </FormItem>
@@ -465,59 +516,90 @@ export default function NFTCreateContractCard({
               />
             </div>
 
-            <div className='flex justify-end'>
-              <Button type="submit"
+            <div className="flex justify-end">
+              <Button
+                type="submit"
                 onClick={async (e) => {
-                  await document.getElementById('submitDialog')?.click()
+                  await document.getElementById("submitDialog")?.click();
                 }}
-              >Create Collection</Button>
+              >
+                Create Collection
+              </Button>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <Button className='hidden' id='submitDialog'>Open</Button>
+                  <Button className="hidden" id="submitDialog">
+                    Open
+                  </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogDescription>
-                      <div className='flex items-start gap-2'>
-                        <div className='flex justify-center items-center rounded-full bg-default p-1'>
-                          {contractState === "ongoing" ?  <Spinner size='sm' /> : 
-                          contractState === "accepted" ? <div className='w-5 h-5 flex justify-center items-center'>
-                            <FaCheck />
-                          </div> : contractError === true ? <div className='w-5 h-5 flex justify-center items-center'>
-                            <MdErrorOutline className='text-danger' />
-                          </div>: <div className='w-5 h-5' />}
+                      <div className="flex items-start gap-2">
+                        <div className="flex items-center justify-center rounded-full bg-default p-1">
+                          {contractState === "ongoing" ? (
+                            <Spinner size="sm" />
+                          ) : contractState === "accepted" ? (
+                            <div className="flex h-5 w-5 items-center justify-center">
+                              <FaCheck />
+                            </div>
+                          ) : contractError === true ? (
+                            <div className="flex h-5 w-5 items-center justify-center">
+                              <MdErrorOutline className="text-danger" />
+                            </div>
+                          ) : (
+                            <div className="h-5 w-5" />
+                          )}
                         </div>
-                        <h2 className='text-lg'>Accepting transaction</h2>
+                        <h2 className="text-lg">Accepting transaction</h2>
                       </div>
-                      <div className='flex h-32 pl-3'>
-                        <Separator orientation='vertical' className='w-[2px]' />
-                        <div className='ml-5 border p-3 h-fit rounded-lg'>
-                          <p className='text-justify'>Wait for the wallet to be popup, it will be asked to pay gas fees and sign in your order to deploy your contract on the blockchain.</p>
-                          {contractError && <Button className='bg-danger flex gap-1'
-                            onClick={(e) => { 
-                              form.handleSubmit(submitCreateContract)();
-                              setContractError(false);
-                              setContractState("ongoing");
-                            }}
-                          ><IoMdRefresh className='text-xl' />Retry</Button>}
+                      <div className="flex h-32 pl-3">
+                        <Separator orientation="vertical" className="w-[2px]" />
+                        <div className="ml-5 h-fit rounded-lg border p-3">
+                          <p className="text-justify">
+                            Wait for the wallet to be popup, it will be asked to
+                            pay gas fees and sign in your order to deploy your
+                            contract on the blockchain.
+                          </p>
+                          {contractError && (
+                            <Button
+                              className="flex gap-1 bg-danger"
+                              onClick={(e) => {
+                                form.handleSubmit(submitCreateContract)();
+                                setContractError(false);
+                                setContractState("ongoing");
+                              }}
+                            >
+                              <IoMdRefresh className="text-xl" />
+                              Retry
+                            </Button>
+                          )}
                         </div>
-
                       </div>
-                      <div className='flex items-start gap-2'>
-                        <div className='flex justify-center items-center rounded-full bg-default p-1'>
-                          {contractState === "accepted" ? <Spinner size='sm' /> : contractState === "completed" ?
-                          <div className='w-5 h-5 flex justify-center items-center'>
-                            <FaCheck />
-                          </div> : contractError === true ? <div className='w-5 h-5 flex justify-center items-center'>
-                            <MdErrorOutline />
-                          </div> : <div className='w-5 h-5' />}
+                      <div className="flex items-start gap-2">
+                        <div className="flex items-center justify-center rounded-full bg-default p-1">
+                          {contractState === "accepted" ? (
+                            <Spinner size="sm" />
+                          ) : contractState === "completed" ? (
+                            <div className="flex h-5 w-5 items-center justify-center">
+                              <FaCheck />
+                            </div>
+                          ) : contractError === true ? (
+                            <div className="flex h-5 w-5 items-center justify-center">
+                              <MdErrorOutline />
+                            </div>
+                          ) : (
+                            <div className="h-5 w-5" />
+                          )}
                         </div>
-                        <h2 className='text-lg'>Deploying your contract</h2>
+                        <h2 className="text-lg">Deploying your contract</h2>
                       </div>
-                      <div className='flex h-28 pl-3'>
-                        <Separator orientation='vertical' className='w-[2px]' />
-                        <div className='ml-5 border p-3 h-fit rounded-lg w-full'>
-                          <p className='text-justify'>It may take some time for the transaction to be processed.</p>
+                      <div className="flex h-28 pl-3">
+                        <Separator orientation="vertical" className="w-[2px]" />
+                        <div className="ml-5 h-fit w-full rounded-lg border p-3">
+                          <p className="text-justify">
+                            It may take some time for the transaction to be
+                            processed.
+                          </p>
                           <p>{contractText}</p>
                         </div>
                       </div>
@@ -530,7 +612,6 @@ export default function NFTCreateContractCard({
                 </AlertDialogContent>
               </AlertDialog>
             </div>
-            
           </form>
         </Form>
       </CardContent>

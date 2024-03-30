@@ -1,22 +1,20 @@
-import { useMedia } from "react-use"
+import { useMedia } from "react-use";
 import { NFTCard } from "../_types";
 import NFTCarousel from "./NFTCarousel";
 
-export default function BuySellNFT({ collections }: { collections: NFTCard[] }) {
-
+export default function BuySellNFT({
+  collections,
+}: {
+  collections: NFTCard[];
+}) {
   return (
     <>
-      <div className="mt-14 mb-20">
-        <p className="font-bold text-xl mb-12">Buy & Sell NFTs</p>
+      <div className="mb-20 mt-14">
+        <p className="mb-12 text-xl font-bold">Buy & Sell NFTs</p>
 
         <div className="px-0 md:px-10">
-          <NFTCarousel
-            align="start"
-            collections={collections}
-            withExtra
-          />
+          <NFTCarousel align="start" collections={collections} withExtra />
         </div>
-
       </div>
     </>
   );

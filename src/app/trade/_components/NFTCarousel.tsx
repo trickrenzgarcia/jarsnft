@@ -1,4 +1,10 @@
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -29,20 +35,23 @@ export default function NFTCarousel({
   withExtra = false,
   align = "start",
 }: NFTCarouselProps) {
-
   return (
     <div>
       <Carousel className="w-full " opts={{ align: align }}>
         <CarouselContent className="">
-
-          <CarouselItem className={cn("basis-[75%] md:basis-1/2 lg:basis-1/4", withExtra && ("flex") || ("hidden"))}>
-            <Card className={cn("flex-col justify-around mx-auto h-[480px]")}>
+          <CarouselItem
+            className={cn(
+              "basis-[75%] md:basis-1/2 lg:basis-1/4",
+              (withExtra && "flex") || "hidden",
+            )}
+          >
+            <Card className={cn("mx-auto h-[480px] flex-col justify-around")}>
               <CardHeader>
                 <CardTitle className="text-3xl">
                   Get Your Digital Assets Now
                 </CardTitle>
               </CardHeader>
-              <CardContent className="px-6 mb-14">
+              <CardContent className="mb-14 px-6">
                 <p>
                   Dive into our curated collection of one-of-a-kind digital
                   assets! Explore, buy, and sell unique NFTs within our vibrant
@@ -51,7 +60,7 @@ export default function NFTCarousel({
               </CardContent>
               <CardFooter>
                 <Link
-                  className="px-6 py-3 hover:bg-neutral-800 bg-neutral-900 active:bg-neutral-950 text-white rounded-md"
+                  className="rounded-md bg-neutral-900 px-6 py-3 text-white hover:bg-neutral-800 active:bg-neutral-950"
                   href="#"
                 >
                   Explore
@@ -62,23 +71,39 @@ export default function NFTCarousel({
           {collections.map((data, index) => (
             <CarouselItem
               key={index}
-              className={cn(`basis-[75%] md:basis-1/2 lg:basis-1/3 xl:basis-1/4`)}
+              className={cn(
+                `basis-[75%] md:basis-1/2 lg:basis-1/3 xl:basis-1/4`,
+              )}
             >
-            <NFTCard
-              collectionLink={data.collection}
-              itemLink={data.itemLink}
-              logo={data.logo}
-              image={data.image}
-              name={data.name}
-              verified={data.is_verified}
-              floor={data.floor_price}
-              volume={data.volume}
-            />
-          </CarouselItem>
+              <NFTCard
+                collectionLink={data.collection}
+                itemLink={data.itemLink}
+                logo={data.logo}
+                image={data.image}
+                name={data.name}
+                verified={data.is_verified}
+                floor={data.floor_price}
+                volume={data.volume}
+              />
+            </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className={cn("hidden", collections.length > 4 ? "md:block" : withExtra ? "md:block" : "hidden")} />
-        <CarouselNext className={cn("hidden", collections.length >= 4 && withExtra && "md:block")} />
+        <CarouselPrevious
+          className={cn(
+            "hidden",
+            collections.length > 4
+              ? "md:block"
+              : withExtra
+                ? "md:block"
+                : "hidden",
+          )}
+        />
+        <CarouselNext
+          className={cn(
+            "hidden",
+            collections.length >= 4 && withExtra && "md:block",
+          )}
+        />
       </Carousel>
     </div>
   );
