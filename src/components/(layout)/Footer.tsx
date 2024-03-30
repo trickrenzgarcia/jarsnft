@@ -40,13 +40,13 @@ export default function Footer() {
         {/* Footer Columns */}
         <div className='pt-32 px-8 lg:px-20 pb-10 grid grid-cols-3 gap-x-24 gap-y-10 mb-14'>
           {/* Company Description */}
-          <div className='flex flex-col gap-y-5'>
+          <div className='flex flex-col gap-y-5 col-span-3 md:col-span-1'>
             <h1 className='text-2xl font-semibold mb-1'>JarsNFT</h1>
             <p>Turn your passion into a lasting legacy. Mint your artwork as an NFT and showcase your talent. Connect with traders, and build a secure future for your creative endeavors.</p>
           </div>
 
           {/* Column Links */}
-          <div className='grid grid-cols-4 col-span-2 gap-x-8'>
+          <div className='grid grid-cols-4 col-span-3 md:col-span-2 gap-x-8'>
             <FooterColumn titleName="Marketplace" linkArray={marketplaceLinks} />
             <FooterColumn titleName="Resource" linkArray={resourceLinks} />
             <FooterColumn titleName="Help" linkArray={helpLinks} />
