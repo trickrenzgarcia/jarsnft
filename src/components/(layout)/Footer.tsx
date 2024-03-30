@@ -1,53 +1,56 @@
-import Link from "next/link";
-import { Separator } from "../ui/separator";
-import PrivacyTermsButtons from "../(interfaces)/PrivacyTermsButtons";
-import SocialLinkButtons from "../(interfaces)/SocialLinkButtons";
+import { Separator } from '../ui/separator';
+import { PrivacyTermsButtons, SocialLinkButtons, FooterColumn } from "../(interfaces)"
 
 export default function Footer() {
+  //#region Column links
+  type LinkType = {
+    href: string, description: string
+  }
+
+  const marketplaceLinks: Array<LinkType> = [
+    { href: "/category/art", description: "Art NFTs" },
+    { href: "/category/photography", description: "Photography NFTs" },
+    { href: "/category/pfp", description: "Profile Picture NFTs" },
+  ];
+
+  const resourceLinks: Array<LinkType> = [
+    { href: "/learn/getting-started", description: "Getting Started" },
+    { href: "/insights", description: "Insights" },
+    { href: "/learn/faq", description: "FAQs" },
+  ];
+
+  const helpLinks: Array<LinkType> = [
+    { href: "", description: "What is NFT?" },
+    { href: "/learn/buying-nfts", description: "How to buy an NFT?" },
+    { href: "/learn/selling-nfts", description: "How to sell an NFT?" },
+    { href: "", description: "What are blockchain gas fees?" },
+    { href: "", description: "What is a blockchain?" },
+  ];
+
+  const companyLinks: Array<LinkType> = [
+    { href: "/about", description: "About" },
+    { href: "/team", description: "Team" },
+  ];
+  //#endregion
+
   return (
     <footer className="mt-12">
       <Separator className="h-[2px] w-full" />
       <section>
-        {/* Resource Help Company Columns */}
-        <div className="mb-14 grid grid-cols-3 gap-x-5 gap-y-10 px-8 pb-10 pt-32 lg:px-20">
-          <div className="flex flex-col gap-y-5">
-            <h1 className="mb-1 font-semibold">Resource</h1>
-            <Link href="/learn/getting-started" className="hover:underline">
-              Getting Started
-            </Link>
-            <Link href="/insights" className="hover:underline">
-              Insights
-            </Link>
-            <Link href="/learn/faqs" className="hover:underline">
-              FAQs
-            </Link>
+        {/* Footer Columns */}
+        <div className='pt-32 px-8 lg:px-20 pb-10 grid grid-cols-3 gap-x-24 gap-y-10 mb-14'>
+          {/* Company Description */}
+          <div className='flex flex-col gap-y-5'>
+            <h1 className='text-2xl font-semibold mb-1'>JarsNFT</h1>
+            <p>Turn your passion into a lasting legacy. Mint your artwork as an NFT and showcase your talent. Connect with traders, and build a secure future for your creative endeavors.</p>
           </div>
-          <div className="flex flex-col gap-y-5">
-            <h1 className="mb-1 font-semibold">Help</h1>
-            <Link href="/learn" className="hover:underline">
-              What is NFT?
-            </Link>
-            <Link href="/learn/buying-nfts" className="hover:underline">
-              How to buy an NFT
-            </Link>
-            <Link href="/learn/selling-nfts" className="hover:underline">
-              How to sell an NFT
-            </Link>
-            <Link href="/learn" className="hover:underline">
-              What are blockchain gas fees?
-            </Link>
-            <Link href="/learn" className="hover:underline">
-              What is a blockchain?
-            </Link>
-          </div>
-          <div className="flex flex-col gap-y-5">
-            <h1 className="mb-1 font-semibold">Company</h1>
-            <Link href="/" className="hover:underline">
-              About
-            </Link>
-            <Link href="/team" className="hover:underline">
-              Team
-            </Link>
+
+          {/* Column Links */}
+          <div className='grid grid-cols-4 col-span-2 gap-x-8'>
+            <FooterColumn titleName="Marketplace" linkArray={marketplaceLinks} />
+            <FooterColumn titleName="Resource" linkArray={resourceLinks} />
+            <FooterColumn titleName="Help" linkArray={helpLinks} />
+            <FooterColumn titleName="Company" linkArray={companyLinks} />
           </div>
         </div>
 
