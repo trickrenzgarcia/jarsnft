@@ -24,8 +24,8 @@ const handleDeployNFT = async () => {
         app_uri: "",
         fee_recipient: "0x18a583Eb4D800ACc57067274e6b496db7Bd7E1Fd", // The address that will receive the proceeds from secondary sales (royalties)
         description: "This is a test NFT Collection for CS601.", // Optional description of the contract
-        platform_fee_basis_points: 2.5, // The percentage (in basis points) of platform fees
-        seller_fee_basis_points: 2, //  depends on the contract deployer! The percentage (in basis points) of royalties for secondary sales
+        platform_fee_basis_points: 250, // The percentage (in basis points) of platform fees
+        seller_fee_basis_points: 250, //  depends on the contract deployer! The percentage (in basis points) of royalties for secondary sales
         trusted_forwarders: ["0x18a583Eb4D800ACc57067274e6b496db7Bd7E1Fd"], //Custom gasless trusted forwarder addresses
     });
 

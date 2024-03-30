@@ -29,7 +29,7 @@ export default function CreateNavbar() {
         
         <div className='block lg:hidden'>
           {isLoading && <Skeleton className='h-9 w-9 rounded-full'/> ||
-          (!user && <ConnectWeb3 btnTitle='Connect Wallet' />) || 
+          (!user && <></>) || 
           (user && (
             <TooltipMsg message='Copy' delay={100}>
               <button

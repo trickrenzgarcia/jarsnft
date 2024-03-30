@@ -3,7 +3,6 @@ import NFTCarousel from './NFTCarousel'
 import { NFTCollection } from '@/types'
 import { getCollections } from '@/lib/ctx'
 
-
 async function NFTContentWrapper({ title }: { title: string }) {
   const collections = await getCollections();
 

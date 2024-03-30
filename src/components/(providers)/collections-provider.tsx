@@ -1,5 +1,3 @@
-"use client"
-
 import React from 'react'
 import { CollectionsContext } from './context'
 import { NFTCollection } from '@/types'

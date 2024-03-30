@@ -14,7 +14,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { set, z } from "zod";
 
 import { Input } from "@/components/ui/input";
 import { useDropzone } from "react-dropzone";
@@ -48,7 +48,12 @@ import { FaExclamationCircle } from "react-icons/fa";
 import { Textarea } from "@/components/ui/textarea";
 import { useAddress, useContract, useSDK } from "@thirdweb-dev/react";
 import { CreateNFTCollectionDialog } from "./CreateNFTCollectionDialog";
-import { Spinner } from '@nextui-org/react';
+import { Divider, Spinner } from '@nextui-org/react';
+import { useUserContext } from '@/components/(providers)';
+import { Separator } from '@/components/ui/separator';
+import { FaCheck } from "react-icons/fa";
+import { MdErrorOutline } from "react-icons/md";
+import { IoMdRefresh } from "react-icons/io";
 
 type NFTCreateContractCardProps = {
   title: string;
@@ -80,18 +85,14 @@ export default function NFTCreateContractCard({
   title,
   description,
 }: NFTCreateContractCardProps) {
-  const address = useAddress();
+  const { user } = useUserContext();
   const sdk = useSDK();
   const [uploadImage, setUploadImage] = useState<string | null>(null);
+  const [symbol, setSymbol] = useState<string>("");
   const [fileName, setFileName] = useState("");
-  const [loading, setLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    if(address) {
-      form.setValue("fee_recipient", address);
-      form.setValue("primary_sale_recipient", address);
-    }
-  }, [address])
+  const [contractState, setContractState] = useState<"idle" | "ongoing" | "accepted" | "completed">("idle");
+  const [contractError, setContractError] = useState<boolean>(false);
+  const [contractText, setContractText] = useState<string | undefined>("");
 
   const form = useForm<FormContract>({
     resolver: zodResolver(ContractSchema),
@@ -102,9 +103,9 @@ export default function NFTCreateContractCard({
       description: "",
       app_uri: "",
       external_link: "",
-      fee_recipient: address,
+      fee_recipient: user.address,
       seller_fee_basis_points: "0.00",
-      primary_sale_recipient: address,
+      primary_sale_recipient: user.address,
       trusted_forwarders: [],
     }
   });
@@ -198,35 +199,53 @@ export default function NFTCreateContractCard({
   const initials = words.map(word => word.charAt(0).toUpperCase());
   const acronym = initials.join("");
 
-  if(acronym.length > 0) {
-    form.setValue("symbol", acronym);
-  } else {
-    form.setValue("symbol", "");
-  }
+  useEffect(() => {
+    if(acronym.length !== 0) {
+      form.setValue("symbol", acronym);
+    } else {
+      form.setValue("symbol", form.getValues("symbol")?.toUpperCase());
+    }
+  }, [acronym])
   
-
   const submitCreateContract = async (data: FormContract) => {
-    const seller_fee_basis_points = parseFloat(data.seller_fee_basis_points) * 100;
+    setContractState("ongoing");
+    const seller_fee_basis_points: number = parseFloat(data.seller_fee_basis_points) * 100;
     const image = new File([data.image], data.image.name, { type: data.image.type })
     try {
-      setLoading(true);
       const contractAddress = await sdk?.deployer.deployNFTCollection({
         name: data.name,
         image: image,
         primary_sale_recipient: data.primary_sale_recipient,
         symbol: data.symbol,
-        platform_fee_recipient: address,
+        platform_fee_recipient: process.env.PLATFORM_ADDRESS,
         external_link: data.external_link,
         app_uri: data.app_uri,
         fee_recipient: data.fee_recipient,
         description: data.description,
-        platform_fee_basis_points: seller_fee_basis_points,
+        platform_fee_basis_points: 100,
         seller_fee_basis_points: seller_fee_basis_points,
         trusted_forwarders: data.trusted_forwarders,
       });
+      setContractError(false);
+      if(contractAddress?.includes("0x")) {
+        setContractState("completed");
+        
+        
+      } else if(contractAddress !== "") {
+        setContractState("accepted");
+        setContractText(contractAddress);
+        toast.success("Contract Processing...", {
+          position: "top-center",
+          closeButton: true,
+        });
+      } else {
+        setContractError(true);
+        setContractState("idle");
+        throw new Error("Contract deployment failed.");
+      }
     } catch (error) {
-      //await submitCreateContract(data)
-      setLoading(false);
+      setContractState("idle");
+      setContractError(true);
     }
   }
 
@@ -447,21 +466,66 @@ export default function NFTCreateContractCard({
             </div>
 
             <div className='flex justify-end'>
-              <Button type="submit">Create Collection</Button>
+              <Button type="submit"
+                onClick={async (e) => {
+                  await document.getElementById('submitDialog')?.click()
+                }}
+              >Create Collection</Button>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <Button variant="outline" id="submitDialog" style={{ display: "none" }}>Open Dialog</Button>
+                  <Button className='hidden' id='submitDialog'>Open</Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                     <AlertDialogDescription>
-                      {loading && (<Spinner />)}
+                      <div className='flex items-start gap-2'>
+                        <div className='flex justify-center items-center rounded-full bg-default p-1'>
+                          {contractState === "ongoing" ?  <Spinner size='sm' /> : 
+                          contractState === "accepted" ? <div className='w-5 h-5 flex justify-center items-center'>
+                            <FaCheck />
+                          </div> : contractError === true ? <div className='w-5 h-5 flex justify-center items-center'>
+                            <MdErrorOutline className='text-danger' />
+                          </div>: <div className='w-5 h-5' />}
+                        </div>
+                        <h2 className='text-lg'>Accepting transaction</h2>
+                      </div>
+                      <div className='flex h-32 pl-3'>
+                        <Separator orientation='vertical' className='w-[2px]' />
+                        <div className='ml-5 border p-3 h-fit rounded-lg'>
+                          <p className='text-justify'>Wait for the wallet to be popup, it will be asked to pay gas fees and sign in your order to deploy your contract on the blockchain.</p>
+                          {contractError && <Button className='bg-danger flex gap-1'
+                            onClick={(e) => { 
+                              form.handleSubmit(submitCreateContract)();
+                              setContractError(false);
+                              setContractState("ongoing");
+                            }}
+                          ><IoMdRefresh className='text-xl' />Retry</Button>}
+                        </div>
+
+                      </div>
+                      <div className='flex items-start gap-2'>
+                        <div className='flex justify-center items-center rounded-full bg-default p-1'>
+                          {contractState === "accepted" ? <Spinner size='sm' /> : contractState === "completed" ?
+                          <div className='w-5 h-5 flex justify-center items-center'>
+                            <FaCheck />
+                          </div> : contractError === true ? <div className='w-5 h-5 flex justify-center items-center'>
+                            <MdErrorOutline />
+                          </div> : <div className='w-5 h-5' />}
+                        </div>
+                        <h2 className='text-lg'>Deploying your contract</h2>
+                      </div>
+                      <div className='flex h-28 pl-3'>
+                        <Separator orientation='vertical' className='w-[2px]' />
+                        <div className='ml-5 border p-3 h-fit rounded-lg w-full'>
+                          <p className='text-justify'>It may take some time for the transaction to be processed.</p>
+                          <p>{contractText}</p>
+                        </div>
+                      </div>
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    {!loading && (<AlertDialogCancel>Cancel</AlertDialogCancel>)}
-                    <AlertDialogAction disabled={loading}>Continue</AlertDialogAction>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction>Continue</AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>

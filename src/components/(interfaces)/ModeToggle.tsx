@@ -1,13 +1,11 @@
-"use client"
-
 import { Moon, Sun } from 'lucide-react'
 
 type ModeToggleProps = {
   setTheme: (theme: string) => void,
   theme: string | undefined
 }
-export default function ModeToggle({ setTheme, theme } : ModeToggleProps) {
-  
+export default function ModeToggle({ setTheme, theme }: ModeToggleProps) {
+
   return (
     <div className='w-[50px] h-[50px] bg-gray-200 dark:bg-card text-2xl rounded-[10px] cursor-pointer'>
       {theme === "dark" ? (

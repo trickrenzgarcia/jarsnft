@@ -7,7 +7,7 @@ type TradeProps = {
 export default function TradeLayout({ children }: TradeProps) {
     return (
         <body>
-            <Navbar display='sticky' />
+            <Navbar />
             {children}
             <Footer />
         </body>

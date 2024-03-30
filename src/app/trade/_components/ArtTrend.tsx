@@ -1,5 +1,3 @@
-"use client"
-
 import { NFTCard as NFTCardType } from "../_types"
 import NFTCard from "./NFTCard"
 import NFTCarousel from "./NFTCarousel"
