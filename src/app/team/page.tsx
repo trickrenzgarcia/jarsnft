@@ -20,7 +20,7 @@ const teamMembers = [
   },
   {
     name: "Patrick Renz Garcia",
-    role: "Lead Programmer",
+    role: "Chief Technology Officer",
     description: "Patrick Mah boy quotes",
     image: PatrickImage,
     github: "https://github.com/AKCcoding",
@@ -29,7 +29,7 @@ const teamMembers = [
   },
   {
     name: "Rigor Syguat",
-    role: "Assistant Manager Administrator",
+    role: "Administrator/ Manager",
     description: "Rigs Quotes",
     image: RigorImage,
     github: "https://github.com/AKCcoding",
@@ -38,7 +38,7 @@ const teamMembers = [
   },
   {
     name: "Jeffrey James Dapar",
-    role: "Data Gathering Intelligence",
+    role: "Software Quality Assurance Engineer",
     description: "Jeff Quotes",
     image: JeffImage,
     github: "https://github.com/AKCcoding",
@@ -77,6 +77,7 @@ const Team = () => {
                 </div>
               </div>
             </div>
+            
           ))}
         </div>
       </div>
