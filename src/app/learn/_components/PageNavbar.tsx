@@ -34,5 +34,5 @@ function PageNavTitle({ path }: { path: LearnPaths }) {
     else if (path == "/learn/faq") return "FAQs";
   };
 
-  return <h2 className='text-[#A519D7]'>{title()}</h2>
+  return <h2 className="text-[#A519D7]">{title()}</h2>
 }
