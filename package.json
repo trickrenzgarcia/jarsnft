@@ -29,6 +29,7 @@
     "@thirdweb-dev/sdk": "^4.0.47",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "embla-carousel-autoplay": "^8.0.0",
     "embla-carousel-react": "^8.0.0",
     "ethers": "^5.7.2",
     "font-awesome": "^4.7.0",

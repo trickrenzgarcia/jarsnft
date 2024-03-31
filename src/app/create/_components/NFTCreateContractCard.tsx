@@ -47,7 +47,6 @@ import { ACCEPTED_IMAGE_TYPES } from "@/types/constant";
 import { FaExclamationCircle } from "react-icons/fa";
 import { Textarea } from "@/components/ui/textarea";
 import { useAddress, useContract, useSDK } from "@thirdweb-dev/react";
-import { CreateNFTCollectionDialog } from "./CreateNFTCollectionDialog";
 import { Divider, Spinner } from "@nextui-org/react";
 import { useUserContext } from "@/components/(providers)";
 import { Separator } from "@/components/ui/separator";
@@ -98,7 +97,6 @@ export default function NFTCreateContractCard({
   const { user } = useUserContext();
   const sdk = useSDK();
   const [uploadImage, setUploadImage] = useState<string | null>(null);
-  const [symbol, setSymbol] = useState<string>("");
   const [fileName, setFileName] = useState("");
   const [contractState, setContractState] = useState<
     "idle" | "ongoing" | "accepted" | "completed"
@@ -239,7 +237,9 @@ export default function NFTCreateContractCard({
         platform_fee_basis_points: 100,
         seller_fee_basis_points: seller_fee_basis_points,
         trusted_forwarders: data.trusted_forwarders,
+        defaultAdmin: user.address,
       });
+
       setContractError(false);
       if (contractAddress?.includes("0x")) {
         setContractState("completed");
