@@ -104,7 +104,6 @@ export default function NFTCreateContractCard({
     "idle" | "ongoing" | "accepted" | "completed"
   >("idle");
   const [contractError, setContractError] = useState<boolean>(false);
-  const [contractText, setContractText] = useState<string | undefined>("");
 
   const form = useForm<FormContract>({
     resolver: zodResolver(ContractSchema),
@@ -246,7 +245,6 @@ export default function NFTCreateContractCard({
         setContractState("completed");
       } else if (contractAddress !== "") {
         setContractState("accepted");
-        setContractText(contractAddress);
         toast.success("Contract Processing...", {
           position: "top-center",
           closeButton: true,
@@ -600,14 +598,13 @@ export default function NFTCreateContractCard({
                             It may take some time for the transaction to be
                             processed.
                           </p>
-                          <p>{contractText}</p>
                         </div>
                       </div>
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction>Continue</AlertDialogAction>
+                    {/* <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction>Continue</AlertDialogAction> */}
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
