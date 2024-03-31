@@ -6,7 +6,6 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CardFooter,
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
@@ -14,12 +13,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { set, z } from "zod";
-
+import { z } from "zod";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import { Input } from "@/components/ui/input";
 import { useDropzone } from "react-dropzone";
-import Image from "next/image";
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { FaRegImage } from "react-icons/fa";
 import { cn, shortenFileName } from "@/lib/utils";
 import {
@@ -29,7 +27,6 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
 import {
   AlertDialog,
@@ -39,22 +36,23 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { ACCEPTED_IMAGE_TYPES } from "@/types/constant";
 import { FaExclamationCircle } from "react-icons/fa";
 import { Textarea } from "@/components/ui/textarea";
-import { useAddress, useContract, useSDK } from "@thirdweb-dev/react";
+import { useSDK } from "@thirdweb-dev/react";
 import { Divider, Spinner } from "@nextui-org/react";
 import { useUserContext } from "@/components/(providers)";
 import { Separator } from "@/components/ui/separator";
 import { FaCheck } from "react-icons/fa";
 import { MdErrorOutline } from "react-icons/md";
 import { IoMdRefresh } from "react-icons/io";
+import { ProfileQuery } from "@/types/users";
 
 type NFTCreateContractCardProps = {
+  user: ProfileQuery;
   title: string;
   description: string;
 };
@@ -91,10 +89,10 @@ const ContractSchema = z.object({
 type FormContract = z.infer<typeof ContractSchema>;
 
 export default function NFTCreateContractCard({
+  user: { user, isLoading, isLoggedIn },
   title,
   description,
 }: NFTCreateContractCardProps) {
-  const { user } = useUserContext();
   const sdk = useSDK();
   const [uploadImage, setUploadImage] = useState<string | null>(null);
   const [fileName, setFileName] = useState("");
@@ -102,6 +100,10 @@ export default function NFTCreateContractCard({
     "idle" | "ongoing" | "accepted" | "completed"
   >("idle");
   const [contractError, setContractError] = useState<boolean>(false);
+  const [contractAddress, setContractAddress] = useState<string | undefined>(
+    "",
+  );
+  const ref = useRef<HTMLButtonElement>(null);
 
   const form = useForm<FormContract>({
     resolver: zodResolver(ContractSchema),
@@ -217,6 +219,7 @@ export default function NFTCreateContractCard({
   }, [acronym]);
 
   const submitCreateContract = async (data: FormContract) => {
+    ref.current?.click();
     setContractState("ongoing");
     const seller_fee_basis_points: number =
       parseFloat(data.seller_fee_basis_points) * 100;
@@ -224,7 +227,7 @@ export default function NFTCreateContractCard({
       type: data.image.type,
     });
     try {
-      const contractAddress = await sdk?.deployer.deployNFTCollection({
+      const processContractAddress = await sdk?.deployer.deployNFTCollection({
         name: data.name,
         image: image,
         primary_sale_recipient: data.primary_sale_recipient,
@@ -236,23 +239,19 @@ export default function NFTCreateContractCard({
         description: data.description,
         platform_fee_basis_points: 100,
         seller_fee_basis_points: seller_fee_basis_points,
-        trusted_forwarders: data.trusted_forwarders,
-        defaultAdmin: user.address,
       });
 
       setContractError(false);
-      if (contractAddress?.includes("0x")) {
+
+      setContractState("accepted");
+
+      if (processContractAddress?.includes("0x")) {
         setContractState("completed");
-      } else if (contractAddress !== "") {
-        setContractState("accepted");
-        toast.success("Contract Processing...", {
+        setContractAddress(processContractAddress);
+        toast.success("Contract deployed successfully!", {
           position: "top-center",
           closeButton: true,
         });
-      } else {
-        setContractError(true);
-        setContractState("idle");
-        throw new Error("Contract deployment failed.");
       }
     } catch (error) {
       setContractState("idle");
@@ -515,17 +514,10 @@ export default function NFTCreateContractCard({
             </div>
 
             <div className="flex justify-end">
-              <Button
-                type="submit"
-                onClick={async (e) => {
-                  await document.getElementById("submitDialog")?.click();
-                }}
-              >
-                Create Collection
-              </Button>
+              <Button type="submit">Create Collection</Button>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <Button className="hidden" id="submitDialog">
+                  <Button className="hidden" id="submitDialog" ref={ref}>
                     Open
                   </Button>
                 </AlertDialogTrigger>
@@ -536,16 +528,14 @@ export default function NFTCreateContractCard({
                         <div className="flex items-center justify-center rounded-full bg-default p-1">
                           {contractState === "ongoing" ? (
                             <Spinner size="sm" />
-                          ) : contractState === "accepted" ? (
-                            <div className="flex h-5 w-5 items-center justify-center">
-                              <FaCheck />
-                            </div>
                           ) : contractError === true ? (
                             <div className="flex h-5 w-5 items-center justify-center">
                               <MdErrorOutline className="text-danger" />
                             </div>
                           ) : (
-                            <div className="h-5 w-5" />
+                            <div className="flex h-5 w-5 items-center justify-center">
+                              <FaCheck />
+                            </div>
                           )}
                         </div>
                         <h2 className="text-lg">Accepting transaction</h2>
@@ -559,17 +549,27 @@ export default function NFTCreateContractCard({
                             contract on the blockchain.
                           </p>
                           {contractError && (
-                            <Button
-                              className="flex gap-1 bg-danger"
-                              onClick={(e) => {
-                                form.handleSubmit(submitCreateContract)();
-                                setContractError(false);
-                                setContractState("ongoing");
-                              }}
-                            >
-                              <IoMdRefresh className="text-xl" />
-                              Retry
-                            </Button>
+                            <div className="flex gap-3">
+                              <Button
+                                className="flex gap-1 bg-danger"
+                                onClick={(e) => {
+                                  form.handleSubmit(submitCreateContract)();
+                                  setContractError(false);
+                                  setContractState("ongoing");
+                                }}
+                              >
+                                <IoMdRefresh className="text-xl" />
+                                Retry
+                              </Button>
+                              <AlertDialogCancel
+                                onClick={(e) => {
+                                  setContractError(false);
+                                  setContractState("idle");
+                                }}
+                              >
+                                Close
+                              </AlertDialogCancel>
+                            </div>
                           )}
                         </div>
                       </div>
@@ -600,12 +600,42 @@ export default function NFTCreateContractCard({
                           </p>
                         </div>
                       </div>
+                      <div className="flex items-start gap-2">
+                        <div className="flex items-center justify-center rounded-full bg-default p-1">
+                          {contractState === "completed" ? (
+                            <div className="flex h-5 w-5 items-center justify-center">
+                              <FaCheck />
+                            </div>
+                          ) : (
+                            <div className="h-5 w-5" />
+                          )}
+                        </div>
+                        <h2 className="text-lg">Created NFT Collection.</h2>
+                      </div>
+                      {contractState === "completed" && (
+                        <div className="flex pl-3">
+                          <div className="ml-5 flex h-fit w-full flex-col gap-3 rounded-lg border p-3">
+                            <p className="text-justify">
+                              Your NFT Collection has been created successfully.
+                            </p>
+
+                            <Button
+                              className="flex gap-3"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                window.open(
+                                  `https://opensea.io/collection/${contractAddress}`,
+                                  "_self",
+                                );
+                              }}
+                            >
+                              Go to NFT Collection <FaExternalLinkAlt />
+                            </Button>
+                          </div>
+                        </div>
+                      )}
                     </AlertDialogDescription>
                   </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    {/* <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction>Continue</AlertDialogAction> */}
-                  </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
             </div>

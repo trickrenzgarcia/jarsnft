@@ -31,7 +31,7 @@ export default function CreateNavbar() {
           <h1 className="font-semibold">Go back</h1>
         </div>
 
-        <div className="block lg:hidden">
+        <div className="mr-4 block lg:hidden">
           {(isLoading && <Skeleton className="h-9 w-9 rounded-full" />) ||
             (!user && <></>) ||
             (user && (
