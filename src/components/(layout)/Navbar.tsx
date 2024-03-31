@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Login } from "@/components/(interfaces)";
+import { Login, Hamburger } from "@/components/(interfaces)";
 
 export default function Navbar() {
   return (
@@ -50,7 +50,10 @@ export default function Navbar() {
       </div>
 
       {/* Right-side */}
-      <Login />
+      <div className="flex gap-4 items-center">
+        <Login />
+        <Hamburger />
+      </div>
     </nav>
   );
 }
