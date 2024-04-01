@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/text-reveal";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { BackgroundBeams } from "@/components/ui/background-beams";
-import { FaNodeJs } from "react-icons/fa6";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 
 const people = [
     {
@@ -67,6 +67,8 @@ const images = [
   "https://images.unsplash.com/photo-1711669780175-1b964f919835?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 ];
 
+const words = "We are just students when we tackle this project it so hard for us beginners to grab a latest technology trend but we are eager and passionate to create a platform wherein artists and traders will have opportunities. It took us years to finish this project but we are determined to finish it We wouldn't be able to finish this without the help of almighty God and our family who support us all the way. We are so grateful to have them in our lives. We are so excited to share this platform to the world and we hope that this will help a lot of people to have a better future.";
+
 const page = () => {
   return (
   <>
@@ -105,19 +107,16 @@ const page = () => {
             <div className='p-auto relative overflow-hidden w-auto rounded-xl'>
             <TextRevealCard text="You know the business" revealText="We have the solution">
               <TextRevealCardTitle>Providing Exceptional Output</TextRevealCardTitle>
-                <TextRevealCardDescription>We make magic Happen.
+                <TextRevealCardDescription>We make magic happen.
                 </TextRevealCardDescription>
             </TextRevealCard>
             </div>
           </div>
         </div>
-        <div className='grid grid-cols-2'>
+        <div className='grid grid-cols-1 xl:grid-cols-2 gap-2'>
         <div>
-          <h1 className="text-lg md:text-7xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold p-5">Our Story</h1>
-          <p className='relative font-regular text-sm sm:text-xl text-zinc-500 tracking-wide mb-8 text-left max-w-2xl antialiased leading-loose'>
-          We are just students when we tackle this project it so hard for us beginners to grab a latest technology trend but we are eager and passionate to create a platform wherein artists and traders will have opportunities. It took us years to finish this project but we are determined to finish it!
-          We wouldn&#39;t be able to finish this without the help of almighty God and our family who support us all the way. We are so grateful to have them in our lives. We are so excited to share this platform to the world and we hope that this will help a lot of people to have a better future.
-          </p>
+        <h1 className="text-lg md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold p-5">Our Story</h1>
+        <TextGenerateEffect words={words} />
         </div>
         <div>
         <ParallaxScroll images={images} />
