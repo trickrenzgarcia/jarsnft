@@ -98,7 +98,7 @@ const page = () => {
                   <span className="text-sm font-semibold text-neutral-500 flex-shrink-0">Framer Motion</span>
                   </div>
                   </div>
-            </div>
+              </div>
             </div>
             <div className='hidden xl:block w-full h-full relative'>
             <div className='flex flex-row items-end justify-end mb-2 w-full pr-4'>
