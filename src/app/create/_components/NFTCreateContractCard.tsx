@@ -50,6 +50,7 @@ import { FaCheck } from "react-icons/fa";
 import { MdErrorOutline } from "react-icons/md";
 import { IoMdRefresh } from "react-icons/io";
 import { ProfileQuery } from "@/types/users";
+import { jars } from "@/lib/core/api";
 
 type NFTCreateContractCardProps = {
   user: ProfileQuery;
@@ -248,6 +249,9 @@ export default function NFTCreateContractCard({
       if (processContractAddress?.includes("0x")) {
         setContractState("completed");
         setContractAddress(processContractAddress);
+        const uploadedContract = await jars.deployNFTCollection(
+          processContractAddress,
+        );
         toast.success("Contract deployed successfully!", {
           position: "top-center",
           closeButton: true,

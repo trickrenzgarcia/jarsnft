@@ -3,23 +3,15 @@
  * @public
  */
 
+import { NFTCollection } from "./types";
 import { BASE_URL } from "../ctx";
+import { User } from "./types";
 
 export type JarsOptions = {
   /**
    * The secret key for the Jars API
    */
   secretKey: string;
-};
-
-type User = {
-  id: number;
-  uid: string;
-  address: string;
-  name: string;
-  email: string;
-  is_listed: boolean;
-  createdAt: string;
 };
 
 export class JarsAPI {
@@ -110,6 +102,47 @@ export class JarsAPI {
     return await this.request<User>(`/user/create`, {
       method: "POST",
       body: JSON.stringify({ address: address }),
+    });
+  }
+  /**
+   *
+   * @param contractAddress address of the contract to deploy NFTCollection ERC721A
+   * @returns ContractMetadata
+   */
+  async deployNFTCollection(contractAddress: string) {
+    return await this.request(`/deploy/nft-collection`, {
+      method: "POST",
+      body: JSON.stringify({ contractAddress: contractAddress }),
+    });
+  }
+  /**
+   *
+   * @param contractAddress address of the contract to deploy NFTDrop ERC721A
+   * @returns ContractMetadata
+   */
+  async deployNFTDrop(contractAddress: string) {
+    return await this.request(`/deploy/nft-collection`, {
+      method: "POST",
+      body: JSON.stringify({ contractAddress: contractAddress }),
+    });
+  }
+  /**
+   * Get all NFT collections
+   * @returns - An array of NFT collections
+   */
+  async getNFTCollections() {
+    return await this.request<NFTCollection[]>(`/deploy/nft-collection`);
+  }
+  /**
+   * Get a contract metadata
+   * @param contractAddress - The contract address
+   * @returns - A contract metadata of an NFT collection
+   */
+  async getContractMetadata(contractAddress: string, tags?: string[]) {
+    return await this.request<NFTCollection>(`/metadata/${contractAddress}`, {
+      next: {
+        tags: tags,
+      },
     });
   }
 }

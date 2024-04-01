@@ -1,6 +1,6 @@
 import { NFTContentWrapper } from "@/components/(interfaces)";
-import { Suspense } from "react";
 import { NFTContentSkeleton } from "../(skeletons)";
+import { Suspense } from "react";
 
 export default async function PopularCollections() {
   return (
