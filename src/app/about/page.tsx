@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/text-reveal";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { BackgroundBeams } from "@/components/ui/background-beams";
-import { FaNodeJs } from "react-icons/fa6";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 
 const people = [
     {
@@ -67,6 +67,8 @@ const images = [
   "https://images.unsplash.com/photo-1711669780175-1b964f919835?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 ];
 
+const words = "We are just students when we tackle this project it so hard for us beginners to grab a latest technology trend but we are eager and passionate to create a platform wherein artists and traders will have opportunities. It took us years to finish this project but we are determined to finish it We wouldn't be able to finish this without the help of almighty God and our family who support us all the way. We are so grateful to have them in our lives. We are so excited to share this platform to the world and we hope that this will help a lot of people to have a better future.";
+
 const page = () => {
   return (
   <>
@@ -92,11 +94,11 @@ const page = () => {
                   <div className="flex items-center space-x-2 mr-4"><span><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" className="md:h-10 md:w-10 h-4 w-4 text-neutral-500 flex-shrink-0 stroke-[0.5px]" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18.5 9.51a4.22 4.22 0 0 1-1.91-1.34A5.77 5.77 0 0 0 12 6a4.72 4.72 0 0 0-5 4 3.23 3.23 0 0 1 3.5-1.49 4.32 4.32 0 0 1 1.91 1.35A5.77 5.77 0 0 0 17 12a4.72 4.72 0 0 0 5-4 3.2 3.2 0 0 1-3.5 1.51zm-13 4.98a4.22 4.22 0 0 1 1.91 1.34A5.77 5.77 0 0 0 12 18a4.72 4.72 0 0 0 5-4 3.23 3.23 0 0 1-3.5 1.49 4.32 4.32 0 0 1-1.91-1.35A5.8 5.8 0 0 0 7 12a4.72 4.72 0 0 0-5 4 3.2 3.2 0 0 1 3.5-1.51z"></path></svg></span>
                   <span className="text-sm font-semibold text-neutral-500 flex-shrink-0">TailwindCSS</span>
                   </div>
-                  <div className="flex items-center space-x-2 mr-4"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none"  stroke="currentColor" width="24" height="24" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="md:h-10 md:w-10 h-4 w-4 text-neutral-500 flex-shrink-0 stroke-1"><path d="M12 12l-8 -8v16l16 -16v16l-4 -4"></path><path d="M20 12l-8 8l-4 -4"></path></svg></span>
+                  <div className="flex items-center space-x-2 mr-4"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none"  stroke="currentColor" width="24" height="24" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"   stroke-width="2" className="md:h-10 md:w-10 h-4 w-4 text-neutral-500 flex-shrink-0 stroke-1"><path d="M12 12l-8 -8v16l16 -16v16l-4 -4"></path><path d="M20 12l-8 8l-4 -4"></path></svg></span>
                   <span className="text-sm font-semibold text-neutral-500 flex-shrink-0">Framer Motion</span>
                   </div>
                   </div>
-            </div>
+              </div>
             </div>
             <div className='hidden xl:block w-full h-full relative'>
             <div className='flex flex-row items-end justify-end mb-2 w-full pr-4'>
@@ -105,19 +107,16 @@ const page = () => {
             <div className='p-auto relative overflow-hidden w-auto rounded-xl'>
             <TextRevealCard text="You know the business" revealText="We have the solution">
               <TextRevealCardTitle>Providing Exceptional Output</TextRevealCardTitle>
-                <TextRevealCardDescription>We make magic Happen.
+                <TextRevealCardDescription>We make magic happen.
                 </TextRevealCardDescription>
             </TextRevealCard>
             </div>
           </div>
         </div>
-        <div className='grid grid-cols-2'>
+        <div className='grid grid-cols-1 xl:grid-cols-2 gap-2'>
         <div>
-          <h1 className="text-lg md:text-7xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold p-5">Our Story</h1>
-          <p className='relative font-regular text-sm sm:text-xl text-zinc-500 tracking-wide mb-8 text-left max-w-2xl antialiased leading-loose'>
-          We are just students when we tackle this project it so hard for us beginners to grab a latest technology trend but we are eager and passionate to create a platform wherein artists and traders will have opportunities. It took us years to finish this project but we are determined to finish it!
-          We wouldn&#39;t be able to finish this without the help of almighty God and our family who support us all the way. We are so grateful to have them in our lives. We are so excited to share this platform to the world and we hope that this will help a lot of people to have a better future.
-          </p>
+        <h1 className="text-lg md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold p-5">Our Story</h1>
+        <TextGenerateEffect words={words} />
         </div>
         <div>
         <ParallaxScroll images={images} />

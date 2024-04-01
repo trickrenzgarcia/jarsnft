@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import Image from "next/image";
 import RaeImage from "../../../public/assets/Rae.png";
@@ -6,6 +7,9 @@ import RigorImage from "../../../public/assets/Rigor.png";
 import JeffImage from "../../../public/assets/Jeff.png";
 import { Navbar } from "@/components/(layout)";
 import { Footer } from "@/components/(layout)";
+import { SparklesCore } from "@/components/ui/sparkles";
+import { Background } from "@tsparticles/engine";
+import { BackgroundGradient } from "@/components/ui/background-gradient";
 
 // You can change any of the details below to your liking
 const teamMembers = [
@@ -51,21 +55,28 @@ const Team = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto my-auto w-full">
-        <h1 className="mt-8 text-center text-7xl">Meet the Team</h1>
-        <p className="px-auto py-auto mx-auto my-5 text-center">
-          &quot;Driven by passion for excellence&quot;
-        </p>
+      <div className="w-full absolute inset-0 h-screen">
+        <SparklesCore
+          id="tsparticlesfullpage"
+          background="transparent"
+          minSize={0.6}
+          maxSize={1.4}
+          particleDensity={100}
+          className="w-full h-screen"
+          particleColor="#FFFFFF"
+        />
       </div>
-      <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-20">
+        <h1 className="m-10 p-10 text-center text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold">Meet the Team</h1>
+        <p className="m-10 p-10 text-center text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans font-bold">&quot;Driven by passion for excellence&quot;</p>
+      <div className="mx-auto p-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-12 py-12">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {teamMembers.map((member) => (
-            <div
+            <BackgroundGradient
               key={member.name}
               className="relative transform overflow-hidden rounded shadow-lg transition duration-300 hover:shadow-2xl lg:hover:-translate-y-2"
             >
               <Image
-                className="h-56 w-full object-cover md:h-64 xl:h-80"
+                className="h-60 w-full object-cover md:h-64 xl:h-80"
                 src={member.image}
                 alt={member.name}
                 width={300}
@@ -197,12 +208,10 @@ const Team = () => {
                   </a>
                 </div>
               </div>
-            </div>
-            
+            </BackgroundGradient>
           ))}
         </div>
       </div>
-      <Footer />
     </>
   );
 };

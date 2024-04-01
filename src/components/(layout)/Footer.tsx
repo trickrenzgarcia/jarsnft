@@ -31,7 +31,7 @@ export default function Footer() {
     { href: "/about", description: "About" },
     { href: "/team", description: "Team" },
   ];
-  //#endregion
+  //#region End
 
   return (
     <footer className="container mt-16">
