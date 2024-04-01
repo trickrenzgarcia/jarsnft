@@ -19,9 +19,11 @@ import TooltipMsg from "@/components/(interfaces)/TooltipMsg";
 import { MetadataSchema } from "@/types";
 import { CustomContractMetadata } from "@thirdweb-dev/sdk";
 import { useContract, useMetadata } from "@thirdweb-dev/react";
+import { NFTCollection } from "@/lib/core/types";
 
 type BannerMetadataProps = {
   address: string;
+  metadata: NFTCollection;
 };
 
 type QueryMetadata = {
@@ -29,7 +31,10 @@ type QueryMetadata = {
   isLoading: boolean;
   isError: boolean;
 };
-export default function NFTBannerMetadata({ address }: BannerMetadataProps) {
+export default function NFTBannerMetadata({
+  address,
+  metadata: a,
+}: BannerMetadataProps) {
   const { contract } = useContract(address);
   const {
     data: metadata,
@@ -73,7 +78,7 @@ export default function NFTBannerMetadata({ address }: BannerMetadataProps) {
                 width={125}
                 height={125}
                 alt=""
-                className="aspect-square rounded-xl border object-fill"
+                className="aspect-square rounded-xl border bg-background object-fill"
               />
               <div className={cn("w-[500px]", open_sans.className)}>
                 <div className="flex w-full items-center gap-1 text-2xl font-semibold">

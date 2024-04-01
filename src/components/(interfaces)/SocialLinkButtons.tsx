@@ -17,9 +17,9 @@ export default function SocialLinkButtons() {
   const ModeToggle = dynamic(() => import("../(interfaces)/ModeToggle"));
 
   return (
-    <div className="mb-24 px-8 lg:px-20">
-      <h1 className="mb-3 text-2xl font-semibold">Join us</h1>
-      <div className="flex justify-between">
+    <div className="mb-24">
+      <h1 className="text-center md:text-left mb-3 text-2xl font-semibold">Join us</h1>
+      <div className="flex flex-col md:flex-row flex-wrap items-center md:justify-between gap-8 md:gap-0">
         <div className="flex gap-2">
           <SocialLinkButton Icon={FaFacebookF} link="" />
           <SocialLinkButton
@@ -33,7 +33,7 @@ export default function SocialLinkButtons() {
             link="https://github.com/BroJavaDevs"
           />
         </div>
-        <div>
+        <div className="">
           <ModeToggle setTheme={setTheme} theme={theme} />
         </div>
       </div>

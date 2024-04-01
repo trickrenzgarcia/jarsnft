@@ -7,20 +7,17 @@ import { notFound } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@nextui-org/react";
 import PriceRangeValue from "../_components/PriceRangeValue";
-import {
-  CustomContractMetadata,
-  useContract,
-  useMetadata,
-} from "@thirdweb-dev/react";
+import { jars } from "@/lib/core/api";
 
 // For better user experience SSG (Static Site Generation)
-// export async function generateStaticParams() {
-//   const metadatas: MetadataSchema[] = await fetch(env.NEXT_PUBLIC_BACKEND_URL+"/metadata/all").then((res) => res.json())
+// Fast loading
+export async function generateStaticParams() {
+  const metadatas = await jars.getNFTCollections();
 
-//   return metadatas.map((data: MetadataSchema) => ({
-//     address: data.cid
-//   }))
-// }
+  return metadatas.map((data) => ({
+    address: data.contract,
+  }));
+}
 
 type CollectionParams = {
   params: { address: string };
@@ -31,18 +28,15 @@ export default async function CollectionLayout({
   params: { address },
   children,
 }: CollectionParams) {
-  /* FOR DATABASE
-  const data = await getMetadata(address)
-  */
+  const metadata = await jars.getContractMetadata(address);
 
   return (
     <main>
       <header>
-        <Navbar display="fixed" />
+        <Navbar />
       </header>
-      <div className="mb-[70px] w-full" />
       <Suspense fallback={<LoadingMetadata />}>
-        <NFTBannerMetadata address={address} />
+        <NFTBannerMetadata address={address} metadata={metadata} />
       </Suspense>
       <div className="flex w-full items-start">
         <section className="sticky left-0 top-[100px] hidden h-auto w-[380px] min-w-[380px] overflow-y-auto border-r border-zinc-800 px-6 md:block">
