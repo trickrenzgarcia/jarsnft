@@ -27,7 +27,7 @@ export default function UserProvider({
       isLoading: user.isLoading,
       isLoggedIn: user.isLoggedIn,
     };
-  }, [user.isLoading, user.isLoggedIn, user.user]);
+  }, [user]);
 
   return (
     <UserContext.Provider value={userMemo}>{children}</UserContext.Provider>

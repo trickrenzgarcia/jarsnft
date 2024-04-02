@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/(layout)";
 import { Metadata } from "next";
-import ClientWrapper from "./_components/ClientWrapper";
 import ProfileBanner from "./_components/ProfileBanner";
 
 export const metadata: Metadata = {
@@ -18,10 +17,11 @@ export default function AccountLayout({
         <Navbar />
       </header>
 
-      <ClientWrapper>
+      <div className="md:container">
         <ProfileBanner />
-        <main>{children}</main>
-      </ClientWrapper>
+      </div>
+
+      <main className="md:container">{children}</main>
     </main>
   );
 }
