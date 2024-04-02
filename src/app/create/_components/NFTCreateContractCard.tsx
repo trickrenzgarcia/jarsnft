@@ -224,7 +224,7 @@ export default function NFTCreateContractCard({
     } else {
       form.setValue("symbol", form.getValues("symbol")?.toUpperCase());
     }
-  }, [acronym]);
+  }, [acronym, form]);
 
   const submitCreateContract = async (data: FormContract) => {
     ref.current?.click();
