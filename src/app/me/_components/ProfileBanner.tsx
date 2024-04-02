@@ -23,7 +23,7 @@ export default function ProfileBanner() {
   }
 
   return (
-    <div className="flex w-full flex-col bg-muted">
+    <div className="mb-8 mt-4 flex w-full flex-col rounded-lg bg-muted">
       <div className="relative h-[200px] w-auto md:h-[300px]"></div>
       <div className="absolute hidden h-[300px] w-full px-7 py-6 dark:shadow-[inset_0_-50px_100px_rgba(10,10,10,1)] md:block">
         <div className="mb-4 flex justify-between">
