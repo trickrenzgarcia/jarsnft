@@ -110,7 +110,7 @@ export class JarsAPI {
    * @returns ContractMetadata
    */
   async deployNFTCollection(contractAddress: string) {
-    return await this.request(`/deploy/nft-collection`, {
+    return await this.request<NFTCollection>(`/deploy/nft-collection`, {
       method: "POST",
       body: JSON.stringify({ contractAddress: contractAddress }),
     });
@@ -131,7 +131,9 @@ export class JarsAPI {
    * @returns - An array of NFT collections
    */
   async getNFTCollections() {
-    return await this.request<NFTCollection[]>(`/deploy/nft-collection`);
+    return await this.request<NFTCollection[]>(`/deploy/nft-collection`, {
+      next: { tags: ["nft-collection", "metadata"] },
+    });
   }
   /**
    * Get a contract metadata
@@ -140,9 +142,7 @@ export class JarsAPI {
    */
   async getContractMetadata(contractAddress: string, tags?: string[]) {
     return await this.request<NFTCollection>(`/metadata/${contractAddress}`, {
-      next: {
-        tags: tags,
-      },
+      next: { tags: ["metadata"] },
     });
   }
 }

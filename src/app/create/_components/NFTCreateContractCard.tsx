@@ -51,6 +51,9 @@ import { MdErrorOutline } from "react-icons/md";
 import { IoMdRefresh } from "react-icons/io";
 import { ProfileQuery } from "@/types/users";
 import { jars } from "@/lib/core/api";
+import { createContract } from "../actions";
+import { NFTCollection } from "@/lib/core/types";
+import { useRouter } from "next/navigation";
 
 type NFTCreateContractCardProps = {
   user: ProfileQuery;
@@ -95,6 +98,7 @@ export default function NFTCreateContractCard({
   description,
 }: NFTCreateContractCardProps) {
   const sdk = useSDK();
+  const router = useRouter();
   const [uploadImage, setUploadImage] = useState<string | null>(null);
   const [fileName, setFileName] = useState("");
   const [contractState, setContractState] = useState<
@@ -104,6 +108,9 @@ export default function NFTCreateContractCard({
   const [contractAddress, setContractAddress] = useState<string | undefined>(
     "",
   );
+  const [createdCollection, setCreatedCollection] = useState<
+    NFTCollection | undefined
+  >(undefined);
   const ref = useRef<HTMLButtonElement>(null);
 
   const form = useForm<FormContract>({
@@ -249,9 +256,8 @@ export default function NFTCreateContractCard({
       if (processContractAddress?.includes("0x")) {
         setContractState("completed");
         setContractAddress(processContractAddress);
-        const uploadedContract = await jars.deployNFTCollection(
-          processContractAddress,
-        );
+        const newCollection = await createContract(processContractAddress);
+        setCreatedCollection(newCollection);
         toast.success("Contract deployed successfully!", {
           position: "top-center",
           closeButton: true,
@@ -623,17 +629,38 @@ export default function NFTCreateContractCard({
                               Your NFT Collection has been created successfully.
                             </p>
 
+                            {(createdCollection && (
+                              <Button
+                                className="flex gap-3"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  router.push(
+                                    `/collection/${createdCollection.contract}`,
+                                  );
+                                }}
+                              >
+                                Go to NFT Collection <FaExternalLinkAlt />
+                              </Button>
+                            )) || (
+                              <Button
+                                className="flex gap-3"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  router.push(`/me`);
+                                }}
+                              >
+                                Go to Profile
+                                <FaExternalLinkAlt />
+                              </Button>
+                            )}
+
                             <Button
-                              className="flex gap-3"
                               onClick={(e) => {
                                 e.preventDefault();
-                                window.open(
-                                  `https://opensea.io/collection/${contractAddress}`,
-                                  "_self",
-                                );
+                                router.push(`/`);
                               }}
                             >
-                              Go to NFT Collection <FaExternalLinkAlt />
+                              Back to marketplace
                             </Button>
                           </div>
                         </div>

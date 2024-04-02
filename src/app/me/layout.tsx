@@ -18,7 +18,6 @@ export default function AccountLayout({
         <Navbar />
       </header>
 
-      <div className="mb-[70px] w-full" />
       <ClientWrapper>
         <ProfileBanner />
         <main>{children}</main>

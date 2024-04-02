@@ -1,11 +1,12 @@
 import { useMedia } from "react-use";
 import { NFTCard } from "../_types";
 import NFTCarousel from "./NFTCarousel";
+import { NFTCollection } from "@/lib/core/types";
 
 export default function BuySellNFT({
   collections,
 }: {
-  collections: NFTCard[];
+  collections: NFTCollection[];
 }) {
   return (
     <>

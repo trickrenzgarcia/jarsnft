@@ -17,6 +17,7 @@ import Link from "next/link";
 import React from "react";
 import NFTCard from "./NFTCard";
 import { NFTCard as NFTCardType } from "../_types";
+import { NFTCollection } from "@/lib/core/types";
 
 type AlignmentOptionType =
   | "start"
@@ -25,7 +26,7 @@ type AlignmentOptionType =
   | ((viewSize: number, snapSize: number, index: number) => number);
 
 type NFTCarouselProps = {
-  collections: NFTCardType[];
+  collections: NFTCollection[];
   withExtra?: boolean;
   align?: AlignmentOptionType;
 };
@@ -76,14 +77,14 @@ export default function NFTCarousel({
               )}
             >
               <NFTCard
-                collectionLink={data.collection}
-                itemLink={data.itemLink}
-                logo={data.logo}
+                collectionLink={data.contract}
+                itemLink={data.contract}
+                logo={data.image}
                 image={data.image}
                 name={data.name}
-                verified={data.is_verified}
-                floor={data.floor_price}
-                volume={data.volume}
+                verified={false}
+                floor={100}
+                volume={0}
               />
             </CarouselItem>
           ))}

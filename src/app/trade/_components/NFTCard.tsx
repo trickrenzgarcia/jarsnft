@@ -34,7 +34,7 @@ export default function NFTCard({
   return (
     <Card className="mx-auto h-[480px]">
       <CardHeader className="relative h-80">
-        <Link href={`/collection/${collectionLink}/${itemLink}`}>
+        <Link href={`/collection/${collectionLink}`}>
           <Image
             src={image}
             fill

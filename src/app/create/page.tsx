@@ -20,11 +20,10 @@ export default function Create() {
         </h1>
         <Link href="/create/deploy-contract" className="mx-4 md:mx-0">
           <Alert className="hover:border-blue-400 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/50">
-            <AlertTitle>NFT Drop Collection</AlertTitle>
+            <AlertTitle>NFT Collection</AlertTitle>
             <AlertDescription>
               The NFT Collection contract is suitable for when you want to have
-              a collection of unique NFTs, but not "drop" or "release" them for
-              your community to claim.
+              a collection of unique NFTs.
             </AlertDescription>
           </Alert>
         </Link>

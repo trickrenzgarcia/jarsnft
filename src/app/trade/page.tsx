@@ -8,6 +8,7 @@ import {
 } from "./_components";
 import { Suspense } from "react";
 import { NFTCard } from "./_types";
+import { jars } from "@/lib/core/api";
 
 // HARD-CODED DATA FOR NOW
 async function getCollections() {
@@ -126,7 +127,7 @@ async function getPhotosCollections() {
 }
 
 export default async function TradePage() {
-  const buySellCollections = await getCollections();
+  const buySellCollections = await jars.getNFTCollections();
   const artTrendCollections = await getArtCollections();
   const photosCollections = await getPhotosCollections();
 
