@@ -30,7 +30,7 @@ export default function Page() {
         <li>Listing an NFT for sale a fixed price</li>
       </ul>
 
-      <PageNextButton title="Getting Started" href="/learn/getting-started" />
+      <PageNextButton title="Getting Started" href="/insights/getting-started" />
     </div>
   );
 }

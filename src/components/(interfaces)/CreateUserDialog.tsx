@@ -161,7 +161,7 @@ export default function CreateUserDialog({
                   {isLoading ? <Spinner /> : "Logout"}
                 </Button>
                 <Link
-                  href="/learn/getting-started#installing-wallet"
+                  href="/insights/getting-started#installing-wallet"
                   className="text-left"
                   target="_blank"
                 >

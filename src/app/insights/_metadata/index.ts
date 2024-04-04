@@ -10,7 +10,7 @@ type LeftNavList = { name: string; href: string };
 
 export const rightNavList: RightNavListType[] = [
   {
-    href: "/learn",
+    href: "/insights",
     anchors: [
       { name: "Getting Started", anchor: "#getting-started" },
       { name: "Buying NFTs", anchor: "#buying-nfts" },
@@ -18,7 +18,7 @@ export const rightNavList: RightNavListType[] = [
     ],
   },
   {
-    href: "/learn/getting-started",
+    href: "/insights/getting-started",
     anchors: [
       { name: "Installing a wallet", anchor: "#installing-wallet" },
       { name: "Connecting your wallet", anchor: "#connect-wallet" },
@@ -26,14 +26,14 @@ export const rightNavList: RightNavListType[] = [
     ],
   },
   {
-    href: "/learn/buying-nfts",
+    href: "/insights/buying-nfts",
     anchors: [
       { name: "Buying a fixed price NFT", anchor: "#buying-fixed-nfts" },
       { name: "Making an offer on a NFT", anchor: "#making-offer" },
     ],
   },
   {
-    href: "/learn/selling-nfts",
+    href: "/insights/selling-nfts",
     anchors: [
       { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
       {
@@ -43,7 +43,7 @@ export const rightNavList: RightNavListType[] = [
     ],
   },
   {
-    href: "/learn/faq",
+    href: "/insights/faq",
     anchors: [
       {
         name: "FAQs",
@@ -54,9 +54,9 @@ export const rightNavList: RightNavListType[] = [
 ];
 
 export const leftNavList: LeftNavList[] = [
-  { name: "Welcome", href: "/learn" },
-  { name: "Getting Started", href: "/learn/getting-started" },
-  { name: "Buying NFTs", href: "/learn/buying-nfts" },
-  { name: "Selling NFTs", href: "/learn/selling-nfts" },
-  { name: "FAQs", href: "/learn/faq" },
+  { name: "Welcome", href: "/insights" },
+  { name: "Getting Started", href: "/insights/getting-started" },
+  { name: "Buying NFTs", href: "/insights/buying-nfts" },
+  { name: "Selling NFTs", href: "/insights/selling-nfts" },
+  { name: "FAQs", href: "/insights/faq" },
 ];
