@@ -27,10 +27,11 @@ export default function OnBoardingCarousel() {
         loop: true,
       }}
       plugins={[plugin.current]}
+      className="w-full"
     >
-      <CarouselContent>
+      <CarouselContent className="flex">
         {arts.map((_, i) => (
-          <CarouselItem key={i}>
+          <CarouselItem key={i} className="basis-full">
             <div className="">
               <Image
                 src={arts[i]}

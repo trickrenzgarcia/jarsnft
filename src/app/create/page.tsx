@@ -39,7 +39,7 @@ export default function Create() {
       </div>
 
       {/* Medium screen and up Art Image Carousel */}
-      <div className="hidden w-full justify-center md:flex">
+      <div className="hidden w-full max-w-xl justify-center md:flex">
         <OnBoardingCarousel />
       </div>
     </div>
