@@ -35,7 +35,7 @@ async function validateNonce(nonce: string) {
   console.log("Validated nonce");
 }
 
-const router = ThirdwebAuthAppRouter({
+const { ThirdwebAuthHandler } = ThirdwebAuthAppRouter({
   domain: "http://localhost:3000",
   wallet: new PrivateKeyWallet(
     process.env.THIRDWEB_AUTH_PRIVATE_KEY as string,
@@ -74,4 +74,4 @@ const router = ThirdwebAuthAppRouter({
   },
 });
 
-export default router;
+export { ThirdwebAuthHandler as GET, ThirdwebAuthHandler as POST };

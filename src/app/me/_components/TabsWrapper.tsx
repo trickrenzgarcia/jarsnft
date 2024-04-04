@@ -1,13 +1,32 @@
-import { useUserContext } from "@/components/(providers)";
+"use client";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { jars } from "@/lib/core/api";
-import { useAddress, useChain, useOwnedNFTs } from "@thirdweb-dev/react";
+import { useAddress, useChain } from "@thirdweb-dev/react";
+import { useEffect, useState } from "react";
 
-export default async function TabsWrapper() {
-  const nfts = await jars.getNFTsForOwner(
-    "0x18a583Eb4D800ACc57067274e6b496db7Bd7E1Fd",
-  );
+function useOwnedNFTs(walletAddress: string) {
+  const [nfts, setNFTs] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
+  useEffect(() => {
+    const fetchNFTs = async () => {
+      setLoading(true);
+      const nft = await jars.getNFTsForOwner(
+        "0x18a583Eb4D800ACc57067274e6b496db7Bd7E1Fd",
+      );
+      if (nft) {
+        setNFTs(nft);
+        setLoading(false);
+      }
+    };
+    fetchNFTs();
+  }, []);
+
+  return { nfts, isLoading: loading };
+}
+
+export default function TabsWrapper() {
   return (
     <div className="w-full ">
       <Tabs defaultValue="owned">
