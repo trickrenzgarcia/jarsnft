@@ -1,4 +1,3 @@
-import { getUser } from "@/app/api/auth/[...thirdweb]/route";
 import { useUserContext } from "@/components/(providers)";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { jars } from "@/lib/core/api";
