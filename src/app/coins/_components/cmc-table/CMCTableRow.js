@@ -7,7 +7,7 @@ import { currencyFormat } from "../../api/currencyFunctions";
 import { Sparklines, SparklinesLine } from "react-sparklines";
 
 const styles = {
-  tableRow: `text-white border-b border-gray-800 text-[0.93rem]`,
+  tableRow: `border-b border-gray-800 text-[0.93rem]`,
 };
 
 const CMCTableRow = ({
@@ -44,22 +44,20 @@ const CMCTableRow = ({
         <td>
           <p
             className={`flex w-full gap-1 text-center ${
-              hRate < 0 ? "text-[#ff3a33]" : "text-green-400"
+              hRate < 0 ? "text-red-500" : "text-green"
             }`}
           >
-            {" "}
-            {hRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}{" "}
+            {hRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
             {roundTwoDecimalPlaces(hRate)}%
           </p>
         </td>
         <td>
           <p
             className={`flex w-full gap-1 text-center ${
-              dRate < 0 ? "text-[#ff3a33]" : "text-green-400"
+              dRate < 0 ? "text-red-500" : "text-green"
             }`}
           >
-            {" "}
-            {dRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}{" "}
+            {dRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
             {roundTwoDecimalPlaces(dRate)}%
           </p>
         </td>

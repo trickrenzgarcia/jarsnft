@@ -11,7 +11,7 @@ const CMCTable = () => {
   );
 
   return (
-    <div className="font-bold text-white">
+    <div className="font-bold">
       <div className="mx-auto max-w-screen-2xl">
         <table className="w-full">
           <CMCtableHeader />

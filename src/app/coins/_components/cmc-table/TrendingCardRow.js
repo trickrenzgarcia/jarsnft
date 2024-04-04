@@ -46,7 +46,7 @@ const TrendingCardRow = ({ number, icon, name, sparklines, percentChange }) => {
         )}
       </div>
       <div className="mx-3">
-        <p className="font-bold text-white">{formatNumber(percentChange)} </p>
+        <p className="font-bold">{formatNumber(percentChange)} </p>
       </div>
     </div>
   );

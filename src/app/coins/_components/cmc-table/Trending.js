@@ -11,7 +11,7 @@ import { TbCaretDownFilled } from "react-icons/tb";
 
 const styles = {
   trendingWrapper: `mx-auto max-w-screen-2xl`,
-  h1: `font-bold text-3xl text-white`,
+  h1: `font-bold text-3xl`,
   flexCenter: `flex items-center`,
 };
 
@@ -23,7 +23,7 @@ const Trending = async () => {
     const formattedMarketCapUSD = (totalMarketCapUSD / 1e12).toFixed(3);
 
     return (
-      <div className="text-white">
+      <div>
         <div className={styles.trendingWrapper}>
           <div className="flex justify-between">
             <h1 className={styles.h1}>
@@ -37,19 +37,19 @@ const Trending = async () => {
               a
             </p>
             <span
-              className={`flex gap-1 ${
-                percentageChange < 0 ? "text-red-500" : "text-green-400"
-              }`}
+              className={`flex gap-1 ${percentageChange < 0 ? "text-red-500" : "text-green-400"}`}
             >
-              {" "}
               {percentageChange < 0 ? (
                 <TbCaretDownFilled />
               ) : (
                 <TbCaretUpFilled />
               )}
-              {roundTwoDecimalPlaces(percentageChange)} %
+              {roundTwoDecimalPlaces(percentageChange)} %&nbsp;
             </span>
-            <p> decrease over the last day.</p>
+            <p className="gap-1">
+              {percentageChange < 0 ? "decrease" : "increase"} over the last
+              day.
+            </p>
           </div>
           <br />
           <div className={styles.flexCenter}>
@@ -66,7 +66,6 @@ const Trending = async () => {
     );
   } catch (error) {
     console.error("Error fetching global data:", error);
-    // You can handle the error or render an error message here
     return <div>Error fetching data</div>;
   }
 };
