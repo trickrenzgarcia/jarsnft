@@ -5,6 +5,7 @@ import DetailsCard from "../_components/DetailsCard";
 import ProfileCard from "../_components/ProfileCard";
 import { useUserContext } from "@/components/(providers)";
 import { Loading } from "@/components/(skeletons)";
+import NoConnectedWallet from "@/app/me/_components/NoConnectedWallet";
 
 export default function DeployContractPage() {
   const user = useUserContext();
@@ -17,13 +18,17 @@ export default function DeployContractPage() {
     );
   }
 
+  if (!user.isLoggedIn) {
+    return <NoConnectedWallet />;
+  }
+
   return (
     <main className="mx-auto flex w-full flex-col justify-center gap-5 md:flex-row md:py-8">
       <section>
         <NFTCreateContractCard
           user={user}
           title="Create NFT Collection"
-          description='The NFT Collection contract is suitable for when you want to have a collection of unique NFTs, but not "drop" or "release" them for your community to claim.'
+          description="The NFT Collection contract is suitable for when you want to have a collection of unique NFTs."
         />
       </section>
       <section className="hidden lg:block">

@@ -145,6 +145,12 @@ export class JarsAPI {
       next: { tags: ["metadata"] },
     });
   }
+
+  async getNFTsForOwner(walletAddress: string) {
+    return await this.request(`/nfts/${walletAddress}`, {
+      next: { tags: ["nfts"] },
+    });
+  }
 }
 
 export const jars = new JarsAPI(BASE_URL, {
