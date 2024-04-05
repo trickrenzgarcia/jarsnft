@@ -1,0 +1,88 @@
+{
+  "contract": {
+    "address": "0x317197Bcbf59603cd999fFC9e090279b35b60249",
+    "name": "Hev Abi",
+    "symbol": "HAV",
+    "totalSupply": "3",
+    "tokenType": "ERC721",
+    "contractDeployer": null,
+    "deployedBlockNumber": null,
+    "openSeaMetadata": {
+      "floorPrice": null,
+      "collectionName": null,
+      "collectionSlug": null,
+      "safelistRequestStatus": null,
+      "imageUrl": null,
+      "description": null,
+      "externalUrl": null,
+      "twitterUsername": null,
+      "discordUrl": null,
+      "bannerImageUrl": null,
+      "lastIngestedAt": null
+    },
+    "isSpam": null,
+    "spamClassifications": []
+  },
+  "tokenId": "0",
+  "tokenType": "ERC721",
+  "name": "Hev Abi #1",
+  "description": "Para sa streets",
+  "tokenUri": "https://ipfs.io/ipfs/QmZgQZNiNYttiTC2cYUhufFmn6Rsic1yE5NKERTQMoQxap/0",
+  "image": {
+    "cachedUrl": "https://ipfs.io/ipfs/QmZNybkUcT4hQj5ZjPoRQk9UjSyEPAq32dSqPs8WUZHTbd/DSC09383-resized-1-scaled-e1700222502528.jpg",
+    "thumbnailUrl": null,
+    "pngUrl": null,
+    "contentType": null,
+    "size": null,
+    "originalUrl": "https://ipfs.io/ipfs/QmZNybkUcT4hQj5ZjPoRQk9UjSyEPAq32dSqPs8WUZHTbd/DSC09383-resized-1-scaled-e1700222502528.jpg"
+  },
+  "raw": {
+    "tokenUri": "ipfs://QmZgQZNiNYttiTC2cYUhufFmn6Rsic1yE5NKERTQMoQxap/0",
+    "metadata": {
+      "image": "ipfs://QmZNybkUcT4hQj5ZjPoRQk9UjSyEPAq32dSqPs8WUZHTbd/DSC09383-resized-1-scaled-e1700222502528.jpg",
+      "external_url": "",
+      "background_color": "1A1C29",
+      "name": "Hev Abi #1",
+      "description": "Para sa streets",
+      "customImage": "",
+      "attributes": [
+        {
+          "value": "black",
+          "trait_type": "cap"
+        },
+        {
+          "value": "white",
+          "trait_type": "shirt"
+        },
+        {
+          "value": "brown",
+          "trait_type": "pants"
+        },
+        {
+          "value": "red",
+          "trait_type": "baller"
+        },
+        {
+          "value": "long",
+          "trait_type": "hairstyle"
+        }
+      ],
+      "customAnimationUrl": ""
+    },
+    "error": null
+  },
+  "collection": null,
+  "mint": {
+    "mintAddress": "0x18a583eb4d800acc57067274e6b496db7bd7e1fd",
+    "blockNumber": 5102662,
+    "timestamp": "2024-01-17T14:26:48Z",
+    "transactionHash": "0xfef30fe6329e11c3d107a5fe609027495a8b5a0be309fb58f0aea087b6fa0c05"
+  },
+  "owners": null,
+  "timeLastUpdated": "2024-01-17T14:26:51.507Z",
+  "balance": "1",
+  "acquiredAt": {
+    "blockTimestamp": null,
+    "blockNumber": null
+  }
+}

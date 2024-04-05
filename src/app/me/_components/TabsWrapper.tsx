@@ -1,32 +1,33 @@
 "use client";
 
+import { useUserContext } from "@/components/(providers)";
+import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { jars } from "@/lib/core/api";
-import { useAddress, useChain } from "@thirdweb-dev/react";
+import { AlchemyNFTs } from "@/lib/core/types";
+import { ipfsToCfIpfs } from "@/lib/utils";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
-function useOwnedNFTs(walletAddress: string) {
-  const [nfts, setNFTs] = useState<any>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+export default function TabsWrapper() {
+  const { user } = useUserContext();
+  const [nfts, setNFTs] = useState<AlchemyNFTs>();
 
   useEffect(() => {
-    const fetchNFTs = async () => {
-      setLoading(true);
-      const nft = await jars.getNFTsForOwner(
-        "0x18a583Eb4D800ACc57067274e6b496db7Bd7E1Fd",
-      );
-      if (nft) {
-        setNFTs(nft);
-        setLoading(false);
-      }
-    };
-    fetchNFTs();
-  }, []);
+    async function getNFTs(walletAddress: string) {
+      const res = await fetch(`http://localhost:5000/nfts/${walletAddress}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXRLZXkiOiJteXNlY3JldHhkeGQiLCJpYXQiOjE3MDkxMzUyMDYsImV4cCI6MTAzNDkxMzUyMDZ9.TNEMDyIqMuQdZ1NO9iQnPojvkY4ApOk-JozsfTdMetc",
+        },
+      });
+      const data = (await res.json()) as AlchemyNFTs;
 
-  return { nfts, isLoading: loading };
-}
+      if (data) setNFTs(data);
+    }
+    if (user) getNFTs(user.address);
+  }, [user]);
 
-export default function TabsWrapper() {
   return (
     <div className="w-full ">
       <Tabs defaultValue="owned">
@@ -38,11 +39,22 @@ export default function TabsWrapper() {
         <TabsContent value="owned">
           <div className="w-full rounded-md border p-2">
             <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-              <div>1</div>
+              {nfts?.ownedNfts.map((nft) => (
+                <Card className="">
+                  <Image
+                    src={ipfsToCfIpfs(nft.image.originalUrl)}
+                    alt={nft.name}
+                    width={512}
+                    height={512}
+                    className="aspect-square"
+                  />
+                </Card>
+              ))}
+              {/* <div>1</div>
               <div>2</div>
               <div>3</div>
               <div>4</div>
-              <div>5</div>
+              <div>5</div> */}
             </div>
           </div>
         </TabsContent>

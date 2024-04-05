@@ -22,3 +22,82 @@ export type NFTCollection = {
   trusted_forwarders: string[];
   created_at: string;
 };
+
+export type OpenSeaMetadata = {
+  floorPrice: number | null;
+  collectionName: string | null;
+  collectionSlug: string | null;
+  safelistRequestStatus: string | null;
+  imageUrl: string | null;
+  description: string | null;
+  externalUrl: string | null;
+  twitterUsername: string | null;
+  discordUrl: string | null;
+  bannerImageUrl: string | null;
+  lastIngestedAt: string | null;
+};
+
+export type AlchemyContract = {
+  contract: {
+    andress: string;
+    name: string;
+    symbol?: string;
+    totalSupply?: string;
+    tokenType: string;
+    openSeaMetadata: OpenSeaMetadata;
+    isSpam: boolean | null;
+    spamClassifications: any[];
+  };
+  tokenId: string;
+  tokenType: string;
+  name: string;
+  description: string;
+  tokenUri: string;
+  image: {
+    cachedUrl: string | null;
+    thumbnailUrl: string | null;
+    pngUrl: string;
+    contentType: string | null;
+    size: string | null;
+    originalUrl: string;
+  };
+  raw: {
+    tokenUri: string | null;
+    metadata: {
+      image: string | null;
+      external_url: string | null;
+      background_color: string | null;
+      name: string;
+      description: string | null;
+      customImage: string | null;
+      attibutes: any[] | null;
+      customAnimationUrl: string;
+    };
+    error: string | null;
+  };
+  collection: string | null;
+  mint: {
+    mintAddress: string;
+    blockNumber: number;
+    timestamp: string;
+    transactionHash: string;
+  };
+  owners: any[] | null;
+  timeLastUpdated: string;
+  balance: string;
+  acquiredAt: {
+    blockTimestamp: string | null;
+    blockNumber: number | null;
+  };
+};
+
+export type AlchemyNFTs = {
+  ownedNfts: AlchemyContract[];
+  pageKey: string | number | null;
+  totalCount: number;
+  validAt: {
+    blockHash: string;
+    blockNumber: number | null;
+    blockTimestamp: string | null;
+  };
+};
