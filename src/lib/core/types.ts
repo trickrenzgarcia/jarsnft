@@ -37,7 +37,7 @@ export type OpenSeaMetadata = {
   lastIngestedAt: string | null;
 };
 
-export type MoralisContract = {
+export type AlchemyContract = {
   contract: {
     andress: string;
     name: string;
@@ -91,8 +91,8 @@ export type MoralisContract = {
   };
 };
 
-export type MoralisNFTs = {
-  ownedNfts: MoralisContract[];
+export type AlchemyNFTs = {
+  ownedNfts: AlchemyContract[];
   pageKey: string | number | null;
   totalCount: number;
   validAt: {

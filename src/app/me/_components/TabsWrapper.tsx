@@ -3,14 +3,14 @@
 import { useUserContext } from "@/components/(providers)";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MoralisNFTs } from "@/lib/core/types";
+import { AlchemyNFTs } from "@/lib/core/types";
 import { ipfsToCfIpfs } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function TabsWrapper() {
   const { user } = useUserContext();
-  const [nfts, setNFTs] = useState<MoralisNFTs>();
+  const [nfts, setNFTs] = useState<AlchemyNFTs>();
 
   useEffect(() => {
     async function getNFTs(walletAddress: string) {
@@ -21,7 +21,7 @@ export default function TabsWrapper() {
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXRLZXkiOiJteXNlY3JldHhkeGQiLCJpYXQiOjE3MDkxMzUyMDYsImV4cCI6MTAzNDkxMzUyMDZ9.TNEMDyIqMuQdZ1NO9iQnPojvkY4ApOk-JozsfTdMetc",
         },
       });
-      const data = (await res.json()) as MoralisNFTs;
+      const data = (await res.json()) as AlchemyNFTs;
 
       if (data) setNFTs(data);
     }
