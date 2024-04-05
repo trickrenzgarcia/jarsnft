@@ -7,6 +7,13 @@ type RightNavListType = {
 };
 
 type LeftNavList = { name: string; href: string };
+type LeftNewList = { 
+  topic: string; 
+  child: {
+    name: string;
+    href: string;
+  }[]; 
+};
 
 export const rightNavList: RightNavListType[] = [
   {
@@ -60,3 +67,38 @@ export const leftNavList: LeftNavList[] = [
   { name: "Selling NFTs", href: "/insights/selling-nfts" },
   { name: "FAQs", href: "/insights/faq" },
 ];
+
+export const leftNewList: LeftNewList[] =[
+  {
+    topic: "1 Started",
+    child: [
+      {name: "1 a wallet", href: "/learn/getting-started"},
+      {name: "2 a wallet", href: "/learn/getting-started"},
+      {name: "3 a wallet", href: "/learn/getting-started"}      
+    ]
+  },
+  {
+    topic: "2 Started",
+    child: [
+      {name: "4 a wallet", href: "/learn/getting-started"},
+      {name: "5 a wallet", href: "/learn/getting-started"},
+      {name: "6 a wallet", href: "/learn/getting-started"}      
+    ]
+  },
+  {
+    topic: "3 Started",
+    child: [
+      {name: "7 a wallet", href: "/learn/getting-started"},
+      {name: "8 a wallet", href: "/learn/getting-started"},
+      {name: "9 a wallet", href: "/learn/getting-started"}      
+    ]
+  },
+  {
+    topic: "4 Started",
+    child: [
+      {name: "10 a wallet", href: "/learn/getting-started"},
+      {name: "11 a wallet", href: "/learn/getting-started"},
+      {name: "12 a wallet", href: "/learn/getting-started"}      
+    ]
+  },
+]
