@@ -43,7 +43,7 @@ export default function Navbar() {
               Coin Analytics
             </Link>
             <Link
-              href="/learn"
+              href="/insights"
               className="cursor-pointer px-3 font-semibold hover:text-zinc-500"
             >
               Insights

@@ -28,6 +28,7 @@ const config = {
     },
     extend: {
       colors: {
+        green: "#2DFE54",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -84,14 +85,13 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate"), nextui(), addVariablesForColors],
-  
 } satisfies Config;
 function addVariablesForColors({ addBase, theme }: any) {
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val]),
   );
- 
+
   addBase({
     ":root": newVars,
   });

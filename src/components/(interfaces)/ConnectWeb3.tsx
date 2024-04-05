@@ -61,7 +61,7 @@ const LoginWelcomeScreen = () => {
         </motion.div>
         <p className="mt-2 font-medium">Connect your wallet to trade NFTs.</p>
         <Link
-          href="/learn/getting-started#installing-wallet"
+          href="/insights/getting-started#installing-wallet"
           target="_blank"
           className="mt-40 cursor-pointer text-gray-300 hover:text-white"
         >

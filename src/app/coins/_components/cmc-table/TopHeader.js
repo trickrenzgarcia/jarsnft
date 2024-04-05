@@ -54,7 +54,7 @@ const TopHeader = async () => {
         <span className="d-inline-block mr-3">
           <b className="mr-1">
             <i className="d-inline-block mr-1" />
-            <span>Gas Fee:</span>
+            <span>Gas Fee: </span>
           </b>
           <TooltipProvider>
             <Tooltip>

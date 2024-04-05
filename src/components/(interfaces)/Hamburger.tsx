@@ -24,7 +24,7 @@ export default function Hamburger() {
                             <Link href="/collection" className="w-full text-xl text-center py-6 hover:opacity-90">Collections</Link>
                             <Link href="/trade" className="w-full text-xl text-center py-6 hover:opacity-90">Trade</Link>
                             <Link href="/coins" className="w-full text-xl text-center py-6 hover:opacity-90">Coin Analytics</Link>
-                            <Link href="/learn" className="w-full text-xl text-center py-6 hover:opacity-90">Insights</Link>
+                            <Link href="/insights" className="w-full text-xl text-center py-6 hover:opacity-90">Insights</Link>
                         </nav>
                     </section>
             }

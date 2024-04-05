@@ -10,8 +10,8 @@ export default function LearnNavbar() {
   return (
     <header className='sticky top-0 z-50 w-full border-b border-gray-300 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
       <div className='container flex h-14 max-w-screen-2xl items-center justify-between'>
-        <Link href='/learn'>
-          <h1 className='text-3xl'>Learn</h1>
+        <Link href='/insights'>
+          <h1 className='text-3xl'>Insights</h1>
         </Link>
         <Button onClick={() => router.push("/")}>
           Go to JarsNFT <FiExternalLink className="text-md ml-2" />{" "}
