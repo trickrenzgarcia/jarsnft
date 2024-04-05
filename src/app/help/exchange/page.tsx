@@ -8,7 +8,8 @@ const page = () => {
         Exchange Cryptocurrency
       </h1>
       <h1 className="text-center text-2xl">
-        Prerequisites: Metamask Wallet, Decentralized Exchange Platforms
+        Prerequisites: Metamask Wallet, Centralized Exchange Platforms, Bank
+        Transfer or GCash
       </h1>
       <div className="container h-screen w-full">
         <div className="mt-5 grid grid-cols-4 justify-center justify-items-center gap-5">
@@ -40,11 +41,11 @@ const page = () => {
           </div>
           <div>
             <p className="text-xl">
-              Step 3 : Find and click on the cryptocurrency you want to deposit/
-              withdraw.
+              Step 3 : Find and click on the cryptocurrency you want to
+              deposit/withdraw/ buy .
             </p>
             <Image
-              src="/assets/learnPics/Guide.png"
+              src="/assets/learnPics/Guide3.png"
               alt="pictureGuide"
               width={400}
               height={200}
@@ -53,10 +54,11 @@ const page = () => {
           </div>
           <div>
             <p className="text-xl">
-              Step 4 : Click on the &#34;Deposit&#34; button and wait to finish.
+              Step 4 : Click on the &#34;Add New Card&#34; button and confirm
+              mode of payment.
             </p>
             <Image
-              src="/assets/learnPics/Guide.png"
+              src="/assets/learnPics/Guide4.png"
               alt="pictureGuide"
               width={400}
               height={200}
