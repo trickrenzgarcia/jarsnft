@@ -39,7 +39,7 @@ export type OpenSeaMetadata = {
 
 export type AlchemyContract = {
   contract: {
-    andress: string;
+    address: string;
     name: string;
     symbol?: string;
     totalSupply?: string;

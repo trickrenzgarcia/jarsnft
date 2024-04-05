@@ -86,6 +86,13 @@ export function shortenFileName(
 
 export function ipfsToCfIpfs(urlStr: string): string {
   const url = new URL(urlStr, "https://ipfs.io");
+
+  if (url.hostname !== "ipfs.io") {
+    return "";
+  }
+
+  if (!urlStr) return "";
+
   const cid = url.pathname.split("/")[1];
   return `https://cf-ipfs.com/${cid}${url.pathname.slice(cid.length + 1)}${url.search}`;
 }

@@ -1,11 +1,12 @@
 "use client";
 
 import { useUserContext } from "@/components/(providers)";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlchemyNFTs } from "@/lib/core/types";
 import { ipfsToCfIpfs } from "@/lib/utils";
-import Image from "next/image";
+import { Image } from "@nextui-org/react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function TabsWrapper() {
@@ -28,8 +29,10 @@ export default function TabsWrapper() {
     if (user) getNFTs(user.address);
   }, [user]);
 
+  console.log(nfts);
+
   return (
-    <div className="w-full ">
+    <div className="mb-8 w-full">
       <Tabs defaultValue="owned">
         <TabsList>
           <TabsTrigger value="owned">Owned</TabsTrigger>
@@ -38,23 +41,27 @@ export default function TabsWrapper() {
         </TabsList>
         <TabsContent value="owned">
           <div className="w-full rounded-md border p-2">
-            <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            <div className="grid auto-rows-auto grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {nfts?.ownedNfts.map((nft) => (
-                <Card className="">
-                  <Image
-                    src={ipfsToCfIpfs(nft.image.originalUrl)}
-                    alt={nft.name}
-                    width={512}
-                    height={512}
-                    className="aspect-square"
-                  />
+                <Card className="row-auto w-full">
+                  <Link href={`${nft.contract.address}/${nft.tokenId}`}>
+                    <CardContent>
+                      <div className="flex items-center">
+                        <div className="h-full w-full overflow-hidden">
+                          <Image
+                            isBlurred
+                            className="h-full w-full object-cover object-center"
+                            width={512}
+                            height={512}
+                            src={ipfsToCfIpfs(nft.image.originalUrl)}
+                            alt={nft.name}
+                          />
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Link>
                 </Card>
               ))}
-              {/* <div>1</div>
-              <div>2</div>
-              <div>3</div>
-              <div>4</div>
-              <div>5</div> */}
             </div>
           </div>
         </TabsContent>
