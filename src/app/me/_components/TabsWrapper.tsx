@@ -29,8 +29,6 @@ export default function TabsWrapper() {
     if (user) getNFTs(user.address);
   }, [user]);
 
-  console.log(nfts);
-
   return (
     <div className="mb-8 w-full">
       <Tabs defaultValue="owned">
