@@ -29,7 +29,7 @@ export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
         {nftCollections.map((collection, index) => (
           <CarouselItem
             key={index}
-            className="basis-1/2 md:basis-1/3 lg:basis-1/5 xl:basis-1/6"
+            className="basis-[75%] md:basis-1/3 lg:basis-1/5 xl:basis-1/6"
           >
             <div className="cursor-pointer duration-100 ease-out hover:-translate-y-1">
               <Link href={`/collection/${collection.contract}`}>
