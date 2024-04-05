@@ -22,6 +22,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "**.**.cf-ipfs.com",
       },
+      {
+        protocol: "https",
+        hostname: "ipfs.io",
+      },
+      {
+        protocol: "https",
+        hostname: "cf-ipfs.com",
+      },
     ],
   },
 };
