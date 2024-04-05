@@ -629,39 +629,28 @@ export default function NFTCreateContractCard({
                               Your NFT Collection has been created successfully.
                             </p>
 
-                            {(createdCollection && (
-                              <Button
-                                className="flex gap-3"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  router.push(
-                                    `/collection/${createdCollection.contract}`,
-                                  );
-                                }}
-                              >
-                                Go to NFT Collection <FaExternalLinkAlt />
-                              </Button>
-                            )) || (
-                              <Button
-                                className="flex gap-3"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  router.push(`/me`);
-                                }}
-                              >
-                                Go to Profile
-                                <FaExternalLinkAlt />
-                              </Button>
-                            )}
-
-                            <Button
-                              onClick={(e) => {
-                                e.preventDefault();
-                                router.push(`/`);
-                              }}
-                            >
-                              Back to marketplace
-                            </Button>
+                            {createdCollection && (
+                                <Button
+                                  className="flex gap-3"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    router.push(
+                                      `/collection/${createdCollection.contract}`,
+                                    );
+                                  }}
+                                >
+                                  Go to NFT Collection <FaExternalLinkAlt />
+                                </Button>
+                              ) && (
+                                <Button
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    router.push(`/`);
+                                  }}
+                                >
+                                  Back to marketplace
+                                </Button>
+                              )}
                           </div>
                         </div>
                       )}
