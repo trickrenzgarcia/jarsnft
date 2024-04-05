@@ -39,16 +39,16 @@ export default function TabsWrapper() {
         </TabsList>
         <TabsContent value="owned">
           <div className="w-full rounded-md border p-2">
-            <div className="grid auto-rows-auto grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            <div className="grid grid-flow-dense auto-rows-auto grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-[repeat(5,_minmax(0,_1fr))]">
               {nfts?.ownedNfts.map((nft) => (
-                <Card className="row-auto w-full">
-                  <Link href={`${nft.contract.address}/${nft.tokenId}`}>
+                <Card className="w-full">
+                  <Link href={`${nft.contract.address}`}>
                     <CardContent>
                       <div className="flex items-center">
                         <div className="h-full w-full overflow-hidden">
                           <Image
                             isBlurred
-                            className="h-full w-full object-cover object-center"
+                            className="h-full w-full object-cover"
                             width={512}
                             height={512}
                             src={ipfsToCfIpfs(nft.image.originalUrl)}
