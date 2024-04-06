@@ -32,7 +32,10 @@ export default function ProfileBanner({
               <div className="">
                 <Skeleton className="h-[125px] w-[125px] rounded-full bg-gray-300 dark:bg-zinc-700" />
               </div>
-              <div className="flex w-full items-center gap-1 text-4xl font-bold"></div>
+              <div className="flex w-full flex-col gap-1 text-4xl font-bold">
+                <Skeleton className="h-8 w-[190px] bg-gray-300 dark:bg-zinc-700" />
+                <Skeleton className="h-8 w-[150px] bg-gray-300 dark:bg-zinc-700" />
+              </div>
             </div>
           </div>
         </div>
@@ -48,7 +51,12 @@ export default function ProfileBanner({
           <div className="flex items-center gap-3">
             <MinidentIconImg address={user.address} width={125} height={125} />
 
-            <div className={cn(open_sans.className, "w-[600px]")}>
+            <div
+              className={cn(
+                open_sans.className,
+                "flex w-[600px] flex-col gap-2",
+              )}
+            >
               <div className="flex w-full items-center gap-1 text-4xl font-bold">
                 <div className="truncate">
                   <h2 className="truncate">{user.session.name || ""}</h2>
@@ -69,6 +77,7 @@ export default function ProfileBanner({
               </div>
             </div>
           </div>
+          <div>Button</div>
         </div>
       </div>
     </div>
