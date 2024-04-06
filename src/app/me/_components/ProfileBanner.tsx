@@ -10,22 +10,40 @@ import AddressClipboard from "@/components/(interfaces)/AddressClipboard";
 import { useUserContext } from "@/components/(providers)";
 import LoadingBackground from "./LoadingBackground";
 import NoConnectedWallet from "./NoConnectedWallet";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ProfileQuery } from "@/types/users";
 
-export default function ProfileBanner() {
-  const { user, isLoading, isLoggedIn } = useUserContext();
+export default function ProfileBanner({
+  user: userContext,
+}: {
+  user: ProfileQuery;
+}) {
+  const { user, isLoading } = userContext;
 
   if (isLoading) {
-    return <LoadingBackground />;
-  }
-
-  if (!isLoggedIn) {
-    return <NoConnectedWallet />;
+    return (
+      <div className="mb-8 mt-4 flex w-full flex-col rounded-lg dark:shadow-[inset_0_0px_50px_rgba(10,10,10,1)]">
+        <div className="relative h-[200px] w-auto md:h-[300px]">
+          <Skeleton className="h-[200px] w-full rounded-lg md:h-[300px]" />
+        </div>
+        <div className="absolute hidden h-[300px] w-full px-7 py-6 md:block">
+          <div className="mb-4 flex justify-between">
+            <div className="flex items-center gap-3">
+              <div className="">
+                <Skeleton className="h-[125px] w-[125px] rounded-full bg-gray-300 dark:bg-zinc-700" />
+              </div>
+              <div className="flex w-full items-center gap-1 text-4xl font-bold"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="mb-8 mt-4 flex w-full flex-col rounded-lg bg-muted">
+    <div className="mb-8 mt-4 flex w-full flex-col rounded-lg bg-muted dark:shadow-[inset_0_0px_50px_rgba(10,10,10,1)]">
       <div className="relative h-[200px] w-auto md:h-[300px]"></div>
-      <div className="absolute hidden h-[300px] w-full px-7 py-6 dark:shadow-[inset_0_-50px_100px_rgba(10,10,10,1)] md:block">
+      <div className="absolute hidden h-[300px] w-full px-7 py-6 md:block">
         <div className="mb-4 flex justify-between">
           <div className="flex items-center gap-3">
             <MinidentIconImg address={user.address} width={125} height={125} />
