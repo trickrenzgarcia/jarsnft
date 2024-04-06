@@ -22,7 +22,7 @@ export default function ProfileBanner({
 
   if (isLoading) {
     return (
-      <div className="mb-8 mt-4 flex w-full flex-col rounded-lg dark:shadow-[inset_0_0px_50px_rgba(10,10,10,1)]">
+      <div className="mb-8 flex w-full flex-col rounded-lg dark:shadow-[inset_0_0px_50px_rgba(10,10,10,1)] md:mt-4">
         <div className="relative h-[200px] w-auto md:h-[300px]">
           <Skeleton className="h-[200px] w-full rounded-lg md:h-[300px]" />
         </div>
@@ -41,7 +41,7 @@ export default function ProfileBanner({
   }
 
   return (
-    <div className="mb-8 mt-4 flex w-full flex-col rounded-lg bg-muted dark:shadow-[inset_0_0px_50px_rgba(10,10,10,1)]">
+    <div className="mb-8 flex w-full flex-col rounded-lg bg-muted dark:shadow-[inset_0_0px_50px_rgba(10,10,10,1)] md:mt-4">
       <div className="relative h-[200px] w-auto md:h-[300px]"></div>
       <div className="absolute hidden h-[300px] w-full px-7 py-6 md:block">
         <div className="mb-4 flex justify-between">
