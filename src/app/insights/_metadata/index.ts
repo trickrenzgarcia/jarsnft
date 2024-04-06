@@ -33,6 +33,13 @@ export const rightNavList: RightNavListType[] = [
     ],
   },
   {
+    href: "/insights/setup-wallet",
+    anchors: [
+      { name: "Installing a wallet", anchor: "#installing-wallet" },
+      { name: "Connecting your wallet", anchor: "#connect-wallet" },
+    ],
+  },
+  {
     href: "/insights/buying-nfts",
     anchors: [
       { name: "Buying a fixed price NFT", anchor: "#buying-fixed-nfts" },
@@ -70,35 +77,34 @@ export const leftNavList: LeftNavList[] = [
 
 export const leftNewList: LeftNewList[] =[
   {
-    topic: "1 Started",
+    topic: "Getting Started",
     child: [
-      {name: "1 a wallet", href: "/learn/getting-started"},
-      {name: "2 a wallet", href: "/learn/getting-started"},
-      {name: "3 a wallet", href: "/learn/getting-started"}      
+      {name: "Setup up your wallet", href: "/insights/setup-wallet"},
+      {name: "Creating your profile", href: "/insights/create-profile"},
+      {name: "Create your NFT", href: "/insights/create-nft"},
+      {name: "How to trade your NFT", href: "/insights/trade-nft"}
     ]
   },
   {
-    topic: "2 Started",
+    topic: "Non-Fungible Token",
     child: [
-      {name: "4 a wallet", href: "/learn/getting-started"},
-      {name: "5 a wallet", href: "/learn/getting-started"},
-      {name: "6 a wallet", href: "/learn/getting-started"}      
+      {name: "What is an NFT?", href: "/insights/what-is-nft"},
+      {name: "What makes NFT Valuable?", href: "/insights/what-makes-nft-valuable"}
     ]
   },
   {
-    topic: "3 Started",
+    topic: "Blockchain",
     child: [
-      {name: "7 a wallet", href: "/learn/getting-started"},
-      {name: "8 a wallet", href: "/learn/getting-started"},
-      {name: "9 a wallet", href: "/learn/getting-started"}      
+      {name: "What is the blockchain?", href: "/insights/what-is-blockchain"},
+      {name: "What are gas fees?", href: "/insights/what-are-gas-fees"},
+      {name: "What is cryptocurrency?", href: "/insights/what-is-crypto"}      
     ]
   },
   {
-    topic: "4 Started",
+    topic: "Guides",
     child: [
-      {name: "10 a wallet", href: "/learn/getting-started"},
-      {name: "11 a wallet", href: "/learn/getting-started"},
-      {name: "12 a wallet", href: "/learn/getting-started"}      
+      {name: "Exchange Cryptocurrency", href: "/insights/exchange-crypto"},
+      {name: "Protect your account", href: "/insights/protect-account"}
     ]
   },
 ]
