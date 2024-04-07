@@ -27,7 +27,7 @@ export default function Create() {
             </AlertDescription>
           </Alert>
         </Link>
-        {/* <Link href="/create/mint" className="mx-4 md:mx-0">
+        <Link href="/create/mint" className="mx-4 md:mx-0">
           <Alert className="cursor-pointer hover:border-indigo-400 hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-500/50">
             <AlertTitle>Mint an NFT</AlertTitle>
             <AlertDescription>
@@ -35,7 +35,7 @@ export default function Create() {
               single NFT or a small batch of NFTs.
             </AlertDescription>
           </Alert>
-        </Link> */}
+        </Link>
       </div>
 
       {/* Medium screen and up Art Image Carousel */}

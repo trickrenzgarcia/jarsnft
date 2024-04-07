@@ -9,8 +9,8 @@ import NoConnectedWallet from "./NoConnectedWallet";
 export default function ProfileWrapper() {
   const user = useUserContext();
 
-  if(!user.isLoading && !user.isLoggedIn) {
-    return <NoConnectedWallet />
+  if (!user.isLoading && !user.isLoggedIn) {
+    return <NoConnectedWallet />;
   }
 
   return (
