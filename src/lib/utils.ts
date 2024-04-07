@@ -100,3 +100,12 @@ export function ipfsToCfIpfs(urlStr: string): string {
 export function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+export function truncate(str: string, maxLength: number): string {
+  if (str.length <= maxLength) {
+    return str;
+  } else {
+    // Truncate the string and append "..." to indicate truncation
+    return str.slice(0, maxLength) + "...";
+  }
+}
