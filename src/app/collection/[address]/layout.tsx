@@ -9,16 +9,6 @@ import { Input } from "@nextui-org/react";
 import PriceRangeValue from "../_components/PriceRangeValue";
 import { jars } from "@/lib/core/api";
 
-// For better user experience SSG (Static Site Generation)
-// Fast loading
-export async function generateStaticParams() {
-  const metadatas = await jars.getNFTCollections();
-
-  return metadatas.map((data) => ({
-    address: data.contract,
-  }));
-}
-
 type CollectionParams = {
   params: { address: string };
   children: React.ReactNode;
