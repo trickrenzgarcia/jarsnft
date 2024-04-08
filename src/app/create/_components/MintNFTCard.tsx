@@ -25,7 +25,8 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
-import { useSDK } from "@thirdweb-dev/react";
+import { useContract, useMintNFT, useSDK } from "@thirdweb-dev/react";
+import {Dropdown, Link, DropdownTrigger, DropdownMenu, DropdownItem} from "@nextui-org/react";
 import { Button } from "@/components/ui/button";
 
 const mintSchema = z.object({});
@@ -33,7 +34,9 @@ const mintSchema = z.object({});
 type FormMintNft = z.infer<typeof mintSchema>;
 
 export default function MintNFTCard() {
-  const sdk = useSDK();
+  // const { contract } = useContract();
+  // const { } = useMintNFT(contract);
+  const [collection, setCollection] = useState(null);
 
   const form = useForm<FormMintNft>({
     resolver: zodResolver(mintSchema),
@@ -42,6 +45,8 @@ export default function MintNFTCard() {
 
   const submitMintNft = async (data: FormMintNft) => {
     console.log("Minting NFT", data);
+
+    
   };
 
   return (
@@ -55,6 +60,19 @@ export default function MintNFTCard() {
       <CardContent className="px-5">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(submitMintNft)}>
+            <Dropdown backdrop="blur">
+              <DropdownTrigger>
+                <Button variant="ghost">Open Menu</Button>
+              </DropdownTrigger>
+              <DropdownMenu variant="faded" aria-label="Static Actions">
+                <DropdownItem key="new">New file</DropdownItem>
+                <DropdownItem key="copy">Copy link</DropdownItem>
+                <DropdownItem key="edit">Edit file</DropdownItem>
+                <DropdownItem key="delete" className="text-danger" color="danger">
+                  Delete file
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
             <Button type="submit">Mint</Button>
           </form>
         </Form>

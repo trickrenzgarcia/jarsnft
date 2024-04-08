@@ -19,7 +19,7 @@ import { Input } from "@/components/ui/input";
 import { useDropzone } from "react-dropzone";
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import { FaRegImage } from "react-icons/fa";
-import { cn, shortenFileName } from "@/lib/utils";
+import { cn, getShortenedURLParam, shortenFileName } from "@/lib/utils";
 import {
   Form,
   FormControl,
@@ -229,6 +229,7 @@ export default function NFTCreateContractCard({
 
   const submitCreateContract = async (data: FormContract) => {
     ref.current?.click();
+    console.log(getShortenedURLParam(data.name));
     setContractState("ongoing");
     const seller_fee_basis_points: number =
       parseFloat(data.seller_fee_basis_points) * 100;
@@ -243,7 +244,7 @@ export default function NFTCreateContractCard({
         symbol: data.symbol,
         platform_fee_recipient: process.env.PLATFORM_ADDRESS,
         external_link: data.external_link,
-        app_uri: data.app_uri,
+        app_uri: "https://jarsnft.vercel.app/",
         fee_recipient: data.fee_recipient,
         description: data.description,
         platform_fee_basis_points: 100,
@@ -527,8 +528,10 @@ export default function NFTCreateContractCard({
               />
             </div>
 
-            <div className="flex justify-end">
-              <Button type="submit">Create Collection</Button>
+            <div className="flex justify-center border md:border-0 md:justify-end rounded-md my-4 md:my-0">
+              <div className="flex">
+                <Button type="submit" className="my-2 md:my-6">Create Collection</Button>
+              </div>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button className="hidden" id="submitDialog" ref={ref}>
