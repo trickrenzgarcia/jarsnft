@@ -54,6 +54,7 @@ import { jars } from "@/lib/core/api";
 import { createContract } from "../actions";
 import { NFTCollection } from "@/lib/core/types";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type NFTCreateContractCardProps = {
   user: ProfileQuery;
@@ -275,7 +276,10 @@ export default function NFTCreateContractCard({
         <CardTitle className="text-lg font-bold md:text-2xl lg:text-3xl">
           {title}
         </CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardDescription>
+          {description}
+          <Link href="/insights/what-is-a-smart-contract" className="text-blue-400 hover:text-blue-500 ml-1" target="_blank">What is contract?</Link>
+        </CardDescription>
       </CardHeader>
       <CardContent className="px-5">
         <Form {...form}>

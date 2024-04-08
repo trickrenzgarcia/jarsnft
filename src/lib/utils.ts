@@ -109,3 +109,32 @@ export function truncate(str: string, maxLength: number): string {
     return str.slice(0, maxLength) + "...";
   }
 }
+
+export function getShortenedURLParam(name: string) {
+  // Convert name to lowercase and replace spaces with hyphens
+  let urlParam = name.trim().toLowerCase().replace(/\s+/g, '-');
+
+  // Check if the generated URL parameter already exists
+  const existingParams = new Set();
+
+  // Function to generate unique URL parameter if it already exists
+  function generateUniqueURLParam(param: string) {
+      let index = 1;
+      let newParam = param;
+      while (existingParams.has(newParam)) {
+          newParam = `${param}-${index}`;
+          index++;
+      }
+      return newParam;
+  }
+
+  // If URL parameter already exists, generate a unique one
+  if (existingParams.has(urlParam)) {
+      urlParam = generateUniqueURLParam(urlParam);
+  }
+
+  // Add the generated URL parameter to the existing set
+  existingParams.add(urlParam);
+
+  return urlParam;
+}

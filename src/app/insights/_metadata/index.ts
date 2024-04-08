@@ -96,6 +96,7 @@ export const leftNewList: LeftNewList[] =[
     topic: "Blockchain",
     child: [
       {name: "What is the blockchain?", href: "/insights/what-is-blockchain"},
+      {name: "What is a smart contract?", href: "/insights/what-is-a-smart-contract"},
       {name: "What are gas fees?", href: "/insights/what-are-gas-fees"},
       {name: "What is cryptocurrency?", href: "/insights/what-is-crypto"}      
     ]
