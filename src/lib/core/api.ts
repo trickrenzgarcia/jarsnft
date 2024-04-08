@@ -38,7 +38,6 @@ export class JarsAPI {
       }
 
       const data = await response.json();
-      console.log(data);
       return data as TData;
     } catch (e) {
       console.log(e);
