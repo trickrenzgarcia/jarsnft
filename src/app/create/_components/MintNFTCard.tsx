@@ -62,7 +62,7 @@ export default function MintNFTCard() {
           <form onSubmit={form.handleSubmit(submitMintNft)}>
             <Dropdown backdrop="blur">
               <DropdownTrigger>
-                <Button variant="ghost">Open Menu</Button>
+                <Button variant="ghost">{collection ?"":"" }</Button>
               </DropdownTrigger>
               <DropdownMenu variant="faded" aria-label="Static Actions">
                 <DropdownItem key="new">New file</DropdownItem>
