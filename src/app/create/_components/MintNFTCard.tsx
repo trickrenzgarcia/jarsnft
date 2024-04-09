@@ -22,7 +22,7 @@ import React, {
   useRef,
   useMemo,
 } from "react";
-import { cn, shortenFileName } from "@/lib/utils";
+import { cn, ipfsToCfIpfs, shortenFileName, truncate } from "@/lib/utils";
 import {
   Form,
   FormControl,
@@ -31,7 +31,12 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
-import { useContract, useMintNFT, useSDK } from "@thirdweb-dev/react";
+import {
+  useAddress,
+  useContract,
+  useMintNFT,
+  useSDK,
+} from "@thirdweb-dev/react";
 import {
   Dropdown,
   Link,
@@ -40,29 +45,45 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 import { Button } from "@/components/ui/button";
-import { PlusIcon } from "lucide-react";
+import { Check, ChevronsUpDown, PlusIcon } from "lucide-react";
+import { RxDashboard } from "react-icons/rx";
 import { jars } from "@/lib/core/api";
-import { AlchemyContractsForOwner } from "@/lib/core/types";
+import { ContractForOwner } from "@/lib/core/types";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { useUserContext } from "@/components/(providers)";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-const mintSchema = z.object({});
+const mintSchema = z.object({
+  collection: z.string().min(1),
+});
 
 type FormMintNft = z.infer<typeof mintSchema>;
 
 export default function MintNFTCard() {
+  const router = useRouter();
+  const { user, isLoading, isLoggedIn } = useUserContext();
   // const { contract } = useContract();
   // const { } = useMintNFT(contract);
-  const [collections, setCollections] = useState<AlchemyContractsForOwner>();
+  const [contracts, setContracts] = useState<ContractForOwner[]>([]);
+  const [open, setOpen] = useState(false);
+  const [selectedContract, setSelectedContract] = useState<
+    ContractForOwner | undefined
+  >(undefined);
 
   useEffect(() => {
     const fetchCollections = async () => {
-      const collections = await jars.getContractsForOwner(
-        "0x18a583Eb4D800ACc57067274e6b496db7Bd7E1Fd",
-      );
-      setCollections(collections);
+      if (user) {
+        const collections = await jars.getContractsForOwner(user.address);
+        setContracts(collections.contracts);
+      }
     };
-
     fetchCollections();
-  }, []);
+  }, [user]);
 
   const form = useForm<FormMintNft>({
     resolver: zodResolver(mintSchema),
@@ -71,6 +92,7 @@ export default function MintNFTCard() {
 
   const submitMintNft = async (data: FormMintNft) => {
     console.log("Minting NFT", data);
+    console.log("Collection", contracts);
   };
 
   return (
@@ -87,40 +109,110 @@ export default function MintNFTCard() {
             onSubmit={form.handleSubmit(submitMintNft)}
             className="flex flex-col items-center"
           >
-            <Dropdown backdrop="blur">
-              <DropdownTrigger>
-                <Button
-                  variant="outline"
-                  className="flex h-fit w-[384px] min-w-[300px] items-center justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]"
-                >
-                  <div className="flex h-[60px] w-[60px] items-center justify-center rounded-md bg-muted">
-                    <PlusIcon className="h-[24px] w-[24px]" />
-                  </div>
-                  <div className="flex flex-col items-start">
-                    <h2 className="text-medium">Choose a collection</h2>
-                    <h3 className="text-xs text-foreground">
-                      Sepolia | ERC-721
-                    </h3>
-                  </div>
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu
-                variant="faded"
-                aria-label="Static Actions"
-                className="w-[384px] min-w-[300px] md:w-[420px] lg:w-[500px] xl:w-[600px]"
-              >
-                <DropdownItem key="new">New file</DropdownItem>
-                <DropdownItem key="copy">Copy link</DropdownItem>
-                <DropdownItem key="edit">Edit file</DropdownItem>
-                <DropdownItem
-                  key="delete"
-                  className="text-danger"
-                  color="danger"
-                >
-                  Delete file
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+            <FormField
+              control={form.control}
+              name="collection"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Choose a collection</FormLabel>
+                  <Popover open={open} onOpenChange={setOpen}>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          role="combobox"
+                          variant="outline"
+                          className="flex h-fit w-[384px] min-w-[300px] items-center justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]"
+                        >
+                          {selectedContract ? (
+                            <>
+                              <div className="relative flex h-[60px] w-[60px] items-center justify-center rounded-md bg-muted">
+                                <Image
+                                  src={ipfsToCfIpfs(
+                                    selectedContract.image.originalUrl,
+                                  )}
+                                  fill
+                                  style={{ objectFit: "cover" }}
+                                  alt={selectedContract.name}
+                                  className="absolute h-[60px] w-[60px] rounded-md"
+                                />
+                              </div>
+                              <div className="flex flex-col items-start">
+                                <h2 className="text-medium">
+                                  {truncate(selectedContract.name, 26)}
+                                </h2>
+                                <h3 className="text-xs font-light text-foreground">
+                                  {selectedContract.tokenType}
+                                </h3>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div className="flex h-[60px] w-[60px] items-center justify-center rounded-md bg-muted">
+                                <RxDashboard className="h-[24px] w-[24px]" />
+                              </div>
+                              <div className="flex flex-col items-start">
+                                <h2 className="text-medium">
+                                  Choose a collection
+                                </h2>
+                              </div>
+                            </>
+                          )}
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[384px] min-w-[300px] items-center justify-start gap-3 bg-background md:w-[420px] lg:w-[500px] xl:w-[600px]">
+                      {contracts.map((contract) => (
+                        <Button
+                          variant="ghost"
+                          className="flex h-fit w-full justify-start gap-3"
+                          onClick={() => {
+                            form.setValue("collection", contract.address);
+                            setSelectedContract(contract);
+                            setOpen(false);
+                          }}
+                        >
+                          <div className="relative flex h-[60px] w-[60px] rounded-md bg-muted">
+                            <Image
+                              src={ipfsToCfIpfs(contract.image.originalUrl)}
+                              alt={contract.name}
+                              style={{ objectFit: "cover" }}
+                              fill
+                              className="absolute h-24 w-24 rounded-md"
+                            />
+                          </div>
+                          <div className="flex flex-col items-start">
+                            <h2 className="text-medium">
+                              {truncate(contract.name, 26)}
+                            </h2>
+                            <h3 className="text-xs font-light text-foreground">
+                              {contract.tokenType}
+                            </h3>
+                          </div>
+                        </Button>
+                      ))}
+                      <Button
+                        variant="ghost"
+                        className="flex h-fit w-full justify-start gap-3"
+                        onClick={() => {
+                          router.push("/create/deploy-contract");
+                          setOpen(false);
+                        }}
+                      >
+                        <div className="flex h-[60px] w-[60px] items-center justify-center rounded-md bg-muted">
+                          <PlusIcon className="h-[24px] w-[24px]" />
+                        </div>
+                        <div className="flex flex-col items-start">
+                          <h2 className="text-medium">
+                            Create a new collection
+                          </h2>
+                        </div>
+                      </Button>
+                    </PopoverContent>
+                  </Popover>
+                </FormItem>
+              )}
+            />
+
             <Button type="submit">Mint</Button>
           </form>
         </Form>
