@@ -3,7 +3,7 @@
  * @public
  */
 
-import { AlchemyContractsForOwner, NFTCollection } from "./types";
+import { AlchemyContractsForOwner, JarsContract, NFTCollection } from "./types";
 import { BASE_URL } from "../ctx";
 import { User } from "./types";
 
@@ -109,10 +109,10 @@ export class JarsAPI {
    * @param contractAddress address of the contract to deploy NFTCollection ERC721A
    * @returns ContractMetadata
    */
-  async deployNFTCollection(contractAddress: string) {
+  async deployNFTCollection(contractAddress: string, owner: string) {
     return await this.request<NFTCollection>(`/deploy/nft-collection`, {
       method: "POST",
-      body: JSON.stringify({ contractAddress: contractAddress }),
+      body: JSON.stringify({ contractAddress: contractAddress, owner: owner }),
     });
   }
   /**
@@ -120,10 +120,10 @@ export class JarsAPI {
    * @param contractAddress address of the contract to deploy NFTDrop ERC721A
    * @returns ContractMetadata
    */
-  async deployNFTDrop(contractAddress: string) {
+  async deployNFTDrop(contractAddress: string, owner: string) {
     return await this.request(`/deploy/nft-collection`, {
       method: "POST",
-      body: JSON.stringify({ contractAddress: contractAddress }),
+      body: JSON.stringify({ contractAddress: contractAddress, owner: owner }),
     });
   }
   /**
@@ -163,8 +163,8 @@ export class JarsAPI {
    * @returns
    */
   async getContractsForOwner(walletAddress: string) {
-    return await this.request<AlchemyContractsForOwner>(
-      `/collections/${walletAddress}`,
+    return await this.request<JarsContract[]>(
+      `/collections/getContractsForOwner?owner=${walletAddress}`,
       {
         next: { tags: ["contracts", "collections", "getContractsForOwner"] },
       },

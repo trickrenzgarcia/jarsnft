@@ -37,6 +37,22 @@ export type OpenSeaMetadata = {
   lastIngestedAt: string | null;
 };
 
+export type JarsContract = {
+  contract: string;
+  image: string;
+  name: string;
+  symbol?: string;
+  description?: string;
+  app_uri?: string;
+  external_link?: string;
+  fee_recipient: string;
+  seller_fee_basis_points: number;
+  primary_sale_recipient: string;
+  trusted_forwarders: string[];
+  owner: string;
+  created_at: string;
+};
+
 export type AlchemyContract = {
   contract: {
     address: string;
