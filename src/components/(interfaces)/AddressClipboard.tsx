@@ -1,7 +1,8 @@
 "use client";
 
 import { shortenAddress } from "@/lib/utils";
-import { Button, ButtonGroup, Tooltip } from "@nextui-org/react";
+import { ButtonGroup, Tooltip } from "@nextui-org/react";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
@@ -21,7 +22,9 @@ export default function AddressClipboard({ address, content }: Props) {
         content={content}
       >
         <Button
-          onClick={(e) => {
+          variant="outline"
+          className="rounded-br-none rounded-tr-none text-xs font-bold"
+          onClick={() => {
             navigator.clipboard.writeText(address);
           }}
         >
@@ -29,13 +32,16 @@ export default function AddressClipboard({ address, content }: Props) {
         </Button>
       </Tooltip>
 
-      <Button isIconOnly variant="ghost">
+      <Button
+        variant="outline"
+        className="rounded-bl-none rounded-tl-none px-3 font-bold"
+      >
         <Link
           href={`https://sepolia.etherscan.io/address/${address}`}
           target="_blank"
           className="flex h-full w-full items-center justify-center"
         >
-          <FaExternalLinkAlt className="text-lg text-gray-400" />
+          <FaExternalLinkAlt className="text-sm text-gray-400" />
         </Link>
       </Button>
     </ButtonGroup>

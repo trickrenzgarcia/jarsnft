@@ -101,3 +101,33 @@ export type AlchemyNFTs = {
     blockTimestamp: string | null;
   };
 };
+
+export type ContractForOwner = {
+  address: string;
+  name: string;
+  symbol: string;
+  totalSupply: string | null;
+  tokenType: string;
+  openSeaMetadata: OpenSeaMetadata;
+  totalBalance: string | null;
+  numDistinctTokensOwned: string | null;
+  isSpam: boolean;
+  displayNft: {
+    tokenId: string;
+    name: string;
+  };
+  image: {
+    cachedUrl: string;
+    thumbnailUrl: string | null;
+    pngUrl: string | null;
+    contentType: string | null;
+    size: string | null;
+    originalUrl: string;
+  };
+};
+
+export type AlchemyContractsForOwner = {
+  contracts: ContractForOwner[];
+  totalCount: number;
+  pageKey: string | number | null;
+};

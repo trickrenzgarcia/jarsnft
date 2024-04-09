@@ -96,3 +96,52 @@ export function ipfsToCfIpfs(urlStr: string): string {
   const cid = url.pathname.split("/")[1];
   return `https://cf-ipfs.com/${cid}${url.pathname.slice(cid.length + 1)}${url.search}`;
 }
+
+export function getRandomInt(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export function truncate(str: string, maxLength: number): string {
+  if (str.length <= maxLength) {
+    return str;
+  } else {
+    // Truncate the string and append "..." to indicate truncation
+    return str.slice(0, maxLength) + "...";
+  }
+}
+
+export function getShortenedURLParam(name: string) {
+  // Convert name to lowercase and replace spaces with hyphens
+  let urlParam = name.trim().toLowerCase().replace(/\s+/g, "-");
+
+  // Check if the generated URL parameter already exists
+  const existingParams = new Set();
+
+  // Function to generate unique URL parameter if it already exists
+  function generateUniqueURLParam(param: string) {
+    let index = 1;
+    let newParam = param;
+    while (existingParams.has(newParam)) {
+      newParam = `${param}-${index}`;
+      index++;
+    }
+    return newParam;
+  }
+
+  // If URL parameter already exists, generate a unique one
+  if (existingParams.has(urlParam)) {
+    urlParam = generateUniqueURLParam(urlParam);
+  }
+
+  // Add the generated URL parameter to the existing set
+  existingParams.add(urlParam);
+
+  return urlParam;
+}
+
+export function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^\w-]+/g, "");
+}

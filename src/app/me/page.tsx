@@ -1,9 +1,9 @@
-import TabsWrapper from "./_components/TabsWrapper";
+import ProfileWrapper from "./_components/ProfileWrapper";
 
 export default function AccountPage() {
   return (
     <div className="flex w-full flex-col">
-      <TabsWrapper />
+      <ProfileWrapper />
     </div>
   );
 }

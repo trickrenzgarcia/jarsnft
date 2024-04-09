@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Create your NFT Collection | JarsNFT",
+  title: "Mint NFTs | JarsNFT",
 };
 
-export default function DeployCollectionLayout({
+export default function MintLayout({
   children,
 }: {
   children: React.ReactNode;

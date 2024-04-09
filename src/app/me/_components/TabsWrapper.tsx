@@ -1,19 +1,44 @@
 "use client";
 
-import { useUserContext } from "@/components/(providers)";
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlchemyNFTs } from "@/lib/core/types";
-import { ipfsToCfIpfs } from "@/lib/utils";
-import { Image } from "@nextui-org/react";
-import Link from "next/link";
+import { ProfileQuery } from "@/types/users";
 import { useEffect, useState } from "react";
+import { useMedia } from "react-use";
+import OwnedNFTs from "./OwnedNFTs";
 
-export default function TabsWrapper() {
-  const { user } = useUserContext();
+export default function TabsWrapper({
+  user: userContext,
+}: {
+  user: ProfileQuery;
+}) {
+  const { user, isLoading: userLoading } = userContext;
   const [nfts, setNFTs] = useState<AlchemyNFTs>();
   const [loadingNfts, setLoadingNfts] = useState(false);
+  const isXsm = useMedia("(max-width: 480px)");
+  const isSm = useMedia("(max-width: 640px)");
+  const isMd = useMedia("(max-width: 768px)");
+  const isLg = useMedia("(max-width: 1024px)");
+  const isXl = useMedia("(max-width: 1280px)");
+  const is2xl = useMedia("max-width: 1536px)");
+  const [numCards, setNumCards] = useState<number>(detechScreenSize());
+
+  function detechScreenSize(): number {
+    if (isSm) return 4;
+    else if (isMd) return 6;
+    else if (isLg) return 8;
+    else if (isXl) return 10;
+    else if (is2xl) return 10;
+    else {
+      if (isXl) return 4;
+      else return 10;
+    }
+  }
+
+  useEffect(() => {
+    let num = detechScreenSize();
+    setNumCards(num);
+  }, [isSm, isMd, isLg, isXl, is2xl]);
 
   useEffect(() => {
     async function getNFTs(walletAddress: string) {
@@ -27,8 +52,7 @@ export default function TabsWrapper() {
       });
       const data = (await res.json()) as AlchemyNFTs;
       setLoadingNfts(false);
-      //if (data) setNFTs(data);
-      setLoadingNfts(true);
+      if (data) setNFTs(data);
     }
     if (user) getNFTs(user.address);
   }, [user]);
@@ -36,41 +60,40 @@ export default function TabsWrapper() {
   return (
     <div className="mb-8 w-full">
       <Tabs defaultValue="owned">
-        <TabsList>
-          <TabsTrigger value="owned">Owned</TabsTrigger>
-          <TabsTrigger value="created">Created</TabsTrigger>
-          <div></div>
-        </TabsList>
+        <div className="flex items-center gap-2">
+          <TabsList>
+            <TabsTrigger value="owned">
+              Owned NFTs{" "}
+              {`${nfts?.totalCount || 0 > 0 ? `(${nfts?.totalCount})` : ""}`}
+              {userLoading && "(..)"}
+            </TabsTrigger>
+            <TabsTrigger value="onsale">On sale</TabsTrigger>
+            <TabsTrigger value="offers">Offers</TabsTrigger>
+            <TabsTrigger value="created">Created</TabsTrigger>
+            {/* <TabsTrigger value="liked">Liked NFTs</TabsTrigger> */}
+          </TabsList>
+          {/* <h1>Search : ....</h1> */}
+        </div>
+
         <TabsContent value="owned">
-          <div className="w-full rounded-md border p-2">
-            <div className="text-lg font-bold">
-              Owned Item{(nfts?.totalCount || 0 > 1) && "s"}:{" "}
-              {nfts?.totalCount || 0}
-            </div>
-            {loadingNfts ? (
-              <div className="grid grid-cols-5 gap-4">
-                <Skeleton className="h-72 w-72" />
-              </div>
-            ) : (
-              nfts && (
-                <div className="w-full columns-2 space-y-4 sm:columns-3 md:columns-4 lg:columns-5">
-                  {nfts?.ownedNfts.map((nft) => (
-                    <div key={nft.name + nft.tokenId} className="w-full">
-                      <Link href={`${nft.contract.address}/${nft.tokenId}`}>
-                        <Image
-                          isBlurred
-                          width={512}
-                          height={512}
-                          src={ipfsToCfIpfs(nft.image.originalUrl)}
-                          alt={nft.name}
-                        />
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-              )
-            )}
-          </div>
+          <OwnedNFTs
+            nfts={nfts}
+            userLoading={userLoading}
+            loadingNfts={loadingNfts}
+            numCards={numCards}
+          />
+        </TabsContent>
+
+        <TabsContent value="onsale">
+          <div>Onsale</div>
+        </TabsContent>
+
+        <TabsContent value="offers">
+          <div>Offers</div>
+        </TabsContent>
+
+        <TabsContent value="created">
+          <div>Created NFTs</div>
         </TabsContent>
       </Tabs>
     </div>

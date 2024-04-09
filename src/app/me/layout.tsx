@@ -12,14 +12,10 @@ export default function AccountLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main>
+    <main className="">
       <header>
         <Navbar />
       </header>
-
-      <div className="md:container">
-        <ProfileBanner />
-      </div>
 
       <main className="md:container">{children}</main>
     </main>
