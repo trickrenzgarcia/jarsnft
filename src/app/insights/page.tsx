@@ -13,7 +13,7 @@ export default function Page() {
         <br />
         Contents:
       </p>
-      <h2 className="my-6 text-2xl font-bold">Getting Started</h2>
+      <h2 className="my-6 text-2xl font-bold" id="getting-started">Getting Started</h2>
       <ul className="mb-12 ml-8 font-semibold leading-9 text-[#A519D7] lg:list-disc">
         <li>Installing a Wallet</li>
         <li>Connecting your wallet</li>
@@ -30,7 +30,7 @@ export default function Page() {
         <li>Listing an NFT for sale a fixed price</li>
       </ul>
 
-      <PageNextButton title="Getting Started" href="/insights/getting-started" />
+      <PageNextButton title="Setup your wallet" href="/insights/setup-wallet" />
     </div>
   );
 }

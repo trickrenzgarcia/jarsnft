@@ -18,8 +18,8 @@ export default function SideNavLeft() {
             <h1 className="font-semibold">{item.topic}</h1>
             <ul className='mt-4 border-l border-[#252525]' key={item.topic}>
               {item.child.map(child => (
-                <li key={child.name} className={cn("mb-3 font-semibold text-white block border-l pl-4 -ml-px border-transparent ", path === child.href && " text-[#A519D7] border-l-[#A519D7]  font-bold",
-                path !== child.href && "hover:border-slate-400 dark:hover:border-slate-500 dark:text-[#858685] dark:hover:text-slate-300")}>
+                <li key={child.name} className={cn("mb-3 font-semibold text-white block border-l pl-4 -ml-px border-transparent ", path === child.href && " text-[#c44ef0] border-l-[#c44ef0] font-bold",
+                path !== child.href && "dark:hover:border-[#cc64f1] text-[#A519D7] dark:hover:text-[#cc64f1]")}>
                   <Link href={child.href}>{Capitalize(child.name)}</Link>
                 </li>     
               ))}
