@@ -57,6 +57,7 @@ import {
 import { useUserContext } from "@/components/(providers)";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const mintSchema = z.object({
   collection: z.string().min(1),
@@ -71,6 +72,7 @@ export default function MintNFTCard() {
   // const { } = useMintNFT(contract);
   const [contracts, setContracts] = useState<ContractForOwner[]>([]);
   const [open, setOpen] = useState(false);
+  const [loadingContract, setLoadingContract] = useState(false);
   const [selectedContract, setSelectedContract] = useState<
     ContractForOwner | undefined
   >(undefined);
@@ -78,8 +80,10 @@ export default function MintNFTCard() {
   useEffect(() => {
     const fetchCollections = async () => {
       if (user) {
+        setLoadingContract(true);
         const collections = await jars.getContractsForOwner(user.address);
         setContracts(collections.contracts);
+        setLoadingContract(false);
       }
     };
     fetchCollections();
@@ -161,6 +165,19 @@ export default function MintNFTCard() {
                       </FormControl>
                     </PopoverTrigger>
                     <PopoverContent className="w-[384px] min-w-[300px] items-center justify-start gap-3 bg-background md:w-[420px] lg:w-[500px] xl:w-[600px]">
+                      {loadingContract && (
+                        <Button
+                          variant="ghost"
+                          className="flex h-fit w-full justify-start gap-3"
+                        >
+                          <Skeleton className="h-[60px] w-[60px] rounded-md" />
+                          <div className="flex flex-col items-start gap-1">
+                            <Skeleton className="h-5 w-28" />
+                            <Skeleton className="h-4 w-20" />
+                          </div>
+                        </Button>
+                      )}
+
                       {contracts.map((contract) => (
                         <Button
                           variant="ghost"
@@ -190,23 +207,25 @@ export default function MintNFTCard() {
                           </div>
                         </Button>
                       ))}
-                      <Button
-                        variant="ghost"
-                        className="flex h-fit w-full justify-start gap-3"
-                        onClick={() => {
-                          router.push("/create/deploy-contract");
-                          setOpen(false);
-                        }}
-                      >
-                        <div className="flex h-[60px] w-[60px] items-center justify-center rounded-md bg-muted">
-                          <PlusIcon className="h-[24px] w-[24px]" />
-                        </div>
-                        <div className="flex flex-col items-start">
-                          <h2 className="text-medium">
-                            Create a new collection
-                          </h2>
-                        </div>
-                      </Button>
+                      {!loadingContract && (
+                        <Button
+                          variant="ghost"
+                          className="flex h-fit w-full justify-start gap-3"
+                          onClick={() => {
+                            router.push("/create/deploy-contract");
+                            setOpen(false);
+                          }}
+                        >
+                          <div className="flex h-[60px] w-[60px] items-center justify-center rounded-md bg-muted">
+                            <PlusIcon className="h-[24px] w-[24px]" />
+                          </div>
+                          <div className="flex flex-col items-start">
+                            <h2 className="text-medium">
+                              Create a new collection
+                            </h2>
+                          </div>
+                        </Button>
+                      )}
                     </PopoverContent>
                   </Popover>
                 </FormItem>

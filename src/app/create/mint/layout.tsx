@@ -9,5 +9,5 @@ export default function MintLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div>{children}</div>;
+  return <div className="md:container">{children}</div>;
 }

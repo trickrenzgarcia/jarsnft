@@ -2,19 +2,18 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import OnBoardingCarousel from "./_components/OnBoardingCarousel";
 import Link from "next/link";
 import OnBoardingCarouselSm from "./_components/OnBoardingCarouselSm";
-import { WavyBackground } from "@/components/ui/wavy-background";
+import WavyEffect from "./_components/WavyEffect";
 
-export default function Create() {
+export default function CreatePage() {
   return (
-    <>
+    <main className="">
       <div className="relative">
         {/* Wavy background component */}
         <div className="absolute bottom-0 left-0 z-0 w-full">
-          <WavyBackground />
+          <WavyEffect />
         </div>
-
         {/* Flex container */}
-        <div className="z-10 flex h-[calc(100vh-57px)] w-full items-start justify-between md:items-center">
+        <div className="z-10 flex h-[calc(100vh-57px)] w-full items-start justify-between md:container md:items-center">
           {/* Create NFT Container */}
           <div className="flex w-full flex-col justify-center gap-6 p-0 md:p-6">
             {/* Art images for small screen */}
@@ -24,7 +23,7 @@ export default function Create() {
             </div>
 
             {/* Medium screen and up Title */}
-            <h1 className="relative mb-6 max-w-4xl text-left text-3xl font-bold text-zinc-700 dark:text-zinc-100 md:text-7xl">
+            <h1 className="relative mb-6 hidden max-w-4xl text-left text-3xl font-bold text-zinc-700 dark:text-zinc-100 md:flex md:text-7xl">
               Create NFT Collection
             </h1>
             <Link href="/create/deploy-contract" className="mx-4 md:mx-0">
@@ -53,6 +52,6 @@ export default function Create() {
           </div>
         </div>
       </div>
-    </>
+    </main>
   );
 }
