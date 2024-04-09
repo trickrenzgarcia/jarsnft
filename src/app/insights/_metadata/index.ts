@@ -17,19 +17,13 @@ type LeftNewList = {
 
 export const rightNavList: RightNavListType[] = [
   {
+    // add id="#anchor" in 
     href: "/insights",
     anchors: [
       { name: "Getting Started", anchor: "#getting-started" },
-      { name: "Buying NFTs", anchor: "#buying-nfts" },
-      { name: "Selling NFTs", anchor: "#selling-nfts" },
-    ],
-  },
-  {
-    href: "/insights/getting-started",
-    anchors: [
-      { name: "Installing a wallet", anchor: "#installing-wallet" },
-      { name: "Connecting your wallet", anchor: "#connect-wallet" },
-      { name: "Creating your profile", anchor: "#create-profile" },
+      { name: "Non Fungible Token", anchor: "#buying-nfts" },
+      { name: "Blockchain", anchor: "#blockchain" },
+      { name: "Guides", anchor: "#guides" },
     ],
   },
   {
@@ -37,17 +31,25 @@ export const rightNavList: RightNavListType[] = [
     anchors: [
       { name: "Installing a wallet", anchor: "#installing-wallet" },
       { name: "Connecting your wallet", anchor: "#connect-wallet" },
+      { name: "Creating your profile", anchor: "#create-profile" },
     ],
   },
   {
-    href: "/insights/buying-nfts",
+    href: "/insights/create-profile",
+    anchors: [
+      { name: "Installing a wallet", anchor: "#installing-wallet" },
+      { name: "Connecting your wallet", anchor: "#connect-wallet" },
+    ],
+  },
+  {
+    href: "/insights/create-nft",
     anchors: [
       { name: "Buying a fixed price NFT", anchor: "#buying-fixed-nfts" },
       { name: "Making an offer on a NFT", anchor: "#making-offer" },
     ],
   },
   {
-    href: "/insights/selling-nfts",
+    href: "/insights/trade-nft",
     anchors: [
       { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
       {
@@ -57,12 +59,76 @@ export const rightNavList: RightNavListType[] = [
     ],
   },
   {
+    href: "/insights/what-is-nft",
+    anchors: [
+      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
+      {
+        name: "Listing an NFT for sale a fixed price",
+        anchor: "#selling-fixed-price",
+      },
+    ],
+  },
+  {
+    href: "/insights/what-makes-nft-valuable",
+    anchors: [
+      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
+      {
+        name: "Listing an NFT for sale a fixed price",
+        anchor: "#selling-fixed-price",
+      },
+    ],
+  },
+  {
+    href: "/insights/what-is-blockchain",
+    anchors: [
+      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
+      {
+        name: "Listing an NFT for sale a fixed price",
+        anchor: "#selling-fixed-price",
+      },
+    ],
+  },
+  {
+    href: "/insights/what-are-gas-fees",
+    anchors: [
+      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
+      {
+        name: "Listing an NFT for sale a fixed price",
+        anchor: "#selling-fixed-price",
+      },
+    ],
+  },
+  {
+    href: "/insights/what-is-crpyto",
+    anchors: [
+      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
+      {
+        name: "Listing an NFT for sale a fixed price",
+        anchor: "#selling-fixed-price",
+      },
+    ],
+  },
+  {
+    href: "/insights/exchange-crypto",
+    anchors: [
+      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
+      {
+        name: "Listing an NFT for sale a fixed price",
+        anchor: "#selling-fixed-price",
+      },
+    ],
+  },
+  {
+    href: "/insights/protect-account",
+    anchors: [
+      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
+      { name: "Listing an NFT for sale a fixed price", anchor: "#selling-fixed-price",},
+    ],
+  },
+  {
     href: "/insights/faq",
     anchors: [
-      {
-        name: "FAQs",
-        anchor: "#",
-      },
+      {name: "FAQs", anchor: "#",},
     ],
   },
 ];
@@ -79,7 +145,7 @@ export const leftNewList: LeftNewList[] =[
   {
     topic: "Getting Started",
     child: [
-      {name: "Setup up your wallet", href: "/insights/setup-wallet"},
+      {name: "Setup your wallet", href: "/insights/setup-wallet"},
       {name: "Creating your profile", href: "/insights/create-profile"},
       {name: "Create your NFT", href: "/insights/create-nft"},
       {name: "How to trade your NFT", href: "/insights/trade-nft"}
@@ -106,6 +172,13 @@ export const leftNewList: LeftNewList[] =[
     child: [
       {name: "Exchange Cryptocurrency", href: "/insights/exchange-crypto"},
       {name: "Protect your account", href: "/insights/protect-account"}
+    ]
+  },
+  {
+    topic: "FAQs",
+    child: [
+      {name: "To be added", href: "#"},
+      {name: "To be added", href: "#"}
     ]
   },
 ]

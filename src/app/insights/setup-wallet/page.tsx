@@ -4,7 +4,7 @@ export default function SetupWalletPage() {
   return (
     <div>
       SetupWalletPage
-      <PageNextButton title="Buying NFTs" href="/insights/buying-nfts" />
+      <PageNextButton title="Creating Your Profile" href="/insights/create-profile" />
     </div>
   );
 }

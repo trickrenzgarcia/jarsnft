@@ -3,6 +3,7 @@ import {
   SideNavRight,
   LearnNavbar,
   PageNavbarTitle,
+  PageNextButton,
 } from "./_components";
 import { Footer } from "@/components/(layout)";
 
