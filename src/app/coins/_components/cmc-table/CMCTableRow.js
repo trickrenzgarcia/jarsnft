@@ -14,6 +14,7 @@ const CMCTableRow = ({
   starNum,
   coinName,
   coinIcon,
+  currency,
   coinSymbol = "---",
   price = "----",
   hRate = "---",
@@ -31,7 +32,7 @@ const CMCTableRow = ({
         <td>{starNum}</td>
 
         {coinIcon && coinIcon ? (
-          <td className="cursor-pointer">
+          <td>
             <CoinNameRow name={coinName} icon={coinIcon} symbol={coinSymbol} />
           </td>
         ) : (
@@ -39,7 +40,7 @@ const CMCTableRow = ({
         )}
 
         <td>
-          <p className="w-full">$ {price}</p>
+          {currency === "usd" ? "$" : "₱"} {price}
         </td>
         <td>
           <p

@@ -34,7 +34,7 @@ export default function OwnedNFTs({
       {userLoading || loadingNfts ? (
         <div className="grid w-full grid-cols-2 justify-center gap-5 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5">
           {Array.from({ length: 5 }).map((_, i) => (
-            <div className="w-full">
+            <div className="w-full" key={i}>
               <Skeleton className="h-[200px] w-full md:h-[250px]" />
             </div>
           ))}
