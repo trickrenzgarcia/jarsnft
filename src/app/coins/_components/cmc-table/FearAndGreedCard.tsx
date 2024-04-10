@@ -1,8 +1,8 @@
 import Image from "next/image";
 
 const styles = {
-  trendingCard: `w-full p-5 py-5 pb-0 bg-[#323546] rounded-xl mr-3`,
-  trendingCardWrapper: `flex items-center justify-between`,
+  trendingCard: `w-full py-6 bg-[#323546] rounded-xl mr-3 `,
+  trendingCardWrapper: `ml-3 flex items-center justify-between`,
 };
 
 type Props = {
