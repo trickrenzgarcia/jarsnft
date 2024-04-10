@@ -19,7 +19,7 @@ export default function LearnLayout({ children }: LearnProps) {
   // try to make pagenextbutton dynamic - get data from index and display the next item after current item on the button
   const path = usePathname();
   const nextBtn = leftNavList.map((item, index) => (
-    <>
+    <div key={index}>
       {item.child.map((childItem, childIndex) => (
         // check for child sub topic
         path === childItem.href && (childIndex < item.child.length - 1) ?
@@ -30,7 +30,7 @@ export default function LearnLayout({ children }: LearnProps) {
           <PageNextButton key={childIndex} title={Capitalize(leftNavList[(index + 1) % leftNavList.length].child[0].name)} href={leftNavList[(index + 1) % leftNavList.length].child[0].href} />
 
       ))}
-    </>
+    </div>
   ))
   return (
     <main className="flex-1">
