@@ -3,36 +3,27 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MdHome, MdOutlineKeyboardArrowRight } from "react-icons/md";
-
-type LearnPaths =
-  | "/insights"
-  | "/insights/getting-started"
-  | "/insights/buying-nfts"
-  | "/insights/selling-nfts"
-  | "/insights/faq";
+import { leftNavList } from "../_metadata";
 
 export default function PageNavbar() {
-  const path: LearnPaths = usePathname() as LearnPaths;
-
   return (
     <div className='flex items-center gap-2'>
       <Link href='/insights'>
         <MdHome className='text-xl opacity-[.40]' />
       </Link>
       <MdOutlineKeyboardArrowRight className='text-xl opacity-[.40]'/>
-      <PageNavTitle path={path} />
+      <PageNavTitle />
     </div>
   );
 }
 
-function PageNavTitle({ path }: { path: LearnPaths }) {
-  const title = () => {
-    if (path == "/insights") return "Welcome";
-    else if (path == "/insights/getting-started") return "Getting Started";
-    else if (path == "/insights/buying-nfts") return "Buying NFTs";
-    else if (path == "/insights/selling-nfts") return "Selling NFTs";
-    else if (path == "/insights/faq") return "FAQs";
-  };
-
-  return <h2 className="text-[#A519D7]">{title()}</h2>
+function PageNavTitle() {
+  const path = usePathname()
+  const getTitle = leftNavList.map(item => (
+    item.child.map((childItem, index) => (
+      path === childItem.href &&
+        <h2 key={index} className="text-[#A519D7]">{childItem.name.replace(/\b\w/g, (char) => char.toUpperCase())}</h2>
+    )) 
+  ))
+  return getTitle
 }
