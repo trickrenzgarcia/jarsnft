@@ -38,7 +38,7 @@ export default function LearnLayout({ children }: LearnProps) {
       <div className="container flex-1 items-start border-t-2 md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
         <SideNavLeft />
         <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
-          <div className="mx-auto w-full min-w-0">
+          <div className="mx-auto w-[650px]">
             <PageNavbarTitle />
             {children}
             <div className="pb-6 pr-6">
