@@ -310,7 +310,7 @@ export default function MintNFTCard() {
                           </div>
                         </Button>
                       )}
-                      {contracts.map((contract) => (
+                      {contracts.map((contract, i) => (
                         <Button
                           variant="ghost"
                           className="flex h-fit w-full justify-start gap-3"
@@ -319,6 +319,7 @@ export default function MintNFTCard() {
                             setSelectedContract(contract);
                             setOpen(false);
                           }}
+                          key={i}
                         >
                           <div className="relative flex h-[60px] w-[60px] select-none rounded-md bg-muted">
                             <Image
@@ -374,7 +375,7 @@ export default function MintNFTCard() {
                           className={cn(
                             "flex h-[150px] w-[150px] cursor-pointer items-center justify-center rounded-md bg-muted lg:h-[250px] lg:w-[250px]",
                             uploadedMedia &&
-                              "border bg-background hover:border-accent",
+                            "border bg-background hover:border-accent",
                           )}
                           {...getRootProps()}
                           onClick={(e) => {
