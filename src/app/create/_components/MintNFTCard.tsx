@@ -216,7 +216,7 @@ export default function MintNFTCard() {
   return (
     <Card className="w-full max-w-[800px]">
       <CardHeader>
-        <CardTitle>Mint</CardTitle>
+        <CardTitle>Create an NFT</CardTitle>
         <CardDescription>
           Mint your NFT by uploading an image and entering the metadata.
         </CardDescription>
@@ -442,7 +442,7 @@ export default function MintNFTCard() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-md flex items-center gap-1 font-semibold">
-                    <span className="text-red-400">*</span>Description
+                    Description
                   </FormLabel>
                   <FormControl>
                     <Textarea

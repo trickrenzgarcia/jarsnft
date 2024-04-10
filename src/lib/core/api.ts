@@ -3,7 +3,12 @@
  * @public
  */
 
-import { AlchemyContractsForOwner, JarsContract, NFTCollection } from "./types";
+import {
+  AlchemyContractMetadata,
+  AlchemyContractsForOwner,
+  JarsContract,
+  NFTCollection,
+} from "./types";
 import { BASE_URL } from "../ctx";
 import { User } from "./types";
 
@@ -141,9 +146,12 @@ export class JarsAPI {
    * @returns - A contract metadata of an NFT collection
    */
   async getContractMetadata(contractAddress: string, tags?: string[]) {
-    return await this.request<NFTCollection>(`/metadata/${contractAddress}`, {
-      next: { tags: ["metadata", "getContractMetadata"] },
-    });
+    return await this.request<AlchemyContractMetadata>(
+      `/metadata/getContractMetadata?contractAddress=${contractAddress}`,
+      {
+        next: { tags: ["metadata", "getContractMetadata"] },
+      },
+    );
   }
 
   /**

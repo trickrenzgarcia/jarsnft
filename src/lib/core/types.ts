@@ -147,3 +147,14 @@ export type AlchemyContractsForOwner = {
   totalCount: number;
   pageKey: string | number | null;
 };
+
+export type AlchemyContractMetadata = {
+  address: string;
+  name: string;
+  symbol?: string;
+  tokenSupply?: string;
+  tokenType: string;
+  contractDeployer: string | null;
+  deployedBlockNumber: number | null;
+  openSeaMetadata: OpenSeaMetadata;
+};

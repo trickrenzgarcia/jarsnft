@@ -7,6 +7,7 @@
     "pat": "next dev",
     "build": "next build",
     "start": "node server.js",
+    "start:bun": "bun run server.js",
     "lint": "next lint"
   },
   "dependencies": {
