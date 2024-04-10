@@ -62,6 +62,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { sdk } from "@/lib/sdk";
 import { Textarea } from "@/components/ui/textarea";
 import { ACCEPTED_IMAGE_TYPES } from "@/types/constant";
+import { MdPermMedia } from "react-icons/md";
 
 const mintSchema = z.object({
   collection: z.string().refine((value) => ethers.utils.isAddress(value), {
@@ -224,14 +225,16 @@ export default function MintNFTCard() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(submitMintNft)}
-            className="flex flex-col items-center"
+            className="flex flex-col items-center gap-8"
           >
             <FormField
               control={form.control}
               name="collection"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>* Choose a collection</FormLabel>
+                  <FormLabel className="text-md flex items-center gap-1 font-semibold">
+                    <span className="text-red-400">*</span>Choose a collection
+                  </FormLabel>
                   <Popover open={open} onOpenChange={setOpen}>
                     <PopoverTrigger asChild>
                       <FormControl>
@@ -366,23 +369,47 @@ export default function MintNFTCard() {
                         className={cn(
                           "flex h-fit w-[384px] min-w-[300px] items-center justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]",
                         )}
-                        {...getRootProps()}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          const fileInput = document.getElementById(
-                            "media",
-                          ) as HTMLInputElement;
-                          fileInput?.click();
-                        }}
                       >
-                        <div className="relative h-[240px] w-[240px]">
-                          <NextUIImage
-                            isBlurred
-                            src={uploadedMedia || ""}
-                            alt={uploadedFileName}
-                            style={{ objectFit: "cover" }}
-                            className="flex h-full w-full"
-                          />
+                        <div
+                          className={cn(
+                            "flex h-[150px] w-[150px] cursor-pointer items-center justify-center rounded-md bg-muted lg:h-[250px] lg:w-[250px]",
+                            uploadedMedia &&
+                              "border bg-background hover:border-accent",
+                          )}
+                          {...getRootProps()}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            const fileInput = document.getElementById(
+                              "media",
+                            ) as HTMLInputElement;
+                            fileInput?.click();
+                          }}
+                        >
+                          {uploadedMedia ? (
+                            <NextUIImage
+                              isBlurred
+                              src={uploadedMedia || ""}
+                              alt={uploadedFileName}
+                              style={{ objectFit: "cover" }}
+                              className="z-0 h-full max-h-[150px] w-full max-w-[150px] rounded-md lg:max-h-[250px] lg:max-w-[250px]"
+                            />
+                          ) : (
+                            <div className="flex h-[150px] max-h-[150px] w-[150px] max-w-[150px] items-center justify-center rounded-md border bg-muted hover:border-accent lg:h-[250px] lg:max-h-[250px] lg:w-[250px] lg:max-w-[250px]">
+                              <MdPermMedia className="h-6 w-6 lg:h-8 lg:w-8" />
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex flex-col">
+                          <h2 className="text-sm font-bold">
+                            {shortenFileName(uploadedFileName) ||
+                              "Drag and drop or click to upload"}
+                          </h2>
+                          {!uploadedFileName && (
+                            <p className="text-xs">
+                              Recommended size: 350 x 350. File types: JPG, PNG,
+                              SVG, or GIF
+                            </p>
+                          )}
                         </div>
                       </div>
                     </>
@@ -396,7 +423,9 @@ export default function MintNFTCard() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel className="text-md flex items-center gap-1 font-semibold">
+                    <span className="text-red-400">*</span>Name
+                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -412,7 +441,9 @@ export default function MintNFTCard() {
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Description</FormLabel>
+                  <FormLabel className="text-md flex items-center gap-1 font-semibold">
+                    <span className="text-red-400">*</span>Description
+                  </FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
