@@ -1,3 +1,5 @@
+"use client";
+
 import {
   SideNavLeft,
   SideNavRight,
@@ -6,12 +8,30 @@ import {
   PageNextButton,
 } from "./_components";
 import { Footer } from "@/components/(layout)";
+import { leftNavList } from "./_metadata";
+import { usePathname } from "next/navigation";
 
 type LearnProps = {
   children: React.ReactNode;
 };
 
 export default function LearnLayout({ children }: LearnProps) {
+  // try to make pagenextbutton dynamic - get data from index and display the next item after current item on the button
+  const path = usePathname();
+  const nextBtn = leftNavList.map((item, index) => (
+    <>
+      {item.child.map((childItem, childIndex ) => (
+        // check for child sub topic
+        path === childItem.href && (childIndex < item.child.length - 1) ?
+          <PageNextButton key={childIndex} title={Capitalize(item.child[childIndex + 1].name)} href={item.child[childIndex + 1].href}/>     
+        :
+        // check on next topic
+        path === childItem.href && (index < leftNavList.length - 1) && 
+        <PageNextButton key={childIndex} title={Capitalize(leftNavList[(index + 1) % leftNavList.length].child[0].name)} href={leftNavList[(index + 1) % leftNavList.length].child[0].href}/>
+
+      ))}
+    </>
+  ))
   return (
     <main className="flex-1">
       <LearnNavbar />
@@ -21,6 +41,9 @@ export default function LearnLayout({ children }: LearnProps) {
           <div className="mx-auto h-screen w-full min-w-0">
             <PageNavbarTitle />
             {children}
+            <div className="pb-6 pr-6">
+              {nextBtn}
+            </div>
           </div>
           <SideNavRight />
         </main>
@@ -29,3 +52,7 @@ export default function LearnLayout({ children }: LearnProps) {
     </main>
   );
 }
+
+const Capitalize = (str: string): string => {
+  return str.replace(/\b\w/g, (char) => char.toUpperCase());
+};

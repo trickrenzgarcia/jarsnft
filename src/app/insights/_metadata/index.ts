@@ -6,8 +6,8 @@ type RightNavListType = {
   }[];
 };
 
-type LeftNavList = { name: string; href: string };
-type LeftNewList = { 
+// type LeftNavList = { name: string; href: string };
+type LeftNavList = { 
   topic: string; 
   child: {
     name: string;
@@ -89,6 +89,13 @@ export const rightNavList: RightNavListType[] = [
     ],
   },
   {
+    href: "/insights/what-is-a-smart-contract",
+    anchors: [
+      { name: "Buying a fixed price NFT", anchor: "#buying-fixed-nfts" },
+      { name: "Making an offer on a NFT", anchor: "#making-offer" },
+    ],
+  },
+  {
     href: "/insights/what-are-gas-fees",
     anchors: [
       { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
@@ -99,7 +106,7 @@ export const rightNavList: RightNavListType[] = [
     ],
   },
   {
-    href: "/insights/what-is-crpyto",
+    href: "/insights/what-is-crypto",
     anchors: [
       { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
       {
@@ -133,15 +140,21 @@ export const rightNavList: RightNavListType[] = [
   },
 ];
 
-export const leftNavList: LeftNavList[] = [
-  { name: "Welcome", href: "/insights" },
-  { name: "Getting Started", href: "/insights/getting-started" },
-  { name: "Buying NFTs", href: "/insights/buying-nfts" },
-  { name: "Selling NFTs", href: "/insights/selling-nfts" },
-  { name: "FAQs", href: "/insights/faq" },
-];
+// export const leftNavList: LeftNavList[] = [
+//   { name: "Welcome", href: "/insights" },
+//   { name: "Getting Started", href: "/insights/getting-started" },
+//   { name: "Buying NFTs", href: "/insights/buying-nfts" },
+//   { name: "Selling NFTs", href: "/insights/selling-nfts" },
+//   { name: "FAQs", href: "/insights/faq" },
+// ];
 
-export const leftNewList: LeftNewList[] =[
+export const leftNavList: LeftNavList[] =[
+  {
+    topic: "Welcome",
+    child: [
+      {name: "Overview", href: "/insights"}
+    ]
+  },
   {
     topic: "Getting Started",
     child: [

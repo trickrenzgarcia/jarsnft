@@ -4,7 +4,7 @@ import { getNftMarketCap, getTrendingCoins } from "../../api/apiCoingecko";
 
 const styles = {
   trendingCard: `w-full p-5 py-5 pb-5 bg-[#323546] rounded-xl mr-3`,
-  trendingCardWrapper: `flex items-center justify-between`,
+  trendingCardWrapper: `flex flex-1 items-center justify-between`,
 };
 
 const TrendingCard = async ({ title, icon, type }) => {
