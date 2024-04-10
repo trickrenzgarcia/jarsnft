@@ -56,10 +56,12 @@ import {
 } from "@/components/ui/popover";
 import { useUserContext } from "@/components/(providers)";
 import Image from "next/image";
+import { Image as NextUIImage } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { sdk } from "@/lib/sdk";
 import { Textarea } from "@/components/ui/textarea";
+import { ACCEPTED_IMAGE_TYPES } from "@/types/constant";
 
 const mintSchema = z.object({
   collection: z.string().refine((value) => ethers.utils.isAddress(value), {
@@ -84,6 +86,8 @@ export default function MintNFTCard() {
   const { user, isLoading, isLoggedIn } = useUserContext();
   const [contracts, setContracts] = useState<JarsContract[]>([]);
   const [open, setOpen] = useState(false);
+  const [uploadedMedia, setUploadedMedia] = useState<string | null>(null);
+  const [uploadedFileName, setUploadedFileName] = useState<string>("");
   const [loadingContract, setLoadingContract] = useState(false);
   const [selectedContract, setSelectedContract] = useState<
     JarsContract | undefined
@@ -94,18 +98,6 @@ export default function MintNFTCard() {
     isLoading: mintLoading,
     error: mintError,
   } = useMintNFT(contract);
-
-  useEffect(() => {
-    const fetchCollections = async () => {
-      if (user) {
-        setLoadingContract(true);
-        const collections = await jars.getContractsForOwner(user.address);
-        setContracts(collections);
-        setLoadingContract(false);
-      }
-    };
-    fetchCollections();
-  }, [user]);
 
   const form = useForm<FormMintNft>({
     resolver: zodResolver(mintSchema),
@@ -121,6 +113,72 @@ export default function MintNFTCard() {
       properties: [],
     },
   });
+
+  useEffect(() => {
+    const fetchCollections = async () => {
+      if (user) {
+        setLoadingContract(true);
+        const collections = await jars.getContractsForOwner(user.address);
+        setContracts(collections);
+        setLoadingContract(false);
+      }
+    };
+    fetchCollections();
+  }, [user]);
+
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      if (
+        acceptedFiles.length > 0 &&
+        acceptedFiles[0].type.startsWith("image/")
+      ) {
+        const file = acceptedFiles[0];
+
+        if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
+          toast.error("Invalid image type. Please upload a valid image file.", {
+            position: "top-center",
+            closeButton: true,
+          });
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+          setUploadedMedia(e.target?.result?.toString() || "");
+          form.setValue("image", file);
+        };
+        reader.readAsDataURL(file);
+        setUploadedFileName(shortenFileName(file.name));
+      } else {
+        toast.error("Invalid file type. Please upload an image file.", {
+          position: "top-center",
+          closeButton: true,
+        });
+      }
+    },
+    [form],
+  );
+
+  const { getInputProps, getRootProps, isDragActive } = useDropzone({ onDrop });
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const file = e.target.files?.[0];
+    if (file && file.type.startsWith("image/")) {
+      const reader = new FileReader();
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        setUploadedMedia(e.target?.result?.toString() || "");
+        form.setValue("image", file);
+      };
+      reader.readAsDataURL(file);
+      setUploadedFileName(shortenFileName(file.name));
+    } else {
+      toast.error("Invalid file type. Please upload an image file.", {
+        position: "top-center",
+        closeButton: true,
+      });
+    }
+  };
 
   const submitMintNft = async (data: FormMintNft) => {
     const imageNft = new File([data.image], data.image.name, {
@@ -286,12 +344,64 @@ export default function MintNFTCard() {
 
             <FormField
               control={form.control}
+              name="image"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-md flex items-center gap-1 font-semibold">
+                    <span className="text-red-400">*</span>Media
+                  </FormLabel>
+                  <FormControl>
+                    <>
+                      <Input
+                        {...getInputProps()}
+                        {...form.register("image")}
+                        id="media"
+                        className="h-full w-full"
+                        type="file"
+                        accept=""
+                        onChange={handleImageChange}
+                        style={{ display: "none" }}
+                      />
+                      <div
+                        className={cn(
+                          "flex h-fit w-[384px] min-w-[300px] items-center justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]",
+                        )}
+                        {...getRootProps()}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const fileInput = document.getElementById(
+                            "media",
+                          ) as HTMLInputElement;
+                          fileInput?.click();
+                        }}
+                      >
+                        <div className="relative h-[240px] w-[240px]">
+                          <NextUIImage
+                            isBlurred
+                            src={uploadedMedia || ""}
+                            alt={uploadedFileName}
+                            style={{ objectFit: "cover" }}
+                            className="flex h-full w-full"
+                          />
+                        </div>
+                      </div>
+                    </>
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input
+                      {...field}
+                      className="flex h-fit w-[384px] min-w-[300px] items-center justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]"
+                    />
                   </FormControl>
                 </FormItem>
               )}
@@ -308,6 +418,7 @@ export default function MintNFTCard() {
                       {...field}
                       id="description"
                       placeholder="Enter the description of your NFT (Optional)"
+                      className="flex h-fit w-[384px] min-w-[300px] items-center justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]"
                     />
                   </FormControl>
                 </FormItem>
