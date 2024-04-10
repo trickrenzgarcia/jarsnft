@@ -18,9 +18,7 @@ export default function DeployContractPage() {
     );
   }
 
-  if (!user.isLoggedIn) {
-    return <NoConnectedWallet />;
-  }
+  if (!user.isLoggedIn) return <NoConnectedWallet />;
 
   return (
     <main className="mx-auto flex w-full flex-col justify-center gap-5 md:flex-row md:py-8">

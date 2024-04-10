@@ -258,7 +258,10 @@ export default function NFTCreateContractCard({
       if (processContractAddress?.includes("0x")) {
         setContractState("completed");
         setContractAddress(processContractAddress);
-        const newCollection = await createContract(processContractAddress);
+        const newCollection = await createContract(
+          processContractAddress,
+          user.address,
+        );
         setCreatedCollection(newCollection);
         toast.success("Contract deployed successfully!", {
           position: "top-center",
@@ -279,7 +282,13 @@ export default function NFTCreateContractCard({
         </CardTitle>
         <CardDescription>
           {description}
-          <Link href="/insights/what-is-a-smart-contract" className="text-blue-400 hover:text-blue-500 ml-1" target="_blank">What is contract?</Link>
+          <Link
+            href="/insights/what-is-a-smart-contract"
+            className="ml-1 text-blue-400 hover:text-blue-500"
+            target="_blank"
+          >
+            What is contract?
+          </Link>
         </CardDescription>
       </CardHeader>
       <CardContent className="px-5">
@@ -528,9 +537,11 @@ export default function NFTCreateContractCard({
               />
             </div>
 
-            <div className="flex justify-center border md:border-0 md:justify-end rounded-md my-4 md:my-0">
+            <div className="my-4 flex justify-center rounded-md border md:my-0 md:justify-end md:border-0">
               <div className="flex">
-                <Button type="submit" className="my-2 md:my-6">Create Collection</Button>
+                <Button type="submit" className="my-2 md:my-6">
+                  Create Collection
+                </Button>
               </div>
               <AlertDialog>
                 <AlertDialogTrigger asChild>

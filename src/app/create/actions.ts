@@ -3,8 +3,11 @@
 import { jars } from "@/lib/core/api";
 import { revalidateTag } from "next/cache";
 
-export async function createContract(contractAddress: string) {
-  const uploadedContract = await jars.deployNFTCollection(contractAddress);
+export async function createContract(contractAddress: string, owner: string) {
+  const uploadedContract = await jars.deployNFTCollection(
+    contractAddress,
+    owner,
+  );
 
   revalidateTag("metadata");
 
