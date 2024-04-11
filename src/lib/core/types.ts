@@ -5,7 +5,7 @@ export type User = {
   name: string;
   email: string;
   is_listed: boolean;
-  createdAt: string;
+  created_at: string;
 };
 
 export type NFTCollection = {
