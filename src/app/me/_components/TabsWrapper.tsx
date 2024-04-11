@@ -21,6 +21,7 @@ export default function TabsWrapper({
   const isLg = useMedia("(max-width: 1024px)");
   const isXl = useMedia("(max-width: 1280px)");
   const is2xl = useMedia("max-width: 1536px)");
+  const [numCards, setNumCards] = useState<number>(detechScreenSize());
 
   function detechScreenSize(): number {
     if (isSm) return 4;
@@ -33,8 +34,6 @@ export default function TabsWrapper({
       else return 10;
     }
   }
-
-  const [numCards, setNumCards] = useState<number>(detechScreenSize());
 
   useEffect(() => {
     let num = detechScreenSize();
@@ -56,6 +55,8 @@ export default function TabsWrapper({
       if (data) setNFTs(data);
     }
     if (user) getNFTs(user.address);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   return (
