@@ -51,7 +51,7 @@ export default function ProfileBanner({
           fill
           style={{ objectFit: "cover", opacity: 0.5 }}
           alt="Banner"
-          className="rounded-lg"
+          className="rounded-lg bg-black"
         />
       </div>
 
@@ -96,7 +96,7 @@ export default function ProfileBanner({
                 <TooltipMsg message="Not Verified" delay={250}>
                   <Link href="/me/settings">
                     <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
-                      <MdVerified className="text-gray-400" />
+                      <MdVerified className="text-gray-500 dark:text-gray-400" />
                     </div>
                   </Link>
                 </TooltipMsg>

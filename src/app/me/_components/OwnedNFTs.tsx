@@ -46,7 +46,9 @@ export default function OwnedNFTs({
               <div key={nft.name + nft.tokenId} className="w-full rounded-2xl">
                 <HoverCard>
                   <HoverCardTrigger asChild>
-                    <Link href={`${nft.contract.address}/${nft.tokenId}`}>
+                    <Link
+                      href={`/collection/${nft.contract.address}/${nft.tokenId}`}
+                    >
                       <Image
                         isBlurred
                         width={512}

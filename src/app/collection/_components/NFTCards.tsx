@@ -32,7 +32,7 @@ export default function NFTCards({ address }: { address: string }) {
                 <Image
                   src={nft.metadata.image || ""}
                   alt="nft image"
-                  className="h-full w-full rounded-t-2xl hover:opacity-25"
+                  className="h-full w-full rounded-t-2xl"
                   width={500}
                   height={500}
                   loading="eager"
