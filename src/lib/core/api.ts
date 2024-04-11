@@ -3,7 +3,12 @@
  * @public
  */
 
-import { NFTCollection } from "./types";
+import {
+  AlchemyContractMetadata,
+  AlchemyContractsForOwner,
+  JarsContract,
+  NFTCollection,
+} from "./types";
 import { BASE_URL } from "../ctx";
 import { User } from "./types";
 
@@ -109,10 +114,10 @@ export class JarsAPI {
    * @param contractAddress address of the contract to deploy NFTCollection ERC721A
    * @returns ContractMetadata
    */
-  async deployNFTCollection(contractAddress: string) {
+  async deployNFTCollection(contractAddress: string, owner: string) {
     return await this.request<NFTCollection>(`/deploy/nft-collection`, {
       method: "POST",
-      body: JSON.stringify({ contractAddress: contractAddress }),
+      body: JSON.stringify({ contractAddress: contractAddress, owner: owner }),
     });
   }
   /**
@@ -120,10 +125,10 @@ export class JarsAPI {
    * @param contractAddress address of the contract to deploy NFTDrop ERC721A
    * @returns ContractMetadata
    */
-  async deployNFTDrop(contractAddress: string) {
+  async deployNFTDrop(contractAddress: string, owner: string) {
     return await this.request(`/deploy/nft-collection`, {
       method: "POST",
-      body: JSON.stringify({ contractAddress: contractAddress }),
+      body: JSON.stringify({ contractAddress: contractAddress, owner: owner }),
     });
   }
   /**
@@ -132,7 +137,7 @@ export class JarsAPI {
    */
   async getNFTCollections() {
     return await this.request<NFTCollection[]>(`/deploy/nft-collection`, {
-      next: { tags: ["nft-collection", "metadata"] },
+      next: { tags: ["nft-collection", "metadata", "getNFTCollections"] },
     });
   }
   /**
@@ -141,15 +146,37 @@ export class JarsAPI {
    * @returns - A contract metadata of an NFT collection
    */
   async getContractMetadata(contractAddress: string, tags?: string[]) {
-    return await this.request<NFTCollection>(`/metadata/${contractAddress}`, {
-      next: { tags: ["metadata"] },
+    return await this.request<AlchemyContractMetadata>(
+      `/metadata/getContractMetadata?contractAddress=${contractAddress}`,
+      {
+        next: { tags: ["metadata", "getContractMetadata"] },
+      },
+    );
+  }
+
+  /**
+   * Get all NFTs for an owner
+   * @param walletAddress
+   * @returns
+   */
+  async getNFTsForOwner(walletAddress: string) {
+    return await this.request(`/nfts/${walletAddress}`, {
+      next: { tags: ["nfts", "getNFTsForOwner"] },
     });
   }
 
-  async getNFTsForOwner(walletAddress: string) {
-    return await this.request(`/nfts/${walletAddress}`, {
-      next: { tags: ["nfts"] },
-    });
+  /**
+   * Get all ERC721 Contracts for an owner
+   * @param walletAddress
+   * @returns
+   */
+  async getContractsForOwner(walletAddress: string) {
+    return await this.request<JarsContract[]>(
+      `/collections/getContractsForOwner?owner=${walletAddress}`,
+      {
+        next: { tags: ["contracts", "collections", "getContractsForOwner"] },
+      },
+    );
   }
 }
 

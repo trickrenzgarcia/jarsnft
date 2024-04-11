@@ -37,6 +37,22 @@ export type OpenSeaMetadata = {
   lastIngestedAt: string | null;
 };
 
+export type JarsContract = {
+  contract: string;
+  image: string;
+  name: string;
+  symbol?: string;
+  description?: string;
+  app_uri?: string;
+  external_link?: string;
+  fee_recipient: string;
+  seller_fee_basis_points: number;
+  primary_sale_recipient: string;
+  trusted_forwarders: string[];
+  owner: string;
+  created_at: string;
+};
+
 export type AlchemyContract = {
   contract: {
     address: string;
@@ -100,4 +116,45 @@ export type AlchemyNFTs = {
     blockNumber: number | null;
     blockTimestamp: string | null;
   };
+};
+
+export type ContractForOwner = {
+  address: string;
+  name: string;
+  symbol: string;
+  totalSupply: string | null;
+  tokenType: string;
+  openSeaMetadata: OpenSeaMetadata;
+  totalBalance: string | null;
+  numDistinctTokensOwned: string | null;
+  isSpam: boolean;
+  displayNft: {
+    tokenId: string;
+    name: string;
+  };
+  image: {
+    cachedUrl: string;
+    thumbnailUrl: string | null;
+    pngUrl: string | null;
+    contentType: string | null;
+    size: string | null;
+    originalUrl: string;
+  };
+};
+
+export type AlchemyContractsForOwner = {
+  contracts: ContractForOwner[];
+  totalCount: number;
+  pageKey: string | number | null;
+};
+
+export type AlchemyContractMetadata = {
+  address: string;
+  name: string;
+  symbol?: string;
+  tokenSupply?: string;
+  tokenType: string;
+  contractDeployer: string | null;
+  deployedBlockNumber: number | null;
+  openSeaMetadata: OpenSeaMetadata;
 };

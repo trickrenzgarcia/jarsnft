@@ -9,12 +9,7 @@ export default function OptimisticMessage({
 }: {
   messages: Message[];
 }) {
-  const [optimisticMessages, addOptimisticMessage] = useOptimistic<Message[]>(
-    messages,
-    (state: Message[], newMessage: string) => {
-      return [...state, { message: newMessage }];
-    },
-  );
+  const [optimisticMessages, addOptimisticMessage] = useOptimistic(messages, (state: Message[], newMessage: string) => [...state, { message: newMessage }]);
 
   return <div></div>;
 }

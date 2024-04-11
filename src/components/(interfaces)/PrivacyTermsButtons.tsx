@@ -49,7 +49,7 @@ export default function PrivacyTermsButtons() {
                 Privacy Policy
               </ModalHeader>
               <ModalBody>
-                <P>Last Updated: February 23, 2024</P>
+                <P>Last Updated: April 10, 2024</P>
                 <p>
                   JARS NFT, Inc.JARS (“JARS”, “we”, “us”, or “our”) is committed
                   to protecting your privacy. We have prepared this Privacy
@@ -61,16 +61,13 @@ export default function PrivacyTermsButtons() {
                 <P>1. Types of Information We Collect</P>
                 <P>2. Use of Your Information</P>
                 <P>3. Disclosure of Your Information</P>
-                <P>4. Third-Party Websites</P>
-                <P>5. Third-Party Wallets</P>
-                <P>6. Your Choices Regarding Information</P>
-                <P>7. Data Access and Control</P>
-                <P>8. Data Retention</P>
-                <P>9. Security</P>
-                <P>10. Minors</P>
-                <P>11. Users Outside of the Philippines</P>
-                <P>12. Changes to This Privacy Policy</P>
-                <P>13. Questions; Contacting Us; Reporting Violations</P>
+                <P>4. Third-Party Wallets</P>
+                <P>5. Your Choices Regarding Information</P>
+                <P>6. Security</P>
+                <P>7. Minors</P>
+                <P>8. Users Outside of the Philippines</P>
+                <P>9. Changes to This Privacy Policy</P>
+                <P>10. Violations</P>
               </ModalBody>
               <ModalFooter>
                 <Button onPress={onClosePrivacy}>Okay, I understand</Button>
@@ -101,7 +98,7 @@ export default function PrivacyTermsButtons() {
                 Terms And Conditions
               </ModalHeader>
               <ModalBody>
-                <P>Last Updated: February 23, 2024</P>
+                <P>Last Updated: April 10, 2024</P>
                 <P>1. Introduction</P>
                 <P>
                   Welcome to JARS, owned and operated by Alrae, Jeffrey,
@@ -127,26 +124,23 @@ export default function PrivacyTermsButtons() {
                 </p>
                 <P>2. Accessing the Service</P>
                 <P>3. Ownership</P>
-                <P>4. License to Access and Use Our Service and Content</P>
-                <P>5. Third-Party Content, Agreements, and Services</P>
-                <P>6. User Conduct</P>
-                <P>7. Intellectual Property Rights</P>
-                <P>8. Communication Preferences</P>
-                <P>9. App Terms</P>
-                <P>10. Indemnification</P>
-                <P>11. Disclaimers</P>
-                <P>12. Changes to This Privacy Policy</P>
-                <P>13. Limitation of Liability</P>
-                <P>14. Privacy Policy</P>
-                <P>15. Modifications to the Services</P>
-                <P>16. Dispute Resolution; Arbitration</P>
-                <P>17. Governing Law and Venue</P>
-                <P>18. Termination</P>
-                <P>19. Severability</P>
-                <P>20. Injunctive Relief</P>
-                <P>21. Export Laws</P>
-                <P>22. Survival</P>
-                <P>23. Miscellaneous</P>
+                <P>4. Third-Party Content, Agreements, and Services</P>
+                <P>5. User Conduct</P>
+                <P>6. Intellectual Property Rights</P>
+                <P>7. Communication Preferences</P>
+                <P>8. App Terms</P>
+                <P>9. Indemnification</P>
+                <P>10. Disclaimers</P>
+                <P>11. Changes to This Privacy Policy</P>
+                <P>12. Limitation of Liability</P>
+                <P>13. Privacy Policy</P>
+                <P>14. Modifications to the Services</P>
+                <P>15. Dispute Resolution; Arbitration</P>
+                <P>16. Governing Law and Venue</P>
+                <P>17. Termination</P>
+                <P>18. Severability</P>
+                <P>19. Injunctive Relief</P>
+                <P>20. Export Laws</P>
               </ModalBody>
               <ModalFooter>
                 <Button onPress={onCloseTerms}>I Agree</Button>

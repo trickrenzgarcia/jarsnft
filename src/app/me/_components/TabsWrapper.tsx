@@ -55,6 +55,8 @@ export default function TabsWrapper({
       if (data) setNFTs(data);
     }
     if (user) getNFTs(user.address);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   return (

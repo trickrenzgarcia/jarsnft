@@ -26,7 +26,7 @@ type AlignmentOptionType =
   | ((viewSize: number, snapSize: number, index: number) => number);
 
 type NFTCarouselProps = {
-  collections: NFTCollection[];
+  collections: NFTCollection[] | NFTCardType[];
   withExtra?: boolean;
   align?: AlignmentOptionType;
 };

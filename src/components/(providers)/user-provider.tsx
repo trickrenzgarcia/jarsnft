@@ -48,5 +48,5 @@ export function useUserContext() {
     return user as ProfileQuery;
   }, [user]);
 
-  return userContextValue;
+  return userContextValue as ProfileQuery;
 }

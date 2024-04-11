@@ -9,5 +9,5 @@ export default function DeployCollectionLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div>{children}</div>;
+  return <div className="md:container">{children}</div>;
 }

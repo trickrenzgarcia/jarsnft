@@ -112,29 +112,36 @@ export function truncate(str: string, maxLength: number): string {
 
 export function getShortenedURLParam(name: string) {
   // Convert name to lowercase and replace spaces with hyphens
-  let urlParam = name.trim().toLowerCase().replace(/\s+/g, '-');
+  let urlParam = name.trim().toLowerCase().replace(/\s+/g, "-");
 
   // Check if the generated URL parameter already exists
   const existingParams = new Set();
 
   // Function to generate unique URL parameter if it already exists
   function generateUniqueURLParam(param: string) {
-      let index = 1;
-      let newParam = param;
-      while (existingParams.has(newParam)) {
-          newParam = `${param}-${index}`;
-          index++;
-      }
-      return newParam;
+    let index = 1;
+    let newParam = param;
+    while (existingParams.has(newParam)) {
+      newParam = `${param}-${index}`;
+      index++;
+    }
+    return newParam;
   }
 
   // If URL parameter already exists, generate a unique one
   if (existingParams.has(urlParam)) {
-      urlParam = generateUniqueURLParam(urlParam);
+    urlParam = generateUniqueURLParam(urlParam);
   }
 
   // Add the generated URL parameter to the existing set
   existingParams.add(urlParam);
 
   return urlParam;
+}
+
+export function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^\w-]+/g, "");
 }

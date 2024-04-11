@@ -8,7 +8,7 @@ export default function Hero() {
         <Image
           src="/assets/hero-icon.svg"
           fill
-          objectFit="cover"
+          style={{ objectFit: "cover" }}
           alt="image of a banner"
         />
       </div>

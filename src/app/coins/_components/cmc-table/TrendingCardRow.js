@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const styles = {
-  trendingCardRow: `flex items-center space-x-4 m-2 p-2`,
+  trendingCardRow: `flex items-center justify-between space-x-4 m-2 p-2 gap-5`,
 };
 
 const TrendingCardRow = ({ number, icon, name, sparklines, percentChange }) => {
@@ -15,9 +15,10 @@ const TrendingCardRow = ({ number, icon, name, sparklines, percentChange }) => {
   }
 
   return (
-    <div className={styles.trendingCardRow}>
-      <div className="flex w-full">
-        <div className="mx-5">
+    <>
+      <div className={styles.trendingCardRow}>
+        {/* div 1 */}
+        <div>
           {icon && (
             <Image
               alt="icons.svg"
@@ -28,27 +29,27 @@ const TrendingCardRow = ({ number, icon, name, sparklines, percentChange }) => {
             />
           )}
         </div>
-        <p className="font-bold">
-          {name}
-          <span className="mx-1 text-gray-400">{number}</span>
-        </p>
+
+        {/* Div 2 */}
+        <div>
+          <p>{name}</p>
+          <span className="text-gray-400">{number}</span>
+        </div>
+
+        <div className="grow">
+          {sparklines && (
+            <Image
+              alt="sparkline.svg"
+              src={sparklines}
+              width={100}
+              height={80}
+              quality={100}
+              priority={true}
+            />
+          )}
+        </div>
       </div>
-      <div className="mx-5">
-        {sparklines && (
-          <Image
-            alt="sparkline.svg"
-            src={sparklines}
-            width={160}
-            height={100}
-            quality={100}
-            priority={true}
-          />
-        )}
-      </div>
-      <div className="mx-3">
-        <p className="font-bold">{formatNumber(percentChange)} </p>
-      </div>
-    </div>
+    </>
   );
 };
 

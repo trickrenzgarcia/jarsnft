@@ -1,4 +1,5 @@
 export type NFTCard = {
+  contract: string;
   collection: string;
   itemLink: string;
   logo: string;
