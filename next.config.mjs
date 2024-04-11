@@ -30,6 +30,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "cf-ipfs.com",
       },
+      {
+        protocol: "https",
+        hostname: "**",
+      },
     ],
   },
 };
