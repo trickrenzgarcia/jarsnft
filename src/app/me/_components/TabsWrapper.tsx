@@ -38,6 +38,8 @@ export default function TabsWrapper({
   useEffect(() => {
     let num = detechScreenSize();
     setNumCards(num);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSm, isMd, isLg, isXl, is2xl]);
 
   useEffect(() => {

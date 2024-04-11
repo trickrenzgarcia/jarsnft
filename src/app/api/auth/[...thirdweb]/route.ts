@@ -57,7 +57,7 @@ const { ThirdwebAuthHandler } = ThirdwebAuthAppRouter({
         email: user.email,
         name: user.name,
         is_listed: user.is_listed,
-        create_at: user.createdAt,
+        create_at: user.created_at,
       };
       return session;
     },

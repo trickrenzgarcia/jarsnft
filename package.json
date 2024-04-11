@@ -6,7 +6,7 @@
     "dev": "next dev",
     "pat": "next dev",
     "build": "next build",
-    "start": "node server.js",
+    "start": "next start",
     "start:bun": "bun run server.js",
     "lint": "next lint"
   },

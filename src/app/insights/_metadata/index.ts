@@ -7,18 +7,45 @@ type RightNavListType = {
 };
 
 // type LeftNavList = { name: string; href: string };
-type LeftNavList = { 
-  topic: string; 
+type LeftNavList = {
+  topic: string;
   child: {
     name: string;
     href: string;
-  }[]; 
+  }[];
 };
 
 export const rightNavList: RightNavListType[] = [
   {
     // add id="#anchor" in 
     href: "/insights",
+    anchors: [
+      { name: "Getting Started", anchor: "#getting-started" },
+      { name: "Non Fungible Token", anchor: "#buying-nfts" },
+      { name: "Blockchain", anchor: "#blockchain" },
+      { name: "Guides", anchor: "#guides" },
+    ],
+  },
+  {
+    href: "/insights/buying-nfts",
+    anchors: [
+      { name: "Getting Started", anchor: "#getting-started" },
+      { name: "Non Fungible Token", anchor: "#buying-nfts" },
+      { name: "Blockchain", anchor: "#blockchain" },
+      { name: "Guides", anchor: "#guides" },
+    ],
+  },
+  {
+    href: "/insights/selling-nfts",
+    anchors: [
+      { name: "Getting Started", anchor: "#getting-started" },
+      { name: "Non Fungible Token", anchor: "#buying-nfts" },
+      { name: "Blockchain", anchor: "#blockchain" },
+      { name: "Guides", anchor: "#guides" },
+    ],
+  },
+  {
+    href: "/insights/getting-started",
     anchors: [
       { name: "Getting Started", anchor: "#getting-started" },
       { name: "Non Fungible Token", anchor: "#buying-nfts" },
@@ -129,13 +156,13 @@ export const rightNavList: RightNavListType[] = [
     href: "/insights/protect-account",
     anchors: [
       { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
-      { name: "Listing an NFT for sale a fixed price", anchor: "#selling-fixed-price",},
+      { name: "Listing an NFT for sale a fixed price", anchor: "#selling-fixed-price", },
     ],
   },
   {
     href: "/insights/faq",
     anchors: [
-      {name: "FAQs", anchor: "#",},
+      { name: "FAQs", anchor: "#", },
     ],
   },
 ];
@@ -148,50 +175,50 @@ export const rightNavList: RightNavListType[] = [
 //   { name: "FAQs", href: "/insights/faq" },
 // ];
 
-export const leftNavList: LeftNavList[] =[
+export const leftNavList: LeftNavList[] = [
   {
     topic: "Welcome",
     child: [
-      {name: "Overview", href: "/insights"}
+      { name: "Overview", href: "/insights" }
     ]
   },
   {
     topic: "Getting Started",
     child: [
-      {name: "Setup your wallet", href: "/insights/setup-wallet"},
-      {name: "Creating your profile", href: "/insights/create-profile"},
-      {name: "Create your NFT", href: "/insights/create-nft"},
-      {name: "How to trade your NFT", href: "/insights/trade-nft"}
+      { name: "Setup your wallet", href: "/insights/setup-wallet" },
+      { name: "Creating your profile", href: "/insights/create-profile" },
+      { name: "Create your NFT", href: "/insights/create-nft" },
+      { name: "How to trade your NFT", href: "/insights/trade-nft" }
     ]
   },
   {
     topic: "Non-Fungible Token",
     child: [
-      {name: "What is an NFT?", href: "/insights/what-is-nft"},
-      {name: "What makes NFT Valuable?", href: "/insights/what-makes-nft-valuable"}
+      { name: "What is an NFT?", href: "/insights/what-is-nft" },
+      { name: "What makes NFT Valuable?", href: "/insights/what-makes-nft-valuable" }
     ]
   },
   {
     topic: "Blockchain",
     child: [
-      {name: "What is the blockchain?", href: "/insights/what-is-blockchain"},
-      {name: "What is a smart contract?", href: "/insights/what-is-a-smart-contract"},
-      {name: "What are gas fees?", href: "/insights/what-are-gas-fees"},
-      {name: "What is cryptocurrency?", href: "/insights/what-is-crypto"}      
+      { name: "What is the blockchain?", href: "/insights/what-is-blockchain" },
+      { name: "What is a smart contract?", href: "/insights/what-is-a-smart-contract" },
+      { name: "What are gas fees?", href: "/insights/what-are-gas-fees" },
+      { name: "What is cryptocurrency?", href: "/insights/what-is-crypto" }
     ]
   },
   {
     topic: "Guides",
     child: [
-      {name: "Exchange Cryptocurrency", href: "/insights/exchange-crypto"},
-      {name: "Protect your account", href: "/insights/protect-account"}
+      { name: "Exchange Cryptocurrency", href: "/insights/exchange-crypto" },
+      { name: "Protect your account", href: "/insights/protect-account" }
     ]
   },
   {
     topic: "FAQs",
     child: [
-      {name: "To be added", href: "#"},
-      {name: "To be added", href: "#"}
+      { name: "To be added", href: "#" },
+      { name: "To be added", href: "#" }
     ]
   },
 ]
