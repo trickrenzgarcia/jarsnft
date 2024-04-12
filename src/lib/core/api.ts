@@ -160,7 +160,7 @@ export class JarsAPI {
    * @returns
    */
   async getNFTsForOwner(walletAddress: string) {
-    return await this.request(`/nfts/${walletAddress}`, {
+    return await this.request(`/nfts/getNFTsForOwner?owner=${walletAddress}`, {
       next: { tags: ["nfts", "getNFTsForOwner"] },
     });
   }
