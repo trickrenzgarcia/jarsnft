@@ -17,14 +17,12 @@ type OwnedNFTsProps = {
   nfts: AlchemyNFTs | undefined;
   userLoading: boolean;
   loadingNfts: boolean;
-  numCards: number;
 };
 
 export default function OwnedNFTs({
   nfts,
   userLoading,
   loadingNfts,
-  numCards,
 }: OwnedNFTsProps) {
   return (
     <div className="flex w-full flex-col rounded-2xl border p-2">
@@ -84,7 +82,7 @@ export default function OwnedNFTs({
         )) || (
           <div className="mx-auto flex w-full flex-col p-5">
             <div className="relative grid w-auto grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5">
-              {Array.from({ length: numCards }).map((_, i) => (
+              {Array.from({ length: 5 }).map((_, i) => (
                 <div key={i} className="w-full">
                   <Card className="border bg-muted/50 p-2">
                     <CardContent className="h-[200px] w-full"></CardContent>

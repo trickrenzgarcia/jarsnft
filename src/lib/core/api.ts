@@ -6,11 +6,13 @@
 import {
   AlchemyContractMetadata,
   AlchemyContractsForOwner,
+  AlchemyNFTs,
   JarsContract,
   NFTCollection,
 } from "./types";
 import { BASE_URL } from "../ctx";
 import { User } from "./types";
+import { env } from "../env.mjs";
 
 export type JarsOptions = {
   /**
@@ -33,7 +35,7 @@ export class JarsAPI {
       const response = await fetch(`${this.baseUrl}${endpoint}`, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${this.options.secretKey}`,
+          "Authorization": `Bearer ${this.options.secretKey}`,
         },
         ...configs,
       });
@@ -160,9 +162,12 @@ export class JarsAPI {
    * @returns
    */
   async getNFTsForOwner(walletAddress: string) {
-    return await this.request(`/nfts/getNFTsForOwner?owner=${walletAddress}`, {
-      next: { tags: ["nfts", "getNFTsForOwner"] },
-    });
+    return await this.request<AlchemyNFTs>(
+      `/nfts/getNFTsForOwner?owner=${walletAddress}`,
+      {
+        next: { tags: ["nfts", "getNFTsForOwner"] },
+      },
+    );
   }
 
   /**
@@ -181,5 +186,5 @@ export class JarsAPI {
 }
 
 export const jars = new JarsAPI(BASE_URL, {
-  secretKey: process.env.JWT_AUTH_TOKEN as string,
+  secretKey: env.NEXT_PUBLIC_JWT_AUTH_TOKEN
 });

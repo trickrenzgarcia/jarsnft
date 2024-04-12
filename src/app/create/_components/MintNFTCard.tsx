@@ -43,6 +43,8 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
+  Accordion,
+  AccordionItem,
 } from "@nextui-org/react";
 import { Button } from "@/components/ui/button";
 import { Check, ChevronsUpDown, PlusIcon } from "lucide-react";
@@ -362,7 +364,7 @@ export default function MintNFTCard() {
                         id="media"
                         className="h-full w-full"
                         type="file"
-                        accept=""
+                        accept="image/*"
                         onChange={handleImageChange}
                         style={{ display: "none" }}
                       />
@@ -456,6 +458,28 @@ export default function MintNFTCard() {
                 </FormItem>
               )}
             />
+
+            <Accordion>
+              <AccordionItem key={1} title="Advance Options" className="mx-auto font-bold w-[384px] min-w-[300px] items-center justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]">
+              <FormField
+              control={form.control}
+              name="external_url"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-md flex items-center gap-1 font-semibold">
+                    External URL
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      className=""
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+              </AccordionItem>
+            </Accordion>
 
             <Button type="submit">Mint</Button>
           </form>
