@@ -5,6 +5,7 @@ export type User = {
   name: string;
   email: string;
   is_listed: boolean;
+  role: "user" | "admin";
   created_at: string;
 };
 

@@ -2,8 +2,18 @@ import React from "react";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { getUser } from "../api/auth/[...thirdweb]/thirdwebAuth";
+import { AuthUser } from "@/types/users";
+import { notFound } from "next/navigation";
 
-const page = () => {
+const page = async () => {
+  // check user session if it is admin or not
+  const userInfo = await getUser() as AuthUser;
+  
+  if(userInfo.session?.role !== "admin") {
+    notFound(); // hide this page if not admin!
+  }
+  
   return (
     <div>
       <div className="grid grid-cols-2 bg-gradient-to-r from-violet-500 via-rose-500 to-black">
