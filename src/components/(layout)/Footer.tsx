@@ -39,7 +39,7 @@ export default function Footer() {
   //#region End
 
   return (
-    <footer className="container mt-16">
+    <footer className="container">
       <Separator className="h-[2px] w-full" />
       <section>
         {/* Footer Columns */}
