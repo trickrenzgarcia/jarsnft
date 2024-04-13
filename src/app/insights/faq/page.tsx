@@ -6,7 +6,6 @@ export default function FAQsPage() {
     <>
       <div>
         FAQ
-        <PageNextButton title="Back to JarsNFT" href="/" />
       </div>
     </>
   );
