@@ -1,3 +1,6 @@
+import { Json } from "@thirdweb-dev/auth";
+import { ThirdwebAuthUser } from "@thirdweb-dev/auth/next";
+
 /**
  * The Profile type is a custom type for the Session/ ProfileProvider or UserProvider
  *
@@ -38,6 +41,7 @@ export type ApiProfile = {
   name: string;
   email: string;
   is_listed: boolean;
+  role: "user" | "admin";
   create_at: string;
 };
 
@@ -45,5 +49,7 @@ export type ProfileData = {
   address: string;
   session: ApiProfile;
 };
+
+export type AuthUser = ThirdwebAuthUser<Json, ApiProfile>;
 
 //# sourceMappingURL=users.ts.map
