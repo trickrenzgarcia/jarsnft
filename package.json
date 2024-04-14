@@ -58,6 +58,7 @@
     "react-icons": "^5.0.1",
     "react-sparklines": "^1.7.0",
     "react-use": "^17.5.0",
+    "recharts": "^2.12.5",
     "sharp": "^0.33.2",
     "simplex-noise": "^4.0.1",
     "sonner": "^1.4.41",

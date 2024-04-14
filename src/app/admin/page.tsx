@@ -14,6 +14,7 @@ import { Metadata } from "next";
 import { TbArrowsExchange } from "react-icons/tb";
 import { FaUsers } from "react-icons/fa6";
 import { jars } from "@/lib/core/api";
+import { Overview } from "./_components";
 
 export const metadata: Metadata = {
   title: "Admin Dashboard",
@@ -46,7 +47,7 @@ const AdminPage = async () => {
         />
       ),
       growth: "+12%",
-      percentage: "USD $368,552",
+      percentage: "USD $115.47",
     },
     {
       name: "24h Trading Volume",
@@ -60,7 +61,7 @@ const AdminPage = async () => {
         />
       ),
       growth: "+5%",
-      percentage: "USD $7,371,045.60",
+      percentage: "USD $2309.50",
     },
     {
       name: "Total Users",
@@ -99,6 +100,28 @@ const AdminPage = async () => {
               </CardContent>
             </Card>
           ))}
+          
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 my-4">
+            <Card className="col-span-4">
+              <CardHeader>
+                <CardTitle>Overview</CardTitle>
+              </CardHeader>
+              <CardContent className="pl-2">
+                <Overview />
+              </CardContent>
+            </Card>
+            <Card className="col-span-3">
+              <CardHeader>
+                <CardTitle>Recent Sales</CardTitle>
+                <CardDescription>
+                  You made 265 sales this month.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <h1>to be adding...</h1>
+              </CardContent>
+            </Card>
         </div>
       </div>
     </div>
