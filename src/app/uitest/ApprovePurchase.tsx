@@ -10,39 +10,35 @@ import {
   DialogTrigger,
   DialogFooter,
 } from "@/components/ui/dialog"
+import { Separator } from "@/components/ui/separator"
 import Image from "next/image"
-import ApprovePurchase from "./ApprovePurchase"
 
 type BuyButtonType = {
   nftImageLink: string;
   nftName: string;
   nftCollectionName: string;
   isVerified: boolean;
-  lastSalePrice: number;
+  networkChain: string;
   nftPrice: number;
   nftQuantity: number;
   nftPriceInDollars: number;
-  userBalance: number;
-  networkChain: string;
 }
 
-export default function BuyButton({
-  nftImageLink, nftName, nftCollectionName, isVerified, lastSalePrice,
-  nftPrice, nftQuantity, nftPriceInDollars, userBalance, networkChain,
+export default function ApprovePurchase({
+  nftImageLink, nftName, nftCollectionName, isVerified, networkChain,
+  nftPrice, nftQuantity, nftPriceInDollars,
 }: BuyButtonType) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="bg-foreground-900 hover:bg-foreground-700 text-background hover:text-background min-w-[200px]">Buy Now</Button>
+        <Button variant="outline" className="bg-foreground-900 hover:bg-foreground-700 text-background
+         hover:text-background">CONFIRM AND PAY</Button>
       </DialogTrigger>
 
       <DialogContent className="min-w-[550px] p-0">
         {/* Header */}
         <DialogHeader className="px-8 pt-8">
-          <DialogTitle className="text-2xl font-bold">Checkout</DialogTitle>
-          <DialogDescription>
-            Verify your purchase here. Click "CONFIRM AND PAY" to proceed.
-          </DialogDescription>
+          <DialogTitle className="text-2xl font-bold">Approve Purchase</DialogTitle>
         </DialogHeader>
 
         {/* Body */}
@@ -55,7 +51,7 @@ export default function BuyButton({
               <h2>{nftCollectionName}</h2>
               {isVerified && <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" />}
             </div>
-            <p className="mt-auto">Last sale: {lastSalePrice} MATIC</p>
+            <p className="mt-auto">Chain: {networkChain}</p>
           </div>
         </div>
 
@@ -69,13 +65,9 @@ export default function BuyButton({
             <p>for {nftQuantity} NFT</p>
             <p>${nftPriceInDollars}</p>
           </div>
-          <div className="flex justify-between my-6 px-4">
-            <p>Your MATIC balance</p>
-            <p>{userBalance} MATIC</p>
-          </div>
-          <ApprovePurchase nftImageLink={nftImageLink} nftName={nftName} nftCollectionName={nftCollectionName}
-            isVerified={isVerified} networkChain={networkChain} nftPrice={nftPrice} nftQuantity={nftQuantity}
-            nftPriceInDollars={nftPriceInDollars} />
+          <Separator className="my-8" />
+          <p className="px-4 text-neutral-500">Go to your wallet.</p>
+          <p className="px-4 text-neutral-500 mb-4">You'll be asked to approve this purchase from your wallet.</p>
         </DialogFooter>
       </DialogContent>
     </Dialog>
