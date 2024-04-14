@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { Login, Hamburger } from "@/components/(interfaces)";
+import AdminAccessLink from "./AdminAccessLink";
 
-export default function Navbar() {
+export default async function Navbar() {
+
   return (
     <nav
       className="sticky top-0 z-50 w-full border-b-1 border-slate-800 bg-background/80 
-    px-0 py-4 backdrop-blur-md"
+    px-0 backdrop-blur-md"
     >
       {/* Nav Container */}
-      <div className="container flex w-full justify-between">
+      <div className="container flex w-full justify-between py-4">
         {/* Left-side  */}
         <div className="flex items-center">
           <div className="">
@@ -25,7 +27,7 @@ export default function Navbar() {
               Create
             </Link>
             <Link
-              href="/collection"
+              href="/collections"
               className="cursor-pointer px-3 font-semibold hover:text-zinc-500"
             >
               Collections
@@ -57,6 +59,9 @@ export default function Navbar() {
           <Hamburger />
         </div>
       </div>
+
+      {/* Admin Access */}
+      <AdminAccessLink />
     </nav>
   );
 }

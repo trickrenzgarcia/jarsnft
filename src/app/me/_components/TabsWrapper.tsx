@@ -4,8 +4,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlchemyNFTs } from "@/lib/core/types";
 import { ProfileQuery } from "@/types/users";
 import { useEffect, useState } from "react";
-import { useMedia } from "react-use";
 import OwnedNFTs from "./OwnedNFTs";
+import { jars } from "@/lib/core/api";
+import { Spinner } from "@nextui-org/react";
 
 export default function TabsWrapper({
   user: userContext,
@@ -15,44 +16,13 @@ export default function TabsWrapper({
   const { user, isLoading: userLoading } = userContext;
   const [nfts, setNFTs] = useState<AlchemyNFTs>();
   const [loadingNfts, setLoadingNfts] = useState(false);
-  const isXsm = useMedia("(max-width: 480px)");
-  const isSm = useMedia("(max-width: 640px)");
-  const isMd = useMedia("(max-width: 768px)");
-  const isLg = useMedia("(max-width: 1024px)");
-  const isXl = useMedia("(max-width: 1280px)");
-  const is2xl = useMedia("max-width: 1536px)");
-  const [numCards, setNumCards] = useState<number>(detechScreenSize());
-
-  function detechScreenSize(): number {
-    if (isSm) return 4;
-    else if (isMd) return 6;
-    else if (isLg) return 8;
-    else if (isXl) return 10;
-    else if (is2xl) return 10;
-    else {
-      if (isXl) return 4;
-      else return 10;
-    }
-  }
-
-  useEffect(() => {
-    let num = detechScreenSize();
-    setNumCards(num);
-  }, [isSm, isMd, isLg, isXl, is2xl]);
 
   useEffect(() => {
     async function getNFTs(walletAddress: string) {
       setLoadingNfts(true);
-      const res = await fetch(`http://localhost:5000/nfts/${walletAddress}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXRLZXkiOiJteXNlY3JldHhkeGQiLCJpYXQiOjE3MDkxMzUyMDYsImV4cCI6MTAzNDkxMzUyMDZ9.TNEMDyIqMuQdZ1NO9iQnPojvkY4ApOk-JozsfTdMetc",
-        },
-      });
-      const data = (await res.json()) as AlchemyNFTs;
+      const nfts = await jars.getNFTsForOwner(walletAddress);
       setLoadingNfts(false);
-      if (data) setNFTs(data);
+      if (nfts) setNFTs(nfts);
     }
     if (user) getNFTs(user.address);
 
@@ -64,10 +34,10 @@ export default function TabsWrapper({
       <Tabs defaultValue="owned">
         <div className="flex items-center gap-2">
           <TabsList>
-            <TabsTrigger value="owned">
-              Owned NFTs{" "}
-              {`${nfts?.totalCount || 0 > 0 ? `(${nfts?.totalCount})` : ""}`}
-              {userLoading && "(..)"}
+            <TabsTrigger value="owned" className="gap-1">
+              <span>Owned NFTs</span>
+              {`${nfts?.totalCount || 0 > 0 ? `(${nfts?.totalCount})` : "(0)"}`}
+              {userLoading && <Spinner size="sm" />}
             </TabsTrigger>
             <TabsTrigger value="onsale">On sale</TabsTrigger>
             <TabsTrigger value="offers">Offers</TabsTrigger>
@@ -82,7 +52,6 @@ export default function TabsWrapper({
             nfts={nfts}
             userLoading={userLoading}
             loadingNfts={loadingNfts}
-            numCards={numCards}
           />
         </TabsContent>
 

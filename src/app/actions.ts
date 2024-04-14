@@ -20,7 +20,6 @@ export const updateUser = async (formData: FormData) => {
   await jars.updateUser(address, {
     name: name,
     email: email,
-    createdAt: ""
   });
   revalidateTag("user");
 };

@@ -6,6 +6,7 @@ import {
 } from "@/components/(layout)";
 
 export default async function Home() {
+   
   return (
     <main className="bg-background">
       <Navbar />

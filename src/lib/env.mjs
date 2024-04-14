@@ -10,6 +10,7 @@ export const env = createEnv({
     NEXT_PUBLIC_THIRDWEB_API_KEY: z.string().min(1),
     NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN: z.string().min(1),
     NEXT_PUBLIC_BACKEND_URL: z.string().min(1),
+    NEXT_PUBLIC_JWT_AUTH_TOKEN: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_APP_URL: z.string().min(1),
@@ -19,6 +20,7 @@ export const env = createEnv({
     NEXT_PUBLIC_THIRDWEB_API_KEY: z.string().min(1),
     NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN: z.string().min(1),
     NEXT_PUBLIC_BACKEND_URL: z.string().min(1),
+    NEXT_PUBLIC_JWT_AUTH_TOKEN: z.string().min(1),
   },
   runtimeEnv: {
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
@@ -29,5 +31,6 @@ export const env = createEnv({
     NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN:
       process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN,
     NEXT_PUBLIC_BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL,
+    NEXT_PUBLIC_JWT_AUTH_TOKEN: process.env.NEXT_PUBLIC_JWT_AUTH_TOKEN
   },
 });
