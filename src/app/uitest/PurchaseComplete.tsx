@@ -29,7 +29,7 @@ export default function PurchaseComplete({
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline" className="bg-foreground-900 hover:bg-foreground-700 text-background 
-        hover:text-background min-w-[200px]">Buy Now</Button>
+        hover:text-background min-w-[200px]">Test Purchase Complete</Button>
       </DialogTrigger>
 
       <DialogContent className="min-w-[550px] p-0">
