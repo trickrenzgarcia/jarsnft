@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 type CollectionRowsType = {
+    collectionHref: string;
     collectionLogoSrc: string;
     collectionName: string;
     isVerified: boolean;
@@ -17,9 +19,9 @@ type CollectionRowsType = {
 }
 
 export default function CollectionRows({
-    collectionLogoSrc, collectionName, isVerified,
-    floorPrice, floorChange, volume, volumeChange,
-    sales, salesChange, allCurrentListedNFTs, allCurrentNFTS
+    collectionHref, collectionLogoSrc, collectionName,
+    isVerified, floorPrice, floorChange, volume,
+    volumeChange, sales, salesChange, allCurrentListedNFTs, allCurrentNFTS
 }: CollectionRowsType) {
     const isFloorChangeNegative = floorChange < 0;
     const isVolumeChangeNegative = volumeChange < 0;
@@ -27,9 +29,11 @@ export default function CollectionRows({
 
     return (
         <>
-            <div className="grid grid-cols-10 items-center my-4">
+            <Separator />
+
+            <Link href={collectionHref} className="grid grid-cols-10 items-center py-4 transition-background hover:bg-gray-200 dark:hover:bg-gray-900">
                 <div className="flex items-center gap-4 col-span-2">
-                    <Image src={collectionLogoSrc} width={50} height={50} alt="logo of a collection" />
+                    <Image src={collectionLogoSrc} width={50} height={50} alt="logo of a collection" className="rounded-lg" />
                     <p>{collectionName}</p>
                     {isVerified && <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" />}
                 </div>
@@ -50,9 +54,7 @@ export default function CollectionRows({
                     {`${allCurrentListedNFTs} of ${allCurrentNFTS} `}
                     <span className="text-gray-500">({((allCurrentListedNFTs / allCurrentNFTS) * 100).toFixed(2)}%)</span>
                 </p>
-            </div>
-
-            <Separator />
+            </Link>
         </>
     )
 }

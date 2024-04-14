@@ -5,7 +5,7 @@ export default function CollectionsLayout({ children }: { children: React.ReactN
     return (
         <div>
             <Navbar />
-            <main className="container bg-[#0a0a0a] py-16">
+            <main className="container dark:bg-[#0a0a0a] py-16">
                 {children}
             </main>
             <Footer />

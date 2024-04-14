@@ -5,7 +5,7 @@ import { PageNextButton } from "./_components";
 
 export default function Page() {
   return (
-    <div className="p-6">
+    <div>
       <h1 className="my-6 text-4xl font-bold">Welcome</h1>
       <p className="my-12 tracking-wide">
         Welcome to the JarsNft guides and frequently asked questions.
@@ -30,7 +30,6 @@ export default function Page() {
         <li>Listing an NFT for sale a fixed price</li>
       </ul>
 
-      <PageNextButton title="Setup your wallet" href="/insights/setup-wallet" />
     </div>
   );
 }

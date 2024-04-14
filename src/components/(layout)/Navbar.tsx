@@ -27,7 +27,7 @@ export default async function Navbar() {
               Create
             </Link>
             <Link
-              href="/collection"
+              href="/collections"
               className="cursor-pointer px-3 font-semibold hover:text-zinc-500"
             >
               Collections

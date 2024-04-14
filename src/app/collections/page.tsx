@@ -17,28 +17,22 @@ export default function Page() {
                 <p className="text-right col-span-2">Listed</p>
             </div>
 
-            <Separator />
-
             {/* Collections Rows */}
-            <CollectionRows collectionLogoSrc="/assets/ex1.png" collectionName="Mutant Ape Yacht" isVerified={true}
-                floorPrice={5.25} floorChange={-2.9} volume={1457.8} volumeChange={68.1} sales={273} salesChange={68.52}
-                allCurrentListedNFTs={667} allCurrentNFTS={19486} />
-
-            <CollectionRows collectionLogoSrc="/assets/ex1.png" collectionName="Mutant Ape Yacht" isVerified={true}
-                floorPrice={5.25} floorChange={-2.9} volume={1457.8} volumeChange={68.1} sales={273} salesChange={68.52}
-                allCurrentListedNFTs={667} allCurrentNFTS={19486} />
-
-            <CollectionRows collectionLogoSrc="/assets/ex1.png" collectionName="Mutant Ape Yacht" isVerified={true}
-                floorPrice={5.25} floorChange={-2.9} volume={1457.8} volumeChange={68.1} sales={273} salesChange={68.52}
-                allCurrentListedNFTs={667} allCurrentNFTS={19486} />
-
-            <CollectionRows collectionLogoSrc="/assets/ex1.png" collectionName="Mutant Ape Yacht" isVerified={true}
-                floorPrice={5.25} floorChange={-2.9} volume={1457.8} volumeChange={68.1} sales={273} salesChange={68.52}
-                allCurrentListedNFTs={667} allCurrentNFTS={19486} />
-
-            <CollectionRows collectionLogoSrc="/assets/ex1.png" collectionName="Mutant Ape Yacht" isVerified={true}
-                floorPrice={5.25} floorChange={-2.9} volume={1457.8} volumeChange={68.1} sales={273} salesChange={68.52}
-                allCurrentListedNFTs={667} allCurrentNFTS={19486} />
+            <CollectionRows collectionHref="#" collectionLogoSrc="/assets/ex1.png" collectionName="Mutant Ape Yacht"
+                isVerified={true} floorPrice={5.25} floorChange={-2.9} volume={1457.8} volumeChange={68.1}
+                sales={273} salesChange={68.52} allCurrentListedNFTs={667} allCurrentNFTS={19486} />
+            <CollectionRows collectionHref="#" collectionLogoSrc="/assets/ex1.png" collectionName="Mutant Ape Yacht"
+                isVerified={true} floorPrice={5.25} floorChange={-2.9} volume={1457.8} volumeChange={68.1}
+                sales={273} salesChange={68.52} allCurrentListedNFTs={667} allCurrentNFTS={19486} />
+            <CollectionRows collectionHref="#" collectionLogoSrc="/assets/ex1.png" collectionName="Mutant Ape Yacht"
+                isVerified={true} floorPrice={5.25} floorChange={-2.9} volume={1457.8} volumeChange={68.1}
+                sales={273} salesChange={68.52} allCurrentListedNFTs={667} allCurrentNFTS={19486} />
+            <CollectionRows collectionHref="#" collectionLogoSrc="/assets/ex1.png" collectionName="Mutant Ape Yacht"
+                isVerified={true} floorPrice={5.25} floorChange={-2.9} volume={1457.8} volumeChange={68.1}
+                sales={273} salesChange={68.52} allCurrentListedNFTs={667} allCurrentNFTS={19486} />
+            <CollectionRows collectionHref="#" collectionLogoSrc="/assets/ex1.png" collectionName="Mutant Ape Yacht"
+                isVerified={true} floorPrice={5.25} floorChange={-2.9} volume={1457.8} volumeChange={68.1}
+                sales={273} salesChange={68.52} allCurrentListedNFTs={667} allCurrentNFTS={19486} />
         </div>
     )
 }
