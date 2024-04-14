@@ -33,7 +33,7 @@ export default function BuyButton({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="bg-foreground-900 text-background min-w-[200px]">Buy Now</Button>
+        <Button variant="outline" className="bg-foreground-900 hover:bg-foreground-700 text-background hover:text-background min-w-[200px]">Buy Now</Button>
       </DialogTrigger>
       <DialogContent className="min-w-[550px] p-0">
         <DialogHeader className="px-8 pt-8">
