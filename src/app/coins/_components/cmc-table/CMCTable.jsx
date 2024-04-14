@@ -1,9 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import CMCtableHeader from "./CMCTableHeader";
-import CMCtableRow from "./CMCtableRow";
+import { CMCTableHeader, CMCTableRow, CurrencyToggleButton } from ".";
+// import CMCTableRow from "./CMCTableRow";
+// import CMCTableHeader from "./CMCTableHeader";
+// import CurrencyToggleButton from "./CurrencyToggleButton";
 import useAxios from "@/app/coins/api/useAxios";
-import CurrencyToggleButton from "./CurrencyToggleButton";
 
 const CMCTable = () => {
   const [currency, setCurrency] = useState("usd");
@@ -26,11 +27,11 @@ const CMCTable = () => {
           currency={currency}
         />
         <table className="mt-3 w-full">
-          <CMCtableHeader />
+          <CMCTableHeader />
           {response && response ? (
             response.map((coin, index) => {
               return (
-                <CMCtableRow
+                <CMCTableRow
                   currency={currency}
                   key={index}
                   starNum={coin.market_cap_rank}

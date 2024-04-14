@@ -1,20 +1,15 @@
 import type { NextPage } from "next";
-import Navbar from "@/components/(layout)/Navbar";
-import Trending from "@/app/coins/_components/cmc-table/Trending";
-import TopHeader from "@/app/coins/_components/cmc-table/TopHeader";
+import TopHeader from "@/app/coins/_components/top-header/TopHeader";
+import Trending from "@/app/coins/_components/trending/Trending";
 import CMCTable from "@/app/coins/_components/cmc-table/CMCTable";
 
 const Home: NextPage = () => {
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <div className="mx-1 ml-12 px-5 py-5" />
+    <>
       <TopHeader />
-      <div className="mt-5" />
       <Trending />
-      <div className="mt-10" />
       <CMCTable />
-    </div>
+    </>
   );
 };
 
