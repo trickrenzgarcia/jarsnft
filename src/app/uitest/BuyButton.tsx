@@ -54,7 +54,7 @@ export default function BuyButton({
             <p className="mt-auto">Last sale: {lastSalePrice} MATIC</p>
           </div>
         </div>
-        <DialogFooter className="flex sm:flex-col sm:space-x-0 bg-green dark:bg-gray-900 rounded-t-3xl p-4">
+        <DialogFooter className="flex sm:flex-col sm:space-x-0 bg-neutral-200 dark:bg-neutral-800 rounded-t-3xl p-4">
           <div className="flex justify-between text-xl font-bold px-4">
             <p>You pay</p>
             <p>{nftPrice} MATIC</p>
