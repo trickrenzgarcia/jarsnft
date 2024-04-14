@@ -31,7 +31,8 @@ export default function ApprovePurchase({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="bg-foreground-900 hover:bg-foreground-700 text-background hover:text-background min-w-[200px]">CONFIRM AND PAY</Button>
+        <Button variant="outline" className="bg-foreground-900 hover:bg-foreground-700 text-background
+         hover:text-background">CONFIRM AND PAY</Button>
       </DialogTrigger>
 
       <DialogContent className="min-w-[550px] p-0">
@@ -55,7 +56,7 @@ export default function ApprovePurchase({
         </div>
 
         {/* Footer */}
-        <DialogFooter className="flex sm:flex-col sm:space-x-0 bg-neutral-200 dark:bg-neutral-800 rounded-t-3xl p-4">
+        <DialogFooter className="flex sm:flex-col sm:space-x-0 bg-neutral-200 dark:bg-neutral-800 rounded-t-3xl px-6 py-8">
           <div className="flex justify-between text-xl font-bold px-4">
             <p>You pay</p>
             <p>{nftPrice} MATIC</p>

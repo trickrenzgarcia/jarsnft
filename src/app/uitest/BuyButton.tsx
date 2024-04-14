@@ -60,7 +60,7 @@ export default function BuyButton({
         </div>
 
         {/* Footer */}
-        <DialogFooter className="flex sm:flex-col sm:space-x-0 bg-neutral-200 dark:bg-neutral-800 rounded-t-3xl p-4">
+        <DialogFooter className="flex sm:flex-col sm:space-x-0 bg-neutral-200 dark:bg-neutral-800 rounded-t-3xl px-6 py-8">
           <div className="flex justify-between text-xl font-bold px-4">
             <p>You pay</p>
             <p>{nftPrice} MATIC</p>
