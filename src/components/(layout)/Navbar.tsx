@@ -1,8 +1,14 @@
+"use client"
+
 import Link from "next/link";
 import { Login, Hamburger } from "@/components/(interfaces)";
 import AdminAccessLink from "./AdminAccessLink";
+import Image from "next/image";
+import { cn } from "@/utils/cn";
+import { useTheme } from "next-themes";
 
-export default async function Navbar() {
+export default function Navbar() {
+  const { theme } = useTheme();
 
   return (
     <nav
@@ -13,11 +19,13 @@ export default async function Navbar() {
       <div className="container flex w-full justify-between py-4">
         {/* Left-side  */}
         <div className="flex items-center">
-          <div className="">
-            <Link href="/">
-              <h1 className="text-2xl font-extrabold">JarsNFT</h1>
-            </Link>
-          </div>
+          <Link href="/">
+            <div className="flex items-end">
+              <Image src="/jars_transparent.png" width={50} height={50} alt="jars" className={cn(theme === "dark" && "invert")}/>
+              <h1 className="font-bold text-xl mb-2">JarsNFT</h1>
+            </div>
+          </Link>
+          
 
           <div className="ml-36 hidden gap-1 lg:flex xl:mr-5">
             <Link

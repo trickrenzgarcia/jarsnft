@@ -65,6 +65,7 @@ import { sdk } from "@/lib/sdk";
 import { Textarea } from "@/components/ui/textarea";
 import { ACCEPTED_IMAGE_TYPES } from "@/types/constant";
 import { MdPermMedia } from "react-icons/md";
+import { AlertDialogTrigger, AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogCancel } from "@/components/ui/alert-dialog";
 
 const mintSchema = z.object({
   collection: z.string().refine((value) => ethers.utils.isAddress(value), {
@@ -78,8 +79,22 @@ const mintSchema = z.object({
   animation_url: z.string().optional(),
   external_url: z.string().optional(),
   background_color: z.string().optional(),
-  attributes: z.array(z.object({})).optional(),
-  properties: z.array(z.object({})).optional(),
+  attributes: z
+    .array(
+      z.object({
+        trait_type: z.any().optional(),
+        value: z.any().optional(),
+      }),
+    )
+    .optional(),
+  properties: z
+    .array(
+      z.object({
+        key: z.string().optional(),
+        value: z.string().optional(),
+      }),
+    )
+    .optional(),
 });
 
 type FormMintNft = z.infer<typeof mintSchema>;
@@ -92,9 +107,18 @@ export default function MintNFTCard() {
   const [uploadedMedia, setUploadedMedia] = useState<string | null>(null);
   const [uploadedFileName, setUploadedFileName] = useState<string>("");
   const [loadingContract, setLoadingContract] = useState(false);
+  const [imageFileUrl, setImageFileUrl] = useState<string>("");
   const [selectedContract, setSelectedContract] = useState<
     JarsContract | undefined
   >(undefined);
+  const [attributes, setAttributes] = useState<
+    { trait_type: string; value: string }[]
+  >([{ trait_type: "", value: "" }]);
+  const [mintState, setMintState] = useState<{ state: "idle" | "loading" | "error" | "success", message: string }>({
+    state: "idle",
+    message: "idle"
+  });
+  const ref = useRef<HTMLButtonElement>(null);
   const { contract } = useContract(selectedContract?.contract);
   const {
     mutateAsync: mintNft,
@@ -149,6 +173,8 @@ export default function MintNFTCard() {
         reader.onload = (e: ProgressEvent<FileReader>) => {
           setUploadedMedia(e.target?.result?.toString() || "");
           form.setValue("image", file);
+          const fileURL = URL.createObjectURL(file);
+          setImageFileUrl(fileURL);
         };
         reader.readAsDataURL(file);
         setUploadedFileName(shortenFileName(file.name));
@@ -172,6 +198,8 @@ export default function MintNFTCard() {
       reader.onload = (e: ProgressEvent<FileReader>) => {
         setUploadedMedia(e.target?.result?.toString() || "");
         form.setValue("image", file);
+        const fileURL = URL.createObjectURL(file);
+        setImageFileUrl(fileURL);
       };
       reader.readAsDataURL(file);
       setUploadedFileName(shortenFileName(file.name));
@@ -184,35 +212,40 @@ export default function MintNFTCard() {
   };
 
   const submitMintNft = async (data: FormMintNft) => {
+    ref.current?.click();
     const imageNft = new File([data.image], data.image.name, {
       type: data.image.type,
     });
-    mintNft(
-      {
-        metadata: {
-          name: data.name,
-          image: imageNft,
-          description: data.description,
-          animation_url: data.animation_url,
-          external_url: data.external_url,
-          background_color: data.background_color,
-          attributes: data.attributes,
-          properties: data.properties,
-        },
-        to: user.address,
-      },
-      {
-        onSettled(data, error, variables, context) {
-          console.log(data, error, variables, context);
-        },
-        onError(error, variables, context) {
-          console.log(error, variables, context);
-        },
-        onSuccess(data, variables, context) {
-          console.log(data, variables, context);
-        },
-      },
-    );
+    if(data.attributes) {
+      data.attributes = data.attributes.filter((attr) => attr.trait_type && attr.value);
+    }
+    // mintNft(
+    //   {
+    //     metadata: {
+    //       name: data.name,
+    //       image: imageNft,
+    //       description: data.description,
+    //       animation_url: data.animation_url,
+    //       external_url: data.external_url,
+    //       background_color: data.background_color,
+    //       attributes: data.attributes,
+    //       properties: data.properties,
+    //     },
+    //     to: user.address,
+    //   }, {
+    //     onSuccess(data, variables, context) {
+    //       console.log("data", data);
+    //       console.log("variables", variables);
+    //       console.log("context", context);
+    //       setMintState({ state: "success", message: "NFT minted successfully" });
+    //     },
+    //   }
+    // ).then((settled) => {
+    //   console.log(settled)
+    //   setMintState({ state: "success", message: "NFT minted successfully" })
+    // }).catch((error) => { 
+    //   setMintState({ state: "error", message: error.message });
+    //  })
   };
 
   return (
@@ -377,7 +410,7 @@ export default function MintNFTCard() {
                           className={cn(
                             "flex h-[150px] w-[150px] cursor-pointer items-center justify-center rounded-md bg-muted lg:h-[250px] lg:w-[250px]",
                             uploadedMedia &&
-                            "border bg-background hover:border-accent",
+                              "border bg-background hover:border-accent",
                           )}
                           {...getRootProps()}
                           onClick={(e) => {
@@ -459,32 +492,103 @@ export default function MintNFTCard() {
               )}
             />
 
-            <Accordion>
-              <AccordionItem key={1} title="Advance Options" className="mx-auto font-bold w-[384px] min-w-[300px] items-center justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]">
-              <FormField
+            <FormField
               control={form.control}
-              name="external_url"
+              name="attributes"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-md flex items-center gap-1 font-semibold">
-                    External URL
+                    Properties
                   </FormLabel>
                   <FormControl>
-                    <Input
-                      {...field}
-                      className=""
-                    />
+                    <div className="flex flex-col w-[384px] min-w-[300px] items-start justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]">
+                      {attributes.map((attribute, i) => (
+                        <div key={i} className="grid gap-2 grid-cols-12 w-full">
+                          <Input
+                            {...form.register(`attributes.${i}.trait_type` as const)}
+                            className="w-full col-span-6"
+                            placeholder="trait_type"
+                          />
+                          <Input
+                            {...form.register(`attributes.${i}.value` as const)}
+                            className="w-full col-span-5"
+                            placeholder="value"
+                          />
+                          <Button
+                            variant="destructive"
+                            onClick={() =>
+                              setAttributes(
+                                attributes.filter((_, index) => index !== i),
+                              )
+                            }
+                            className="col-span-1">X</Button>
+                        </div>
+                      ))}
+                      <Button
+                        variant="outline"
+                        onClick={() =>
+                          setAttributes([...attributes, { trait_type: "", value: "" }])
+                        }
+                      >
+                        Add Property
+                        </Button>
+                    </div>
                   </FormControl>
                 </FormItem>
               )}
             />
-              </AccordionItem>
-            </Accordion>
-
+            <MintNFTDialog 
+              mintState={mintState} 
+              mintLoading={mintLoading}
+              mintError={mintError}
+              mintData={form.getValues()}
+              mintImage={imageFileUrl} 
+              mintRef={ref}
+            />
             <Button type="submit">Mint</Button>
           </form>
         </Form>
       </CardContent>
     </Card>
   );
+}
+
+type MintNFTDialogProps = {
+  mintState: {
+    state: "idle" | "loading" | "error" | "success";
+    message: string;
+  };
+  mintLoading: boolean;
+  mintError: unknown;
+  mintData: FormMintNft;
+  mintImage: string;
+  mintRef: React.RefObject<HTMLButtonElement>;
+};
+
+function MintNFTDialog({ mintState, mintLoading, mintError, mintData, mintImage, mintRef }: MintNFTDialogProps) {
+
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button ref={mintRef} className="hidden">Alert Mint</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <div className="flex items-center">
+            <div className="border flex h-[100px] w-[100px] items-center justify-center rounded-md bg-muted">
+              <NextUIImage src={mintImage} isBlurred  width={100} height={100} alt="jars" className="z-0 h-full max-h-[100px] w-full max-w-[100px] rounded-md" />
+            </div>
+            <div className="flex flex-col items-start">
+              <h2 className="text-medium">{mintData.name}</h2>
+              <h3 className="text-xs font-light text-foreground">Minting NFT...</h3>
+              </div>
+          </div>
+          
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  )
 }
