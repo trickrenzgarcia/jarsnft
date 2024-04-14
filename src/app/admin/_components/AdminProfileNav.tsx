@@ -50,8 +50,10 @@ export default function AdminProfileNav() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            Profile
+          <DropdownMenuItem onClick={(e) => {
+            router.push("/")
+          }}>
+            Back to Marketplace
           </DropdownMenuItem>
           <DropdownMenuItem>
             Settings
@@ -59,8 +61,7 @@ export default function AdminProfileNav() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={async (e) => {
-            e.preventDefault()
-            await logout()
+            logout()
             router.push("/")
         }} disabled={logoutLoading}>
           Log out
