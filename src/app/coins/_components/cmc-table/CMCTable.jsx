@@ -20,40 +20,38 @@ const CMCTable = () => {
   };
 
   return (
-    <div className="font-bold">
-      <div className="mx-auto max-w-screen-2xl">
-        <CurrencyToggleButton
-          onClick={handleCurrencyChange}
-          currency={currency}
-        />
-        <table className="mt-3 w-full">
-          <CMCTableHeader />
-          {response && response ? (
-            response.map((coin, index) => {
-              return (
-                <CMCTableRow
-                  currency={currency}
-                  key={index}
-                  starNum={coin.market_cap_rank}
-                  coinName={coin.name}
-                  coinSymbol={coin.symbol}
-                  coinIcon={coin.image}
-                  hRate={coin.price_change_percentage_24h}
-                  dRate={coin.price_change_percentage_7d_in_currency}
-                  price={coin.current_price}
-                  marketCapValue={coin.market_cap}
-                  volumeCryptoValue={coin.total_volume}
-                  volumeValue={coin.total_supply}
-                  circulatingSupply={coin.circulating_supply}
-                  sparkline={coin.sparkline_in_7d.price}
-                />
-              );
-            })
-          ) : (
-            <></>
-          )}
-        </table>
-      </div>
+    <div className="font-bold mx-auto max-w-screen-2xl">
+      <CurrencyToggleButton
+        onClick={handleCurrencyChange}
+        currency={currency}
+      />
+      <table className="mt-3 w-full">
+        <CMCTableHeader />
+        {response && response ? (
+          response.map((coin, index) => {
+            return (
+              <CMCTableRow
+                currency={currency}
+                key={index}
+                starNum={coin.market_cap_rank}
+                coinName={coin.name}
+                coinSymbol={coin.symbol}
+                coinIcon={coin.image}
+                hRate={coin.price_change_percentage_24h}
+                dRate={coin.price_change_percentage_7d_in_currency}
+                price={coin.current_price}
+                marketCapValue={coin.market_cap}
+                volumeCryptoValue={coin.total_volume}
+                volumeValue={coin.total_supply}
+                circulatingSupply={coin.circulating_supply}
+                sparkline={coin.sparkline_in_7d.price}
+              />
+            );
+          })
+        ) : (
+          <></>
+        )}
+      </table>
     </div>
   );
 };
