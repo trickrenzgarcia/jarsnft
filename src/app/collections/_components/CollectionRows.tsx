@@ -29,6 +29,8 @@ export default function CollectionRows({
 
     return (
         <>
+            <Separator />
+
             <Link href={collectionHref} className="grid grid-cols-10 items-center my-4">
                 <div className="flex items-center gap-4 col-span-2">
                     <Image src={collectionLogoSrc} width={50} height={50} alt="logo of a collection" className="rounded-lg" />
@@ -53,8 +55,6 @@ export default function CollectionRows({
                     <span className="text-gray-500">({((allCurrentListedNFTs / allCurrentNFTS) * 100).toFixed(2)}%)</span>
                 </p>
             </Link>
-
-            <Separator />
         </>
     )
 }
