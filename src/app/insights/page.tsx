@@ -5,7 +5,7 @@ import { PageNextButton } from "./_components";
 
 export default function Page() {
   return (
-    <div className="ml-12">
+    <div>
       <h1 className="my-6 text-4xl font-bold">Welcome</h1>
       <p className="my-12 tracking-wide">
         Welcome to the JarsNft guides and frequently asked questions.

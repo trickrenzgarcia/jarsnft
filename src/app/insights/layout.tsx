@@ -52,7 +52,7 @@ export default function LearnLayout({ children }: LearnProps) {
         <main className="relative ml-5 mr-5 mt-5 lg:gap-10 xl:grid xl:grid-cols-[1fr_300px]">
           <div className="w-full min-w-full">
             <PageNavbarTitle />
-            <div className="p-4">
+            <div className="p-4 ml-12">
               {children}
               {nextBtn}
             </div>

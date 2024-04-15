@@ -238,7 +238,6 @@ export const leftNavList: LeftNavList[] = [
       { name: "To be added", href: "#" },
       { name: "To be added", href: "#" },
       { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
     ]
   },
 ]
