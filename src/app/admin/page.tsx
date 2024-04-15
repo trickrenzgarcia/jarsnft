@@ -7,13 +7,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { getUser } from "../api/auth/[...thirdweb]/thirdwebAuth";
-import { AuthUser } from "@/types/users";
-import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { TbArrowsExchange } from "react-icons/tb";
 import { FaUsers } from "react-icons/fa6";
 import { jars } from "@/lib/core/api";
+import { Overview } from "./_components";
 
 export const metadata: Metadata = {
   title: "Admin Dashboard",
@@ -21,11 +19,6 @@ export const metadata: Metadata = {
 
 const AdminPage = async () => {
   const totalUsers = (await jars.getAllUsers()).length;
-  const userInfo = (await getUser()) as AuthUser;
-
-  if (userInfo == null) notFound();
-
-  if (userInfo.session?.role !== "admin") notFound();
 
   // Example data for the dashboard cards
   const dashboardData = [
@@ -46,7 +39,7 @@ const AdminPage = async () => {
         />
       ),
       growth: "+12%",
-      percentage: "USD $368,552",
+      percentage: "USD $115.47",
     },
     {
       name: "24h Trading Volume",
@@ -60,7 +53,7 @@ const AdminPage = async () => {
         />
       ),
       growth: "+5%",
-      percentage: "USD $7,371,045.60",
+      percentage: "USD $2309.50",
     },
     {
       name: "Total Users",
@@ -99,6 +92,28 @@ const AdminPage = async () => {
               </CardContent>
             </Card>
           ))}
+          
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 my-4">
+            <Card className="col-span-4">
+              <CardHeader>
+                <CardTitle>Overview</CardTitle>
+              </CardHeader>
+              <CardContent className="pl-2">
+                <Overview />
+              </CardContent>
+            </Card>
+            <Card className="col-span-3">
+              <CardHeader>
+                <CardTitle>Recent Transactions</CardTitle>
+                <CardDescription>
+                  The marketplace made 265 transaction this month.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                
+              </CardContent>
+            </Card>
         </div>
       </div>
     </div>

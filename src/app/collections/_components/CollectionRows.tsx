@@ -31,7 +31,7 @@ export default function CollectionRows({
         <>
             <Separator />
 
-            <Link href={collectionHref} className="grid grid-cols-10 items-center my-4">
+            <Link href={collectionHref} className="grid grid-cols-10 items-center py-4 transition-background hover:bg-gray-200 dark:hover:bg-gray-900">
                 <div className="flex items-center gap-4 col-span-2">
                     <Image src={collectionLogoSrc} width={50} height={50} alt="logo of a collection" className="rounded-lg" />
                     <p>{collectionName}</p>
