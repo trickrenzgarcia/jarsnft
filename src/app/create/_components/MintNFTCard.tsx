@@ -1,6 +1,6 @@
 "use client";
 
-import { ethers } from "ethers"; // ethers v5^
+import { BigNumber, ethers } from "ethers"; // ethers v5^
 
 import {
   Card,
@@ -45,9 +45,10 @@ import {
   DropdownItem,
   Accordion,
   AccordionItem,
+  Spinner,
 } from "@nextui-org/react";
 import { Button } from "@/components/ui/button";
-import { Check, ChevronsUpDown, PlusIcon } from "lucide-react";
+import { Check, ChevronsUpDown, Loader2, PlusIcon } from "lucide-react";
 import { RxDashboard } from "react-icons/rx";
 import { jars } from "@/lib/core/api";
 import { ContractForOwner, JarsContract } from "@/lib/core/types";
@@ -65,7 +66,20 @@ import { sdk } from "@/lib/sdk";
 import { Textarea } from "@/components/ui/textarea";
 import { ACCEPTED_IMAGE_TYPES } from "@/types/constant";
 import { MdPermMedia } from "react-icons/md";
-import { AlertDialogTrigger, AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogCancel } from "@/components/ui/alert-dialog";
+import {
+  AlertDialogTrigger,
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog";
+import { IoCheckmarkCircle } from "react-icons/io5";
+import { MdOutlineNearbyError } from "react-icons/md";
+import { FiShare } from "react-icons/fi";
+import { TooltipMsg } from "@/components/(interfaces)";
+
 
 const mintSchema = z.object({
   collection: z.string().refine((value) => ethers.utils.isAddress(value), {
@@ -114,10 +128,14 @@ export default function MintNFTCard() {
   const [attributes, setAttributes] = useState<
     { trait_type: string; value: string }[]
   >([{ trait_type: "", value: "" }]);
-  const [mintState, setMintState] = useState<{ state: "idle" | "loading" | "error" | "success", message: string }>({
+  const [mintState, setMintState] = useState<{
+    state: "idle" | "loading" | "error" | "process" | "success";
+    message: string;
+  }>({
     state: "idle",
-    message: "idle"
+    message: "idle",
   });
+  const [nftTokenId, setNftTokenId] = useState<string>("");
   const ref = useRef<HTMLButtonElement>(null);
   const { contract } = useContract(selectedContract?.contract);
   const {
@@ -212,40 +230,51 @@ export default function MintNFTCard() {
   };
 
   const submitMintNft = async (data: FormMintNft) => {
-    ref.current?.click();
+    if(mintState.state === "idle") {
+      ref.current?.click();
+    }
+    
     const imageNft = new File([data.image], data.image.name, {
       type: data.image.type,
     });
-    if(data.attributes) {
-      data.attributes = data.attributes.filter((attr) => attr.trait_type && attr.value);
+    if (data.attributes) {
+      data.attributes = data.attributes.filter(
+        (attr) => attr.trait_type && attr.value,
+      );
     }
-    // mintNft(
-    //   {
-    //     metadata: {
-    //       name: data.name,
-    //       image: imageNft,
-    //       description: data.description,
-    //       animation_url: data.animation_url,
-    //       external_url: data.external_url,
-    //       background_color: data.background_color,
-    //       attributes: data.attributes,
-    //       properties: data.properties,
-    //     },
-    //     to: user.address,
-    //   }, {
-    //     onSuccess(data, variables, context) {
-    //       console.log("data", data);
-    //       console.log("variables", variables);
-    //       console.log("context", context);
-    //       setMintState({ state: "success", message: "NFT minted successfully" });
-    //     },
-    //   }
-    // ).then((settled) => {
-    //   console.log(settled)
-    //   setMintState({ state: "success", message: "NFT minted successfully" })
-    // }).catch((error) => { 
-    //   setMintState({ state: "error", message: error.message });
-    //  })
+    setMintState({ state: "loading", message: "Accepting transaction" });
+    mintNft(
+      {
+        metadata: {
+          name: data.name,
+          image: imageNft,
+          description: data.description,
+          animation_url: data.animation_url,
+          external_url: data.external_url,
+          background_color: data.background_color,
+          attributes: data.attributes,
+          properties: data.properties,
+        },
+        to: user.address,
+      },
+      {
+        onSuccess(data: { id: BigNumber }, variables, context) {
+          console.log("data", data);
+          setNftTokenId(data.id.toString());
+          setMintState({
+            state: "success",
+            message: "NFT minted successfully",
+          });
+        },
+      },
+    )
+      .then((settled) => {
+        console.log(settled);
+        setMintState({ state: "success", message: "NFT minted successfully" });
+      })
+      .catch((error) => {
+        setMintState({ state: "error", message: error.message });
+      });
   };
 
   return (
@@ -501,17 +530,19 @@ export default function MintNFTCard() {
                     Properties
                   </FormLabel>
                   <FormControl>
-                    <div className="flex flex-col w-[384px] min-w-[300px] items-start justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]">
+                    <div className="flex w-[384px] min-w-[300px] flex-col items-start justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]">
                       {attributes.map((attribute, i) => (
-                        <div key={i} className="grid gap-2 grid-cols-12 w-full">
+                        <div key={i} className="grid w-full grid-cols-12 gap-2">
                           <Input
-                            {...form.register(`attributes.${i}.trait_type` as const)}
-                            className="w-full col-span-6"
+                            {...form.register(
+                              `attributes.${i}.trait_type` as const,
+                            )}
+                            className="col-span-6 w-full"
                             placeholder="trait_type"
                           />
                           <Input
                             {...form.register(`attributes.${i}.value` as const)}
-                            className="w-full col-span-5"
+                            className="col-span-5 w-full"
                             placeholder="value"
                           />
                           <Button
@@ -521,74 +552,161 @@ export default function MintNFTCard() {
                                 attributes.filter((_, index) => index !== i),
                               )
                             }
-                            className="col-span-1">X</Button>
+                            className="col-span-1"
+                          >
+                            X
+                          </Button>
                         </div>
                       ))}
                       <Button
                         variant="outline"
                         onClick={() =>
-                          setAttributes([...attributes, { trait_type: "", value: "" }])
+                          setAttributes([
+                            ...attributes,
+                            { trait_type: "", value: "" },
+                          ])
                         }
                       >
                         Add Property
-                        </Button>
+                      </Button>
                     </div>
                   </FormControl>
                 </FormItem>
               )}
             />
-            <MintNFTDialog 
-              mintState={mintState} 
-              mintLoading={mintLoading}
-              mintError={mintError}
-              mintData={form.getValues()}
-              mintImage={imageFileUrl} 
-              mintRef={ref}
-            />
-            <Button type="submit">Mint</Button>
+            <Button type="submit">
+              Mint
+            </Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button ref={ref} className="hidden">
+                  Alert Mint
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <div className="flex flex-col gap-5">
+                    <section className="flex items-center gap-4">
+                      <div className="flex h-[100px] w-[100px] items-center justify-center rounded-md border bg-muted">
+                        <NextUIImage
+                          src={imageFileUrl}
+                          isBlurred
+                          width={100}
+                          height={100}
+                          alt="jars"
+                          className="z-0 h-full max-h-[100px] w-full max-w-[100px] rounded-md"
+                        />
+                        {mintState.state === "loading" && (
+                          <div className="absolute flex h-full max-h-[100px] w-full max-w-[100px] items-center justify-center rounded-md bg-black/50">
+                            <Spinner size="sm" />
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex flex-col items-start">
+                        <h2 className="text-lg font-bold">
+                          {form.getValues("name").toString()}
+                        </h2>
+                        <h2 className="text-sm font-semibold">ERC-721</h2>
+                        <h3 className="text-sm font-semibold text-blue-600 text-foreground">
+                          {selectedContract?.name}
+                        </h3>
+                      </div>
+                    </section>
+                    <section>
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>
+                            {mintState.state === "loading"
+                              ? "Minting NFT"
+                              : mintState.state === "success"
+                                ? "NFT Minted"
+                                : "Error"}
+                          </CardTitle>
+                          <CardDescription>
+                            <div className="flex w-full flex-col">
+                              <p className="flex items-center gap-1 text-sm">
+                                {mintState.state === "loading" ? (
+                                  <Loader2 className="animate-spin" />
+                                ) : mintState.state === "process" ? (
+                                  <IoCheckmarkCircle className="text-success" />
+                                ) : (
+                                  <MdOutlineNearbyError className="text-danger" />
+                                )}{" "}
+                                Accepting transaction.
+                              </p>
+                              <p className="flex items-center gap-1 text-sm">
+                                {mintState.state === "process" ? (
+                                  <Loader2 className="animate-spin" />
+                                ) : mintState.state === "success" ? (
+                                  <IoCheckmarkCircle className="text-success" />
+                                ) : (
+                                  mintState.state === "error" && (
+                                    <MdOutlineNearbyError className="text-danger" />
+                                  )
+                                )}{" "}
+                                Nft minted {mintState.state === "success" ? "successfully" : mintState.state === "error" ? "failed" : "processing"}.
+                              </p>
+                            </div>
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent></CardContent>
+                      </Card>
+                    </section>
+                  </div>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  {mintState.state === "error" && (
+                    <>
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        form.handleSubmit(submitMintNft)();
+                      }}
+                    >
+                      Try Again
+                    </Button>
+                    <AlertDialogCancel onClick={() => {
+                      setMintState({ state: "idle", message: "idle" });
+                    }}>Cancel</AlertDialogCancel>
+                    </>
+                  )}
+
+                  {mintState.state === "success" && (
+                    <div className="flex justify-between w-full">
+                      <TooltipMsg message="Share">
+                        <Button variant="ghost"><FiShare /></Button>
+                      </TooltipMsg>
+                      <div className="flex gap-4">
+                        <AlertDialogCancel
+                          onClick={(e) => {
+                            setMintState({ state: "idle", message: "idle" });
+                            setAttributes([{ trait_type: "", value: "" }]);
+                            setSelectedContract(undefined);
+                            setImageFileUrl("");
+                            setUploadedMedia(null);
+                            setUploadedFileName("");
+                            setOpen(false);
+                            form.reset();
+                          }}>Create more
+                        </AlertDialogCancel>
+                        <Button
+                          variant="default"
+                          className="bg-blue-400"
+                          onClick={() => {
+                            router.push(`/collection/${selectedContract?.contract}`) // ${nftTokenId}
+                          }}>
+                          Go to NFT
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                  
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </form>
         </Form>
       </CardContent>
     </Card>
   );
-}
-
-type MintNFTDialogProps = {
-  mintState: {
-    state: "idle" | "loading" | "error" | "success";
-    message: string;
-  };
-  mintLoading: boolean;
-  mintError: unknown;
-  mintData: FormMintNft;
-  mintImage: string;
-  mintRef: React.RefObject<HTMLButtonElement>;
-};
-
-function MintNFTDialog({ mintState, mintLoading, mintError, mintData, mintImage, mintRef }: MintNFTDialogProps) {
-
-  return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button ref={mintRef} className="hidden">Alert Mint</Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <div className="flex items-center">
-            <div className="border flex h-[100px] w-[100px] items-center justify-center rounded-md bg-muted">
-              <NextUIImage src={mintImage} isBlurred  width={100} height={100} alt="jars" className="z-0 h-full max-h-[100px] w-full max-w-[100px] rounded-md" />
-            </div>
-            <div className="flex flex-col items-start">
-              <h2 className="text-medium">{mintData.name}</h2>
-              <h3 className="text-xs font-light text-foreground">Minting NFT...</h3>
-              </div>
-          </div>
-          
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-  )
 }

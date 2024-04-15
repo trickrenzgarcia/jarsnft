@@ -229,7 +229,6 @@ export default function NFTCreateContractCard({
 
   const submitCreateContract = async (data: FormContract) => {
     ref.current?.click();
-    console.log(getShortenedURLParam(data.name));
     setContractState("ongoing");
     const seller_fee_basis_points: number =
       parseFloat(data.seller_fee_basis_points) * 100;
