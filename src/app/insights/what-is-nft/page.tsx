@@ -12,8 +12,8 @@ import {
 const page = () => {
   return (
     <>
-      <div className="align-items-center grid grid-cols-2 justify-items-center gap-4">
-        <div className="m-5 gap-2 place-self-center p-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="m-5 gap-2 place-self-center">
           <h1 className="relative mb-6 max-w-4xl text-left text-3xl font-bold text-zinc-700 dark:text-zinc-100 md:text-7xl">
             What is an NFT?
           </h1>
