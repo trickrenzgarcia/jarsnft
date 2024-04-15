@@ -54,8 +54,6 @@ export default function LearnLayout({ children }: LearnProps) {
             <PageNavbarTitle />
             <div className="p-4">
               {children}
-            </div>
-            <div className="pb-6 pr-6">
               {nextBtn}
             </div>
           </div>
