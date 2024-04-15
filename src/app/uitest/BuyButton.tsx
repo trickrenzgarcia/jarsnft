@@ -41,7 +41,7 @@ export default function BuyButton({
         <DialogHeader className="px-8 pt-8">
           <DialogTitle className="text-2xl font-bold">Checkout</DialogTitle>
           <DialogDescription>
-            Verify your purchase here. Click "CONFIRM AND PAY" to proceed.
+            Verify your purchase here. Click &quot;CONFIRM AND PAY&quot; to proceed.
           </DialogDescription>
         </DialogHeader>
 
