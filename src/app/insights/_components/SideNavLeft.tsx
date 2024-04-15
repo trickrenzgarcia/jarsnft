@@ -10,7 +10,8 @@ export default function SideNavLeft() {
   const path = usePathname();
 
   return (
-    <aside className="fixed right-auto z-30 ml-3 hidden min-h-screen w-[16.5rem] shrink-0 overflow-y-scroll border-r border-gray-300 pt-9 scrollbar-hide md:sticky md:block">
+    
+    <aside className="pt-9 z-30 ml-3 hidden border-r border-gray-300 min-h-[100vh] right-auto w-[16.5rem] shrink-0 md:sticky md:block overflow-y-hidden hover:overflow-y-auto">
       <div className={cn(poppins.className)}>
         {leftNavList.map((item) => (
           <div className="mb-9 text-sm" key={item.topic}>
