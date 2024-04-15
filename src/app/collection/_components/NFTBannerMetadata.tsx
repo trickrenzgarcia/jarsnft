@@ -23,11 +23,10 @@ import {
   useContractMetadata,
   useMetadata,
 } from "@thirdweb-dev/react";
-import { AlchemyContractMetadata, NFTCollection } from "@/lib/core/types";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type BannerMetadataProps = {
   address: string;
-  metadata: AlchemyContractMetadata;
 };
 
 type QueryMetadata = {
@@ -37,20 +36,55 @@ type QueryMetadata = {
 };
 export default function NFTBannerMetadata({
   address,
-  metadata: alche,
 }: BannerMetadataProps) {
   const { contract } = useContract(address);
   const { data, isLoading, isError } = useContractMetadata(
     contract,
-  ) as QueryMetadata;
-
-  console.log(data);
+  ) as QueryMetadata;;
   const [details] = React.useState([
     { detail: "Floor", value: 10 },
     { detail: "24h Vol", value: 1170 },
     { detail: "7d Vol", value: 7280 },
     { detail: "Total Vol", value: 1230240 },
   ]);
+
+  if(isLoading) {
+    return (
+      <main className="flex w-full flex-col">
+        <div className="relative h-[200px] w-auto md:h-[400px]">
+          
+        </div>
+        <div className="absolute hidden h-[400px] w-full px-7 py-6 md:block">
+          <section className="mb-4 flex justify-between">
+            <div className="flex items-center gap-3">
+              <Skeleton className="w-[125px] h-[125px] rounded-xl border" />
+              <div className={cn("w-[500px] flex flex-col gap-2", open_sans.className)}>
+                <Skeleton className="w-40 h-7 border" />
+                <Skeleton className="w-32 h-5 border" />
+              </div>
+            </div>
+          </section>
+          <section className="mb-3 flex w-full justify-between">
+            <div className="h-[160px] w-[500px] gap-1 flex flex-col overflow-x-hidden text-sm font-semibold">
+              <Skeleton className="w-full h-5 border" />
+              <Skeleton className="w-[80%] h-5 border" />
+              <Skeleton className="w-[72%] h-5 border" />
+              <Skeleton className="w-[85%] h-5 border" />
+            </div>
+            <div className="hidden items-center gap-6 pl-3 lg:flex">
+              {details.map((detail, i) => (
+                <div key={i} className={cn(poppins.className, "w-[110px]")}>
+                  <Skeleton className="w-20 h-20 border" />
+                </div>
+              ))}
+            </div>
+          </section>
+          <section></section>
+        </div>
+      </main>
+    )
+  }
+
   if (data) {
     return (
       <main className="flex w-full flex-col bg-slate-600 text-white dark:bg-background">
@@ -78,7 +112,7 @@ export default function NFTBannerMetadata({
               <div className={cn("w-[500px]", open_sans.className)}>
                 <div className="flex w-full items-center gap-1 text-2xl font-semibold">
                   <div className="truncate">
-                    <h2 className="truncate">{alche.name}</h2>
+                    <h2 className="truncate">{data.name}</h2>
                   </div>
                   <TooltipMsg message="Verified">
                     <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
@@ -97,7 +131,7 @@ export default function NFTBannerMetadata({
             <div className="h-[160px] w-[500px] overflow-x-hidden text-sm font-semibold dark:text-gray-300">
               <ReadMore
                 id="collection-description"
-                text={alche.name || ""}
+                text={data.description || ""}
                 amountOfWords={24}
               />
             </div>
@@ -120,9 +154,9 @@ export default function NFTBannerMetadata({
             <div className="w-[500px]">
               <Socials
                 social={{
-                  wiki_url: alche.openSeaMetadata.externalUrl || "",
-                  discord_url: alche.openSeaMetadata.discordUrl || "",
-                  twitter_username: alche.openSeaMetadata.twitterUsername || "",
+                  wiki_url: data.external_link || "",
+                  discord_url: "",
+                  twitter_username: "",
                 }}
               />
             </div>
