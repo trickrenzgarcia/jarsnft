@@ -40,7 +40,9 @@ export default function LearnLayout({ children }: LearnProps) {
         <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
           <div className="mx-6 w-full min-w-0">
             <PageNavbarTitle />
-            {children}
+            <div className="p-4">
+              {children}
+            </div>
             <div className="pb-6 pr-6">
               {nextBtn}
             </div>
@@ -50,6 +52,7 @@ export default function LearnLayout({ children }: LearnProps) {
       </div>
       <Footer />
     </main>
+    
   );
 }
 
