@@ -20,7 +20,7 @@ const CMCTable = () => {
   };
 
   return (
-    <div className="font-bold mx-auto max-w-screen-2xl">
+    <div className="mx-auto max-w-screen-2xl font-bold">
       <CurrencyToggleButton
         onClick={handleCurrencyChange}
         currency={currency}

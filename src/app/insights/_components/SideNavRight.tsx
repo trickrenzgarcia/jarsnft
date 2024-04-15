@@ -10,7 +10,7 @@ export default function SideNavRight() {
   console.log(item.href);
   return (
     <div className="hidden text-sm xl:block">
-      <div className="sticky top-16 -mt-10 pt-5">
+      <div className="sticky top-16 -mt-4 pt-5">
         <div className="relative overflow-hidden pb-10">
           <h1 className="font-semibold">On This Page</h1>
           <div className="mt-4 h-full w-full rounded-[inherit]">

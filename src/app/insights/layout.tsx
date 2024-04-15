@@ -20,28 +20,40 @@ export default function LearnLayout({ children }: LearnProps) {
   const path = usePathname();
   const nextBtn = leftNavList.map((item, index) => (
     <div key={index}>
-      {item.child.map((childItem, childIndex) => (
+      {item.child.map((childItem, childIndex) =>
         // check for child sub topic
-        path === childItem.href && (childIndex < item.child.length - 1) ?
-          <PageNextButton key={childIndex} title={Capitalize(item.child[childIndex + 1].name)} href={item.child[childIndex + 1].href} />
-          :
+        path === childItem.href && childIndex < item.child.length - 1 ? (
+          <PageNextButton
+            key={childIndex}
+            title={Capitalize(item.child[childIndex + 1].name)}
+            href={item.child[childIndex + 1].href}
+          />
+        ) : (
           // check on next topic
-          path === childItem.href && (index < leftNavList.length - 1) &&
-          <PageNextButton key={childIndex} title={Capitalize(leftNavList[(index + 1) % leftNavList.length].child[0].name)} href={leftNavList[(index + 1) % leftNavList.length].child[0].href} />
-
-      ))}
+          path === childItem.href &&
+          index < leftNavList.length - 1 && (
+            <PageNextButton
+              key={childIndex}
+              title={Capitalize(
+                leftNavList[(index + 1) % leftNavList.length].child[0].name,
+              )}
+              href={leftNavList[(index + 1) % leftNavList.length].child[0].href}
+            />
+          )
+        ),
+      )}
     </div>
-  ))
+  ));
   return (
     <main className="flex-1">
       <LearnNavbar />
       <div className="container flex-1 items-start border-t-2 md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
         <SideNavLeft />
-        <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
-          <div className="mx-6 w-full min-w-0">
+        <main className="relative ml-5 mr-5 mt-5 lg:gap-10 xl:grid xl:grid-cols-[1fr_300px]">
+          <div className="w-full min-w-full">
             <PageNavbarTitle />
-            {children}
-            <div className="pb-6 pr-6">
+            <div className="p-4 ml-12">
+              {children}
               {nextBtn}
             </div>
           </div>
@@ -50,6 +62,7 @@ export default function LearnLayout({ children }: LearnProps) {
       </div>
       <Footer />
     </main>
+    
   );
 }
 

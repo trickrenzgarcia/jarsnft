@@ -39,53 +39,55 @@ export default function Footer() {
   //#region End
 
   return (
-    <footer className="container">
+    <footer>
       <Separator className="h-[2px] w-full" />
-      <section>
-        {/* Footer Columns */}
-        <div className="mt-16 grid grid-cols-3 gap-x-24 gap-y-10">
-          {/* Company Description */}
-          <div className="col-span-3 mb-16 flex flex-col gap-y-5 text-center md:col-span-1 md:mb-0 md:text-left">
-            <h1 className="mb-1 text-2xl font-semibold">JarsNFT</h1>
-            <p>
-              Turn your passion into a lasting legacy. <br />
-              Mint your artwork as an NFT and showcase your talent. <br />
-              Connect with traders, and build a secure future for your creative
-              endeavors.
-            </p>
+      <div className="container">
+        <section>
+          {/* Footer Columns */}
+          <div className="mt-16 grid grid-cols-3 gap-x-24 gap-y-10">
+            {/* Company Description */}
+            <div className="col-span-3 mb-16 flex flex-col gap-y-5 text-center md:col-span-1 md:mb-0 md:text-left">
+              <h1 className="mb-1 text-2xl font-semibold">JarsNFT</h1>
+              <p>
+                Turn your passion into a lasting legacy. <br />
+                Mint your artwork as an NFT and showcase your talent. <br />
+                Connect with traders, and build a secure future for your creative
+                endeavors.
+              </p>
+            </div>
+
+            {/* Column Links */}
+            <div className="col-span-3 mb-32 grid grid-cols-2 gap-x-8 gap-y-16 md:col-span-2 md:grid-cols-4 md:gap-y-0">
+              <FooterColumn
+                titleName="Marketplace"
+                linkArray={marketplaceLinks}
+              />
+              <FooterColumn titleName="Resource" linkArray={resourceLinks} />
+              <FooterColumn titleName="Help" linkArray={helpLinks} />
+              <FooterColumn titleName="Company" linkArray={companyLinks} />
+            </div>
           </div>
 
-          {/* Column Links */}
-          <div className="col-span-3 mb-32 grid grid-cols-2 gap-x-8 gap-y-16 md:col-span-2 md:grid-cols-4 md:gap-y-0">
-            <FooterColumn
-              titleName="Marketplace"
-              linkArray={marketplaceLinks}
-            />
-            <FooterColumn titleName="Resource" linkArray={resourceLinks} />
-            <FooterColumn titleName="Help" linkArray={helpLinks} />
-            <FooterColumn titleName="Company" linkArray={companyLinks} />
+          <SocialLinkButtons />
+
+          <Separator className="h-[2px] w-full" />
+
+          {/* Copyright */}
+          <div className="pb-5">
+            <ul className="mt-5 flex flex-col items-center justify-between gap-8 md:flex-row md:gap-0">
+              {/* Left-side */}
+              <li className="w-fit">
+                <div>© 2023 Alrae, Jeffrey, Patrick, Rigor</div>
+              </li>
+
+              {/* Right-side */}
+              <li className="w-fit">
+                <PrivacyTermsButtons />
+              </li>
+            </ul>
           </div>
-        </div>
-
-        <SocialLinkButtons />
-
-        <Separator className="h-[2px] w-full" />
-
-        {/* Copyright */}
-        <div className="pb-5">
-          <ul className="mt-5 flex flex-col items-center justify-between gap-8 md:flex-row md:gap-0">
-            {/* Left-side */}
-            <li className="w-fit">
-              <div>© 2023 Alrae, Jeffrey, Patrick, Rigor</div>
-            </li>
-
-            {/* Right-side */}
-            <li className="w-fit">
-              <PrivacyTermsButtons />
-            </li>
-          </ul>
-        </div>
-      </section>
+        </section>
+      </div>
     </footer>
   );
 }
