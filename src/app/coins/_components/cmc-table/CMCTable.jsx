@@ -15,7 +15,7 @@ const CMCTable = () => {
   // Function to handle currency change
   const handleCurrencyChange = () => {
     // Toggle between USD and PHP
-    const newCurrency = currency === "USD" ? "PHP" : "USD";
+    const newCurrency = currency === "usd" ? "php" : "usd";
     setCurrency(newCurrency);
   };
 
