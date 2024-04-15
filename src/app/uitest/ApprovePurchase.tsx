@@ -67,7 +67,7 @@ export default function ApprovePurchase({
           </div>
           <Separator className="my-8" />
           <p className="px-4 text-neutral-500">Go to your wallet.</p>
-          <p className="px-4 text-neutral-500 mb-4">You'll be asked to approve this purchase from your wallet.</p>
+          <p className="px-4 text-neutral-500 mb-4">You&apos;ll be asked to approve this purchase from your wallet.</p>
         </DialogFooter>
       </DialogContent>
     </Dialog>
