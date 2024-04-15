@@ -23,7 +23,7 @@ import {
   useContractMetadata,
   useMetadata,
 } from "@thirdweb-dev/react";
-import { AlchemyContractMetadata, NFTCollection } from "@/lib/core/types";
+import { AlchemyContractMetadata } from "@/lib/core/types";
 
 type BannerMetadataProps = {
   address: string;
@@ -37,7 +37,7 @@ type QueryMetadata = {
 };
 export default function NFTBannerMetadata({
   address,
-  metadata: alche,
+  metadata,
 }: BannerMetadataProps) {
   const { contract } = useContract(address);
   const { data, isLoading, isError } = useContractMetadata(
@@ -78,7 +78,7 @@ export default function NFTBannerMetadata({
               <div className={cn("w-[500px]", open_sans.className)}>
                 <div className="flex w-full items-center gap-1 text-2xl font-semibold">
                   <div className="truncate">
-                    <h2 className="truncate">{alche.name}</h2>
+                    <h2 className="truncate">{metadata.name}</h2>
                   </div>
                   <TooltipMsg message="Verified">
                     <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
@@ -97,7 +97,7 @@ export default function NFTBannerMetadata({
             <div className="h-[160px] w-[500px] overflow-x-hidden text-sm font-semibold dark:text-gray-300">
               <ReadMore
                 id="collection-description"
-                text={alche.name || ""}
+                text={metadata.name || ""}
                 amountOfWords={24}
               />
             </div>
@@ -120,9 +120,9 @@ export default function NFTBannerMetadata({
             <div className="w-[500px]">
               <Socials
                 social={{
-                  wiki_url: alche.openSeaMetadata.externalUrl || "",
-                  discord_url: alche.openSeaMetadata.discordUrl || "",
-                  twitter_username: alche.openSeaMetadata.twitterUsername || "",
+                  wiki_url: metadata.openSeaMetadata.externalUrl || "",
+                  discord_url: metadata.openSeaMetadata.discordUrl || "",
+                  twitter_username: metadata.openSeaMetadata.twitterUsername || "",
                 }}
               />
             </div>
