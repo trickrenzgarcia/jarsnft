@@ -44,7 +44,7 @@ export default function NFTBannerMetadata({
     contract,
   ) as QueryMetadata;
 
-  console.log(data);
+  console.log(metadata);
   const [details] = React.useState([
     { detail: "Floor", value: 10 },
     { detail: "24h Vol", value: 1170 },
