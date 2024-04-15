@@ -21,7 +21,7 @@ export const rightNavList: RightNavListType[] = [
     href: "/insights",
     anchors: [
       { name: "Getting Started", anchor: "#getting-started" },
-      { name: "Non Fungible Token", anchor: "#buying-nfts" },
+      { name: "Non Fungible Token", anchor: "#nfts" },
       { name: "Blockchain", anchor: "#blockchain" },
       { name: "Guides", anchor: "#guides" },
     ],
@@ -116,7 +116,7 @@ export const rightNavList: RightNavListType[] = [
     ],
   },
   {
-    href: "/insights/what-is-a-smart-contract",
+    href: "/insights/what-are-smart-contracts",
     anchors: [
       { name: "Buying a fixed price NFT", anchor: "#buying-fixed-nfts" },
       { name: "Making an offer on a NFT", anchor: "#making-offer" },
@@ -202,7 +202,7 @@ export const leftNavList: LeftNavList[] = [
     topic: "Blockchain",
     child: [
       { name: "What is the blockchain?", href: "/insights/what-is-blockchain" },
-      { name: "What is a smart contract?", href: "/insights/what-is-a-smart-contract" },
+      { name: "What is a smart contract?", href: "/insights/what-are-smart-contracts" },
       { name: "What are gas fees?", href: "/insights/what-are-gas-fees" },
       { name: "What is cryptocurrency?", href: "/insights/what-is-crypto" }
     ]
@@ -217,26 +217,6 @@ export const leftNavList: LeftNavList[] = [
   {
     topic: "FAQs",
     child: [
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
-      { name: "To be added", href: "#" },
       { name: "To be added", href: "#" },
     ]
   },
