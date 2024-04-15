@@ -3,14 +3,14 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 const press = [
-  "/assets/teamLead/Figma.svg",
-  "/assets/teamLead/Docker.svg",
-  "/assets/teamLead/Discord.svg",
-  "/assets/teamLead/Coinbase.svg",
-  "/assets/teamLead/Shopify.svg",
-  "/assets/teamLead/Stripe.svg",
-  "/assets/teamLead/PayPal.svg",
-  "/assets/teamLead/Tesla.svg",
+  "/assets/Company/Figma.svg",
+  "/assets/Company/Docker.svg",
+  "/assets/Company/Discord.svg",
+  "/assets/Company/Coinbase.svg",
+  "/assets/Company/Shopify.svg",
+  "/assets/Company/Stripe.svg",
+  "/assets/Company/PayPal.svg",
+  "/assets/Company/Tesla.svg",
 ];
 
 export const Press: React.FC = () => {
