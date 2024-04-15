@@ -1,11 +1,7 @@
 import { Navbar } from "@/components/(layout)";
 import { Suspense } from "react";
 import NFTBannerMetadata from "../_components/NFTBannerMetadata";
-import { env } from "@/lib/env.mjs";
-import { getMetadata } from "@/lib/ctx";
-import { notFound } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
-import { Input } from "@nextui-org/react";
 import PriceRangeValue from "../_components/PriceRangeValue";
 import { jars } from "@/lib/core/api";
 
