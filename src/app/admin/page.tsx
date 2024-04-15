@@ -7,9 +7,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { getUser } from "../api/auth/[...thirdweb]/thirdwebAuth";
-import { AuthUser } from "@/types/users";
-import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { TbArrowsExchange } from "react-icons/tb";
 import { FaUsers } from "react-icons/fa6";
@@ -22,11 +19,6 @@ export const metadata: Metadata = {
 
 const AdminPage = async () => {
   const totalUsers = (await jars.getAllUsers()).length;
-  const userInfo = (await getUser()) as AuthUser;
-
-  if (userInfo == null) notFound();
-
-  if (userInfo.session?.role !== "admin") notFound();
 
   // Example data for the dashboard cards
   const dashboardData = [
@@ -113,13 +105,13 @@ const AdminPage = async () => {
             </Card>
             <Card className="col-span-3">
               <CardHeader>
-                <CardTitle>Recent Sales</CardTitle>
+                <CardTitle>Recent Transactions</CardTitle>
                 <CardDescription>
-                  You made 265 sales this month.
+                  The marketplace made 265 transaction this month.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <h1>to be adding...</h1>
+                
               </CardContent>
             </Card>
         </div>
