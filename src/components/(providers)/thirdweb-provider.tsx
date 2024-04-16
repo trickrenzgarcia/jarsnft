@@ -20,7 +20,7 @@ export default function ThirdwebProvider({
   children: React.ReactNode;
 }) {
   return (
-
+    <SessionProvider>
       <ThirdwebProviderLayout
         activeChain={Sepolia}
         clientId="2c570ac5995e3d8c067e868aa87a13fe"
@@ -42,6 +42,6 @@ export default function ThirdwebProvider({
       >
         {children}
       </ThirdwebProviderLayout>
-
+    </SessionProvider>
   );
 }

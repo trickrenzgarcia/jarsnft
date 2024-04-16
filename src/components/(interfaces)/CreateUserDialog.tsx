@@ -125,7 +125,6 @@ export default function CreateUserDialog({
                     <Input placeholder="Enter your name" {...field} />
                   </FormControl>
                   <FormDescription></FormDescription>
-                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -139,7 +138,6 @@ export default function CreateUserDialog({
                     <Input placeholder="alan_turing@gmail.com" {...field} />
                   </FormControl>
                   <FormDescription></FormDescription>
-                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -157,12 +155,12 @@ export default function CreateUserDialog({
                 >
                   {!loading && "Create"}
                 </NextButton>
-                <Button variant="ghost" onClick={() => logout()}>
+                <Button variant="link" onClick={() => logout()}>
                   {isLoading ? <Spinner /> : "Logout"}
                 </Button>
                 <Link
-                  href="/insights/getting-started#installing-wallet"
-                  className="text-left"
+                  href="/insights/setup-wallet"
+                  className="text-left text-sm hover:text-fuchsia-600"
                   target="_blank"
                 >
                   New to wallet?
