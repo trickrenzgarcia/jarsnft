@@ -23,7 +23,7 @@ function PageNavTitle() {
     item.child.map(
       (childItem, index) =>
         path === childItem.href && (
-          <h2 key={index} className="text-[#A519D7]">
+          <h2 key={index} className="text-[#A519D7] font-bold">
             {childItem.name.replace(/\b\w/g, (char) => char.toUpperCase())}
           </h2>
         ),
