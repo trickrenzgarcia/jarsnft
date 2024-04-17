@@ -128,6 +128,7 @@ export default function ProfileBanner({
               </div>
             </div>
           </div>
+          <div className="mr-24 md:mr-28 lg:mr-36 xl:mr-40">x</div>
         </div>
       </div>
     </div>
