@@ -111,12 +111,25 @@ export class JarsAPI {
       body: JSON.stringify({ address: address }),
     });
   }
-
+  /**
+   * Get a user's profile
+   * @param address - The user's address
+   * @returns - A user's profile
+   */
   async createProfile(address: string) {
     return await this.request<StorageProfile>(`/storage/profile`, {
       method: "POST",
       body: JSON.stringify({ address: address }),
     });
+  }
+  /**
+   * Get a user's profile
+   * @param address - The user's address
+   * @returns - A user's profile
+   */
+  async getUserProfile(address: string) {
+    const data = await this.request<User & { profile: StorageProfile }>(`/user/profile/${address}`);
+    return data.profile;
   }
   /**
    *

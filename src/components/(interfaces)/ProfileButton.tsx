@@ -39,7 +39,7 @@ export default function ProfileButton({
                 width={30}
                 height={30}
               />
-              <h2 className="truncate font-semibold">{user.data.session.name}</h2>
+              <h2 className="truncate font-semibold">{user.data.session.name || user.address}</h2>
             </div>
           </SheetTrigger>
           <SheetContent>

@@ -3,7 +3,7 @@
 import { MinidentIconImg, TooltipMsg } from "@/components/(interfaces)";
 import { open_sans } from "@/lib/fonts";
 import { cn, shortenAddress, truncate } from "@/lib/utils";
-import React from "react";
+import React, { use, useEffect, useMemo, useState } from "react";
 import { MdVerified } from "react-icons/md";
 import Link from "next/link";
 import AddressClipboard from "@/components/(interfaces)/AddressClipboard";
@@ -11,6 +11,8 @@ import { useUserContext } from "@/components/(providers)";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ProfileQuery } from "@/types/users";
 import Image from "next/image";
+import { jars } from "@/lib/core/api";
+import { StorageProfile } from "@/lib/core/types";
 
 export default function ProfileBanner({
   user: userContext,
@@ -18,6 +20,21 @@ export default function ProfileBanner({
   user: ProfileQuery;
 }) {
   const { user, isLoading } = userContext;
+  
+  const [profile, setProfile] = useState<StorageProfile | undefined>(undefined)
+  const [profileLoading, setProfileLoading] = useState(false)
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if(!isLoading) {
+        setProfileLoading(true)
+        const data = await jars.getUserProfile(user.address)
+        setProfileLoading(false)
+        setProfile(data)
+      }
+    }
+    fetchProfile()
+  }, [user])
 
   if (isLoading) {
     return (
@@ -43,21 +60,23 @@ export default function ProfileBanner({
   }
 
   return (
-    <div className="mb-40 flex w-full flex-col rounded-lg bg-muted dark:shadow-[inset_0_0px_50px_rgba(10,10,10,1)] md:mb-8 md:mt-4">
+    <div className="mb-40 flex w-full flex-col rounded-lg bg-black/50 dark:shadow-[inset_0_0px_50px_rgba(10,10,10,1)] md:mb-8 md:mt-4">
       {/* Image banner */}
       <div className="relative h-[100px] w-auto md:h-[300px]">
-        <Image
-          src="/assets/collection_banner.webp"
-          fill
-          style={{ objectFit: "cover", opacity: 0.5 }}
-          alt="Banner"
-          className="rounded-lg bg-black"
-        />
+        {!profileLoading ? (
+          <Image
+            src={profile?.banner_url || "/assets/collection_banner.webp"}
+            fill
+            style={{ objectFit: "cover", opacity: 0.7}}
+            alt="Banner"
+            className="rounded-lg hover:bg-black"
+          />
+        ) : (<Skeleton className="h-[100px] w-full md:h-[300px] rounded-t-lg" />)}
       </div>
 
       {/* Banner on mobile screen */}
       <div className="absolute left-0 right-0 block h-[250px] w-full md:hidden">
-        <div className="flex h-full flex-col items-center justify-center bg-blue-400/5">
+        <div className="flex h-full flex-col items-center justify-center">
           <div className="h-[100px] w-[100px] rounded-full border-2 border-fuchsia-600 p-1">
             <MinidentIconImg address={user.address} width={100} height={100} />
           </div>
