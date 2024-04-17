@@ -9,6 +9,14 @@ export type User = {
   created_at: string;
 };
 
+export type StorageProfile = {
+  address: string;
+  image_url?: string;
+  banner_url?: string;
+  is_verified: boolean;
+  updated_at: string;
+};
+
 export type NFTCollection = {
   contract: string;
   image: string;

@@ -34,6 +34,7 @@ import { updateUser } from "@/app/actions";
 import { useState } from "react";
 import { Profile } from "@/types/users";
 import { cn } from "@/lib/utils";
+import { jars } from "@/lib/core/api";
 
 const formCreateUserSchema = z.object({
   name: z
@@ -84,13 +85,13 @@ export default function CreateUserDialog({
   ) => {
     if (!isLoggedIn) return;
 
-    const formData: FormData = new FormData();
+    const formData = new FormData();
     formData.set("address", user.data.address);
     formData.set("name", values.name);
     formData.set("email", values.email);
 
     try {
-      await updateUser(formData);
+      const [updatedUser, createdProfile] = await Promise.all([updateUser(formData), jars.createProfile(user.data.address)])
     } catch (error) {
       console.log(error);
     }
