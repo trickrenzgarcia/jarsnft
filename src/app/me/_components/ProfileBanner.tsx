@@ -20,21 +20,21 @@ export default function ProfileBanner({
   user: ProfileQuery;
 }) {
   const { user, isLoading } = userContext;
-  
-  const [profile, setProfile] = useState<StorageProfile | undefined>(undefined)
-  const [profileLoading, setProfileLoading] = useState(false)
+
+  const [profile, setProfile] = useState<StorageProfile | undefined>(undefined);
+  const [profileLoading, setProfileLoading] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
-      if(!isLoading) {
-        setProfileLoading(true)
-        const data = await jars.getUserProfile(user.address)
-        setProfileLoading(false)
-        setProfile(data)
+      if (!isLoading) {
+        setProfileLoading(true);
+        const data = await jars.getUserProfile(user.address);
+        setProfileLoading(false);
+        setProfile(data.profile);
       }
-    }
-    fetchProfile()
-  }, [user])
+    };
+    fetchProfile();
+  }, [user]);
 
   if (isLoading) {
     return (
@@ -60,18 +60,20 @@ export default function ProfileBanner({
   }
 
   return (
-    <div className="mb-40 flex w-full flex-col rounded-lg bg-black/50 dark:shadow-[inset_0_0px_50px_rgba(10,10,10,1)] md:mb-8 md:mt-4">
+    <div className="relative mb-40 flex w-full flex-col rounded-lg bg-black/50 dark:shadow-[inset_0_0px_50px_rgba(10,10,10,1)] md:mb-8 md:mt-4">
       {/* Image banner */}
       <div className="relative h-[100px] w-auto md:h-[300px]">
         {!profileLoading ? (
           <Image
             src={profile?.banner_url || "/assets/collection_banner.webp"}
             fill
-            style={{ objectFit: "cover", opacity: 0.7}}
+            style={{ objectFit: "cover", opacity: 0.7 }}
             alt="Banner"
             className="rounded-lg hover:bg-black"
           />
-        ) : (<Skeleton className="h-[100px] w-full md:h-[300px] rounded-t-lg" />)}
+        ) : (
+          <Skeleton className="h-[100px] w-full rounded-t-lg md:h-[300px]" />
+        )}
       </div>
 
       {/* Banner on mobile screen */}

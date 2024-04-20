@@ -35,7 +35,7 @@ export class JarsAPI {
     try {
       const response = await fetch(`${this.baseUrl}${endpoint}`, {
         headers: {
-          "Authorization": `Bearer ${this.options.secretKey}`,
+          Authorization: `Bearer ${this.options.secretKey}`,
         },
         ...configs,
       });
@@ -128,8 +128,10 @@ export class JarsAPI {
    * @returns - A user's profile
    */
   async getUserProfile(address: string) {
-    const data = await this.request<User & { profile: StorageProfile }>(`/user/profile/${address}`);
-    return data.profile;
+    const data = await this.request<User & { profile: StorageProfile }>(
+      `/user/profile/${address}`,
+    );
+    return data;
   }
   /**
    *
@@ -213,10 +215,13 @@ export class JarsAPI {
      * @returns - A user profile
      */
     updateProfileBanner: async (formData: FormData) => {
-      return await this.request<{ banner_url: string }>("/storage/profile/cover", {
-        method: "POST",
-        body: formData
-      })
+      return await this.request<{ banner_url: string }>(
+        "/storage/profile/cover",
+        {
+          method: "POST",
+          body: formData,
+        },
+      );
     },
 
     /**
@@ -227,15 +232,17 @@ export class JarsAPI {
      * @returns - A user profile
      */
     updateProfileAvatar: async (formData: FormData) => {
-      return await this.request<{ image_url: string }>("/storage/profile/avatar", {
-        method: "POST",
-        body: formData
-      })
-    }
-
-  }
+      return await this.request<{ image_url: string }>(
+        "/storage/profile/avatar",
+        {
+          method: "POST",
+          body: formData,
+        },
+      );
+    },
+  };
 }
 
 export const jars = new JarsAPI(BASE_URL, {
-  secretKey: env.NEXT_PUBLIC_JWT_AUTH_TOKEN
+  secretKey: env.NEXT_PUBLIC_JWT_AUTH_TOKEN,
 });
