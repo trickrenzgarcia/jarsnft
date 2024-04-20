@@ -20,10 +20,10 @@ export const rightNavList: RightNavListType[] = [
     // add id="#anchor" in 
     href: "/insights",
     anchors: [
-      { name: "Getting Started", anchor: "#getting-started" },
-      { name: "Non Fungible Token", anchor: "#nfts" },
-      { name: "Blockchain", anchor: "#blockchain" },
-      { name: "Guides", anchor: "#guides" },
+      { name: "Getting Started", anchor: "getting-started" },
+      { name: "Non Fungible Token", anchor: "nfts" },
+      { name: "Blockchain", anchor: "blockchain" },
+      { name: "Guides", anchor: "guides" },
     ],
   },
   {
