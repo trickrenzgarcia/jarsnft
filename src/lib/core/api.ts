@@ -9,6 +9,7 @@ import {
   AlchemyNFTs,
   JarsContract,
   NFTCollection,
+  StorageProfile,
 } from "./types";
 import { BASE_URL } from "../ctx";
 import { User } from "./types";
@@ -34,8 +35,7 @@ export class JarsAPI {
     try {
       const response = await fetch(`${this.baseUrl}${endpoint}`, {
         headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${this.options.secretKey}`,
+          Authorization: `Bearer ${this.options.secretKey}`,
         },
         ...configs,
       });
@@ -112,6 +112,28 @@ export class JarsAPI {
     });
   }
   /**
+   * Get a user's profile
+   * @param address - The user's address
+   * @returns - A user's profile
+   */
+  async createProfile(address: string) {
+    return await this.request<StorageProfile>(`/storage/profile`, {
+      method: "POST",
+      body: JSON.stringify({ address: address }),
+    });
+  }
+  /**
+   * Get a user's profile
+   * @param address - The user's address
+   * @returns - A user's profile
+   */
+  async getUserProfile(address: string) {
+    const data = await this.request<User & { profile: StorageProfile }>(
+      `/user/profile/${address}`,
+    );
+    return data;
+  }
+  /**
    *
    * @param contractAddress address of the contract to deploy NFTCollection ERC721A
    * @returns ContractMetadata
@@ -183,8 +205,44 @@ export class JarsAPI {
       },
     );
   }
+
+  public storage = {
+    /**
+     * Update a user's profile banner
+     * @param formData - The form data
+     * @field cover - The cover image
+     * @field address - The user's address
+     * @returns - A user profile
+     */
+    updateProfileBanner: async (formData: FormData) => {
+      return await this.request<{ banner_url: string }>(
+        "/storage/profile/cover",
+        {
+          method: "POST",
+          body: formData,
+        },
+      );
+    },
+
+    /**
+     * Update a user's profile avatar
+     * @param formData - The form data
+     * @field avatar - The avatar image
+     * @field address - The user's address
+     * @returns - A user profile
+     */
+    updateProfileAvatar: async (formData: FormData) => {
+      return await this.request<{ image_url: string }>(
+        "/storage/profile/avatar",
+        {
+          method: "POST",
+          body: formData,
+        },
+      );
+    },
+  };
 }
 
 export const jars = new JarsAPI(BASE_URL, {
-  secretKey: env.NEXT_PUBLIC_JWT_AUTH_TOKEN
+  secretKey: env.NEXT_PUBLIC_JWT_AUTH_TOKEN,
 });

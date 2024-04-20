@@ -79,6 +79,7 @@ import { IoCheckmarkCircle } from "react-icons/io5";
 import { MdOutlineNearbyError } from "react-icons/md";
 import { FiShare } from "react-icons/fi";
 import { TooltipMsg } from "@/components/(interfaces)";
+import { env } from "@/lib/env.mjs";
 
 
 const mintSchema = z.object({
@@ -208,7 +209,7 @@ export default function MintNFTCard() {
 
   const { getInputProps, getRootProps, isDragActive } = useDropzone({ onDrop });
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const file = e.target.files?.[0];
     if (file && file.type.startsWith("image/")) {
@@ -219,6 +220,7 @@ export default function MintNFTCard() {
         const fileURL = URL.createObjectURL(file);
         setImageFileUrl(fileURL);
       };
+
       reader.readAsDataURL(file);
       setUploadedFileName(shortenFileName(file.name));
     } else {

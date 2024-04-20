@@ -23,17 +23,11 @@ export default function TradeHero() {
           {/* Buy & Sell Buttons */}
           <section className="m-auto flex gap-4 md:m-0">
             <Link
-              href="#"
-              className="w-24 rounded-lg bg-purple-700 py-2 text-center text-white hover:bg-purple-600 active:bg-purple-800"
-            >
-              Buy
-            </Link>
+              href="#" className="w-24 rounded-lg bg-purple-700 py-2 text-center text-white 
+              hover:bg-purple-600 active:bg-purple-800">Buy</Link>
             <Link
-              href="#"
-              className="w-24 rounded-lg bg-purple-700 py-2 text-center text-white hover:bg-purple-600 active:bg-purple-800"
-            >
-              Sell
-            </Link>
+              href="#" className="w-24 rounded-lg bg-purple-700 py-2 text-center text-white 
+              hover:bg-purple-600 active:bg-purple-800">Sell</Link>
           </section>
 
           {/* Statistics */}
