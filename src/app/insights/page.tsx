@@ -8,6 +8,9 @@ export default function Page() {
     <div>
       <div id="welcome">
         <h1 className="my-6 text-4xl font-bold">Welcome</h1>
+        <h2 className="font-serif text-3xl">
+          Please do your own research (DYOR) before investing
+        </h2>
         <p className="my-12 text-base leading-loose tracking-wide">
           Welcome to the JarsNft insights, the following are the overview of
           contents that will help you be informed in the basics of the Crypto
