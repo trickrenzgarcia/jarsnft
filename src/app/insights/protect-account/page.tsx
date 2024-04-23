@@ -26,7 +26,7 @@ export default function ProtectAccPage() {
   return (
     <>
       <h1 className="text-2xl font-bold">How to Stay Protected in Web3</h1>
-      <div className="max-w-598 grid max-h-full grid-flow-col grid-rows-8 content-center gap-5">
+      <div className="grid max-h-full grid-flow-col grid-rows-8 content-center gap-5">
         {tips.map((tip, index) => (
           <div className="self-center" key={index}>
             {index + 1}. {tip}
