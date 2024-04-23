@@ -28,7 +28,7 @@ export default function SideNavRight() {
                   )}
                 >
                   <Link
-                    activeClass="font-bold text-[#151c25] dark:text-[#f0f0f0] "
+                    activeClass="font-bold text-[#151c25] dark:text-[#f0f0f0]"
                     to={val.anchor}
                     spy={true}
                     smooth={true}

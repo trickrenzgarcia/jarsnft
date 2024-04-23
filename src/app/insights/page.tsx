@@ -105,6 +105,33 @@ export default function Page() {
         </ul>
         <hr />
       </div>
+
+      <div id="guides">
+        <h2 className="my-6 text-2xl font-bold">Guides (NFT)</h2>
+        <P>
+          This section offers guides that are designed to empower you with
+          knowledge. They'll provide a clear, step-by-step instructions and
+          insightful explanations to help you navigate complex topics and get
+          the most out of your NFT Trading experience. <br /> <br />
+          Whether you're a beginner or looking to advance your skills, our
+          guides will be your trusted resource on the path to mastery.
+        </P>
+        <h3 className="my-6 text-xl font-bold">1. Exchange Cryptocurrency</h3>
+
+        <ul className="mb-12 ml-8 font-semibold leading-9 text-[#A519D7] lg:list-disc">
+          <li>Choose a Crypto Exchange</li>
+          <li>Setup your Account</li>
+          <li>Place your Trade</li>
+          <li>Withdraw and Confirm</li>
+        </ul>
+        <h3 className="my-6 text-xl font-bold">2. Protect your Account</h3>
+        <ul className="mb-12 ml-8 font-semibold leading-9 text-[#A519D7] lg:list-disc">
+          <li>Safeguard your Wallet Account</li>
+          <li>Beware of Phishing Scams</li>
+          <li>Social Engineering</li>
+          <li>Public Wi-Fi</li>
+        </ul>
+      </div>
     </div>
   );
 }
@@ -112,6 +139,6 @@ export default function Page() {
 function P(props: React.HTMLAttributes<HTMLParagraphElement>) {
   const { children } = props;
   return (
-    <p className="my-8 text-sm leading-loose tracking-wide ">{children}</p>
+    <p className="text-md my-8 leading-loose tracking-wide ">{children}</p>
   );
 }
