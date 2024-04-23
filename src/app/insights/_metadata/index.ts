@@ -17,11 +17,12 @@ type LeftNavList = {
 
 export const rightNavList: RightNavListType[] = [
   {
-    // add id="#anchor" in 
+    // add id="#anchor" in
     href: "/insights",
     anchors: [
+      { name: "Welcome", anchor: "welcome" },
       { name: "Getting Started", anchor: "getting-started" },
-      { name: "Non Fungible Token", anchor: "nfts" },
+      { name: "Non-Fungible Token", anchor: "nfts" },
       { name: "Blockchain", anchor: "blockchain" },
       { name: "Guides", anchor: "guides" },
     ],
@@ -156,14 +157,15 @@ export const rightNavList: RightNavListType[] = [
     href: "/insights/protect-account",
     anchors: [
       { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
-      { name: "Listing an NFT for sale a fixed price", anchor: "#selling-fixed-price", },
+      {
+        name: "Listing an NFT for sale a fixed price",
+        anchor: "#selling-fixed-price",
+      },
     ],
   },
   {
     href: "/insights/faq",
-    anchors: [
-      { name: "FAQs", anchor: "#", },
-    ],
+    anchors: [{ name: "FAQs", anchor: "#" }],
   },
 ];
 
@@ -178,9 +180,7 @@ export const rightNavList: RightNavListType[] = [
 export const leftNavList: LeftNavList[] = [
   {
     topic: "Welcome",
-    child: [
-      { name: "Overview", href: "/insights" }
-    ]
+    child: [{ name: "Overview", href: "/insights" }],
   },
   {
     topic: "Getting Started",
@@ -188,36 +188,40 @@ export const leftNavList: LeftNavList[] = [
       { name: "Setup your wallet", href: "/insights/setup-wallet" },
       { name: "Creating your profile", href: "/insights/create-profile" },
       { name: "Create your NFT", href: "/insights/create-nft" },
-      { name: "How to trade your NFT", href: "/insights/trade-nft" }
-    ]
+      { name: "How to trade your NFT", href: "/insights/trade-nft" },
+    ],
   },
   {
     topic: "Non-Fungible Token",
     child: [
       { name: "What is an NFT?", href: "/insights/what-is-nft" },
-      { name: "What makes NFT Valuable?", href: "/insights/what-makes-nft-valuable" }
-    ]
+      {
+        name: "What makes NFT Valuable?",
+        href: "/insights/what-makes-nft-valuable",
+      },
+    ],
   },
   {
     topic: "Blockchain",
     child: [
       { name: "What is the blockchain?", href: "/insights/what-is-blockchain" },
-      { name: "What is a smart contract?", href: "/insights/what-are-smart-contracts" },
+      {
+        name: "What is a smart contract?",
+        href: "/insights/what-are-smart-contracts",
+      },
       { name: "What are gas fees?", href: "/insights/what-are-gas-fees" },
-      { name: "What is cryptocurrency?", href: "/insights/what-is-crypto" }
-    ]
+      { name: "What is cryptocurrency?", href: "/insights/what-is-crypto" },
+    ],
   },
   {
     topic: "Guides",
     child: [
       { name: "Exchange Cryptocurrency", href: "/insights/exchange-crypto" },
-      { name: "Protect your account", href: "/insights/protect-account" }
-    ]
+      { name: "Protect your account", href: "/insights/protect-account" },
+    ],
   },
   {
     topic: "FAQs",
-    child: [
-      { name: "To be added", href: "#" },
-    ]
+    child: [{ name: "To be added", href: "#" }],
   },
-]
+];

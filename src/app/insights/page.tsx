@@ -6,20 +6,22 @@ import { PageNextButton } from "./_components";
 export default function Page() {
   return (
     <div>
-      <h1 className="my-6 text-4xl font-bold">Welcome</h1>
-      <h2 className="font-serif text-3xl">
-        Please do your own research (DYOR) before investing
-      </h2>
-      <p className="my-12 text-base leading-loose tracking-wide">
-        Welcome to the JarsNft insights, the following are the overview of
-        contents that will help you be informed in the basics of the Crypto
-        world!
-        <br />
-        <br />
-        This page serves to help individuals especially beginners in getting a
-        grasp of this emerging technology.
-      </p>
-      <hr />
+      <div id="welcome">
+        <h1 className="my-6 text-4xl font-bold">Welcome</h1>
+        <h2 className="font-serif text-3xl">
+          Please do your own research (DYOR) before investing
+        </h2>
+        <p className="my-12 text-base leading-loose tracking-wide">
+          Welcome to the JarsNft insights, the following are the overview of
+          contents that will help you be informed in the basics of the Crypto
+          world!
+          <br />
+          <br />
+          This page serves to help individuals especially beginners in getting a
+          grasp of this emerging technology.
+        </p>
+        <hr />
+      </div>
 
       <div id="getting-started">
         <h3 className="my-6 text-2xl font-bold">Getting Started</h3>
@@ -51,8 +53,8 @@ export default function Page() {
           <li>Accepting an offer on your NFT</li>
           <li>Listing an NFT on a fixed price</li>
         </ul>
+        <hr />
       </div>
-      <hr />
 
       <div id="nfts">
         <h2 className="my-6 text-2xl font-bold">Non-Fungible Token (NFT)</h2>
@@ -72,40 +74,40 @@ export default function Page() {
         <ul className="mb-12 ml-8 font-semibold leading-9 text-[#A519D7] lg:list-disc">
           <li>Customize your Profile</li>
         </ul>
+        <hr />
       </div>
-      <hr />
 
-      <h2 className="my-6 text-2xl font-bold" id="blockchain">
-        Blockchain
-      </h2>
-      <P>
-        This section will be your guide on where to begin your first
-        transaction. Consider going through the following steps:
-      </P>
-      <h3 className="my-6 text-xl font-bold">1. What Is The Blockchain?</h3>
+      <div id="blockchain">
+        <h2 className="my-6 text-2xl font-bold">Blockchain</h2>
+        <P>
+          This section will be your guide on where to begin your first
+          transaction. Consider going through the following steps:
+        </P>
+        <h3 className="my-6 text-xl font-bold">1. What Is The Blockchain?</h3>
 
-      <ul className="mb-12 ml-8 font-semibold leading-9 text-[#A519D7] lg:list-disc">
-        <li>Choose your Wallet</li>
-        <li>Creating your Wallet Account </li>
-      </ul>
-      <h3 className="my-6 text-xl font-bold">2. What Are Smart Contracts?</h3>
-      <ul className="mb-12 ml-8 font-semibold leading-9 text-[#A519D7] lg:list-disc">
-        <li>Customize your Profile</li>
-      </ul>
+        <ul className="mb-12 ml-8 font-semibold leading-9 text-[#A519D7] lg:list-disc">
+          <li>Choose your Wallet</li>
+          <li>Creating your Wallet Account </li>
+        </ul>
+        <h3 className="my-6 text-xl font-bold">2. What Are Smart Contracts?</h3>
+        <ul className="mb-12 ml-8 font-semibold leading-9 text-[#A519D7] lg:list-disc">
+          <li>Customize your Profile</li>
+        </ul>
 
-      <h3 className="my-6 text-xl font-bold">3. What Are Gas Fees?</h3>
-      <ul className="mb-12 ml-8 font-semibold leading-9 text-[#A519D7] lg:list-disc">
-        <li>Creating your First NFT</li>
-        <li>Setup your NFT details</li>
-        <li>Minting your NFT</li>
-      </ul>
+        <h3 className="my-6 text-xl font-bold">3. What Are Gas Fees?</h3>
+        <ul className="mb-12 ml-8 font-semibold leading-9 text-[#A519D7] lg:list-disc">
+          <li>Creating your First NFT</li>
+          <li>Setup your NFT details</li>
+          <li>Minting your NFT</li>
+        </ul>
 
-      <h3 className="my-6 text-xl font-bold">4. What Is Cryptocurrency?</h3>
-      <ul className="mb-12 ml-8 font-semibold leading-9 text-[#A519D7] lg:list-disc">
-        <li>Accepting an offer on your NFT</li>
-        <li>Listing an NFT on a fixed price</li>
-      </ul>
-      <hr />
+        <h3 className="my-6 text-xl font-bold">4. What Is Cryptocurrency?</h3>
+        <ul className="mb-12 ml-8 font-semibold leading-9 text-[#A519D7] lg:list-disc">
+          <li>Accepting an offer on your NFT</li>
+          <li>Listing an NFT on a fixed price</li>
+        </ul>
+        <hr />
+      </div>
     </div>
   );
 }
