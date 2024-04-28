@@ -1,18 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 
 const page = () => {
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="m-5 gap-2 place-self-center">
           <h1 className="relative mb-6 max-w-4xl text-left text-3xl font-bold text-zinc-700 dark:text-zinc-100 md:text-7xl">
             What is an NFT?
@@ -29,11 +21,12 @@ const page = () => {
         </div>
         <div className="mt-20 place-self-center">
           <Image
-            src="/assets/learnPics/learnNFT.webp"
-            width={608}
-            height={406}
-            alt="hero"
+            src="/assets/InsightsAsset/WhatIsNFT.jpg"
+            width={600}
+            height={600}
+            alt="What is NFT Image"
             className="rounded-lg"
+            style={{ minHeight: 600, minWidth: 600 }}
           />
         </div>
       </div>

@@ -13,7 +13,7 @@ import { TbCaretDownFilled } from "react-icons/tb";
 const styles = {
   trendingWrapper: `mx-auto max-w-screen-2xl`,
   h1: `font-bold text-3xl`,
-  flexCenter: `flex items-center`,
+  flexCenter: `flex items-center gap-5`,
 };
 
 const Trending = async () => {
@@ -24,7 +24,7 @@ const Trending = async () => {
     const formattedMarketCapUSD = (totalMarketCapUSD / 1e12).toFixed(3);
 
     return (
-      <div className={`${styles.trendingWrapper} my-16`}>
+      <div className={`${styles.trendingWrapper} my-5`}>
         <div className="flex justify-between">
           <h1 className={styles.h1}>
             Todays Cryptocurrency Prices by Market Cap
@@ -37,7 +37,7 @@ const Trending = async () => {
             a
           </p>
           <span
-            className={`flex gap-1 ${percentageChange < 0 ? "text-red-500" : "text-green-400"}`}
+            className={`flex gap-1 ${percentageChange < 0 ? "text-red-500" : "text-green-500"}`}
           >
             {percentageChange < 0 ? (
               <TbCaretDownFilled />

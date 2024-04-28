@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const styles = {
-  trendingCard: `w-full py-6 bg-[#323546] rounded-xl mr-3 `,
+  trendingCard: `w-full bg-[#323546] rounded-xl py-2`,
   trendingCardWrapper: `ml-3 flex items-center justify-between`,
 };
 
@@ -43,7 +43,7 @@ export default async function FearAndGreedCard({ title, icon }: Props) {
       </div>
       <br />
 
-      <div className="flex items-center justify-center rounded-md py-10">
+      <div className="flex items-center justify-center rounded-md py-5">
         <div className="relative mb-4">
           <div
             style={{
