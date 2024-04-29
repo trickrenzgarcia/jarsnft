@@ -1,4 +1,6 @@
+import { jars } from "@/lib/core/api";
 import NFTCards from "../_components/NFTCards";
+import { notFound } from "next/navigation";
 
 type CollectionParams = {
   params: { address: string };

@@ -91,7 +91,11 @@ export default function CreateUserDialog({
     formData.set("email", values.email);
 
     try {
-      const [updatedUser, createdProfile] = await Promise.all([updateUser(formData), jars.createProfile(user.data.address)])
+      const data = await Promise.all([
+        updateUser(formData),
+        jars.createProfile(user.data.address),
+      ]);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }

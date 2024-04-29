@@ -78,6 +78,29 @@ export class JarsAPI {
     if (!user) return false;
     return true;
   }
+
+  /**
+   * Save nonce in database
+   */
+  async saveNonce(nonce: string) {
+    console.log(nonce, "ito ay nonce");
+    return await this.request(`/nonce/create`, {
+      method: "POST",
+      body: JSON.stringify({ nonce: nonce }),
+    });
+  }
+
+  /**
+   * check nonce exists in database
+   * @param nonce - The nonce
+   */
+  async nonceExists(nonce: string) {
+    return await this.request<boolean>(`/nonce/validate`, {
+      method: "POST",
+      body: JSON.stringify({ nonce: nonce }),
+    });
+  }
+
   /**
    * Update a user
    * @param address - The user's address
@@ -154,6 +177,19 @@ export class JarsAPI {
       method: "POST",
       body: JSON.stringify({ contractAddress: contractAddress, owner: owner }),
     });
+  }
+  /**
+   * Get single NFT collection
+   * @returns - NFT collection
+   * @param contractAddress
+   */
+  async getCollection(contractAddress: string) {
+    return await this.request<NFTCollection>(
+      `/collection/getCollection?contractAddress=${contractAddress}`,
+      {
+        next: { tags: ["collection", "getCollection", contractAddress] },
+      },
+    );
   }
   /**
    * Get all NFT collections
@@ -237,6 +273,21 @@ export class JarsAPI {
         {
           method: "POST",
           body: formData,
+        },
+      );
+    },
+  };
+
+  public collection = {
+    /**
+     * Update collection view count
+     * @param contractAddress - The contract address
+     */
+    updateCollectionViewCount: async (contractAddress: string) => {
+      return await this.request<{ view_count: number }>(
+        `/collection/updateViewCount?contractAddress=${contractAddress}`,
+        {
+          method: "PUT",
         },
       );
     },

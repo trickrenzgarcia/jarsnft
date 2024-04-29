@@ -1,10 +1,11 @@
-import { Footer } from "@/components/(layout)";
+import { Footer, Navbar } from "@/components/(layout)";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export default function UserNotFoundPage() {
+export default function NotFoundPage() {
   return (
     <>
+      <Navbar />
       <div className="flex h-[calc(100vh-250px)] w-full flex-col items-start justify-center gap-5 md:container">
         <h1 className="text-4xl font-semibold text-gray-500">
           Page Error - 404 Not Found

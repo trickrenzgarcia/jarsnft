@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
+import { jars } from "@/lib/core/api";
 
 export default function NFTCards({ address }: { address: string }) {
   const { contract } = useContract(address);
@@ -22,15 +24,29 @@ export default function NFTCards({ address }: { address: string }) {
 
   if (isLoading) return <LoadingNFTCards />;
 
+  useEffect(() => {
+    async function updateViewCount() {
+      const view = await jars.collection.updateCollectionViewCount(address);
+      console.log(view);
+      return view;
+    }
+    if (nfts) {
+      updateViewCount();
+    }
+  }, []);
+
   if (nfts)
     return (
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         {nfts.map((nft, i) => (
           <Link key={i} href={`/collection/${address}/${nft.metadata.id}`}>
             <Card className="rounded-xl hover:-translate-y-1">
               <CardContent className="flex aspect-[1/1] items-center justify-center ">
                 <Image
-                  src={nft.metadata.image || ""}
+                  src={
+                    nft.metadata.image ||
+                    "/assets/placeholder/nft_placeholder.svg"
+                  }
                   alt="nft image"
                   className="h-full w-full rounded-t-2xl"
                   width={500}
