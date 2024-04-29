@@ -1,7 +1,21 @@
 import React from "react";
 import Image from "next/image";
 
-const page = () => {
+const steps = [
+  "Step 1 : Login to your Desired Exchange Platform",
+  "Step 3 : Click on the cryptocurrency you want",
+  "Step 2 : Go to the Asset's tab and select 'Overview.'",
+  "Step 4 : Choose and confirm mode of payment.",
+];
+
+const images = [
+  "/assets/InsightsAsset/Guide.png",
+  "/assets/InsightsAsset/Guide3.png",
+  "/assets/InsightsAsset/Guide2.png",
+  "/assets/InsightsAsset/Guide4.png",
+];
+
+const Page = () => {
   return (
     <>
       <h1 className="m-5 bg-gradient-to-b from-neutral-200 to-neutral-600 bg-clip-text pb-5 text-center font-sans text-lg font-bold text-transparent md:text-7xl">
@@ -11,65 +25,25 @@ const page = () => {
         Prerequisites: Metamask Wallet, Centralized Exchange Platforms, Bank
         Transfer or GCash
       </h1>
-      <div className="w-full">
-        <div className="mt-5 grid grid-cols-2 justify-center justify-items-center gap-5">
-          <div className="justify-center">
-            <p className="items-center text-xl">
-              Step 1 : Login your Desired Exchange Platform
-            </p>
+
+      <div className="mt-5 grid max-h-full grid-flow-col grid-rows-2 content-center justify-items-center gap-5">
+        {steps.map((step, index) => (
+          <div key={index} className="self-center">
+            <p className="text-xl">{step}</p>
             <Image
-              src="/assets/learnPics/Guide.png"
-              alt="pictureGuide"
+              src={images[index]}
+              alt={`pictureGuide ${index}`}
               width={400}
-              height={400}
-              className="m-5 items-baseline justify-self-center rounded-lg"
-              style={{ maxHeight: "400px" }} // Set max height
+              height={550}
+              style={{ minHeight: 550, minWidth: 400, maxHeight: 550 }}
+              quality={80}
+              className="m-5 rounded-lg"
             />
           </div>
-          <div className="align-items-center">
-            <p className="text-xl">
-              Step 2 : Go to the Asset&#x2019;s tab and select
-              &#34;Overview.&#34;
-            </p>
-            <Image
-              src="/assets/learnPics/Guide2.png"
-              alt="pictureGuide"
-              width={400}
-              height={400}
-              className="m-5 items-baseline justify-self-center rounded-lg"
-              style={{ maxHeight: "400px" }} // Set max height
-            />
-          </div>
-          <div>
-            <p className="text-xl">
-              Step 3 : Find and click on the cryptocurrency you want to
-              deposit/withdraw/ buy .
-            </p>
-            <Image
-              src="/assets/learnPics/Guide3.png"
-              alt="pictureGuide"
-              width={400}
-              height={200}
-              className="m-5 items-baseline justify-self-center rounded-lg"
-            />
-          </div>
-          <div>
-            <p className="text-xl">
-              Step 4 : Click on the &#34;Add New Card&#34; button and confirm
-              mode of payment.
-            </p>
-            <Image
-              src="/assets/learnPics/Guide4.png"
-              alt="pictureGuide"
-              width={400}
-              height={200}
-              className="m-5 items-baseline justify-self-center rounded-lg"
-            />
-          </div>
-        </div>
+        ))}
       </div>
     </>
   );
 };
 
-export default page;
+export default Page;

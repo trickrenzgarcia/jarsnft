@@ -18,8 +18,10 @@ export default function SocialLinkButtons() {
 
   return (
     <div className="mb-24">
-      <h1 className="text-center md:text-left mb-3 text-2xl font-semibold">Join us</h1>
-      <div className="flex flex-col md:flex-row flex-wrap items-center md:justify-between gap-8 md:gap-0">
+      <h1 className="mb-3 text-center text-2xl font-semibold md:text-left">
+        Join us
+      </h1>
+      <div className="flex flex-col flex-wrap items-center gap-8 md:flex-row md:justify-between md:gap-0">
         <div className="flex gap-2">
           <SocialLinkButton Icon={FaFacebookF} link="" />
           <SocialLinkButton
