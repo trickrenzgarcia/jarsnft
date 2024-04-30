@@ -109,7 +109,7 @@ export class JarsAPI {
    */
   async updateUser(
     address: string,
-    data: Omit<User, "address" | "id" | "uid" | "created_at" | "is_listed"> & {
+    data: Omit<User, "address" | "id" | "uid" | "created_at" | "is_listed" | "role"> & {
       email: string;
       name: string;
     },

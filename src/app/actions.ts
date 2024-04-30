@@ -17,11 +17,14 @@ export const updateUser = async (formData: FormData) => {
   };
   const { address, email, name } = rawFormData;
 
-  await jars.updateUser(address, {
+  console.log(rawFormData);
+
+  const updatedUser = await jars.updateUser(address, {
     name: name,
-    email: email,
-    role: "user",
+    email: email
   });
+
+  console.log("updatedUser", updatedUser);
   revalidateTag("user");
 };
 
