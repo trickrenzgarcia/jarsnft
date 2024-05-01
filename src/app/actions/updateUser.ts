@@ -9,9 +9,8 @@ type UserUpdateData = {
 };
 
 const updateUser = async (address: string, userData: UserUpdateData) => {
-  const data = await jars.updateUser(address, userData);
+  await jars.updateUser(address, userData);
   revalidateTag("user");
-  return data;
 };
 
 export default updateUser;

@@ -29,12 +29,12 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { Profile } from "@/types/users";
 import { cn } from "@/lib/utils";
 import { jars } from "@/lib/core/api";
 import updateUser from "@/app/actions/updateUser";
+import createProfile from "@/app/actions/createProfile";
 
 const formCreateUserSchema = z.object({
   name: z
@@ -68,7 +68,6 @@ export default function CreateUserDialog({
   } = useUser() as UserProfile;
   // Logout/Disconnect the wallet
   const { logout, isLoading } = useLogout();
-  const { data: session, update } = useSession();
 
   // Define the form with zod schema.
   const form = useForm<z.infer<typeof formCreateUserSchema>>({
@@ -83,10 +82,12 @@ export default function CreateUserDialog({
     values: z.infer<typeof formCreateUserSchema>,
   ) {
     if (isLoggedIn) {
-      await updateUser(user.address, {
+      const updatedUser = updateUser(user.address, {
         name: values.name,
         email: values.email,
       });
+      const createUserProfile = createProfile(user.address);
+      await Promise.all([updatedUser, createUserProfile]);
       setDialogOpen(false);
     }
     setLoading(false);

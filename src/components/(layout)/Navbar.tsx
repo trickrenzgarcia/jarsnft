@@ -10,7 +10,7 @@ export default async function Navbar() {
     px-0 backdrop-blur-md"
     >
       {/* Nav Container */}
-      <div className="container flex w-full justify-between py-4">
+      <div className="px-5 md:px-10 flex w-full justify-between py-4">
         {/* Left-side  */}
         <div className="flex items-center">
           <Link href="/">

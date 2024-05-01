@@ -36,7 +36,7 @@ export class JarsAPI {
     try {
       const response = await fetch(`${this.baseUrl}${endpoint}`, {
         headers: {
-          Authorization: `Bearer ${this.options.secretKey}`,
+          "X-API-KEY": this.options.secretKey
         },
         ...configs,
       });
@@ -139,6 +139,7 @@ export class JarsAPI {
   async createProfile(address: string) {
     return await this.request<StorageProfile>(`/storage/profile`, {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ address: address }),
     });
   }
@@ -149,7 +150,7 @@ export class JarsAPI {
    */
   async getUserProfile(address: string) {
     const data = await this.request<User & { profile: StorageProfile }>(
-      `/user/profile/${address}`,
+      `/user/getUserProfile?address=${address}`,
     );
     return data;
   }
@@ -235,7 +236,7 @@ export class JarsAPI {
       `/contracts/getContractsForOwner?walletAddress=${walletAddress}`,
       {
         cache: "no-store",
-        next: { revalidate: 10 },
+        next: { tags: ["contracts"] },
       },
     );
   }
@@ -293,5 +294,5 @@ export class JarsAPI {
 }
 
 export const jars = new JarsAPI(BASE_URL, {
-  secretKey: env.NEXT_PUBLIC_JWT_AUTH_TOKEN,
+  secretKey: env.NEXT_PUBLIC_JWT_AUTH_TOKEN || process.env.JWT_AUTH_TOKEN,
 });
