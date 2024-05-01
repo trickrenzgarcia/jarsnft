@@ -1,9 +1,15 @@
-// COLLECTION OF SIMPLE HASH TYPES
-export type SimpleHashCollection = {
+export type SimpleHashCollections = {
   next_cursor: null;
   next: null;
   previous: null;
   collections: Collection[];
+};
+
+export type SimpleHashContracts = {
+  next_cursor: null;
+  next: null;
+  previous: null;
+  contracts: Contract[];
 };
 
 export type Collection = {
@@ -34,6 +40,50 @@ export type Collection = {
   top_contracts: string[];
   collection_royalties: CollectionRoyalty[];
   top_contract_details: TopContractDetail[];
+};
+
+export type Contract = {
+  chain: string;
+  contract_address: string;
+  name: string;
+  type: string;
+  symbol: string;
+  distinct_nft_count: number;
+  deployed_by: string;
+  deployed_via_contract: string;
+  deployment_date: Date;
+  owned_by: string;
+  has_multiple_collections: boolean;
+  top_collections: TopCollection[];
+};
+
+export type TopCollection = {
+  collection_id: string;
+  name: string;
+  description: null | string;
+  image_url: string;
+  image_properties: ImageProperties;
+  banner_image_url: null;
+  category: null;
+  is_nsfw: boolean;
+  external_url: null;
+  twitter_username: null;
+  discord_url: null;
+  instagram_username: null;
+  medium_username: null;
+  telegram_url: null;
+  marketplace_pages: MarketplacePage[];
+  metaplex_mint: null;
+  metaplex_candy_machine: null;
+  metaplex_first_verified_creator: null;
+  floor_prices: any[];
+  top_bids: any[];
+  distinct_owner_count: number;
+  distinct_nft_count: number;
+  total_quantity: number;
+  chains: string[];
+  top_contracts: string[];
+  collection_royalties: CollectionRoyalty[];
 };
 
 export type CollectionRoyalty = {
@@ -75,4 +125,3 @@ export type TopContractDetail = {
   owned_by: string;
   has_multiple_collections: boolean;
 };
-// Path: src/types/simple-hash.ts

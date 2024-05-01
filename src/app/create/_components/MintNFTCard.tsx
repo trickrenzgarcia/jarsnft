@@ -80,7 +80,7 @@ import { MdOutlineNearbyError } from "react-icons/md";
 import { FiShare } from "react-icons/fi";
 import { TooltipMsg } from "@/components/(interfaces)";
 import { env } from "@/lib/env.mjs";
-
+import { Contract, SimpleHashContracts } from "@/types/simple-hash";
 
 const mintSchema = z.object({
   collection: z.string().refine((value) => ethers.utils.isAddress(value), {
@@ -117,15 +117,13 @@ type FormMintNft = z.infer<typeof mintSchema>;
 export default function MintNFTCard() {
   const router = useRouter();
   const { user, isLoading, isLoggedIn } = useUserContext();
-  const [contracts, setContracts] = useState<JarsContract[]>([]);
+  const [contracts, setContracts] = useState<SimpleHashContracts>();
   const [open, setOpen] = useState(false);
   const [uploadedMedia, setUploadedMedia] = useState<string | null>(null);
   const [uploadedFileName, setUploadedFileName] = useState<string>("");
   const [loadingContract, setLoadingContract] = useState(false);
   const [imageFileUrl, setImageFileUrl] = useState<string>("");
-  const [selectedContract, setSelectedContract] = useState<
-    JarsContract | undefined
-  >(undefined);
+  const [selectedContract, setSelectedContract] = useState<Contract>();
   const [attributes, setAttributes] = useState<
     { trait_type: string; value: string }[]
   >([{ trait_type: "", value: "" }]);
@@ -138,7 +136,7 @@ export default function MintNFTCard() {
   });
   const [nftTokenId, setNftTokenId] = useState<string>("");
   const ref = useRef<HTMLButtonElement>(null);
-  const { contract } = useContract(selectedContract?.contract);
+  const { contract } = useContract(selectedContract?.contract_address);
   const {
     mutateAsync: mintNft,
     isLoading: mintLoading,
@@ -170,7 +168,7 @@ export default function MintNFTCard() {
       }
     };
     fetchCollections();
-  }, [user]);
+  }, []);
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
@@ -232,10 +230,10 @@ export default function MintNFTCard() {
   };
 
   const submitMintNft = async (data: FormMintNft) => {
-    if(mintState.state === "idle") {
+    if (mintState.state === "idle") {
       ref.current?.click();
     }
-    
+
     const imageNft = new File([data.image], data.image.name, {
       type: data.image.type,
     });
@@ -313,7 +311,10 @@ export default function MintNFTCard() {
                             <>
                               <div className="relative flex h-[60px] w-[60px] items-center justify-center rounded-md bg-muted">
                                 <Image
-                                  src={selectedContract.image}
+                                  src={
+                                    selectedContract.top_collections[0]
+                                      .image_url
+                                  }
                                   fill
                                   style={{ objectFit: "cover" }}
                                   alt={selectedContract.name}
@@ -376,20 +377,23 @@ export default function MintNFTCard() {
                           </div>
                         </Button>
                       )}
-                      {contracts.map((contract, i) => (
+                      {contracts?.contracts.map((contract, i) => (
                         <Button
                           variant="ghost"
                           className="flex h-fit w-full justify-start gap-3"
                           onClick={() => {
-                            form.setValue("collection", contract.contract);
-                            setSelectedContract(contract);
+                            form.setValue(
+                              "collection",
+                              contract.contract_address,
+                            );
+                            setSelectedContract(contracts.contracts[i]);
                             setOpen(false);
                           }}
                           key={i}
                         >
                           <div className="relative flex h-[60px] w-[60px] select-none rounded-md bg-muted">
                             <Image
-                              src={contract.image}
+                              src={contract.top_collections[0].image_url}
                               alt={contract.name}
                               style={{ objectFit: "cover" }}
                               fill
@@ -576,9 +580,7 @@ export default function MintNFTCard() {
                 </FormItem>
               )}
             />
-            <Button type="submit">
-              Mint
-            </Button>
+            <Button type="submit">Mint</Button>
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button ref={ref} className="hidden">
@@ -646,7 +648,13 @@ export default function MintNFTCard() {
                                     <MdOutlineNearbyError className="text-danger" />
                                   )
                                 )}{" "}
-                                Nft minted {mintState.state === "success" ? "successfully" : mintState.state === "error" ? "failed" : "processing"}.
+                                Nft minted{" "}
+                                {mintState.state === "success"
+                                  ? "successfully"
+                                  : mintState.state === "error"
+                                    ? "failed"
+                                    : "processing"}
+                                .
                               </p>
                             </div>
                           </CardDescription>
@@ -659,24 +667,30 @@ export default function MintNFTCard() {
                 <AlertDialogFooter>
                   {mintState.state === "error" && (
                     <>
-                    <Button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        form.handleSubmit(submitMintNft)();
-                      }}
-                    >
-                      Try Again
-                    </Button>
-                    <AlertDialogCancel onClick={() => {
-                      setMintState({ state: "idle", message: "idle" });
-                    }}>Cancel</AlertDialogCancel>
+                      <Button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          form.handleSubmit(submitMintNft)();
+                        }}
+                      >
+                        Try Again
+                      </Button>
+                      <AlertDialogCancel
+                        onClick={() => {
+                          setMintState({ state: "idle", message: "idle" });
+                        }}
+                      >
+                        Cancel
+                      </AlertDialogCancel>
                     </>
                   )}
 
                   {mintState.state === "success" && (
-                    <div className="flex justify-between w-full">
+                    <div className="flex w-full justify-between">
                       <TooltipMsg message="Share">
-                        <Button variant="ghost"><FiShare /></Button>
+                        <Button variant="ghost">
+                          <FiShare />
+                        </Button>
                       </TooltipMsg>
                       <div className="flex gap-4">
                         <AlertDialogCancel
@@ -689,20 +703,24 @@ export default function MintNFTCard() {
                             setUploadedFileName("");
                             setOpen(false);
                             form.reset();
-                          }}>Create more
+                          }}
+                        >
+                          Create more
                         </AlertDialogCancel>
                         <Button
                           variant="default"
                           className="bg-blue-400"
                           onClick={() => {
-                            router.push(`/collection/${selectedContract?.contract}`) // ${nftTokenId}
-                          }}>
+                            router.push(
+                              `/collection/${selectedContract?.contract_address}`,
+                            ); // ${nftTokenId}
+                          }}
+                        >
                           Go to NFT
                         </Button>
                       </div>
                     </div>
                   )}
-                  
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>

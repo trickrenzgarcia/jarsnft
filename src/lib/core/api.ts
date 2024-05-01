@@ -14,6 +14,7 @@ import {
 import { BASE_URL } from "../ctx";
 import { User } from "./types";
 import { env } from "../env.mjs";
+import { SimpleHashContracts } from "@/types/simple-hash";
 
 export type JarsOptions = {
   /**
@@ -83,7 +84,6 @@ export class JarsAPI {
    * Save nonce in database
    */
   async saveNonce(nonce: string) {
-    console.log(nonce, "ito ay nonce");
     return await this.request(`/nonce/create`, {
       method: "POST",
       body: JSON.stringify({ nonce: nonce }),
@@ -107,22 +107,17 @@ export class JarsAPI {
    * @param data - The user's data
    * @returns - A user
    */
-  async updateUser({
-    address,
-    name,
-    email,
-  }: {
-    address: string;
-    name: string;
-    email: string;
-  }) {
-    return await this.request<User[]>(`/user/updateUser`, {
+  async updateUser(
+    address: string,
+    data: Omit<
+      User,
+      "id" | "uid" | "address" | "is_listed" | "role" | "created_at"
+    >,
+  ) {
+    return await this.request<User>(`/user/updateUser`, {
       method: "POST",
-      body: JSON.stringify({
-        address: address,
-        name: name,
-        email: email,
-      }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ address: address, ...data }),
     });
   }
   /**
@@ -130,8 +125,9 @@ export class JarsAPI {
    * @param address - The user's address
    */
   async createUser(address: string) {
-    return await this.request<User>(`/user/create`, {
+    return await this.request<User>(`/user/createUser`, {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ address: address }),
     });
   }
@@ -235,10 +231,11 @@ export class JarsAPI {
    * @returns
    */
   async getContractsForOwner(walletAddress: string) {
-    return await this.request<JarsContract[]>(
-      `/collections/getContractsForOwner?owner=${walletAddress}`,
+    return await this.request<SimpleHashContracts>(
+      `/contracts/getContractsForOwner?walletAddress=${walletAddress}`,
       {
-        next: { tags: ["contracts", "collections", "getContractsForOwner"] },
+        cache: "no-store",
+        next: { revalidate: 10 },
       },
     );
   }

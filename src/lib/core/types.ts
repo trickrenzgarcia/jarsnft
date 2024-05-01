@@ -1,4 +1,4 @@
-import { SimpleHashCollection } from "@/types/simple-hash";
+import { SimpleHashCollections } from "@/types/simple-hash";
 
 export type User = {
   id: number;
@@ -32,7 +32,7 @@ export type NFTCollection = {
   primary_sale_recipient: string;
   trusted_forwarders: string[];
   created_at: string;
-  simpleHashData: SimpleHashCollection;
+  simpleHashData: SimpleHashCollections;
 };
 
 export type OpenSeaMetadata = {

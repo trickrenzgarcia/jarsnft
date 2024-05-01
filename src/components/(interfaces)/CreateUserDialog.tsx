@@ -30,11 +30,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
-import { updateUser } from "@/app/actions";
 import { useState } from "react";
 import { Profile } from "@/types/users";
 import { cn } from "@/lib/utils";
 import { jars } from "@/lib/core/api";
+import updateUser from "@/app/actions/updateUser";
 
 const formCreateUserSchema = z.object({
   name: z
@@ -79,33 +79,23 @@ export default function CreateUserDialog({
     },
   });
 
-  // handle the form submit with async
-  const handleCreateUser = async (
+  async function handleUpdateUser(
     values: z.infer<typeof formCreateUserSchema>,
-  ) => {
-    if (!isLoggedIn) return;
-
-    const formData = new FormData();
-    formData.set("address", user.data.address);
-    formData.set("name", values.name);
-    formData.set("email", values.email);
-
-    try {
-      const data = await Promise.all([
-        updateUser(formData),
-        jars.createProfile(user.data.address),
-      ]);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
+  ) {
+    if (isLoggedIn) {
+      await updateUser(user.address, {
+        name: values.name,
+        email: values.email,
+      });
+      setDialogOpen(false);
     }
-  };
+    setLoading(false);
+  }
 
   // Define the form submit handler function
   async function onSubmit(values: z.infer<typeof formCreateUserSchema>) {
     setLoading(true);
-    await handleCreateUser(values);
-    setDialogOpen(false);
+    await handleUpdateUser(values);
   }
 
   return (

@@ -22,13 +22,12 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
   callbacks: {
     onLogin: async (address: string) => {
       const isUser = await jars.isUserExists(address);
-      console.log("isUser", isUser);
       if (!isUser) {
         await jars.createUser(address);
       }
 
       const user = await jars.getUser(address);
-      console.log("user", user);
+
       const session = {
         email: user.email,
         name: user.name,
@@ -36,6 +35,7 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
         role: user.role,
         create_at: user.created_at,
       };
+
       return session;
     },
     onUser: async (user: ThirdwebAuthUser<any, { is_listed: boolean }>) => {

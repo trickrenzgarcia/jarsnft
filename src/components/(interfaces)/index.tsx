@@ -16,3 +16,4 @@ export { default as WaveBgAnimation } from "./WaveBgAnimation";
 export { default as FooterColumn } from "./FooterColumn";
 export { default as Hamburger } from "./Hamburger";
 export { default as TopNFTCollectionsTable } from "./TopNFTCollectionsTable";
+export { default as JarsLogo } from "./JarsLogo";
