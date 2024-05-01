@@ -28,7 +28,7 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
       }
 
       const user = await jars.getUser(address);
-
+      console.log("user", user);
       const session = {
         email: user.email,
         name: user.name,

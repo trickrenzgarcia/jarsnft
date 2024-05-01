@@ -56,7 +56,7 @@ export class JarsAPI {
    * @returns - An array of users
    */
   async getAllUsers(): Promise<User[]> {
-    return await this.request<User[]>("/user/all");
+    return await this.request<User[]>("/user/getUsers");
   }
   /**
    * Get a user by address
@@ -64,7 +64,7 @@ export class JarsAPI {
    * @returns - A user
    */
   async getUser(address: string): Promise<User> {
-    return await this.request<User>(`/user/${address}`, {
+    return await this.request<User>(`/user/getUser?address=${address}`, {
       next: { tags: ["user"] },
     });
   }
@@ -74,7 +74,7 @@ export class JarsAPI {
    * @returns - A boolean
    */
   async isUserExists(address: string): Promise<boolean> {
-    const user = await this.request<User>(`/user/${address}`);
+    const user = await this.request<User>(`/user/getUser?address=${address}`);
     if (!user) return false;
     return true;
   }
@@ -107,20 +107,21 @@ export class JarsAPI {
    * @param data - The user's data
    * @returns - A user
    */
-  async updateUser(
-    address: string,
-    data: Omit<User, "address" | "id" | "uid" | "created_at" | "is_listed" | "role"> & {
-      email: string;
-      name: string;
-    },
-  ) {
-    return await this.request<User>(`/user/update`, {
-      method: "PUT",
+  async updateUser({
+    address,
+    name,
+    email,
+  }: {
+    address: string;
+    name: string;
+    email: string;
+  }) {
+    return await this.request<User[]>(`/user/updateUser`, {
+      method: "POST",
       body: JSON.stringify({
-        email: data.email,
-        name: data.name,
-        is_listed: true,
         address: address,
+        name: name,
+        email: email,
       }),
     });
   }
