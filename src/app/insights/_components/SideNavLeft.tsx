@@ -5,12 +5,14 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { leftNavList } from "../_metadata";
+import { useState } from "react";
 
 export default function SideNavLeft() {
   const path = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <aside className="pt-9 z-30 ml-3 hidden border-r border-gray-400 h-[100vh] right-auto w-[16.5rem] shrink-0 sticky top-16 md:block overflow-y-hidden hover:overflow-y-auto">
+    <aside className="sticky right-auto top-16 z-30 ml-3 hidden h-[100vh] w-[16.5rem] shrink-0 overflow-y-hidden border-r border-gray-400 pt-9 hover:overflow-y-auto md:block">
       <div className={cn(poppins.className)}>
         {leftNavList.map((item) => (
           <div className="mb-9" key={item.topic}>
@@ -20,11 +22,11 @@ export default function SideNavLeft() {
                 <li
                   key={child.name}
                   className={cn(
-                    "-ml-px mb-3 block border-l border-transparent pl-4 font-semibold text-[#91949c] dark:text-white text-sm ",
+                    "-ml-px mb-3 block border-l border-transparent pl-4 text-sm font-semibold text-[#91949c] dark:text-white ",
                     path === child.href &&
-                      " font-bold text-[#151c25] border-l-[#151c25] dark:border-l-[#f0f0f0] dark:text-[#f0f0f0]",
+                      " border-l-[#151c25] font-bold text-[#151c25] dark:border-l-[#f0f0f0] dark:text-[#f0f0f0]",
                     path !== child.href &&
-                      "text-[#696c72] hover:text-[#151c25] hover:border-l-[#151c25] dark:text-[#a0a0a0] dark:hover:border-[#f0f0f0] dark:hover:text-[#f0f0f0]",
+                      "text-[#696c72] hover:border-l-[#151c25] hover:text-[#151c25] dark:text-[#a0a0a0] dark:hover:border-[#f0f0f0] dark:hover:text-[#f0f0f0]",
                   )}
                 >
                   <Link href={child.href}>{Capitalize(child.name)}</Link>
