@@ -24,9 +24,11 @@ import {
   useMetadata,
 } from "@thirdweb-dev/react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { NFTCollection } from "@/lib/core/types";
 
 type BannerMetadataProps = {
   address: string;
+  collection: NFTCollection;
 };
 
 type QueryMetadata = {
@@ -36,11 +38,12 @@ type QueryMetadata = {
 };
 export default function NFTBannerMetadata({
   address,
+  collection,
 }: BannerMetadataProps) {
   const { contract } = useContract(address);
   const { data, isLoading, isError } = useContractMetadata(
     contract,
-  ) as QueryMetadata;;
+  ) as QueryMetadata;
   const [details] = React.useState([
     { detail: "Floor", value: 10 },
     { detail: "24h Vol", value: 1170 },
@@ -48,33 +51,36 @@ export default function NFTBannerMetadata({
     { detail: "Total Vol", value: 1230240 },
   ]);
 
-  if(isLoading) {
+  if (isLoading) {
     return (
       <main className="flex w-full flex-col">
-        <div className="relative h-[200px] w-auto md:h-[400px]">
-          
-        </div>
+        <div className="relative h-[200px] w-auto md:h-[400px]"></div>
         <div className="absolute hidden h-[400px] w-full px-7 py-6 md:block">
           <section className="mb-4 flex justify-between">
             <div className="flex items-center gap-3">
-              <Skeleton className="w-[125px] h-[125px] rounded-xl border" />
-              <div className={cn("w-[500px] flex flex-col gap-2", open_sans.className)}>
-                <Skeleton className="w-40 h-7 border" />
-                <Skeleton className="w-32 h-5 border" />
+              <Skeleton className="h-[125px] w-[125px] rounded-xl border" />
+              <div
+                className={cn(
+                  "flex w-[500px] flex-col gap-2",
+                  open_sans.className,
+                )}
+              >
+                <Skeleton className="h-7 w-40 border" />
+                <Skeleton className="h-5 w-32 border" />
               </div>
             </div>
           </section>
           <section className="mb-3 flex w-full justify-between">
-            <div className="h-[160px] w-[500px] gap-1 flex flex-col overflow-x-hidden text-sm font-semibold">
-              <Skeleton className="w-full h-5 border" />
-              <Skeleton className="w-[80%] h-5 border" />
-              <Skeleton className="w-[72%] h-5 border" />
-              <Skeleton className="w-[85%] h-5 border" />
+            <div className="flex h-[160px] w-[500px] flex-col gap-1 overflow-x-hidden text-sm font-semibold">
+              <Skeleton className="h-5 w-full border" />
+              <Skeleton className="h-5 w-[80%] border" />
+              <Skeleton className="h-5 w-[72%] border" />
+              <Skeleton className="h-5 w-[85%] border" />
             </div>
             <div className="hidden items-center gap-6 pl-3 lg:flex">
               {details.map((detail, i) => (
                 <div key={i} className={cn(poppins.className, "w-[110px]")}>
-                  <Skeleton className="w-20 h-20 border" />
+                  <Skeleton className="h-20 w-20 border" />
                 </div>
               ))}
             </div>
@@ -82,7 +88,7 @@ export default function NFTBannerMetadata({
           <section></section>
         </div>
       </main>
-    )
+    );
   }
 
   if (data) {
@@ -96,7 +102,7 @@ export default function NFTBannerMetadata({
               objectFit: "cover",
             }}
             alt="Collection Banner"
-            className="opacity-100 md:opacity-65 dark:md:opacity-30"
+            className="opacity-100 blur-lg md:opacity-65 dark:md:opacity-30"
           />
         </div>
         <div className="absolute hidden h-[400px] w-full px-7 py-6 dark:shadow-[inset_0_-50px_100px_rgba(10,10,10,1)] md:block">
@@ -149,73 +155,8 @@ export default function NFTBannerMetadata({
               ))}
             </div>
           </section>
-
-          <section className="flex w-full justify-between">
-            <div className="w-[500px]">
-              <Socials
-                social={{
-                  wiki_url: data.external_link || "",
-                  discord_url: "",
-                  twitter_username: "",
-                }}
-              />
-            </div>
-          </section>
         </div>
       </main>
-    );
-  }
-
-  type Social = {
-    wiki_url?: string;
-    twitter_username?: string;
-    discord_url?: string;
-    instagram_username?: string;
-    telegram_url?: string;
-  };
-
-  function Socials({ social }: { social: Social }) {
-    const { wiki_url, discord_url, twitter_username } = social;
-
-    const hidden =
-      (!wiki_url && !discord_url && !twitter_username && "hidden") || "";
-
-    return (
-      <div className={cn("flex gap-2", hidden)}>
-        {wiki_url && (
-          <Link
-            href={wiki_url}
-            className="rounded-md hover:bg-slate-700/60 dark:hover:bg-slate-700/40"
-            target="_blank"
-          >
-            <div className="flex h-[33px] w-[33px] items-center justify-center">
-              <FaWikipediaW />
-            </div>
-          </Link>
-        )}
-        {discord_url && (
-          <Link
-            href={discord_url}
-            className="rounded-md hover:bg-slate-700/40"
-            target="_blank"
-          >
-            <div className="flex h-[33px] w-[33px] items-center justify-center">
-              <FaDiscord />
-            </div>
-          </Link>
-        )}
-        {twitter_username && (
-          <Link
-            href={twitter_username}
-            className="rounded-md hover:bg-slate-700/40"
-            target="_blank"
-          >
-            <div className="flex h-[33px] w-[33px] items-center justify-center">
-              <FaTwitter className="fa-brands fa-x-twitter" />
-            </div>
-          </Link>
-        )}
-      </div>
     );
   }
 }

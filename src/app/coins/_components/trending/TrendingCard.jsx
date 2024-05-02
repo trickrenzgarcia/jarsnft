@@ -3,8 +3,7 @@ import TrendingCardRow from "./TrendingCardRow";
 import { getNftMarketCap, getTrendingCoins } from "../../api/apiCoingecko";
 
 const styles = {
-  trendingCard: `w-full p-5 py-5 pb-5 bg-[#323546] rounded-xl mr-3`,
-  trendingCardWrapper: `flex flex-1 items-center justify-between`,
+  trendingCard: `w-full p-6 py-5 pb-5 bg-[#323546] rounded-xl`,
 };
 
 const TrendingCard = async ({ title, icon, type }) => {
@@ -12,15 +11,10 @@ const TrendingCard = async ({ title, icon, type }) => {
     type === "coins" ? await getTrendingCoins() : await getNftMarketCap();
   return (
     <div className={styles.trendingCard}>
-      <div className={styles.trendingCardWrapper}>
-        <div className="flex">
-          {icon && <Image src={icon} width={30} height={30} alt="" />}
-          &nbsp;&nbsp;
+        <div className="flex flex-row gap-5">
+          {icon && <Image src={icon} width={30} height={30} alt="image" />}
           <p className="font-bold">{title}</p>
         </div>
-      </div>
-      <br />
-
       {type === "coins"
         ? data.map((coin, index) => {
             return (

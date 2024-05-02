@@ -9,24 +9,35 @@ import {
   Spinner,
 } from "@nextui-org/react";
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { useEffect } from "react";
 import { MinidentIconImg } from ".";
 import { CgDetailsMore } from "react-icons/cg";
 import Link from "next/link";
 
 import { useLogout, useUser } from "@thirdweb-dev/react";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
-import { Profile } from "@/types/users";
+import { ProfileQuery } from "@/types/users";
 import { Skeleton } from "../ui/skeleton";
+import { jars } from "@/lib/core/api";
 
-export default function ProfileButton({
-  user,
-  isUserLoading,
-}: {
-  user: Profile;
-  isUserLoading: boolean;
-}) {
+export default function ProfileButton() {
+  const {
+    user,
+    isLoading: isUserLoading,
+    isLoggedIn,
+  } = useUser() as ProfileQuery;
   const { logout, isLoading: logoutLoading } = useLogout();
+  const [name, setName] = React.useState<string>(user.address);
+
+  useEffect(() => {
+    const fetchName = async () => {
+      if (isLoggedIn) {
+        const data = await jars.getUser(user.address);
+        setName(data.name || user.address);
+      }
+    };
+    fetchName();
+  }, [user, isUserLoading, isLoggedIn]);
 
   return (
     <div className="">
@@ -39,7 +50,7 @@ export default function ProfileButton({
                 width={30}
                 height={30}
               />
-              <h2 className="truncate font-semibold">{user.data.session.name || user.address}</h2>
+              <h2 className="hidden truncate font-semibold md:flex">{name}</h2>
             </div>
           </SheetTrigger>
           <SheetContent>
@@ -58,9 +69,7 @@ export default function ProfileButton({
                         height={50}
                         width={50}
                       />
-                      <span className="truncate font-bold">
-                        {user.data.session.name}
-                      </span>
+                      <span className="truncate font-bold">{name}</span>
                     </div>
                   )}
                 </Link>

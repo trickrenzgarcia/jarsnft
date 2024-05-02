@@ -29,12 +29,12 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { useSession } from "next-auth/react";
-import { updateUser } from "@/app/actions";
 import { useState } from "react";
 import { Profile } from "@/types/users";
 import { cn } from "@/lib/utils";
 import { jars } from "@/lib/core/api";
+import updateUser from "@/app/actions/updateUser";
+import createProfile from "@/app/actions/createProfile";
 
 const formCreateUserSchema = z.object({
   name: z
@@ -68,7 +68,6 @@ export default function CreateUserDialog({
   } = useUser() as UserProfile;
   // Logout/Disconnect the wallet
   const { logout, isLoading } = useLogout();
-  const { data: session, update } = useSession();
 
   // Define the form with zod schema.
   const form = useForm<z.infer<typeof formCreateUserSchema>>({
@@ -79,29 +78,25 @@ export default function CreateUserDialog({
     },
   });
 
-  // handle the form submit with async
-  const handleCreateUser = async (
+  async function handleUpdateUser(
     values: z.infer<typeof formCreateUserSchema>,
-  ) => {
-    if (!isLoggedIn) return;
-
-    const formData = new FormData();
-    formData.set("address", user.data.address);
-    formData.set("name", values.name);
-    formData.set("email", values.email);
-
-    try {
-      const [updatedUser, createdProfile] = await Promise.all([updateUser(formData), jars.createProfile(user.data.address)])
-    } catch (error) {
-      console.log(error);
+  ) {
+    if (isLoggedIn) {
+      const updatedUser = updateUser(user.address, {
+        name: values.name,
+        email: values.email,
+      });
+      const createUserProfile = createProfile(user.address);
+      await Promise.all([updatedUser, createUserProfile]);
+      setDialogOpen(false);
     }
-  };
+    setLoading(false);
+  }
 
   // Define the form submit handler function
   async function onSubmit(values: z.infer<typeof formCreateUserSchema>) {
     setLoading(true);
-    await handleCreateUser(values);
-    setDialogOpen(false);
+    await handleUpdateUser(values);
   }
 
   return (

@@ -1,10 +1,10 @@
 import { jars } from "@/lib/core/api";
 import { shortenAddress, truncate } from "@/lib/utils";
 import { Metadata, ResolvingMetadata } from "next";
-import UserWrapper from "../_components/UserWrapper";
 import UserBanner from "../_components/UserBanner";
 import { Suspense } from "react";
 import UserNFTs from "../_components/UserNFTs";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: {
@@ -24,7 +24,7 @@ export async function generateMetadata(
     };
 
   return {
-    title: `${shortAddress} (${truncate(user.name, 12)}'s) Profile | JarsNFT`,
+    title: `${shortAddress} ${truncate(user.name, 12)} Profile | JarsNFT`,
   };
 }
 
@@ -33,6 +33,10 @@ export default async function UserAccountPage({ params: { address } }: Props) {
   const getUserNFTs = jars.getNFTsForOwner(address);
 
   const [user, nfts] = await Promise.all([getUserProfile, getUserNFTs]);
+
+  if (!user) {
+    notFound();
+  }
 
   return (
     <main className="w-full bg-slate-800 md:container">

@@ -10,7 +10,7 @@ async function NFTContentWrapper({ title }: { title: string }) {
 
   return (
     <section>
-      <h2 className="mb-3 text-center text-2xl font-bold md:text-left">
+      <h2 className="mb-3 text-2xl font-bold text-left">
         {title}
       </h2>
 

@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const styles = {
-  trendingCardRow: `flex items-center justify-between space-x-4 m-2 p-2 gap-5`,
+  trendingCardRow: `flex items-center justify-between self-auto max-w-[40px] m-2`,
 };
 
 const TrendingCardRow = ({ number, icon, name, sparklines, percentChange }) => {
@@ -25,18 +25,17 @@ const TrendingCardRow = ({ number, icon, name, sparklines, percentChange }) => {
               src={icon}
               width={30}
               height={30}
-              style={{ borderRadius: "15px" }}
+              className="rounded-full"
             />
           )}
         </div>
-
         {/* Div 2 */}
-        <div>
-          <p>{name}</p>
+        <div className="basis-1/2">
+          <p className="truncate">{name}</p>
           <span className="text-gray-400">{number}</span>
         </div>
 
-        <div className="grow">
+        <div className="basis-1/3">
           {sparklines && (
             <Image
               alt="sparkline.svg"

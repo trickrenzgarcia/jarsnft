@@ -3,16 +3,40 @@ import { Suspense } from "react";
 import NFTBannerMetadata from "../_components/NFTBannerMetadata";
 import { Separator } from "@/components/ui/separator";
 import PriceRangeValue from "../_components/PriceRangeValue";
+import { Metadata } from "next";
+import { jars } from "@/lib/core/api";
+import { notFound } from "next/navigation";
 
 type CollectionParams = {
   params: { address: string };
   children: React.ReactNode;
 };
 
+export async function generateMetadata({
+  params: { address },
+}: CollectionParams): Promise<Metadata> {
+  const collection = await jars.getContractMetadata(address);
+
+  if (!collection) {
+    return {
+      title: `Page Not Found | JarsNFT`,
+    };
+  }
+
+  return {
+    title: `${collection.name} ${collection.symbol && `(${collection.symbol})`} | JarsNFT`,
+  };
+}
+
 export default async function CollectionLayout({
   params: { address },
   children,
 }: CollectionParams) {
+  const collection = await jars.getCollection(address);
+
+  if (!collection) {
+    notFound();
+  }
 
   return (
     <main>
@@ -20,15 +44,9 @@ export default async function CollectionLayout({
         <Navbar />
       </header>
       <Suspense fallback={<LoadingMetadata />}>
-        <NFTBannerMetadata address={address} />
+        <NFTBannerMetadata address={address} collection={collection} />
       </Suspense>
       <div className="flex w-full items-start">
-        <section className="sticky left-0 top-[100px] hidden h-auto w-[380px] min-w-[380px] overflow-y-auto border-r border-zinc-800 px-6 md:block">
-          <Separator className="my-3 w-full bg-zinc-800" />
-          <div className="">
-            <PriceRangeValue />
-          </div>
-        </section>
         <section className="relative p-6">{children}</section>
       </div>
     </main>
