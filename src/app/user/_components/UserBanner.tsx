@@ -1,6 +1,6 @@
 "use client";
 
-import { MinidentIconImg, TooltipMsg } from "@/components/(interfaces)";
+import { BoringAvatar, MinidentIconImg, TooltipMsg } from "@/components/(interfaces)";
 import AddressClipboard from "@/components/(interfaces)/AddressClipboard";
 import { StorageProfile, User } from "@/lib/core/types";
 import { open_sans } from "@/lib/fonts";
@@ -32,12 +32,8 @@ export default async function UserBanner({ user }: Props) {
       <div className="absolute hidden h-[300px] w-full px-7 py-6 md:block">
         <div className="mb-4 flex justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-[125px] w-[125px] select-none rounded-full border-2 border-fuchsia-600 p-1">
-              <MinidentIconImg
-                address={user.address}
-                width={125}
-                height={125}
-              />
+            <div className="h-[125px] w-[125px] flex justify-center items-center select-none rounded-full border-2 border-fuchsia-600 p-1">
+              <BoringAvatar size={115} name={user.address} />
             </div>
 
             <div

@@ -1,5 +1,6 @@
 import { Json } from "@thirdweb-dev/auth";
 import { ThirdwebAuthUser } from "@thirdweb-dev/auth/next";
+import { Dispatch, SetStateAction } from "react";
 
 /**
  * The Profile type is a custom type for the Session/ ProfileProvider or UserProvider
@@ -35,6 +36,8 @@ export type ProfileQuery = {
   user: Profile;
   isLoading: boolean;
   isLoggedIn: boolean;
+  refreshAvatar: string;
+  setRefreshAvatar: Dispatch<SetStateAction<string>>;
 };
 
 export type ApiProfile = {

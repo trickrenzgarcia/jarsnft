@@ -51,7 +51,7 @@ export default function OwnedNFTs({
                         isBlurred
                         width={512}
                         height={512}
-                        src={ipfsToCfIpfs(nft.image.originalUrl)}
+                        src={ipfsToCfIpfs(nft.image.originalUrl) || "/assets/placeholder/nft_placeholder.svg"}
                         alt={nft.name}
                         className="hover:-translate-y-[2px] hover:border-2"
                       />
@@ -62,13 +62,12 @@ export default function OwnedNFTs({
                       isBlurred
                       width={100}
                       height={100}
-                      src={ipfsToCfIpfs(nft.image.originalUrl)}
+                      src={ipfsToCfIpfs(nft.image.originalUrl) || "/assets/placeholder/nft_placeholder.svg"}
                       alt={nft.name}
                     />
                     <div className="flex w-full max-w-72 flex-col px-2">
                       <div className="truncate text-lg font-bold">
-                        {nft.name}asd awdawdawdka whdkjha
-                        wkjdhkjawhdjkawhjdhajkdh
+                        {nft.name}
                       </div>
                       <div className="truncate text-sm">
                         {nft.contract.name}

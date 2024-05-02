@@ -3,12 +3,14 @@
 import { ProfileQuery } from "@/types/users";
 import { Json } from "@thirdweb-dev/auth";
 import { UserWithData, useUser } from "@thirdweb-dev/react";
-import { createContext, use, useMemo } from "react";
+import { Dispatch, SetStateAction, createContext, use, useMemo, useState } from "react";
 
 type UserContextProps = {
   user: UserWithData<Json, Json> | undefined;
   isLoading: boolean;
   isLoggedIn: boolean;
+  refreshAvatar: string;
+  setRefreshAvatar: Dispatch<SetStateAction<string>>;
 };
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);
@@ -19,6 +21,7 @@ export default function UserProvider({
   children: React.ReactNode;
 }) {
   const user = useUser();
+  const [refreshAvatar, setRefreshAvatar] = useState<string>("initial");
 
   // Memoize the user value
   const userMemo = useMemo(() => {
@@ -26,6 +29,8 @@ export default function UserProvider({
       user: user.user,
       isLoading: user.isLoading,
       isLoggedIn: user.isLoggedIn,
+      refreshAvatar: refreshAvatar,
+      setRefreshAvatar: setRefreshAvatar,
     };
   }, [user]);
 
@@ -46,7 +51,7 @@ export function useUserContext() {
     }
 
     return user as ProfileQuery;
-  }, [user]);
+  }, [user, user?.refreshAvatar]);
 
   return userContextValue as ProfileQuery;
 }

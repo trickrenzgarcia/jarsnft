@@ -36,7 +36,8 @@ export class JarsAPI {
     try {
       const response = await fetch(`${this.baseUrl}${endpoint}`, {
         headers: {
-          "X-API-KEY": this.options.secretKey
+          "X-API-KEY": `${this.options.secretKey}`,
+          "Content-Type": "application/json"
         },
         ...configs,
       });
@@ -116,7 +117,6 @@ export class JarsAPI {
   ) {
     return await this.request<User>(`/user/updateUser`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ address: address, ...data }),
     });
   }
@@ -127,7 +127,6 @@ export class JarsAPI {
   async createUser(address: string) {
     return await this.request<User>(`/user/createUser`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ address: address }),
     });
   }
@@ -144,6 +143,17 @@ export class JarsAPI {
     });
   }
   /**
+   * Update a user's profile
+   * @param address - The user's address
+   * @param imageUrl - The user's profile data
+   */
+  async updateUserAvatar(address: string, imageUrl: string) {
+    return await this.request<StorageProfile>(`/storage/profile/updateAvatar`, {
+      method: "POST",
+      body: JSON.stringify({ address: address, image_url: imageUrl }),
+    });
+  }
+  /**
    * Get a user's profile
    * @param address - The user's address
    * @returns - A user's profile
@@ -151,6 +161,11 @@ export class JarsAPI {
   async getUserProfile(address: string) {
     const data = await this.request<User & { profile: StorageProfile }>(
       `/user/getUserProfile?address=${address}`,
+      {
+        next: {
+          tags: ["user", "profile", "getUserProfile"]
+        }
+      }
     );
     return data;
   }

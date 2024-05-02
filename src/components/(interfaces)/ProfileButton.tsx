@@ -10,7 +10,7 @@ import {
 } from "@nextui-org/react";
 import { Button } from "@/components/ui/button";
 import React, { useEffect } from "react";
-import { MinidentIconImg } from ".";
+import { BoringAvatar, MinidentIconImg } from ".";
 import { CgDetailsMore } from "react-icons/cg";
 import Link from "next/link";
 
@@ -19,6 +19,8 @@ import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { ProfileQuery } from "@/types/users";
 import { Skeleton } from "../ui/skeleton";
 import { jars } from "@/lib/core/api";
+import useAvatarNFT from "@/hooks/useAvatarNFT";
+import Image from "next/image";
 
 export default function ProfileButton() {
   const {
@@ -27,13 +29,15 @@ export default function ProfileButton() {
     isLoggedIn,
   } = useUser() as ProfileQuery;
   const { logout, isLoading: logoutLoading } = useLogout();
-  const [name, setName] = React.useState<string>(user.address);
+  const [name, setName] = React.useState<string>("");
+
+  const { avatar, isLoading, isError } = useAvatarNFT();
 
   useEffect(() => {
     const fetchName = async () => {
       if (isLoggedIn) {
         const data = await jars.getUser(user.address);
-        setName(data.name || user.address);
+        setName(data.name);
       }
     };
     fetchName();
@@ -45,11 +49,19 @@ export default function ProfileButton() {
         <Sheet>
           <SheetTrigger asChild>
             <div className="flex h-full max-w-[150px] cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-slate-300 hover:dark:bg-slate-800">
-              <MinidentIconImg
-                address={user.data.address}
-                width={30}
-                height={30}
-              />
+              {isLoading ? <Skeleton className="w-[35] h-[35] rounded-full" /> : avatar ? 
+              <div className="relative w-[35px] h-[35px] rounded-full">
+                <Image 
+                src={avatar} 
+                fill
+                alt="Avatar"
+                style={{ objectFit: "cover" }}
+                className="absolute rounded-full"
+                loading="lazy"
+                />
+              </div> : 
+              <BoringAvatar size={35} name={user.address} />}
+              
               <h2 className="hidden truncate font-semibold md:flex">{name}</h2>
             </div>
           </SheetTrigger>
@@ -64,11 +76,18 @@ export default function ProfileButton() {
                     </div>
                   ) : (
                     <div className="flex w-full items-center gap-3">
-                      <MinidentIconImg
-                        address={user.data.address}
-                        height={50}
-                        width={50}
-                      />
+                      {isLoading ? 
+                      (<Skeleton className="h-[50] w-[50] rounded-full" />) : avatar && (<div className="relative w-[50px] h-[50px] rounded-full">
+                      <Image 
+                      src={avatar} 
+                      fill
+                      alt="Avatar"
+                      style={{ objectFit: "cover" }}
+                      className="absolute rounded-full"
+                      loading="lazy"
+                    /> </div>) ||  <BoringAvatar size={50} name={user.address} />
+                      }
+                      
                       <span className="truncate font-bold">{name}</span>
                     </div>
                   )}

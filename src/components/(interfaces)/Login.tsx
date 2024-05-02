@@ -3,6 +3,7 @@
 import { useUser } from "@thirdweb-dev/react";
 import { ConnectWeb3, CreateUserDialog, ProfileButton } from ".";
 import { ProfileQuery } from "@/types/users";
+import { Skeleton } from "../ui/skeleton";
 
 export default function Login() {
   const { user, isLoading, isLoggedIn } = useUser() as ProfileQuery;
@@ -10,7 +11,9 @@ export default function Login() {
   return (
     // Connect Wallet for Context
     <div className="flex items-center">
-      {(isLoggedIn && <ProfileButton />) || (
+      {(isLoading && (
+        <Skeleton className="w-[35px] h-[35px] rounded-full" />
+      ) || isLoggedIn && <ProfileButton />) || (
         <ConnectWeb3 btnTitle="Connect Wallet" />
       )}
 

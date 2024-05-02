@@ -1,40 +1,31 @@
 "use client";
 
-import { MinidentIconImg, TooltipMsg } from "@/components/(interfaces)";
+import { TooltipMsg } from "@/components/(interfaces)";
 import { open_sans } from "@/lib/fonts";
 import { cn, shortenAddress, truncate } from "@/lib/utils";
-import React, { use, useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import { MdVerified } from "react-icons/md";
 import Link from "next/link";
 import AddressClipboard from "@/components/(interfaces)/AddressClipboard";
-import { useUserContext } from "@/components/(providers)";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ProfileQuery } from "@/types/users";
 import Image from "next/image";
-import { jars } from "@/lib/core/api";
 import { StorageProfile } from "@/lib/core/types";
+import BoringAvatar from "@/components/(interfaces)/BoringAvatar";
+import { MdOutlineModeEdit } from "react-icons/md";
+import { EditModeAvatarDialog } from "./EditModeAvatarDialog";
+import useAvatarNFT from "@/hooks/useAvatarNFT";
 
 export default function ProfileBanner({
   user: userContext,
 }: {
-  user: ProfileQuery;
-}) {
+  user: ProfileQuery;}) {
   const { user, isLoading } = userContext;
 
   const [profile, setProfile] = useState<StorageProfile | undefined>(undefined);
   const [profileLoading, setProfileLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      if (!isLoading) {
-        setProfileLoading(true);
-        const data = await jars.getUserProfile(user.address);
-        setProfileLoading(false);
-        setProfile(data.profile);
-      }
-    };
-    fetchProfile();
-  }, [user]);
+  const [hoverAvatar, setHoverAvatar] = useState(false);
+  const { avatar, isLoading: loadingAvatar, isError: errorAvatar } = useAvatarNFT();
 
   if (isLoading) {
     return (
@@ -79,9 +70,20 @@ export default function ProfileBanner({
       {/* Banner on mobile screen */}
       <div className="absolute left-0 right-0 block h-[250px] w-full md:hidden">
         <div className="flex h-full flex-col items-center justify-center">
-          <div className="h-[100px] w-[100px] rounded-full border-2 border-fuchsia-600 p-1">
-            <MinidentIconImg address={user.address} width={100} height={100} />
-          </div>
+          <EditModeAvatarDialog address={user.address}>
+            <div className="relative h-[100px] w-[100px] flex justify-center items-center rounded-full border-2 border-fuchsia-600 p-[2px]">
+              <div className="absolute w-[100px] h-[100px] rounded-full hover:bg-black/40 cursor-pointer ease-in-out duration-200"
+                onMouseEnter={() => setHoverAvatar(true)} onMouseLeave={() => setHoverAvatar(false)}
+              >
+                <div className="flex justify-center items-center w-full h-full">
+                  <MdOutlineModeEdit className={cn("text-white text-2xl", hoverAvatar ? "block" : "hidden")} />
+                </div>
+              </div>
+              
+              <BoringAvatar size={100} name={user.address} />
+            </div>
+          </EditModeAvatarDialog>
+          
           <div className="w-full">
             <h1 className="truncate text-center text-lg font-bold">
               {(user.session.name && truncate(user.session.name, 28)) ||
@@ -96,13 +98,33 @@ export default function ProfileBanner({
       <div className="absolute hidden h-[300px] w-full px-7 py-6 md:block">
         <div className="mb-4 flex justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-[125px] w-[125px] select-none rounded-full border-2 border-fuchsia-600 p-1">
-              <MinidentIconImg
-                address={user.address}
-                width={125}
-                height={125}
-              />
-            </div>
+            <EditModeAvatarDialog address={user.address}>
+              <div className="relative h-[125px] w-[125px] flex justify-center items-center select-none rounded-full border-2 border-fuchsia-600 p-1">
+                <div className="absolute z-10 w-[115px] h-[115px] rounded-full hover:bg-black/40 cursor-pointer ease-in-out duration-200"
+                  onMouseEnter={() => setHoverAvatar(true)} onMouseLeave={() => setHoverAvatar(false)}
+                >
+                  <div className="flex justify-center items-center w-full h-full">
+                    <MdOutlineModeEdit className={cn("text-white text-2xl", hoverAvatar ? "block" : "hidden")} />
+                  </div>
+                </div>
+
+                {loadingAvatar ?
+                  <Skeleton className="h-[115px] w-[115px] rounded-full bg-gray-300 dark:bg-zinc-700" />
+                : avatar && (
+                  <div className="relative w-[115px] h-[115px] z-0">
+                    <Image 
+                    src={avatar} 
+                    fill
+                    alt="Avatar"
+                    style={{ objectFit: "cover" }}
+                    className="absolute rounded-full"
+                    loading="lazy"
+                    />
+                  </div>
+                ) || <BoringAvatar size={115} name={user.address} />}  
+              
+              </div>
+            </EditModeAvatarDialog>
 
             <div
               className={cn(
@@ -112,7 +134,7 @@ export default function ProfileBanner({
             >
               <div className="flex w-full items-center gap-1 text-4xl font-bold">
                 <div className="truncate">
-                  <h2 className="truncate">{user.session.name || ""}</h2>
+                  <h2 className="truncate text-zinc-100">{user.session.name || user.address}</h2>
                 </div>
                 <TooltipMsg message="Not Verified" delay={250}>
                   <Link href="/me/settings">

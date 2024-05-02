@@ -4,9 +4,10 @@ import {
 } from "@thirdweb-dev/auth/next";
 import { PrivateKeyWallet } from "@thirdweb-dev/auth/evm";
 import { jars } from "@/lib/core/api";
+import { env } from "@/lib/env.mjs";
 
 export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
-  domain: "http://localhost:3000",
+  domain: env.NEXT_PUBLIC_APP_URL,
   wallet: new PrivateKeyWallet(
     process.env.THIRDWEB_AUTH_PRIVATE_KEY as string,
     "sepolia",
