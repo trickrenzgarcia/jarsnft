@@ -8,17 +8,27 @@ export default function Page() {
     <div>
       <div id="welcome">
         <h1 className="my-6 text-4xl font-bold">Welcome</h1>
-        <h2 className="font-serif text-3xl">
+        {/* <h2 className="font-serif text-3xl">
           Please do your own research (DYOR) before investing
-        </h2>
-        <p className="my-12 text-base leading-loose tracking-wide">
+        </h2> */}
+        <P>
           Welcome to the JarsNft insights, the following are the overview of
           contents that will help you be informed in the basics of the Crypto
           world!
           <br />
           <br />
-          This page serves to help individuals especially beginners in getting a
-          grasp of this emerging technology.
+          Non-fungible tokens and the blockchain can be tricky to learn and
+          navigate, therefore this page serves to help individuals especially
+          beginners in getting a grasp of this emerging technology. We will
+          guide you into learning the basics and definition of each of the terms
+          used.
+          <br />
+          <br />
+          Read through the following outline of each topics and what you will
+          learn in it.
+        </P>
+        <p className="text-md mb-2 text-[#ec0000] dark:text-[#ec0000]">
+          Disclaimer: Please do your own research before investing
         </p>
         <hr />
       </div>

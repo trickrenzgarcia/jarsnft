@@ -44,8 +44,9 @@ export default function LearnLayout({ children }: LearnProps) {
       )}
     </div>
   ));
+  // bg-[#f2f4f5]
   return (
-    <main className="flex-1">
+    <main className="flex-1 ">
       <LearnNavbar />
       <div className="container flex-1 items-start border-t-2 md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
         <SideNavLeft />
