@@ -30,8 +30,8 @@ npx npm-check-updates -u -a --prune
 #Will automatically update all the packages and remove the unnecessary packages.
 ```
 
+```
 cmds:
-
 [both]
 git pull
 npm i
@@ -45,3 +45,4 @@ npm run dev
 
 [using bun]
 bun run dev:bun
+```
