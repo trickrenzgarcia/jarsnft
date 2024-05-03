@@ -30,8 +30,19 @@ npx npm-check-updates -u -a --prune
 #Will automatically update all the packages and remove the unnecessary packages.
 ```
 
-## Deploy on Vercel
+```
+cmds:
+[both]
+git pull
+npm i
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[back-end]
+npx prisma db pull
+npx prisma generate
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[node]
+npm run dev
+
+[using bun]
+bun run dev:bun
+```
