@@ -41,7 +41,7 @@ export default function AddressClipboard({ address, content }: Props) {
           target="_blank"
           className="flex h-full w-full items-center justify-center"
         >
-          <FaExternalLinkAlt className="text-sm text-gray-400" />
+          <FaExternalLinkAlt className="text-sm dark:text-gray-400" />
         </Link>
       </Button>
     </ButtonGroup>

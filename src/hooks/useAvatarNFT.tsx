@@ -23,7 +23,7 @@ export default function useAvatarNFT() {
       setIsLoading(false);
     }
     getAvatar();
-  }, [refreshAvatar])
+  }, [refreshAvatar, user])
 
   return { avatar, isLoading, isError }
 }
