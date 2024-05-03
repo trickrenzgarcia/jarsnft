@@ -1,6 +1,6 @@
 "use client";
 
-import { useContract, useNFTs } from "@thirdweb-dev/react";
+import { useActiveListings, useContract, useNFTs, useValidDirectListings } from "@thirdweb-dev/react";
 import ErrorNFTCards from "./ErrorNFTCards";
 import LoadingNFTCards from "./LoadingNFTCards";
 import {
@@ -18,22 +18,22 @@ import { jars } from "@/lib/core/api";
 
 export default function NFTCards({ address }: { address: string }) {
   const { contract } = useContract(address);
+  const { contract: marketPlaceContract } = useContract("0x69b05D8ed116Bb160B8a268a4315D2767123eFA1", "marketplace-v3");
   const { data: nfts, isError, isLoading } = useNFTs(contract);
+  const { data: listings, isLoading: loadingListings } = useValidDirectListings(marketPlaceContract, {
+    count: 100,
+    start: 0,
+    tokenContract: address
+  });
+  //marketPlaceContract?.directListings
 
   if (isError) return <ErrorNFTCards />;
 
   if (isLoading) return <LoadingNFTCards />;
 
-  useEffect(() => {
-    async function updateViewCount() {
-      const view = await jars.collection.updateCollectionViewCount(address);
-      console.log(view);
-      return view;
-    }
-    if (nfts) {
-      updateViewCount();
-    }
-  }, []);
+  if(loadingListings) return <>Loading listings...</>;
+
+  console.log(listings);
 
   if (nfts)
     return (
