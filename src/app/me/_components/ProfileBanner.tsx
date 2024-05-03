@@ -147,7 +147,7 @@ export default function ProfileBanner({
                 {(user.session.name && truncate(user.session.name, 20)) ||
                   shortenAddress(user.address)}
               </h1>
-              <MdVerified className={cn(isVerified ? "text-blue-500" : "text-gray-500 dark:text-gray-400")} />
+              <MdVerified className={cn(isVerified ? "text-blue-500" : "text-gray-400 dark:text-gray-400")} />
             </div>
            
             <AddressClipboard address={user.address} content="Copy Address" />
@@ -211,7 +211,7 @@ export default function ProfileBanner({
                   <Link href="/me">
                     <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
                       {!loadingVerified && (
-                        <MdVerified className={cn(isVerified ? "text-blue-500" : "text-gray-500 dark:text-gray-400")} />
+                        <MdVerified className={cn(isVerified ? "text-blue-500" : "text-gray-400 dark:text-gray-400")} />
                       )}
                     </div>
                   </Link>
