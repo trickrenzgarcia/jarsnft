@@ -1,5 +1,3 @@
-import { useMedia } from "react-use";
-import { NFTCard } from "../_types";
 import NFTCarousel from "./NFTCarousel";
 import { NFTCollection } from "@/lib/core/types";
 
