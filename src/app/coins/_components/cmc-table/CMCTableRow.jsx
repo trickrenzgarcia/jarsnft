@@ -26,7 +26,7 @@ const CMCTableRow = ({
   sparkline,
 }) => {
   return (
-    <tbody className={styles.tableRow}>
+    <tbody className={`${styles.tableRow}`}>
       <tr>
         <td></td>
         <td>{starNum}</td>

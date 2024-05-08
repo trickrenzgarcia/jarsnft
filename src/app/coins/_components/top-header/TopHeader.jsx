@@ -25,7 +25,7 @@ const TopHeader = async () => {
   const formattedETH = Number(ethDominance.toFixed(1));
 
   return (
-    <div className="flex justify-around">
+    <div className="flex justify-around my-10">
       <p>{`Coins: ${activeCryptos}`}</p>
       <p>{`Exchanges: ${activeMarkets}`}</p>
       <p>{`Market Cap: ${formattedMarketCapUSD}T`}</p>
