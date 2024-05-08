@@ -9,6 +9,7 @@ import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { Press } from "@/app/about/_components/Press";
+import { Navbar } from "@/components/(layout)";
 
 const people = [
   {
@@ -72,6 +73,7 @@ const words =
 const page = () => {
   return (
     <>
+      <Navbar />
       <BackgroundBeams />
       <div className="relative overflow-hidden px-2 pb-40 pt-20 md:pt-40">
         <div className="relative z-20 mx-auto w-full max-w-[84rem]">
