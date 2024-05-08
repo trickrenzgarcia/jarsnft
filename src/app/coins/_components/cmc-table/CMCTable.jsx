@@ -20,12 +20,12 @@ const CMCTable = () => {
   };
 
   return (
-    <div className="mx-auto max-w-screen-2xl font-bold">
+    <div className="mx-auto max-w-screen-2xl font-bold mt-10">
       <CurrencyToggleButton
         onClick={handleCurrencyChange}
         currency={currency}
       />
-      <table className="mt-3 w-full">
+      <table className="mt-3 w-full" style={{ borderCollapse: "separate", borderSpacing: "0 20px" }}>
         <CMCTableHeader />
         {response && response ? (
           response.map((coin, index) => {
