@@ -242,6 +242,18 @@ export class JarsAPI {
   }
 
   /**
+   * Get collection by owner
+   * @param walletAddress
+   */
+  async getCollectionsByOwner(walletAddress: string) {
+    return await this.request<Omit<NFTCollection[], "simpleHashData">>(`/collection/getCollectionsByOwner?owner=${walletAddress}`,
+      {
+        next: { tags: ["collections", "getCollectionsByOwner"] }
+      }
+    )
+  }
+
+  /**
    * Get all ERC721 Contracts for an owner
    * @param walletAddress
    * @returns

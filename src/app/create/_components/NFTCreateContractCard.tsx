@@ -232,47 +232,47 @@ export default function NFTCreateContractCard({
   const submitCreateContract = async (data: FormContract) => {
     ref.current?.click();
     setContractState("ongoing");
-    // const seller_fee_basis_points: number =
-    //   parseFloat(data.seller_fee_basis_points) * 100;
-    // const image = new File([data.image], data.image.name, {
-    //   type: data.image.type,
-    // });
-    // try {
-    //   const processContractAddress = await sdk?.deployer.deployNFTCollection({
-    //     name: data.name,
-    //     image: image,
-    //     primary_sale_recipient: data.primary_sale_recipient,
-    //     symbol: data.symbol,
-    //     platform_fee_recipient: process.env.PLATFORM_ADDRESS,
-    //     external_link: data.external_link,
-    //     app_uri: "https://jarsnft.vercel.app/",
-    //     fee_recipient: data.fee_recipient,
-    //     description: data.description,
-    //     platform_fee_basis_points: 100,
-    //     seller_fee_basis_points: seller_fee_basis_points,
-    //   });
+    const seller_fee_basis_points: number =
+      parseFloat(data.seller_fee_basis_points) * 100;
+    const image = new File([data.image], data.image.name, {
+      type: data.image.type,
+    });
+    try {
+      const processContractAddress = await sdk?.deployer.deployNFTCollection({
+        name: data.name,
+        image: image,
+        primary_sale_recipient: data.primary_sale_recipient,
+        symbol: data.symbol,
+        platform_fee_recipient: process.env.PLATFORM_ADDRESS,
+        external_link: data.external_link,
+        app_uri: "https://jarsnft.vercel.app/",
+        fee_recipient: data.fee_recipient,
+        description: data.description,
+        platform_fee_basis_points: 100,
+        seller_fee_basis_points: seller_fee_basis_points,
+      })
 
-    //   setContractError(false);
+      setContractError(false);
 
-    //   setContractState("accepted");
+      setContractState("accepted");
 
-    //   if (processContractAddress?.includes("0x")) {
-    //     setContractState("completed");
-    //     setContractAddress(processContractAddress);
-    //     const newCollection = await createContract(
-    //       processContractAddress,
-    //       user.address,
-    //     );
-    //     setCreatedCollection(newCollection);
-    //     toast.success("Contract deployed successfully!", {
-    //       position: "top-center",
-    //       closeButton: true,
-    //     });
-    //   }
-    // } catch (error) {
-    //   setContractState("idle");
-    //   setContractError(true);
-    // }
+      if (processContractAddress?.includes("0x")) {
+        setContractState("completed");
+        setContractAddress(processContractAddress);
+        const newCollection = await createContract(
+          processContractAddress,
+          user.address,
+        );
+        setCreatedCollection(newCollection);
+        toast.success("Contract deployed successfully!", {
+          position: "top-center",
+          closeButton: true,
+        });
+      }
+    } catch (error) {
+      setContractState("idle");
+      setContractError(true);
+    }
   };
 
   return (
@@ -563,9 +563,12 @@ export default function NFTCreateContractCard({
                               style={{ objectFit: "cover" }}
                               className="rounded-lg"
                             />
-                            <div className="absolute rounded-lg w-full h-full flex items-center justify-center bg-black/45">
+                            {(contractState !== "completed" && contractError == false) && (
+                              <div className="absolute rounded-lg w-full h-full flex items-center justify-center bg-black/45">
                               <ImSpinner9 className="animate-spin text-2xl" />   
                             </div> 
+                            )}
+                            
                           </div>
                           
                           <div className="flex flex-col items-start">
@@ -575,10 +578,68 @@ export default function NFTCreateContractCard({
                           </div>
                         </div>
                         <Separator className="my-5" orientation="horizontal" />
-                        <div className="w-full flex items-start justify-center">
-                          <ImSpinner9 className="animate-spin" />
-                          <p className="text-center">Kindly await confirmation of the transaction at your designated wallet address.</p>
-                        </div>
+                        {contractState === "ongoing" && (
+                          <div className="w-full flex items-start justify-center">
+                            <ImSpinner9 className="animate-spin" />
+                            <p className="text-center">Kindly await confirmation of the transaction at your designated wallet address.</p>
+                          </div>
+                        )}
+                        {contractError && (
+                          <div className="w-full flex flex-col items-start justify-center">
+                            <div className="flex items-start">
+                              <FaExclamationCircle className="text-danger mt-1" />
+                              <p className="text-center">An error occurred while processing the transaction. Please try again.</p>
+                            </div>
+                            <div className="w-full flex items-center justify-end gap-2">
+                              <AlertDialogCancel
+                                onClick={(e) => {
+                                  setContractError(false);
+                                  setContractState("idle");
+                                }}
+                              >
+                                Close
+                              </AlertDialogCancel>
+                            </div>
+                          </div>
+                        )}
+                        {contractState === "accepted" && (
+                          <div className="w-full flex items-start justify-center">
+                            <ImSpinner9 className="animate-spin" />
+                            <p className="text-center">Transaction accepted. Processing your contract...</p>
+                          </div>
+                        )}
+                        {contractState === "completed" && (
+                          <div className="w-full flex flex-col items-start justify-center">
+                            <div className="flex items-center gap-2">
+                              <FaCheck className="text-success mt-1" />
+                              <p className="text-center">Contract successfully deployed.</p>
+                            </div>
+                            <div className="w-full flex items-center justify-end gap-2 mt-5">
+                              <Button
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  router.push(`/`);
+                                }}
+                                variant="link"
+                              >
+                                To Marketplace
+                              </Button>
+                              <Button
+                                className="flex gap-3"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  router.push(
+                                    `/collection/${createdCollection?.contract}`,
+                                  );
+                                }}
+                              >
+                                Go to New Collection <FaExternalLinkAlt />
+                              </Button>
+                              
+                            </div>
+                          </div>
+                        )}
+
                       </div>
                       {/* <div className="flex items-start gap-2">
                         <div className="flex">

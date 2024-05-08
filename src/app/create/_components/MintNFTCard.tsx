@@ -51,7 +51,7 @@ import { Button } from "@/components/ui/button";
 import { Check, ChevronsUpDown, Loader2, PlusIcon } from "lucide-react";
 import { RxDashboard } from "react-icons/rx";
 import { jars } from "@/lib/core/api";
-import { ContractForOwner, JarsContract } from "@/lib/core/types";
+import { ContractForOwner, JarsContract, NFTCollection } from "@/lib/core/types";
 import {
   Popover,
   PopoverContent,
@@ -117,13 +117,13 @@ type FormMintNft = z.infer<typeof mintSchema>;
 export default function MintNFTCard() {
   const router = useRouter();
   const { user, isLoading, isLoggedIn } = useUserContext();
-  const [contracts, setContracts] = useState<SimpleHashContracts>();
+  const [contracts, setContracts] = useState<Omit<NFTCollection[], "simpleHashData">>();
   const [open, setOpen] = useState(false);
   const [uploadedMedia, setUploadedMedia] = useState<string | null>(null);
   const [uploadedFileName, setUploadedFileName] = useState<string>("");
   const [loadingContract, setLoadingContract] = useState(false);
   const [imageFileUrl, setImageFileUrl] = useState<string>("");
-  const [selectedContract, setSelectedContract] = useState<Contract>();
+  const [selectedContract, setSelectedContract] = useState<NFTCollection>();
   const [attributes, setAttributes] = useState<
     { trait_type: string; value: string }[]
   >([{ trait_type: "", value: "" }]);
@@ -136,7 +136,7 @@ export default function MintNFTCard() {
   });
   const [nftTokenId, setNftTokenId] = useState<string>("");
   const ref = useRef<HTMLButtonElement>(null);
-  const { contract } = useContract(selectedContract?.contract_address);
+  const { contract } = useContract(selectedContract?.contract);
   const {
     mutateAsync: mintNft,
     isLoading: mintLoading,
@@ -162,7 +162,7 @@ export default function MintNFTCard() {
     const fetchCollections = async () => {
       if (user) {
         setLoadingContract(true);
-        const collections = await jars.getContractsForOwner(user.address);
+        const collections = await jars.getCollectionsByOwner(user.address);
         setContracts(collections);
         setLoadingContract(false);
       }
@@ -312,8 +312,7 @@ export default function MintNFTCard() {
                               <div className="relative flex h-[60px] w-[60px] items-center justify-center rounded-md bg-muted">
                                 <Image
                                   src={
-                                    selectedContract.top_collections[0]
-                                      .image_url
+                                    selectedContract.image || ""
                                   }
                                   fill
                                   style={{ objectFit: "cover" }}
@@ -377,23 +376,23 @@ export default function MintNFTCard() {
                           </div>
                         </Button>
                       )}
-                      {contracts?.contracts.map((contract, i) => (
+                      {contracts?.map((contract, i) => (
                         <Button
                           variant="ghost"
                           className="flex h-fit w-full justify-start gap-3"
                           onClick={() => {
                             form.setValue(
                               "collection",
-                              contract.contract_address,
+                              contract.contract,
                             );
-                            setSelectedContract(contracts.contracts[i]);
+                            setSelectedContract(contracts[i]);
                             setOpen(false);
                           }}
                           key={i}
                         >
                           <div className="relative flex h-[60px] w-[60px] select-none rounded-md bg-muted">
                             <Image
-                              src={contract.top_collections[0].image_url}
+                              src={contract.image}
                               alt={contract.name}
                               style={{ objectFit: "cover" }}
                               fill
@@ -712,7 +711,7 @@ export default function MintNFTCard() {
                           className="bg-blue-400"
                           onClick={() => {
                             router.push(
-                              `/collection/${selectedContract?.contract_address}`,
+                              `/collection/${selectedContract?.contract}`,
                             ); // ${nftTokenId}
                           }}
                         >
