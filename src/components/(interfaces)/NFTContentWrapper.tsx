@@ -1,6 +1,5 @@
 import NFTCarousel from "./NFTCarousel";
 import { NFTCollection } from "@/lib/core/types";
-import { getCollections } from "@/lib/ctx";
 import { jars } from "@/lib/core/api";
 import { NFTContentSkeleton } from "../(skeletons)";
 import { Suspense } from "react";
