@@ -13,10 +13,14 @@ export default function Login() {
     <div className="flex items-center">
       {(isLoading && (
         <Skeleton className="w-[35px] h-[35px] rounded-full" />
-      ) || isLoggedIn && <ProfileButton />) || (
-        <ConnectWeb3 btnTitle="Connect Wallet" />
-      )}
+      ) || isLoggedIn && (
+        <div className="flex items-center gap-2">
+          <ProfileButton />
+          <ConnectWeb3 btnTitle="Connect" />
+        </div>
+      ))}
 
+      {/* If the user is logged in but not listed. */}
       {isLoggedIn && !user.data.session.is_listed && (
         <CreateUserDialog isOpenCreate={!user.data.session.is_listed} />
       )}
