@@ -64,7 +64,7 @@ export default function ProfileButton() {
             </div>
           </SheetTrigger>
           <SheetContent>
-            <div className="mt-8 flex flex-col">
+            <div className="mt-8 flex flex-col gap-5">
               <div className="cursor-pointer rounded-lg border px-3 py-2 hover:bg-zinc-700/50">
                 <Link href="/me">
                   {isUserLoading ? (
@@ -92,7 +92,7 @@ export default function ProfileButton() {
                 </Link>
               </div>
               <div>
-                <section>General</section>
+                {/* <section>General</section>
                 <section>NFTs</section>
                 <section>Wallet</section>
                 <div className="grid gap-4">
@@ -106,7 +106,7 @@ export default function ProfileButton() {
                       # Insights <br />
                     </p>
                   </div>
-                </div>
+                </div> */}
                 <Button
                   onClick={() => logout()}
                   disabled={logoutLoading}
