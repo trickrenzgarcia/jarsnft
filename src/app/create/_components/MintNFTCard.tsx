@@ -565,6 +565,7 @@ export default function MintNFTCard() {
                       ))}
                       <Button
                         variant="outline"
+                        type="button"
                         onClick={() =>
                           setAttributes([
                             ...attributes,

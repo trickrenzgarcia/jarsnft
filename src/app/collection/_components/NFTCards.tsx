@@ -60,7 +60,6 @@ export default function NFTCards({ address }: { address: string }) {
                   <h1 className="truncate text-sm font-semibold">
                     {nft.metadata.name}
                   </h1>
-                  <h1 className="">Price {0}</h1>
                 </div>
               </CardFooter>
             </Card>

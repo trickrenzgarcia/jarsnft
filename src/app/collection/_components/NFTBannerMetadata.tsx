@@ -120,14 +120,14 @@ export default function NFTBannerMetadata({
                   <div className="truncate">
                     <h2 className="truncate">{data.name}</h2>
                   </div>
-                  <TooltipMsg message="Verified">
+                  {/* <TooltipMsg message="Verified">
                     <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
                       <MdVerified className="text-blue-500" />
                     </div>
-                  </TooltipMsg>
+                  </TooltipMsg> */}
                 </div>
 
-                <p className="font-bold">A collection of {100} NFTs.</p>
+                {/* <p className="font-bold">A collection of {} NFTs.</p> */}
               </div>
             </div>
             <div className=""></div>
@@ -141,7 +141,7 @@ export default function NFTBannerMetadata({
                 amountOfWords={24}
               />
             </div>
-            <div className="hidden items-center gap-6 pl-3 lg:flex">
+            {/* <div className="hidden items-center gap-6 pl-3 lg:flex">
               {details.map((detail, i) => (
                 <div key={i} className={cn(poppins.className, "w-[110px]")}>
                   <h1 className="flex text-2xl font-semibold">
@@ -153,7 +153,7 @@ export default function NFTBannerMetadata({
                   </p>
                 </div>
               ))}
-            </div>
+            </div> */}
           </section>
         </div>
       </main>
