@@ -11,10 +11,10 @@ const TrendingCard = async ({ title, icon, type }) => {
     type === "coins" ? await getTrendingCoins() : await getNftMarketCap();
   return (
     <div className={styles.trendingCard}>
-        <div className="flex flex-row gap-5">
-          {icon && <Image src={icon} width={30} height={30} alt="image" />}
-          <p className="font-bold">{title}</p>
-        </div>
+      <div className="flex flex-row gap-5">
+        {icon && <Image src={icon} width={30} height={30} alt="image" />}
+        <p className="font-bold">{title}</p>
+      </div>
       {type === "coins"
         ? data.map((coin, index) => {
             return (
