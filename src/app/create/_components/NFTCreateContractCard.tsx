@@ -20,6 +20,7 @@ import { useDropzone } from "react-dropzone";
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import { FaRegImage } from "react-icons/fa";
 import { cn, getShortenedURLParam, shortenFileName } from "@/lib/utils";
+import { ImSpinner9 } from "react-icons/im"
 import {
   Form,
   FormControl,
@@ -55,6 +56,7 @@ import { createContract } from "../actions";
 import { NFTCollection } from "@/lib/core/types";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 type NFTCreateContractCardProps = {
   user: ProfileQuery;
@@ -230,47 +232,47 @@ export default function NFTCreateContractCard({
   const submitCreateContract = async (data: FormContract) => {
     ref.current?.click();
     setContractState("ongoing");
-    const seller_fee_basis_points: number =
-      parseFloat(data.seller_fee_basis_points) * 100;
-    const image = new File([data.image], data.image.name, {
-      type: data.image.type,
-    });
-    try {
-      const processContractAddress = await sdk?.deployer.deployNFTCollection({
-        name: data.name,
-        image: image,
-        primary_sale_recipient: data.primary_sale_recipient,
-        symbol: data.symbol,
-        platform_fee_recipient: process.env.PLATFORM_ADDRESS,
-        external_link: data.external_link,
-        app_uri: "https://jarsnft.vercel.app/",
-        fee_recipient: data.fee_recipient,
-        description: data.description,
-        platform_fee_basis_points: 100,
-        seller_fee_basis_points: seller_fee_basis_points,
-      });
+    // const seller_fee_basis_points: number =
+    //   parseFloat(data.seller_fee_basis_points) * 100;
+    // const image = new File([data.image], data.image.name, {
+    //   type: data.image.type,
+    // });
+    // try {
+    //   const processContractAddress = await sdk?.deployer.deployNFTCollection({
+    //     name: data.name,
+    //     image: image,
+    //     primary_sale_recipient: data.primary_sale_recipient,
+    //     symbol: data.symbol,
+    //     platform_fee_recipient: process.env.PLATFORM_ADDRESS,
+    //     external_link: data.external_link,
+    //     app_uri: "https://jarsnft.vercel.app/",
+    //     fee_recipient: data.fee_recipient,
+    //     description: data.description,
+    //     platform_fee_basis_points: 100,
+    //     seller_fee_basis_points: seller_fee_basis_points,
+    //   });
 
-      setContractError(false);
+    //   setContractError(false);
 
-      setContractState("accepted");
+    //   setContractState("accepted");
 
-      if (processContractAddress?.includes("0x")) {
-        setContractState("completed");
-        setContractAddress(processContractAddress);
-        const newCollection = await createContract(
-          processContractAddress,
-          user.address,
-        );
-        setCreatedCollection(newCollection);
-        toast.success("Contract deployed successfully!", {
-          position: "top-center",
-          closeButton: true,
-        });
-      }
-    } catch (error) {
-      setContractState("idle");
-      setContractError(true);
-    }
+    //   if (processContractAddress?.includes("0x")) {
+    //     setContractState("completed");
+    //     setContractAddress(processContractAddress);
+    //     const newCollection = await createContract(
+    //       processContractAddress,
+    //       user.address,
+    //     );
+    //     setCreatedCollection(newCollection);
+    //     toast.success("Contract deployed successfully!", {
+    //       position: "top-center",
+    //       closeButton: true,
+    //     });
+    //   }
+    // } catch (error) {
+    //   setContractState("idle");
+    //   setContractError(true);
+    // }
   };
 
   return (
@@ -551,7 +553,37 @@ export default function NFTCreateContractCard({
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogDescription>
-                      <div className="flex items-start gap-2">
+                      <div className="flex flex-col w-full">
+                        <div className="relative flex items-center gap-4">
+                          <div className="relative w-[120px] h-[120px] border rounded-lg">
+                            <Image 
+                              src={uploadImage || "/jars_muted.png"}                                                            
+                              alt="Collection Image"
+                              fill
+                              style={{ objectFit: "cover" }}
+                              className="rounded-lg"
+                            />
+                            <div className="absolute rounded-lg w-full h-full flex items-center justify-center bg-black/45">
+                              <ImSpinner9 className="animate-spin text-2xl" />   
+                            </div> 
+                          </div>
+                          
+                          <div className="flex flex-col items-start">
+                            <h1>Collection: <span className="font-bold">{form.getValues("name")}</span></h1>
+                            <h1>Symbol: <span className="font-bold">{form.getValues("symbol")}</span></h1>
+                            <h1>Creators Fee: <span className="font-bold">{form.getValues("seller_fee_basis_points")}%</span></h1>
+                          </div>
+                        </div>
+                        <Separator className="my-5" orientation="horizontal" />
+                        <div className="w-full flex items-start justify-center">
+                          <ImSpinner9 className="animate-spin" />
+                          <p className="text-center">Kindly await confirmation of the transaction at your designated wallet address.</p>
+                        </div>
+                      </div>
+                      {/* <div className="flex items-start gap-2">
+                        <div className="flex">
+
+                        </div>
                         <div className="flex items-center justify-center rounded-full bg-default p-1">
                           {contractState === "ongoing" ? (
                             <Spinner size="sm" />
@@ -670,7 +702,7 @@ export default function NFTCreateContractCard({
                               )}
                           </div>
                         </div>
-                      )}
+                      )} */}
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                 </AlertDialogContent>

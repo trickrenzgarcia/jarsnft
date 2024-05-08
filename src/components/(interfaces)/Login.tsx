@@ -18,7 +18,7 @@ export default function Login() {
           <ProfileButton />
           <ConnectWeb3 btnTitle="Connect" />
         </div>
-      ))}
+      ) || <ConnectWeb3 btnTitle="Connect" />)}
 
       {/* If the user is logged in but not listed. */}
       {isLoggedIn && !user.data.session.is_listed && (
