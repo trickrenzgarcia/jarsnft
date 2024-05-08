@@ -30,12 +30,13 @@ export default function NFTValuablePage() {
               <p>
                 One of the primary benefits of NFTs is their ability to
                 establish authenticity. Because each NFT is unique and
-                verifiable on the blockchain, it's easy to determine whether a
-                particular digital asset is authentic or not. This is
+                verifiable on the blockchain, it&apos;s easy to determine
+                whether a particular digital asset is authentic or not. This is
                 particularly important in the world of art, where forgeries and
                 counterfeit works can be a major problem. NFTs allow artists to
                 establish ownership of their digital creations and ensure that
-                they are not duplicated or passed off as someone else's work.
+                they are not duplicated or passed off as someone else&apos;s
+                work.
               </p>
             </CardContent>
           </Card>

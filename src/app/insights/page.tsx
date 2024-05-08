@@ -123,10 +123,10 @@ export default function Page() {
         <h2 className="my-6 text-2xl font-bold">Guides (NFT)</h2>
         <P>
           This section offers guides that are designed to empower you with
-          knowledge. They'll provide a clear, step-by-step instructions and
+          knowledge. They&apos;ll provide a clear, step-by-step instructions and
           insightful explanations to help you navigate complex topics and get
           the most out of your NFT Trading experience. <br /> <br />
-          Whether you're a beginner or looking to advance your skills, our
+          Whether you&apos;re a beginner or looking to advance your skills, our
           guides will be your trusted resource on the path to mastery.
         </P>
         <h3 className="my-6 text-xl font-bold">1. Exchange Cryptocurrency</h3>
