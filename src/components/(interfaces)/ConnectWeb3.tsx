@@ -78,6 +78,7 @@ const LoginWelcomeScreen = () => {
         >
           New to Wallets?
         </Link>
+        <p>{"They'll provide a clear"}</p>
       </div>
     </div>
   );
