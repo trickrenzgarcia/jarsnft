@@ -48,7 +48,7 @@ export default function ProfileButton() {
       <ButtonGroup className="gap-2">
         <Sheet>
           <SheetTrigger asChild>
-            <div className="flex h-full max-w-[150px] cursor-pointer items-center gap-1 rounded-md p-2 hover:bg-slate-300 hover:dark:bg-slate-800">
+            <div className="flex h-full max-w-[150px] cursor-pointer items-center gap-1 rounded-2xl p-2 hover:bg-slate-100 hover:dark:bg-slate-800">
               {isLoading ? <Skeleton className="w-[35] h-[35] rounded-full" /> : avatar ? 
               <div className="relative w-[35px] h-[35px] rounded-full">
                 <Image 
@@ -61,8 +61,6 @@ export default function ProfileButton() {
                 />
               </div> : 
               <BoringAvatar size={35} name={user.address} />}
-              
-              <h2 className="hidden truncate font-semibold md:flex">{name}</h2>
             </div>
           </SheetTrigger>
           <SheetContent>

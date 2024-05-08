@@ -1,11 +1,12 @@
 "use client";
 
-import { ConnectWallet } from "@thirdweb-dev/react";
+import { ConnectWallet, darkTheme, lightTheme } from "@thirdweb-dev/react";
 import React, { useState } from "react";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
 
 type UserResponse = {
   success: boolean;
@@ -14,6 +15,9 @@ type UserResponse = {
 
 const ConnectWeb3 = ({ btnTitle }: { btnTitle: string | undefined }) => {
   const router = useRouter();
+  const light = lightTheme();
+  const dark = darkTheme();
+  const { theme } = useTheme();
 
   return (
     <div>
@@ -24,6 +28,13 @@ const ConnectWeb3 = ({ btnTitle }: { btnTitle: string | undefined }) => {
         showThirdwebBranding={false}
         welcomeScreen={() => <LoginWelcomeScreen />}
         modalTitleIconUrl=""
+        style={{
+          paddingTop: "12px",
+          paddingBottom: "12px",
+          minWidth: "100px",
+          maxHeight: "53px",
+        }}
+        theme={theme === "light" ? light : dark}
       />
     </div>
   );
