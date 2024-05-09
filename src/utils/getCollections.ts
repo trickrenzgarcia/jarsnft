@@ -1,4 +1,4 @@
-import { NFTCard } from "@/app/trade/_types";
+import { NFTCard } from "@/app/_trade/_types";
 
 // HARD-CODED DATA FOR NOW
 export async function getCollections() {
