@@ -10,7 +10,7 @@ export default async function Navbar() {
     px-0 backdrop-blur-md"
     >
       {/* Nav Container */}
-      <div className="px-5 md:px-10 flex w-full justify-between py-4">
+      <div className="flex w-full justify-between px-5 py-4 md:px-10">
         {/* Left-side  */}
         <div className="flex items-center">
           <Link href="/">
@@ -32,12 +32,6 @@ export default async function Navbar() {
               className="cursor-pointer px-3 font-semibold hover:text-zinc-500"
             >
               Collections
-            </Link>
-            <Link
-              href="/trade"
-              className="cursor-pointer px-3 font-semibold hover:text-zinc-500"
-            >
-              Trade
             </Link>
             <Link
               href="/coins"
