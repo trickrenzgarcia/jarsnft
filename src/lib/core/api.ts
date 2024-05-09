@@ -15,6 +15,7 @@ import { BASE_URL } from "../ctx";
 import { User } from "./types";
 import { env } from "../env.mjs";
 import { SimpleHashContracts } from "@/types/simple-hash";
+import { SimpleHashNFT } from "@/types/simple-hash/nft";
 
 export type JarsOptions = {
   /**
@@ -85,7 +86,7 @@ export class JarsAPI {
    * Save nonce in database
    */
   async saveNonce(nonce: string) {
-    return await this.request(`/nonce/create`, {
+    return await this.request(`/user/createNonce`, {
       method: "POST",
       body: JSON.stringify({ nonce: nonce }),
     });
@@ -96,7 +97,7 @@ export class JarsAPI {
    * @param nonce - The nonce
    */
   async nonceExists(nonce: string) {
-    return await this.request<boolean>(`/nonce/validate`, {
+    return await this.request<boolean>(`/user/nonceExists`, {
       method: "POST",
       body: JSON.stringify({ nonce: nonce }),
     });
@@ -237,6 +238,21 @@ export class JarsAPI {
       `/nfts/getNFTsForOwner?owner=${walletAddress}`,
       {
         next: { tags: ["nfts", "getNFTsForOwner"] },
+      },
+    );
+  }
+
+  /**
+   * Get NFT by token id
+   * @param contractAddress
+   * @param tokenId
+   * @returns SimpleHashNFT
+   */
+  async getNFTByTokenId(contractAddress: string, tokenId: string) {
+    return await this.request<SimpleHashNFT>(
+      `/nfts/${contractAddress}/${tokenId}`,
+      {
+        next: { tags: ["nfts", "nft", "getNFTByTokenId"] },
       },
     );
   }

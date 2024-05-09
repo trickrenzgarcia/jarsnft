@@ -10,8 +10,11 @@ import {
 } from "@nextui-org/react";
 import { Button } from "@/components/ui/button";
 import React, { useEffect } from "react";
-import { BoringAvatar, MinidentIconImg } from ".";
+import { BoringAvatar } from ".";
 import { CgDetailsMore } from "react-icons/cg";
+import { TiHeartOutline } from "react-icons/ti";
+import { LuWallet, LuActivitySquare, LuSettings } from "react-icons/lu";
+import { MdOutlineLocalOffer } from "react-icons/md";
 import Link from "next/link";
 
 import { useLogout, useUser } from "@thirdweb-dev/react";
@@ -21,6 +24,7 @@ import { Skeleton } from "../ui/skeleton";
 import { jars } from "@/lib/core/api";
 import useAvatarNFT from "@/hooks/useAvatarNFT";
 import Image from "next/image";
+import { shortenAddress } from "@/lib/utils";
 
 export default function ProfileButton() {
   const {
@@ -65,48 +69,45 @@ export default function ProfileButton() {
           </SheetTrigger>
           <SheetContent>
             <div className="mt-8 flex flex-col gap-5">
-              <div className="cursor-pointer rounded-lg border px-3 py-2 hover:bg-zinc-700/50">
-                <Link href="/me">
-                  {isUserLoading ? (
-                    <div className="flex items-center gap-3">
-                      <Skeleton className="h-[50] w-[50] rounded-full" />
-                      <Skeleton className="h-4 w-full rounded-full" />
-                    </div>
-                  ) : (
-                    <div className="flex w-full items-center gap-3">
-                      {isLoading ? 
-                      (<Skeleton className="h-[50] w-[50] rounded-full" />) : avatar && (<div className="relative w-[50px] h-[50px] rounded-full">
-                      <Image 
-                      src={avatar} 
-                      fill
-                      alt="Avatar"
-                      style={{ objectFit: "cover" }}
-                      className="absolute rounded-full"
-                      loading="lazy"
-                    /> </div>) ||  <BoringAvatar size={50} name={user.address} />
-                      }
-                      
-                      <span className="truncate font-bold">{name}</span>
-                    </div>
-                  )}
-                </Link>
-              </div>
-              <div>
-                {/* <section>General</section>
-                <section>NFTs</section>
-                <section>Wallet</section>
-                <div className="grid gap-4">
-                  <div className="space-y-2">
-                    <h4 className="font-medium leading-none">Navigation</h4>
-                    <p className="text-sm text-muted-foreground">
-                      # Create <br />
-                      # Collections <br />
-                      # Trade <br />
-                      # Coin Analytics <br />
-                      # Insights <br />
-                    </p>
+
+              <div className="rounded-lg px-3 py-2">
+                {isUserLoading ? (
+                  <div className="flex items-center gap-3">
+                    <Skeleton className="h-[50] w-[50] rounded-full" />
+                    <Skeleton className="h-4 w-full rounded-full" />
                   </div>
-                </div> */}
+                ) : (
+                  <div className="flex w-full items-center gap-3">
+                    {isLoading ? 
+                    (<Skeleton className="h-[50] w-[50] rounded-full" />) : avatar && (<div className="relative w-[50px] h-[50px] rounded-full">
+                    <Image 
+                    src={avatar} 
+                    fill
+                    alt="Avatar"
+                    style={{ objectFit: "cover" }}
+                    className="absolute rounded-full"
+                    loading="lazy"
+                  /> </div>) ||  <BoringAvatar size={50} name={user.address} />
+                    }
+                    
+                    <div>
+                      <p className="truncate font-bold">{name}</p>
+                      <p className="text-xs">{shortenAddress(user.address,6 ,4)}</p>
+                    </div>
+                      
+                  </div>
+                )}
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <ProfileListButton name="My Profile" icon={<LuWallet className="text-2xl" />} link="/me" />
+                <ProfileListButton name="Activities" icon={<LuActivitySquare className="text-2xl" />} link="/me/activities" />
+                <ProfileListButton name="Favorites" icon={<TiHeartOutline className="text-2xl"/>} link="/me/favorites" />
+                <ProfileListButton name="Offers" icon={<MdOutlineLocalOffer className="text-2xl" />} link="/me/offers" />
+                <ProfileListButton name="Settings" icon={<LuSettings className="text-2xl" />} link="/me/settings" />
+                
+              </div>
+
+              <div>
                 <Button
                   onClick={() => logout()}
                   disabled={logoutLoading}
@@ -132,4 +133,15 @@ export default function ProfileButton() {
       </ButtonGroup>
     </div>
   );
+}
+
+function ProfileListButton({ name, icon, link }: { name: string; icon: JSX.Element; link: string }) {
+  return (
+    <Link href={link}>
+      <Button className="w-full rounded-xl flex justify-start gap-2 text-sm py-6 text-gray-500 dark:text-gray-400" variant="ghost">
+        {icon}
+        {name}
+      </Button>
+    </Link>
+  )
 }
