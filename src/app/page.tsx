@@ -5,7 +5,7 @@ import {
   PopularCollections,
   TopNFTCollections,
 } from "@/components/(layout)";
-import { ArtTrend, NFTCategories, PhotoTrend } from "@/app/trade/_components";
+import { ArtTrend, NFTCategories, PhotoTrend } from "@/app/_trade/_components";
 import { Separator } from "@/components/ui/separator";
 import { Suspense } from "react";
 import * as getCollections from "@/utils/getCollections";
