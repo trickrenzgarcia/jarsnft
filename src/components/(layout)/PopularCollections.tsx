@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 export default async function PopularCollections() {
   return (
-    <section className="my-16 px-0 sm:px-5 md:px-16">
+    <section>
       <Suspense fallback={<NFTContentSkeleton />}>
         <NFTContentWrapper title="Popular Collection" />
       </Suspense>
