@@ -1,6 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import CollectionRows from "./_components/CollectionRows";
 import DropdownButton from "./_components/DropdownButton";
+import PaginationUI from "./_components/PaginationUI";
 
 export default function Page() {
   return (
@@ -91,6 +92,8 @@ export default function Page() {
         allCurrentListedNFTs={667}
         allCurrentNFTS={19486}
       />
+
+      <PaginationUI />
     </div>
   );
 }
