@@ -16,7 +16,7 @@ export default function DropdownButton() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex h-12 w-52 items-center justify-center gap-2 rounded-lg bg-slate-600">
+      <DropdownMenuTrigger className="flex h-12 w-52 items-center justify-center gap-2 rounded-lg bg-background">
         {dropdownName}
         <IoIosArrowDown />
       </DropdownMenuTrigger>
