@@ -13,8 +13,12 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
     "sepolia",
   ),
   authOptions: {
-    //Check in database or storage if nonce exists
+    //Check in database if nonce exists
     validateNonce: async (nonce: string) => {
+      if(await jars.nonceExists(nonce)) {
+        throw new Error("Nonce already used!");
+      }
+
       await jars.saveNonce(nonce);
     },
     tokenDurationInSeconds: 60 * 60 * 24 * 3, // 3 days

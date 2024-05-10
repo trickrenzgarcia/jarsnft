@@ -1,6 +1,14 @@
 import React from 'react'
 
-export default function NFTLayout({ children }: { children: React.ReactNode }) {
+type NFTProps = {
+  params: {
+    address: string;
+    id: string;
+  };
+  children: React.ReactNode;
+};
+
+export default function NFTLayout({ children, params }: NFTProps) {
   return (
     <div>{children}</div>
   )
