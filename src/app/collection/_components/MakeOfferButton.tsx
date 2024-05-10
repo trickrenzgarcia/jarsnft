@@ -29,6 +29,11 @@ import React from "react";
 import { MdVerified } from "react-icons/md";
 
 export default function MakeOfferButton({ nft }: { nft: SimpleHashNFT }) {
+
+  function handleMakeOffer(e: React.MouseEvent<HTMLButtonElement>) {
+    console.log("Offer made");
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -113,7 +118,7 @@ export default function MakeOfferButton({ nft }: { nft: SimpleHashNFT }) {
 
         <DialogFooter>
           <div className="w-full flex flex-col gap-2">
-            <Button type="submit" className="w-full bg-blue-500">
+            <Button type="submit" className="w-full bg-blue-500" onClick={handleMakeOffer}>
               Make Offer
             </Button>
             <DialogClose asChild>
