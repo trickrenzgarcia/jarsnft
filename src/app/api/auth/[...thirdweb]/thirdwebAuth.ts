@@ -44,7 +44,7 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
     },
     onUser: async (user: ThirdwebAuthUser<any, { is_listed: boolean }>) => {
       const apiUser = await jars.getUser(user.address);
-      console.log("onUser", apiUser);
+      
       const rewriteUser = {
         ...user,
         session: { ...user.session, is_listed: apiUser.is_listed },

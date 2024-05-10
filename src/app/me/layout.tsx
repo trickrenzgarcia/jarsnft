@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/(layout)";
 import { Metadata } from "next";
-import ProfileBanner from "./_components/ProfileBanner";
 
 export const metadata: Metadata = {
   title: "Your Profile | JarsNFT",
