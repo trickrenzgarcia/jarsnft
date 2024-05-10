@@ -37,7 +37,7 @@ export class JarsAPI {
     try {
       const response = await fetch(`${this.baseUrl}${endpoint}`, {
         headers: {
-          "X-API-KEY": `${this.options.secretKey}`,
+          "X-API-KEY": process.env.JWT_AUTH_TOKEN,
           "Content-Type": "application/json"
         },
         ...configs,
@@ -337,5 +337,5 @@ export class JarsAPI {
 }
 
 export const jars = new JarsAPI(BASE_URL, {
-  secretKey: env.NEXT_PUBLIC_JWT_AUTH_TOKEN || process.env.JWT_AUTH_TOKEN,
+  secretKey: env.NEXT_PUBLIC_JWT_AUTH_TOKEN,
 });
