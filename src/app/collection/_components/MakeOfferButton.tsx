@@ -27,8 +27,24 @@ import { SimpleHashNFT } from "@/types/simple-hash/nft";
 import Image from "next/image";
 import React from "react";
 import { MdVerified } from "react-icons/md";
+import { useMakeBid } from "@thirdweb-dev/react";
 
-export default function MakeOfferButton({ nft }: { nft: SimpleHashNFT }) {
+type MakeOfferButtonProps = {
+  contractAddress: string;
+  tokenId: string;
+  nft: SimpleHashNFT;
+};
+
+type ExpiredAfter = "1h" | "3h" | "6h" | "1d" | "3d" | "7d" | "14d" | "30d" | "90d" | "180d";
+
+export default function MakeOfferButton({ nft, contractAddress, tokenId }: MakeOfferButtonProps) {
+
+  const [expiredAfter, setExpiredAfter] = React.useState<ExpiredAfter>();
+
+  React.useEffect(() => {
+    console.log(expiredAfter);
+  }, [expiredAfter])
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -67,7 +83,7 @@ export default function MakeOfferButton({ nft }: { nft: SimpleHashNFT }) {
 
           <div className="mb-2">
             <p className="mb-2">Expires after</p>
-            <Select>
+            <Select onValueChange={(value: ExpiredAfter) => setExpiredAfter(value)}>
               <SelectTrigger className="w-[280px]">
                 <SelectValue placeholder="Select an expiration day" className="w-full min-w-full max-w-full" />
               </SelectTrigger>
@@ -113,9 +129,9 @@ export default function MakeOfferButton({ nft }: { nft: SimpleHashNFT }) {
 
         <DialogFooter>
           <div className="w-full flex flex-col gap-2">
-            <Button type="submit" className="w-full bg-blue-500">
+            {/* <Button type="submit" className="w-full bg-blue-500">
               Make Offer
-            </Button>
+            </Button> */}
             <DialogClose asChild>
               <Button type="button" variant="ghost" className="w-full">Close</Button>
             </DialogClose>

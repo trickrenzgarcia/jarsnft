@@ -49,7 +49,7 @@ export default async function NFTDetails({ params: { address, id } }: NFTProps) 
             </h1>
           </div>
 
-          <MakeOfferButton nft={nft} />
+          <MakeOfferButton contractAddress={address} tokenId={id} nft={nft} />
 
         </div>
         <div className="w-full flex justify-center items-center py-7">

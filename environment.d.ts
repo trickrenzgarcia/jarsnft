@@ -5,6 +5,7 @@ declare global {
       NEXT_PUBLIC_LOCAL_URL: string;
       NEXT_PUBLIC_AUTH_SECRET: string;
       NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN: string;
+      NEXT_PUBLIC_JWT_AUTH_TOKEN: string;
       THIRDWEB_CLIENT_ID: string;
       THIRDWEB_API_KEY: string;
       THIRDWEB_AUTH_PRIVATE_KEY: string;
