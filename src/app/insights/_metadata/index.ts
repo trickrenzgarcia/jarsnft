@@ -107,6 +107,16 @@ export const rightNavList: RightNavListType[] = [
     ],
   },
   {
+    href: "/insights/nft-safety",
+    anchors: [
+      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
+      {
+        name: "Listing an NFT for sale a fixed price",
+        anchor: "#selling-fixed-price",
+      },
+    ],
+  },
+  {
     href: "/insights/what-is-blockchain",
     anchors: [
       { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
@@ -118,6 +128,13 @@ export const rightNavList: RightNavListType[] = [
   },
   {
     href: "/insights/what-are-smart-contracts",
+    anchors: [
+      { name: "Buying a fixed price NFT", anchor: "#buying-fixed-nfts" },
+      { name: "Making an offer on a NFT", anchor: "#making-offer" },
+    ],
+  },
+  {
+    href: "/insights/how-to-earn-crypto",
     anchors: [
       { name: "Buying a fixed price NFT", anchor: "#buying-fixed-nfts" },
       { name: "Making an offer on a NFT", anchor: "#making-offer" },
@@ -199,6 +216,7 @@ export const leftNavList: LeftNavList[] = [
         name: "What makes NFT Valuable?",
         href: "/insights/what-makes-nft-valuable",
       },
+      { name: "How safe are my NFTs", href: "/insights/nft-safety" },
     ],
   },
   {
@@ -211,6 +229,10 @@ export const leftNavList: LeftNavList[] = [
       },
       { name: "What are gas fees?", href: "/insights/what-are-gas-fees" },
       { name: "What is cryptocurrency?", href: "/insights/what-is-crypto" },
+      {
+        name: "How to earn Cryptocurrency",
+        href: "/insights/how-to-earn-crypto",
+      },
     ],
   },
   {
