@@ -12,7 +12,7 @@ export default function SideNavLeft() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <aside className="sticky right-auto top-16 z-30 hidden h-[93vh] w-[15.5rem] shrink-0 overflow-y-hidden border-r border-gray-400 pt-9 hover:overflow-y-auto md:ml-3 md:block">
+    <aside className="sticky right-auto top-16 z-30 hidden h-[93vh] w-[15.5rem] shrink-0 overflow-y-hidden border-r border-gray-400 pt-9 hover:overflow-y-auto lg:ml-3 lg:block">
       <div className={cn(poppins.className)}>
         {leftNavList.map((item) => (
           <div className="mb-9" key={item.topic}>
