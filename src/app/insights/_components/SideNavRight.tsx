@@ -11,7 +11,6 @@ import { useState } from "react";
 export default function SideNavRight() {
   const path = usePathname();
   const [item] = rightNavList.filter((item) => item.href === path);
-
   return (
     <div className="ml-3 hidden text-sm xl:block">
       <div className="sticky top-16 -mt-4 pt-5">

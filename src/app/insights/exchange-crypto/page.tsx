@@ -1,5 +1,9 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import { leftNavList } from "../_metadata";
+import { ChildProcess } from "child_process";
+import { usePathname } from "next/navigation";
 
 // might change to a more readable object
 const binanceSteps = [
@@ -125,16 +129,26 @@ const content = [
 ];
 // to be fixed: try to make content dynamic or make h2 and p tag have the same className for all
 const Page = () => {
+  const path = usePathname();
   return (
     <>
       <div>
-        <h1 className="m-5 bg-gradient-to-b from-neutral-200 to-neutral-600 bg-clip-text pb-5 text-center font-sans text-4xl font-bold text-transparent md:text-5xl">
-          Exchange Cryptocurrency
-        </h1>
-        <h3 className="m-5 text-center xl:text-2xl ">
-          Prerequisites: Metamask Wallet, Centralized Exchange Platforms, Bank
-          Transfer or GCash
-        </h3>
+        {leftNavList.map((item) =>
+          item.child.map(
+            (child) =>
+              path === child.href && (
+                <>
+                  <h1 className="m-5 bg-gradient-to-b from-neutral-200 to-neutral-600 bg-clip-text pb-5 text-center font-sans text-4xl font-bold text-transparent md:text-5xl">
+                    Exchange Cryptocurrency
+                  </h1>
+                  <h3 className="m-5 text-center xl:text-2xl ">
+                    Prerequisites: Metamask Wallet, Centralized Exchange
+                    Platforms, Bank Transfer or GCash
+                  </h3>
+                </>
+              ),
+          ),
+        )}
       </div>
       <div>
         <div>
@@ -176,9 +190,6 @@ const Page = () => {
       </div>
     </>
   );
-};
-const isArrayMultidimensional = (arr: any[]) => {
-  return arr.some((item) => Array.isArray(item));
 };
 
 export default Page;

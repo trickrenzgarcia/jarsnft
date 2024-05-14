@@ -50,8 +50,8 @@ export default async function Navbar() {
 
         {/* Right-side */}
         <div className="flex items-center gap-4">
-          <Login />
           <Hamburger />
+          <Login />
         </div>
       </div>
 

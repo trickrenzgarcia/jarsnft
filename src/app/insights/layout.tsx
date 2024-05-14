@@ -10,6 +10,7 @@ import {
 import { Footer } from "@/components/(layout)";
 import { leftNavList } from "./_metadata";
 import { usePathname } from "next/navigation";
+import { PageNavTopic } from "./_components/PageNavbar";
 
 type LearnProps = {
   children: React.ReactNode;
@@ -53,7 +54,8 @@ export default function LearnLayout({ children }: LearnProps) {
         <main className="relative ml-5 mr-5 mt-5 lg:gap-10 xl:grid xl:grid-cols-[1fr_300px]">
           <div className="min-w-full">
             <PageNavbarTitle />
-            <div className="m-4 ml-12">
+            <div className="md:container md:my-5">
+              <PageNavTopic color="#A519D7" />
               {children}
               {nextBtn}
             </div>
