@@ -11,6 +11,7 @@ import { Footer } from "@/components/(layout)";
 import { leftNavList } from "./_metadata";
 import { usePathname } from "next/navigation";
 import { PageNavTopic } from "./_components/PageNavbar";
+import SideBarHamburger from "./_components/SideBarHamburger";
 
 type LearnProps = {
   children: React.ReactNode;
@@ -47,14 +48,13 @@ export default function LearnLayout({ children }: LearnProps) {
   ));
   // bg-[#f2f4f5]
   return (
-    <main className="flex-1 ">
+    <main className="flex-1">
       <LearnNavbar />
       <div className="flex-1 items-start border-t-2 lg:container lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-6 xl:grid-cols-[240px_minmax(0,1fr)] xl:gap-10">
         <SideNavLeft />
-        <main className="relative ml-5 mr-5 mt-5 lg:gap-10 xl:grid xl:grid-cols-[1fr_300px]">
+        <main className="relative z-10 ml-5 mr-5 lg:gap-10 xl:grid xl:grid-cols-[1fr_300px]">
           <div className="min-w-full">
-            <PageNavbarTitle />
-            <div className="md:container md:my-5">
+            <div className="container md:my-5">
               <PageNavTopic color="#A519D7" />
               {children}
               {nextBtn}

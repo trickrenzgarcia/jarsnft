@@ -126,6 +126,33 @@ const content = [
       },
     ],
   },
+  {
+    child: [
+      {
+        heading: "ByBit",
+        content: `Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text
+        ever since the 1500s, when an unknown printer took a galley of type
+        and scrambled it to make a type specimen book. It has survived not
+        only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s
+        with the release of Letraset sheets containing Lorem Ipsum passages,
+        and more recently with desktop publishing software like Aldus
+        PageMaker including versions of Lorem Ipsum.`,
+        subtopic: "Steps in Selling your crypto",
+        steps: [
+          "Step 1 : Tap Buy or Sell.",
+          "Step 2 : Select Sell Crypto",
+          "Step 3 : Sell to complete transaction.",
+        ],
+        images: [
+          "/assets/InsightsAsset/CoinsBuySell.gif",
+          "/assets/InsightsAsset/CoinsSell1.gif",
+          "/assets/InsightsAsset/CoinsSell2.gif",
+        ],
+      },
+    ],
+  },
 ];
 // to be fixed: try to make content dynamic or make h2 and p tag have the same className for all
 const Page = () => {

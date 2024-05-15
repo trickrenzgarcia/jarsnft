@@ -5,23 +5,32 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { PageNavbarTitle } from ".";
+import SideBarHamburger from "./SideBarHamburger";
 
 export default function LearnNavbar() {
   const router = useRouter();
-  
+
   return (
-    <header className='sticky top-0 z-50 w-full border-b border-gray-400 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
-      <div className='container flex h-14 max-w-screen-2xl items-center justify-between'>
+    <header className="sticky top-0 z-50 w-full border-b border-gray-500 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
+        <SideBarHamburger />
         <div className="flex items-center ">
-          <Image src="/assets/Jarsu.png" width={50} height={50} alt="Insights Logo" />
-          <Link href='/insights'>
-            <h1 className='text-3xl'>Insights</h1>
+          <Image
+            src="/assets/Jarsu.png"
+            width={50}
+            height={50}
+            alt="Insights Logo"
+          />
+          <Link href="/insights">
+            <h1 className="text-3xl">Insights</h1>
           </Link>
         </div>
         <Button onClick={() => router.push("/")}>
           Go to JarsNFT <FiExternalLink className="text-md ml-2" />{" "}
         </Button>
       </div>
+      <PageNavbarTitle />
     </header>
   );
 }
