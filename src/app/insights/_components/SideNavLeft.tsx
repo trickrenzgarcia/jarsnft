@@ -26,7 +26,7 @@ export default function SideNavLeft() {
                 <li
                   key={child.name}
                   className={cn(
-                    "-ml-px mb-3 block border-l border-transparent pl-4 text-sm font-semibold text-[#91949c] dark:text-white ",
+                    "-ml-px mb-3 block border-l border-transparent pl-4 text-sm font-semibold text-[#91949c]",
                     path === child.href &&
                       " border-l-[#151c25] font-bold text-[#151c25] dark:border-l-[#f0f0f0] dark:text-[#f0f0f0]",
                     path !== child.href &&

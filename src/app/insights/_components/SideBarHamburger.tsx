@@ -8,10 +8,14 @@ import { leftNavList } from "../_metadata";
 import { cn } from "@nextui-org/react";
 import { Capitalize } from "./SideNavLeft";
 import { PageNavbarTitle } from ".";
+import React from "react";
 
 export default function SideBarHamburger() {
   const [isOpen, setIsOpen] = useState(false);
   const path = usePathname();
+  const [item] = leftNavList.map((item) =>
+    item.child.map((child) => console.log(path === child.href)),
+  );
   console.log(path);
 
   function handleClick(e: MouseEvent<HTMLButtonElement>) {
@@ -22,15 +26,16 @@ export default function SideBarHamburger() {
   return (
     <div className="flex lg:hidden">
       {isOpen === false ? (
-        <div className="fixed top-[3.4rem] z-40 mx-3 flex w-full items-center gap-5 border-b border-[#4232417c] bg-background/95 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/60 lg:hidden">
-          <button className="text-2xl" onClick={handleClick}>
-            &#9776;
-          </button>
+        <div className="fixed top-[3.4rem] z-40 flex w-full items-center gap-3 border-b  border-[#4232417c] bg-background/95 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/60 lg:hidden">
+          <div className="ml-5">
+            <button className="text-2xl" onClick={handleClick}>
+              &#9776;
+            </button>
+          </div>
           <PageNavbarTitle />
         </div>
       ) : (
         <>
-          <button className="text-2xl">&#9776;</button>
           <section className="fixed inset-0 z-50 overflow-y-auto lg:hidden">
             <div className="fixed inset-0 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80"></div>
             <div className="absolute flex w-80 max-w-[calc(100%-3rem)] flex-col justify-center bg-background p-4">
@@ -52,7 +57,7 @@ export default function SideBarHamburger() {
                           <li
                             key={child.name}
                             className={cn(
-                              "-ml-px mb-5 block border-l border-transparent pl-4 text-sm font-semibold text-[#91949c] dark:text-white ",
+                              "-ml-px mb-5 block border-l border-transparent pl-4 text-sm font-semibold text-[#91949c] ",
                               path === child.href &&
                                 " border-l-[#151c25] font-bold text-[#151c25] dark:border-l-[#f0f0f0] dark:text-[#f0f0f0]",
                               path !== child.href &&
