@@ -5,8 +5,6 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { leftNavList } from "../_metadata";
-import { MouseEvent, useState } from "react";
-import { SlArrowRight } from "react-icons/sl";
 
 export default function SideNavLeft() {
   const path = usePathname();

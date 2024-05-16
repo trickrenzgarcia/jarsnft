@@ -7,6 +7,7 @@ import { MouseEvent, useState } from "react";
 import { leftNavList } from "../_metadata";
 import { cn } from "@nextui-org/react";
 import { Capitalize } from "./SideNavLeft";
+import { PageNavbarTitle } from ".";
 
 export default function SideBarHamburger() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,9 +22,12 @@ export default function SideBarHamburger() {
   return (
     <div className="flex lg:hidden">
       {isOpen === false ? (
-        <button className="text-2xl" onClick={handleClick}>
-          &#9776;
-        </button>
+        <div className="fixed top-[3.4rem] z-40 mx-3 flex w-full items-center gap-5 border-b border-[#4232417c] bg-background/95 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/60 lg:hidden">
+          <button className="text-2xl" onClick={handleClick}>
+            &#9776;
+          </button>
+          <PageNavbarTitle />
+        </div>
       ) : (
         <>
           <button className="text-2xl">&#9776;</button>
