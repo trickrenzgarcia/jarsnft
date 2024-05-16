@@ -53,7 +53,7 @@ export default function LearnLayout({ children }: LearnProps) {
         <SideBarHamburger />
         <SideNavLeft />
         <main className="ml-5 mr-5 lg:gap-10 xl:grid xl:grid-cols-[1fr_300px]">
-          <div className="min-w-full">
+          <div className="min-w-full sm:mt-16 lg:mt-0">
             <div className="container md:my-5">
               <PageNavTopic color="#A519D7" />
               {children}

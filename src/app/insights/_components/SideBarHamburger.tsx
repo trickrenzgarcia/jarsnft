@@ -26,7 +26,7 @@ export default function SideBarHamburger() {
   return (
     <div className="flex lg:hidden">
       {isOpen === false ? (
-        <div className="fixed top-[3.4rem] z-40 flex w-full items-center gap-3 border-b  border-[#4232417c] bg-background/95 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/60 lg:hidden">
+        <div className="fixed top-[3.4rem] z-40 flex w-full items-center gap-3 border-b border-[#4232417c] bg-background/95 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/60 lg:hidden">
           <div className="ml-5">
             <button className="text-2xl" onClick={handleClick}>
               &#9776;
