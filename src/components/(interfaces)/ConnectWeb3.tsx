@@ -40,12 +40,12 @@ const ConnectWeb3 = ({ btnTitle }: { btnTitle: string | undefined }) => {
   );
 };
 
-const LoginWelcomeScreen = () => {
+export const LoginWelcomeScreen = () => {
   return (
     <div className="hidden h-full w-full flex-col overflow-hidden md:flex">
       <div className="relative w-auto">
         <video
-          className="w-full opacity-50"
+          className="w-full"
           preload="false"
           playsInline
           loop
@@ -55,7 +55,7 @@ const LoginWelcomeScreen = () => {
           src="/assets/rocket.mp4"
         ></video>
       </div>
-      <div className="absolute flex h-full w-full flex-col items-center justify-center">
+      <div className="absolute flex h-full w-full flex-col items-center justify-center text-white">
         <motion.div
           animate={{
             scale: [1, 1.8, 1.8, 1, 1],
