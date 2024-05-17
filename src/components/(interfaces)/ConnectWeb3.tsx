@@ -1,23 +1,25 @@
 "use client";
 
 import { ConnectWallet, darkTheme, lightTheme } from "@thirdweb-dev/react";
-import React, { useState } from "react";
+import React, { useEffect, useMemo } from "react";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
+import Spline from "@splinetool/react-spline";
 
 type UserResponse = {
   success: boolean;
   user: any;
 };
 
+
 const ConnectWeb3 = ({ btnTitle }: { btnTitle: string | undefined }) => {
-  const router = useRouter();
   const light = lightTheme();
   const dark = darkTheme();
   const { theme } = useTheme();
+
+  
 
   return (
     <div>
@@ -37,23 +39,24 @@ const ConnectWeb3 = ({ btnTitle }: { btnTitle: string | undefined }) => {
         theme={theme === "light" ? light : dark}
       />
     </div>
+    
   );
 };
 
+function Login3D() {
+  const SplineScene = useMemo(() =>{
+    return <Spline scene="https://prod.spline.design/NIACOyGnQDtdlb2D/scene.splinecode" />
+  }, []);
+
+  return SplineScene;
+}
+
 export const LoginWelcomeScreen = () => {
+  
   return (
     <div className="hidden h-full w-full flex-col overflow-hidden md:flex">
-      <div className="relative w-auto">
-        <video
-          className="w-full"
-          preload="false"
-          playsInline
-          loop
-          muted
-          // @ts-ignore
-          autoPlay="autoplay"
-          src="/assets/rocket.mp4"
-        ></video>
+      <div className="">
+        <Login3D />
       </div>
       <div className="absolute flex h-full w-full flex-col items-center justify-center text-white">
         <motion.div
@@ -68,13 +71,13 @@ export const LoginWelcomeScreen = () => {
             repeatDelay: 1,
           }}
         >
-          <h1 className="mt-36 text-2xl font-bold">Welcome to jarsnft</h1>
+          <h1 className="mt-0 text-2xl font-bold">Welcome to jarsnft</h1>
         </motion.div>
-        <p className="mt-2 font-medium">Connect your wallet to trade NFTs.</p>
+        <p className="mt-2 mb-8 font-medium">Connect your wallet to trade NFTs.</p>
         <Link
           href="/insights/getting-started#installing-wallet"
           target="_blank"
-          className="mt-40 cursor-pointer text-gray-300 hover:text-white"
+          className="mt-52 cursor-pointer text-gray-300 hover:text-white"
         >
           New to Wallets?
         </Link>
