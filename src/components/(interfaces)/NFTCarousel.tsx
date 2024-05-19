@@ -59,7 +59,7 @@ export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
                         <MdVerified className="text-xl" />
                       </div>
                     </div>
-                    <div className="flex w-full justify-between text-sm">
+                    <div className="flex w-full justify-between gap-2 text-sm">
                       <div>
                         <p className="">Floor</p>
                         <p className="font-semibold">{0.1} MATIC</p>
