@@ -154,9 +154,9 @@ export default function NftCard({
                       {listings && listings[0] && (
                         <BuyButton nft={nft} listings={listings} />
                       )}
-                      <Button className="w-full" variant="outline" disabled>
+                      {/* <Button className="w-full" variant="outline" disabled>
                         Make Offer
-                      </Button>
+                      </Button> */}
                     </div>
                   )}
                 </div>
