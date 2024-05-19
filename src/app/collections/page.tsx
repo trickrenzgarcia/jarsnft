@@ -18,15 +18,8 @@ export default function Page() {
   }
 
   useEffect(() => {
-    const storedData = localStorage.getItem("fakerData");
-
-    if (storedData) {
-      setData(JSON.parse(storedData));
-    } else {
-      const newData = Array.from({ length: 15 }, generateFakeData);
-      setData(newData);
-      localStorage.setItem("fakerData", JSON.stringify(newData));
-    }
+    const newData = Array.from({ length: 10 }, generateFakeData);
+    setData(newData);
   }, []);
 
   return (
@@ -52,7 +45,7 @@ export default function Page() {
           <CollectionRows
             collectionHref="#"
             collectionLogoSrc={item.image}
-            collectionName="Sample Name"
+            collectionName={faker.company.name()}
             isVerified={item.isVerified}
             floorPrice={faker.number.float({
               min: 1,
