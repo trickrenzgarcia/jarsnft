@@ -8,21 +8,52 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-export default function PaginationUI() {
+export default function PaginationUI({
+  totalItems,
+  itemsPerPage,
+  currentPage,
+  setCurrentPage,
+}: {
+  totalItems: any;
+  itemsPerPage: any;
+  currentPage: any;
+  setCurrentPage: any;
+}) {
+  let pages = [];
+  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
+    pages.push(i);
+  }
+
+  function handleNextPage() {
+    if (currentPage < pages.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+
+  function handlePrevPage() {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  }
+
   return (
     <Pagination className="mt-4">
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious href="#" />
+          <PaginationPrevious onClick={() => handlePrevPage()} href={"#"} />
         </PaginationItem>
+        {pages.map((page, i) => (
+          <PaginationItem
+            key={i}
+            className={currentPage === page ? "rounded-md bg-neutral-100" : ""}
+          >
+            <PaginationLink onClick={() => setCurrentPage(page)} href={"#"}>
+              {page}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
         <PaginationItem>
-          <PaginationLink href="#">1</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href="#" />
+          <PaginationNext onClick={() => handleNextPage()} href={"#"} />
         </PaginationItem>
       </PaginationContent>
     </Pagination>

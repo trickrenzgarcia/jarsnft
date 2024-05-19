@@ -10,6 +10,12 @@ export default function Page() {
   const [data, setData] = useState<{ image: string; isVerified: boolean }[]>(
     [],
   );
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+
+  const lastItemIndex = currentPage * itemsPerPage;
+  const firstItemIndex = lastItemIndex - itemsPerPage;
+  const currentItems = data.slice(firstItemIndex, lastItemIndex);
 
   function generateFakeData() {
     const newImage = faker.image.urlPicsumPhotos();
@@ -18,7 +24,7 @@ export default function Page() {
   }
 
   useEffect(() => {
-    const newData = Array.from({ length: 10 }, generateFakeData);
+    const newData = Array.from({ length: 50 }, generateFakeData);
     setData(newData);
   }, []);
 
@@ -40,7 +46,7 @@ export default function Page() {
       </div>
 
       {/* Collections Rows */}
-      {data.map((item, i) => {
+      {currentItems.map((item, i) => {
         return (
           <CollectionRows
             collectionHref="#"
@@ -92,7 +98,12 @@ export default function Page() {
         );
       })}
 
-      <PaginationUI />
+      <PaginationUI
+        totalItems={data.length}
+        itemsPerPage={itemsPerPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 }
