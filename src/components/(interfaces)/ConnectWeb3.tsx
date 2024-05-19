@@ -19,8 +19,6 @@ const ConnectWeb3 = ({ btnTitle }: { btnTitle: string | undefined }) => {
   const dark = darkTheme();
   const { theme } = useTheme();
 
-  
-
   return (
     <div>
       <ConnectWallet
@@ -58,7 +56,7 @@ export const LoginWelcomeScreen = () => {
       <div className="">
         <Login3D />
       </div>
-      <div className="absolute flex h-full w-full flex-col items-center justify-center text-white">
+      <div className="absolute flex h-full w-full flex-col items-center justify-center text-black dark:text-white">
         <motion.div
           animate={{
             scale: [1, 1.8, 1.8, 1, 1],
@@ -77,7 +75,7 @@ export const LoginWelcomeScreen = () => {
         <Link
           href="/insights/getting-started#installing-wallet"
           target="_blank"
-          className="mt-52 cursor-pointer text-gray-300 hover:text-white"
+          className="mt-52 cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
         >
           New to Wallets?
         </Link>

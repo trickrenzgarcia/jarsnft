@@ -110,6 +110,12 @@ export function truncate(str: string, maxLength: number): string {
   }
 }
 
+export function displayName(address: string, maxLength: number = 8) {
+  if(address.length <= maxLength) return address;
+
+  return address.slice(2, maxLength).toUpperCase();
+}
+
 export function getShortenedURLParam(name: string) {
   // Convert name to lowercase and replace spaces with hyphens
   let urlParam = name.trim().toLowerCase().replace(/\s+/g, "-");

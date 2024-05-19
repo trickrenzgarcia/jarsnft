@@ -1,4 +1,5 @@
 import React from 'react'
+import NftProvider from './nft-provider';
 
 type NFTProps = {
   params: {
@@ -8,8 +9,6 @@ type NFTProps = {
   children: React.ReactNode;
 };
 
-export default function NFTLayout({ children, params }: NFTProps) {
-  return (
-    <div>{children}</div>
-  )
+export default function NFTLayout({ children, params: { address, id } }: NFTProps) {
+  return <NftProvider address={address} id={id}>{children}</NftProvider>
 }

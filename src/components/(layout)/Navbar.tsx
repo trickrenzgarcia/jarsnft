@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { Login, Hamburger, JarsLogo } from "@/components/(interfaces)";
 import AdminAccessLink from "./AdminAccessLink";
-import { jars } from "@/lib/core/api";
 
-export default async function Navbar() {
+export default function Navbar() {
   return (
     <nav
       className="sticky top-0 z-50 w-full border-b-1 border-slate-800 bg-background/80 

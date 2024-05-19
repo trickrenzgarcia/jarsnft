@@ -13,7 +13,7 @@ export default function Login() {
     <div className="flex items-center">
       {(isLoading && (
         <Skeleton className="w-[35px] h-[35px] rounded-full" />
-      ) || isLoggedIn && (
+      ) || (isLoggedIn && user.data.address) && (
         <div className="flex items-center gap-2">
           <ProfileButton />
           <ConnectWeb3 btnTitle="Connect" />

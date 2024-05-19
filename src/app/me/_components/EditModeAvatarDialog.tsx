@@ -46,7 +46,7 @@ export function EditModeAvatarDialog({ children, address }: EditModeAvatarDialog
               ))}
             </div>
           )}
-          {!isLoading && !nfts?.ownedNfts && (
+          {!isLoading && nfts?.ownedNfts.length === 0 && (
             <div className="flex gap-3 py-12 flex-col items-center justify-center">
               <Image src="/jars_muted.png" width={150} height={150} alt="Not Found" />
               <p className="text-sm">No NFTs found.</p>
