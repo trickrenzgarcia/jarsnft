@@ -1,5 +1,3 @@
-import Info from "@/app/coins/assets/svg/info.js";
-
 const styles = {
   textIcon: `flex items-center`,
 };
