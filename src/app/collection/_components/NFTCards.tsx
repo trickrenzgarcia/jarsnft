@@ -47,7 +47,7 @@ export default function NFTCards({ address }: { address: string }) {
     return (
       <>
         <div className="flex w-full items-start">
-          <section className="relative p-10">
+          <section className="relative p-12">
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
               <Skeleton className="h-[291px] w-[291px] rounded-xl border"></Skeleton>
               <Skeleton className="h-[291px] w-[291px] rounded-xl border"></Skeleton>
@@ -63,7 +63,7 @@ export default function NFTCards({ address }: { address: string }) {
 
   if (nfts)
     return (
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+      <div className="mx-auto grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         {nfts.map((nft, i) => (
           <Link key={i} href={`/collection/${address}/${nft.metadata.id}`}>
             <Card className="rounded-xl hover:-translate-y-1">
@@ -78,7 +78,11 @@ export default function NFTCards({ address }: { address: string }) {
                   width={500}
                   height={500}
                   loading="eager"
-                  style={{ objectFit: "cover" }}
+                  style={{
+                    objectFit: "cover",
+                    minWidth: "280px",
+                    minHeight: "280px",
+                  }}
                 />
               </CardContent>
               <CardFooter className="mt-3">
