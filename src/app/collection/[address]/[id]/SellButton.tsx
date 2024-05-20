@@ -1,90 +1,98 @@
 "use client"
 
+import { useRouter } from 'next/navigation'
+import React, { useState } from 'react'
+import { useNftContext } from './nft-provider';
+import { type NFT, useContract, useCreateDirectListing, ThirdwebNftMedia } from '@thirdweb-dev/react';
+import { NFT_MARKETPLACE } from '@/types/constant';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import Image from "next/image";
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  AlertDialogFooter,
+} from "@/components/ui/alert-dialog";
+import { MdVerified } from 'react-icons/md';
+import { Card, CardBody, Tab, Tabs } from '@nextui-org/react';
+import CreateDirectListing from './CreateDirectListing';
+import CreateAuction from './CreateAuction';
 
 type SellButtonProps = {
-  image: string | null | undefined;
-  name: string | number | null | undefined;
-  collection?: string;
-  isVerified: boolean;
+  nft: NFT | undefined;
+  contractAddress: string;
 }
 
-export default function SellButton({
-  image,
-  name,
-  collection,
-  isVerified
-}: SellButtonProps) {
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          className="min-w-[200px] bg-foreground-900 text-background hover:bg-foreground-700 hover:text-background"
-        >
-          Sell Now
-        </Button>
-      </DialogTrigger>
+export default function SellButton({ nft, contractAddress }: SellButtonProps) {
+  const router = useRouter();
+  const { collection } = useNftContext();
+  const [sellState, setSellState] = useState<'idle' | 'confirmation' | 'success'>('idle');
 
-      <DialogContent className="min-w-[550px] p-0">
+  return (
+    <AlertDialog>
+
+      {/* Trigger Sell Button */}
+      <AlertDialogTrigger asChild>
+        <Button className='w-full'>Sell</Button>
+      </AlertDialogTrigger>
+
+      <AlertDialogContent className='min-w-[420px] w-[550px] p-0'>
         {/* Header */}
-        <DialogHeader className="px-8 pt-8">
-          <DialogTitle className="text-2xl font-bold">Sell</DialogTitle>
-          <DialogDescription>
+        <AlertDialogHeader className='px-8 pt-8'>
+          <div className='flex justify-between items-center'>
+            <AlertDialogTitle className="text-2xl font-bold">Sell</AlertDialogTitle>
+            <AlertDialogCancel className='rounded-full' disabled={sellState != "idle"}>x</AlertDialogCancel>
+          </div>
+          <AlertDialogDescription>
             Enter the price of the item. Click &quot;CONFIRM AND SELL&quot; to
             proceed.
-          </DialogDescription>
-        </DialogHeader>
+          </AlertDialogDescription>
+        </AlertDialogHeader>
 
         {/* Body */}
-        <div className="flex justify-between px-8 py-4">
-          <Image
-            src={image || ""}
-            width={150}
-            height={150}
-            alt="image of an NFT"
-          />
+        <div className="flex justify-between px-8 py-4 gap-5">
+          {nft && (
+            <ThirdwebNftMedia
+              metadata={nft.metadata}
+              width='100px'
+              height='100px'
+              style={{
+                maxWidth: '100px',
+                maxHeight: '100px',
+                minWidth: '100px',
+                minHeight: '100px',
+              }}
+              requireInteraction
+              className="rounded-lg bg-accent/50 border border-accent"
+            />
+          )}
 
-          <div className="flex flex-col py-4">
-            <h1 className="mb-2 text-2xl font-bold">{name}</h1>
-            <div className="flex gap-2">
-              <h2>{collection}</h2>
-              {isVerified && (
-                <Image
-                  src="/assets/verify.png"
-                  width={20}
-                  height={20}
-                  alt="verified logo"
-                />
-              )}
-            </div>
-            <p className="mt-auto">Last sale: 000 MATIC</p>
+          <div className="flex flex-col py-4 w-full gap-2">
+            <h1 className='text-xl font-bold'>{nft?.metadata.name}</h1>
+            <p className='text-sm text-gray-400 flex gap-1 items-center'>
+              {collection.name}
+              <MdVerified className=' text-blue-500' />
+            </p>
           </div>
         </div>
 
         {/* Footer */}
-        <DialogFooter className="flex space-y-10 rounded-t-3xl bg-neutral-200 px-6 py-8 dark:bg-neutral-800 sm:flex-col sm:space-x-0">
-          <Input type="number" placeholder="Sell Price" />
-          <Button
-            variant="outline"
-            className="bg-foreground-900 text-background
-         hover:bg-foreground-700 hover:text-background"
-          >
-            CONFIRM AND SELL
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+        <AlertDialogFooter className="flex sm:flex-col sm:space-x-0 bg-neutral-200 dark:bg-neutral-800 rounded-t-3xl rounded-b-lg px-6 py-8">
+          <Tabs variant="underlined" aria-label='Options'>
+            <Tab key="direct" title="Direct Listing">
+              <CreateDirectListing sellState={sellState} setSellState={setSellState} />
+            </Tab>
+            <Tab key="auction" title="Auction">
+              <CreateAuction sellState={sellState} setSellState={setSellState} />
+            </Tab>
+          </Tabs>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   )
 }

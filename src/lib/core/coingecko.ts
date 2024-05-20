@@ -18,5 +18,5 @@ export async function getMaticPriceInPHP(value: string): Promise<string> {
   let rate = data["matic-network"].php;
   let amount = parseFloat(value);
   
-  return (rate * amount).toFixed(2);
+  return (rate * amount).toFixed(3);
 }

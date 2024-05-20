@@ -103,7 +103,7 @@ const cenExch = [
     ],
     images: [
       "/assets/InsightsAsset/bybit sell1.png",
-      "/assets/InsightsAsset/bybit sell3.png",
+      "/assets/InsightsAsset/bybit sell2.png",
     ],
   },
 ];
@@ -128,7 +128,7 @@ const Page = () => {
               {`It is a well-known local exchanging platform in the Philippines.
             it offers an easy process of trading of cryptocurrencies, as well as the option to transfer your funds to other online bank accounts such as GCash.
             Coins PH has a KYC feature whereas these features are only allowed for verified accounts.`}{" "}
-              <span className="font-semibold underline ">
+              <span className="font-semibold text-[#A519D7] underline ">
                 <a href="https://support.coins.ph/hc/en-us/articles/360000219141-How-do-I-get-my-account-ID-and-selfie-verified">
                   Learn to verify your account here
                 </a>
@@ -137,7 +137,7 @@ const Page = () => {
             <P>
               {`The website is easy to use with its user-friendly interface along with its cheap fees compared to other local exchanging platform.
             You can go to their website`}{" "}
-              <span className="font-semibold underline">
+              <span className="font-semibold text-[#A519D7] underline">
                 <a href="https://support.coins.ph/hc/en-us">help center</a>
               </span>{" "}
               {` for more information.`}
@@ -152,7 +152,7 @@ const Page = () => {
             />
             <P>
               <span className="italic">
-                <h4 className="font-bold">Note: </h4>
+                <span className="font-bold">Note: </span>
                 {` it is recommended to use the App version where it is much easier to navigate and to access anywhere. `}
               </span>
             </P>
@@ -168,7 +168,7 @@ const Page = () => {
               {`Additionally, Coins.ph gives users confidence by providing security measures like two-factor authentication and being overseen by the Bangko Sentral ng Pilipinas. 
             Coins.ph offers a comprehensive solution to satisfy your financial needs, whether you're wanting to receive remittances from overseas, expedite your regular transactions, or investigate investment opportunities in cryptocurrencies like Bitcoin and Ethereum.`}
             </P>
-
+            <P>{`Not only is it a beginner friendly choice but it also provide rewards with its referral system and seasonal promos and giveaways.`}</P>
             <h2 className="my-6 text-2xl font-bold">
               How to start with Coins PH
             </h2>
@@ -216,7 +216,7 @@ const Page = () => {
             <P>{`You can Load money to your wallet by using the Cash In option. The following are the available stores that are affliated with CoinsPH.
             Choose where you will load money to your wallet.`}</P>
             <h3 className="text:md my-5 font-bold xl:text-lg">Cash In </h3>
-            <ul className="-mt-2 ml-14 list-disc text-gray-300">
+            <ul className="-mt-2 ml-14 list-disc dark:text-gray-300">
               <li>7-Eleven CLiQQ</li>
               <li>Bayad Center</li>
               <li>Cebuana Lhuillier</li>
@@ -228,48 +228,178 @@ const Page = () => {
             </ul>
             <h3 className="text:md my-5 font-bold xl:text-lg">Cash Out </h3>
             <P>{`Cashing out is processed through various banks. Here are a few choices to pick. You can also check on their Help Center for more information.`}</P>
-            <ul className="-mt-2 ml-14 list-disc text-gray-300">
+            <ul className="-mt-2 ml-14 list-disc dark:text-gray-300">
               <li>GCash (Recommended)</li>
               <li>BPI</li>
               <li>Union Bank</li>
             </ul>
             <P>{`Now that your wallet has your desired cryptocurrency you are now able to make your transaction in the CoinsPH app.
             To be able to exchange your earned cryptocurrency, follow these following steps:`}</P>
+            <h3 className="text:md m-5 text-center font-bold xl:text-lg">
+              Steps in Selling your crypto
+            </h3>
+            {displaySteps("coinsphsell")}
+            <P>{`Congrats! you can now check your wallet balance and be able to transfer it to your Gcash Account or use it to pay for the services that Coins PH can offer.`}</P>
+            <P>{`Of course we can also do the opposite.
+            If you want to exchange our local currency into any cryptocurrency you can follow the following steps:`}</P>
+            <h3 className="text:md m-5 text-center font-bold xl:text-lg">
+              Steps in Buying a crypto
+            </h3>
+            {displaySteps("coinsphbuy")}
           </div>
-          <h3 className="text:md m-5 text-center font-bold xl:text-lg">
-            Steps in Selling your crypto
-          </h3>
-          {displaySteps("coinsphsell")}
-          <P>{`Congrats! you can now check your wallet balance and be able to transfer it to your Gcash Account or use it to pay for the services that Coins PH can offer.`}</P>
-          <P>{`Of course we can also do the opposite.
-          If you want to exchange our local currency into any cryptocurrency you can follow the following steps:`}</P>
-          <h3 className="text:md m-5 text-center font-bold xl:text-lg">
-            Steps in Buying a crypto
-          </h3>
-          {displaySteps("coinsphbuy")}
         </div>
         <div id="bybit">
           <h2 className="my-6 text-2xl font-bold">Bybit</h2>
           <P>
-            {`Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.`}
+            {`A cryptocurrency exchange well-known for its quickness and concentration on trading derivatives, especially perpetual contracts, is ByBit. 
+            This enables leveraged trading, in which you can borrow money to take control of a position that is bigger than your account balance. 
+            For traders seeking a fast-paced, user-friendly platform with possibly larger returns (and dangers) on derivatives trading, ByBit is the perfect option. 
+            ByBit is less appropriate, nevertheless, for new users or those seeking a broader selection of cryptocurrencies or a platform for just purchasing and storing cryptocurrency.`}
           </P>
-          <h3 className="text:md m-5 text-center font-bold xl:text-2xl">
-            How to buy your crypto
-          </h3>
-          {displaySteps("bybitbuy")}
-          <h3 className="text:md m-5 text-center font-bold xl:text-2xl">
-            How to sell your crypto
-          </h3>
-          {displaySteps("bybitsell")}
+          <P>
+            {`Like other exchange platform, ByBit requires a KYC verification in order to allow access to its features. `}
+            <span className="text[#A519D7] font-semibold text-[#A519D7] underline">
+              <a href="https://www.bybit.com/en/help-center/article/How-to-Complete-Individual-KYC-Verification">
+                learn how to verify in ByBit here
+              </a>
+            </span>
+          </P>
+          <div>
+            <h2 className="my-6 text-2xl font-bold">How to start with ByBit</h2>
+            <P>
+              {`After verifying your account you are now able to trade and exchange your cryptocurrencies, but before that here are quick tips that may help you.`}
+            </P>
+            <ul className="-mt-2 ml-14 list-disc dark:text-gray-300">
+              <li className="mb-3">
+                <span className="font-bold">Fund your account:</span>
+                {` To begin trading, you must have cryptocurrency. Various cryptocurrencies, not fiat money (such Philippine Peso), are accepted as deposits on ByBit. 
+            To use ByBit, you must transfer cryptocurrency from another wallet or exchange.`}
+              </li>
+              <li className="mb-3">
+                <span className="font-bold">
+                  Investigate the ByBit platform:
+                </span>
+                {` Become acquainted with the user interface and functionalities like as order kinds, fees, and margin requirements (if leverage is being used). 
+            They provide guidelines and tutorials to get you going.`}
+              </li>
+              <li className="mb-3">
+                <span className="font-bold">
+                  Think about your trading approach:
+                </span>
+                {` Choose the cryptocurrencies you wish to trade and if you plan to trade regularly (spot) or with leverage (derivatives). 
+              Recall that while leverage can boost prospective gains, it can also amplify potential losses.`}
+              </li>
+              <li className="mb-3">
+                <span className="font-bold">Start small (optional):</span>
+                {` Before taking on greater risks, it's advisable to begin with a little investment if you're new to cryptocurrency trading in order to gain familiarity with the platform and the market.`}
+              </li>
+            </ul>
+            <h2 className="my-6 text-2xl font-bold">
+              Fund your account (Deposit)
+            </h2>
+            <P>{`Funding your account is necessary, here are a few steps To deposit cryptocurrency into your account.`}</P>
+            <Image
+              src="/assets/InsightsAsset/bybit deposit1.png"
+              alt="CoinsPH HomePage"
+              width={1080}
+              height={1920}
+              className="max-h-full max-w-[25rem]"
+            />
+            <Image
+              src="/assets/InsightsAsset/bybit deposit2.png"
+              alt="CoinsPH HomePage"
+              width={1080}
+              height={1920}
+              className="mt-7 max-h-[30rem] max-w-full"
+            />
+            <P>
+              <span className="italic">
+                <span className="font-bold">Note: </span>
+                {` Fiat deposits are also available if you want to deposit USDT or other similar currency.`}
+              </span>
+            </P>
+          </div>
+          <div>
+            <h2 className="my-6 text-2xl font-bold">Start your first trade</h2>
+
+            <P>{`Now that you have sufficient funds, it is time to exchange them into your country's currency or to another cryptocurrency.
+          ByBit provides two options: Trade and Convert. `}</P>
+            <h3 className="text:lg font-bold xl:text-xl">Convert</h3>
+            <Image
+              src="/assets/InsightsAsset/bybit convert1.png"
+              alt="CoinsPH HomePage"
+              width={1080}
+              height={1920}
+              className="my-7 max-h-full max-w-[30rem]"
+            />
+            <Image
+              src="/assets/InsightsAsset/bybit convert2.png"
+              alt="CoinsPH HomePage"
+              width={1080}
+              height={1920}
+              className="mt-7 max-h-full max-w-[30rem]"
+            />
+            <P>{`Convert will typically exchange your cryptocurrency into fiat money or real currencies. This also has the benefit of minimal to no transaction fees.`}</P>
+            <P>{`Trade on the other hand gives you the option to exchange directly to fiat money or to other type of cryptocurrency. 
+          Although we recommend the Trade feature as it has a slightly more profit than in Convert. Feel free to explore more about ByBit's Trade feature.`}</P>
+
+            <h3 className="text:lg font-bold xl:text-xl">Trade</h3>
+            <Image
+              src="/assets/InsightsAsset/bybit trade1.png"
+              alt="CoinsPH HomePage"
+              width={1080}
+              height={1920}
+              className="mt-7 max-h-full max-w-[30rem]"
+            />
+            <Image
+              src="/assets/InsightsAsset/bybit trade2.png"
+              alt="CoinsPH HomePage"
+              width={1080}
+              height={1920}
+              className="mt-7 max-h-full max-w-full"
+            />
+            <P>{`With the introduction out of the way you can now start exchange your cryptocurrency. We will be using the Trade feature of Bybit, these are the following steps accordingly: `}</P>
+            <h3 className="text:md m-5 text-center font-bold xl:text-xl">
+              How to buy your crypto
+            </h3>
+            {displaySteps("bybitbuy")}
+            <h3 className="text:md m-5 text-center font-bold xl:text-xl">
+              How to sell your crypto
+            </h3>
+            {displaySteps("bybitsell")}
+          </div>
+          <div>
+            <h2 className="my-6 text-2xl font-bold">{`What's next?`}</h2>
+            <P>{`Since bybit is an international exchanging platform it may become confusing as to how to convert your USD into PHP, therefore we will provide you tips on how to do so.`}</P>
+            <ul className="-mt-2 ml-14 list-disc dark:text-gray-300">
+              <li className="mb-3">
+                <span className="font-bold">Withdraw your crypto:</span>
+                {`  After selling your cryptocurrency on ByBit through perpetual contracts, you'll end up with another cryptocurrency, typically USDT (Tether). 
+              You'll need to withdraw this USDT from ByBit to a platform that allows conversion to PHP.`}
+              </li>
+              <li className="mb-3">
+                <span className="font-bold">
+                  Transfer to a PHP-friendly platform:
+                </span>
+                {` Choose a cryptocurrency exchange platform in the Philippines that allows PHP trading, like PDAX or Coins.ph. 
+              Send your USDT from ByBit to your chosen platform's USDT wallet address.`}
+              </li>
+              <li className="mb-3">
+                <span className="font-bold">Sell USDT for PHP:</span>
+                {` Once your USDT arrives in your chosen platform's wallet, you can then sell it for PHP on their platform. 
+              They will have options to initiate a PHP withdrawal which you can transfer to your Philippine bank account.`}
+              </li>
+            </ul>
+            <P>
+              <span className="italic">
+                <span className="font-bold">Important Note: </span>
+                {` Remember, there might be fees associated with each step of this process, including withdrawal fees on ByBit and trading fees on the PHP platform.  
+              Make sure to factor these in when planning your conversion.`}
+              </span>
+            </P>
+          </div>
         </div>
+
         <div id="binance">
           <h2 className="my-6 text-2xl font-bold">Binance</h2>
           <P>
@@ -280,7 +410,7 @@ const Page = () => {
           </P>
           <P>
             {`In starting your binance experience you should start by creating an account and entering your information for verification. `}
-            <span className="font-semibold underline">
+            <span className="font-semibold text-[#A519D7] underline">
               <a href="https://www.binance.com/blog/nft/how-to-verify-your-new-binance-account-and-claim-your-cr7-foreverzone-box-6753024416772061769#:~:text=Log%20in%20to%20your%20Binance,back%20after%20completing%20this%20step.">
                 learn more about KYC and Verification
               </a>
