@@ -47,6 +47,8 @@ export default function NFTBannerMetadata({
     { detail: "Owners(Unique)", value: 1000 },
   ]);
 
+  
+
   useEffect(() => {
     setDetails((prevDetails) =>
       prevDetails.map((item) =>
@@ -54,6 +56,8 @@ export default function NFTBannerMetadata({
       )
     );
   }, [totalListingCount]);
+
+  console.log(data.image)
 
   if (isLoading) {
     return (
