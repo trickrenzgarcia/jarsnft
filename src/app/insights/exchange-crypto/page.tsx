@@ -152,7 +152,7 @@ const Page = () => {
             />
             <P>
               <span className="italic">
-                <p className="font-bold">Note: </p>
+                <span className="font-bold">Note: </span>
                 {` it is recommended to use the App version where it is much easier to navigate and to access anywhere. `}
               </span>
             </P>
@@ -216,7 +216,7 @@ const Page = () => {
             <P>{`You can Load money to your wallet by using the Cash In option. The following are the available stores that are affliated with CoinsPH.
             Choose where you will load money to your wallet.`}</P>
             <h3 className="text:md my-5 font-bold xl:text-lg">Cash In </h3>
-            <ul className="-mt-2 ml-14 list-disc text-gray-300">
+            <ul className="-mt-2 ml-14 list-disc dark:text-gray-300">
               <li>7-Eleven CLiQQ</li>
               <li>Bayad Center</li>
               <li>Cebuana Lhuillier</li>
@@ -228,7 +228,7 @@ const Page = () => {
             </ul>
             <h3 className="text:md my-5 font-bold xl:text-lg">Cash Out </h3>
             <P>{`Cashing out is processed through various banks. Here are a few choices to pick. You can also check on their Help Center for more information.`}</P>
-            <ul className="-mt-2 ml-14 list-disc text-gray-300">
+            <ul className="-mt-2 ml-14 list-disc dark:text-gray-300">
               <li>GCash (Recommended)</li>
               <li>BPI</li>
               <li>Union Bank</li>
@@ -257,8 +257,8 @@ const Page = () => {
             ByBit is less appropriate, nevertheless, for new users or those seeking a broader selection of cryptocurrencies or a platform for just purchasing and storing cryptocurrency.`}
           </P>
           <P>
-            {`Like other exchange platform, ByBit requires a KYC verification in order to allow access to its features.`}
-            <span className="text[#A519D7] font-semibold underline">
+            {`Like other exchange platform, ByBit requires a KYC verification in order to allow access to its features. `}
+            <span className="text[#A519D7] font-semibold text-[#A519D7] underline">
               <a href="https://www.bybit.com/en/help-center/article/How-to-Complete-Individual-KYC-Verification">
                 learn how to verify in ByBit here
               </a>
@@ -269,7 +269,7 @@ const Page = () => {
             <P>
               {`After verifying your account you are now able to trade and exchange your cryptocurrencies, but before that here are quick tips that may help you.`}
             </P>
-            <ul className="-mt-2 ml-14 list-disc text-gray-300">
+            <ul className="-mt-2 ml-14 list-disc dark:text-gray-300">
               <li className="mb-3">
                 <span className="font-bold">Fund your account:</span>
                 {` To begin trading, you must have cryptocurrency. Various cryptocurrencies, not fiat money (such Philippine Peso), are accepted as deposits on ByBit. 
@@ -294,11 +294,10 @@ const Page = () => {
                 {` Before taking on greater risks, it's advisable to begin with a little investment if you're new to cryptocurrency trading in order to gain familiarity with the platform and the market.`}
               </li>
             </ul>
-            <P>{`Funding your account is necessary`}</P>
             <h2 className="my-6 text-2xl font-bold">
               Fund your account (Deposit)
             </h2>
-            <P>{`Here are a few steps To deposit cryptocurrency into your account.`}</P>
+            <P>{`Funding your account is necessary, here are a few steps To deposit cryptocurrency into your account.`}</P>
             <Image
               src="/assets/InsightsAsset/bybit deposit1.png"
               alt="CoinsPH HomePage"
@@ -315,7 +314,7 @@ const Page = () => {
             />
             <P>
               <span className="italic">
-                <p className="font-bold">Note: </p>
+                <span className="font-bold">Note: </span>
                 {` Fiat deposits are also available if you want to deposit USDT or other similar currency.`}
               </span>
             </P>
@@ -372,7 +371,7 @@ const Page = () => {
           <div>
             <h2 className="my-6 text-2xl font-bold">{`What's next?`}</h2>
             <P>{`Since bybit is an international exchanging platform it may become confusing as to how to convert your USD into PHP, therefore we will provide you tips on how to do so.`}</P>
-            <ul className="-mt-2 ml-14 list-disc text-gray-300">
+            <ul className="-mt-2 ml-14 list-disc dark:text-gray-300">
               <li className="mb-3">
                 <span className="font-bold">Withdraw your crypto:</span>
                 {`  After selling your cryptocurrency on ByBit through perpetual contracts, you'll end up with another cryptocurrency, typically USDT (Tether). 
@@ -393,7 +392,7 @@ const Page = () => {
             </ul>
             <P>
               <span className="italic">
-                <p className="font-bold">Important Note: </p>
+                <span className="font-bold">Important Note: </span>
                 {` Remember, there might be fees associated with each step of this process, including withdrawal fees on ByBit and trading fees on the PHP platform.  
               Make sure to factor these in when planning your conversion.`}
               </span>
