@@ -9,17 +9,17 @@ export default function NFTCategories() {
           <NFTCardCategories
             categoryLink="#"
             categoryName="Art NFTs"
-            image="/assets/ex1.png"
+            image="/assets/categoryImages/ArtCategory.png"
           />
           <NFTCardCategories
             categoryLink="#"
             categoryName="Photography NFTs"
-            image="/assets/ex1.png"
+            image="/assets/categoryImages/PhotoCategory.png"
           />
           <NFTCardCategories
             categoryLink="#"
             categoryName="Profile Picture NFTs"
-            image="/assets/ex1.png"
+            image="/assets/categoryImages/PFPCategory.png"
           />
         </div>
       </div>
