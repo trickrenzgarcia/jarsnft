@@ -86,6 +86,8 @@ export default function NFTCards({ address }: { address: string }) {
                   <h1 className="truncate text-sm font-semibold">
                     {nft.metadata.name}
                   </h1>
+                  <p>Price: </p>
+                  <p>Last Sale: </p>
                 </div>
               </CardFooter>
             </Card>
