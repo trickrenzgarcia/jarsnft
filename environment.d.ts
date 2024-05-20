@@ -14,6 +14,7 @@ declare global {
       NEXT_PUBLIC_THIRDWEB_API_KEY: string;
       NEXT_PUBLIC_BACKEND_URL: string;
       JWT_AUTH_TOKEN: string;
+      NFTMARKETPLACE_JARS_CONTRACT: string;
     }
   }
 }

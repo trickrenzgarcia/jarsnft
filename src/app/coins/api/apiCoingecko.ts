@@ -9,7 +9,8 @@ export async function fetchFromApi(
       "Content-Type": "application/json",
     },
     next: {
-      revalidate: cacheTime || 60 * 60 * 24,
+      //default revalidate: cacheTime || 60*60*24, exactly 10,000 api calls per month
+      revalidate: cacheTime || 263,
     },
   });
 
@@ -35,7 +36,7 @@ export async function getCoingeckoGlobalData(cacheTime?: number): Promise<any> {
       "Content-Type": "application/json",
     },
     next: {
-      revalidate: cacheTime || 60 * 60 * 24,
+      revalidate: cacheTime || 263,
     },
   });
   const data = await response.json();
@@ -51,7 +52,7 @@ export async function getGasFee(cacheTime?: number): Promise<any> {
       "Content-Type": "application/json",
     },
     next: {
-      revalidate: cacheTime || 60 * 60 * 24,
+      revalidate: cacheTime || 263,
     },
   });
   const data = await response.json();

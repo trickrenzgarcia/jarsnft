@@ -21,7 +21,7 @@ export const TextGenerateEffect = ({
       {
         duration: 1,
         delay: stagger(0.1),
-      }
+      },
     );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,7 +34,7 @@ export const TextGenerateEffect = ({
           return (
             <motion.span
               key={word + idx}
-              className="dark:text-zinc-500 text-black opacity-0 antialiased leading-loose"
+              className="text-center leading-loose text-black antialiased opacity-0 dark:text-zinc-500"
             >
               {word}{" "}
             </motion.span>
@@ -47,7 +47,7 @@ export const TextGenerateEffect = ({
   return (
     <div className={cn("font-regular", className)}>
       <div className="mt-4">
-        <div className="relative text-sm sm:text-xl tracking-wide text-left max-w-2xl ">
+        <div className="relative max-w-2xl text-left text-sm tracking-wide sm:text-xl ">
           {renderWords()}
         </div>
       </div>

@@ -42,12 +42,6 @@ export default function Hamburger() {
               Collections
             </Link>
             <Link
-              href="/trade"
-              className="w-full py-6 text-center text-xl hover:opacity-90"
-            >
-              Trade
-            </Link>
-            <Link
               href="/coins"
               className="w-full py-6 text-center text-xl hover:opacity-90"
             >
