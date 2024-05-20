@@ -5,7 +5,12 @@ import {
   PopularCollections,
   TopNFTCollections,
 } from "@/components/(layout)";
-import { ArtTrend, NFTCategories, PhotoTrend } from "@/app/_trade/_components";
+import {
+  ArtTrend,
+  NFTCategories,
+  PhotoTrend,
+  PFPTrend,
+} from "@/app/_trade/_components";
 import { Separator } from "@/components/ui/separator";
 import { Suspense } from "react";
 import * as getCollections from "@/utils/getCollections";
@@ -33,6 +38,12 @@ export default async function Home() {
 
         <Suspense fallback={<div>Loading...</div>}>
           <PhotoTrend collections={photosCollections} />
+        </Suspense>
+
+        <Separator className="h-[2px] w-full" />
+
+        <Suspense fallback={<div>Loading...</div>}>
+          <PFPTrend collections={photosCollections} />
         </Suspense>
 
         <Separator className="h-[2px] w-full" />
