@@ -1,6 +1,7 @@
 "use client";
 
 import { PageNextButton } from "./_components";
+import { P } from "./_components/TailwindTags";
 // import { rightNavList } from '../_metadata'
 
 export default function Page() {
@@ -27,7 +28,7 @@ export default function Page() {
           Read through the following outline of each topics and what you will
           learn in it.
         </P>
-        <p className="text-md mb-2 text-[#ec0000] dark:text-[#ec0000]">
+        <p className="text-md mb-2 font-bold text-[#ec0000] underline dark:text-[#ce0000]">
           Disclaimer: Please do your own research before investing
         </p>
         <hr />
@@ -146,12 +147,5 @@ export default function Page() {
         </ul>
       </div>
     </div>
-  );
-}
-
-function P(props: React.HTMLAttributes<HTMLParagraphElement>) {
-  const { children } = props;
-  return (
-    <p className="text-md my-8 leading-loose tracking-wide ">{children}</p>
   );
 }
