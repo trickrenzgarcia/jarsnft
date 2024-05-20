@@ -1,14 +1,5 @@
-// import { jars } from "@/lib/core/api";
-// import { shortenAddress } from "@/lib/utils";
-// import Image from "next/image";
-// import { Image as NextImage } from "@nextui-org/react";
-// import Link from "next/link";
-// import { Suspense } from "react";
-// import NFTImage from "../../_components/NFTImage";
-// import { Button } from "@/components/ui/button";
-// import MakeOfferButton from "../../_components/MakeOfferButton";
+import { jars } from "@/lib/core/api";
 import NftCard from "./NftCard";
-import { sdk } from "@/lib/sdk";
 import { notFound } from "next/navigation";
 
 type NFTProps = {
@@ -17,6 +8,7 @@ type NFTProps = {
     id: string;
   };
 };
+
 export default async function NFTDetails({ params: { address, id } }: NFTProps) {
 
   const nft = await jars.getNFTByTokenId(address, id);
