@@ -1,6 +1,11 @@
 "use client";
 
-import { useActiveListings, useContract, useNFTs, useValidDirectListings } from "@thirdweb-dev/react";
+import {
+  useActiveListings,
+  useContract,
+  useNFTs,
+  useValidDirectListings,
+} from "@thirdweb-dev/react";
 import ErrorNFTCards from "./ErrorNFTCards";
 import LoadingNFTCards from "./LoadingNFTCards";
 import {
@@ -13,27 +18,48 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
-import { jars } from "@/lib/core/api";
+import { Skeleton } from "@/components/ui/skeleton";
+// import { useEffect } from "react";
+// import { jars } from "@/lib/core/api";
 
 export default function NFTCards({ address }: { address: string }) {
   const { contract } = useContract(address);
-  const { contract: marketPlaceContract } = useContract("0x69b05D8ed116Bb160B8a268a4315D2767123eFA1", "marketplace-v3");
+  const { contract: marketPlaceContract } = useContract(
+    "0x69b05D8ed116Bb160B8a268a4315D2767123eFA1",
+    "marketplace-v3",
+  );
   const { data: nfts, isError, isLoading } = useNFTs(contract);
-  const { data: listings, isLoading: loadingListings } = useValidDirectListings(marketPlaceContract, {
-    count: 100,
-    start: 0,
-    tokenContract: address
-  });
+  const { data: listings, isLoading: loadingListings } = useValidDirectListings(
+    marketPlaceContract,
+    {
+      count: 100,
+      start: 0,
+      tokenContract: address,
+    },
+  );
   //marketPlaceContract?.directListings
 
   if (isError) return <ErrorNFTCards />;
 
   if (isLoading) return <LoadingNFTCards />;
 
-  if(loadingListings) return <>Loading listings...</>;
-
-  console.log(listings);
+  if (loadingListings)
+    return (
+      <>
+        <div className="flex w-full items-start">
+          <section className="relative p-10">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+              <Skeleton className="h-[291px] w-[291px] rounded-xl border"></Skeleton>
+              <Skeleton className="h-[291px] w-[291px] rounded-xl border"></Skeleton>
+              <Skeleton className="h-[291px] w-[291px] rounded-xl border"></Skeleton>
+              <Skeleton className="h-[291px] w-[291px] rounded-xl border"></Skeleton>
+              <Skeleton className="h-[291px] w-[291px] rounded-xl border"></Skeleton>
+              <Skeleton className="h-[291px] w-[291px] rounded-xl border"></Skeleton>
+            </div>
+          </section>
+        </div>
+      </>
+    );
 
   if (nfts)
     return (

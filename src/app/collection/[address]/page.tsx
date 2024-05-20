@@ -23,12 +23,10 @@ export default async function CollectionPage({
         <NFTBannerMetadata address={address} collection={collection} />
       </Suspense>
       <div className="flex w-full items-start">
-        <section className="relative p-6">
+        <section className="relative p-10">
           <NFTCards address={address} />
         </section>
       </div>
     </main>
   );
 }
-
-

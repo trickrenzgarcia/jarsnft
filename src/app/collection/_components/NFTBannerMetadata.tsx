@@ -6,17 +6,10 @@ import Image from "next/image";
 import { MdVerified } from "react-icons/md";
 import { ReadMore } from "./ReadMore";
 import React from "react";
-import Link from "next/link";
-import {
-  FaDiscord,
-  FaEthereum,
-  FaInstagram,
-  FaTelegram,
-  FaTwitter,
-  FaWikipediaW,
-} from "react-icons/fa";
+// import { FaEthereum } from "react-icons/fa";
+import { SiPolygon } from "react-icons/si";
 import TooltipMsg from "@/components/(interfaces)/TooltipMsg";
-import { MetadataSchema } from "@/types";
+// import { MetadataSchema } from "@/types";
 import { CustomContractMetadata } from "@thirdweb-dev/sdk";
 import {
   useContract,
@@ -45,10 +38,11 @@ export default function NFTBannerMetadata({
     contract,
   ) as QueryMetadata;
   const [details] = React.useState([
-    { detail: "Floor", value: 10 },
-    { detail: "24h Vol", value: 1170 },
-    { detail: "7d Vol", value: 7280 },
-    { detail: "Total Vol", value: 1230240 },
+    { detail: "Total Volume", value: 1000000, currency: "MATIC" },
+    { detail: "Floor Price", value: 50, currency: "MATIC" },
+    { detail: "Best Offer", value: 51, currency: "MATIC" },
+    { detail: "Listed", value: 10 },
+    { detail: "Owners(Unique)", value: 1000 },
   ]);
 
   if (isLoading) {
@@ -85,7 +79,12 @@ export default function NFTBannerMetadata({
               ))}
             </div>
           </section>
-          <section></section>
+          <div className="mb-3 flex gap-3">
+            <Skeleton className="h-5 w-32 border"> </Skeleton>
+            <Skeleton className="h-5 w-32 border"> </Skeleton>
+            <Skeleton className="h-5 w-32 border"> </Skeleton>
+            <Skeleton className="h-5 w-32 border"> </Skeleton>
+          </div>
         </div>
       </main>
     );
@@ -120,11 +119,11 @@ export default function NFTBannerMetadata({
                   <div className="truncate">
                     <h2 className="truncate">{data.name}</h2>
                   </div>
-                  {/* <TooltipMsg message="Verified">
+                  <TooltipMsg message="Verified">
                     <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
                       <MdVerified className="text-blue-500" />
                     </div>
-                  </TooltipMsg> */}
+                  </TooltipMsg>
                 </div>
 
                 {/* <p className="font-bold">A collection of {} NFTs.</p> */}
@@ -141,19 +140,27 @@ export default function NFTBannerMetadata({
                 amountOfWords={24}
               />
             </div>
-            {/* <div className="hidden items-center gap-6 pl-3 lg:flex">
+            {/* Placeholder for data will get in Simplehash */}
+            <div className="hidden items-center gap-6 pl-3 lg:flex">
               {details.map((detail, i) => (
-                <div key={i} className={cn(poppins.className, "w-[110px]")}>
-                  <h1 className="flex text-2xl font-semibold">
-                    <FaEthereum />
-                    <span>{formatNumber(detail.value)}</span>
-                  </h1>
-                  <p className="text-sm font-normal text-gray-300 dark:text-gray-500">
+                <div key={i} className={cn(poppins.className, "w-[150px]")}>
+                  <div className="flex justify-center gap-2 text-2xl font-semibold">
+                    <SiPolygon className="text-violet-500" />
+                    <p>{formatNumber(detail.value)}</p>
+                    <p>{detail.currency}</p>
+                  </div>
+                  <p className="text-center text-sm font-normal text-gray-300 dark:text-gray-500">
                     {detail.detail}
                   </p>
                 </div>
               ))}
-            </div> */}
+            </div>
+          </section>
+          <section className="mb-3 flex gap-3">
+            <div>Items: </div>
+            <div>Created: </div>
+            <div>Creator Earnings: </div>
+            <div>Chain: </div>
           </section>
         </div>
       </main>
