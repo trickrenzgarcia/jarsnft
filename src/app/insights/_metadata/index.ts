@@ -163,11 +163,9 @@ export const rightNavList: RightNavListType[] = [
   {
     href: "/insights/exchange-crypto",
     anchors: [
-      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
-      {
-        name: "Listing an NFT for sale a fixed price",
-        anchor: "#selling-fixed-price",
-      },
+      { name: "Binance", anchor: "binance" },
+      { name: "Coins PH", anchor: "coinsph" },
+      { name: "Bybit", anchor: "bybit" },
     ],
   },
   {

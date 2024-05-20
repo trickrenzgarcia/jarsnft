@@ -1,8 +1,6 @@
 "use client";
 
-import { PageNextButton } from "./_components";
 import { P } from "./_components/TailwindTags";
-// import { rightNavList } from '../_metadata'
 
 export default function Page() {
   return (

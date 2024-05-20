@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { leftNavList } from "../_metadata";
-import { usePathname } from "next/navigation";
 import { P } from "../_components/TailwindTags";
 
 const cenExch = [
@@ -92,16 +90,14 @@ const cenExch = [
     ],
     images: [
       "/assets/InsightsAsset/bybit sell1.png",
-      "/assets/InsightsAsset/bybit sell2.png",
+      "/assets/InsightsAsset/bybit sell3.png",
     ],
   },
 ];
 
-// to be fixed: try to make content dynamic or make h2 and p tag have the same className for all
 const Page = () => {
-  const path = usePathname();
   return (
-    <>
+    <div>
       <div>
         <h1 className="mt-4 text-4xl font-bold md:text-5xl">
           Exchange Cryptocurrency
@@ -112,7 +108,7 @@ const Page = () => {
         </h3>
       </div>
       <div>
-        <div>
+        <div id="binance">
           <h2 className="my-6 text-2xl font-bold">Binance</h2>
           <P>
             {`It is widely-known popular crypto exchanging platform that having 128+ Million users in the platform. 
@@ -121,8 +117,19 @@ const Page = () => {
           </P>
           {displaySteps("binance")}
         </div>
-        <div>
+        <div id="coinsph">
           <h2 className="my-6 text-2xl font-bold">Coins PH</h2>
+          <P>
+            {`Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s
+            with the release of Letraset sheets containing Lorem Ipsum passages,
+            and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum.`}
+          </P>
           <P>
             {`Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
@@ -143,7 +150,7 @@ const Page = () => {
           </h3>
           {displaySteps("coinsphsell")}
         </div>
-        <div>
+        <div id="bybit">
           <h2 className="my-6 text-2xl font-bold">Bybit</h2>
           <P>
             {`Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -163,7 +170,7 @@ const Page = () => {
           {displaySteps("bybitsell")}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
@@ -194,8 +201,8 @@ function displaySteps(props: string) {
                       minWidth: 200,
                       maxHeight: 550,
                     }}
-                    quality={80}
-                    className="m-5 rounded-lg lg:h-auto lg:w-[15rem]"
+                    quality={90}
+                    className="m-5 rounded-lg lg:h-auto lg:w-[15rem]" // lg:h-[20rem]
                   />
                 </div>
               ))}
