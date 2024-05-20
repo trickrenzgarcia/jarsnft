@@ -222,6 +222,7 @@ export default function PlaceBidButton({ nft, auctionListing, loadingAuction }: 
                           className='input-class'
                         />
                       </FormControl>
+                      <FormMessage className='text-red-600' />
                     </FormItem>
                   )}
                 />

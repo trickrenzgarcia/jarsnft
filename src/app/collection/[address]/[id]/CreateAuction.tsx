@@ -228,7 +228,7 @@ export default function CreateAuction({ setSellState }: CreateAuctionProps) {
                       />
                     </PopoverContent>
                   </Popover>
-                  <FormMessage />
+                  <FormMessage className='text-red-600'/>
                 </FormItem>
               )}
             />
@@ -251,7 +251,7 @@ export default function CreateAuction({ setSellState }: CreateAuctionProps) {
                     className='input-class'
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className='text-red-600' />
               </FormItem>
             )}
           />
@@ -272,7 +272,7 @@ export default function CreateAuction({ setSellState }: CreateAuctionProps) {
                     className='input-class'
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className='text-red-600' />
               </FormItem>
             )}
           />

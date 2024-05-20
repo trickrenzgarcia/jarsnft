@@ -230,7 +230,7 @@ export default function CreateDirectListing({ setSellState }: CreateDirectListin
                       />
                     </PopoverContent>
                   </Popover>
-                  <FormMessage />
+                  <FormMessage className='text-red-600' />
                 </FormItem>
               )}
             />
@@ -253,7 +253,7 @@ export default function CreateDirectListing({ setSellState }: CreateDirectListin
                     className='input-class'
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className='text-red-600' />
               </FormItem>
             )}
           />

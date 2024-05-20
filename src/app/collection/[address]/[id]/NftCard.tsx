@@ -16,6 +16,7 @@ import BuyButton from "./BuyButton";
 import { getMaticPriceInPHP } from "@/lib/core/coingecko";
 import SellButton from "./SellButton";
 import PlaceBidButton from "./PlaceBidButton";
+import AuctionEndTime from "./AuctionEndTime";
 
 export default function NftCard({ address, id }: { address: string; id: string; }) {
   const [amountInPhp, setAmountInPhp] = useState<string>("");
@@ -144,20 +145,24 @@ export default function NftCard({ address, id }: { address: string; id: string; 
                         </p>
                       </div>
                     ) : auctionListing && auctionListing[0] ? (
-                      <div className="flex items-center gap-1">
-                        <Image
-                          src="/assets/cryptocurrency/polygon-matic.png"
-                          width={20}
-                          height={20}
-                          alt="Polygon"
-                        />
-                        <p className="text-2xl font-bold">
-                          {auctionListing[0].minimumBidCurrencyValue.displayValue} {auctionListing[0].minimumBidCurrencyValue.symbol}
-                          <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
-                            {" "}
-                            (PHP {amountInPhp})
-                          </span>
-                        </p>
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-1">
+                          <Image
+                            src="/assets/cryptocurrency/polygon-matic.png"
+                            width={20}
+                            height={20}
+                            alt="Polygon"
+                          />
+                          <p className="text-2xl font-bold">
+                            {auctionListing[0].minimumBidCurrencyValue.displayValue} {auctionListing[0].minimumBidCurrencyValue.symbol}
+                            <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
+                              {" "}
+                              (PHP {amountInPhp})
+                            </span>
+                          </p>
+                        </div>
+                        
+                        <AuctionEndTime endTimeInSeconds={auctionListing[0].endTimeInSeconds} />
                       </div>
                     ) : (
                       <p className="text-2xl font-bold">
