@@ -47,6 +47,19 @@ const cenExch = [
       "/assets/InsightsAsset/CoinsSell2.gif",
     ],
   },
+  {
+    topic: "CoinsPHTransferCrypto",
+    steps: [
+      " Tap on the transfer button.",
+      " Select Deposit Crypto.",
+      " Choose you selected Crypto and save its address.",
+    ],
+    images: [
+      "/assets/InsightsAsset/CoinsTransfer1.gif",
+      "/assets/InsightsAsset/CoinsTransfer2.gif",
+      "/assets/InsightsAsset/CoinsTransfer3.gif",
+    ],
+  },
   // {
   //   topic: "BybitDeposit",
   //   steps: [" Tap Buy or Sell.", " Select Sell Crypto"],
@@ -109,57 +122,131 @@ const Page = () => {
       </div>
       <div>
         <div id="coinsph">
-          <h2 className="my-6 text-2xl font-bold">Coins PH</h2>
-          <P>
-            {`It is a well-known local exchanging platform in the Philippines.
+          <div>
+            <h2 className="my-6 text-2xl font-bold">Coins PH</h2>
+            <P>
+              {`It is a well-known local exchanging platform in the Philippines.
             it offers an easy process of trading of cryptocurrencies, as well as the option to transfer your funds to other online bank accounts such as GCash.
             Coins PH has a KYC feature whereas these features are only allowed for verified accounts.`}{" "}
-            <span className="font-semibold underline ">
-              <a href="https://support.coins.ph/hc/en-us/articles/360000219141-How-do-I-get-my-account-ID-and-selfie-verified">
-                Learn to verify your account here
-              </a>
-            </span>
-          </P>
-          <P>
-            {`The website is easy to use with its user-friendly interface along with its cheap fees compared to other local exchanging platform.
+              <span className="font-semibold underline ">
+                <a href="https://support.coins.ph/hc/en-us/articles/360000219141-How-do-I-get-my-account-ID-and-selfie-verified">
+                  Learn to verify your account here
+                </a>
+              </span>
+            </P>
+            <P>
+              {`The website is easy to use with its user-friendly interface along with its cheap fees compared to other local exchanging platform.
             You can go to their website`}{" "}
-            <span className="font-semibold underline">
-              <a href="https://support.coins.ph/hc/en-us">help center</a>
-            </span>{" "}
-            {` for more information.`}
-          </P>
-          <h2 className="my-6 text-2xl font-bold">Home Page</h2>
-          <Image
-            src="/assets/InsightsAsset/coinsPH homescreen.png"
-            alt="CoinsPH HomePage"
-            width={1080}
-            height={1920}
-            className="max-h-full max-w-full"
-          />
-          <P>
-            <div className="italic">
-              <span className="font-bold">Note:</span>{" "}
-              {` it is recommended to use the App version where it is much easier to navigate and to access. `}
-            </div>
-          </P>
-          <h2 className="my-6 text-2xl font-bold">Why choose Coins PH</h2>
-          <P>
-            {`Because of its range of services, accessibility, and ease of use, Coins.ph is a very attractive option for handling your finances. 
+              <span className="font-semibold underline">
+                <a href="https://support.coins.ph/hc/en-us">help center</a>
+              </span>{" "}
+              {` for more information.`}
+            </P>
+            <h2 className="my-6 text-2xl font-bold">Home Page</h2>
+            <Image
+              src="/assets/InsightsAsset/coinsPH homescreen.png"
+              alt="CoinsPH HomePage"
+              width={1080}
+              height={1920}
+              className="max-h-full max-w-full"
+            />
+            <P>
+              <span className="italic">
+                <h4 className="font-bold">Note: </h4>
+                {` it is recommended to use the App version where it is much easier to navigate and to access anywhere. `}
+              </span>
+            </P>
+          </div>
+          <div>
+            <h2 className="my-6 text-2xl font-bold">Why choose Coins PH</h2>
+            <P>
+              {`Because of its range of services, accessibility, and ease of use, Coins.ph is a very attractive option for handling your finances. 
             You may effortlessly manage bill payments, remittances, and even cryptocurrency transactions all in one location with an intuitive platform that is accessible from a smartphone. 
             Because it is accessible to those without traditional bank accounts as well, it promotes financial inclusion by making necessary services available to a larger group of people. `}
-          </P>
-          <P>
-            {`Additionally, Coins.ph gives users confidence by providing security measures like two-factor authentication and being overseen by the Bangko Sentral ng Pilipinas. 
+            </P>
+            <P>
+              {`Additionally, Coins.ph gives users confidence by providing security measures like two-factor authentication and being overseen by the Bangko Sentral ng Pilipinas. 
             Coins.ph offers a comprehensive solution to satisfy your financial needs, whether you're wanting to receive remittances from overseas, expedite your regular transactions, or investigate investment opportunities in cryptocurrencies like Bitcoin and Ethereum.`}
-          </P>
-          <h3 className="text:md m-5 text-center font-bold xl:text-2xl">
-            Steps in Buying a crypto
-          </h3>
-          {displaySteps("coinsphbuy")}
-          <h3 className="text:md m-5 text-center font-bold xl:text-2xl">
+            </P>
+
+            <h2 className="my-6 text-2xl font-bold">
+              How to start with Coins PH
+            </h2>
+            <P>
+              {`After you have created and verified your account, you will be allowed to trade cryptocurrency that you have in your wallet.
+          Before that, you'll need to transfer your funds from your metamask wallet. It is very easy.`}
+            </P>
+            {displaySteps("coinsphTransferCrypto")}
+            <P>
+              {`Save and paste the address that was given and paste it to your metamask wallet, then confirm your transaction. `}
+            </P>
+            <div className="flex flex-col items-center">
+              <p className="lg:text-md text-center text-sm">
+                <span className="font-bold">Note: </span>Paste your wallet
+                address here.
+              </p>
+              <Image
+                src="/assets/InsightsAsset/Metamask Send.png"
+                alt="CoinsPH HomePage"
+                width={1080}
+                height={1920}
+                className="mt-5 max-h-[20rem] max-w-[15rem]"
+              />
+            </div>
+          </div>
+          <div>
+            <h2 className="my-6 text-2xl font-bold">
+              How to start with Coins PH
+            </h2>
+            <P>
+              {`To be able to make use of CoinsPH's services, your account should have sufficient funds to be able to Buy, Sell, and choose any of CoinsPH's services.`}
+            </P>
+            <div className="flex flex-col items-center">
+              <p className="lg:text-md text-center text-sm">
+                <span className="font-bold">Transfer Options: </span>
+              </p>
+              <Image
+                src="/assets/InsightsAsset/Coins transfer options.png"
+                alt="CoinsPH HomePage"
+                width={1080}
+                height={1920}
+                className="center mt-3 max-h-[20rem] max-w-[15rem]"
+              />
+            </div>
+            <P>{`You can Load money to your wallet by using the Cash In option. The following are the available stores that are affliated with CoinsPH.
+            Choose where you will load money to your wallet.`}</P>
+            <h3 className="text:md my-5 font-bold xl:text-lg">Cash In </h3>
+            <ul className="-mt-2 ml-14 list-disc text-gray-300">
+              <li>7-Eleven CLiQQ</li>
+              <li>Bayad Center</li>
+              <li>Cebuana Lhuillier</li>
+              <li>GCash via DragonPay</li>
+              <li>M Lhuillier ePay</li>
+              <li>Palawan Express Pera Padala</li>
+              <li>TouchPay</li>
+              <li>UnionBank</li>
+            </ul>
+            <h3 className="text:md my-5 font-bold xl:text-lg">Cash Out </h3>
+            <P>{`Cashing out is processed through various banks. Here are a few choices to pick. You can also check on their Help Center for more information.`}</P>
+            <ul className="-mt-2 ml-14 list-disc text-gray-300">
+              <li>GCash (Recommended)</li>
+              <li>BPI</li>
+              <li>Union Bank</li>
+            </ul>
+            <P>{`Now that your wallet has your desired cryptocurrency you are now able to make your transaction in the CoinsPH app.
+            To be able to exchange your earned cryptocurrency, follow these following steps:`}</P>
+          </div>
+          <h3 className="text:md m-5 text-center font-bold xl:text-lg">
             Steps in Selling your crypto
           </h3>
           {displaySteps("coinsphsell")}
+          <P>{`Congrats! you can now check your wallet balance and be able to transfer it to your Gcash Account or use it to pay for the services that Coins PH can offer.`}</P>
+          <P>{`Of course we can also do the opposite.
+          If you want to exchange our local currency into any cryptocurrency you can follow the following steps:`}</P>
+          <h3 className="text:md m-5 text-center font-bold xl:text-lg">
+            Steps in Buying a crypto
+          </h3>
+          {displaySteps("coinsphbuy")}
         </div>
         <div id="bybit">
           <h2 className="my-6 text-2xl font-bold">Bybit</h2>
