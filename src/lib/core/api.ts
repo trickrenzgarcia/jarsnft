@@ -28,7 +28,7 @@ export class JarsAPI {
   constructor(
     private baseUrl: string,
     private options: JarsOptions,
-  ) {}
+  ) { }
 
   private async request<TData>(
     endpoint: string,
