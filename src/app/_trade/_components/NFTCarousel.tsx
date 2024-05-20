@@ -1,11 +1,4 @@
 import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -13,7 +6,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import React from "react";
 import NFTCard from "./NFTCard";
 import { NFTCard as NFTCardType } from "../_types";
@@ -40,35 +32,6 @@ export default function NFTCarousel({
     <div>
       <Carousel className="w-full " opts={{ align: align }}>
         <CarouselContent className="">
-          <CarouselItem
-            className={cn(
-              "basis-[75%] md:basis-1/2 lg:basis-1/4",
-              (withExtra && "flex") || "hidden",
-            )}
-          >
-            <Card className={cn("mx-auto h-[480px] flex-col justify-around")}>
-              <CardHeader>
-                <CardTitle className="text-3xl">
-                  Get Your Digital Assets Now
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="mb-14 px-6">
-                <p>
-                  Dive into our curated collection of one-of-a-kind digital
-                  assets! Explore, buy, and sell unique NFTs within our vibrant
-                  marketplace.
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Link
-                  className="rounded-md bg-neutral-900 px-6 py-3 text-white hover:bg-neutral-800 active:bg-neutral-950"
-                  href="#"
-                >
-                  Explore
-                </Link>
-              </CardFooter>
-            </Card>
-          </CarouselItem>
           {collections.map((data, index) => (
             <CarouselItem
               key={index}
