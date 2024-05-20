@@ -42,7 +42,7 @@ export default function CollectionRows({
 
       <Link
         href={collectionHref}
-        className="grid grid-cols-10 items-center py-4 transition-background hover:bg-gray-200 dark:hover:bg-gray-900"
+        className="grid h-24 grid-cols-10 items-center transition-background hover:bg-gray-200 dark:hover:bg-gray-900"
       >
         <div className="col-span-2 flex items-center gap-4">
           <Image

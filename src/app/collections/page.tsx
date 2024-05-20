@@ -1,35 +1,30 @@
-"use client";
-
-import CollectionRows from "./_components/CollectionRows";
+import CollectionTable from "./_components/CollectionTable";
 import DropdownButton from "./_components/DropdownButton";
-import PaginationUI from "./_components/PaginationUI";
-import { useEffect, useState } from "react";
-import { faker } from "@faker-js/faker";
+import { use } from "react";
 
-export default function Page() {
-  const [data, setData] = useState<{ image: string; isVerified: boolean }[]>(
-    [],
-  );
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+async function getNFTCollections() {
+  return (
+    await fetch("http://localhost:5000/deploy/nft-collection", {
+      // cache: "no-store",
+    })
+  ).json();
+}
 
-  const lastItemIndex = currentPage * itemsPerPage;
-  const firstItemIndex = lastItemIndex - itemsPerPage;
-  const currentItems = data.slice(firstItemIndex, lastItemIndex);
+export default function Page({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const nftCollections = use(getNFTCollections());
+  const page = searchParams["page"] ?? "1";
+  const perPage = searchParams["per_page"] ?? "5";
 
-  function generateFakeData() {
-    const newImage = faker.image.urlPicsumPhotos();
-    const fakerBoolean = faker.datatype.boolean();
-    return { image: newImage, isVerified: fakerBoolean };
-  }
-
-  useEffect(() => {
-    const newData = Array.from({ length: 50 }, generateFakeData);
-    setData(newData);
-  }, []);
+  const start = (Number(page) - 1) * Number(perPage);
+  const end = start + Number(perPage);
+  const entries = nftCollections.slice(start, end);
 
   return (
-    <div>
+    <div suppressHydrationWarning={true}>
       <h1 className="mb-10 text-4xl font-bold">Collections</h1>
 
       <DropdownButton />
@@ -45,64 +40,11 @@ export default function Page() {
         <p className="col-span-2 text-right">Listed</p>
       </div>
 
-      {/* Collections Rows */}
-      {currentItems.map((item, i) => {
-        return (
-          <CollectionRows
-            collectionHref="#"
-            collectionLogoSrc={item.image}
-            collectionName={faker.company.name()}
-            isVerified={item.isVerified}
-            floorPrice={faker.number.float({
-              min: 1,
-              max: 10,
-              fractionDigits: 2,
-            })}
-            floorChange={faker.number.float({
-              min: -5,
-              max: 5,
-              fractionDigits: 2,
-            })}
-            volume={faker.number.float({
-              min: 100,
-              max: 2000,
-              fractionDigits: 2,
-            })}
-            volumeChange={faker.number.float({
-              min: -70,
-              max: 70,
-              fractionDigits: 2,
-            })}
-            sales={faker.number.float({
-              min: 10,
-              max: 500,
-              fractionDigits: 0,
-            })}
-            salesChange={faker.number.float({
-              min: -70,
-              max: 70,
-              fractionDigits: 2,
-            })}
-            allCurrentListedNFTs={faker.number.float({
-              min: 200,
-              max: 800,
-              fractionDigits: 0,
-            })}
-            allCurrentNFTS={faker.number.float({
-              min: 3000,
-              max: 20000,
-              fractionDigits: 0,
-            })}
-            key={i}
-          />
-        );
-      })}
-
-      <PaginationUI
-        totalItems={data.length}
-        itemsPerPage={itemsPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
+      <CollectionTable
+        collectionsLength={nftCollections.length}
+        collections={entries}
+        start={start}
+        end={end}
       />
     </div>
   );
