@@ -1,5 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
+import { TypewriterEffect } from "../ui/typewriter-effect";
+
+const words = [
+  {
+    text: "Unlock",
+  },
+  {
+    text: "the",
+  },
+  {
+    text: "Future:",
+  },
+  {
+    text: "Create",
+  },
+  {
+    text: "Collect",
+  },
+  {
+    text: "and",
+  },
+  {
+    text: "Conquer",
+  },
+  {
+    text: "with",
+  },
+  {
+    text: "JarsNFT !",
+    className: "text-purple-600 dark:text-purple-600",
+  },
+];
 
 export default function Hero() {
   return (
@@ -12,19 +44,10 @@ export default function Hero() {
           alt="image of a banner"
         />
       </div>
-      <div className="absolute z-10 ml-4 mt-20 rounded-xl bg-white/85 p-6 dark:bg-black/85 sm:ml-28 sm:p-8">
+      <div className="absolute z-10 ml-2 mt-6 w-[500px] rounded-xl bg-white/85 p-2 dark:bg-black/85 sm:ml-28 sm:p-8">
         <h1 className="text-xl font-bold sm:text-[2rem] sm:leading-normal">
-          Unlock the Future: Collect, Create,
+          <TypewriterEffect words={words} />
         </h1>
-        <h1 className="text-xl font-bold sm:text-[2rem] sm:leading-normal">
-          and Conquer with NFTs!
-        </h1>
-        <Link
-          className="mt-8 block text-sm transition-colors hover:text-purple-600 sm:text-lg"
-          href="#"
-        >
-          Discover ►
-        </Link>
       </div>
     </section>
   );

@@ -13,10 +13,6 @@ import React from "react";
 export default function SideBarHamburger() {
   const [isOpen, setIsOpen] = useState(false);
   const path = usePathname();
-  const [item] = leftNavList.map((item) =>
-    item.child.map((child) => console.log(path === child.href)),
-  );
-  console.log(path);
 
   function handleClick(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
