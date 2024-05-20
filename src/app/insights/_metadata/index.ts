@@ -163,9 +163,9 @@ export const rightNavList: RightNavListType[] = [
   {
     href: "/insights/exchange-crypto",
     anchors: [
-      { name: "Binance", anchor: "binance" },
       { name: "Coins PH", anchor: "coinsph" },
       { name: "Bybit", anchor: "bybit" },
+      { name: "Binance", anchor: "binance" },
     ],
   },
   {

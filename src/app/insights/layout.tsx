@@ -49,10 +49,10 @@ export default function LearnLayout({ children }: LearnProps) {
   return (
     <main className="flex-1">
       <LearnNavbar />
-      <div className="flex-1 items-start border-t-2 lg:container lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-6 xl:grid-cols-[240px_minmax(0,1fr)] xl:gap-10">
+      <div className="flex-1 items-start border-t-2 xl:container lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-6 xl:grid-cols-[240px_minmax(0,1fr)] xl:gap-10">
         <SideBarHamburger />
         <SideNavLeft />
-        <main className="ml-5 mr-5 mt-5 lg:gap-10 xl:grid xl:grid-cols-[1fr_300px]">
+        <main className="ml-5 mr-5 mt-5 lg:gap-10 xl:grid xl:grid-cols-[1fr_250px]">
           <div className="min-w-full sm:mt-16 lg:mt-0">
             <div className="container md:my-5">
               <PageNavTopic color="#A519D7" />
