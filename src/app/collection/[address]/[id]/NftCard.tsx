@@ -123,7 +123,7 @@ export default function NftCard({ address, id }: { address: string; id: string; 
               <div className="grid grid-cols-2 gap-3 md:gap-0">
                 <div className="col-span-2 flex flex-col gap-2 md:col-span-1">
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    {listings && listings[0] ? "Current Price" : auctionListing && auctionListing[0] ? "Minimum Bid" : "Current Price" }
+                    {listings && listings[0] ? "Current Price" : auctionListing && auctionListing[0] ? "Buyout Price" : "Current Price" }
                   </p>
                   <div className="flex flex-col justify-center gap-1">
                     {loadingListings ? (
@@ -154,13 +154,15 @@ export default function NftCard({ address, id }: { address: string; id: string; 
                             alt="Polygon"
                           />
                           <p className="text-2xl font-bold">
-                            {auctionListing[0].minimumBidCurrencyValue.displayValue} {auctionListing[0].minimumBidCurrencyValue.symbol}
+                            {auctionListing[0].buyoutCurrencyValue.displayValue} {auctionListing[0].buyoutCurrencyValue.symbol}
                             <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
                               {" "}
                               (PHP {amountInPhp})
                             </span>
                           </p>
                         </div>
+
+                        
                         
                         <AuctionEndTime endTimeInSeconds={auctionListing[0].endTimeInSeconds} />
                       </div>

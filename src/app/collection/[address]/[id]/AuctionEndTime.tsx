@@ -16,7 +16,7 @@ export default function AuctionEndTime({ endTimeInSeconds }: { endTimeInSeconds:
   return (
     <div>
       <p className='text-sm text-gray-500 dark:text-gray-400'>End bidding:</p>
-      <p className="text-sm text-gray-500 dark:text-gray-400 font-bold">
+      <p className="text-sm font-bold">
         {formattedEndTime}
       </p>
     </div>

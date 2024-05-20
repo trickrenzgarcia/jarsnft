@@ -5,7 +5,7 @@ import { cn, formatNumber } from "@/lib/utils";
 import Image from "next/image";
 import { MdVerified } from "react-icons/md";
 import { ReadMore } from "./ReadMore";
-import React from "react";
+import React, { useEffect } from "react";
 // import { FaEthereum } from "react-icons/fa";
 import { SiPolygon } from "react-icons/si";
 import TooltipMsg from "@/components/(interfaces)/TooltipMsg";
@@ -18,6 +18,7 @@ import {
 } from "@thirdweb-dev/react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { NFTCollection } from "@/lib/core/types";
+import { useCollectionContext } from "./CollectionProvider";
 
 type BannerMetadataProps = {
   address: string;
@@ -34,16 +35,25 @@ export default function NFTBannerMetadata({
   collection,
 }: BannerMetadataProps) {
   const { contract } = useContract(address);
+  const { totalListingCount } = useCollectionContext();
   const { data, isLoading, isError } = useContractMetadata(
     contract,
   ) as QueryMetadata;
-  const [details] = React.useState([
+  const [details, setDetails] = React.useState([
     { detail: "Total Volume", value: 1000000, currency: "MATIC" },
     { detail: "Floor Price", value: 50, currency: "MATIC" },
     { detail: "Best Offer", value: 51, currency: "MATIC" },
-    { detail: "Listed", value: 10 },
+    { detail: "Listed", value: totalListingCount },
     { detail: "Owners(Unique)", value: 1000 },
   ]);
+
+  useEffect(() => {
+    setDetails((prevDetails) =>
+      prevDetails.map((item) =>
+        item.detail === "Listed" ? { ...item, value: totalListingCount } : item
+      )
+    );
+  }, [totalListingCount]);
 
   if (isLoading) {
     return (
