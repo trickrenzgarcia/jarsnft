@@ -44,16 +44,10 @@ export default function Hero() {
           alt="image of a banner"
         />
       </div>
-      <div className="absolute z-10 ml-2 mt-2 w-[500px] rounded-xl bg-white/85 p-2 dark:bg-black/85 sm:ml-28 sm:p-8">
+      <div className="absolute z-10 ml-2 mt-6 w-[500px] rounded-xl bg-white/85 p-2 dark:bg-black/85 sm:ml-28 sm:p-8">
         <h1 className="text-xl font-bold sm:text-[2rem] sm:leading-normal">
           <TypewriterEffect words={words} />
         </h1>
-        <Link
-          className="mt-8 block text-sm transition-colors hover:text-purple-600 sm:text-lg"
-          href="#"
-        >
-          Discover ►
-        </Link>
       </div>
     </section>
   );
