@@ -1,8 +1,8 @@
 "use client"
 
 import { NFT_MARKETPLACE } from '@/types/constant';
-import { useContract, useCreateDirectListing } from '@thirdweb-dev/react';
-import React, { useState } from 'react'
+import { Web3Button, useContract, useCreateDirectListing } from '@thirdweb-dev/react';
+import React from 'react'
 import { useNftContext } from './nft-provider';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
@@ -11,7 +11,6 @@ import { ethers } from 'ethers';
 
 import { addDays, format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
-import { DateRange } from "react-day-picker"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
@@ -22,6 +21,10 @@ import {
 } from "@/components/ui/popover"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { toast } from 'sonner';
+import './input.css';
+import { LoginWelcomeScreen } from '@/components/(interfaces)/ConnectWeb3';
+import { useRouter } from 'next/navigation';
 
 type CreateDirectListingProps = {
   sellState: 'idle' | 'confirmation' | 'success';
@@ -33,7 +36,7 @@ const DirectListingFormSchema = z.object({
     message: "Invalid Address"
   }),
   tokenId: z.string().min(1),
-  price: z.string().min(1),
+  price: z.string().min(1, { message: "Price is required" }).refine(value => parseFloat(value) > 0, { message: "Price must be greater than 0." }),
   startTimestamp: z.date(),
   endTimestamp: z.date()
 }).refine(data => data.endTimestamp > data.startTimestamp, {
@@ -41,7 +44,8 @@ const DirectListingFormSchema = z.object({
   path: ["endTimestamp"] // set the path of the error
 })
 
-export default function CreateDirectListing({ sellState, setSellState }: CreateDirectListingProps) {
+export default function CreateDirectListing({ setSellState }: CreateDirectListingProps) {
+  const router = useRouter();
   const { nft, marketPlaceContract, collection, contractAddress, tokenId } = useNftContext();
 
   const { contract: nftCollection } = useContract(contractAddress);
@@ -59,11 +63,6 @@ export default function CreateDirectListing({ sellState, setSellState }: CreateD
     }
   });
 
-  function addDays(date: Date, days: number) {
-    const newDate = new Date(date);
-    newDate.setDate(newDate.getDate() + 1);
-    return newDate;
-  }
 
   async function checkAndProvideApproval() {
     const hasApproval = await nftCollection?.call(
@@ -86,27 +85,70 @@ export default function CreateDirectListing({ sellState, setSellState }: CreateD
   }
 
   async function handleOnSubmit(data: z.infer<typeof DirectListingFormSchema>) {
+    setSellState("confirmation");
+    await checkAndProvideApproval();
+    const txResult = await createDirectListing({
+      assetContractAddress: data.nftContractAddress,
+      tokenId: data.tokenId,
+      pricePerToken: data.price,
+      startTimestamp: new Date(data.startTimestamp),
+      endTimestamp: new Date(data.endTimestamp)
+    }).then((data) => {
+      // success state
+      setSellState("success");
+      toast.success("Success!", {
+        description: "Your NFT has been listed to the marketplace.",
+        position: "bottom-right",
+        duration: 2000,
+        onAutoClose(toast) {
+          setSellState('idle');
+          router.refresh();
+        },
+      });
+    }).catch((e: Error) => {
+      // error state
+      setSellState("idle");
+      if(e.message.includes("Reason: missing revert data in call exception; Transaction reverted without a reason string")) {
+        toast.error("Failed!", {
+          description: `Insufficient funds for nft price.`,
+          position: "bottom-right",
+        })
+      } else if(e.message.includes("Reason: user rejected transaction")) {
+        toast.error("Failed!", {
+          description: "The user denied the transaction or the transaction failed. Please try again.",
+          position: "bottom-right",
+        });
+      } else {
+        toast.error("Failed!", {
+          description: "An error occurred while processing your request. Please try again.",
+          position: "bottom-right",
+        });
+      }
+    });
 
-    console.log(data.startTimestamp);
-    // await checkAndProvideApproval();
-    // const txResult = await createDirectListing({
-    //   assetContractAddress: data.nftContractAddress,
-    //   tokenId: data.tokenId,
-    //   pricePerToken: data.price,
-    //   startTimestamp: new Date(data.startTimestamp),
-    //   endTimestamp: new Date(data.endTimestamp)
-    // });
-
-    // return txResult;
+    return txResult;
   }
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const invalidChars = ['+', '-', 'e', 'E'];
+    if (invalidChars.includes(event.key)) {
+      event.preventDefault();
+    }
+  };
+
+  const handlePaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
+    const paste = (event.clipboardData).getData('text');
+    if (/[eE\+\-\*\/]/.test(paste)) {
+      event.preventDefault();
+    }
+  };
 
   return (
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleOnSubmit)}>
 
-          <div className='flex justify-between'>
+          <div className='flex justify-between mb-5'>
             <FormField
               control={form.control}
               name="startTimestamp"
@@ -199,16 +241,48 @@ export default function CreateDirectListing({ sellState, setSellState }: CreateD
             control={form.control}
             name="price"
             render={({ field }) => (
-              <FormItem className='flex flex-col'>
+              <FormItem className='flex flex-col mb-5'>
                 <FormLabel>Price</FormLabel>
                 <FormControl>
-                  <Input placeholder="0.0" {...field} />
+                  <Input 
+                    type="number" 
+                    placeholder="0.0" 
+                    {...field} 
+                    onKeyDown={handleKeyDown}
+                    onPaste={handlePaste}
+                    className='input-class'
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Web3Button 
+            contractAddress={NFT_MARKETPLACE}
+            action={async () => {
+              await form.handleSubmit(handleOnSubmit)();
+            }}
+            onSuccess={(txResult) => {
+              console.log("Success", txResult);
+            }}
+            style={{
+              width: "100%",
+              fontSize: "14px"
+            }}
+            connectWallet={{
+              btnTitle: "Connect Wallet",
+              modalTitle: "JarsNFT",
+              showThirdwebBranding: false,
+              welcomeScreen: () => <LoginWelcomeScreen />,
+              style: {
+                paddingTop: "12px",
+                paddingBottom: "12px",
+                minWidth: "100px",
+                maxHeight: "53px",
+              },
+              modalTitleIconUrl: "",
+            }}
+          >CONFIRM AND SELL</Web3Button>
         </form>
       </Form>
       
