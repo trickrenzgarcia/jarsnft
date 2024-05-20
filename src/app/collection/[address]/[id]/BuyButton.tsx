@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react'
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -50,15 +49,21 @@ export default function BuyButton({ nft, listings }: BuyButtonProps) {
       txResult = await marketPlaceContract?.directListings.buyFromListing(
         listings[0].id,
         1
-      ).then(() => {
+      ).then((data) => {
         console.log("success");
-      }).catch((e) => {
+      }).catch((e: Error) => {
         setBuyState('idle');
-        toast.error("Failed!", {
-          description: "The user denied the transaction or the transaction failed. Please try again.",
-          position: "bottom-right",
-          closeButton: true,
-        });
+        if(e.message.includes("Reason: missing revert data in call exception; Transaction reverted without a reason string")) {
+          toast.error("Failed!", {
+            description: `Insufficient funds for nft price.`,
+            position: "bottom-right",
+          })
+        } else if(e.message.includes("Reason: user rejected transaction")) {
+          toast.error("Failed!", {
+            description: "The user denied the transaction or the transaction failed. Please try again.",
+            position: "bottom-right",
+          });
+        }
       });
     } else {
       throw new Error("No listing found");
@@ -127,7 +132,7 @@ export default function BuyButton({ nft, listings }: BuyButtonProps) {
           </div>
           <div className="flex justify-between my-6 px-4">
             <p>Your MATIC balance</p>
-            <p>{balance ? `${parseFloat(balance.displayValue).toFixed(3)} ${balance.symbol}` : "..." }</p>
+            <p>{balance ? `${parseFloat(balance.displayValue).toFixed(3)} ${balance.symbol}` : "Not Logged In" }</p>
           </div>
 
           {/* Buy button action */}
