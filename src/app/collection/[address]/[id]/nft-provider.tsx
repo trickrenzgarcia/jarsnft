@@ -1,9 +1,9 @@
 "use client"
 
 import { NFT_MARKETPLACE } from '@/types/constant';
-import { MarketplaceV3, NFT, useBalance, useContract, useContractMetadata, useNFT } from '@thirdweb-dev/react';
+import { MarketplaceV3, NFT, Token, useAddress, useBalance, useContract, useContractMetadata, useNFT, useOwnedNFTs } from '@thirdweb-dev/react';
 import { BigNumber } from 'ethers';
-import React, { createContext, use, useMemo } from 'react'
+import React, { createContext, use, useMemo, useState } from 'react'
 
 type NftProviderProps = {
   children: React.ReactNode;
@@ -26,6 +26,11 @@ type NftItemContextProps = {
     displayValue: string;
   } | undefined;
   loadingBalance: boolean;
+  connectedAddress: string | undefined;
+  ownedNFTs: NFT[] | undefined;
+  loadingOwnedNFTs: boolean;
+  contractAddress: string;
+  tokenId: string;
 }
 
 const NftItemContext = createContext<NftItemContextProps | undefined>(undefined);
@@ -36,6 +41,10 @@ export default function NftProvider({ children, address, id }: NftProviderProps)
   const { data: nft, isLoading: loadingNft} = useNFT(nftContract, id);
   const { contract: marketPlaceContract, isLoading: loadingMarketplace } = useContract(NFT_MARKETPLACE, "marketplace-v3");
   const { data: balance, isLoading: loadingBalance } = useBalance();
+  const connectedAddress = useAddress();
+  const { data: ownedNFTs, isLoading: loadingOwnedNFTs } = useOwnedNFTs(nftContract, connectedAddress);
+  const [contractAddress] = useState(address);
+  const [tokenId] = useState(id);
 
   const nftMemo = useMemo(() => {
     return {
@@ -47,8 +56,13 @@ export default function NftProvider({ children, address, id }: NftProviderProps)
       loadingMarketplace: loadingMarketplace,
       balance: balance,
       loadingBalance: loadingBalance,
+      connectedAddress: connectedAddress,
+      ownedNFTs: ownedNFTs,
+      loadingOwnedNFTs: loadingOwnedNFTs,
+      contractAddress: contractAddress,
+      tokenId: tokenId
     };
-  }, [nft, collection, marketPlaceContract, loadingNft, loadingCollection, loadingMarketplace]);
+  }, [nft, collection, marketPlaceContract, loadingNft, loadingCollection, loadingMarketplace, ownedNFTs, loadingOwnedNFTs, connectedAddress, balance, loadingBalance]);
 
   return <NftItemContext.Provider value={nftMemo}>{children}</NftItemContext.Provider>
 }

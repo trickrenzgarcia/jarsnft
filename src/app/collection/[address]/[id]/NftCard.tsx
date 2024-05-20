@@ -2,8 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useNftContext } from "./nft-provider";
-import SellButton from "./SellButton";
-import { ThirdwebNftMedia, useValidDirectListings } from "@thirdweb-dev/react";
+import { NFT, ThirdwebNftMedia, useValidDirectListings } from "@thirdweb-dev/react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { MdArrowBackIosNew, MdVerified } from "react-icons/md";
@@ -14,17 +13,12 @@ import { BoringAvatar } from "@/components/(interfaces)";
 import { displayName, shortenAddress, truncate } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import BuyButton from "./BuyButton";
-import { toast } from "sonner";
 import { getMaticPriceInPHP } from "@/lib/core/coingecko";
+import SellButton from "./SellButton";
 
-export default function NftCard({
-  address,
-  id,
-}: {
-  address: string;
-  id: string;
-}) {
+export default function NftCard({ address, id }: { address: string; id: string; }) {
   const [amountInPhp, setAmountInPhp] = useState<string>("");
+  const [filteredNft, setFilteredNft] = useState<NFT | undefined>();
   const {
     nft,
     loadingNft,
@@ -32,6 +26,9 @@ export default function NftCard({
     loadingCollection,
     marketPlaceContract,
     loadingMarketplace,
+    connectedAddress,
+    ownedNFTs,
+    loadingOwnedNFTs
   } = useNftContext();
   const { data: listings, isLoading: loadingListings } = useValidDirectListings(
     marketPlaceContract,
@@ -50,7 +47,13 @@ export default function NftCard({
         },
       );
     }
-  }, []);
+  }, [listings, loadingListings]);
+
+  useEffect(() => {
+    if(ownedNFTs) {
+      setFilteredNft(ownedNFTs.find((nft) => nft.metadata.id === id));
+    }
+  }, [ownedNFTs, loadingOwnedNFTs, connectedAddress]);
 
   if (loadingCollection) {
     return <div>Loading collection...</div>;
@@ -99,7 +102,7 @@ export default function NftCard({
               </p>
               {nft ? (
                 <p className="cursor-pointer text-medium font-bold hover:underline">
-                  {nft.owner ? displayName(nft.owner) : "..."}
+                  {nft.owner ? displayName(nft.owner) : "Not logged in"}
                 </p>
               ) : (
                 <Skeleton className="h-4 w-8" />
@@ -151,7 +154,9 @@ export default function NftCard({
                     </div>
                   ) : (
                     <div className="flex flex-col gap-2">
-                      {listings && listings[0] && (
+                      {filteredNft ? (
+                        <SellButton nft={nft} contractAddress={address} />
+                      ): listings && listings[0] && (
                         <BuyButton nft={nft} listings={listings} />
                       )}
                       {/* <Button className="w-full" variant="outline" disabled>

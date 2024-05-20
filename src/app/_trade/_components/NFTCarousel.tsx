@@ -10,6 +10,7 @@ import React from "react";
 import NFTCard from "./NFTCard";
 import { NFTCard as NFTCardType } from "../_types";
 import { NFTCollection } from "@/lib/core/types";
+import { faker } from "@faker-js/faker";
 
 type AlignmentOptionType =
   | "start"
@@ -46,8 +47,16 @@ export default function NFTCarousel({
                 image={data.image}
                 name={data.name}
                 verified={false}
-                floor={100}
-                volume={0}
+                floor={faker.number.float({
+                  min: 1,
+                  max: 50,
+                  fractionDigits: 2,
+                })}
+                volume={faker.number.float({
+                  min: 100,
+                  max: 500,
+                  fractionDigits: 2,
+                })}
               />
             </CarouselItem>
           ))}
