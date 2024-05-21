@@ -22,13 +22,14 @@ import { MdVerified } from 'react-icons/md';
 import { Card, CardBody, Tab, Tabs } from '@nextui-org/react';
 import CreateDirectListing from './CreateDirectListing';
 import CreateAuction from './CreateAuction';
+import Image from 'next/image';
 
 type SellButtonProps = {
   nft: NFT | undefined;
   contractAddress: string;
 }
 
-export default function SellButton({ nft, contractAddress }: SellButtonProps) {
+export default function SellButton({ nft }: SellButtonProps) {
   const router = useRouter();
   const { collection } = useNftContext();
   const [sellState, setSellState] = useState<'idle' | 'confirmation' | 'success'>('idle');
@@ -41,7 +42,7 @@ export default function SellButton({ nft, contractAddress }: SellButtonProps) {
         <Button className='w-full'>Sell</Button>
       </AlertDialogTrigger>
 
-      <AlertDialogContent className='min-w-[420px] w-[550px] p-0'>
+      <AlertDialogContent className='min-w-[420px] w-[500px] p-0'>
         {/* Header */}
         <AlertDialogHeader className='px-8 pt-8'>
           <div className='flex justify-between items-center'>
@@ -56,7 +57,7 @@ export default function SellButton({ nft, contractAddress }: SellButtonProps) {
 
         {/* Body */}
         <div className="flex justify-between px-8 py-4 gap-5">
-          {nft && (
+          {nft?.metadata.image && (
             <ThirdwebNftMedia
               metadata={nft.metadata}
               width='100px'
@@ -69,6 +70,14 @@ export default function SellButton({ nft, contractAddress }: SellButtonProps) {
               }}
               requireInteraction
               className="rounded-lg bg-accent/50 border border-accent"
+            />
+          ) || (
+            <Image
+              src="/assets/placeholder/nft_placeholder.svg"
+              width={100}
+              height={100}
+              alt="image of an NFT"
+              className='rounded-lg bg-accent/50 border border-accent'
             />
           )}
 

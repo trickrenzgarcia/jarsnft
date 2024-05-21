@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useNftContext } from "./nft-provider";
-import { NFT, ThirdwebNftMedia, useValidDirectListings } from "@thirdweb-dev/react";
+import { NFT, ThirdwebNftMedia, useValidDirectListings, useValidEnglishAuctions } from "@thirdweb-dev/react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { MdArrowBackIosNew, MdVerified } from "react-icons/md";
@@ -15,6 +15,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import BuyButton from "./BuyButton";
 import { getMaticPriceInPHP } from "@/lib/core/coingecko";
 import SellButton from "./SellButton";
+import PlaceBidButton from "./PlaceBidButton";
+import AuctionEndTime from "./AuctionEndTime";
 
 export default function NftCard({ address, id }: { address: string; id: string; }) {
   const [amountInPhp, setAmountInPhp] = useState<string>("");
@@ -37,6 +39,12 @@ export default function NftCard({ address, id }: { address: string; id: string; 
       tokenId: id,
     },
   );
+
+  const { data: auctionListing, isLoading: loadingAuction } = useValidEnglishAuctions(marketPlaceContract, {
+    tokenContract: address,
+    tokenId: id,
+  })
+
   const router = useRouter();
 
   useEffect(() => {
@@ -47,7 +55,7 @@ export default function NftCard({ address, id }: { address: string; id: string; 
         },
       );
     }
-  }, [listings, loadingListings]);
+  }, [listings, auctionListing]);
 
   useEffect(() => {
     if(ownedNFTs) {
@@ -112,29 +120,51 @@ export default function NftCard({ address, id }: { address: string; id: string; 
 
           <Card className="">
             <CardContent className="w-full p-5">
-              <div className="grid grid-cols-2">
+              <div className="grid grid-cols-2 gap-3 md:gap-0">
                 <div className="col-span-2 flex flex-col gap-2 md:col-span-1">
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Current Price
+                    {listings && listings[0] ? "Current Price" : auctionListing && auctionListing[0] ? "Buyout Price" : "Current Price" }
                   </p>
                   <div className="flex flex-col justify-center gap-1">
                     {loadingListings ? (
                       <Skeleton className="h-10 w-28" />
                     ) : listings && listings[0] ? (
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-baseline gap-1">
                         <Image
                           src="/assets/cryptocurrency/polygon-matic.png"
                           width={20}
                           height={20}
                           alt="Polygon"
                         />
-                        <p className="text-2xl font-bold">
-                          {listings[0].currencyValuePerToken.displayValue}
+                        <p className="text-2xl font-bold flex flex-col">
+                          {listings[0].currencyValuePerToken.displayValue} {listings[0].currencyValuePerToken.symbol}
                           <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
                             {" "}
                             (PHP {amountInPhp})
                           </span>
                         </p>
+                      </div>
+                    ) : auctionListing && auctionListing[0] ? (
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-1">
+                          <Image
+                            src="/assets/cryptocurrency/polygon-matic.png"
+                            width={20}
+                            height={20}
+                            alt="Polygon"
+                          />
+                          <p className="text-2xl font-bold">
+                            {auctionListing[0].buyoutCurrencyValue.displayValue} {auctionListing[0].buyoutCurrencyValue.symbol}
+                            <span className="text-xs font-normal text-gray-500 dark:text-gray-400">
+                              {" "}
+                              (PHP {amountInPhp})
+                            </span>
+                          </p>
+                        </div>
+
+                        
+                        
+                        <AuctionEndTime endTimeInSeconds={auctionListing[0].endTimeInSeconds} />
                       </div>
                     ) : (
                       <p className="text-2xl font-bold">
@@ -147,21 +177,21 @@ export default function NftCard({ address, id }: { address: string; id: string; 
                   </div>
                 </div>
                 <div className="col-span-2 md:col-span-1 ">
-                  {loadingListings ? (
+                  {loadingListings || loadingAuction ? (
                     <div className="flex w-full flex-col gap-2">
                       <Skeleton className="h-10 w-full" />
                       <Skeleton className="h-10 w-full" />
                     </div>
                   ) : (
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-3">
                       {filteredNft ? (
                         <SellButton nft={nft} contractAddress={address} />
-                      ): listings && listings[0] && (
-                        <BuyButton nft={nft} listings={listings} />
+                      ): ((listings && listings[0]) || (auctionListing && auctionListing[0])) &&  (
+                        <BuyButton nft={nft} listings={listings} auctionListing={auctionListing} />
                       )}
-                      {/* <Button className="w-full" variant="outline" disabled>
-                        Make Offer
-                      </Button> */}
+                      {(auctionListing && auctionListing[0]) && (
+                        <PlaceBidButton nft={nft} auctionListing={auctionListing} loadingAuction={loadingAuction} />
+                      )}
                     </div>
                   )}
                 </div>

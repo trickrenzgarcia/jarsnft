@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Pagination,
   PaginationContent,
@@ -7,53 +9,49 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 export default function PaginationUI({
-  totalItems,
-  itemsPerPage,
-  currentPage,
-  setCurrentPage,
+  collectionsLength,
+  start,
+  end,
 }: {
-  totalItems: any;
-  itemsPerPage: any;
-  currentPage: any;
-  setCurrentPage: any;
+  collectionsLength: number;
+  start: number;
+  end: number;
 }) {
-  let pages = [];
-  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
-    pages.push(i);
-  }
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
 
-  function handleNextPage() {
-    if (currentPage < pages.length) {
-      setCurrentPage(currentPage + 1);
-    }
-  }
-
-  function handlePrevPage() {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  }
+  const page = searchParams.get("page") ?? "1";
+  const perPage = searchParams.get("per_page") ?? "5";
 
   return (
     <Pagination className="mt-4">
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious onClick={() => handlePrevPage()} href={"#"} />
+          <PaginationPrevious
+            onClick={() => {
+              if (start > 0)
+                router.push(`/?page=${Number(page) - 1}&per_page=${perPage}`);
+            }}
+            href={`${pathname}/?page=${start > 0 ? Number(page) - 1 : 1}&per_page=${perPage}`}
+          />
         </PaginationItem>
-        {pages.map((page, i) => (
-          <PaginationItem
-            key={i}
-            className={currentPage === page ? "rounded-md bg-neutral-100" : ""}
-          >
-            <PaginationLink onClick={() => setCurrentPage(page)} href={"#"}>
-              {page}
-            </PaginationLink>
-          </PaginationItem>
-        ))}
+        <PaginationItem className="mx-4">
+          {page} / {Math.ceil(10 / Number(perPage))}
+        </PaginationItem>
         <PaginationItem>
-          <PaginationNext onClick={() => handleNextPage()} href={"#"} />
+          <PaginationNext
+            onClick={() => {
+              console.log(end);
+              console.log(collectionsLength);
+              if (end < collectionsLength)
+                router.push(`/?page=${Number(page) + 1}&per_page=${perPage}`);
+            }}
+            href={`${pathname}/?page=${end < collectionsLength ? Number(page) + 1 : Number(page)}&per_page=${perPage}`}
+          />
         </PaginationItem>
       </PaginationContent>
     </Pagination>

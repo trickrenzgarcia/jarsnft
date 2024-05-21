@@ -22,8 +22,8 @@ export default async function CollectionPage({
       <Suspense fallback={<></>}>
         <NFTBannerMetadata address={address} collection={collection} />
       </Suspense>
-      <div className="flex w-full items-start">
-        <section className="relative p-10">
+      <div className="flex w-full items-center">
+        <section className="relative m-14">
           <NFTCards address={address} />
         </section>
       </div>
