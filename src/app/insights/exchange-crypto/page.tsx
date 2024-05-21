@@ -136,7 +136,7 @@ const Page = () => {
             </P>
             <P>
               {`The website is easy to use with its user-friendly interface along with its cheap fees compared to other local exchanging platform.
-            You can go to their website`}{" "}
+            You can go to their website's`}{" "}
               <span className="font-semibold text-[#A519D7] underline">
                 <a href="https://support.coins.ph/hc/en-us">help center</a>
               </span>{" "}
@@ -196,10 +196,11 @@ const Page = () => {
           </div>
           <div>
             <h2 className="my-6 text-2xl font-bold">
-              How to start with Coins PH
+              How to deposit your wallet
             </h2>
             <P>
-              {`To be able to make use of CoinsPH's services, your account should have sufficient funds to be able to Buy, Sell, and choose any of CoinsPH's services.`}
+              {`To be able to make use of CoinsPH's services, your account should have sufficient funds to be able to Buy, Sell, and choose any of CoinsPH's services. 
+              Depositing money to your wallet will be vital, therefore we can follow through on how we can transfer money to our wallet.`}
             </P>
             <div className="flex flex-col items-center">
               <p className="lg:text-md text-center text-sm">
@@ -264,6 +265,13 @@ const Page = () => {
               </a>
             </span>
           </P>
+          <h2 className="my-6 text-2xl font-bold">Why choose ByBit</h2>
+          <P>{`Bybit could be a good fit for experienced traders looking for an advanced platform with a focus on derivatives trading. 
+          They offer high leverage, fast transaction speeds, and a good variety of popular cryptocurrencies. Less experienced users might find Bybit challenging due to its focus on margin trading and limited fiat support. 
+          Additionally, some features and higher withdrawal limits are locked behind KYC verification. `}</P>
+          <P>{`Although it might prove to be quite challenging for beginners, it can be beneficial to learn and improve in your knowledge in trading cryptocurrencies.
+          Such challenges can be the diversity of fiat currency in the platform. In other words, it does not have direct exchange between cryptocurrencies into PHP currency.
+          It is wise to consider ByBit with your trading experiences. Though that is why we will give you insights on how to exchange your cryptocurrencies in this platform.`}</P>
           <div>
             <h2 className="my-6 text-2xl font-bold">How to start with ByBit</h2>
             <P>
@@ -358,7 +366,7 @@ const Page = () => {
               height={1920}
               className="mt-7 max-h-full max-w-full"
             />
-            <P>{`With the introduction out of the way you can now start exchange your cryptocurrency. We will be using the Trade feature of Bybit, these are the following steps accordingly: `}</P>
+            <P>{`With the introduction out of the way you can now start exchange your cryptocurrency. We now will be using the Trade feature of Bybit. To guide you, consider the following steps accordingly: `}</P>
             <h3 className="text:md m-5 text-center font-bold xl:text-xl">
               How to buy your crypto
             </h3>
@@ -403,13 +411,13 @@ const Page = () => {
         <div id="binance">
           <h2 className="my-6 text-2xl font-bold">Binance</h2>
           <P>
-            {`It is widely-known popular crypto exchanging platform that having 128+ Million users in the platform. It became popular due to an increase of public interest in the crypto space
+            {`A widely-known popular crypto exchanging platform that having 128+ Million users in the platform. It became popular due to an increase of public interest in the crypto space
             and therefore has become the iconic platform to turn your crypto into real currency.
             It is generally used in trading cryptocurrency and converting it to real currencies such as the US Dollars.
             It also provides a KYC system or also known as Know-Your-Customer which is used to verify users by uploading there ID's and personal information. `}
           </P>
           <P>
-            {`In starting your binance experience you should start by creating an account and entering your information for verification. `}
+            {`In starting your binance experience you should begin by creating an account and entering your information for verification. `}
             <span className="font-semibold text-[#A519D7] underline">
               <a href="https://www.binance.com/blog/nft/how-to-verify-your-new-binance-account-and-claim-your-cr7-foreverzone-box-6753024416772061769#:~:text=Log%20in%20to%20your%20Binance,back%20after%20completing%20this%20step.">
                 learn more about KYC and Verification

@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <div>
       <div id="welcome">
-        <h1 className="my-6 text-4xl font-bold">Welcome</h1>
+        <h1 className="my-6 text-4xl font-bold md:text-5xl">Welcome</h1>
         {/* <h2 className="font-serif text-3xl">
           Please do your own research (DYOR) before investing
         </h2> */}
@@ -33,7 +33,7 @@ export default function Page() {
       </div>
 
       <div id="getting-started">
-        <h3 className="my-6 text-2xl font-bold">Getting Started</h3>
+        <h2 className="my-6 text-2xl font-bold">Getting Started</h2>
         <P>
           This section will be your guide on where to begin your first
           transaction. Consider going through the following steps:
