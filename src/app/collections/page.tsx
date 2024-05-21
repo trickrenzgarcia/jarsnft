@@ -1,21 +1,13 @@
 import CollectionTable from "./_components/CollectionTable";
 import DropdownButton from "./_components/DropdownButton";
-import { use } from "react";
+import { jars } from "@/lib/core/api";
 
-async function getNFTCollections() {
-  return (
-    await fetch("http://localhost:5000/deploy/nft-collection", {
-      // cache: "no-store",
-    })
-  ).json();
-}
-
-export default function Page({
+export default async function Page({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const nftCollections = use(getNFTCollections());
+  const nftCollections = await jars.getNFTCollections();
   const page = searchParams["page"] ?? "1";
   const perPage = searchParams["per_page"] ?? "5";
 
