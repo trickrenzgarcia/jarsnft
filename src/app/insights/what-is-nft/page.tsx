@@ -24,9 +24,7 @@ const page = () => {
         <span className="font-semibold text-[#A519D7] underline ">
           <a href="/insights/what-is-blockchain">Learn more here</a>
         </span>
-        {`) The
-          most popular blockchains are distributed across many nodes (read:
-          people’s computers), which is why you’ll hear them described as
+        {`) The most popular blockchains are distributed across many nodes, which is why you’ll hear them described as
           “decentralized.`}
       </P>
       <P>{`NFTs are unique digital collectibles like artwork, music, or videos. 
