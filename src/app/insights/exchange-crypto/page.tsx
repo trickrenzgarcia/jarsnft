@@ -110,7 +110,7 @@ const cenExch = [
 
 const Page = () => {
   return (
-    <div>
+    <article>
       <div>
         <h1 className="mt-4 text-4xl font-bold md:text-5xl">
           Exchange Cryptocurrency
@@ -419,7 +419,7 @@ const Page = () => {
           {displaySteps("binance")}
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
