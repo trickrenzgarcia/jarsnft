@@ -19,7 +19,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          <div className="ml-36 hidden gap-1 lg:flex xl:mr-5">
+          <div className="ml-32 hidden gap-1 md:flex lg:ml-36 xl:mr-5">
             <Link
               href="/create"
               className="cursor-pointer px-3 font-semibold hover:text-zinc-500"

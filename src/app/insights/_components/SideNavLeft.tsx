@@ -16,7 +16,7 @@ export default function SideNavLeft() {
   // }
 
   return (
-    <aside className="sticky right-auto top-16 z-30 hidden h-[93vh] w-[15.5rem] shrink-0 overflow-y-auto border-r border-gray-400 pt-9 lg:ml-3 lg:block">
+    <aside className="sticky right-auto top-16 z-30 hidden h-[93vh] w-[15.5rem] shrink-0 overflow-y-auto border-r border-gray-400 pt-9 lg:ml-5 lg:block">
       <div className={cn(poppins.className)}>
         {leftNavList.map((item) => (
           <div className="mb-9" key={item.topic}>

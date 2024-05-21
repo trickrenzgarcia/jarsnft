@@ -28,7 +28,7 @@ const page = () => {
           “decentralized.`}
       </P>
       <P>{`NFTs are unique digital collectibles like artwork, music, or videos. 
-          You can buy and sell them online, often using cryptocurrency. 
+          You can buy and sell them online by often using cryptocurrency. 
           Even though they've been around for a while, NFTs are becoming more popular, especially for digital art. 
           The market for NFTs is huge and is close to being as valuable as the traditional art market. 
           One of the key things that makes NFTs valuable is that they are rare or one-of-a-kind, unlike most digital things which can be easily copied. This rarity could make them more valuable, similar to other collectible items.`}</P>
