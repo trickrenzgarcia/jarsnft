@@ -16,19 +16,18 @@ export default async function Page({
   const entries = nftCollections.slice(start, end);
 
   return (
-    <div suppressHydrationWarning={true}>
-      <h1 className="mb-10 text-4xl font-bold">Collections</h1>
-
+    <>
+      <h1 className="my-5 text-4xl font-bold">Collections</h1>
       <DropdownButton />
       {/* Column Titles */}
-      <div className="mb-4 grid grid-cols-10 text-gray-500">
+      <div className="col-span-2 mb-4 grid grid-cols-10 text-gray-500">
         <div className="col-span-2"></div>
-        <p className="text-center">Floor</p>
-        <p className="text-center">Floor Chg</p>
+        <p className="text-center">Floor Price</p>
+        <p className="text-center">Floor Change</p>
         <p className="text-center">Volume</p>
-        <p className="text-center">Vol Chg</p>
+        <p className="text-center">Volume Change</p>
         <p className="text-center">Sales</p>
-        <p className="text-center">Sales Chg</p>
+        <p className="text-center">Sales Change</p>
         <p className="col-span-2 text-right">Listed</p>
       </div>
 
@@ -38,6 +37,6 @@ export default async function Page({
         start={start}
         end={end}
       />
-    </div>
+    </>
   );
 }

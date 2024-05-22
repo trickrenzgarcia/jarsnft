@@ -39,11 +39,12 @@ export default function NFTCards({ address }: { address: string }) {
       tokenContract: address,
     },
   );
-  const { data: auctions, isLoading: loadingAuctions } = useValidEnglishAuctions(marketPlaceContract, {
-    count: 100,
-    start: 0,
-    tokenContract: address,
-  })
+  const { data: auctions, isLoading: loadingAuctions } =
+    useValidEnglishAuctions(marketPlaceContract, {
+      count: 100,
+      start: 0,
+      tokenContract: address,
+    });
 
   //marketPlaceContract?.directListings
 
@@ -56,13 +57,15 @@ export default function NFTCards({ address }: { address: string }) {
       <>
         <div className="flex w-full items-start">
           <section className="relative p-12">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-              <Skeleton className="h-[291px] w-[291px] rounded-xl border"></Skeleton>
-              <Skeleton className="h-[291px] w-[291px] rounded-xl border"></Skeleton>
-              <Skeleton className="h-[291px] w-[291px] rounded-xl border"></Skeleton>
-              <Skeleton className="h-[291px] w-[291px] rounded-xl border"></Skeleton>
-              <Skeleton className="h-[291px] w-[291px] rounded-xl border"></Skeleton>
-              <Skeleton className="h-[291px] w-[291px] rounded-xl border"></Skeleton>
+            <div className="grid h-[400px] grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8">
+              <Skeleton className="h-[250px] w-[220px] gap-4 rounded-xl border"></Skeleton>
+              <Skeleton className="h-[250px] w-[220px] gap-4 rounded-xl border"></Skeleton>
+              <Skeleton className="h-[250px] w-[220px] gap-4 rounded-xl border"></Skeleton>
+              <Skeleton className="h-[250px] w-[220px] gap-4 rounded-xl border"></Skeleton>
+              <Skeleton className="h-[250px] w-[220px] gap-4 rounded-xl border"></Skeleton>
+              <Skeleton className="h-[250px] w-[220px] gap-4 rounded-xl border"></Skeleton>
+              <Skeleton className="h-[250px] w-[220px] gap-4 rounded-xl border"></Skeleton>
+              <Skeleton className="h-[250px] w-[220px] gap-4 rounded-xl border"></Skeleton>
             </div>
           </section>
         </div>
@@ -71,93 +74,115 @@ export default function NFTCards({ address }: { address: string }) {
 
   if (listings || auctions || nfts)
     return (
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {listings && listings.map((nft, i) => (
-          <Link key={i} href={`/collection/${address}/${nft.asset.id}`}>
-            <Card className="rounded-xl hover:-translate-y-1">
-              <CardContent className="flex aspect-square items-center justify-center ">
-                <Image
-                  src={
-                    nft.asset.image ||
-                    "/assets/placeholder/nft_placeholder.svg"
-                  }
-                  alt="nft image"
-                  className="h-full w-full rounded-t-2xl"
-                  width={340}
-                  height={340}
-                  loading="eager"
-                  style={{ objectFit: "cover" }}
-                />
-              </CardContent>
-              <CardFooter className="mt-3">
-                <div className="flex w-full flex-col">
-                  <h1 className="truncate text-sm font-semibold">
-                    {nft.asset.name}
-                  </h1>
-                  <p className="text-sm">Price: {nft.currencyValuePerToken.displayValue} {nft.currencyValuePerToken.symbol}</p>
-                </div>
-              </CardFooter>
-            </Card>
-          </Link>
-        ))}
-        {auctions && auctions.map((nft, i) => (
-          <Link key={i} href={`/collection/${address}/${nft.asset.id}`}>
-            <Card className="rounded-xl hover:-translate-y-1">
-              <CardContent className="flex aspect-square items-center justify-center ">
-                <Image
-                  src={
-                    nft.asset.image ||
-                    "/assets/placeholder/nft_placeholder.svg"
-                  }
-                  alt="nft image"
-                  className="h-full w-full rounded-t-2xl"
-                  width={340}
-                  height={340}
-                  loading="eager"
-                  style={{ objectFit: "cover" }}
-                />
-              </CardContent>
-              <CardFooter className="mt-3">
-                <div className="flex w-full flex-col">
-                  <h1 className="truncate text-sm font-semibold">
-                    {nft.asset.name}
-                  </h1>
-                  <p className="text-sm">Buy Price: {nft.buyoutCurrencyValue.displayValue} {nft.minimumBidCurrencyValue.symbol}</p>
-                  <p className="text-sm">Start Bid: {nft.minimumBidCurrencyValue.displayValue} {nft.minimumBidCurrencyValue.symbol}</p>
-                </div>
-              </CardFooter>
-            </Card>
-          </Link>
-        ))}
-        {nfts && nfts.filter((nft) => (listings?.every((listing) => listing.asset.id !== nft.metadata.id))).filter(
-          (nft) => auctions?.every((auction) => auction.asset.id !== nft.metadata.id)).map((nft, i) => (
-          <Link key={i} href={`/collection/${address}/${nft.metadata.id}`}>
-            <Card className="rounded-xl hover:-translate-y-1">
-              <CardContent className="flex aspect-square items-center justify-center ">
-                <Image
-                  src={
-                    nft.metadata.image ||
-                    "/assets/placeholder/nft_placeholder.svg"
-                  }
-                  alt="nft image"
-                  className="h-full w-full rounded-t-2xl"
-                  width={340}
-                  height={340}
-                  loading="eager"
-                  style={{ objectFit: "cover" }}
-                />
-              </CardContent>
-              <CardFooter className="mt-3">
-                <div className="flex w-full flex-col">
-                  <h1 className="truncate text-sm font-semibold">
-                    {nft.metadata.name}
-                  </h1>
-                  <p>Not Listed</p>
-                </div>
-              </CardFooter>
-            </Card>
-          </Link>
-        ))}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8">
+        {listings &&
+          listings.map((nft, i) => (
+            <Link key={i} href={`/collection/${address}/${nft.asset.id}`}>
+              <Card className="rounded-xl hover:-translate-y-1">
+                <CardContent className="flex aspect-square items-center justify-center ">
+                  <Image
+                    src={
+                      nft.asset.image ||
+                      "/assets/placeholder/nft_placeholder.svg"
+                    }
+                    alt="nft image"
+                    className="h-full w-full rounded-t-2xl"
+                    width={340}
+                    height={340}
+                    loading="eager"
+                    style={{ objectFit: "cover" }}
+                  />
+                </CardContent>
+                <CardFooter className="mt-3">
+                  <div className="flex w-full flex-col">
+                    <h1 className="truncate text-sm font-semibold">
+                      {nft.asset.name}
+                    </h1>
+                    <p className="text-sm">
+                      Price: {nft.currencyValuePerToken.displayValue}{" "}
+                      {nft.currencyValuePerToken.symbol}
+                    </p>
+                  </div>
+                </CardFooter>
+              </Card>
+            </Link>
+          ))}
+        {auctions &&
+          auctions.map((nft, i) => (
+            <Link key={i} href={`/collection/${address}/${nft.asset.id}`}>
+              <Card className="rounded-xl hover:-translate-y-1">
+                <CardContent className="flex aspect-square items-center justify-center ">
+                  <Image
+                    src={
+                      nft.asset.image ||
+                      "/assets/placeholder/nft_placeholder.svg"
+                    }
+                    alt="nft image"
+                    className="h-full w-full rounded-t-2xl"
+                    width={340}
+                    height={340}
+                    loading="eager"
+                    style={{ objectFit: "cover" }}
+                  />
+                </CardContent>
+                <CardFooter className="mt-3">
+                  <div className="flex w-full flex-col">
+                    <h1 className="truncate text-sm font-semibold">
+                      {nft.asset.name}
+                    </h1>
+                    <p className="text-sm">
+                      Buy Price: {nft.buyoutCurrencyValue.displayValue}{" "}
+                      {nft.minimumBidCurrencyValue.symbol}
+                    </p>
+                    <p className="text-sm">
+                      Start Bid: {nft.minimumBidCurrencyValue.displayValue}{" "}
+                      {nft.minimumBidCurrencyValue.symbol}
+                    </p>
+                  </div>
+                </CardFooter>
+              </Card>
+            </Link>
+          ))}
+        {nfts &&
+          nfts
+            .filter((nft) =>
+              listings?.every(
+                (listing) => listing.asset.id !== nft.metadata.id,
+              ),
+            )
+            .filter((nft) =>
+              auctions?.every(
+                (auction) => auction.asset.id !== nft.metadata.id,
+              ),
+            )
+            .map((nft, i) => (
+              <Link key={i} href={`/collection/${address}/${nft.metadata.id}`}>
+                <Card className="rounded-xl hover:-translate-y-1">
+                  <CardContent className="flex aspect-square items-center justify-center ">
+                    <Image
+                      src={
+                        nft.metadata.image ||
+                        "/assets/placeholder/nft_placeholder.svg"
+                      }
+                      alt="nft image"
+                      className="h-full w-full rounded-t-2xl"
+                      width={340}
+                      height={340}
+                      loading="eager"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </CardContent>
+                  <CardFooter className="mt-3">
+                    <div className="flex w-full flex-col">
+                      <h1 className="truncate text-sm font-semibold">
+                        {nft.metadata.name}
+                      </h1>
+                      <p>Not Listed</p>
+                    </div>
+                  </CardFooter>
+                </Card>
+              </Link>
+            ))}
       </div>
     );
 }

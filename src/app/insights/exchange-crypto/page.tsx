@@ -424,8 +424,80 @@ const Page = () => {
               </a>
             </span>
           </P>
+          <h2 className="my-6 text-2xl font-bold">Why choose Binance</h2>
+          <P>
+            {`Because of Binance's high levels of liquidity, traders can purchase or sell assets with ease and little risk of large price swings. 
+            This facilitates traders' ability to carry out their trading plans and meet their financial objectives. 
+            Some of the lowest trading costs in the bitcoin market are also provided by Binance.`}
+          </P>
+          <h2 className="my-6 text-2xl font-bold">How to start with Binance</h2>
+          <P>{`To begin using Binance, follow these steps:`}</P>
+          <ul className="-mt-2 ml-14 list-disc dark:text-gray-300">
+            <li className="mb-3">
+              <span className="font-bold">Create an Account:</span>
+              {` Visit the Binance website or download the app, then fill out the registration form with your phone number or email address.`}
+            </li>
+            <li className="mb-3">
+              <span className="font-bold">Complete Verification:</span>
+              {` Binance needs identity verification in order to access all functionalities. 
+              Typically, this is done by providing identification credentials, a facial verification, and basic information.`}
+            </li>
+            <li className="mb-3">
+              <span className="font-bold">Fund Your Account:</span>
+              {` You can add money to your Binance account after it has been validated. 
+              Peer-to-peer (P2P) trading, bank transfers, and direct cryptocurrency purchases using debit or credit cards are just a few of the options available to you (not available in all locations).`}
+            </li>
+            <li className="mb-3">
+              <span className="font-bold">Start Trading:</span>
+              {` You can investigate the exchange once you have money in your account. Binance provides a range of trading choices and cryptocurrencies. 
+              Before getting started, novices can use their resources to learn about cryptocurrency and trading.`}
+            </li>
+          </ul>
+          <h2 className="my-6 text-2xl font-bold">Exchange your Crypto</h2>
+          <P>{`After setting up your account, consider the following steps on the basic process of exchanging your crypto into fiat currency. This can also include the opposite wherein we can buy crypto using fiat money or basically real world currencies.`}</P>
           {displaySteps("binance")}
         </div>
+      </div>
+      <div>
+        <h2 className="my-6 text-2xl font-bold">
+          Other Central Exchanging Platforms
+        </h2>
+        <P>{`The following are websites and apps that you can consider checking out that can help you in exchanging your crypto into real money, and even other services such as trading.`}</P>
+        <ul className="-mt-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
+          <li className="mb-3">
+            <span className="font-bold">
+              PDAX (Philippine Digital Asset Exchange):
+            </span>
+            {` is a regulated cryptocurrency exchange in the Philippines. It offers spot trading, margin trading, and over-the-counter (OTC) trading for various cryptocurrencies and PHP.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Maya (formerly PayMaya):</span>
+            {`  is a popular e-wallet in the Philippines that also allows users to buy and sell cryptocurrencies. 
+            You can convert your crypto to PHP and withdraw it to your Maya account.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">UnionBank :</span>
+            {` is a universal bank in the Philippines that offers cryptocurrency trading services through its subsidiary, UnionBank GlobalLinker. 
+            You can convert your crypto to PHP and withdraw it to your UnionBank account.
+`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Crypto.com:</span>
+            {` A popular exchange that offers a user-friendly interface and a variety of features, including its own cryptocurrency (CRO). 
+            Crypto.com is known for its competitive fees and mobile app.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Kraken:</span>
+            {`  A large and established cryptocurrency exchange that offers a good selection of cryptocurrencies and a variety of features, including margin trading and staking. 
+            Kraken is known for its security and liquidity, but its interface can be a bit more complex for beginners than Coinbase.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Coinbase:</span>
+            {`  One of the largest and most well-known cryptocurrency exchanges in the world. 
+            Coinbase is a great option for beginners because it has a user-friendly interface, offers a variety of educational resources, and allows users to buy crypto with fiat currency (like US dollars or Euros) using a variety of payment methods, including bank transfers, credit cards, and debit cards. 
+            However, Coinbase can have higher fees than some other exchanges.`}
+          </li>
+        </ul>
       </div>
     </article>
   );
