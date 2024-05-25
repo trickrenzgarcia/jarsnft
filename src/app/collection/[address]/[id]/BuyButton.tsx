@@ -22,6 +22,7 @@ import { toast } from 'sonner';
 import { getMaticPriceInPHP } from '@/lib/core/coingecko';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 type BuyButtonProps = {
   nft: NFT | undefined;
@@ -68,6 +69,7 @@ export default function BuyButton({ nft, listings, auctionListing }: BuyButtonPr
         auctionListing[0].id
       ).then((data) => {
         setBuyState("success");
+        revalidatePath("/me");
         toast.success("You have successfully bought the NFT.", {
           description: `${nft?.metadata.name} has been added to your profile.`,
           position: "bottom-right",

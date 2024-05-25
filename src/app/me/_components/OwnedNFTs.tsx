@@ -7,7 +7,6 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ipfsToCfIpfs } from "@/lib/utils";
 import { SimpleHashNFT } from "@/types/simple-hash/nft";
 import { Image } from "@nextui-org/react";
 import Link from "next/link";
