@@ -20,7 +20,10 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
       }
 
       await jars.saveNonce(nonce);
-    }
+    },
+    tokenDurationInSeconds: 60 * 60 * 24 * 7, // 1 week,
+    loginPayloadDurationInSeconds: 60 * 60 * 24 * 7, // 1 week,
+    refreshIntervalInSeconds: 60 * 60 * 24 * 7, // 1 week,
   },
   callbacks: {
     onLogin: async (address: string) => {

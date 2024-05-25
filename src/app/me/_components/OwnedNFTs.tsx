@@ -48,7 +48,6 @@ export default function OwnedNFTs({
                       href={`/collection/${nft.contract.address}/${nft.tokenId}`}
                     >
                       <Image
-                        isBlurred
                         width={512}
                         height={512}
                         src={ipfsToCfIpfs(nft.image.originalUrl) || "/assets/placeholder/nft_placeholder.svg"}
