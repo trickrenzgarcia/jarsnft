@@ -628,9 +628,9 @@ export default function MintNFTCard() {
                               <p className="flex items-center gap-1 text-sm">
                                 {mintState.state === "loading" ? (
                                   <Loader2 className="animate-spin" />
-                                ) : mintState.state === "process" ? (
+                                ) : mintState.state === "process" || mintState.state === "success" ? (
                                   <IoCheckmarkCircle className="text-success" />
-                                ) : (
+                                ) : mintState.state === "error" && (
                                   <MdOutlineNearbyError className="text-danger" />
                                 )}{" "}
                                 Accepting transaction.

@@ -69,7 +69,7 @@ export default function BuyButton({ nft, listings, auctionListing }: BuyButtonPr
         auctionListing[0].id
       ).then((data) => {
         setBuyState("success");
-        revalidatePath("/me");
+        revalidatePath("/me", "page");
         toast.success("You have successfully bought the NFT.", {
           description: `${nft?.metadata.name} has been added to your profile.`,
           position: "bottom-right",
