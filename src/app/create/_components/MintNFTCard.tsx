@@ -12,7 +12,7 @@ import {
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { set, z } from "zod";
+import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { useDropzone } from "react-dropzone";
 import React, {
@@ -79,8 +79,6 @@ import { IoCheckmarkCircle } from "react-icons/io5";
 import { MdOutlineNearbyError } from "react-icons/md";
 import { FiShare } from "react-icons/fi";
 import { TooltipMsg } from "@/components/(interfaces)";
-import { env } from "@/lib/env.mjs";
-import { Contract, SimpleHashContracts } from "@/types/simple-hash";
 
 const mintSchema = z.object({
   collection: z.string().refine((value) => ethers.utils.isAddress(value), {
@@ -259,7 +257,6 @@ export default function MintNFTCard() {
       },
       {
         onSuccess(data: { id: BigNumber }, variables, context) {
-          console.log("data", data);
           setNftTokenId(data.id.toString());
           setMintState({
             state: "success",

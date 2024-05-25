@@ -1,7 +1,7 @@
 "use server";
 
 import { jars } from "@/lib/core/api";
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export async function createContract(contractAddress: string, owner: string) {
   const uploadedContract = await jars.deployNFTCollection(
@@ -10,6 +10,6 @@ export async function createContract(contractAddress: string, owner: string) {
   );
 
   revalidateTag("metadata");
-
+  revalidatePath("/");
   return uploadedContract;
 }
