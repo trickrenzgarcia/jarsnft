@@ -105,8 +105,8 @@ export default function NftCard({
         </p>
         <MdVerified className="text-lg text-blue-500" />
       </div>
-      <div className="mx-4 mt-4 flex items-stretch justify-between gap-8">
-        <div className="w-[50svw]">
+      <div className="mx-4 mt-4 flex items-stretch justify-between gap-16">
+        <div className="w-[60svw]">
           <div className="flex w-full flex-col gap-4 py-4">
             {nft ? (
               <h1 className="text-4xl font-bold">{nft.metadata.name}</h1>
@@ -234,7 +234,7 @@ export default function NftCard({
             </Card>
           </div>
         </div>
-        <div className="h-[80svh] w-[50svw]">
+        <div className="h-[80svh] w-[40svw]">
           {nft &&
             (nft.metadata.image ? (
               <ThirdwebNftMedia
@@ -242,7 +242,7 @@ export default function NftCard({
                 style={{
                   objectFit: "fill",
                   height: "inherit",
-                  width: "fit-content",
+                  width: "inherit",
                   borderRadius: "12px",
                 }}
               />
@@ -252,7 +252,7 @@ export default function NftCard({
                 style={{
                   objectFit: "fill",
                   height: "inherit",
-                  width: "fit-content",
+                  width: "inherit",
                   borderRadius: "12px",
                 }}
                 alt="image of an NFT"
