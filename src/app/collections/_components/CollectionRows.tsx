@@ -49,6 +49,7 @@ export default function CollectionRows({
             src={collectionLogoSrc}
             width={50}
             height={50}
+            style={{ objectFit: "contain" }}
             alt="logo of a collection"
             className="rounded-lg"
           />
