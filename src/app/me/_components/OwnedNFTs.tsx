@@ -25,15 +25,13 @@ export default function OwnedNFTs({
 }: OwnedNFTsProps) {
   return (
     <div className="flex w-full flex-col rounded-2xl border p-2">
-      <div className="ml-3 text-lg font-bold">
+      <div className="m-4 text-lg font-bold">
         Owned Item{(nfts?.length || 0 > 1) && "s"}: {nfts?.length || 0}
       </div>
       {userLoading || loadingNfts ? (
-        <div className="grid w-full grid-cols-2 justify-center gap-5 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5">
+        <div className="container grid w-full grid-cols-2 place-items-center gap-5 py-8 md:grid-cols-3 lg:grid-cols-5">
           {Array.from({ length: 5 }).map((_, i) => (
-            <div className="w-full" key={i}>
-              <Skeleton className="h-[200px] w-full md:h-[250px]" />
-            </div>
+            <Skeleton className="size-72" key={i} />
           ))}
         </div>
       ) : (
@@ -49,7 +47,10 @@ export default function OwnedNFTs({
                       <Image
                         width={512}
                         height={512}
-                        src={nft.image_url || "/assets/placeholder/nft_placeholder.svg"}
+                        src={
+                          nft.image_url ||
+                          "/assets/placeholder/nft_placeholder.svg"
+                        }
                         alt={nft.name}
                         className="hover:-translate-y-[2px] hover:border-2"
                       />
@@ -60,7 +61,10 @@ export default function OwnedNFTs({
                       isBlurred
                       width={100}
                       height={100}
-                      src={nft.image_url || "/assets/placeholder/nft_placeholder.svg"}
+                      src={
+                        nft.image_url ||
+                        "/assets/placeholder/nft_placeholder.svg"
+                      }
                       alt={nft.name}
                     />
                     <div className="flex w-full max-w-72 flex-col px-2">
