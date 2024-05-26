@@ -46,28 +46,28 @@ export function EditModeAvatarDialog({ children, address }: EditModeAvatarDialog
               ))}
             </div>
           )}
-          {!isLoading && nfts?.ownedNfts.length === 0 && (
+          {!isLoading && nfts && nfts.length === 0 && (
             <div className="flex gap-3 py-12 flex-col items-center justify-center">
               <Image src="/jars_muted.png" width={150} height={150} alt="Not Found" />
               <p className="text-sm">No NFTs found.</p>
             </div>
           )}
-          {nfts?.ownedNfts && (
-            <div className="w-full overflow-y-scroll pr-1 h-full scroll-smooth">
+          {nfts && nfts.length > 0 && (
+            <div className={cn("w-full pr-1 h-full scroll-smooth overflow-y-scroll")}>
               <div className="columns-3 gap-3 space-y-2">
-              {nfts.ownedNfts.map((nft, i) => (
-                nft.image.originalUrl ?
+              {nfts.map((nft, i) => (
+                nft.previews.image_medium_url ?
                 (<Image 
                   key={i} 
-                  src={ipfsToCfIpfs(nft.image.originalUrl)} 
+                  src={nft.previews.image_medium_url} 
                   alt={nft.name}
-                  className={cn(selectedNFT === (ipfsToCfIpfs(nft.image.originalUrl) + " " + nft.tokenId) && "border-2 border-purple-500")}
+                  className={cn((selectedNFT === (`${nft.image_url} ${nft.token_id}`)) && "border-2 border-purple-500")}
                   onClick={(e) => {
                     e.preventDefault()
-                    if(selectedNFT === (ipfsToCfIpfs(nft.image.originalUrl) + " " + nft.tokenId)) {
+                    if((selectedNFT === (`${nft.image_url} ${nft.token_id}`))) {
                       setSelectedNFT("")
                     } else {
-                      setSelectedNFT(ipfsToCfIpfs(nft.image.originalUrl) + " " + nft.tokenId)
+                      setSelectedNFT(`${nft.image_url} ${nft.token_id}`)
                     }
                   }}
                 />) : null
@@ -83,7 +83,7 @@ export function EditModeAvatarDialog({ children, address }: EditModeAvatarDialog
             <Button type="button" variant="secondary">Close</Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button type="submit" variant="default" className="w-full" disabled={!nfts?.ownedNfts || !selectedNFT}
+            <Button type="submit" variant="default" className="w-full" disabled={!nfts || !selectedNFT}
               onClick={async (e) => {
                 // Save the selected NFT to the user profile
                 await updateAvatar(address, selectedNFT.split(" ")[0]);

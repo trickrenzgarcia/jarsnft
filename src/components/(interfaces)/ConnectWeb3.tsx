@@ -1,17 +1,13 @@
 "use client";
 
 import { ConnectWallet, darkTheme, lightTheme } from "@thirdweb-dev/react";
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import Spline from "@splinetool/react-spline";
-
-type UserResponse = {
-  success: boolean;
-  user: any;
-};
+import Image from "next/image";
 
 
 const ConnectWeb3 = ({ btnTitle }: { btnTitle: string | undefined }) => {
@@ -53,10 +49,16 @@ export const LoginWelcomeScreen = () => {
   
   return (
     <div className="hidden h-full w-full flex-col overflow-hidden md:flex">
-      <div className="">
-        <Login3D />
+      <div className="bg-black">
+        <Image 
+          src="/assets/background/login_wall.webp" 
+          alt="Modal Login Wallpaper"
+          className="opacity-60"
+          width={500}
+          height={500}
+        />
       </div>
-      <div className="absolute flex h-full w-full flex-col items-center justify-center text-black dark:text-white">
+      <div className="absolute flex h-full w-full flex-col items-center justify-center text-white">
         <motion.div
           animate={{
             scale: [1, 1.8, 1.8, 1, 1],
@@ -69,9 +71,9 @@ export const LoginWelcomeScreen = () => {
             repeatDelay: 1,
           }}
         >
-          <h1 className="mt-0 text-2xl font-bold">Welcome to jarsnft</h1>
+          <h1 className="mt-0 text-2xl font-bold stroke-black">Welcome to jarsnft</h1>
         </motion.div>
-        <p className="mt-2 mb-8 font-medium">Connect your wallet to trade NFTs.</p>
+        <p className="mt-2 mb-8 font-medium stroke-black">Connect your wallet to trade NFTs.</p>
         <Link
           href="/insights/getting-started#installing-wallet"
           target="_blank"
