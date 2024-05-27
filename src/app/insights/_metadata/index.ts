@@ -184,14 +184,6 @@ export const rightNavList: RightNavListType[] = [
   },
 ];
 
-// export const leftNavList: LeftNavList[] = [
-//   { name: "Welcome", href: "/insights" },
-//   { name: "Getting Started", href: "/insights/getting-started" },
-//   { name: "Buying NFTs", href: "/insights/buying-nfts" },
-//   { name: "Selling NFTs", href: "/insights/selling-nfts" },
-//   { name: "FAQs", href: "/insights/faq" },
-// ];
-
 export const leftNavList: LeftNavList[] = [
   {
     topic: "Welcome",
