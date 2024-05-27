@@ -5,6 +5,7 @@ import { useNftContext } from "./nft-provider";
 import {
   NFT,
   ThirdwebNftMedia,
+  useEnglishAuctionWinningBid,
   useValidDirectListings,
   useValidEnglishAuctions,
 } from "@thirdweb-dev/react";
@@ -22,8 +23,14 @@ import { getMaticPriceInPHP } from "@/lib/core/coingecko";
 import SellButton from "./SellButton";
 import PlaceBidButton from "./PlaceBidButton";
 import AuctionEndTime from "./AuctionEndTime";
+import { MdOutlineLocalOffer } from "react-icons/md";
 import TiltCard from "./TiltCard";
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 export default function NftCard({
   address,
@@ -61,6 +68,7 @@ export default function NftCard({
 
   const router = useRouter();
 
+
   useEffect(() => {
     if (listings && listings[0]) {
       getMaticPriceInPHP(listings[0].currencyValuePerToken.displayValue).then(
@@ -70,6 +78,20 @@ export default function NftCard({
       );
     }
   }, [listings, auctionListing]);
+
+  useEffect(() => {
+    async function fetchOffers() {
+      if (auctionListing && auctionListing[0] && marketPlaceContract) {
+        try { 
+          const offers = await marketPlaceContract.abi;
+          console.log(offers);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+    fetchOffers();
+  }, [auctionListing, loadingAuction, marketPlaceContract, loadingMarketplace]);
 
   useEffect(() => {
     if (ownedNFTs) {
@@ -124,7 +146,17 @@ export default function NftCard({
                 </p>
                 {nft ? (
                   <p className="cursor-pointer text-medium font-bold hover:underline">
-                    {nft.owner ? displayName(nft.owner) : "Not logged in"}
+                    {nft.owner ? (
+                      listings && listings[0] && listings[0].creatorAddress ? (
+                        displayName(listings[0].creatorAddress)
+                      ) : auctionListing && auctionListing[0] && auctionListing[0].creatorAddress ? (
+                        displayName(auctionListing[0].creatorAddress)
+                      ) : (
+                        "Not listed"
+                      )
+                    ) : (
+                      "Not logged in"
+                    )}
                   </p>
                 ) : (
                   <Skeleton className="h-4 w-8" />
@@ -234,6 +266,21 @@ export default function NftCard({
                 </div>
               </CardContent>
             </Card>
+
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="item-1" className="border-0">
+                <AccordionTrigger className="border px-4 rounded-md bg-card">
+                  <div className="flex gap-2 items-center">
+                    <MdOutlineLocalOffer className="text-xl"/>
+                    <span>Offers</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-4 border pt-4 rounded-b-md">
+                  Yes. It adheres to the WAI-ARIA design pattern.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+
           </div>
         </div>
         <div className="h-[80svh] md:w-[40svw] w-full flex justify-center md:justify-start">
