@@ -40,6 +40,14 @@ export default function NftMetadata() {
                 <p className='text-lg font-semibold'>{attr.value}</p>
               </div>
             ))}
+            {/* @ts-ignore */}
+            {nft && !nft.metadata.attributes && (
+              <div className='text-gray-500 dark:text-gray-400'>
+                <div className='flex justify-between py-3 px-4 hover:bg-muted/50 gap-2 rounded-lg'>
+                  <p className=''>NO PROPERTIES</p>
+                </div>
+              </div>
+            )}
           </CardBody>
         </Card>
       </Tab>
