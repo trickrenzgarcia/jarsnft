@@ -104,7 +104,7 @@ const page = () => {
         <li className="mb-3">Decentralized Finance (DeFi) NFTs</li>
       </ul>
       <br />
-      <P>{`These are but the few examples of NFTs that can be found in different marketplaces. To find out more on what gives NFT their valua and how its economy work, move to the next topic.`}</P>
+      <P>{`These are but the few examples of NFTs that can be found in different marketplaces. To find out more on what gives NFT their value and how its economy work, move to the next topic.`}</P>
       {/* <article className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div className="m-5 gap-2 place-self-center">
             <h1 className="relative mb-6 max-w-4xl text-left text-3xl font-bold text-zinc-700 dark:text-zinc-100 md:text-7xl">
