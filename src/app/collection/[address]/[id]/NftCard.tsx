@@ -129,8 +129,8 @@ export default function NftCard({
         </p>
         <MdVerified className="text-lg text-blue-500" />
       </div>
-      <div className="w-full mx-4 mt-4 flex flex-col lg:flex-row items-center lg:items-stretch justify-center md:justify-between gap-4 lg:gap-16">
-        <div className="md:w-[60svw] w-full">
+      <div className="mx-4 mt-4 flex items-stretch justify-around gap-8">
+        <div className="w-[50svw]">
           <div className="flex w-full flex-col gap-4 py-4">
             {nft ? (
               <h1 className="text-4xl font-bold">{nft.metadata.name}</h1>
@@ -179,7 +179,7 @@ export default function NftCard({
                       {loadingListings ? (
                         <Skeleton className="h-10 w-28" />
                       ) : listings && listings[0] ? (
-                        <div className="flex items-baseline gap-1">
+                        <div className="flex items-baseline gap-4">
                           <Image
                             src="/assets/cryptocurrency/polygon-matic.png"
                             width={20}
@@ -196,7 +196,7 @@ export default function NftCard({
                           </p>
                         </div>
                       ) : auctionListing && auctionListing[0] ? (
-                        <div className="flex flex-col gap-1">
+                        <div className="flex flex-col gap-4">
                           <div className="flex items-center gap-1">
                             <Image
                               src="/assets/cryptocurrency/polygon-matic.png"
@@ -283,8 +283,30 @@ export default function NftCard({
 
           </div>
         </div>
-        <div className="h-[80svh] md:w-[40svw] w-full flex justify-center md:justify-start">
-          <TiltCard />
+        <div className="h-[70svh] w-[30svw]">
+          {nft &&
+            (nft.metadata.image ? (
+              <ThirdwebNftMedia
+                metadata={nft.metadata}
+                style={{
+                  objectFit: "fill",
+                  height: "inherit",
+                  width: "inherit",
+                  borderRadius: "12px",
+                }}
+              />
+            ) : (
+              <Image
+                src="/assets/placeholder/nft_placeholder.svg"
+                style={{
+                  objectFit: "fill",
+                  height: "inherit",
+                  width: "inherit",
+                  borderRadius: "12px",
+                }}
+                alt="image of an NFT"
+              />
+            ))}
         </div>
       </div>
     </div>

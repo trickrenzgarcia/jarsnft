@@ -177,7 +177,7 @@ export default function PlaceBidButton({
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
-          className="h-[3.25rem] w-full text-lg font-semibold"
+          className="h-[3] w-full text-lg font-semibold"
           variant="outline"
         >
           Place a bid

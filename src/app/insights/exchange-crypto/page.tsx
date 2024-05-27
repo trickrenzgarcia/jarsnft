@@ -60,30 +60,6 @@ const cenExch = [
       "/assets/InsightsAsset/CoinsTransfer3.gif",
     ],
   },
-  // {
-  //   topic: "BybitDeposit",
-  //   steps: [" Tap Buy or Sell.", " Select Sell Crypto"],
-  //   images: [
-  //     "/assets/InsightsAsset/bybit deposit1.png",
-  //     "/assets/InsightsAsset/bybit deposit2.png",
-  //   ],
-  // },
-  // {
-  //   topic: "BybitConvert",
-  //   steps: [" Tap Buy or Sell.", " Select Sell Crypto"],
-  //   images: [
-  //     "/assets/InsightsAsset/bybit convert1.png",
-  //     "/assets/InsightsAsset/bybit convert2.png",
-  //   ],
-  // },
-  // {
-  //   topic: "BybitTrade",
-  //   steps: [" Tap Buy or Sell.", " Select Sell Crypto"],
-  //   images: [
-  //     "/assets/InsightsAsset/bybit trade1.png",
-  //     "/assets/InsightsAsset/bybit trade2.png",
-  //   ],
-  // },
   {
     topic: "bybitBuy",
     steps: [
@@ -111,17 +87,40 @@ const cenExch = [
 const Page = () => {
   return (
     <article>
-      <div>
+      <div className="m-0">
         <h1 className="mt-4 text-4xl font-bold md:text-5xl">
           Exchange Cryptocurrency
         </h1>
-        <h3 className="text-md mt-4 xl:text-lg ">
+        <h3 className="text-md my-5 xl:text-lg ">
           The following are the recommended central exchanging platforms that
           every beginners should know.
         </h3>
+        <Image
+          src="/assets/InsightsAsset/bitcoin-exchange.jpeg"
+          width={1920}
+          height={1080}
+          alt="What is NFT Image"
+          className="max-h-[15rem] max-w-full rounded-lg object-cover"
+        />
+        <h2 className="my-6 text-2xl font-bold">Overview</h2>
+        <P>{`Choosing your own Exchanging platform can be intimidating and difficult for beginners. 
+        Though it is vital to have your a place to begin your blockchain journey. 
+        As such we will recommend websites that are easy for beginners to navigate in on, and have short walkthrough experience when using the platform. The following platforms will be:`}</P>
+        <ol className="-mt-2 ml-14 list-decimal leading-loose tracking-wide dark:text-gray-300">
+          <li className="mb-3">
+            <span className="font-bold">Coins PH</span>
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">ByBit</span>
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Binance</span>
+          </li>
+        </ol>
+        <hr />
       </div>
-      <div>
-        <div id="coinsph">
+      <>
+        <div id="coinsph" className="m-0">
           <div>
             <h2 className="my-6 text-2xl font-bold">Coins PH</h2>
             <P>
@@ -248,6 +247,7 @@ const Page = () => {
             </h3>
             {displaySteps("coinsphbuy")}
           </div>
+          <hr />
         </div>
         <div id="bybit">
           <h2 className="my-6 text-2xl font-bold">Bybit</h2>
@@ -257,6 +257,14 @@ const Page = () => {
             For traders seeking a fast-paced, user-friendly platform with possibly larger returns (and dangers) on derivatives trading, ByBit is the perfect option. 
             ByBit is less appropriate, nevertheless, for new users or those seeking a broader selection of cryptocurrencies or a platform for just purchasing and storing cryptocurrency.`}
           </P>
+          <h2 className="my-6 text-2xl font-bold">Home Page</h2>
+          <Image
+            src="/assets/InsightsAsset/bybit_homepage.png"
+            alt="CoinsPH HomePage"
+            width={1080}
+            height={1920}
+            className="max-h-full max-w-full"
+          />
           <P>
             {`Like other exchange platform, ByBit requires a KYC verification in order to allow access to its features. `}
             <span className="text[#A519D7] font-semibold text-[#A519D7] underline">
@@ -406,6 +414,7 @@ const Page = () => {
               </span>
             </P>
           </div>
+          <hr />
         </div>
 
         <div id="binance">
@@ -416,6 +425,14 @@ const Page = () => {
             It is generally used in trading cryptocurrency and converting it to real currencies such as the US Dollars.
             It also provides a KYC system or also known as Know-Your-Customer which is used to verify users by uploading there ID's and personal information. `}
           </P>
+          <h2 className="my-6 text-2xl font-bold">Home Page</h2>
+          <Image
+            src="/assets/InsightsAsset/Binance_Homepage.png"
+            alt="CoinsPH HomePage"
+            width={1080}
+            height={1920}
+            className="max-h-full max-w-full"
+          />
           <P>
             {`In starting your binance experience you should begin by creating an account and entering your information for verification. `}
             <span className="font-semibold text-[#A519D7] underline">
@@ -456,9 +473,10 @@ const Page = () => {
           <h2 className="my-6 text-2xl font-bold">Exchange your Crypto</h2>
           <P>{`After setting up your account, consider the following steps on the basic process of exchanging your crypto into fiat currency. This can also include the opposite wherein we can buy crypto using fiat money or basically real world currencies.`}</P>
           {displaySteps("binance")}
+          <hr />
         </div>
-      </div>
-      <div>
+      </>
+      <div id="others">
         <h2 className="my-6 text-2xl font-bold">
           Other Central Exchanging Platforms
         </h2>

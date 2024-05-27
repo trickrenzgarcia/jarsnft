@@ -73,7 +73,9 @@ const TiltCard = () => {
               height="485px"
               style={{
                 minWidth: "320px",
+                maxWidth: "320px",
                 minHeight: "320px",
+                maxHeight: "320px",
                 borderRadius: "12px",
               }}
             />
