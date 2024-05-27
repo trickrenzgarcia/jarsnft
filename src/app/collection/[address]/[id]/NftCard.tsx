@@ -237,29 +237,7 @@ export default function NftCard({
           </div>
         </div>
         <div className="h-[80svh] w-[40svw]">
-          {nft &&
-            (nft.metadata.image ? (
-              <ThirdwebNftMedia
-                metadata={nft.metadata}
-                style={{
-                  objectFit: "fill",
-                  height: "inherit",
-                  width: "inherit",
-                  borderRadius: "12px",
-                }}
-              />
-            ) : (
-              <Image
-                src="/assets/placeholder/nft_placeholder.svg"
-                style={{
-                  objectFit: "fill",
-                  height: "inherit",
-                  width: "inherit",
-                  borderRadius: "12px",
-                }}
-                alt="image of an NFT"
-              />
-            ))}
+          <TiltCard />
         </div>
       </div>
     </div>
