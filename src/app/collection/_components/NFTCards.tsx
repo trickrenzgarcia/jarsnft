@@ -21,15 +21,13 @@ import {
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
+import { NFT_MARKETPLACE } from "@/types/constant";
 // import { useEffect } from "react";
 // import { jars } from "@/lib/core/api";
 
 export default function NFTCards({ address }: { address: string }) {
   const { contract } = useContract(address);
-  const { contract: marketPlaceContract } = useContract(
-    "0x69b05D8ed116Bb160B8a268a4315D2767123eFA1",
-    "marketplace-v3",
-  );
+  const { contract: marketPlaceContract } = useContract(NFT_MARKETPLACE, "marketplace-v3");
   const { data: nfts, isError, isLoading } = useNFTs(contract);
   const { data: listings, isLoading: loadingListings } = useValidDirectListings(
     marketPlaceContract,
@@ -115,11 +113,11 @@ export default function NFTCards({ address }: { address: string }) {
                       {nft.asset.name}
                     </h1>
                     <p className="text-sm">
-                      Buy Price: {nft.buyoutCurrencyValue.displayValue}{" "}
+                      Price: {nft.buyoutCurrencyValue.displayValue}{" "}
                       {nft.minimumBidCurrencyValue.symbol}
                     </p>
                     <p className="text-sm">
-                      Start Bid: {nft.minimumBidCurrencyValue.displayValue}{" "}
+                      Min Bid: {nft.minimumBidCurrencyValue.displayValue}{" "}
                       {nft.minimumBidCurrencyValue.symbol}
                     </p>
                   </div>
@@ -161,7 +159,7 @@ export default function NFTCards({ address }: { address: string }) {
                       <h1 className="truncate text-sm font-semibold">
                         {nft.metadata.name}
                       </h1>
-                      <p>Not Listed</p>
+                      <p className="text-sm">Not Listed</p>
                     </div>
                   </CardFooter>
                 </Card>

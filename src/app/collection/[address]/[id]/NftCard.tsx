@@ -5,6 +5,8 @@ import { useNftContext } from "./nft-provider";
 import {
   NFT,
   ThirdwebNftMedia,
+  useCancelDirectListing,
+  useCancelEnglishAuction,
   useEnglishAuctionWinningBid,
   useValidDirectListings,
   useValidEnglishAuctions,
@@ -23,14 +25,12 @@ import { getMaticPriceInPHP } from "@/lib/core/coingecko";
 import SellButton from "./SellButton";
 import PlaceBidButton from "./PlaceBidButton";
 import AuctionEndTime from "./AuctionEndTime";
-import { MdOutlineLocalOffer } from "react-icons/md";
+
 import TiltCard from "./TiltCard";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+
+import CancelListingButton from "./CancelListingButton";
+import DisplayOffers from "./DisplayOffers";
+import NftMetadata from "./NftMetadata";
 
 export default function NftCard({
   address,
@@ -68,7 +68,6 @@ export default function NftCard({
 
   const router = useRouter();
 
-
   useEffect(() => {
     if (listings && listings[0]) {
       getMaticPriceInPHP(listings[0].currencyValuePerToken.displayValue).then(
@@ -78,20 +77,6 @@ export default function NftCard({
       );
     }
   }, [listings, auctionListing]);
-
-  useEffect(() => {
-    async function fetchOffers() {
-      if (auctionListing && auctionListing[0] && marketPlaceContract) {
-        try { 
-          const offers = await marketPlaceContract.abi;
-          console.log(offers);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    }
-    fetchOffers();
-  }, [auctionListing, loadingAuction, marketPlaceContract, loadingMarketplace]);
 
   useEffect(() => {
     if (ownedNFTs) {
@@ -145,19 +130,21 @@ export default function NftCard({
                   Owned by
                 </p>
                 {nft ? (
-                  <p className="cursor-pointer text-medium font-bold hover:underline">
-                    {nft.owner ? (
-                      listings && listings[0] && listings[0].creatorAddress ? (
-                        displayName(listings[0].creatorAddress)
-                      ) : auctionListing && auctionListing[0] && auctionListing[0].creatorAddress ? (
-                        displayName(auctionListing[0].creatorAddress)
+                  <Link href={`/user/${listings && listings[0] ? listings[0].creatorAddress : auctionListing && auctionListing[0] ? auctionListing[0].creatorAddress : nft.owner}`}>
+                    <p className="cursor-pointer text-medium font-bold hover:underline">
+                      {nft.owner ? (
+                        listings && listings[0] && listings[0].creatorAddress ? (
+                          displayName(listings[0].creatorAddress)
+                        ) : auctionListing && auctionListing[0] && auctionListing[0].creatorAddress ? (
+                          displayName(auctionListing[0].creatorAddress)
+                        ) : (
+                          displayName(nft.owner)
+                        )
                       ) : (
-                        "Not listed"
-                      )
-                    ) : (
-                      "Not logged in"
-                    )}
-                  </p>
+                        displayName(nft.owner)
+                      )}
+                    </p>
+                  </Link>
                 ) : (
                   <Skeleton className="h-4 w-8" />
                 )}
@@ -241,9 +228,9 @@ export default function NftCard({
                       </div>
                     ) : (
                       <div className="flex flex-col gap-3">
-                        {filteredNft ? (
+                        {filteredNft && (listings && !listings[0])? (
                           <SellButton nft={nft} contractAddress={address} />
-                        ) : (
+                        ) : !filteredNft && (
                           ((listings && listings[0]) ||
                             (auctionListing && auctionListing[0])) && (
                             <BuyButton
@@ -252,6 +239,14 @@ export default function NftCard({
                               auctionListing={auctionListing}
                             />
                           )
+                        )}
+                        {filteredNft && ((auctionListing && auctionListing[0]) || (listings && listings[0])) && (
+                          <CancelListingButton 
+                            nft={nft} 
+                            listings={listings} 
+                            auctionListing={auctionListing} 
+                            contractAddress={connectedAddress}
+                          />
                         )}
                         {auctionListing && auctionListing[0] && (
                           <PlaceBidButton
@@ -267,20 +262,18 @@ export default function NftCard({
               </CardContent>
             </Card>
 
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="item-1" className="border-0">
-                <AccordionTrigger className="border px-4 rounded-md bg-card">
-                  <div className="flex gap-2 items-center">
-                    <MdOutlineLocalOffer className="text-xl"/>
-                    <span>Offers</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-4 border pt-4 rounded-b-md">
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            {/* Not Completed */}
+            {/* <DisplayOffers /> */}
 
+            {/* More NFT Details */}
+            {loadingNft ? (
+              <div className="w-full">
+                <Skeleton className="w-full h-7"/>
+              </div>
+            ): (
+              <NftMetadata />
+            )}
+ 
           </div>
         </div>
         <div className="h-[70svh] w-[30svw]">
@@ -304,6 +297,8 @@ export default function NftCard({
                   width: "inherit",
                   borderRadius: "12px",
                 }}
+                width={400}
+                height={400}
                 alt="image of an NFT"
               />
             ))}
