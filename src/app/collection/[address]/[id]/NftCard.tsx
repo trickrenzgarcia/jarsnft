@@ -107,8 +107,8 @@ export default function NftCard({
         </p>
         <MdVerified className="text-lg text-blue-500" />
       </div>
-      <div className="mx-4 mt-4 flex items-stretch justify-between gap-16">
-        <div className="w-[60svw]">
+      <div className="w-full mx-4 mt-4 flex flex-col lg:flex-row items-center lg:items-stretch justify-center md:justify-between gap-4 lg:gap-16">
+        <div className="md:w-[60svw] w-full">
           <div className="flex w-full flex-col gap-4 py-4">
             {nft ? (
               <h1 className="text-4xl font-bold">{nft.metadata.name}</h1>
@@ -236,7 +236,7 @@ export default function NftCard({
             </Card>
           </div>
         </div>
-        <div className="h-[80svh] w-[40svw]">
+        <div className="h-[80svh] md:w-[40svw] w-full flex justify-center md:justify-start">
           <TiltCard />
         </div>
       </div>
