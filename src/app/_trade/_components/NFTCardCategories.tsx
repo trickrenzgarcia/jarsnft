@@ -28,8 +28,8 @@ export default function NFTCardCategories({
             className="rounded-[--radius]"
             src={image}
             fill
-            objectFit="cover"
             alt="NFT"
+            style={{ objectFit: "cover" }}
           />
         </Link>
       </CardHeader>
