@@ -110,7 +110,7 @@ export function SetupWallet() {
       </NoiseCard>
       <NoiseCard containerClassName="col-span-1 min-h-[300px]">
       <h2 className="max-w-sm md:max-w-lg text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-            Proceed to Step 4 for New Wallet and Step 5 for Importing Wallet
+            Proceed to Step 4 for New Wallet
       </h2>
       </NoiseCard>
       <NoiseCard containerClassName="col-span-1 lg:col-span-3 bg-violet-500 min-h-[300px] lg:min-h-[600px] xl:min-h-[750px]">
