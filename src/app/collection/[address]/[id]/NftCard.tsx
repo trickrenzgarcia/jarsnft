@@ -17,6 +17,8 @@ import { getMaticPriceInPHP } from "@/lib/core/coingecko";
 import SellButton from "./SellButton";
 import PlaceBidButton from "./PlaceBidButton";
 import AuctionEndTime from "./AuctionEndTime";
+import TiltCard from "./TiltCard";
+
 
 export default function NftCard({ address, id }: { address: string; id: string; }) {
   const [amountInPhp, setAmountInPhp] = useState<string>("");
@@ -200,8 +202,9 @@ export default function NftCard({ address, id }: { address: string; id: string; 
           </Card>
         </div>
       </div>
-      <div className="col-span-12 flex h-full w-full justify-center bg-accent/50 py-0 md:py-12 lg:col-span-7">
-        {nft &&
+      <div className="col-span-12 flex h-full w-full justify-center py-0 md:py-12 lg:col-span-7 bg-gradient-to-br from-indigo-500 to-violet-500">
+        <TiltCard />
+        {/* {nft &&
           (nft.metadata.image ? (
             <ThirdwebNftMedia
               metadata={nft.metadata}
@@ -220,7 +223,7 @@ export default function NftCard({ address, id }: { address: string; id: string; 
               height={500}
               alt="image of an NFT"
             />
-          ))}
+          ))} */}
       </div>
     </div>
   );
