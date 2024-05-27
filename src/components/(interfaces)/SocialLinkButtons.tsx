@@ -9,12 +9,11 @@ import {
 } from "react-icons/fa";
 import { IconType } from "react-icons";
 import { useTheme } from "next-themes";
+import ModeToggle from "../(interfaces)/ModeToggle";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 
 export default function SocialLinkButtons() {
   const { theme, setTheme } = useTheme();
-  const ModeToggle = dynamic(() => import("../(interfaces)/ModeToggle"));
 
   return (
     <div className="mb-24">

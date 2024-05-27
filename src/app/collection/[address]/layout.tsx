@@ -1,8 +1,7 @@
-import { Navbar } from "@/components/(layout)";
+import { Navbar, Footer } from "@/components/(layout)";
 import { Metadata } from "next";
 import { jars } from "@/lib/core/api";
 import CollectionProvider from "../_components/CollectionProvider";
-
 
 type CollectionParams = {
   children: React.ReactNode;
@@ -25,14 +24,15 @@ export async function generateMetadata({
   };
 }
 
-export default async function CollectionLayout({ children, params: { address } }: CollectionParams) {
-
+export default async function CollectionLayout({
+  children,
+  params: { address },
+}: CollectionParams) {
   return (
     <main>
-      <header>
-        <Navbar />
-      </header>
+      <Navbar />
       <CollectionProvider address={address}>{children}</CollectionProvider>
+      <Footer />
     </main>
   );
 }
