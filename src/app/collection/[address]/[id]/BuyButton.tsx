@@ -168,7 +168,7 @@ export default function BuyButton({
     <AlertDialog>
       {/* Trigger Button */}
       <AlertDialogTrigger asChild>
-        <Button className="h-[3.25rem] w-full text-lg font-semibold">
+        <Button className="h-[3rem] w-full text-lg font-semibold">
           Buy Now
         </Button>
       </AlertDialogTrigger>

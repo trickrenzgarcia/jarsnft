@@ -45,9 +45,7 @@ export default function SellButton({ nft }: SellButtonProps) {
     <AlertDialog>
       {/* Trigger Sell Button */}
       <AlertDialogTrigger asChild>
-        <Button className="h-[3.25rem] w-full text-lg font-semibold">
-          Sell
-        </Button>
+        <Button className="h-[3] w-full text-lg font-semibold">Sell</Button>
       </AlertDialogTrigger>
 
       <AlertDialogContent className="w-[500px] min-w-[420px] p-0">

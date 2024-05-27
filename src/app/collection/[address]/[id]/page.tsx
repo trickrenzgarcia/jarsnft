@@ -7,10 +7,11 @@ type NFTProps = {
   };
 };
 
-export default async function NFTDetails({ params: { address, id } }: NFTProps) {
-
+export default async function NFTDetails({
+  params: { address, id },
+}: NFTProps) {
   return (
-    <main className="container">
+    <main className="container pb-20">
       <NftCard address={address} id={id} />
     </main>
   );

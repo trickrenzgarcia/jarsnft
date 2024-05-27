@@ -35,7 +35,7 @@ export default function SocialLinkButtons() {
           />
         </div>
         <div className="">
-          <ModeToggle setTheme={setTheme} theme={theme} />
+          {/* <ModeToggle setTheme={setTheme} theme={theme} /> */}
         </div>
       </div>
     </div>
