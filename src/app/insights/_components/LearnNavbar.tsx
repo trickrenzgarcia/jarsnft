@@ -10,9 +10,10 @@ export default function LearnNavbar() {
   const router = useRouter();
 
   return (
-    <header className="sticky top-auto w-full bg-background/95 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:top-0">
-      <div className="container flex items-center justify-between px-4 md:px-20">
-        <div className="flex w-full items-center justify-center md:w-fit md:justify-normal">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-700 bg-background/95 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:py-4 ">
+      <div className="container flex items-center justify-center px-4 md:justify-between md:px-20">
+        {/* flex w-full items-center justify-center md:w-fit md:justify-normal */}
+        <div className="flex items-center justify-between md:w-fit md:justify-normal">
           <Image
             src="/assets/Jarsu.png"
             width={50}

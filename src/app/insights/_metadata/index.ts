@@ -89,11 +89,10 @@ export const rightNavList: RightNavListType[] = [
   {
     href: "/insights/what-is-nft",
     anchors: [
-      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
-      {
-        name: "Listing an NFT for sale a fixed price",
-        anchor: "#selling-fixed-price",
-      },
+      { name: "Overview", anchor: "overview" },
+      { name: "NFTs VS Cryptocurrency", anchor: "difference" },
+      { name: "History", anchor: "history" },
+      { name: "Types of NFTs", anchor: "types" },
     ],
   },
   {

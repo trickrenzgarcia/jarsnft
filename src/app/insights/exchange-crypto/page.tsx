@@ -87,7 +87,7 @@ const cenExch = [
 const Page = () => {
   return (
     <article>
-      <div>
+      <div className="m-0">
         <h1 className="mt-4 text-4xl font-bold md:text-5xl">
           Exchange Cryptocurrency
         </h1>
@@ -120,7 +120,7 @@ const Page = () => {
         <hr />
       </div>
       <>
-        <div id="coinsph">
+        <div id="coinsph" className="m-0">
           <div>
             <h2 className="my-6 text-2xl font-bold">Coins PH</h2>
             <P>
