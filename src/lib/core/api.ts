@@ -258,6 +258,17 @@ export class JarsAPI {
   }
 
   /**
+   * 
+   * @param walletAddress
+   * @returns
+   */
+  async getNFTsByWallet(walletAddress: string) {
+    return await this.request<SimpleHashNFT[]>(`/nfts/getNFTsByWallet?walletAddress=${walletAddress}`, {
+      next: { tags: ["nfts", "getNFTsByWallet"] },
+    });
+  }
+
+  /**
    * Get collection by owner
    * @param walletAddress
    */
