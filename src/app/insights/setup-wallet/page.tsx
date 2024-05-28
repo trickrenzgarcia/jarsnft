@@ -15,7 +15,7 @@ const browsers = [
   { src: "/assets/browsers/Opera.svg", alt: "opera" },
 ];
 
-export function SetupWallet() {
+export default function SetupWallet() {
   return (
     <>
       <h1 className="mb-4 text-4xl font-bold md:text-5xl">Setup your Wallet</h1>
@@ -159,5 +159,3 @@ export function SetupWallet() {
     </>
   );
 }
-
-export default SetupWallet;
