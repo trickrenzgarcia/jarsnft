@@ -130,19 +130,19 @@ export default function NftCard({
                   Owned by
                 </p>
                 {nft ? (
-                  <Link href={`/user/${listings && listings[0] ? listings[0].creatorAddress : auctionListing && auctionListing[0] ? auctionListing[0].creatorAddress : nft.owner}`}>
+                  <Link
+                    href={`/user/${listings && listings[0] ? listings[0].creatorAddress : auctionListing && auctionListing[0] ? auctionListing[0].creatorAddress : nft.owner}`}
+                  >
                     <p className="cursor-pointer text-medium font-bold hover:underline">
-                      {nft.owner ? (
-                        listings && listings[0] && listings[0].creatorAddress ? (
-                          displayName(listings[0].creatorAddress)
-                        ) : auctionListing && auctionListing[0] && auctionListing[0].creatorAddress ? (
-                          displayName(auctionListing[0].creatorAddress)
-                        ) : (
-                          displayName(nft.owner)
-                        )
-                      ) : (
-                        displayName(nft.owner)
-                      )}
+                      {nft.owner
+                        ? listings && listings[0] && listings[0].creatorAddress
+                          ? displayName(listings[0].creatorAddress)
+                          : auctionListing &&
+                              auctionListing[0] &&
+                              auctionListing[0].creatorAddress
+                            ? displayName(auctionListing[0].creatorAddress)
+                            : displayName(nft.owner)
+                        : displayName(nft.owner)}
                     </p>
                   </Link>
                 ) : (
@@ -228,9 +228,10 @@ export default function NftCard({
                       </div>
                     ) : (
                       <div className="flex flex-col gap-3">
-                        {filteredNft && (listings && !listings[0])? (
+                        {filteredNft && listings && !listings[0] ? (
                           <SellButton nft={nft} contractAddress={address} />
-                        ) : !filteredNft && (
+                        ) : (
+                          !filteredNft &&
                           ((listings && listings[0]) ||
                             (auctionListing && auctionListing[0])) && (
                             <BuyButton
@@ -240,14 +241,16 @@ export default function NftCard({
                             />
                           )
                         )}
-                        {filteredNft && ((auctionListing && auctionListing[0]) || (listings && listings[0])) && (
-                          <CancelListingButton 
-                            nft={nft} 
-                            listings={listings} 
-                            auctionListing={auctionListing} 
-                            contractAddress={connectedAddress}
-                          />
-                        )}
+                        {filteredNft &&
+                          ((auctionListing && auctionListing[0]) ||
+                            (listings && listings[0])) && (
+                            <CancelListingButton
+                              nft={nft}
+                              listings={listings}
+                              auctionListing={auctionListing}
+                              contractAddress={connectedAddress}
+                            />
+                          )}
                         {auctionListing && auctionListing[0] && (
                           <PlaceBidButton
                             nft={nft}
@@ -268,40 +271,15 @@ export default function NftCard({
             {/* More NFT Details */}
             {loadingNft ? (
               <div className="w-full">
-                <Skeleton className="w-full h-7"/>
+                <Skeleton className="h-7 w-full" />
               </div>
-            ): (
+            ) : (
               <NftMetadata />
             )}
- 
           </div>
         </div>
-        <div className="h-[70svh] w-[30svw]">
-          {nft &&
-            (nft.metadata.image ? (
-              <ThirdwebNftMedia
-                metadata={nft.metadata}
-                style={{
-                  objectFit: "fill",
-                  height: "inherit",
-                  width: "inherit",
-                  borderRadius: "12px",
-                }}
-              />
-            ) : (
-              <Image
-                src="/assets/placeholder/nft_placeholder.svg"
-                style={{
-                  objectFit: "fill",
-                  height: "inherit",
-                  width: "inherit",
-                  borderRadius: "12px",
-                }}
-                width={400}
-                height={400}
-                alt="image of an NFT"
-              />
-            ))}
+        <div className="flex h-[70svh] w-[24svw] items-center">
+          <TiltCard />
         </div>
       </div>
     </div>
