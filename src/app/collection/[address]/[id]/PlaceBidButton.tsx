@@ -126,7 +126,21 @@ export default function PlaceBidButton({
                 "The user denied the transaction or the transaction failed. Please try again.",
               position: "bottom-right",
             });
+          } else if(e.message.includes("Bid amount must be less than or equal to buyoutBidAmount")) {
+            toast.error("Failed to make bid!", {
+              description:
+                "Bid amount must be less than or equal to buyoutBidAmount. Please try again.",
+              position: "bottom-right",
+            });
+          } else if(e.message.includes("Invariant failed: Bid price is too low based on minimum bid amount")) {
+            toast.error("Failed to make bid!", {
+              description:
+                "Bid price is too low based on minimum bid amount. Please try again.",
+              position: "bottom-right",
+            });
+          
           } else {
+            console.log(e.message);
             toast.error("Failed to make bid!", {
               description:
                 "An error occurred while processing your request. Please try again.",

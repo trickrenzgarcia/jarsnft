@@ -56,21 +56,21 @@ const TiltCard = () => {
         transformStyle: "preserve-3d",
         transform,
       }}
-      className="relative h-[500px] w-[400px] rounded-xl bg-[#000000] dark:bg-[#ffffff]"
+      className="relative m-auto h-[60svh] w-[inherit] rounded-xl bg-[#000000] dark:bg-[#ffffff]"
     >
       <div
         style={{
           transform: "translateZ(75px)",
           transformStyle: "preserve-3d",
         }}
-        className="absolute inset-3 grid place-content-center rounded-xl bg-[#ffffff] dark:bg-gradient-to-br from-violet-700 to-violet-300 shadow-lg"
+        className="absolute inset-3 grid place-content-center rounded-xl bg-[#ffffff] from-violet-700 to-violet-300 shadow-lg dark:bg-gradient-to-br"
       >
         {nft &&
           (nft.metadata.image ? (
             <ThirdwebNftMedia
               metadata={nft.metadata}
-              width="500px"
-              height="500px"
+              width="485px"
+              height="485px"
               style={{
                 minWidth: "320px",
                 maxWidth: "320px",

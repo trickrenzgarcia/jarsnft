@@ -5,6 +5,9 @@ import { useNftContext } from "./nft-provider";
 import {
   NFT,
   ThirdwebNftMedia,
+  useCancelDirectListing,
+  useCancelEnglishAuction,
+  useEnglishAuctionWinningBid,
   useValidDirectListings,
   useValidEnglishAuctions,
 } from "@thirdweb-dev/react";
@@ -22,7 +25,12 @@ import { getMaticPriceInPHP } from "@/lib/core/coingecko";
 import SellButton from "./SellButton";
 import PlaceBidButton from "./PlaceBidButton";
 import AuctionEndTime from "./AuctionEndTime";
+
 import TiltCard from "./TiltCard";
+
+import CancelListingButton from "./CancelListingButton";
+import DisplayOffers from "./DisplayOffers";
+import NftMetadata from "./NftMetadata";
 
 export default function NftCard({
   address,
@@ -122,9 +130,21 @@ export default function NftCard({
                   Owned by
                 </p>
                 {nft ? (
-                  <p className="cursor-pointer text-medium font-bold hover:underline">
-                    {nft.owner ? displayName(nft.owner) : "Not logged in"}
-                  </p>
+                  <Link
+                    href={`/user/${listings && listings[0] ? listings[0].creatorAddress : auctionListing && auctionListing[0] ? auctionListing[0].creatorAddress : nft.owner}`}
+                  >
+                    <p className="cursor-pointer text-medium font-bold hover:underline">
+                      {nft.owner
+                        ? listings && listings[0] && listings[0].creatorAddress
+                          ? displayName(listings[0].creatorAddress)
+                          : auctionListing &&
+                              auctionListing[0] &&
+                              auctionListing[0].creatorAddress
+                            ? displayName(auctionListing[0].creatorAddress)
+                            : displayName(nft.owner)
+                        : displayName(nft.owner)}
+                    </p>
+                  </Link>
                 ) : (
                   <Skeleton className="h-4 w-8" />
                 )}
@@ -208,9 +228,10 @@ export default function NftCard({
                       </div>
                     ) : (
                       <div className="flex flex-col gap-3">
-                        {filteredNft ? (
+                        {filteredNft && listings && !listings[0] ? (
                           <SellButton nft={nft} contractAddress={address} />
                         ) : (
+                          !filteredNft &&
                           ((listings && listings[0]) ||
                             (auctionListing && auctionListing[0])) && (
                             <BuyButton
@@ -220,6 +241,16 @@ export default function NftCard({
                             />
                           )
                         )}
+                        {filteredNft &&
+                          ((auctionListing && auctionListing[0]) ||
+                            (listings && listings[0])) && (
+                            <CancelListingButton
+                              nft={nft}
+                              listings={listings}
+                              auctionListing={auctionListing}
+                              contractAddress={connectedAddress}
+                            />
+                          )}
                         {auctionListing && auctionListing[0] && (
                           <PlaceBidButton
                             nft={nft}
@@ -233,32 +264,22 @@ export default function NftCard({
                 </div>
               </CardContent>
             </Card>
+
+            {/* Not Completed */}
+            {/* <DisplayOffers /> */}
+
+            {/* More NFT Details */}
+            {loadingNft ? (
+              <div className="w-full">
+                <Skeleton className="h-7 w-full" />
+              </div>
+            ) : (
+              <NftMetadata />
+            )}
           </div>
         </div>
-        <div className="h-[70svh] w-[30svw]">
-          {nft &&
-            (nft.metadata.image ? (
-              <ThirdwebNftMedia
-                metadata={nft.metadata}
-                style={{
-                  objectFit: "fill",
-                  height: "inherit",
-                  width: "inherit",
-                  borderRadius: "12px",
-                }}
-              />
-            ) : (
-              <Image
-                src="/assets/placeholder/nft_placeholder.svg"
-                style={{
-                  objectFit: "fill",
-                  height: "inherit",
-                  width: "inherit",
-                  borderRadius: "12px",
-                }}
-                alt="image of an NFT"
-              />
-            ))}
+        <div className="flex h-[70svh] w-[24svw] items-center">
+          <TiltCard />
         </div>
       </div>
     </div>
