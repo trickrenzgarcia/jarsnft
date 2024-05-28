@@ -10,6 +10,8 @@ import { Capitalize } from "./SideNavLeft";
 import { PageNavbarTitle } from ".";
 import React from "react";
 import { IoHome } from "react-icons/io5";
+import { RiNftFill } from "react-icons/ri";
+import { SiBitcoinsv } from "react-icons/si";
 
 export default function SideBarHamburger() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,37 +38,36 @@ export default function SideBarHamburger() {
           <section className="fixed inset-0 z-50 overflow-y-auto lg:hidden">
             <div className="fixed inset-0 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80"></div>
             <div className="absolute flex w-80 max-w-[calc(100%-3rem)] flex-col justify-center bg-background p-4">
-              <div className="my-6 ml-4 flex flex-row justify-between text-[#91949c]">
-                <Link href="/insights">
-                  <div className="flex items-center gap-5 text-lg font-bold dark:hover:text-[#f0f0f0]">
-                    <IoHome />
-                    <h4>Home</h4>
-                  </div>
-                </Link>
-                <Link href="/insights">
-                  <div className="flex items-center gap-5 text-lg font-bold dark:hover:text-[#f0f0f0]">
-                    <IoHome />
-                    <h4>Home</h4>
-                  </div>
-                </Link>
-                <Link href="/insights">
-                  <div className="flex items-center gap-5 text-lg font-bold dark:hover:text-[#f0f0f0]">
-                    <IoHome />
-                    <h4>Home</h4>
-                  </div>
-                </Link>
-                <Link href="/insights">
-                  <div className="flex items-center gap-5 text-lg font-bold dark:hover:text-[#f0f0f0]">
-                    <IoHome />
-                    <h4>Home</h4>
-                  </div>
-                </Link>
+              <div className="mt-4 flex flex-row items-end justify-between">
+                <h1 className=" ml-4 text-2xl font-semibold tracking-wide text-[#A519D7]">
+                  Navigate
+                </h1>
                 <button
-                  className="items-center pr-2 text-3xl dark:hover:text-[#f0f0f0]"
+                  className="self-end pr-2 text-3xl dark:hover:text-[#f0f0f0]"
                   onClick={handleClick}
                 >
                   &times;
                 </button>
+              </div>
+              <div className="my-4 ml-4 flex flex-col justify-between text-[#91949c]">
+                <Link href="/">
+                  <div className="mb-4 flex items-center gap-5 text-lg font-bold dark:hover:text-[#f0f0f0]">
+                    <IoHome />
+                    <h4>Home</h4>
+                  </div>
+                </Link>
+                <Link href="/collections">
+                  <div className="mb-4 flex items-center gap-5 text-lg font-bold dark:hover:text-[#f0f0f0]">
+                    <RiNftFill />
+                    <h4>NFT Collections</h4>
+                  </div>
+                </Link>
+                <Link href="/insights">
+                  <div className="mb-4 flex items-center gap-5 text-lg font-bold dark:hover:text-[#f0f0f0]">
+                    <SiBitcoinsv />
+                    <h4>Crypto Analytics</h4>
+                  </div>
+                </Link>
               </div>
               <div className={cn(poppins.className)}>
                 <div className="ml-4 ">
