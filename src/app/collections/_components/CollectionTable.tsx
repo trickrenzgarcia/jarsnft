@@ -16,6 +16,7 @@ export default function CollectionTable({
   start: number;
   end: number;
 }) {
+  faker.seed(123);
   return (
     <>
       {collections.map((item, i) => {

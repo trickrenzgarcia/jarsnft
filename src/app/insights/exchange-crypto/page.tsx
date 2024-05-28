@@ -60,30 +60,6 @@ const cenExch = [
       "/assets/InsightsAsset/CoinsTransfer3.gif",
     ],
   },
-  // {
-  //   topic: "BybitDeposit",
-  //   steps: [" Tap Buy or Sell.", " Select Sell Crypto"],
-  //   images: [
-  //     "/assets/InsightsAsset/bybit deposit1.png",
-  //     "/assets/InsightsAsset/bybit deposit2.png",
-  //   ],
-  // },
-  // {
-  //   topic: "BybitConvert",
-  //   steps: [" Tap Buy or Sell.", " Select Sell Crypto"],
-  //   images: [
-  //     "/assets/InsightsAsset/bybit convert1.png",
-  //     "/assets/InsightsAsset/bybit convert2.png",
-  //   ],
-  // },
-  // {
-  //   topic: "BybitTrade",
-  //   steps: [" Tap Buy or Sell.", " Select Sell Crypto"],
-  //   images: [
-  //     "/assets/InsightsAsset/bybit trade1.png",
-  //     "/assets/InsightsAsset/bybit trade2.png",
-  //   ],
-  // },
   {
     topic: "bybitBuy",
     steps: [
@@ -110,18 +86,41 @@ const cenExch = [
 
 const Page = () => {
   return (
-    <div>
-      <div>
+    <article>
+      <div className="m-0">
         <h1 className="mt-4 text-4xl font-bold md:text-5xl">
           Exchange Cryptocurrency
         </h1>
-        <h3 className="text-md mt-4 xl:text-lg ">
+        <h3 className="text-md my-5 xl:text-lg ">
           The following are the recommended central exchanging platforms that
           every beginners should know.
         </h3>
+        <Image
+          src="/assets/InsightsAsset/bitcoin-exchange.jpeg"
+          width={1920}
+          height={1080}
+          alt="What is NFT Image"
+          className="max-h-[15rem] max-w-full rounded-lg object-cover"
+        />
+        <h2 className="my-6 text-2xl font-bold">Overview</h2>
+        <P>{`Choosing your own Exchanging platform can be intimidating and difficult for beginners. 
+        Though it is vital to have your a place to begin your blockchain journey. 
+        As such we will recommend websites that are easy for beginners to navigate in on, and have short walkthrough experience when using the platform. The following platforms will be:`}</P>
+        <ol className="-mt-2 ml-14 list-decimal leading-loose tracking-wide dark:text-gray-300">
+          <li className="mb-3">
+            <span className="font-bold">Coins PH</span>
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">ByBit</span>
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Binance</span>
+          </li>
+        </ol>
+        <hr />
       </div>
-      <div>
-        <div id="coinsph">
+      <>
+        <div id="coinsph" className="m-0">
           <div>
             <h2 className="my-6 text-2xl font-bold">Coins PH</h2>
             <P>
@@ -136,7 +135,7 @@ const Page = () => {
             </P>
             <P>
               {`The website is easy to use with its user-friendly interface along with its cheap fees compared to other local exchanging platform.
-            You can go to their website`}{" "}
+            You can go to their website's`}{" "}
               <span className="font-semibold text-[#A519D7] underline">
                 <a href="https://support.coins.ph/hc/en-us">help center</a>
               </span>{" "}
@@ -196,10 +195,11 @@ const Page = () => {
           </div>
           <div>
             <h2 className="my-6 text-2xl font-bold">
-              How to start with Coins PH
+              How to deposit your wallet
             </h2>
             <P>
-              {`To be able to make use of CoinsPH's services, your account should have sufficient funds to be able to Buy, Sell, and choose any of CoinsPH's services.`}
+              {`To be able to make use of CoinsPH's services, your account should have sufficient funds to be able to Buy, Sell, and choose any of CoinsPH's services. 
+              Depositing money to your wallet will be vital, therefore we can follow through on how we can transfer money to our wallet.`}
             </P>
             <div className="flex flex-col items-center">
               <p className="lg:text-md text-center text-sm">
@@ -247,6 +247,7 @@ const Page = () => {
             </h3>
             {displaySteps("coinsphbuy")}
           </div>
+          <hr />
         </div>
         <div id="bybit">
           <h2 className="my-6 text-2xl font-bold">Bybit</h2>
@@ -256,6 +257,14 @@ const Page = () => {
             For traders seeking a fast-paced, user-friendly platform with possibly larger returns (and dangers) on derivatives trading, ByBit is the perfect option. 
             ByBit is less appropriate, nevertheless, for new users or those seeking a broader selection of cryptocurrencies or a platform for just purchasing and storing cryptocurrency.`}
           </P>
+          <h2 className="my-6 text-2xl font-bold">Home Page</h2>
+          <Image
+            src="/assets/InsightsAsset/bybit_homepage.png"
+            alt="CoinsPH HomePage"
+            width={1080}
+            height={1920}
+            className="max-h-full max-w-full"
+          />
           <P>
             {`Like other exchange platform, ByBit requires a KYC verification in order to allow access to its features. `}
             <span className="text[#A519D7] font-semibold text-[#A519D7] underline">
@@ -264,6 +273,13 @@ const Page = () => {
               </a>
             </span>
           </P>
+          <h2 className="my-6 text-2xl font-bold">Why choose ByBit</h2>
+          <P>{`Bybit could be a good fit for experienced traders looking for an advanced platform with a focus on derivatives trading. 
+          They offer high leverage, fast transaction speeds, and a good variety of popular cryptocurrencies. Less experienced users might find Bybit challenging due to its focus on margin trading and limited fiat support. 
+          Additionally, some features and higher withdrawal limits are locked behind KYC verification. `}</P>
+          <P>{`Although it might prove to be quite challenging for beginners, it can be beneficial to learn and improve in your knowledge in trading cryptocurrencies.
+          Such challenges can be the diversity of fiat currency in the platform. In other words, it does not have direct exchange between cryptocurrencies into PHP currency.
+          It is wise to consider ByBit with your trading experiences. Though that is why we will give you insights on how to exchange your cryptocurrencies in this platform.`}</P>
           <div>
             <h2 className="my-6 text-2xl font-bold">How to start with ByBit</h2>
             <P>
@@ -358,7 +374,7 @@ const Page = () => {
               height={1920}
               className="mt-7 max-h-full max-w-full"
             />
-            <P>{`With the introduction out of the way you can now start exchange your cryptocurrency. We will be using the Trade feature of Bybit, these are the following steps accordingly: `}</P>
+            <P>{`With the introduction out of the way you can now start exchange your cryptocurrency. We now will be using the Trade feature of Bybit. To guide you, consider the following steps accordingly: `}</P>
             <h3 className="text:md m-5 text-center font-bold xl:text-xl">
               How to buy your crypto
             </h3>
@@ -398,28 +414,110 @@ const Page = () => {
               </span>
             </P>
           </div>
+          <hr />
         </div>
 
         <div id="binance">
           <h2 className="my-6 text-2xl font-bold">Binance</h2>
           <P>
-            {`It is widely-known popular crypto exchanging platform that having 128+ Million users in the platform. It became popular due to an increase of public interest in the crypto space
+            {`A widely-known popular crypto exchanging platform that having 128+ Million users in the platform. It became popular due to an increase of public interest in the crypto space
             and therefore has become the iconic platform to turn your crypto into real currency.
             It is generally used in trading cryptocurrency and converting it to real currencies such as the US Dollars.
             It also provides a KYC system or also known as Know-Your-Customer which is used to verify users by uploading there ID's and personal information. `}
           </P>
+          <h2 className="my-6 text-2xl font-bold">Home Page</h2>
+          <Image
+            src="/assets/InsightsAsset/Binance_Homepage.png"
+            alt="CoinsPH HomePage"
+            width={1080}
+            height={1920}
+            className="max-h-full max-w-full"
+          />
           <P>
-            {`In starting your binance experience you should start by creating an account and entering your information for verification. `}
+            {`In starting your binance experience you should begin by creating an account and entering your information for verification. `}
             <span className="font-semibold text-[#A519D7] underline">
               <a href="https://www.binance.com/blog/nft/how-to-verify-your-new-binance-account-and-claim-your-cr7-foreverzone-box-6753024416772061769#:~:text=Log%20in%20to%20your%20Binance,back%20after%20completing%20this%20step.">
                 learn more about KYC and Verification
               </a>
             </span>
           </P>
+          <h2 className="my-6 text-2xl font-bold">Why choose Binance</h2>
+          <P>
+            {`Because of Binance's high levels of liquidity, traders can purchase or sell assets with ease and little risk of large price swings. 
+            This facilitates traders' ability to carry out their trading plans and meet their financial objectives. 
+            Some of the lowest trading costs in the bitcoin market are also provided by Binance.`}
+          </P>
+          <h2 className="my-6 text-2xl font-bold">How to start with Binance</h2>
+          <P>{`To begin using Binance, follow these steps:`}</P>
+          <ul className="-mt-2 ml-14 list-disc dark:text-gray-300">
+            <li className="mb-3">
+              <span className="font-bold">Create an Account:</span>
+              {` Visit the Binance website or download the app, then fill out the registration form with your phone number or email address.`}
+            </li>
+            <li className="mb-3">
+              <span className="font-bold">Complete Verification:</span>
+              {` Binance needs identity verification in order to access all functionalities. 
+              Typically, this is done by providing identification credentials, a facial verification, and basic information.`}
+            </li>
+            <li className="mb-3">
+              <span className="font-bold">Fund Your Account:</span>
+              {` You can add money to your Binance account after it has been validated. 
+              Peer-to-peer (P2P) trading, bank transfers, and direct cryptocurrency purchases using debit or credit cards are just a few of the options available to you (not available in all locations).`}
+            </li>
+            <li className="mb-3">
+              <span className="font-bold">Start Trading:</span>
+              {` You can investigate the exchange once you have money in your account. Binance provides a range of trading choices and cryptocurrencies. 
+              Before getting started, novices can use their resources to learn about cryptocurrency and trading.`}
+            </li>
+          </ul>
+          <h2 className="my-6 text-2xl font-bold">Exchange your Crypto</h2>
+          <P>{`After setting up your account, consider the following steps on the basic process of exchanging your crypto into fiat currency. This can also include the opposite wherein we can buy crypto using fiat money or basically real world currencies.`}</P>
           {displaySteps("binance")}
+          <hr />
         </div>
+      </>
+      <div id="others">
+        <h2 className="my-6 text-2xl font-bold">
+          Other Central Exchanging Platforms
+        </h2>
+        <P>{`The following are websites and apps that you can consider checking out that can help you in exchanging your crypto into real money, and even other services such as trading.`}</P>
+        <ul className="-mt-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
+          <li className="mb-3">
+            <span className="font-bold">
+              PDAX (Philippine Digital Asset Exchange):
+            </span>
+            {` is a regulated cryptocurrency exchange in the Philippines. It offers spot trading, margin trading, and over-the-counter (OTC) trading for various cryptocurrencies and PHP.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Maya (formerly PayMaya):</span>
+            {`  is a popular e-wallet in the Philippines that also allows users to buy and sell cryptocurrencies. 
+            You can convert your crypto to PHP and withdraw it to your Maya account.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">UnionBank :</span>
+            {` is a universal bank in the Philippines that offers cryptocurrency trading services through its subsidiary, UnionBank GlobalLinker. 
+            You can convert your crypto to PHP and withdraw it to your UnionBank account.
+`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Crypto.com:</span>
+            {` A popular exchange that offers a user-friendly interface and a variety of features, including its own cryptocurrency (CRO). 
+            Crypto.com is known for its competitive fees and mobile app.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Kraken:</span>
+            {`  A large and established cryptocurrency exchange that offers a good selection of cryptocurrencies and a variety of features, including margin trading and staking. 
+            Kraken is known for its security and liquidity, but its interface can be a bit more complex for beginners than Coinbase.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Coinbase:</span>
+            {`  One of the largest and most well-known cryptocurrency exchanges in the world. 
+            Coinbase is a great option for beginners because it has a user-friendly interface, offers a variety of educational resources, and allows users to buy crypto with fiat currency (like US dollars or Euros) using a variety of payment methods, including bank transfers, credit cards, and debit cards. 
+            However, Coinbase can have higher fees than some other exchanges.`}
+          </li>
+        </ul>
       </div>
-    </div>
+    </article>
   );
 };
 

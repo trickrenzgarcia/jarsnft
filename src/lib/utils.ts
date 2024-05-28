@@ -113,6 +113,10 @@ export function truncate(str: string, maxLength: number): string {
 export function displayName(address: string, maxLength: number = 8) {
   if(address.length <= maxLength) return address;
 
+  if(address.includes("0x69b05D8ed116Bb160B8a268a4315D2767123eFA1")) {
+    return "In Auction"
+  }
+
   return address.slice(2, maxLength).toUpperCase();
 }
 

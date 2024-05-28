@@ -11,14 +11,14 @@ export default function Login() {
   return (
     // Connect Wallet for Context
     <div className="flex items-center">
-      {(isLoading && (
+      {(isLoading ? (
         <Skeleton className="w-[35px] h-[35px] rounded-full" />
-      ) || (isLoggedIn && user.data.address) && (
+      ) : isLoggedIn ? (
         <div className="flex items-center gap-2">
           <ProfileButton />
           <ConnectWeb3 btnTitle="Connect" />
         </div>
-      ) || <ConnectWeb3 btnTitle="Connect" />)}
+      ) : <ConnectWeb3 btnTitle="Connect" />)}
 
       {/* If the user is logged in but not listed. */}
       {isLoggedIn && !user.data.session.is_listed && (

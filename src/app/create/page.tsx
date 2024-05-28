@@ -13,9 +13,9 @@ export default function CreatePage() {
           <WavyEffect />
         </div>
         {/* Flex container */}
-        <div className="z-10 flex h-[calc(100vh-57px)] w-full items-start justify-between md:container md:items-center">
+        <div className="z-10 flex h-[calc(100vh-57px)] w-full items-start justify-around md:container md:items-center">
           {/* Create NFT Container */}
-          <div className="flex w-full flex-col justify-center gap-6 p-0 md:p-6">
+          <div className="flex w-[50svw] flex-col justify-center gap-6 p-0 md:p-6">
             {/* Art images for small screen */}
             <div className="flex flex-col md:hidden">
               <OnBoardingCarouselSm />
@@ -26,8 +26,11 @@ export default function CreatePage() {
             <h1 className="relative mb-6 hidden max-w-4xl text-left text-3xl font-bold text-zinc-700 dark:text-zinc-100 md:flex md:text-7xl">
               Create NFT Collection
             </h1>
-            <Link href="/create/deploy-contract" className="mx-4 md:mx-0">
-              <Alert className="hover:border-blue-400 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/50">
+            <Link
+              href="/create/deploy-contract"
+              className="mx-4 w-[38svw] md:mx-0"
+            >
+              <Alert className="p-8 hover:border-blue-400 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/50">
                 <AlertTitle>NFT Collection</AlertTitle>
                 <AlertDescription>
                   The NFT Collection contract is suitable for when you want to
@@ -35,8 +38,8 @@ export default function CreatePage() {
                 </AlertDescription>
               </Alert>
             </Link>
-            <Link href="/create/mint" className="mx-4 md:mx-0">
-              <Alert className="cursor-pointer hover:border-indigo-400 hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-500/50">
+            <Link href="/create/mint" className="mx-4 w-[38svw] md:mx-0">
+              <Alert className="cursor-pointer p-8 hover:border-indigo-400 hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-500/50">
                 <AlertTitle>Mint an NFT</AlertTitle>
                 <AlertDescription>
                   The NFT Mint contract is suitable for when you want to mint a

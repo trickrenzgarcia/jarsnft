@@ -89,11 +89,10 @@ export const rightNavList: RightNavListType[] = [
   {
     href: "/insights/what-is-nft",
     anchors: [
-      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
-      {
-        name: "Listing an NFT for sale a fixed price",
-        anchor: "#selling-fixed-price",
-      },
+      { name: "Overview", anchor: "overview" },
+      { name: "NFTs VS Cryptocurrency", anchor: "difference" },
+      { name: "History", anchor: "history" },
+      { name: "Types of NFTs", anchor: "types" },
     ],
   },
   {
@@ -166,6 +165,7 @@ export const rightNavList: RightNavListType[] = [
       { name: "Coins PH", anchor: "coinsph" },
       { name: "Bybit", anchor: "bybit" },
       { name: "Binance", anchor: "binance" },
+      { name: "More Examples", anchor: "others" },
     ],
   },
   {
@@ -183,14 +183,6 @@ export const rightNavList: RightNavListType[] = [
     anchors: [{ name: "FAQs", anchor: "#" }],
   },
 ];
-
-// export const leftNavList: LeftNavList[] = [
-//   { name: "Welcome", href: "/insights" },
-//   { name: "Getting Started", href: "/insights/getting-started" },
-//   { name: "Buying NFTs", href: "/insights/buying-nfts" },
-//   { name: "Selling NFTs", href: "/insights/selling-nfts" },
-//   { name: "FAQs", href: "/insights/faq" },
-// ];
 
 export const leftNavList: LeftNavList[] = [
   {

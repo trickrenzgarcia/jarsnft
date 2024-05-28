@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import OwnedNFTs from "./OwnedNFTs";
 import { jars } from "@/lib/core/api";
 import { Spinner } from "@nextui-org/react";
+import { useActiveListings, useNFTs, useOwnedNFTs, useValidDirectListings } from "@thirdweb-dev/react";
+import { SimpleHashNFT } from "@/types/simple-hash/nft";
 
 export default function TabsWrapper({
   user: userContext,
@@ -14,13 +16,13 @@ export default function TabsWrapper({
   user: ProfileQuery;
 }) {
   const { user, isLoading: userLoading } = userContext;
-  const [nfts, setNFTs] = useState<AlchemyNFTs>();
+  const [nfts, setNFTs] = useState<SimpleHashNFT[]>();
   const [loadingNfts, setLoadingNfts] = useState(false);
 
   useEffect(() => {
     async function getNFTs(walletAddress: string) {
       setLoadingNfts(true);
-      const nfts = await jars.getNFTsForOwner(walletAddress);
+      const nfts = await jars.getNFTsByWallet(walletAddress);
       setLoadingNfts(false);
       if (nfts) setNFTs(nfts);
     }
@@ -36,7 +38,7 @@ export default function TabsWrapper({
           <TabsList>
             <TabsTrigger value="owned" className="gap-1">
               <span>Owned NFTs</span>
-              {`${nfts?.totalCount || 0 > 0 ? `(${nfts?.totalCount})` : "(0)"}`}
+              {`${nfts?.length || 0 > 0 ? `(${nfts?.length})` : "(0)"}`}
               {userLoading && <Spinner size="sm" />}
             </TabsTrigger>
             <TabsTrigger value="onsale">On sale</TabsTrigger>

@@ -24,7 +24,6 @@ type BannerMetadataProps = {
   address: string;
   collection: NFTCollection;
 };
-
 type QueryMetadata = {
   data: CustomContractMetadata;
   isLoading: boolean;
@@ -47,15 +46,14 @@ export default function NFTBannerMetadata({
     { detail: "Owners(Unique)", value: 1000 },
   ]);
 
-  
-
   useEffect(() => {
     setDetails((prevDetails) =>
       prevDetails.map((item) =>
-        item.detail === "Listed" ? { ...item, value: totalListingCount } : item
-      )
+        item.detail === "Listed" ? { ...item, value: totalListingCount } : item,
+      ),
     );
   }, [totalListingCount]);
+  2;
 
   if (isLoading) {
     return (

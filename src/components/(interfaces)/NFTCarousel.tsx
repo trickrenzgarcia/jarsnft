@@ -19,12 +19,7 @@ type NFTCarouselProps = {
 
 export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
   return (
-    <Carousel
-      className="w-full"
-      opts={{
-        align: "start",
-      }}
-    >
+    <Carousel className="m-auto w-[95%]">
       <CarouselContent className="px-2 py-2 md:px-0">
         {nftCollections.map((collection, index) => (
           <CarouselItem
@@ -59,7 +54,7 @@ export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
                         <MdVerified className="text-xl" />
                       </div>
                     </div>
-                    <div className="flex w-full justify-between gap-2 text-sm">
+                    <div className="flex w-full justify-between gap-1 text-sm">
                       <div>
                         <p className="">Floor</p>
                         <p className="font-semibold">{0.1} MATIC</p>

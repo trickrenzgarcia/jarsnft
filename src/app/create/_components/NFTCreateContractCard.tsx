@@ -261,7 +261,7 @@ export default function NFTCreateContractCard({
         setContractAddress(processContractAddress);
         const newCollection = await createContract(
           processContractAddress,
-          user.address,
+          user.data.address,
         );
         setCreatedCollection(newCollection);
         toast.success("Contract deployed successfully!", {

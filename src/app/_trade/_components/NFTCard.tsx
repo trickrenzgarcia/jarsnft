@@ -38,9 +38,9 @@ export default function NFTCard({
           <Image
             src={image}
             fill
-            objectFit="cover"
             alt="NFT"
             className="rounded-t-lg"
+            style={{ objectFit: "cover" }}
           />
         </Link>
         <Link href={`/collection/${collectionLink}`}>

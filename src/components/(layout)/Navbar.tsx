@@ -4,10 +4,7 @@ import AdminAccessLink from "./AdminAccessLink";
 
 export default function Navbar() {
   return (
-    <nav
-      className="sticky top-0 z-50 w-full border-b-1 border-slate-800 bg-background/80 
-    px-0 backdrop-blur-md"
-    >
+    <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md">
       {/* Nav Container */}
       <div className="flex w-full justify-between px-5 py-4 md:px-10">
         {/* Left-side  */}
@@ -19,7 +16,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          <div className="ml-36 hidden gap-1 lg:flex xl:mr-5">
+          <div className="ml-32 hidden gap-1 md:flex lg:ml-36 xl:mr-5">
             <Link
               href="/create"
               className="cursor-pointer px-3 font-semibold hover:text-zinc-500"
