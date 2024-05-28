@@ -18,7 +18,6 @@ export default function SideNavRight() {
           <div className="mt-4 h-full w-full rounded-[inherit]">
             <ul className="text-[#696c72] dark:text-[#a0a0a0]">
               {item.anchors.map((val) => (
-                // make anchors in page respond to anchors
                 <Link
                   activeClass="font-bold text-[#151c25] dark:text-[#f0f0f0] "
                   to={val.anchor}
