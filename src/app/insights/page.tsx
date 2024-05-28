@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <div>
       <div id="welcome">
-        <h1 className="my-6 text-4xl font-bold md:text-5xl">Welcome</h1>
+        <h1 className="mb-6 text-4xl font-bold md:text-5xl">Overview</h1>
 
         <P>
           {`Welcome to the JarsNft insights, the following are the overview of

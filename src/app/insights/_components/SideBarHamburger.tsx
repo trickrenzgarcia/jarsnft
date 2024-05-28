@@ -9,6 +9,7 @@ import { cn } from "@nextui-org/react";
 import { Capitalize } from "./SideNavLeft";
 import { PageNavbarTitle } from ".";
 import React from "react";
+import { IoHome } from "react-icons/io5";
 
 export default function SideBarHamburger() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,9 +36,38 @@ export default function SideBarHamburger() {
           <section className="fixed inset-0 z-50 overflow-y-auto lg:hidden">
             <div className="fixed inset-0 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80"></div>
             <div className="absolute flex w-80 max-w-[calc(100%-3rem)] flex-col justify-center bg-background p-4">
-              <button className="self-end pr-2 text-4xl" onClick={handleClick}>
-                &times;
-              </button>
+              <div className="my-6 ml-4 flex flex-row justify-between text-[#91949c]">
+                <Link href="/insights">
+                  <div className="flex items-center gap-5 text-lg font-bold dark:hover:text-[#f0f0f0]">
+                    <IoHome />
+                    <h4>Home</h4>
+                  </div>
+                </Link>
+                <Link href="/insights">
+                  <div className="flex items-center gap-5 text-lg font-bold dark:hover:text-[#f0f0f0]">
+                    <IoHome />
+                    <h4>Home</h4>
+                  </div>
+                </Link>
+                <Link href="/insights">
+                  <div className="flex items-center gap-5 text-lg font-bold dark:hover:text-[#f0f0f0]">
+                    <IoHome />
+                    <h4>Home</h4>
+                  </div>
+                </Link>
+                <Link href="/insights">
+                  <div className="flex items-center gap-5 text-lg font-bold dark:hover:text-[#f0f0f0]">
+                    <IoHome />
+                    <h4>Home</h4>
+                  </div>
+                </Link>
+                <button
+                  className="items-center pr-2 text-3xl dark:hover:text-[#f0f0f0]"
+                  onClick={handleClick}
+                >
+                  &times;
+                </button>
+              </div>
               <div className={cn(poppins.className)}>
                 <div className="ml-4 ">
                   {leftNavList.map((item) => (
