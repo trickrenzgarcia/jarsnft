@@ -57,8 +57,6 @@ export default function NFTBannerMetadata({
     );
   }, [totalListingCount]);
 
-  console.log(data.image)
-
   if (isLoading) {
     return (
       <main className="flex w-full flex-col">

@@ -72,7 +72,7 @@ export default function NFTCards({ address }: { address: string }) {
   if (listings || auctions || nfts)
     return (
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {listings && listings.map((nft, i) => (
+        {listings && listings[0] && listings.map((nft, i) => (
           <Link key={i} href={`/collection/${address}/${nft.asset.id}`}>
             <Card className="rounded-xl hover:-translate-y-1">
               <CardContent className="flex aspect-square items-center justify-center ">
@@ -100,7 +100,7 @@ export default function NFTCards({ address }: { address: string }) {
             </Card>
           </Link>
         ))}
-        {auctions && auctions.map((nft, i) => (
+        {auctions && auctions[0] && auctions.map((nft, i) => (
           <Link key={i} href={`/collection/${address}/${nft.asset.id}`}>
             <Card className="rounded-xl hover:-translate-y-1">
               <CardContent className="flex aspect-square items-center justify-center ">
@@ -129,7 +129,7 @@ export default function NFTCards({ address }: { address: string }) {
             </Card>
           </Link>
         ))}
-        {nfts && nfts.filter((nft) => (listings?.every((listing) => listing.asset.id !== nft.metadata.id))).filter(
+        {nfts && listings && auctions && nfts.filter((nft) => (listings?.every((listing) => listing.asset.id !== nft.metadata.id))).filter(
           (nft) => auctions?.every((auction) => auction.asset.id !== nft.metadata.id)).map((nft, i) => (
           <Link key={i} href={`/collection/${address}/${nft.metadata.id}`}>
             <Card className="rounded-xl hover:-translate-y-1">
