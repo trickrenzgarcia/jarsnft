@@ -77,7 +77,7 @@ const page = () => {
           src="/assets/InsightsAsset/AxieInfinity.jpg"
           width={1920}
           height={1080}
-          alt="What is NFT Image"
+          alt="Axie Infinity"
           className="max-h-[25rem] max-w-full rounded-lg object-cover object-top"
         />
         <P>{`Meanwhile in the Philippines, The NFT boom in the country can be traced to two main areas: digital art and gaming. Filipinos saw NFTs as an opportunity for talented artists to gain international recognition. 
