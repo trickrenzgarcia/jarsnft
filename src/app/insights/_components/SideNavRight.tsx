@@ -14,9 +14,9 @@ export default function SideNavRight() {
     <div className="ml-3 hidden text-sm xl:block">
       <div className="sticky top-16 -mt-4 pt-8">
         <div className="relative overflow-hidden pb-10">
-          <h1 className="font-bold text-[#A519D7]">On This Page</h1>
+          <h1 className="font-bold text-[#c117ff]">On This Page</h1>
           <div className="mt-4 h-full w-full rounded-[inherit]">
-            <ul className="text-[#696c72] dark:text-[#a0a0a0]">
+            <ul className="text-[#696c72] dark:text-[#c0c0c0]">
               {item.anchors.map((val) => (
                 <Link
                   activeClass="font-bold text-[#151c25] dark:text-[#f0f0f0] "

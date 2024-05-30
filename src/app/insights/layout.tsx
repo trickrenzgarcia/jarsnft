@@ -55,7 +55,7 @@ export default function LearnLayout({ children }: LearnProps) {
         <main className="ml-5 mr-5 mt-5 lg:gap-10 xl:grid xl:grid-cols-[1fr_250px]">
           <div className="min-w-full sm:mt-16 lg:mt-0">
             <div className="container md:my-5">
-              <PageNavTopic color="#A519D7" />
+              <PageNavTopic color="#c117ff" />
               {children}
               {nextBtn}
             </div>
