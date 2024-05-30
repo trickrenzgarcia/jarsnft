@@ -37,7 +37,7 @@ export default function SideNavLeft() {
       <div className={cn(poppins.className)}>
         {leftNavList.map((item) => (
           <div className="mb-9" key={item.topic}>
-            <h1 className="font-semibold text-[#A519D7]">{item.topic}</h1>
+            <h1 className="font-semibold text-[#c117ff]">{item.topic}</h1>
             <ul className="mt-4 border-l border-[#a5aab3]" key={item.topic}>
               {item.child.map((child) => (
                 <li
@@ -47,7 +47,7 @@ export default function SideNavLeft() {
                     path === child.href &&
                       " border-l-[#151c25] font-bold text-[#151c25] dark:border-l-[#f0f0f0] dark:text-[#f0f0f0]",
                     path !== child.href &&
-                      "text-[#696c72] hover:border-l-[#151c25] hover:text-[#151c25] dark:text-[#a0a0a0] dark:hover:border-[#f0f0f0] dark:hover:text-[#f0f0f0]",
+                      "text-[#696c72] hover:border-l-[#151c25] hover:text-[#151c25] dark:text-[#b4b4b4] dark:hover:border-[#ffffff] dark:hover:text-[#ffffff]",
                   )}
                 >
                   <Link href={child.href}>{Capitalize(child.name)}</Link>
