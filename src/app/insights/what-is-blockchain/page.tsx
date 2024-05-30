@@ -22,94 +22,91 @@ export default function WhatBlockchainPage() {
         <P>{`
         This system makes it extremely difficult to tamper with data because any change would require changing all subsequent blocks on each copy of the blockchain, which is nearly impossible. 
         Blockchain's transparency and security make it valuable for uses other than cryptocurrency, such as tracking medical records, facilitating secure voting, and managing supply chains.`}</P>
+        <P>{`Since Bitcoin's creation in 2009, blockchain applications have grown exponentially, with the creation of various cryptocurrencies, decentralized finance (DeFi) applications, non-fungible tokens (NFTs), and smart contracts. `}</P>
 
         <h2 className="my-6 text-2xl font-bold">Blockchain Explained</h2>
-        <P></P>
-        <P>
-          {`(`}
-          <span className="font-semibold text-[#A519D7] underline ">
-            <a href="/insights/what-makes-nft-valuable">Learn more here</a>
-          </span>
-          {")"}
-        </P>
+        <P>{`Imagine a public record of transactions, like a checkbook, but everyone has a copy and it's constantly growing. 
+        This record is called a blockchain. 
+        Each entry (like a check) is bundled together with a unique code and linked to the previous entry, making it nearly impossible to tamper with.`}</P>
+        <ol className="-mt-2 ml-14 list-decimal leading-loose tracking-wide dark:text-gray-300">
+          <li className="mb-3">
+            <span className="font-bold">Shared Ledger:</span>
+            {`Everyone on the network has the same copy of the record, eliminating the possibility of errors or cheating.
+Permissions: Only authorized users can add entries, which ensures data privacy and`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Permissions:</span>
+            {`Only authorized users can add entries, which ensures data privacy and regulatory compliance.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Smart Contracts:</span>
+            {`These are automated agreements built into the system to streamline transactions.These are automated agreements built into the system to streamline transactions.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Consensus:</span>
+            {`Everyone on the network agrees that each entry is valid.`}
+          </li>
+        </ol>
+        <P>{`Various people play different roles in this system:`}</P>
+        <ul className="-mt-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
+          <li className="mb-3">
+            <span className="font-bold">Regular Users:</span>
+            {` They can connect to the network and conduct transactions.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Regulators:</span>
+            {` monitor network activity.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Operators:</span>
+            {` oversee the technical aspects of the network.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Certificate Authorities:</span>
+            {` They grant permission for users to participate.`}
+          </li>
+        </ul>
+        <P>{`The blockchain collects transaction information and stores it in blocks, similar to how cells in a spreadsheet store information. 
+        Once full, the data is encrypted using an algorithm that generates a hexadecimal number known as the hash.
+        The hash is then entered into the block header and encrypted alongside the other data in the block. This generates a series of blocks that are linked together.`}</P>
       </div>
       <div id="history">
         <h2 className="my-6 text-2xl font-bold">
           History and its Significance
         </h2>
-        <P>{`NFTs and Cryptocurrencies have similarities, such as being programmed to be used in the Web3. 
-      They also are a digital representation of a physical object. 
-      For an NFT this could be any object, while Cryptocurrency could be the US Dollar or Philippine Pesos. `}</P>
-        <P>{`Though they are similar, their uses and concept have a clear difference. 
-      NFTs from the name Non-fungible means that each NFT is unique and irreplaceable. 
-      Imagine a trading card - you can't trade one Michael Jordan rookie card for another LeBron James rookie card because they represent different things. 
-      On the otherhand, Cryptocurrencies are fungible. This means one Bitcoin is interchangeable with another Bitcoin. 
-      They have the same value and can be traded equally. 
-      As mentioned earlier, it's like real money - a $10 bill is worth the same as any other $10 bill. `}</P>
-        {/* <h2 className="my-9 text-2xl font-bold">{`What's their Use Case?`}</h2>
+        <P>{`Blockchain technology emerged alongside Bitcoin, a digital currency launched in 2009. Bitcoin's creator, Satoshi Nakamoto, designed a system for secure online transactions without a central bank.`}</P>
+        <P>{`Blockchain's success can be attributed to its unique ability to provide secure and transparent transactions. Unlike traditional systems, which store information in a central location, blockchain creates a public record that is accessible to everyone on the network. The following are the characteristics that made the blockchain succesful.`}</P>
         <ul className="-mt-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
           <li className="mb-3">
-            <span className="font-bold">Cryptocurrencies</span>
-            {` are often used as a digital currency for transactions and potential investment. 
-      You can use Bitcoin to buy a coffee (if the merchant accepts it) or hold onto when trading it hoping it goes up in value.`}
+            <span className="font-bold">Security and Transparency:</span>
+            {` Unlike traditional systems in which trust is based on a central authority, blockchain generates a tamper-proof public record. Everyone on the network has a copy, making it extremely difficult to modify or cheat. This transparency promotes trust and security in transactions.`}
           </li>
-          <li className="mb-6">
-            <span className="font-bold">NFTs</span>
-            {` represent ownership of digital or physical assets. NFTs can be digital art, music, in-game items, or even real-world things like property.`}
+
+          <li className="mb-3">
+            <span className="font-bold">Efficiency:</span>
+            {` Blockchain eliminates the middleman. Transactions can be completed directly between parties, eliminating the need for a bank or other institution to verify them. This can save both time and money.`}
           </li>
-        </ul> */}
+          <li className="mb-3">
+            <span className="font-bold">Reduced Errors:</span>
+            {` Errors are reduced because everyone has the same record, leaving less room for mistakes or inaccuracies when information is copied or transferred between systems..`}
+          </li>
+        </ul>
       </div>
-      <div id="history">
+      <div id="centralized">
         <h2 className="my-6 text-2xl font-bold">
-          Centralized and Decentralized Blockchain
+          Centralized and Decentralized
         </h2>
-        <P>{`During the year 2017, NFTs became widely known. The release of CryptoKitties, a blockchain-based game that let players collect, breed, and trade virtual cats, and this spike in popularity happened at the same time. 
-      Although there had been earlier ideas such as colored coins around 2012, the Ethereum blockchain's user-friendly features that made it possible to create, store, and trade NFTs were what really drove the NFT boom in 2017.`}</P>
+        <P>{`Centralized systems resemble having a central figure. Consider a large hub, such as a central traffic circle, from which numerous roads branch out. This hub serves as the central authority in a centralized system. Each road leading away from the hub serves as a means of communication or control. Information or instructions are sent outward from the central hub to various destinations. This could be a company in which the CEO (the hub) makes all decisions and then communicates them to various departments (the roads).`}</P>
+        <P>{`In contrast, decentralized systems distribute control. Think of a web rather than a pyramid. Decisions are made on a variety of levels, closer to the action. This allows for a quicker response to changing situations and can encourage people to be more creative. However, it can lead to inconsistencies and necessitate more effort to ensure everyone is on the same track.`}</P>
+        <P>{`Below is the visual representation of both concepts.`}</P>
         <Image
-          src="/assets/InsightsAsset/AxieInfinity.jpg"
+          src="/assets/InsightsAsset/Cen&Decen.png"
           width={1920}
           height={1080}
           alt="What is NFT Image"
-          className="max-h-[25rem] max-w-full rounded-lg object-cover object-top"
+          className="mb-6 max-h-[25rem] max-w-full rounded-lg object-cover object-center"
         />
-        <P>{`Meanwhile in the Philippines, The NFT boom in the country can be traced to two main areas: digital art and gaming. Filipinos saw NFTs as an opportunity for talented artists to gain international recognition. 
-      NFTs provided a secure and verifiable way to prove ownership of digital works and potentially earn a living.`}</P>
-        <P>{`Additionally, the play-to-earn model of games such as Axie Infinity has boomed during the pandemic. 
-      Given the economic challenges, Filipinos saw these games as a potential source of income. 
-      The ability to own and trade valuable in-game assets was definitely a big draw. Paving the way of future Play-To-Earn games as well as the exposure of blockchain technology in the country.`}</P>
-      </div>
-      <div id="types">
-        <h2 className="my-6 text-2xl font-bold">Benefits of Blockchain</h2>
-        <P>{`Blockchains are distributed public ledgers that record transactions and are where NFTs are found. Most likely, you are most familiar with blockchain technology as the backbone that enables cryptocurrencies. 
-      In particular, NFTs are generally maintained on the Ethereum network, though they can also be maintained on other networks.`}</P>
-        <P>{`An NFT is produced, or "minted," using digital representations of both material and immaterial objects. Due to This, different types of NFTs are created with various categories such as:`}</P>
-        <ul className="-mt-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
-          <li className="mb-3">
-            <span className="font-bold">Art NFTs:</span>
-            {` These are the most common, representing digital artwork ranging from single-edition pieces to collections with varying degrees of rarity.`}
-          </li>
-          <li className="mb-6">
-            <span className="font-bold">Collectible NFTs:</span>
-            {` Think of virtual trading cards. They include profile pictures (PFPs) such as those from the popular Bored Ape Yacht Club or Cryptopunks collections, as well as other collectibles like memes or virtual sports highlights.`}
-          </li>
-          <li className="mb-6">
-            <span className="font-bold">Gaming NFTs:</span>
-            {` In play-to-earn games, NFTs are frequently used to purchase in-game goods, virtual land, or characters. These NFTs have in-game uses and can be exchanged for real money.`}
-          </li>
-        </ul>
-        <P>{`And a few more including:`}</P>
-        <ul className="-mt-2 ml-14 list-disc font-bold dark:text-gray-300">
-          <li className="mb-3">Utility NFTs</li>
-          <li className="mb-3">Virtual Real Estate NFTs</li>
-          <li className="mb-3">Domain NFTs</li>
-          <li className="mb-3">Music NFTs</li>
-          <li className="mb-3">Ticketing NFTs</li>
-          <li className="mb-3">Charitable NFTs</li>
-          <li className="mb-3">Real-world Asset NFTs</li>
-          <li className="mb-3">Decentralized Finance (DeFi) NFTs</li>
-        </ul>
-        <br />
-        <P>{`These are but the few examples of NFTs that can be found in different marketplaces. To find out more on what gives NFT their value and how its economy work, move to the next topic.`}</P>
+        <P>{`The Blockchain therefore is a decentralized system. There is no single controlling authority over the network, and transactions are verified by multiple participants. This is an important factor in its security and transparency.`}</P>
       </div>
     </article>
   );

@@ -496,8 +496,7 @@ const Page = () => {
           <li className="mb-3">
             <span className="font-bold">UnionBank :</span>
             {` is a universal bank in the Philippines that offers cryptocurrency trading services through its subsidiary, UnionBank GlobalLinker. 
-            You can convert your crypto to PHP and withdraw it to your UnionBank account.
-`}
+            You can convert your crypto to PHP and withdraw it to your UnionBank account.`}
           </li>
           <li className="mb-3">
             <span className="font-bold">Crypto.com:</span>

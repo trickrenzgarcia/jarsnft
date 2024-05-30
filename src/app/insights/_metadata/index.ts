@@ -118,11 +118,9 @@ export const rightNavList: RightNavListType[] = [
   {
     href: "/insights/what-is-blockchain",
     anchors: [
-      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
-      {
-        name: "Listing an NFT for sale a fixed price",
-        anchor: "#selling-fixed-price",
-      },
+      { name: "Overview", anchor: "overview" },
+      { name: "History and Significance", anchor: "history" },
+      { name: "Centralized vs Decentralized", anchor: "centralized" },
     ],
   },
   {
