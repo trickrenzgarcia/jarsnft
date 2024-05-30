@@ -32,10 +32,10 @@ export default function SetupWallet() {
           </div>
           <Image
             src="/metamask-icon.svg"
-            width={500}
-            height={500}
+            width={450}
+            height={450}
             alt="metamask"
-            className="absolute -bottom-10 -right-4 rounded-2xl object-contain filter lg:-right-[40%]"
+            className="absolute bottom-0 -right-[40%] rounded-2xl object-contain filter"
           />
           <Button className="mt-5">
             <Link href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">
@@ -82,7 +82,7 @@ export default function SetupWallet() {
             </div>
           </div>
         </NoiseCard>
-        <NoiseCard containerClassName="col-span-1 lg:col-span-3 bg-blue-900 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]">
+        <NoiseCard containerClassName="col-span-1 lg:col-span-3 bg-blue-900 min-h-[500px] lg:min-h-[400px] xl:min-h-[300px]">
           <div className="max-w-sm">
             <h2 className="max-w-sm text-balance text-left text-base font-semibold tracking-[-0.015em] text-white md:max-w-lg md:text-xl lg:text-3xl">
               Step 1 : Add to Chrome
@@ -92,14 +92,9 @@ export default function SetupWallet() {
               Button
             </p>
           </div>
-          <Image
-            src="/AddtoChrome.png"
-            width={600}
-            height={300}
-            alt="addStep"
-            className="absolute inset-y-0 right-0 h-full w-[40%] object-cover"
-            quality={100}
-          />
+          <div className="absolute top-[40%] right-[10%]">
+          <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to Chrome</button>
+          </div>
         </NoiseCard>
         <NoiseCard containerClassName="col-span-1 min-h-[300px]">
           <h2 className="max-w-sm text-balance text-left text-base font-semibold tracking-[-0.015em] text-white md:max-w-lg md:text-xl lg:text-3xl">
@@ -108,8 +103,7 @@ export default function SetupWallet() {
         </NoiseCard>
         <NoiseCard containerClassName="col-span-1 min-h-[300px]">
           <h2 className="max-w-sm text-balance text-left text-base font-semibold tracking-[-0.015em] text-white md:max-w-lg md:text-xl lg:text-3xl">
-            Step 3: Select Option Create Wallet if New and Import a Wallet if
-            Existing
+            Step 3:Create Wallet or Import a Wallet
           </h2>
         </NoiseCard>
         <NoiseCard containerClassName="col-span-1 min-h-[300px]">
@@ -117,7 +111,7 @@ export default function SetupWallet() {
             Proceed to Step 4 for New Wallet
           </h2>
         </NoiseCard>
-        <NoiseCard containerClassName="col-span-1 lg:col-span-3 bg-violet-500 min-h-[300px] lg:min-h-[600px] xl:min-h-[750px]">
+        <NoiseCard containerClassName="col-span-1 lg:col-span-3 min-h-[300px] lg:min-h-[600px] xl:min-h-[750px]">
           <div className="max-w-sm">
             <h2 className="max-w-sm text-balance text-left text-base font-semibold tracking-[-0.015em] text-white md:max-w-lg md:text-xl lg:text-3xl">
               Step 4: Create Password, Secure Wallet, and Confirm SECRET
@@ -151,7 +145,7 @@ export default function SetupWallet() {
             width={650}
             height={750}
             alt="seedPhrase"
-            className="absolute inset-y-0 right-0 h-full w-[40%] "
+            className="absolute inset-y-0 right-0 h-full w-[50%] "
             quality={100}
           />
         </NoiseCard>
