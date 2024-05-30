@@ -59,7 +59,6 @@ export const rightNavList: RightNavListType[] = [
     anchors: [
       { name: "Installing a wallet", anchor: "#installing-wallet" },
       { name: "Connecting your wallet", anchor: "#connect-wallet" },
-      { name: "Creating your profile", anchor: "#create-profile" },
     ],
   },
   {
@@ -218,7 +217,7 @@ export const leftNavList: LeftNavList[] = [
       { name: "What are gas fees?", href: "/insights/what-are-gas-fees" },
       { name: "What is cryptocurrency?", href: "/insights/what-is-crypto" },
       {
-        name: "How to earn Cryptocurrency",
+        name: "How to earn Cryptocurrency?",
         href: "/insights/how-to-earn-crypto",
       },
     ],
