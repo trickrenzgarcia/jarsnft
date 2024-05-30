@@ -190,7 +190,6 @@ export const leftNavList: LeftNavList[] = [
     topic: "Getting Started",
     child: [
       { name: "Setup your wallet", href: "/insights/setup-wallet" },
-      { name: "Creating your profile", href: "/insights/create-profile" },
       { name: "Create your NFT", href: "/insights/create-nft" },
       { name: "How to trade your NFT", href: "/insights/trade-nft" },
     ],
@@ -203,7 +202,7 @@ export const leftNavList: LeftNavList[] = [
         name: "What makes NFT Valuable?",
         href: "/insights/what-makes-nft-valuable",
       },
-      { name: "How safe are my NFTs", href: "/insights/nft-safety" },
+      { name: "How safe are my NFTs?", href: "/insights/nft-safety" },
     ],
   },
   {
