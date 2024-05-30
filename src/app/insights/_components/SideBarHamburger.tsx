@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { poppins } from "@/lib/fonts";
 import { usePathname } from "next/navigation";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { leftNavList } from "../_metadata";
 import { cn } from "@nextui-org/react";
 import { Capitalize } from "./SideNavLeft";
@@ -16,6 +16,11 @@ import { SiBitcoinsv } from "react-icons/si";
 export default function SideBarHamburger() {
   const [isOpen, setIsOpen] = useState(false);
   const path = usePathname();
+
+  useEffect(() => {
+    // When the path changes, close the hamburger menu
+    setIsOpen(false);
+  }, [path]);
 
   function handleClick(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -36,7 +41,10 @@ export default function SideBarHamburger() {
       ) : (
         <>
           <section className="fixed inset-0 z-50 overflow-y-auto lg:hidden">
-            <div className="fixed inset-0 bg-black/20 backdrop-blur-sm dark:bg-slate-900/80"></div>
+            <div
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm dark:bg-zinc-900/80"
+              onClick={() => setIsOpen(false)}
+            ></div>
             <div className="absolute flex w-80 max-w-[calc(100%-3rem)] flex-col justify-center bg-background p-4">
               <div className="mt-4 flex flex-row items-end justify-between">
                 <h1 className=" ml-4 text-2xl font-semibold tracking-wide text-[#A519D7]">

@@ -11,16 +11,10 @@ import { SiBitcoinsv } from "react-icons/si";
 
 export default function SideNavLeft() {
   const path = usePathname();
-  // const [isOpen, setIsOpen] = useState(false);
-
-  // function handleClick(e: MouseEvent<HTMLButtonElement>) {
-  //   e.preventDefault();
-  //   isOpen === false ? setIsOpen(true) : setIsOpen(false);
-  // }
 
   return (
     <aside className="sticky right-auto top-16 z-30 hidden h-[93vh] w-[15.5rem] shrink-0 overflow-y-auto border-r border-gray-600 pt-9 lg:ml-5 lg:block">
-      <div className="my-2 flex flex-col justify-between text-[#91949c]">
+      <div className="my-2 mb-4 flex flex-col justify-between text-[#91949c]">
         <Link href="/">
           <div className="mb-2 flex items-center gap-5 text-lg font-bold dark:hover:text-[#f0f0f0]">
             <IoHome />
