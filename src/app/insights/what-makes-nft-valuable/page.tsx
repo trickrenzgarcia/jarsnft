@@ -16,15 +16,15 @@ export default function NFTValuablePage() {
         <Image
           src="/assets/InsightsAsset/nftBenefits.jpg"
           alt="NFTValuable"
-          width={1165}
+          width={900}
           height={460}
-          style={{ minWidth: 1165 }}
+          style={{ minWidth: 900 }}
           quality={80}
         />
       </div>
       <div className="mt-5 flex gap-5">
         <div className="flex-initial">
-          <Card className="h-[340px] w-[376px] p-5">
+          <Card className="h-[410px] w-[300px] p-5">
             <CardTitle>Authenticity</CardTitle>
             <CardContent>
               <p>
@@ -42,7 +42,7 @@ export default function NFTValuablePage() {
           </Card>
         </div>
         <div className="flex-initial">
-          <Card className="h-[340px] w-[376px] p-5">
+          <Card className="h-[410px] w-[300px] p-5">
             <CardTitle>Traceability</CardTitle>
             <CardContent>
               <p>
@@ -58,7 +58,7 @@ export default function NFTValuablePage() {
           </Card>
         </div>
         <div className="flex-initial">
-          <Card className="h-[340px] w-[376px] p-5">
+          <Card className="h-[410px] w-[300px] p-5">
             <CardTitle>Accessibility</CardTitle>
             <CardContent>
               <p>
