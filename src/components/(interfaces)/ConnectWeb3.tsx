@@ -2,7 +2,6 @@
 
 import { ConnectWallet, darkTheme, lightTheme } from "@thirdweb-dev/react";
 import React, { useMemo } from "react";
-
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useTheme } from "next-themes";
@@ -33,7 +32,6 @@ const ConnectWeb3 = ({ btnTitle }: { btnTitle: string | undefined }) => {
         theme={theme === "light" ? light : dark}
       />
     </div>
-    
   );
 };
 
