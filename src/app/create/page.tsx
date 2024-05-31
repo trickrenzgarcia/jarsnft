@@ -23,14 +23,14 @@ export default function CreatePage() {
             </div>
 
             {/* Medium screen and up Title */}
-            <h1 className="relative mb-6 hidden max-w-4xl text-left text-3xl font-bold text-zinc-700 dark:text-zinc-100 md:flex md:text-7xl">
+            <h1 className="animate-fade-up animate-once animate-duration-[1200ms] animate-ease-out relative mb-6 hidden max-w-4xl text-left text-3xl font-bold text-zinc-700 dark:text-zinc-100 md:flex md:text-7xl">
               Create NFT Collection
             </h1>
             <Link
               href="/create/deploy-contract"
               className="mx-4 w-[38svw] md:mx-0"
             >
-              <Alert className="p-8 hover:border-blue-400 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/50">
+              <Alert className="animate-flip-up animate-once animate-duration-[1200ms] animate-ease-out p-8 hover:border-blue-400 hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/50">
                 <AlertTitle>NFT Collection</AlertTitle>
                 <AlertDescription>
                   The NFT Collection contract is suitable for when you want to
@@ -39,7 +39,7 @@ export default function CreatePage() {
               </Alert>
             </Link>
             <Link href="/create/mint" className="mx-4 w-[38svw] md:mx-0">
-              <Alert className="cursor-pointer p-8 hover:border-indigo-400 hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-500/50">
+              <Alert className="animate-flip-up animate-once animate-duration-[1200ms] animate-ease-out cursor-pointer p-8 hover:border-indigo-400 hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-500/50">
                 <AlertTitle>Mint an NFT</AlertTitle>
                 <AlertDescription>
                   The NFT Mint contract is suitable for when you want to mint a
