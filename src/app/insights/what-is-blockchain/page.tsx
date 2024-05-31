@@ -15,7 +15,7 @@ export default function WhatBlockchainPage() {
           alt="Blockchain Image"
           className="mb-12 max-h-[15rem] max-w-full rounded-lg object-cover"
         />
-        <h2 className="my-6 text-2xl font-bold">Overview</h2>
+        <h2 className="my-6 text-3xl font-bold">Overview</h2>
         <P>{`The Blockchain is a type of database that is specifically designed to be secure. 
         Consider a shared spreadsheet that keeps track of all transactions and changes, but instead of being stored on a single server, it is duplicated and distributed across multiple computers. 
         Transactions are organized into blocks and linked together to form a chain, hence the name "Blockchain," with each computer on the network having its own copy.`}</P>
@@ -24,7 +24,7 @@ export default function WhatBlockchainPage() {
         Blockchain's transparency and security make it valuable for uses other than cryptocurrency, such as tracking medical records, facilitating secure voting, and managing supply chains.`}</P>
         <P>{`Since Bitcoin's creation in 2009, blockchain applications have grown exponentially, with the creation of various cryptocurrencies, decentralized finance (DeFi) applications, non-fungible tokens (NFTs), and smart contracts. `}</P>
 
-        <h2 className="my-6 text-2xl font-bold">Blockchain Explained</h2>
+        <h2 className="my-6 text-3xl font-bold">Blockchain Explained</h2>
         <P>{`Imagine a public record of transactions, like a checkbook, but everyone has a copy and it's constantly growing. 
         This record is called a blockchain. 
         Each entry (like a check) is bundled together with a unique code and linked to the previous entry, making it nearly impossible to tamper with.`}</P>
@@ -32,7 +32,7 @@ export default function WhatBlockchainPage() {
           <li className="mb-3">
             <span className="font-bold">Shared Ledger:</span>
             {`Everyone on the network has the same copy of the record, eliminating the possibility of errors or cheating.
-Permissions: Only authorized users can add entries, which ensures data privacy and`}
+            Permissions: Only authorized users can add entries, which ensures data privacy.`}
           </li>
           <li className="mb-3">
             <span className="font-bold">Permissions:</span>
@@ -71,7 +71,7 @@ Permissions: Only authorized users can add entries, which ensures data privacy a
         The hash is then entered into the block header and encrypted alongside the other data in the block. This generates a series of blocks that are linked together.`}</P>
       </div>
       <div id="history">
-        <h2 className="my-6 text-2xl font-bold">
+        <h2 className="my-6 text-3xl font-bold">
           History and its Significance
         </h2>
         <P>{`Blockchain technology emerged alongside Bitcoin, a digital currency launched in 2009. Bitcoin's creator, Satoshi Nakamoto, designed a system for secure online transactions without a central bank.`}</P>
@@ -93,7 +93,7 @@ Permissions: Only authorized users can add entries, which ensures data privacy a
         </ul>
       </div>
       <div id="centralized">
-        <h2 className="my-6 text-2xl font-bold">
+        <h2 className="my-6 text-3xl font-bold">
           Centralized and Decentralized
         </h2>
         <P>{`Centralized systems resemble having a central figure. Consider a large hub, such as a central traffic circle, from which numerous roads branch out. This hub serves as the central authority in a centralized system. Each road leading away from the hub serves as a means of communication or control. Information or instructions are sent outward from the central hub to various destinations. This could be a company in which the CEO (the hub) makes all decisions and then communicates them to various departments (the roads).`}</P>
