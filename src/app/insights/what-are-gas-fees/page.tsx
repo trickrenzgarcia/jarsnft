@@ -21,6 +21,7 @@ export default function WhatGasFeesPage() {
         Here is a detailed explanation: `}</P>
       </div>
       <div id="explained">
+        <hr />
         <h2 className="my-6 text-3xl font-bold">Gas Fees Explained</h2>
         <P>
           <span className="font-bold">Purpose:</span>
@@ -31,8 +32,8 @@ export default function WhatGasFeesPage() {
         </P>
         <P>
           <span className="font-bold">Measurement:</span>
-          {` Gas fees are usually expressed in units of`}
-          <span className="font-bold">{`"gas"`}</span>
+          {` Gas fees are usually expressed in units of `}
+          <span className="font-bold italic">{`"gas"`}</span>
           {`. Each operation on the Ethereum blockchain requires a certain amount of gas depending on its complexity and resource consumption. 
           The more complex the process, the more gas it requires. `}
         </P>
@@ -40,7 +41,7 @@ export default function WhatGasFeesPage() {
           <span className="font-bold">Calculation:</span>
           {` The total cost of a transaction is calculated by multiplying the gas price (the amount of cryptocurrency paid per gas unit) by the gas limit (the maximum amount of gas the sender is willing to pay for a transaction). 
           That is, `}
-          <span className="font-bold">{`total cost = gas price * gas limit.`}</span>
+          <span className="font-bold italic">{`total cost = gas price * gas limit.`}</span>
         </P>
         <P>
           <span className="font-bold">Market-Driven:</span>
@@ -62,6 +63,7 @@ export default function WhatGasFeesPage() {
         </P>
       </div>
       <div id="conclusion">
+        <hr />
         <h2 className="my-6 text-3xl font-bold">Conclusion</h2>
         <P>{`In conclusion, gas fees are the costs associated with executing transactions and smart contracts on a blockchain network such as Ethereum. 
         They are used to prevent spam, motivate miners, and prioritize transactions. 

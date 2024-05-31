@@ -151,11 +151,11 @@ export const rightNavList: RightNavListType[] = [
   {
     href: "/insights/what-is-crypto",
     anchors: [
-      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
-      {
-        name: "Listing an NFT for sale a fixed price",
-        anchor: "#selling-fixed-price",
-      },
+      { name: "Overview", anchor: "explained" },
+      { name: "History of Cryptocurrency", anchor: "history" },
+      { name: "Are Cryptocurrencies Safe", anchor: "safety" },
+      { name: "Use Cases", anchor: "usecase" },
+      { name: "Types of Cryptocurrency", anchor: "types" },
     ],
   },
   {
