@@ -42,6 +42,7 @@ export default function Hero() {
           fill
           style={{ objectFit: "cover" }}
           alt="image of a banner"
+          className="animate-fade animate-once animate-duration-[1200ms] animate-ease-in"
         />
       </div>
       <div className="absolute z-10 ml-2 mt-6 w-[500px] rounded-xl bg-white/85 p-2 dark:bg-black/85 sm:ml-28 sm:p-8">
