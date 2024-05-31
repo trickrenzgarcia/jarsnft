@@ -16,7 +16,12 @@ export default function CreateNftPage() {
       <h1 className="text-2xl animate-fade-up duration-1000 delay-500">Step 1: Connect wallet of your choosing</h1>
       <div className="flex-wrap">
       {isLoading ? (
+        <>
+        <div className="flex flex-row gap-4 items-center mr-8">
         <Skeleton className="h-[35px] w-[35px] rounded-full" />
+        <Skeleton className="h-[53px] w-[120px] rounded-[8px]" />
+        </div>
+        </>
       ) : isLoggedIn ? (
         <div className="flex items-center gap-2">
           <ProfileButton />
