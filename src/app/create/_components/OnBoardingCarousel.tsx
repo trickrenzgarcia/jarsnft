@@ -14,15 +14,15 @@ export default function OnBoardingCarousel() {
   const plugin = useRef(Autoplay({ delay: 5000, playOnInit: true }));
 
   const arts = [
+    "/assets/create/art-4.jpg",
+    "/assets/create/art-8.jpeg",
     "/assets/create/art-0.jpg",
     "/assets/create/art-5.jpeg",
     "/assets/create/art-1.jpg",
     "/assets/create/art-6.jpeg",
-    "/assets/create/art-2.jpg",
     "/assets/create/art-7.jpeg",
     "/assets/create/art-3.jpg",
-    "/assets/create/art-8.jpeg",
-    "/assets/create/art-4.jpg",
+    "/assets/create/art-2.jpg",
   ];
 
   return (
