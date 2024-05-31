@@ -102,7 +102,7 @@ const Page = () => {
           alt="What is NFT Image"
           className="max-h-[15rem] max-w-full rounded-lg object-cover"
         />
-        <h2 className="my-6 text-2xl font-bold">Overview</h2>
+        <h2 className="my-6 text-3xl font-bold">Overview</h2>
         <P>{`Choosing your own Exchanging platform can be intimidating and difficult for beginners. 
         Though it is vital to have your a place to begin your blockchain journey. 
         As such we will recommend websites that are easy for beginners to navigate in on, and have short walkthrough experience when using the platform. The following platforms will be:`}</P>
@@ -122,7 +122,7 @@ const Page = () => {
       <>
         <div id="coinsph" className="m-0">
           <div>
-            <h2 className="my-6 text-2xl font-bold">Coins PH</h2>
+            <h2 className="my-6 text-3xl font-bold">Coins PH</h2>
             <P>
               {`It is a well-known local exchanging platform in the Philippines.
             it offers an easy process of trading of cryptocurrencies, as well as the option to transfer your funds to other online bank accounts such as GCash.
@@ -157,7 +157,7 @@ const Page = () => {
             </P>
           </div>
           <div>
-            <h2 className="my-6 text-2xl font-bold">Why choose Coins PH</h2>
+            <h2 className="my-6 text-3xl font-bold">Why choose Coins PH</h2>
             <P>
               {`Because of its range of services, accessibility, and ease of use, Coins.ph is a very attractive option for handling your finances. 
             You may effortlessly manage bill payments, remittances, and even cryptocurrency transactions all in one location with an intuitive platform that is accessible from a smartphone. 
@@ -168,7 +168,7 @@ const Page = () => {
             Coins.ph offers a comprehensive solution to satisfy your financial needs, whether you're wanting to receive remittances from overseas, expedite your regular transactions, or investigate investment opportunities in cryptocurrencies like Bitcoin and Ethereum.`}
             </P>
             <P>{`Not only is it a beginner friendly choice but it also provide rewards with its referral system and seasonal promos and giveaways.`}</P>
-            <h2 className="my-6 text-2xl font-bold">
+            <h2 className="my-6 text-3xl font-bold">
               How to start with Coins PH
             </h2>
             <P>
@@ -194,7 +194,7 @@ const Page = () => {
             </div>
           </div>
           <div>
-            <h2 className="my-6 text-2xl font-bold">
+            <h2 className="my-6 text-3xl font-bold">
               How to deposit your wallet
             </h2>
             <P>
@@ -250,7 +250,7 @@ const Page = () => {
           <hr />
         </div>
         <div id="bybit">
-          <h2 className="my-6 text-2xl font-bold">Bybit</h2>
+          <h2 className="my-6 text-3xl font-bold">Bybit</h2>
           <P>
             {`A cryptocurrency exchange well-known for its quickness and concentration on trading derivatives, especially perpetual contracts, is ByBit. 
             This enables leveraged trading, in which you can borrow money to take control of a position that is bigger than your account balance. 
@@ -273,7 +273,7 @@ const Page = () => {
               </a>
             </span>
           </P>
-          <h2 className="my-6 text-2xl font-bold">Why choose ByBit</h2>
+          <h2 className="my-6 text-3xl font-bold">Why choose ByBit</h2>
           <P>{`Bybit could be a good fit for experienced traders looking for an advanced platform with a focus on derivatives trading. 
           They offer high leverage, fast transaction speeds, and a good variety of popular cryptocurrencies. Less experienced users might find Bybit challenging due to its focus on margin trading and limited fiat support. 
           Additionally, some features and higher withdrawal limits are locked behind KYC verification. `}</P>
@@ -336,7 +336,7 @@ const Page = () => {
             </P>
           </div>
           <div>
-            <h2 className="my-6 text-2xl font-bold">Start your first trade</h2>
+            <h2 className="my-6 text-3xl font-bold">Start your first trade</h2>
 
             <P>{`Now that you have sufficient funds, it is time to exchange them into your country's currency or to another cryptocurrency.
           ByBit provides two options: Trade and Convert. `}</P>
@@ -385,7 +385,7 @@ const Page = () => {
             {displaySteps("bybitsell")}
           </div>
           <div>
-            <h2 className="my-6 text-2xl font-bold">{`What's next?`}</h2>
+            <h2 className="my-6 text-3xl font-bold">{`What's next?`}</h2>
             <P>{`Since bybit is an international exchanging platform it may become confusing as to how to convert your USD into PHP, therefore we will provide you tips on how to do so.`}</P>
             <ul className="-mt-2 ml-14 list-disc dark:text-gray-300">
               <li className="mb-3">
@@ -418,14 +418,14 @@ const Page = () => {
         </div>
 
         <div id="binance">
-          <h2 className="my-6 text-2xl font-bold">Binance</h2>
+          <h2 className="my-6 text-3xl font-bold">Binance</h2>
           <P>
             {`A widely-known popular crypto exchanging platform that having 128+ Million users in the platform. It became popular due to an increase of public interest in the crypto space
             and therefore has become the iconic platform to turn your crypto into real currency.
             It is generally used in trading cryptocurrency and converting it to real currencies such as the US Dollars.
             It also provides a KYC system or also known as Know-Your-Customer which is used to verify users by uploading there ID's and personal information. `}
           </P>
-          <h2 className="my-6 text-2xl font-bold">Home Page</h2>
+          <h2 className="my-6 text-3xl font-bold">Home Page</h2>
           <Image
             src="/assets/InsightsAsset/Binance_Homepage.png"
             alt="CoinsPH HomePage"
@@ -441,13 +441,13 @@ const Page = () => {
               </a>
             </span>
           </P>
-          <h2 className="my-6 text-2xl font-bold">Why choose Binance</h2>
+          <h2 className="my-6 text-3xl font-bold">Why choose Binance</h2>
           <P>
             {`Because of Binance's high levels of liquidity, traders can purchase or sell assets with ease and little risk of large price swings. 
             This facilitates traders' ability to carry out their trading plans and meet their financial objectives. 
             Some of the lowest trading costs in the bitcoin market are also provided by Binance.`}
           </P>
-          <h2 className="my-6 text-2xl font-bold">How to start with Binance</h2>
+          <h2 className="my-6 text-3xl font-bold">How to start with Binance</h2>
           <P>{`To begin using Binance, follow these steps:`}</P>
           <ul className="-mt-2 ml-14 list-disc dark:text-gray-300">
             <li className="mb-3">
@@ -470,14 +470,14 @@ const Page = () => {
               Before getting started, novices can use their resources to learn about cryptocurrency and trading.`}
             </li>
           </ul>
-          <h2 className="my-6 text-2xl font-bold">Exchange your Crypto</h2>
+          <h2 className="my-6 text-3xl font-bold">Exchange your Crypto</h2>
           <P>{`After setting up your account, consider the following steps on the basic process of exchanging your crypto into fiat currency. This can also include the opposite wherein we can buy crypto using fiat money or basically real world currencies.`}</P>
           {displaySteps("binance")}
           <hr />
         </div>
       </>
       <div id="others">
-        <h2 className="my-6 text-2xl font-bold">
+        <h2 className="my-6 text-3xl font-bold">
           Other Central Exchanging Platforms
         </h2>
         <P>{`The following are websites and apps that you can consider checking out that can help you in exchanging your crypto into real money, and even other services such as trading.`}</P>

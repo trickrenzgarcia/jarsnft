@@ -125,8 +125,12 @@ export const rightNavList: RightNavListType[] = [
   {
     href: "/insights/what-are-smart-contracts",
     anchors: [
-      { name: "Buying a fixed price NFT", anchor: "#buying-fixed-nfts" },
-      { name: "Making an offer on a NFT", anchor: "#making-offer" },
+      { name: "Overview", anchor: "overview" },
+      { name: "How does it Work", anchor: "work" },
+      { name: "History", anchor: "history" },
+      { name: "Benefits and Limitations", anchor: "benefit" },
+      { name: "Example Use Cases", anchor: "usecase" },
+      { name: "Conclusion", anchor: "conclusion" },
     ],
   },
   {
@@ -139,11 +143,9 @@ export const rightNavList: RightNavListType[] = [
   {
     href: "/insights/what-are-gas-fees",
     anchors: [
-      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
-      {
-        name: "Listing an NFT for sale a fixed price",
-        anchor: "#selling-fixed-price",
-      },
+      { name: "Overview", anchor: "overview" },
+      { name: "Gas Fees Explained", anchor: "explained" },
+      { name: "Conclusion", anchor: "conclusion" },
     ],
   },
   {
