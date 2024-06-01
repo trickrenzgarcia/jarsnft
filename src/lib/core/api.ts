@@ -295,6 +295,15 @@ export class JarsAPI {
     );
   }
 
+  /**
+   * 
+   */
+  async getSearchResults(query: string) {
+    return await this.request<Omit<NFTCollection[], "simpleHashData">>(`/search?q=${query}`, {
+      next: { tags: ["search"] },
+    });
+  }
+
   public storage = {
     /**
      * Update a user's profile banner

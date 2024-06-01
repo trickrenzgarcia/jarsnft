@@ -30,6 +30,11 @@ export type NFTCollection = {
   fee_recipient: string;
   seller_fee_basis_points: number;
   primary_sale_recipient: string;
+  owner: string;
+  is_nsfw: boolean;
+  is_verified: boolean;
+  safe_listed: boolean;
+  view_count: number;
   trusted_forwarders: string[];
   created_at: string;
   simpleHashData: SimpleHashCollections;
