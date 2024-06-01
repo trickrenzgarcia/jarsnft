@@ -25,18 +25,25 @@ export default function SearchInput() {
         setDataResults(null);
       } else {
         setDataResults(res);
-
-        
       }
       setIsLoading(false);
       console.log(dataResults);
-    }
-    if(searchQuery.length >= 3) {
+    };
+    if (searchQuery.length >= 3) {
       fetchSearch();
     } else {
       setDataResults(null);
     }
   }, [searchQuery]);
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsFocused(false);
+    const href = e.currentTarget.getAttribute("href");
+    if (href) {
+      router.push(href);
+    }
+  };
 
   return (
     <div className='w-full relative flex flex-col'>
@@ -44,7 +51,7 @@ export default function SearchInput() {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onBlur={() => setTimeout(() => setIsFocused(false), 100)}
         placeholder='Search'
         className='rounded-lg'
       />
@@ -60,26 +67,33 @@ export default function SearchInput() {
                 <div>
                   <p className='text-sm text-muted-foreground'>Search something</p>
                 </div>
-              ) : dataResults && (dataResults.length > 0) ? (
+              ) : dataResults && dataResults.length > 0 ? (
                 <div className='flex flex-col'>
                   {dataResults.map((result) => (
-                    <Link href={`/collection/${result.contract}`} className='cursor-pointer'>
-                      <div key={result.contract} className='flex p-2 gap-2 hover:bg-muted rounded-lg'>
+                    <Link
+                      key={result.contract}
+                      href={`/collection/${result.contract}`}
+                      className='cursor-pointer'
+                      onClick={handleLinkClick}
+                    >
+                      <div className='flex p-2 gap-2 hover:bg-muted rounded-lg'>
                         <div className="flex aspect-square items-center justify-center">
-                          <Image src={result.image} alt={result.name} width={30} height={30}
+                          <Image
+                            src={result.image}
+                            alt={result.name}
+                            width={30}
+                            height={30}
                             style={{ objectFit: "cover" }}
-                            className='w-full h-full rounded-md border-1' />
+                            className='w-full h-full rounded-md border-1'
+                          />
                         </div>
-                        
                         <div className='flex flex-col'>
                           <p className='text-sm font-bold'>{result.name}</p>
-                          
                         </div>
                       </div>
                     </Link>
                   ))}
                 </div>
-                
               ) : (
                 <div>
                   <p className='text-sm text-muted-foreground'>No results found.</p>
@@ -88,8 +102,7 @@ export default function SearchInput() {
             </CardContent>
           </Card>
         </div>
-        
       )}
     </div>
-  )
+  );
 }
