@@ -64,12 +64,24 @@ export default function WhatCryptoPage() {
       <div id="safety">
         <hr />
         <h2 className="my-6 text-3xl font-bold">Are Cryptocurrencies Safe?</h2>
+        <P>{`To put it simply, Cryptocurrencies can be safe if proper security measures are taken, but they also carry significant risks. Cryptocurrencies provide both significant opportunities and substantial risks. `}</P>
+        <P>{`On the plus side, they are generally decentralized, lowering the risk of manipulation and censorship, and they employ cryptographic techniques with high levels of security, making counterfeiting or double-spending difficult. 
+        Blockchain technology, which supports most cryptocurrencies, provides transparency by recording all transactions on a public ledger. 
+        Additionally, cryptocurrencies can provide financial services to individuals who do not have access to traditional banking systems. 
+        However, they are also known for their price volatility, with values fluctuating dramatically in short periods of time, potentially resulting in significant financial losses. 
+        While the underlying technology is secure, exchanges and wallets are susceptible to hacking, fraud, and scams, with several high-profile thefts taking place. `}</P>
+        <P>{`The legal status of cryptocurrencies varies greatly between countries and can change, potentially affecting their value and use. 
+        Furthermore, cryptocurrency transactions are typically irreversible, which means that funds sent to the wrong address or lost due to fraud are usually irrecoverable. 
+        The relatively unregulated nature of cryptocurrency markets can make them vulnerable to manipulation by large holders or coordinated groups. 
+        To reduce these risks, it is recommended to use reputable exchanges, secure storage solutions such as hardware wallets, enable two-factor authentication on accounts, stay up to date on developments and regulatory changes, and exercise caution by not sharing private keys and double-checking addresses before sending funds. 
+        Thus, while cryptocurrencies provide novel financial opportunities, they necessitate careful consideration and stringent security measures.`}</P>
       </div>
       <div id="usecase">
         <hr />
         <h2 className="my-6 text-3xl font-bold">Use Cases</h2>
         <P>{`Today, people use cryptocurrencies in a variety of ways and benefit from their unique properties: decentralization, security, and ease of transfer.
         The most common uses for cryptocurrencies are: `}</P>
+        <P>{``}</P>
       </div>
       <div id="types">
         <hr />
