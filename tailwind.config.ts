@@ -6,7 +6,7 @@ const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
 
-const config = {
+const config: Config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -77,15 +77,46 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "fade-up": {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        "fade-down": {
+          '0%': { opacity: '0', transform: 'translateY(-10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        "fade-left": {
+          '0%': { opacity: '0', transform: 'translateX(-10px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        "fade-right": {
+          '0%': { opacity: '0', transform: 'translateX(10px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        "flip-up": {
+          '0%': { transform: 'rotateX(90deg)', opacity: '0' },
+          '100%': { transform: 'rotateX(0)', opacity: '1' },
+        },
+        "flip-down": {
+          '0%': { transform: 'rotateX(-90deg)', opacity: '0' },
+          '100%': { transform: 'rotateX(0)', opacity: '1' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-up": "fade-up 1s ease-in-out",
+        "fade-down": "fade-down 1s ease-in-out",
+        "fade-left": "fade-left 1s ease-in-out",
+        "fade-right": "fade-right 1s ease-in-out",
+        "flip-up": "flip-up 1s ease-in-out",
+        "flip-down": "flip-down 1s ease-in-out",
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), nextui(), addVariablesForColors],
-} satisfies Config;
+  plugins: [require("tailwindcss-animated"), nextui(), addVariablesForColors],
+};
+
 function addVariablesForColors({ addBase, theme }: any) {
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(

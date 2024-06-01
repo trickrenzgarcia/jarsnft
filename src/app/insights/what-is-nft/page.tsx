@@ -14,7 +14,7 @@ const page = () => {
           alt="What is NFT Image"
           className="max-h-[15rem] max-w-full rounded-lg object-cover"
         />
-        <h2 className="my-6 text-2xl font-bold">Overview</h2>
+        <h2 className="my-6 text-3xl font-bold">Overview</h2>
         <P>
           {`An NFT (non-fungible token) is a unique digital item stored on a
           blockchain. NFTs can represent almost anything, and serve as a
@@ -40,7 +40,7 @@ const page = () => {
         </P>
       </div>
       <div id="difference">
-        <h2 className="my-6 text-2xl font-bold">
+        <h2 className="my-6 text-3xl font-bold">
           How is an NFT different from a Cryptocurrency?
         </h2>
         <P>{`NFTs and Cryptocurrencies have similarities, such as being programmed to be used in the Web3. 
@@ -52,7 +52,7 @@ const page = () => {
       On the otherhand, Cryptocurrencies are fungible. This means one Bitcoin is interchangeable with another Bitcoin. 
       They have the same value and can be traded equally. 
       As mentioned earlier, it's like real money - a $10 bill is worth the same as any other $10 bill. `}</P>
-        <h2 className="my-9 text-2xl font-bold">{`What's their Use Case?`}</h2>
+        <h2 className="my-9 text-3xl font-bold">{`What's their Use Case?`}</h2>
         <ul className="-mt-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
           <li className="mb-3">
             <span className="font-bold">Cryptocurrencies</span>
@@ -68,7 +68,7 @@ const page = () => {
       Both utilizes the blockchain technology to track ownership.`}</P>
       </div>
       <div id="history">
-        <h2 className="my-6 text-2xl font-bold">
+        <h2 className="my-6 text-3xl font-bold">
           When did NFT became popular?
         </h2>
         <P>{`During the year 2017, NFTs became widely known. The release of CryptoKitties, a blockchain-based game that let players collect, breed, and trade virtual cats, and this spike in popularity happened at the same time. 
@@ -87,7 +87,7 @@ const page = () => {
       The ability to own and trade valuable in-game assets was definitely a big draw. Paving the way of future Play-To-Earn games as well as the exposure of blockchain technology in the country.`}</P>
       </div>
       <div id="types">
-        <h2 className="my-6 text-2xl font-bold">Different types of NFTs</h2>
+        <h2 className="my-6 text-3xl font-bold">Different types of NFTs</h2>
         <P>{`Blockchains are distributed public ledgers that record transactions and are where NFTs are found. Most likely, you are most familiar with blockchain technology as the backbone that enables cryptocurrencies. 
       In particular, NFTs are generally maintained on the Ethereum network, though they can also be maintained on other networks.`}</P>
         <P>{`An NFT is produced, or "minted," using digital representations of both material and immaterial objects. Due to This, different types of NFTs are created with various categories such as:`}</P>

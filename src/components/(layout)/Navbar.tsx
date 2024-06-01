@@ -13,7 +13,7 @@ export default function Navbar() {
           <Link href="/">
             <div className="flex items-end">
               <JarsLogo />
-              <h1 className="mb-2 text-xl font-bold">Jars</h1>
+              <h1 className="animate-flip-down animate-once animate-duration-[1200ms] animate-ease-in mb-2 text-xl font-bold">Jars</h1>
             </div>
           </Link>
 
@@ -22,25 +22,25 @@ export default function Navbar() {
           <div className="hidden gap-1 lg:flex xl:mr-5">
             <Link
               href="/create"
-              className="cursor-pointer px-3 font-semibold hover:text-zinc-500"
+              className="animate-fade-right animate-once animate-duration-[1200ms] animate-ease-linear cursor-pointer px-3 font-semibold hover:text-zinc-500"
             >
               Create
             </Link>
             <Link
               href="/collections"
-              className="cursor-pointer px-3 font-semibold hover:text-zinc-500"
+              className="animate-fade-right animate-once animate-duration-[1200ms] animate-ease-linear cursor-pointer px-3 font-semibold hover:text-zinc-500"
             >
               Collections
             </Link>
             <Link
               href="/coins"
-              className="cursor-pointer px-3 font-semibold hover:text-zinc-500"
+              className="animate-fade-right animate-once animate-duration-[1200ms] animate-ease-linear cursor-pointer px-3 font-semibold hover:text-zinc-500"
             >
               Analytics
             </Link>
             <Link
               href="/insights"
-              className="cursor-pointer px-3 font-semibold hover:text-zinc-500"
+              className="animate-fade-right animate-once animate-duration-[1200ms] animate-ease-linear cursor-pointer px-3 font-semibold hover:text-zinc-500"
             >
               Insights
             </Link>

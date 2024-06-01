@@ -18,7 +18,7 @@ const browsers = [
 export default function SetupWallet() {
   return (
     <>
-      <h1 className="mb-4 text-4xl font-bold md:text-5xl">Setup your Wallet</h1>
+      <h1 className="mb-4 text-4xl font-bold md:text-5xl animate-fade-down animate-once animate-duration-[1200ms] animate-ease-linear">Setup your Wallet</h1>
       <div className="mx-auto mt-2 grid w-full max-w-7xl grid-cols-1 gap-4 lg:grid-cols-3">
         <NoiseCard containerClassName="col-span-1 lg:col-span-2 h-full bg-pink-800 min-h-[500px] lg:min-h-[300px] gap-5">
           <div className="max-w-xs">
@@ -44,7 +44,7 @@ export default function SetupWallet() {
           </Button>
         </NoiseCard>
 
-        <NoiseCard containerClassName="col-span-1 min-h-[300px]">
+        <NoiseCard containerClassName="col-span-1 min-h-[300px] bg-pink-800">
           <h2 className="max-w-80 text-balance text-left text-base font-semibold tracking-[-0.015em] text-white md:text-xl lg:text-3xl">
             Supported Browsers
           </h2>
@@ -82,7 +82,7 @@ export default function SetupWallet() {
             </div>
           </div>
         </NoiseCard>
-        <NoiseCard containerClassName="col-span-1 lg:col-span-3 bg-blue-900 min-h-[500px] lg:min-h-[400px] xl:min-h-[300px]">
+        <NoiseCard containerClassName="bg-pink-800 col-span-1 lg:col-span-3 min-h-[500px] lg:min-h-[400px] xl:min-h-[300px]">
           <div className="max-w-sm">
             <h2 className="max-w-sm text-balance text-left text-base font-semibold tracking-[-0.015em] text-white md:max-w-lg md:text-xl lg:text-3xl">
               Step 1 : Add to Chrome
@@ -96,22 +96,22 @@ export default function SetupWallet() {
           <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to Chrome</button>
           </div>
         </NoiseCard>
-        <NoiseCard containerClassName="col-span-1 min-h-[300px]">
+        <NoiseCard containerClassName="col-span-1 min-h-[300px] bg-purple-800">
           <h2 className="max-w-sm text-balance text-left text-base font-semibold tracking-[-0.015em] text-white md:max-w-lg md:text-xl lg:text-3xl">
             Step 2 : Click Agree to Terms of Use
           </h2>
         </NoiseCard>
-        <NoiseCard containerClassName="col-span-1 min-h-[300px]">
+        <NoiseCard containerClassName="col-span-1 min-h-[300px] bg-purple-800">
           <h2 className="max-w-sm text-balance text-left text-base font-semibold tracking-[-0.015em] text-white md:max-w-lg md:text-xl lg:text-3xl">
             Step 3:Create Wallet or Import a Wallet
           </h2>
         </NoiseCard>
-        <NoiseCard containerClassName="col-span-1 min-h-[300px]">
+        <NoiseCard containerClassName="col-span-1 min-h-[300px] bg-purple-800">
           <h2 className="max-w-sm text-balance text-left text-base font-semibold tracking-[-0.015em] text-white md:max-w-lg md:text-xl lg:text-3xl">
             Proceed to Step 4 for New Wallet
           </h2>
         </NoiseCard>
-        <NoiseCard containerClassName="col-span-1 lg:col-span-3 min-h-[300px] lg:min-h-[600px] xl:min-h-[750px]">
+        <NoiseCard containerClassName="bg-purple-800 col-span-1 lg:col-span-3 min-h-[300px] lg:min-h-[600px] xl:min-h-[750px]">
           <div className="max-w-sm">
             <h2 className="max-w-sm text-balance text-left text-base font-semibold tracking-[-0.015em] text-white md:max-w-lg md:text-xl lg:text-3xl">
               Step 4: Create Password, Secure Wallet, and Confirm SECRET

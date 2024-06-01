@@ -125,8 +125,12 @@ export const rightNavList: RightNavListType[] = [
   {
     href: "/insights/what-are-smart-contracts",
     anchors: [
-      { name: "Buying a fixed price NFT", anchor: "#buying-fixed-nfts" },
-      { name: "Making an offer on a NFT", anchor: "#making-offer" },
+      { name: "Overview", anchor: "overview" },
+      { name: "How does it Work", anchor: "work" },
+      { name: "History", anchor: "history" },
+      { name: "Benefits and Limitations", anchor: "benefit" },
+      { name: "Example Use Cases", anchor: "usecase" },
+      { name: "Conclusion", anchor: "conclusion" },
     ],
   },
   {
@@ -139,21 +143,19 @@ export const rightNavList: RightNavListType[] = [
   {
     href: "/insights/what-are-gas-fees",
     anchors: [
-      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
-      {
-        name: "Listing an NFT for sale a fixed price",
-        anchor: "#selling-fixed-price",
-      },
+      { name: "Overview", anchor: "overview" },
+      { name: "Gas Fees Explained", anchor: "explained" },
+      { name: "Conclusion", anchor: "conclusion" },
     ],
   },
   {
     href: "/insights/what-is-crypto",
     anchors: [
-      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
-      {
-        name: "Listing an NFT for sale a fixed price",
-        anchor: "#selling-fixed-price",
-      },
+      { name: "Overview", anchor: "explained" },
+      { name: "History of Cryptocurrency", anchor: "history" },
+      { name: "Are Cryptocurrencies Safe", anchor: "safety" },
+      { name: "Use Cases", anchor: "usecase" },
+      { name: "Types of Cryptocurrency", anchor: "types" },
     ],
   },
   {
@@ -190,7 +192,6 @@ export const leftNavList: LeftNavList[] = [
     topic: "Getting Started",
     child: [
       { name: "Setup your wallet", href: "/insights/setup-wallet" },
-      { name: "Creating your profile", href: "/insights/create-profile" },
       { name: "Create your NFT", href: "/insights/create-nft" },
       { name: "How to trade your NFT", href: "/insights/trade-nft" },
     ],
@@ -203,7 +204,7 @@ export const leftNavList: LeftNavList[] = [
         name: "What makes NFT Valuable?",
         href: "/insights/what-makes-nft-valuable",
       },
-      { name: "How safe are my NFTs", href: "/insights/nft-safety" },
+      { name: "How safe are my NFTs?", href: "/insights/nft-safety" },
     ],
   },
   {
