@@ -77,7 +77,7 @@ export default function WhatCryptoPage() {
       </div>
       <div id="usecase">
         <hr />
-        <h2 className="my-6 text-3xl font-bold">Use Cases</h2>
+        <h2 className="my-6 text-3xl font-bold">Real-World Use Cases</h2>
         <P>{`Today, people use cryptocurrencies in a variety of ways and benefit from their unique properties: decentralization, security, and ease of transfer.
         The most common uses for cryptocurrencies are: `}</P>
         <ol className="-mt-2 ml-14 list-decimal leading-loose tracking-wide ">
@@ -124,9 +124,9 @@ export default function WhatCryptoPage() {
           <li className="mb-3">Charity and Donations</li>
           <li className="mb-3">Travel and Tourism</li>
           <li className="mb-3">Privacy and Anonymity</li>
-          <li className="mb-3">Microtransactions and Tips</li>
+          <li className="mb-6">Microtransactions and Tips</li>
         </ul>
-        <P>{`A more specific real life example would be the following: `}</P>
+        <P>{`A more specific real-world example would be the following: `}</P>
         <ol className="-mt-2 ml-14 list-decimal leading-loose tracking-wide dark:text-gray-300">
           <li className="mb-3">
             <span className="font-bold">Buying Coffee:</span>
@@ -153,6 +153,49 @@ export default function WhatCryptoPage() {
       <div id="types">
         <hr />
         <h2 className="my-6 text-3xl font-bold">Types of Cryptocurrency</h2>
+        <P>{`There are various types of cryptocurrency that are categorized based on their use case or technology that was used. The following are a few examples: `}</P>
+        <ol className="-mt-2 ml-14 list-decimal leading-loose tracking-wide ">
+          <li className="mt-5">
+            <span className="font-bold text-white">Bitcoin:</span>
+            {` Bitcoin which was created by Satoshi Nakamoto, is the first and best-known cryptocurrency. Its primary function is as a digital store of value and medium of exchange.`}
+          </li>
+          <li className="mt-5">
+            <span className="font-bold text-white">Altcoins:</span>
+            {` Altcoins, or alternative coins, are all cryptocurrencies other than Bitcoin.`}
+            <ul className="-mt-2 ml-7 list-disc dark:text-gray-300">
+              <li className="mt-3">Litecoin (LTC)</li>
+              <li>Bitcoin cash (BCH)</li>
+              <li>Ripple (XRP)</li>
+              <li className="mb-3">Dash (DASH)</li>
+            </ul>
+          </li>
+          <li className="mt-5">
+            <span className="font-bold text-white">Meme Coins:</span>
+            {` Meme coins are cryptocurrencies inspired by internet memes and popular culture, frequently created for fun but occasionally gaining significant market value:`}
+            <ul className="-mt-2 ml-7 list-disc dark:text-gray-300">
+              <li className="mt-3">Dogecoin (DOGE)</li>
+              <li className="mb-3">Shiba inu (SHIB)</li>
+            </ul>
+          </li>
+          <li className="mt-5">
+            <span className="font-bold text-white">Tokens:</span>
+            {` Tokens are cryptocurrencies developed on existing blockchain platforms, primarily for use in specific ecosystems or applications:`}
+            <ul className="-mt-2 ml-7 list-disc dark:text-gray-300">
+              <li className="mt-3">ERC-20 tokens</li>
+              <li>BEP-20 tokens</li>
+              <li className="mb-3">NFTs (non-fungible tokens)</li>
+            </ul>
+          </li>
+          <li className="mt-5">
+            <span className="font-bold text-white">Stablecoins:</span>
+            {` Stablecoins are cryptocurrencies that maintain a stable value by being pegged to a reserve asset such as the US dollar, gold, or other cryptocurrencies:`}
+            <ul className="-mt-2 ml-7 list-disc dark:text-gray-300">
+              <li className="mt-3">Tether (USDT)</li>
+              <li>USD Coin(USDC)</li>
+              <li className="mb-3">Dai(DAI)</li>
+            </ul>
+          </li>
+        </ol>
       </div>
     </section>
   );

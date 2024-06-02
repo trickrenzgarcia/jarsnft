@@ -135,13 +135,6 @@ export const rightNavList: RightNavListType[] = [
     ],
   },
   {
-    href: "/insights/how-to-earn-crypto",
-    anchors: [
-      { name: "Buying a fixed price NFT", anchor: "#buying-fixed-nfts" },
-      { name: "Making an offer on a NFT", anchor: "#making-offer" },
-    ],
-  },
-  {
     href: "/insights/what-are-gas-fees",
     anchors: [
       { name: "Overview", anchor: "overview" },
@@ -155,8 +148,15 @@ export const rightNavList: RightNavListType[] = [
       { name: "Overview", anchor: "explained" },
       { name: "History of Cryptocurrency", anchor: "history" },
       { name: "Are Cryptocurrencies Safe", anchor: "safety" },
-      { name: "Use Cases", anchor: "usecase" },
+      { name: "Real-World Use Cases", anchor: "usecase" },
       { name: "Types of Cryptocurrency", anchor: "types" },
+    ],
+  },
+  {
+    href: "/insights/how-to-earn-crypto",
+    anchors: [
+      { name: "Buying a fixed price NFT", anchor: "#buying-fixed-nfts" },
+      { name: "Making an offer on a NFT", anchor: "#making-offer" },
     ],
   },
   {
