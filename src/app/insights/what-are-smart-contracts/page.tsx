@@ -64,7 +64,7 @@ export default function WhatSmartContractPage() {
         <hr />
         <h2 className="my-6 text-3xl font-bold">History of Smart Contracts</h2>
         <P>{`The concept of smart contracts was first introduced in 1994 by computer scientist and cryptographer Nick Szabo.
-        Szabo envisioned self-executing contracts whose clauses were written directly  into the code and could be enforced automatically.
+        He envisioned self-executing contracts whose clauses were written directly into the code and could be enforced automatically.
         Despite his theoretical work, the necessary technology and infrastructure was not yet available.`}</P>
         <P>{`The emergence of Bitcoin in 2008, developed by Satoshi Nakamoto, provided the underlying technology for smart contracts:  blockchain.
         In 2013, Vitalik Buterin published the Ethereum whitepaper, proposing a new blockchain platform that would enable decentralized applications (dApps) using smart contracts.
