@@ -7,7 +7,7 @@ export default function JarsLogo() {
   const { theme } = useTheme();
 
   return (
-    <>
+    <div className="animate-pulse">
       {theme === "dark" ? (
         <Image
           src="/jars_transparent_dark.png"
@@ -18,6 +18,6 @@ export default function JarsLogo() {
       ) : (
         <Image src="/jars_transparent.png" width={50} height={50} alt="jars" />
       )}
-    </>
+    </div>
   );
 }

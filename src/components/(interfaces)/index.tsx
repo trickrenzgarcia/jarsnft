@@ -18,3 +18,4 @@ export { default as Hamburger } from "./Hamburger";
 export { default as TopNFTCollectionsTable } from "./TopNFTCollectionsTable";
 export { default as JarsLogo } from "./JarsLogo";
 export { default as BoringAvatar } from "./BoringAvatar";
+export { default as SearchInput } from "./SearchInput";
