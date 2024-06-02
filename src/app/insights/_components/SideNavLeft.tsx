@@ -38,12 +38,12 @@ export default function SideNavLeft() {
         {leftNavList.map((item) => (
           <div className="mb-9" key={item.topic}>
             <h1 className="font-semibold text-[#c117ff]">{item.topic}</h1>
-            <ul className="mt-4 border-l border-[#a5aab3]" key={item.topic}>
+            <ul className="mt-4 border-l border-[#424242]" key={item.topic}>
               {item.child.map((child) => (
                 <li
                   key={child.name}
                   className={cn(
-                    "-ml-px mb-3 block border-l border-transparent pl-4 text-sm font-semibold text-[#91949c]",
+                    "-ml-px mb-3 block border-l border-transparent pl-4 text-sm font-semibold",
                     path === child.href &&
                       " border-l-[#151c25] font-bold text-[#151c25] dark:border-l-[#f0f0f0] dark:text-[#f0f0f0]",
                     path !== child.href &&
