@@ -31,7 +31,7 @@ export default function WhatBlockchainPage() {
         <ol className="-mt-2 ml-14 list-decimal leading-loose tracking-wide dark:text-gray-300">
           <li className="mb-3">
             <span className="font-bold">Shared Ledger:</span>
-            {`Everyone on the network has the same copy of the record, eliminating the possibility of errors or cheating.
+            {` Everyone on the network has the same copy of the record, eliminating the possibility of errors or cheating.
             Permissions: Only authorized users can add entries, which ensures data privacy.`}
           </li>
           <li className="mb-3">
@@ -40,11 +40,11 @@ export default function WhatBlockchainPage() {
           </li>
           <li className="mb-3">
             <span className="font-bold">Smart Contracts:</span>
-            {`These are automated agreements built into the system to streamline transactions.These are automated agreements built into the system to streamline transactions.`}
+            {` These are automated agreements built into the system to streamline transactions.These are automated agreements built into the system to streamline transactions.`}
           </li>
-          <li className="mb-3">
+          <li className="mb-6">
             <span className="font-bold">Consensus:</span>
-            {`Everyone on the network agrees that each entry is valid.`}
+            {` Everyone on the network agrees that each entry is valid.`}
           </li>
         </ol>
         <P>{`Various people play different roles in this system:`}</P>
@@ -61,7 +61,7 @@ export default function WhatBlockchainPage() {
             <span className="font-bold">Operators:</span>
             {` oversee the technical aspects of the network.`}
           </li>
-          <li className="mb-3">
+          <li className="mb-6">
             <span className="font-bold">Certificate Authorities:</span>
             {` They grant permission for users to participate.`}
           </li>
@@ -71,6 +71,7 @@ export default function WhatBlockchainPage() {
         The hash is then entered into the block header and encrypted alongside the other data in the block. This generates a series of blocks that are linked together.`}</P>
       </div>
       <div id="history">
+        <hr />
         <h2 className="my-6 text-3xl font-bold">
           History and its Significance
         </h2>
@@ -86,13 +87,14 @@ export default function WhatBlockchainPage() {
             <span className="font-bold">Efficiency:</span>
             {` Blockchain eliminates the middleman. Transactions can be completed directly between parties, eliminating the need for a bank or other institution to verify them. This can save both time and money.`}
           </li>
-          <li className="mb-3">
+          <li className="mb-6">
             <span className="font-bold">Reduced Errors:</span>
             {` Errors are reduced because everyone has the same record, leaving less room for mistakes or inaccuracies when information is copied or transferred between systems..`}
           </li>
         </ul>
       </div>
       <div id="centralized">
+        <hr />
         <h2 className="my-6 text-3xl font-bold">
           Centralized and Decentralized
         </h2>
@@ -103,10 +105,18 @@ export default function WhatBlockchainPage() {
           src="/assets/InsightsAsset/Cen&Decen.png"
           width={1920}
           height={1080}
-          alt="What is NFT Image"
+          alt="Centralized vs Decentralized"
           className="mb-6 max-h-[25rem] max-w-full rounded-lg object-cover object-center"
         />
         <P>{`The Blockchain therefore is a decentralized system. There is no single controlling authority over the network, and transactions are verified by multiple participants. This is an important factor in its security and transparency.`}</P>
+      </div>
+      <div id="conclusion">
+        <hr />
+        <h2 className="my-6 text-3xl font-bold">Conclusion</h2>
+        <P>{`In conclusion, blockchain technology provides a secure, transparent, and decentralized method of data management. 
+        Blockchain prevents tampering by distributing copies of transaction records across multiple computers, promoting trust and security. 
+        Its applications have expanded significantly since Bitcoin's inception in 2009, including a variety of cryptocurrencies, decentralized finance platforms, non-fungible tokens, and smart contracts. Beyond finance, blockchain has applications in fields such as medical record-keeping, secure voting, and supply chain management. 
+        Its ability to eliminate intermediaries, reduce errors, and provide a tamper-proof public record demonstrates its transformative power over modern data systems.`}</P>
       </div>
     </article>
   );

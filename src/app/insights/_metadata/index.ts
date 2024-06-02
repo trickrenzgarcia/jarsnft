@@ -120,6 +120,7 @@ export const rightNavList: RightNavListType[] = [
       { name: "Overview", anchor: "overview" },
       { name: "History and Significance", anchor: "history" },
       { name: "Centralized vs Decentralized", anchor: "centralized" },
+      { name: "Conclusion", anchor: "conclusion" },
     ],
   },
   {
