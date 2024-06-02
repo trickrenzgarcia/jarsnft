@@ -12,7 +12,7 @@ export default function WhatSmartContractPage() {
           src="/assets/InsightsAsset/smart_contract.jpg"
           width={1920}
           height={1080}
-          alt="Blockchain Image"
+          alt="Smart Contract Image"
           className="mb-12 max-h-[15rem] max-w-full rounded-lg object-cover"
         />
         <div className="bg-[#d45eff3b] p-4">
@@ -24,9 +24,6 @@ export default function WhatSmartContractPage() {
         <h2 className="my-6 text-3xl font-bold">Overview</h2>
         <P>{`Originally popularized by the Ethereum blockchain, smart contracts are critical to the Web3 industry and form the basis of DeFi, NFTs, gaming, and other important Web3 applications.Originally popularized by the Ethereum blockchain, smart contracts are critical to the Web3 industry and form the basis of DeFi, NFTs, gaming, and other important Web3 applications.`}</P>
         <P>{`These contracts enable developers to build decentralized applications on the blockchain, enable automated  decentralized exchanges, codify terms of contracts between parties that don't trust each other, and generate both fungible and non-fungible tokens. Read a brief introduction to smart contracts and their significane.`}</P>
-        {/* <P>{`The Blockchain is a type of database that is specifically designed to be secure. 
-        Consider a shared spreadsheet that keeps track of all transactions and changes, but instead of being stored on a single server, it is duplicated and distributed across multiple computers. 
-        Transactions are organized into blocks and linked together to form a chain, hence the name "Blockchain," with each computer on the network having its own copy.`}</P> */}
       </div>
       <div id="work">
         <hr />

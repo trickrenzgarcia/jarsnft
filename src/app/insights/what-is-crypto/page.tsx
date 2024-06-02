@@ -12,7 +12,7 @@ export default function WhatCryptoPage() {
           src="/assets/InsightsAsset/crypto.jpeg"
           width={1920}
           height={1080}
-          alt="Blockchain Image"
+          alt="Cryptocurrency Image"
           className="mb-12 max-h-[15rem] max-w-full rounded-lg object-cover"
         />
         <div className="bg-[#d45eff3b] p-4">

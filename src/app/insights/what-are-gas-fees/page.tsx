@@ -12,7 +12,7 @@ export default function WhatGasFeesPage() {
           src="/assets/InsightsAsset/gas_fees.jpg"
           width={1920}
           height={1080}
-          alt="Axie Infinity"
+          alt="Gas Fees Image"
           className="max-h-[20rem] max-w-full rounded-lg object-cover object-top"
         />
         <h2 className="my-6 text-3xl font-bold">Overview</h2>
