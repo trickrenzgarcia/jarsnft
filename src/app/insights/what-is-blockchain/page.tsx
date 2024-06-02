@@ -106,7 +106,7 @@ export default function WhatBlockchainPage() {
           width={1920}
           height={1080}
           alt="Centralized vs Decentralized"
-          className="mb-6 max-h-[25rem] max-w-full rounded-lg object-cover object-center"
+          className="mb-6 max-h-[30rem] max-w-full rounded-lg object-cover object-center"
         />
         <P>{`The Blockchain therefore is a decentralized system. There is no single controlling authority over the network, and transactions are verified by multiple participants. This is an important factor in its security and transparency.`}</P>
       </div>
