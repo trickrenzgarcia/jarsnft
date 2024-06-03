@@ -17,7 +17,7 @@ export default async function Page({
 
   return (
     <>
-      <h1 className="my-5 text-4xl font-bold">Collections</h1>
+      <h1 className="mb-4 text-4xl font-bold">Collections</h1>
       <DropdownButton />
       {/* Column Titles */}
       <div className="col-span-2 mb-4 grid grid-cols-10 text-gray-500">
