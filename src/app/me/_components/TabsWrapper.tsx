@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import OwnedNFTs from "./OwnedNFTs";
 import { jars } from "@/lib/core/api";
 import { Spinner } from "@nextui-org/react";
-import { useActiveListings, useNFTs, useOwnedNFTs, useValidDirectListings } from "@thirdweb-dev/react";
 import { SimpleHashNFT } from "@/types/simple-hash/nft";
 
 export default function TabsWrapper({

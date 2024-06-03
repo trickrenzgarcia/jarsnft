@@ -17,7 +17,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          <Separator className="w-[2px] h-[30px] hidden lg:block" orientation="vertical" />
+          <Separator className="w-[2px] h-[30px] hidden lg:block bg-gray-200 dark:bg-gray-600" orientation="vertical" />
 
           <div className="hidden gap-1 lg:flex xl:mr-5">
             <Link
