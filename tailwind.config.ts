@@ -114,7 +114,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animated"), nextui(), addVariablesForColors],
+  plugins: [require("tailwindcss-animate"), nextui(), addVariablesForColors],
 };
 
 function addVariablesForColors({ addBase, theme }: any) {
