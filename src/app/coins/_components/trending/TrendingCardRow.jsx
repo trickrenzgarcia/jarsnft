@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const styles = {
-  trendingCardRow: `flex items-center justify-between self-auto max-w-[40px] grow-0 m-2`,
+  trendingCardRow: `flex items-center mt-3 justify-between self-auto max-w-[40px] grow-0 m-2`,
 };
 
 const TrendingCardRow = ({ number, icon, name, sparklines, percentChange }) => {

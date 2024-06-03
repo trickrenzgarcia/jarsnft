@@ -27,10 +27,10 @@ export default function SideNavLeft() {
             <h4>NFT Collections</h4>
           </div>
         </Link>
-        <Link href="/insights">
+        <Link href="/coins">
           <div className="mb-2 flex items-center gap-5 text-lg font-bold dark:hover:text-[#f0f0f0]">
             <SiBitcoinsv />
-            <h4>Crypto Analytics</h4>
+            <h4>Coin Analytics</h4>
           </div>
         </Link>
       </div>
@@ -38,12 +38,12 @@ export default function SideNavLeft() {
         {leftNavList.map((item) => (
           <div className="mb-9" key={item.topic}>
             <h1 className="font-semibold text-[#c117ff]">{item.topic}</h1>
-            <ul className="mt-4 border-l border-[#a5aab3]" key={item.topic}>
+            <ul className="mt-4 border-l border-[#424242]" key={item.topic}>
               {item.child.map((child) => (
                 <li
                   key={child.name}
                   className={cn(
-                    "-ml-px mb-3 block border-l border-transparent pl-4 text-sm font-semibold text-[#91949c]",
+                    "-ml-px mb-3 block border-l border-transparent pl-4 text-sm font-semibold",
                     path === child.href &&
                       " border-l-[#151c25] font-bold text-[#151c25] dark:border-l-[#f0f0f0] dark:text-[#f0f0f0]",
                     path !== child.href &&
