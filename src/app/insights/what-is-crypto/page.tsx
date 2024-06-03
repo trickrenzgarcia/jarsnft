@@ -12,7 +12,7 @@ export default function WhatCryptoPage() {
           src="/assets/InsightsAsset/crypto.jpeg"
           width={1920}
           height={1080}
-          alt="Blockchain Image"
+          alt="Cryptocurrency Image"
           className="mb-12 max-h-[15rem] max-w-full rounded-lg object-cover"
         />
         <div className="bg-[#d45eff3b] p-4">
@@ -30,7 +30,6 @@ export default function WhatCryptoPage() {
         This is advanced coding used to secure and transfer cryptocurrency data between wallets and public ledgers.`}</P>
         <P>{`Cryptocurrency is, essentially, a value system. 
         Just like stock market investors buy stocks in the hopes of the company growing and the stock price increasing, investors buy cryptocurrencies with the hopes that their value will increase over time.`}</P>
-        <P>{``}</P>
       </div>
       <div id="history">
         <hr />
@@ -78,14 +77,125 @@ export default function WhatCryptoPage() {
       </div>
       <div id="usecase">
         <hr />
-        <h2 className="my-6 text-3xl font-bold">Use Cases</h2>
+        <h2 className="my-6 text-3xl font-bold">Real-World Use Cases</h2>
         <P>{`Today, people use cryptocurrencies in a variety of ways and benefit from their unique properties: decentralization, security, and ease of transfer.
         The most common uses for cryptocurrencies are: `}</P>
-        <P>{``}</P>
+        <ol className="-mt-2 ml-14 list-decimal leading-loose tracking-wide ">
+          <li>
+            <span className="font-bold text-white">
+              Investments and Trading
+            </span>
+            <ul className="-mt-2 ml-7 list-disc dark:text-gray-300">
+              <li className="mt-3">Long-Term Investment (Hodling)</li>
+              <li className="mb-3">Trading</li>
+            </ul>
+          </li>
+          <li>
+            <span className="font-bold text-white">
+              Payments and Transactions
+            </span>
+            <ul className="-mt-2 ml-7 list-disc dark:text-gray-300">
+              <li className="mt-3">Peer-to-Peer Payments</li>
+              <li className="mb-3">Merchant Payments</li>
+            </ul>
+          </li>
+          <li>
+            <span className="font-bold text-white">
+              Decentralized Finance (DeFi)
+            </span>
+            <ul className="-mt-2 ml-7 list-disc dark:text-gray-300">
+              <li className="mt-3">Lending and Borrowing</li>
+              <li className="mb-3">Yield Farming and Staking</li>
+            </ul>
+          </li>
+          <li>
+            <span className="font-bold text-white">
+              Non-Fungible Tokens (NFTs)
+            </span>
+            <ul className="-mt-2 ml-7 list-disc dark:text-gray-300">
+              <li className="mt-3">Digital Art and Collectibles</li>
+              <li className="mb-3">Gaming</li>
+            </ul>
+          </li>
+        </ol>
+        <P>{`And many more such as:`}</P>
+        <ul className="-mt-2 ml-14 list-disc dark:text-gray-300">
+          <li className="mb-3">Online Services and Subscriptions</li>
+          <li className="mb-3">Charity and Donations</li>
+          <li className="mb-3">Travel and Tourism</li>
+          <li className="mb-3">Privacy and Anonymity</li>
+          <li className="mb-6">Microtransactions and Tips</li>
+        </ul>
+        <P>{`A more specific real-world example would be the following: `}</P>
+        <ol className="-mt-2 ml-14 list-decimal leading-loose tracking-wide dark:text-gray-300">
+          <li className="mb-3">
+            <span className="font-bold">Buying Coffee:</span>
+            {` Some coffee shops accept Bitcoin and other cryptocurrencies, allowing customers to pay for their morning coffee with a crypto wallet.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">E-commerce:</span>
+            {` Online retailers such as Overstock and Newegg accept cryptocurrencies, allowing customers to buy electronics, furniture, and other items using Bitcoin or Ethereum.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Donating to Charity:</span>
+            {` During natural disasters or humanitarian crises, people can quickly donate cryptocurrencies to relief efforts, ensuring that their funds are delivered to the intended recipients without delay.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Gaming Rewards:</span>
+            {` In blockchain-based games, participants can earn cryptocurrency rewards for completing tasks or reaching milestones, which they can then trade for additional in-game assets or real-world value.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">International Aid::</span>
+            {` NGOs and international organizations use cryptocurrencies to send aid directly to individuals in need in countries with volatile financial systems, ensuring funds are delivered quickly.`}
+          </li>
+        </ol>
       </div>
       <div id="types">
         <hr />
         <h2 className="my-6 text-3xl font-bold">Types of Cryptocurrency</h2>
+        <P>{`There are various types of cryptocurrency that are categorized based on their use case or technology that was used. The following are a few examples: `}</P>
+        <ol className="-mt-2 ml-14 list-decimal leading-loose tracking-wide ">
+          <li className="mt-5">
+            <span className="font-bold text-white">Bitcoin:</span>
+            {` Bitcoin which was created by Satoshi Nakamoto, is the first and best-known cryptocurrency. Its primary function is as a digital store of value and medium of exchange.`}
+          </li>
+          <li className="mt-5">
+            <span className="font-bold text-white">Altcoins:</span>
+            {` Altcoins, or alternative coins, are all cryptocurrencies other than Bitcoin.`}
+            <ul className="-mt-2 ml-7 list-disc dark:text-gray-300">
+              <li className="mt-3">Litecoin (LTC)</li>
+              <li>Bitcoin cash (BCH)</li>
+              <li>Ripple (XRP)</li>
+              <li className="mb-3">Dash (DASH)</li>
+            </ul>
+          </li>
+          <li className="mt-5">
+            <span className="font-bold text-white">Meme Coins:</span>
+            {` Meme coins are cryptocurrencies inspired by internet memes and popular culture, frequently created for fun but occasionally gaining significant market value:`}
+            <ul className="-mt-2 ml-7 list-disc dark:text-gray-300">
+              <li className="mt-3">Dogecoin (DOGE)</li>
+              <li className="mb-3">Shiba inu (SHIB)</li>
+            </ul>
+          </li>
+          <li className="mt-5">
+            <span className="font-bold text-white">Tokens:</span>
+            {` Tokens are cryptocurrencies developed on existing blockchain platforms, primarily for use in specific ecosystems or applications:`}
+            <ul className="-mt-2 ml-7 list-disc dark:text-gray-300">
+              <li className="mt-3">ERC-20 tokens</li>
+              <li>BEP-20 tokens</li>
+              <li className="mb-3">NFTs (non-fungible tokens)</li>
+            </ul>
+          </li>
+          <li className="mt-5">
+            <span className="font-bold text-white">Stablecoins:</span>
+            {` Stablecoins are cryptocurrencies that maintain a stable value by being pegged to a reserve asset such as the US dollar, gold, or other cryptocurrencies:`}
+            <ul className="-mt-2 ml-7 list-disc dark:text-gray-300">
+              <li className="mt-3">Tether (USDT)</li>
+              <li>USD Coin(USDC)</li>
+              <li className="mb-3">Dai(DAI)</li>
+            </ul>
+          </li>
+        </ol>
       </div>
     </section>
   );

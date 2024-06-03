@@ -12,7 +12,7 @@ export default function WhatSmartContractPage() {
           src="/assets/InsightsAsset/smart_contract.jpg"
           width={1920}
           height={1080}
-          alt="Blockchain Image"
+          alt="Smart Contract Image"
           className="mb-12 max-h-[15rem] max-w-full rounded-lg object-cover"
         />
         <div className="bg-[#d45eff3b] p-4">
@@ -24,11 +24,6 @@ export default function WhatSmartContractPage() {
         <h2 className="my-6 text-3xl font-bold">Overview</h2>
         <P>{`Originally popularized by the Ethereum blockchain, smart contracts are critical to the Web3 industry and form the basis of DeFi, NFTs, gaming, and other important Web3 applications.Originally popularized by the Ethereum blockchain, smart contracts are critical to the Web3 industry and form the basis of DeFi, NFTs, gaming, and other important Web3 applications.`}</P>
         <P>{`These contracts enable developers to build decentralized applications on the blockchain, enable automated  decentralized exchanges, codify terms of contracts between parties that don't trust each other, and generate both fungible and non-fungible tokens. Read a brief introduction to smart contracts and their significane.`}</P>
-        {/* <P>{`The Blockchain is a type of database that is specifically designed to be secure. 
-        Consider a shared spreadsheet that keeps track of all transactions and changes, but instead of being stored on a single server, it is duplicated and distributed across multiple computers. 
-        Transactions are organized into blocks and linked together to form a chain, hence the name "Blockchain," with each computer on the network having its own copy.`}</P> */}
-      </div>
-      <div id="work">
         <hr />
         <h2 className="my-6 text-3xl font-bold">How does it work?</h2>
         <P>{`Smart contracts are self-executing agreements where the terms of the agreement are written hard in code. 
@@ -69,12 +64,12 @@ export default function WhatSmartContractPage() {
         <hr />
         <h2 className="my-6 text-3xl font-bold">History of Smart Contracts</h2>
         <P>{`The concept of smart contracts was first introduced in 1994 by computer scientist and cryptographer Nick Szabo.
-        Szabo envisioned self-executing contracts whose clauses were written directly  into the code and could be enforced automatically.
+        He envisioned self-executing contracts whose clauses were written directly into the code and could be enforced automatically.
         Despite his theoretical work, the necessary technology and infrastructure was not yet available.`}</P>
         <P>{`The emergence of Bitcoin in 2008, developed by Satoshi Nakamoto, provided the underlying technology for smart contracts:  blockchain.
         In 2013, Vitalik Buterin published the Ethereum whitepaper, proposing a new blockchain platform that would enable decentralized applications (dApps) using smart contracts.
-        The launch of Ethereum in 2015 marked a major milestone, allowing developers to create and deploy smart contracts using the native Solidity programming language.
-        However, the 2016 DAO incident,  in which flaws in smart contract code led to the theft of approximately $50 million worth of Ether, highlighted potential security risks.
+        The launch of Ethereum in 2015 marked a major milestone, allowing developers to create and deploy smart contracts using the native Solidity programming language.`}</P>
+        <P>{`However, the 2016 DAO incident, in which flaws in smart contract code led to the theft of approximately $50 million worth of Ether, highlighted potential security risks.
         Since 2017, there has been a significant increase in the use of smart contracts in the fields of decentralized finance (DeFi), non-fungible tokens (NFTs), gaming, and supply chain management, with platforms such as Binance Smart Chain, Cardano, and Polkadot also introducing smart contract functionality.
         Ongoing developments aim to improve scalability, security, and interoperability across blockchain networks, and regulatory frameworks are gradually being created to support wider adoption.
         Smart contracts have proven to be a game-changing innovation that will drive the growth of decentralized applications and reshape various industries.`}</P>

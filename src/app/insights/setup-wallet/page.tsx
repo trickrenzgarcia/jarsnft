@@ -18,7 +18,7 @@ const browsers = [
 export default function SetupWallet() {
   return (
     <>
-      <h1 className="mb-4 text-4xl font-bold md:text-5xl animate-fade-down animate-once animate-duration-[1200ms] animate-ease-linear">Setup your Wallet</h1>
+      <h1 className="mb-4 text-4xl font-bold md:text-5xl">Setup your Wallet</h1>
       <div className="mx-auto mt-2 grid w-full max-w-7xl grid-cols-1 gap-4 lg:grid-cols-3">
         <NoiseCard containerClassName="col-span-1 lg:col-span-2 h-full bg-pink-800 min-h-[500px] lg:min-h-[300px] gap-5">
           <div className="max-w-xs">

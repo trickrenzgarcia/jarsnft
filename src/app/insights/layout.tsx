@@ -11,14 +11,20 @@ import { leftNavList } from "./_metadata";
 import { usePathname } from "next/navigation";
 import { PageNavTopic } from "./_components/PageNavbar";
 import SideBarHamburger from "./_components/SideBarHamburger";
+import { useEffect, useState } from "react";
 
 type LearnProps = {
   children: React.ReactNode;
 };
 
 export default function LearnLayout({ children }: LearnProps) {
-  // try to make pagenextbutton dynamic - get data from index and display the next item after current item on the button
   const path = usePathname();
+  const [key, setKey] = useState(0);
+
+  useEffect(() => {
+    setKey((prevKey) => prevKey + 1);
+  }, [path]);
+
   const nextBtn = leftNavList.map((item, index) => (
     <div key={index}>
       {item.child.map((childItem, childIndex) =>
@@ -36,16 +42,16 @@ export default function LearnLayout({ children }: LearnProps) {
             <PageNextButton
               key={childIndex}
               title={Capitalize(
-                leftNavList[(index + 1) % leftNavList.length].child[0].name,
+                leftNavList[(index + 1) % leftNavList.length].child[0].name
               )}
               href={leftNavList[(index + 1) % leftNavList.length].child[0].href}
             />
           )
-        ),
+        )
       )}
     </div>
   ));
-  // bg-[#f2f4f5]
+
   return (
     <main className="via-22% flex-1 from-[#131313] from-10% via-[#360a46] to-[#131313] to-25% dark:bg-gradient-to-bl ">
       <LearnNavbar />
@@ -56,7 +62,12 @@ export default function LearnLayout({ children }: LearnProps) {
           <div className="min-w-full sm:mt-16 lg:mt-0">
             <div className="container md:my-5">
               <PageNavTopic color="#c117ff" />
-              {children}
+              <div
+                key={key}
+                className="animate-fade-left animate-once animate-duration-[1200ms] animate-ease-out"
+              >
+                {children}
+              </div>
               {nextBtn}
             </div>
           </div>

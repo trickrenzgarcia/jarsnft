@@ -13,7 +13,7 @@ export default function CreateNftPage() {
     <div className="w-full h-screen">
     <div className="flex flex-col">
       <div className="flex flex-row gap-5 items-center justify-between">
-      <h1 className="text-2xl animate-fade-up duration-1000 delay-500">Step 1: Connect wallet of your choosing</h1>
+      <h1 className="text-2xl">Step 1: Connect wallet of your choosing</h1>
       <div className="flex-wrap">
       {isLoading ? (
         <>
@@ -38,10 +38,10 @@ export default function CreateNftPage() {
       )}
       
       <div className="mt-5">
-      <h1 className="text-2xl animate-fade-up duration-1000 delay-500">Step 2: In Navigation bar go to &quot;Create&quot;</h1>
+      <h1 className="text-2xl">Step 2: In Navigation bar go to &quot;Create&quot;</h1>
       </div>
       <div className="mt-5">
-      <h1 className="text-2xl animate-fade-up duration-1000 delay-500">Step 3: Choose &quot;Create NFT Collection&quot; if you want a collection of NFT(s) and &quot;Mint an NFT&quot; for single NFT</h1>
+      <h1 className="text-2xl">Step 3: Choose &quot;Create NFT Collection&quot; if you want a collection of NFT(s) and &quot;Mint an NFT&quot; for single NFT</h1>
       <div className="hidden md:hidden lg:block 2xl:block ">
       <Image
       src="/CreatePage.png"
@@ -49,7 +49,7 @@ export default function CreateNftPage() {
       height={500}
       alt="page"
       quality={100}
-      className="mt-5 animate-fade-up duration-1000 delay-500"
+      className="mt-5"
       style={{minWidth:900 ,minHeight:500}}
       />
       </div>

@@ -70,10 +70,10 @@ export default function SideBarHamburger() {
                     <h4>NFT Collections</h4>
                   </div>
                 </Link>
-                <Link href="/insights">
+                <Link href="/coins">
                   <div className="mb-4 flex items-center gap-5 text-lg font-bold dark:hover:text-[#f0f0f0]">
                     <SiBitcoinsv />
-                    <h4>Crypto Analytics</h4>
+                    <h4>Coin Analytics</h4>
                   </div>
                 </Link>
               </div>

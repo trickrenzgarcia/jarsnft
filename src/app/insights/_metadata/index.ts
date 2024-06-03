@@ -120,24 +120,16 @@ export const rightNavList: RightNavListType[] = [
       { name: "Overview", anchor: "overview" },
       { name: "History and Significance", anchor: "history" },
       { name: "Centralized vs Decentralized", anchor: "centralized" },
+      { name: "Conclusion", anchor: "conclusion" },
     ],
   },
   {
     href: "/insights/what-are-smart-contracts",
     anchors: [
       { name: "Overview", anchor: "overview" },
-      { name: "How does it Work", anchor: "work" },
-      { name: "History", anchor: "history" },
+      { name: "History of Smart contracts", anchor: "history" },
       { name: "Benefits and Limitations", anchor: "benefit" },
       { name: "Example Use Cases", anchor: "usecase" },
-      { name: "Conclusion", anchor: "conclusion" },
-    ],
-  },
-  {
-    href: "/insights/how-to-earn-crypto",
-    anchors: [
-      { name: "Buying a fixed price NFT", anchor: "#buying-fixed-nfts" },
-      { name: "Making an offer on a NFT", anchor: "#making-offer" },
     ],
   },
   {
@@ -153,9 +145,17 @@ export const rightNavList: RightNavListType[] = [
     anchors: [
       { name: "Overview", anchor: "explained" },
       { name: "History of Cryptocurrency", anchor: "history" },
-      { name: "Are Cryptocurrencies Safe", anchor: "safety" },
-      { name: "Use Cases", anchor: "usecase" },
+      { name: "Are Cryptocurrencies Safe?", anchor: "safety" },
+      { name: "Real-World Use Cases", anchor: "usecase" },
       { name: "Types of Cryptocurrency", anchor: "types" },
+    ],
+  },
+  {
+    href: "/insights/how-to-earn-crypto",
+    anchors: [
+      { name: "Earning Cryptocurrency", anchor: "overview" },
+      { name: "Buy your First Crypto", anchor: "buying" },
+      { name: "Tips to Invest Safetly", anchor: "tips" },
     ],
   },
   {

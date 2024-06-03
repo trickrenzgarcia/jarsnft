@@ -11,7 +11,7 @@ type PageNextButtonProps = {
 
 export default function PageNextButton({ title, href }: PageNextButtonProps) {
   return (
-    <div className="mx-5 my-5 flex justify-end">
+    <div className="mx-5 my-12 flex justify-end">
       <Link href={href}>
         <Button
           variant="ghost"

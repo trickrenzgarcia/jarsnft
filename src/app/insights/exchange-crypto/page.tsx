@@ -37,9 +37,9 @@ const cenExch = [
   {
     topic: "CoinsPHSell",
     steps: [
-      "Tap Buy or Sell.",
-      "Select Sell Crypto",
-      "Sell to complete transaction.",
+      " Tap Buy or Sell.",
+      " Select Sell Crypto",
+      " Sell to complete transaction.",
     ],
     images: [
       "/assets/InsightsAsset/CoinsBuySell.gif",
@@ -99,7 +99,7 @@ const Page = () => {
           src="/assets/InsightsAsset/bitcoin-exchange.jpeg"
           width={1920}
           height={1080}
-          alt="What is NFT Image"
+          alt="Exchange Cryptocurrency"
           className="max-h-[15rem] max-w-full rounded-lg object-cover"
         />
         <h2 className="my-6 text-3xl font-bold">Overview</h2>
@@ -186,7 +186,7 @@ const Page = () => {
               </p>
               <Image
                 src="/assets/InsightsAsset/Metamask Send.png"
-                alt="CoinsPH HomePage"
+                alt="Metamask Wallet Address"
                 width={1080}
                 height={1920}
                 className="mt-5 max-h-[20rem] max-w-[15rem]"
@@ -207,7 +207,7 @@ const Page = () => {
               </p>
               <Image
                 src="/assets/InsightsAsset/Coins transfer options.png"
-                alt="CoinsPH HomePage"
+                alt="CoinsPH Transfer Options"
                 width={1080}
                 height={1920}
                 className="center mt-3 max-h-[20rem] max-w-[15rem]"
@@ -260,7 +260,7 @@ const Page = () => {
           <h2 className="my-6 text-2xl font-bold">Home Page</h2>
           <Image
             src="/assets/InsightsAsset/bybit_homepage.png"
-            alt="CoinsPH HomePage"
+            alt="Bybit HomePage"
             width={1080}
             height={1920}
             className="max-h-full max-w-full"
@@ -314,16 +314,27 @@ const Page = () => {
               Fund your account (Deposit)
             </h2>
             <P>{`Funding your account is necessary, here are a few steps To deposit cryptocurrency into your account.`}</P>
+            <P>
+              {`1. After logging in, you will be redirected to this page. `}
+              <span className="font-bold"> Click Deposit </span>
+            </P>
             <Image
               src="/assets/InsightsAsset/bybit deposit1.png"
-              alt="CoinsPH HomePage"
+              alt="Bybit Deposit 1"
               width={1080}
               height={1920}
               className="max-h-full max-w-[25rem]"
             />
+            <P>
+              {`2. Follow the Instructions and a `}
+              <span className="font-bold"> QR Code </span>
+              {` will display, Used that or copy and paste the `}
+              <span className="font-bold"> coin address </span>
+              {` coin address to your wallet that contains your chosen Coin.`}
+            </P>
             <Image
               src="/assets/InsightsAsset/bybit deposit2.png"
-              alt="CoinsPH HomePage"
+              alt="Bybit Deposit 2"
               width={1080}
               height={1920}
               className="mt-7 max-h-[30rem] max-w-full"
@@ -343,14 +354,14 @@ const Page = () => {
             <h3 className="text:lg font-bold xl:text-xl">Convert</h3>
             <Image
               src="/assets/InsightsAsset/bybit convert1.png"
-              alt="CoinsPH HomePage"
+              alt="Bybit Convert 1"
               width={1080}
               height={1920}
               className="my-7 max-h-full max-w-[30rem]"
             />
             <Image
               src="/assets/InsightsAsset/bybit convert2.png"
-              alt="CoinsPH HomePage"
+              alt="Bybit Convert 2"
               width={1080}
               height={1920}
               className="mt-7 max-h-full max-w-[30rem]"
@@ -362,14 +373,14 @@ const Page = () => {
             <h3 className="text:lg font-bold xl:text-xl">Trade</h3>
             <Image
               src="/assets/InsightsAsset/bybit trade1.png"
-              alt="CoinsPH HomePage"
+              alt="Bybit Trade 1"
               width={1080}
               height={1920}
               className="mt-7 max-h-full max-w-[30rem]"
             />
             <Image
               src="/assets/InsightsAsset/bybit trade2.png"
-              alt="CoinsPH HomePage"
+              alt="Bybit Trade 2"
               width={1080}
               height={1920}
               className="mt-7 max-h-full max-w-full"
@@ -428,7 +439,7 @@ const Page = () => {
           <h2 className="my-6 text-3xl font-bold">Home Page</h2>
           <Image
             src="/assets/InsightsAsset/Binance_Homepage.png"
-            alt="CoinsPH HomePage"
+            alt="Binance HomePage"
             width={1080}
             height={1920}
             className="max-h-full max-w-full"

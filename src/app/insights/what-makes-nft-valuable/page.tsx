@@ -11,14 +11,14 @@ import {
 export default function NFTValuablePage() {
   return (
     <>
-      <h1 className="text-2xl font-bold">Benefits of NFT(s)</h1>
-      <div className="w-full">
+      <h1 className="text-5xl font-bold">Benefits of NFT(s)</h1>
+      <div className="mt-2 w-full">
         <Image
           src="/assets/InsightsAsset/nftBenefits.jpg"
           alt="NFTValuable"
-          width={900}
+          width={939}
           height={460}
-          style={{ minWidth: 900 }}
+          style={{ minWidth: 939}}
           quality={80}
         />
       </div>
