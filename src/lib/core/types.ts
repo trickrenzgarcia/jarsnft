@@ -40,6 +40,17 @@ export type NFTCollection = {
   simpleHashData: SimpleHashCollections;
 };
 
+export type NFTFavorite = {
+  id: number;
+  uid: string;
+  contract: string;
+  token_id: string;
+  name: string;
+  image_url: string;
+  added_at: Date;
+  updated_at: Date | null;
+}
+
 export type OpenSeaMetadata = {
   floorPrice: number | null;
   collectionName: string | null;

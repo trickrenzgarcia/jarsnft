@@ -129,7 +129,6 @@ export default function BuyButton({
       txResult = await marketPlaceContract?.directListings
         .buyFromListing(listings[0].id, 1)
         .then((data) => {
-          console.log("success");
           setBuyState("success");
         })
         .catch((e: Error) => {

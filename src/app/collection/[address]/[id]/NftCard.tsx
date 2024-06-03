@@ -25,19 +25,27 @@ import { getMaticPriceInPHP } from "@/lib/core/coingecko";
 import SellButton from "./SellButton";
 import PlaceBidButton from "./PlaceBidButton";
 import AuctionEndTime from "./AuctionEndTime";
-
+import { FaRegEye } from "react-icons/fa";
 import TiltCard from "./TiltCard";
 
 import CancelListingButton from "./CancelListingButton";
 import DisplayOffers from "./DisplayOffers";
 import NftMetadata from "./NftMetadata";
+import Favorite from "./Favorite";
+import { useUserContext } from "@/components/(providers)";
+import { CLIENT_URL } from "@/lib/ctx";
 
 export default function NftCard({
   address,
   id,
+  likes
 }: {
   address: string;
   id: string;
+  likes: {
+    count: number;
+  },
+
 }) {
   const [amountInPhp, setAmountInPhp] = useState<string>("");
   const [filteredNft, setFilteredNft] = useState<NFT | undefined>();
@@ -52,6 +60,26 @@ export default function NftCard({
     ownedNFTs,
     loadingOwnedNFTs,
   } = useNftContext();
+  const { user, isLoggedIn } = useUserContext();
+  const [isLiked, setIsLiked] = useState<boolean>();
+  useEffect(() => {
+    async function getIsUserLiked() {
+      const res = await fetch(`${CLIENT_URL}/api/likes/isUserLiked?uid=${user.session.uid}&contract=${address}&token_id=${id}`, {
+        cache: "no-cache",
+        next: {
+          tags: ["likes"]
+        }
+      });
+      const data = await res.json();
+      setIsLiked(data);
+    }
+    if (user && isLoggedIn) {
+      getIsUserLiked();
+    }
+  }, [user])
+
+  console.log(isLiked);
+
   const { data: listings, isLoading: loadingListings } = useValidDirectListings(
     marketPlaceContract,
     {
@@ -123,31 +151,45 @@ export default function NftCard({
               <Skeleton className="h-9 w-28" />
             )}
 
-            <div className="flex items-center gap-2">
-              <BoringAvatar name={nft?.owner} size={35} />
-              <div className="flex flex-col">
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Owned by
-                </p>
-                {nft ? (
-                  <Link
-                    href={`/user/${listings && listings[0] ? listings[0].creatorAddress : auctionListing && auctionListing[0] ? auctionListing[0].creatorAddress : nft.owner}`}
-                  >
-                    <p className="cursor-pointer text-medium font-bold hover:underline">
-                      {nft.owner
-                        ? listings && listings[0] && listings[0].creatorAddress
-                          ? displayName(listings[0].creatorAddress)
-                          : auctionListing &&
-                              auctionListing[0] &&
-                              auctionListing[0].creatorAddress
-                            ? displayName(auctionListing[0].creatorAddress)
-                            : displayName(nft.owner)
-                        : displayName(nft.owner)}
-                    </p>
-                  </Link>
-                ) : (
-                  <Skeleton className="h-4 w-8" />
-                )}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <BoringAvatar name={nft?.owner} size={35} />
+                <div className="flex flex-col">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    Owned by
+                  </p>
+                  {nft ? (
+                    <Link
+                      href={`/user/${listings && listings[0] ? listings[0].creatorAddress : auctionListing && auctionListing[0] ? auctionListing[0].creatorAddress : nft.owner}`}
+                    >
+                      <p className="cursor-pointer text-medium font-bold hover:underline">
+                        {nft.owner
+                          ? listings && listings[0] && listings[0].creatorAddress
+                            ? displayName(listings[0].creatorAddress)
+                            : auctionListing &&
+                                auctionListing[0] &&
+                                auctionListing[0].creatorAddress
+                              ? displayName(auctionListing[0].creatorAddress)
+                              : displayName(nft.owner)
+                          : displayName(nft.owner)}
+                      </p>
+                    </Link>
+                  ) : (
+                    <Skeleton className="h-4 w-8" />
+                  )}
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="flex gap-1">
+                  <FaRegEye className="text-2xl" />
+                  <p>100</p>
+                </div>
+                  <Favorite 
+                    favorite={likes}
+                    address={address}
+                    isLiked={isLiked}
+                    id={id}
+                  />
               </div>
             </div>
 

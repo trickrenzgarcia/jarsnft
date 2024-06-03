@@ -2,22 +2,24 @@ import { jars } from "@/lib/core/api";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-const likesSchema = z.object({
+const userLikedSchema = z.object({
+  uid: z.string().min(1),
   contract: z.string().min(1),
   tokenId: z.string().min(1),
 });
 
 export async function GET(req: NextRequest) {
+  const uid = req.nextUrl.searchParams.get("uid");
   const contract = req.nextUrl.searchParams.get("contract");
   const tokenId = req.nextUrl.searchParams.get("token_id");
 
-  const likes = likesSchema.safeParse({ contract, tokenId });
+  const userLiked = userLikedSchema.safeParse({ uid, contract, tokenId });
 
-  if(!likes.success) {
+  if(!userLiked.success) {
     return NextResponse.json({ error: "Invalid Parameters" }, { status: 400, statusText: "Bad Request"});
   }
 
-  const data = await jars.getFavoriteCount(likes.data.contract, likes.data.tokenId);
+  const data = await jars.getIsUserLiked(userLiked.data.uid, userLiked.data.contract, userLiked.data.tokenId);
 
-  return NextResponse.json({ data });
+  return NextResponse.json(data);
 }

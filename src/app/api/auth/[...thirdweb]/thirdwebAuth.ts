@@ -52,8 +52,6 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
         session: { ...user.session, is_listed: apiUser.is_listed },
       };
 
-      console.log(rewriteUser);
-
       return rewriteUser;
     },
   },

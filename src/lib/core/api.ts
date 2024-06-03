@@ -9,6 +9,7 @@ import {
   AlchemyNFTs,
   JarsContract,
   NFTCollection,
+  NFTFavorite,
   StorageProfile,
 } from "./types";
 import { BASE_URL } from "../ctx";
@@ -278,6 +279,35 @@ export class JarsAPI {
         next: { tags: ["collections", "getCollectionsByOwner"] }
       }
     )
+  }
+
+  async getFavoriteCount(contractAddress: string, tokenId: string) {
+    return await this.request<{ count: string }>(`/user/getFavoriteCount?contract=${contractAddress}&token_id=${tokenId}`, {
+      method: "GET",
+      cache: "no-cache",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      next: {
+        tags: ["likes"],
+      }
+    });
+  }
+
+  async getIsUserLiked(uid: string, contractAddress: string, tokenId: string) {
+    return await this.request<boolean>(`/user/isUserLiked?uid=${uid}&contract=${contractAddress}&token_id=${tokenId}`);
+  }
+
+  async addToFavorite(uid: string, contractAddress: string, tokenId: string) {
+    return await this.request<NFTFavorite>(`/user/addToFavorite`, {
+      method: "POST",
+      cache: "no-cache",
+      body: JSON.stringify({ 
+        uid: uid, 
+        contract: contractAddress,
+        token_id: tokenId 
+      }),
+    });
   }
 
   /**
