@@ -41,6 +41,7 @@ export type ProfileQuery = {
 };
 
 export type ApiProfile = {
+  uid: string;
   name: string;
   email: string;
   is_listed: boolean;
