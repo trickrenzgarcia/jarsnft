@@ -35,9 +35,25 @@ export default function NFTSafety() {
       <div id="beware">
         <h2 className="my-6 text-3xl font-bold">Common Cyber Attacks</h2>
         <h4 className="my-6 text-lg font-bold tracking-wider">
-          Decentralized Finance (DeFi)
+        Attacks by Phishing
         </h4>
-        <P>{``}</P>
+        <P>{` Phishing is the practice of impersonating a reliable source in order to deceive consumers into disclosing their passwords, private keys, or other sensitive information. Attackers may design fake websites or send shady emails that impersonate credible NFT wallet providers or marketplaces.`}</P>
+        <h4 className="my-6 text-lg font-bold tracking-wider">
+        Malware and Keyloggers
+        </h4>
+        <P>{` On a user's device, malware can be installed with the intention of stealing passwords or private keys. Malware called keyloggers records keystrokes on a user's device and may be able to obtain login passwords for NFT wallets and accounts.`}</P>
+        <h4 className="my-6 text-lg font-bold tracking-wider">
+        Smart Contract Vulnerabilities
+        </h4>
+        <P>{` If they are not carefully examined, smart contracts—which make it easier to create and transfer NFTs—may have weaknesses. These weaknesses can be used by hackers to manipulate transactions or steal away money.`}</P>
+        <h4 className="my-6 text-lg font-bold tracking-wider">
+        Social Engineering
+        </h4>
+        <P>{` Social engineering attacks involve tricking people into performing actions or disclosing sensitive information. This could include persuading someone to send an NFT to an address controlled by the attacker or revealing their wallet's private key.`}</P>
+        <h4 className="my-6 text-lg font-bold tracking-wider">
+        DNS Spoofing
+        </h4>
+        <P>{` DNS spoofing refers to redirecting traffic from a legitimate website to a malicious one. Users attempting to access a legitimate NFT marketplace may be redirected to a fraudulent site, where their login credentials or other sensitive information may be compromised.`}</P>
       </div>
       <P>{`Check out how you can protect your wallet and account in your web3 journey.`}</P>
       <span className="font-semibold text-[#A519D7] underline ">
