@@ -37,6 +37,7 @@ export default function NFTSafety() {
         <h4 className="my-6 text-lg font-bold tracking-wider">
           Decentralized Finance (DeFi)
         </h4>
+        <P>{``}</P>
       </div>
       <P>{`Check out how you can protect your wallet and account in your web3 journey.`}</P>
       <span className="font-semibold text-[#A519D7] underline ">
