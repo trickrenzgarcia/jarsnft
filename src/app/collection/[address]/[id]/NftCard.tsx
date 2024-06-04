@@ -29,11 +29,9 @@ import { FaRegEye } from "react-icons/fa";
 import TiltCard from "./TiltCard";
 
 import CancelListingButton from "./CancelListingButton";
-import DisplayOffers from "./DisplayOffers";
 import NftMetadata from "./NftMetadata";
 import Favorite from "./Favorite";
 import { useUserContext } from "@/components/(providers)";
-import { CLIENT_URL } from "@/lib/ctx";
 
 export default function NftCard({
   address,
@@ -60,25 +58,8 @@ export default function NftCard({
     ownedNFTs,
     loadingOwnedNFTs,
   } = useNftContext();
-  const { user, isLoggedIn } = useUserContext();
-  const [isLiked, setIsLiked] = useState<boolean>();
-  useEffect(() => {
-    async function getIsUserLiked() {
-      const res = await fetch(`${CLIENT_URL}/api/likes/isUserLiked?uid=${user.session.uid}&contract=${address}&token_id=${id}`, {
-        cache: "no-cache",
-        next: {
-          tags: ["likes"]
-        }
-      });
-      const data = await res.json();
-      setIsLiked(data);
-    }
-    if (user && isLoggedIn) {
-      getIsUserLiked();
-    }
-  }, [user])
 
-  console.log(isLiked);
+  const { user, isLoggedIn } = useUserContext();
 
   const { data: listings, isLoading: loadingListings } = useValidDirectListings(
     marketPlaceContract,
@@ -187,7 +168,6 @@ export default function NftCard({
                   <Favorite 
                     favorite={likes}
                     address={address}
-                    isLiked={isLiked}
                     id={id}
                   />
               </div>

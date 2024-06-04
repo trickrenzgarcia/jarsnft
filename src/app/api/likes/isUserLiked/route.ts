@@ -1,3 +1,4 @@
+import getIsUserFavorite from "@/app/actions/getIsUserFavorite";
 import { jars } from "@/lib/core/api";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
@@ -19,7 +20,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Invalid Parameters" }, { status: 400, statusText: "Bad Request"});
   }
 
-  const data = await jars.getIsUserLiked(userLiked.data.uid, userLiked.data.contract, userLiked.data.tokenId);
+  const data = await getIsUserFavorite(userLiked.data.uid, userLiked.data.contract, userLiked.data.tokenId);
 
   return NextResponse.json(data);
 }

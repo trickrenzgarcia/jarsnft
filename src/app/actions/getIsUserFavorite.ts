@@ -16,3 +16,5 @@ const getIsUserFavorite = async (uid: string, contractAddress: string, tokenId: 
   revalidateTag("likes");
   return data;
 }
+
+export default getIsUserFavorite;

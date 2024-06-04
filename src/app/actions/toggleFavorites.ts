@@ -1,10 +1,9 @@
 "use server"
 
-import { jars } from "@/lib/core/api";
 import { BASE_URL } from "@/lib/ctx";
 import { revalidateTag } from "next/cache";
 
-const addFavorites = async (uid: string, contractAddress: string, tokenId: string) => {
+const toggleFavorites = async (uid: string, contractAddress: string, tokenId: string) => {
   
   if(!uid || !contractAddress || !tokenId) return;
 
@@ -25,4 +24,4 @@ const addFavorites = async (uid: string, contractAddress: string, tokenId: strin
   revalidateTag("likes");
 }
 
-export default addFavorites;
+export default toggleFavorites;
