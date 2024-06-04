@@ -25,6 +25,7 @@ export default function Favorite({ favorite, address, id }: Props) {
   );
 
   const { isLiked, isLoading } = useIsUserLiked(optimisticLikes, user, address, id);
+  
   return (
     <div className="flex gap-1">
       <div
@@ -38,8 +39,10 @@ export default function Favorite({ favorite, address, id }: Props) {
           } else {
             setOptimisticLikes(1)
           }
-
-          await toggleFavorite(user.user.session.uid, address, id)
+          if(user.isLoggedIn) {
+            await toggleFavorite(user.user.session.uid, address, id)
+          }
+          
         }}>
         {isLiked ? <IoHeartSharp className='text-2xl' /> : <IoHeartOutline className="text-2xl" />}
       </div>
