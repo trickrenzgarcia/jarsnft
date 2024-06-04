@@ -15,7 +15,7 @@ export default function useIsUserLiked(optimisticLikes: number, user: ProfileQue
         const result = await jars.getIsUserLiked(user.user.session.uid, contract, tokenId);
         setIsLiked(result);
         setLoading(false);
-      } else if(isLiked === true || isLiked === false) {
+      } else if((isLiked === true || isLiked === false) && user.isLoggedIn) {
         setIsLiked((prev) => prev = !prev)
       }
     }
