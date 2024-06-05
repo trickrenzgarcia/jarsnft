@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { P } from "../_components/TailwindTags";
 
 export default function ProtectAccPage() {
   const tips = [
@@ -26,27 +27,27 @@ export default function ProtectAccPage() {
   return (
     <>
       <h1 className="text-2xl font-bold">How to Stay Protected in Web3</h1>
-      <div className="grid max-h-full grid-flow-col grid-rows-8 content-center gap-5">
+      <ul className="-mt-2 ml-14 list-decimal leading-loose tracking-wide dark:text-gray-300">
         {tips.map((tip, index) => (
-          <div className="self-center" key={index}>
-            {index + 1}. {tip}
-          </div>
+          <li className="mb-3" key={index}>
+            <span className="font-bold">{index + 1} .</span>
+            {tip}
+          </li>
         ))}
+      </ul>
 
-        {images.map((image, index) => (
-          <div className="self-center" key={index}>
-            <Image
-              src={image}
-              width={600}
-              height={400}
-              alt="Insights Image"
-              className="rounded-lg"
-              style={{ minHeight: 400, minWidth: 600 }}
-              quality={80}
-            />
-          </div>
-        ))}
-      </div>
+      {images.map((image, index) => (
+        <div className="self-center" key={index}>
+          <Image
+            src={image}
+            width={1920}
+            height={1080}
+            alt="Insights Image"
+            className=" mb-12 max-h-[20rem] max-w-full rounded-lg object-cover "
+            quality={80}
+          />
+        </div>
+      ))}
     </>
   );
 }
