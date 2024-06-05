@@ -1,9 +1,10 @@
+import { Suspense } from 'react'
 import Search from './Search'
 
 export default function SearchPage() {
   return (
-    <div>
-      <Search />
-    </div>
+      <Suspense fallback={<p>Loading...</p>}>
+        <Search />
+      </Suspense>
   )
 }
