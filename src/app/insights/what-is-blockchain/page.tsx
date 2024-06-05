@@ -89,7 +89,7 @@ export default function WhatBlockchainPage() {
           </li>
           <li className="mb-6">
             <span className="font-bold">Reduced Errors:</span>
-            {` Errors are reduced because everyone has the same record, leaving less room for mistakes or inaccuracies when information is copied or transferred between systems..`}
+            {` Errors are reduced because everyone has the same record, leaving less room for mistakes or inaccuracies when information is copied or transferred between systems.`}
           </li>
         </ul>
       </div>
