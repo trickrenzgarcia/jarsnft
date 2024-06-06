@@ -176,7 +176,7 @@ export default function NFTSafety() {
         <P>
           {`To know more on how you can protect your wallets and Account in your web3 journey, `}
           <span className="font-semibold text-[#A519D7] underline ">
-            <a href="/insights/what-makes-nft-valuable">Learn more here</a>
+            <a href="/insights/protect-account">Learn more here</a>
           </span>
           .
         </P>

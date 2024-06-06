@@ -25,8 +25,25 @@ export default function ProtectAccPage() {
   ];
 
   return (
-    <>
-      <h1 className="text-2xl font-bold">How to Stay Protected in Web3</h1>
+    <section>
+      <h1 className="my-4 text-4xl font-bold md:text-5xl">
+        Protect Your Account
+      </h1>
+      <h2 className="my-6 text-3xl font-bold">Overview</h2>
+      <P>{``}</P>
+      <h2 className="my-6 text-3xl font-bold">Common NFT Scams</h2>
+      <h2 className="my-6 text-3xl font-bold">
+        How to protect your Marketplace Account
+      </h2>
+      <h2 className="my-6 text-3xl font-bold">How to protect your wallet</h2>
+      <h2 className="my-6 text-3xl font-bold">
+        How to Protect Your Transactions
+      </h2>
+      <h2 className="my-6 text-3xl font-bold">
+        How to Protect Your Digital Identity
+      </h2>
+      How to
+      {/* <h2 className="my-6 text-3xl font-bold">How to Stay Protected in Web3</h2>
       <ul className="-mt-2 ml-14 list-decimal leading-loose tracking-wide dark:text-gray-300">
         {tips.map((tip, index) => (
           <li className="mb-3" key={index}>
@@ -35,7 +52,12 @@ export default function ProtectAccPage() {
           </li>
         ))}
       </ul>
-
+       - Overview
+- Common NFT Scams
+- How to protect your Marketplace Account
+- How to protect your wallet
+- How to Protect Your Transactions
+- How to Protect Your Digital Identity   
       {images.map((image, index) => (
         <div className="self-center" key={index}>
           <Image
@@ -47,7 +69,7 @@ export default function ProtectAccPage() {
             quality={80}
           />
         </div>
-      ))}
-    </>
+      ))} */}
+    </section>
   );
 }
