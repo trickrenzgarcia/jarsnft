@@ -26,23 +26,32 @@ export default function ProtectAccPage() {
 
   return (
     <section>
-      <h1 className="my-4 text-4xl font-bold md:text-5xl">
-        Protect Your Account
-      </h1>
-      <h2 className="my-6 text-3xl font-bold">Overview</h2>
-      <P>{``}</P>
-      <h2 className="my-6 text-3xl font-bold">Common NFT Scams</h2>
-      <h2 className="my-6 text-3xl font-bold">
-        How to protect your Marketplace Account
-      </h2>
-      <h2 className="my-6 text-3xl font-bold">How to protect your wallet</h2>
-      <h2 className="my-6 text-3xl font-bold">
-        How to Protect Your Transactions
-      </h2>
-      <h2 className="my-6 text-3xl font-bold">
-        How to Protect Your Digital Identity
-      </h2>
-      How to
+      <div id="overview">
+        <h1 className="my-4 text-4xl font-bold md:text-5xl">
+          Protect Your Account
+        </h1>
+        <h2 className="my-6 text-3xl font-bold">Overview</h2>
+        <P>{``}</P>
+      </div>
+      <div id="scams">
+        <h2 className="my-6 text-3xl font-bold">Common NFT Scams</h2>
+      </div>
+      <div id="protect">
+        <h2 className="my-6 text-3xl font-bold">
+          How to protect your Marketplace Account
+        </h2>
+        <h2 className="my-6 text-3xl font-bold">How to protect your wallet</h2>
+        <h2 className="my-6 text-3xl font-bold">
+          How to Protect Your Transactions
+        </h2>
+        <h2 className="my-6 text-3xl font-bold">
+          How to Protect Your Digital Identity
+        </h2>
+      </div>
+      <div id="conclusion">
+        <hr />
+        <h2 className="my-6 text-3xl font-bold">Conclusion</h2>
+      </div>
       {/* <h2 className="my-6 text-3xl font-bold">How to Stay Protected in Web3</h2>
       <ul className="-mt-2 ml-14 list-decimal leading-loose tracking-wide dark:text-gray-300">
         {tips.map((tip, index) => (

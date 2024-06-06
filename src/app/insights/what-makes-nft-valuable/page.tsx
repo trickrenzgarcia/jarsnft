@@ -11,16 +11,34 @@ import {
 export default function NFTValuablePage() {
   return (
     <section>
-      <h1 className="my-4 text-4xl font-bold md:text-5xl">
-        How Safe Are My NFTs?
-      </h1>
-      <Image
-        src="/assets/InsightsAsset/NFT Safety.jpg"
-        width={1920}
-        height={1080}
-        alt="NFT Safety Image"
-        className=" mb-12 max-h-[20rem] max-w-full rounded-lg object-cover "
-      />
+      <div id="overview">
+        <h1 className="my-4 text-4xl font-bold md:text-5xl">
+          How Safe Are My NFTs?
+        </h1>
+        <Image
+          src="/assets/InsightsAsset/NFT Safety.jpg"
+          width={1920}
+          height={1080}
+          alt="NFT Safety Image"
+          className=" mb-12 max-h-[20rem] max-w-full rounded-lg object-cover "
+        />
+        <h2 className="my-6 text-3xl font-bold">Overview</h2>
+      </div>
+      <div id="value">
+        <hr />
+        <h2 className="my-6 text-3xl font-bold">
+          How does NFTs get its value?
+        </h2>
+      </div>
+      <div id="price">
+        <hr />
+        <h2 className="my-6 text-3xl font-bold">How to price your NFTs</h2>
+      </div>
+      <div id="conclusion">
+        <hr />
+        <h2 className="my-6 text-3xl font-bold">Conclusion</h2>
+      </div>
+
       <h1 className="text-5xl font-bold">Benefits of NFT(s)</h1>
       <div className="mt-2 w-full">
         <Image

@@ -23,6 +23,7 @@ export default function NFTSafety() {
         Understanding the risks and implementing strong security measures can help you protect your investments and personal interests in the NFT space.`}</P>
       </div>
       <div id="security">
+        <hr />
         <h2 className="my-6 text-3xl font-bold">Are NFTs Secure?</h2>
         <P>{`NFTs take advantage of blockchain technology to provide robust security features. 
         The blockchain functions as a public ledger, permanently recording ownership and removing the possibility of forgeries. 
@@ -33,6 +34,7 @@ export default function NFTSafety() {
         <P>{`Therefore we can agree that NFTs are secure due to its decentralized nature provided by the blockchain, though it is not invincible from any cyber-attacks. We should consider the risks and safety of NFTs.`}</P>
       </div>
       <div id="attacks">
+        <hr />
         <h2 className="my-6 text-3xl font-bold">Common Cyber Attacks</h2>
         <P>{`The blockchain is a reliable technology that NFTs use to secure its transactions and verify each of them to ensure they are executed properly. Though users are still vulnerable to their NFTs being stolen. Below are the few methods that hackers may use to get into your wallets and NFTs.`}</P>
         <h4 className="my-6 text-lg font-bold tracking-wider">
