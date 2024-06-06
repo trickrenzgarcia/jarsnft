@@ -116,12 +116,6 @@ export default function BuyButton({
                 "The user denied the transaction or the transaction failed. Please try again.",
               position: "bottom-right",
             });
-          } else {
-            toast.error("Failed!", {
-              description:
-                "An error occurred while processing your request. Please try again.",
-              position: "bottom-right",
-            });
           }
         });
     } else if (listings?.[0]) {

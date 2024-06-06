@@ -95,6 +95,7 @@ export default function CreateDirectListing({ setSellState }: CreateDirectListin
       endTimestamp: new Date(data.endTimestamp)
     }).then((data) => {
       // success state
+      console.log(data);
       setSellState("success");
       toast.success("Success!", {
         description: "Your NFT has been listed to the marketplace.",
