@@ -24,7 +24,7 @@ export default function Favorite({ favorite, address, id }: Props) {
     (state, amount: number) => state + Number(amount)
   );
 
-  const { isLiked, isLoading } = useIsUserLiked(optimisticLikes, user, address, id);
+  const { isLiked, isLoading } = useIsUserLiked(optimisticLikes, address, id);
   
   return (
     <div className="flex gap-1">

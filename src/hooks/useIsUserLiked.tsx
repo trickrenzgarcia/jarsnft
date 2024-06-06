@@ -1,10 +1,11 @@
 "use client"
 
+import { useUserContext } from '@/components/(providers)';
 import { jars } from '@/lib/core/api';
-import { ProfileQuery } from '@/types/users';
 import React from 'react'
 
-export default function useIsUserLiked(optimisticLikes: number, user: ProfileQuery, contract: string, tokenId: string) {
+export default function useIsUserLiked(optimisticLikes: number, contract: string, tokenId: string) {
+  const { user, isLoggedIn, isLoading: loadingUser } = useUserContext();
   const [isLiked, setIsLiked] = React.useState<boolean>();
   const [isLoading, setLoading] = React.useState(false);
 
@@ -12,15 +13,17 @@ export default function useIsUserLiked(optimisticLikes: number, user: ProfileQue
     const fetchUserLiked = async () => {
       if(isLiked === undefined) {
         setLoading(true);
-        const result = await jars.getIsUserLiked(user.user.session.uid, contract, tokenId);
+        const result = await jars.getIsUserLiked(user.session.uid, contract, tokenId);
         setIsLiked(result);
         setLoading(false);
-      } else if((isLiked === true || isLiked === false) && user.isLoggedIn) {
-        setIsLiked((prev) => prev = !prev)
+      } else if((isLiked === true || isLiked === false) && isLoggedIn) {
+        setIsLiked((prev) => prev = !prev);
       }
     }
-    fetchUserLiked();
-  }, [user.isLoggedIn, user.isLoading, user.user, contract, tokenId, optimisticLikes, isLoading])
+    if(isLoggedIn) {
+      fetchUserLiked();
+    }
+  }, [isLoggedIn, isLoading, user, optimisticLikes, loadingUser])
 
   return {
     isLiked,

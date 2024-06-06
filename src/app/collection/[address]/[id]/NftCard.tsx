@@ -16,9 +16,9 @@ import { useRouter } from "next/navigation";
 import { MdArrowBackIosNew, MdVerified } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { BoringAvatar } from "@/components/(interfaces)";
-import { displayName, shortenAddress, truncate } from "@/lib/utils";
+import { displayName } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import BuyButton from "./BuyButton";
 import { getMaticPriceInPHP } from "@/lib/core/coingecko";
@@ -31,20 +31,20 @@ import TiltCard from "./TiltCard";
 import CancelListingButton from "./CancelListingButton";
 import NftMetadata from "./NftMetadata";
 import Favorite from "./Favorite";
-import { useUserContext } from "@/components/(providers)";
+import { jars } from "@/lib/core/api";
 
-export default function NftCard({
-  address,
-  id,
-  likes
-}: {
+type NftCardProps = {
   address: string;
   id: string;
   likes: {
     count: number;
-  },
+  };
+  views: {
+    view_count: number;
+  };
+};
 
-}) {
+export default function NftCard({ address, id, likes, views}: NftCardProps) {
   const [amountInPhp, setAmountInPhp] = useState<string>("");
   const [filteredNft, setFilteredNft] = useState<NFT | undefined>();
   const {
@@ -58,8 +58,6 @@ export default function NftCard({
     ownedNFTs,
     loadingOwnedNFTs,
   } = useNftContext();
-
-  const { user, isLoggedIn } = useUserContext();
 
   const { data: listings, isLoading: loadingListings } = useValidDirectListings(
     marketPlaceContract,
@@ -92,6 +90,17 @@ export default function NftCard({
       setFilteredNft(ownedNFTs.find((nft) => nft.metadata.id === id));
     }
   }, [ownedNFTs, loadingOwnedNFTs, connectedAddress]);
+
+  useEffect(() => {
+    const updateViewCount = async () => {
+      const res = await jars.nft.updateNftViews(address, id);
+      console.log(res);
+    };
+    if(collection) {
+      updateViewCount();
+    }
+    
+  }, [loadingCollection]);
 
   if (loadingCollection) {
     return <div>Loading collection...</div>;
@@ -163,7 +172,7 @@ export default function NftCard({
               <div className="flex items-center gap-4">
                 <div className="flex gap-1">
                   <FaRegEye className="text-2xl" />
-                  <p>100</p>
+                  <p>{views ? views.view_count : '--'}</p>
                 </div>
                   <Favorite 
                     favorite={likes}

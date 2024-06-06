@@ -384,6 +384,45 @@ export class JarsAPI {
       );
     },
   };
+
+  public nft = {
+
+    /**
+     * Get NFT view count
+     * @param contractAddress - The contract address
+     * @param tokenId - The token id
+     */
+    getNftViews: async (contractAddress: string, tokenId: string) => {
+      return await this.request<{ view_count: number }>(
+        `/nfts/views?contractAddress=${contractAddress}&tokenId=${tokenId}`,
+        {
+          cache: "no-cache",
+          next: {
+            tags: ["views", "getNftViews"],
+          }
+        },
+      );
+    },
+
+    /**
+     * Update NFT view count
+     * @param contractAddress - The contract address
+     * @param tokenId - The token id
+     */
+    updateNftViews: async (contractAddress: string, tokenId: string) => {
+      return await this.request<{ view_count: number }>(
+        `/nfts/views`,
+        {
+          method: "POST",
+          body: JSON.stringify({ contractAddress, tokenId }),
+          cache: "no-cache",
+          next: {
+            tags: ["views", "updateNftViews"],
+          }
+        },
+      );
+    },
+  };
 }
 
 export const jars = new JarsAPI(BASE_URL, {
