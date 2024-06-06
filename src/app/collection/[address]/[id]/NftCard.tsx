@@ -31,7 +31,7 @@ import TiltCard from "./TiltCard";
 import CancelListingButton from "./CancelListingButton";
 import NftMetadata from "./NftMetadata";
 import Favorite from "./Favorite";
-import { jars } from "@/lib/core/api";
+import { updateNftViews } from "@/app/actions/updateNftViews";
 
 type NftCardProps = {
   address: string;
@@ -93,14 +93,13 @@ export default function NftCard({ address, id, likes, views}: NftCardProps) {
 
   useEffect(() => {
     const updateViewCount = async () => {
-      const res = await jars.nft.updateNftViews(address, id);
-      console.log(res);
+      const views = await updateNftViews(address, id);
+      console.log(views);
     };
-    if(collection) {
-      updateViewCount();
-    }
+
+    updateViewCount();
     
-  }, [loadingCollection]);
+  }, []);
 
   if (loadingCollection) {
     return <div>Loading collection...</div>;
@@ -262,9 +261,7 @@ export default function NftCard({ address, id, likes, views}: NftCardProps) {
                         {filteredNft && listings && !listings[0] ? (
                           <SellButton nft={nft} contractAddress={address} />
                         ) : (
-                          !filteredNft &&
-                          ((listings && listings[0]) ||
-                            (auctionListing && auctionListing[0])) && (
+                          !filteredNft && (listings && listings[0]) && (
                             <BuyButton
                               nft={nft}
                               listings={listings}
@@ -272,21 +269,34 @@ export default function NftCard({ address, id, likes, views}: NftCardProps) {
                             />
                           )
                         )}
-                        {filteredNft &&
-                          ((auctionListing && auctionListing[0]) ||
-                            (listings && listings[0])) && (
-                            <CancelListingButton
-                              nft={nft}
-                              listings={listings}
-                              auctionListing={auctionListing}
-                              contractAddress={connectedAddress}
-                            />
-                          )}
-                        {auctionListing && auctionListing[0] && (
+                        {auctionListing && auctionListing[0] && !filteredNft && (auctionListing[0].creatorAddress != connectedAddress) && (
+                          <BuyButton
+                            nft={nft}
+                            listings={listings}
+                            auctionListing={auctionListing}
+                          />
+                        )}
+                        {auctionListing && auctionListing[0] && !filteredNft && (auctionListing[0].creatorAddress != connectedAddress) && (
                           <PlaceBidButton
                             nft={nft}
                             auctionListing={auctionListing}
                             loadingAuction={loadingAuction}
+                          />
+                        )}
+                        {filteredNft && (listings && listings[0]) && (
+                          <CancelListingButton
+                            nft={nft}
+                            listings={listings}
+                            auctionListing={auctionListing}
+                            contractAddress={connectedAddress}
+                          />
+                        )}
+                        {auctionListing && auctionListing[0] && (auctionListing[0].creatorAddress == connectedAddress) && (
+                          <CancelListingButton
+                            nft={nft}
+                            listings={listings}
+                            auctionListing={auctionListing}
+                            contractAddress={connectedAddress}
                           />
                         )}
                       </div>

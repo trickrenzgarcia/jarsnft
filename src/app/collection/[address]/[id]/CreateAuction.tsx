@@ -124,6 +124,7 @@ export default function CreateAuction({ setSellState }: CreateAuctionProps) {
       endTimestamp: new Date(data.endTimestamp),
     })
       .then((data) => {
+        console.log(data)
         // success state
         setSellState("success");
         toast.success("Success!", {
