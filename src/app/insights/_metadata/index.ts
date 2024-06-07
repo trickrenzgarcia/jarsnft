@@ -97,11 +97,10 @@ export const rightNavList: RightNavListType[] = [
   {
     href: "/insights/what-makes-nft-valuable",
     anchors: [
-      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
-      {
-        name: "Listing an NFT for sale a fixed price",
-        anchor: "#selling-fixed-price",
-      },
+      { name: "Overview", anchor: "overview" },
+      { name: "How do NFTs get its value?", anchor: "value" },
+      { name: "How to price your NFTs", anchor: "price" },
+      { name: "Conclusion", anchor: "conclusion" },
     ],
   },
   {
@@ -198,7 +197,7 @@ export const leftNavList: LeftNavList[] = [
     child: [
       { name: "What is an NFT?", href: "/insights/what-is-nft" },
       {
-        name: "What makes NFT Valuable?",
+        name: "What makes an NFT Valuable?",
         href: "/insights/what-makes-nft-valuable",
       },
       { name: "How safe are my NFTs?", href: "/insights/nft-safety" },

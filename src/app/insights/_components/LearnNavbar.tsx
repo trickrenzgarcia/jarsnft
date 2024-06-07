@@ -25,7 +25,9 @@ export default function LearnNavbar() {
             <h1 className="text-3xl">Insights</h1>
           </Link>
         </div>
-        {/* <Login /> */}
+        <div className="hidden lg:block">
+          <Login />
+        </div>
         {/* <div className="group relative hidden h-10 lg:inline-flex">
           <div className="animate-tilt absolute -inset-px rounded-xl bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] opacity-70 blur-sm transition-all duration-1000 group-hover:-inset-1 group-hover:opacity-100 group-hover:duration-200"></div>
 
@@ -39,12 +41,12 @@ export default function LearnNavbar() {
             Back to Home
           </a>
         </div> */}
-        <Button
+        {/* <Button
           onClick={() => router.push("/")}
           className="hidden w-fit items-center gap-2 lg:flex"
         >
           <IoHome className="text-md inline" /> Back to Home
-        </Button>
+        </Button> */}
       </div>
     </header>
   );
