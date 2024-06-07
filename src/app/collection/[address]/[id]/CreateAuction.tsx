@@ -35,6 +35,7 @@ import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { LoginWelcomeScreen } from "@/components/(interfaces)/ConnectWeb3";
+import { createTxHash } from "@/app/actions/createTxHash";
 
 type CreateAuctionProps = {
   sellState: "idle" | "confirmation" | "success";
@@ -71,7 +72,7 @@ const AuctionFormSchema = z
     path: ["endTimestamp"], // set the path of the error
   });
 
-export default function CreateAuction({ setSellState }: CreateAuctionProps) {
+export default function CreateAuction({ sellState, setSellState }: CreateAuctionProps) {
   const router = useRouter();
   const { nft, marketPlaceContract, contractAddress } = useNftContext();
 
@@ -123,8 +124,8 @@ export default function CreateAuction({ setSellState }: CreateAuctionProps) {
       startTimestamp: new Date(data.startTimestamp),
       endTimestamp: new Date(data.endTimestamp),
     })
-      .then((data) => {
-        console.log(data)
+      .then(async(data) => {
+        await createTxHash("NewAuction", data.receipt.transactionHash);
         // success state
         setSellState("success");
         toast.success("Success!", {
@@ -153,12 +154,6 @@ export default function CreateAuction({ setSellState }: CreateAuctionProps) {
           toast.error("Failed!", {
             description:
               "The user denied the transaction or the transaction failed. Please try again.",
-            position: "bottom-right",
-          });
-        } else {
-          toast.error("Failed!", {
-            description:
-              "An error occurred while processing your request. Please try again.",
             position: "bottom-right",
           });
         }
@@ -201,6 +196,7 @@ export default function CreateAuction({ setSellState }: CreateAuctionProps) {
                             "w-[200px] pl-3 text-left font-normal",
                             !field.value && "text-muted-foreground",
                           )}
+                          disabled={sellState != "idle"}
                         >
                           {field.value ? (
                             format(field.value, "PPP")
@@ -244,6 +240,7 @@ export default function CreateAuction({ setSellState }: CreateAuctionProps) {
                             "w-[200px] pl-3 text-left font-normal",
                             !field.value && "text-muted-foreground",
                           )}
+                          disabled={sellState != "idle"}
                         >
                           {field.value ? (
                             format(field.value, "PPP")
@@ -287,6 +284,7 @@ export default function CreateAuction({ setSellState }: CreateAuctionProps) {
                     onKeyDown={handleKeyDown}
                     onPaste={handlePaste}
                     className="input-class"
+                    disabled={sellState != "idle"}
                   />
                 </FormControl>
                 <FormMessage className="text-red-600" />
@@ -308,6 +306,7 @@ export default function CreateAuction({ setSellState }: CreateAuctionProps) {
                     onKeyDown={handleKeyDown}
                     onPaste={handlePaste}
                     className="input-class"
+                    disabled={sellState != "idle"}
                   />
                 </FormControl>
                 <FormMessage className="text-red-600" />

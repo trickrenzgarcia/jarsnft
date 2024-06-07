@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { NFT_MARKETPLACE } from "@/types/constant";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { createTxHash } from "@/app/actions/createTxHash";
 
 type CancelListingButtonProps = {
   nft: NFT | undefined;
@@ -49,7 +50,8 @@ export default function CancelListingButton({ listings, auctionListing}: CancelL
     setCancelState("confirmation");
     if(listings && listings[0]) {
       const txResult = await cancelDirectListing(listings[0].id)
-      .then((data) => {
+      .then(async(data) => {
+        await createTxHash("CancelledListing", data.receipt.transactionHash);
         setCancelState("success");
         toast.success("Listed nft has been cancelled!", {
           description: "Successfully cancelled from the marketplace.",
@@ -89,7 +91,8 @@ export default function CancelListingButton({ listings, auctionListing}: CancelL
       return txResult;
     } else if(auctionListing && auctionListing[0]) {
       const txResult = await cancelEnglishAuction(auctionListing[0].id)
-      .then((data) => {
+      .then(async(data) => {
+        await createTxHash("CancelledAuction", data.receipt.transactionHash);
         setCancelState("success");
         toast.success("Auction nft has been cancelled!", {
           description: "Successfully cancelled from the marketplace.",

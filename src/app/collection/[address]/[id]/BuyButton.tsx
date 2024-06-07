@@ -30,6 +30,7 @@ import { getMaticPriceInPHP } from "@/lib/core/coingecko";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { createTxHash } from "@/app/actions/createTxHash";
 
 type BuyButtonProps = {
   nft: NFT | undefined;
@@ -86,7 +87,8 @@ export default function BuyButton({
       setBuyState("confirmation");
       txResult = await marketPlaceContract?.englishAuctions
         .buyoutAuction(auctionListing[0].id)
-        .then((data) => {
+        .then(async(data) => {
+          await createTxHash("NewSale", data.receipt.transactionHash);
           setBuyState("success");
           revalidatePath("/me", "page");
           toast.success("You have successfully bought the NFT.", {
@@ -122,8 +124,19 @@ export default function BuyButton({
       setBuyState("confirmation");
       txResult = await marketPlaceContract?.directListings
         .buyFromListing(listings[0].id, 1)
-        .then((data) => {
+        .then(async(data) => {
+          await createTxHash("NewSale", data.receipt.transactionHash);
           setBuyState("success");
+          revalidatePath("/me", "page");
+          toast.success("You have successfully bought the NFT.", {
+            description: `${nft?.metadata.name} has been added to your profile.`,
+            position: "bottom-right",
+            duration: 2000,
+            onAutoClose(toast) {
+              setBuyState("idle");
+              router.refresh();
+            },
+          });
         })
         .catch((e: Error) => {
           setBuyState("idle");
@@ -140,12 +153,6 @@ export default function BuyButton({
             toast.error("Failed!", {
               description:
                 "The user denied the transaction or the transaction failed. Please try again.",
-              position: "bottom-right",
-            });
-          } else {
-            toast.error("Failed!", {
-              description:
-                "An error occurred while processing your request. Please try again.",
               position: "bottom-right",
             });
           }

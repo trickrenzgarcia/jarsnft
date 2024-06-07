@@ -25,6 +25,8 @@ import { toast } from 'sonner';
 import './input.css';
 import { LoginWelcomeScreen } from '@/components/(interfaces)/ConnectWeb3';
 import { useRouter } from 'next/navigation';
+import { TxResult } from '@/types/tx';
+import { createTxHash } from '@/app/actions/createTxHash';
 
 type CreateDirectListingProps = {
   sellState: 'idle' | 'confirmation' | 'success';
@@ -44,7 +46,7 @@ const DirectListingFormSchema = z.object({
   path: ["endTimestamp"] // set the path of the error
 })
 
-export default function CreateDirectListing({ setSellState }: CreateDirectListingProps) {
+export default function CreateDirectListing({ sellState, setSellState }: CreateDirectListingProps) {
   const router = useRouter();
   const { nft, marketPlaceContract, collection, contractAddress, tokenId } = useNftContext();
 
@@ -93,9 +95,11 @@ export default function CreateDirectListing({ setSellState }: CreateDirectListin
       pricePerToken: data.price,
       startTimestamp: new Date(data.startTimestamp),
       endTimestamp: new Date(data.endTimestamp)
-    }).then((data) => {
+    }).then(async (data) => {
       // success state
-      console.log(data);
+      
+      await createTxHash("NewListing", data.receipt.transactionHash);
+
       setSellState("success");
       toast.success("Success!", {
         description: "Your NFT has been listed to the marketplace.",
@@ -117,11 +121,6 @@ export default function CreateDirectListing({ setSellState }: CreateDirectListin
       } else if(e.message.includes("Reason: user rejected transaction")) {
         toast.error("Failed!", {
           description: "The user denied the transaction or the transaction failed. Please try again.",
-          position: "bottom-right",
-        });
-      } else {
-        toast.error("Failed!", {
-          description: "An error occurred while processing your request. Please try again.",
           position: "bottom-right",
         });
       }
@@ -165,6 +164,7 @@ export default function CreateDirectListing({ setSellState }: CreateDirectListin
                             "w-[200px] pl-3 text-left font-normal",
                             !field.value && "text-muted-foreground"
                           )}
+                          disabled={sellState != "idle"}
                         >
                           {field.value ? (
                             format(field.value, "PPP")
@@ -208,6 +208,7 @@ export default function CreateDirectListing({ setSellState }: CreateDirectListin
                             "w-[200px] pl-3 text-left font-normal",
                             !field.value && "text-muted-foreground"
                           )}
+                          disabled={sellState != "idle"}
                         >
                           {field.value ? (
                             format(field.value, "PPP")
@@ -252,6 +253,7 @@ export default function CreateDirectListing({ setSellState }: CreateDirectListin
                     onKeyDown={handleKeyDown}
                     onPaste={handlePaste}
                     className='input-class'
+                    disabled={sellState != "idle"}
                   />
                 </FormControl>
                 <FormMessage className='text-red-600' />

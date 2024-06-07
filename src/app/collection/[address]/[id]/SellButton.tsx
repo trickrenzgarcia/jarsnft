@@ -105,7 +105,7 @@ export default function SellButton({ nft }: SellButtonProps) {
 
         {/* Footer */}
         <AlertDialogFooter className="flex rounded-b-lg rounded-t-3xl bg-neutral-200 px-6 py-8 dark:bg-neutral-800 sm:flex-col sm:space-x-0">
-          <Tabs variant="underlined" aria-label="Options">
+          <Tabs variant="underlined" aria-label="Options" isDisabled={sellState != "idle"}>
             <Tab key="direct" title="Direct Listing">
               <CreateDirectListing
                 sellState={sellState}

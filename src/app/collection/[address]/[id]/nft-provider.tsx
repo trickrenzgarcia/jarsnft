@@ -1,8 +1,8 @@
 "use client"
 
 import { NFT_MARKETPLACE } from '@/types/constant';
-import { MarketplaceV3, NFT, Token, useAddress, useBalance, useContract, useContractMetadata, useNFT, useOwnedNFTs } from '@thirdweb-dev/react';
-import { BigNumber } from 'ethers';
+import { MarketplaceV3, NFT, SmartContract, Token, useAddress, useBalance, useContract, useContractMetadata, useNFT, useOwnedNFTs } from '@thirdweb-dev/react';
+import { BaseContract, BigNumber } from 'ethers';
 import React, { createContext, use, useMemo, useState } from 'react'
 
 type NftProviderProps = {
@@ -13,6 +13,7 @@ type NftProviderProps = {
 
 type NftItemContextProps = {
   nft: NFT | undefined;
+  nftContract: SmartContract<BaseContract> | undefined;
   loadingNft: boolean;
   collection: any;
   loadingCollection: boolean;
@@ -50,6 +51,7 @@ export default function NftProvider({ children, address, id }: NftProviderProps)
     return {
       nft: nft,
       loadingNft: loadingNft,
+      nftContract: nftContract,
       collection: collection,
       loadingCollection: loadingCollection,
       marketPlaceContract: marketPlaceContract,
@@ -62,7 +64,7 @@ export default function NftProvider({ children, address, id }: NftProviderProps)
       contractAddress: contractAddress,
       tokenId: tokenId
     };
-  }, [nft, collection, marketPlaceContract, loadingNft, loadingCollection, loadingMarketplace, ownedNFTs, loadingOwnedNFTs, connectedAddress, balance, loadingBalance]);
+  }, [nft, nftContract, collection, marketPlaceContract, loadingNft, loadingCollection, loadingMarketplace, ownedNFTs, loadingOwnedNFTs, connectedAddress, balance, loadingBalance]);
 
   return <NftItemContext.Provider value={nftMemo}>{children}</NftItemContext.Provider>
 }

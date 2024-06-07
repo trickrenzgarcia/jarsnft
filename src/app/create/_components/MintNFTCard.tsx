@@ -2,6 +2,8 @@
 
 import { BigNumber, ethers } from "ethers"; // ethers v5^
 
+import { TxResult } from "@/types/tx"
+
 import {
   Card,
   CardContent,
@@ -79,6 +81,7 @@ import { IoCheckmarkCircle } from "react-icons/io5";
 import { MdOutlineNearbyError } from "react-icons/md";
 import { FiShare } from "react-icons/fi";
 import { TooltipMsg } from "@/components/(interfaces)";
+import { createTxHash } from "@/app/actions/createTxHash";
 
 const mintSchema = z.object({
   collection: z.string().refine((value) => ethers.utils.isAddress(value), {
@@ -256,12 +259,14 @@ export default function MintNFTCard() {
         to: user.address,
       },
       {
-        onSuccess(data: { id: BigNumber }, variables, context) {
+        async onSuccess(data: TxResult, variables, context) {
           setNftTokenId(data.id.toString());
           setMintState({
             state: "success",
             message: "NFT minted successfully",
           });
+          await createTxHash("TokensMinted", data.receipt.transactionHash);
+          console.log("Minted DATA", data);
         },
       },
     )

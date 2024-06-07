@@ -422,6 +422,23 @@ export class JarsAPI {
         },
       );
     },
+
+    /**
+     * Get NFT Activities
+     * @param contractAddress - The contract address
+     * @param tokenId - The token id
+     */
+    getNftActivities: async (contractAddress: string, tokenId: string) => {
+      return await this.request(
+        `/nfts/activities?contractAddress=${contractAddress}&tokenId=${tokenId}`,
+        {
+          cache: "no-cache",
+          next: {
+            tags: ["activities", "getNftActivities"],
+          }
+        },
+      );
+    }
   };
 }
 

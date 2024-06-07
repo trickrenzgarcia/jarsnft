@@ -40,6 +40,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { createTxHash } from "@/app/actions/createTxHash";
 
 type PlaceBidButtonProps = {
   nft: NFT | undefined;
@@ -67,6 +68,7 @@ export default function PlaceBidButton({
     "idle",
   );
   const { marketPlaceContract, collection, balance } = useNftContext();
+
 
   const form = useForm<z.infer<typeof PlaceBidSchema>>({
     resolver: zodResolver(PlaceBidSchema),
@@ -96,7 +98,8 @@ export default function PlaceBidButton({
     if (auctionListing?.[0]) {
       txResult = await marketPlaceContract?.englishAuctions
         .makeBid(auctionListing[0].id, value)
-        .then((data) => {
+        .then(async(data) => {
+          await createTxHash("NewBid", data.receipt.transactionHash);
           setBidState("success");
           toast.success("Bid offer has been created", {
             description: `You bid on ${nft?.metadata.name} for ${form.getValues("bidValue")}`,
@@ -136,14 +139,6 @@ export default function PlaceBidButton({
             toast.error("Failed to make bid!", {
               description:
                 "Bid price is too low based on minimum bid amount. Please try again.",
-              position: "bottom-right",
-            });
-          
-          } else {
-            console.log(e.message);
-            toast.error("Failed to make bid!", {
-              description:
-                "An error occurred while processing your request. Please try again.",
               position: "bottom-right",
             });
           }

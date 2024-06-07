@@ -7,6 +7,7 @@ import {
   ThirdwebNftMedia,
   useCancelDirectListing,
   useCancelEnglishAuction,
+  useContractEvents,
   useEnglishAuctionWinningBid,
   useValidDirectListings,
   useValidEnglishAuctions,
@@ -32,6 +33,7 @@ import CancelListingButton from "./CancelListingButton";
 import NftMetadata from "./NftMetadata";
 import Favorite from "./Favorite";
 import { updateNftViews } from "@/app/actions/updateNftViews";
+import { BigNumber, ethers } from "ethers";
 
 type NftCardProps = {
   address: string;
@@ -49,6 +51,7 @@ export default function NftCard({ address, id, likes, views}: NftCardProps) {
   const [filteredNft, setFilteredNft] = useState<NFT | undefined>();
   const {
     nft,
+    nftContract,
     loadingNft,
     collection,
     loadingCollection,
@@ -101,6 +104,43 @@ export default function NftCard({ address, id, likes, views}: NftCardProps) {
     
   }, []);
 
+  const { data: transfer, isLoading } = useContractEvents(nftContract, "Transfer", {
+    queryFilter: {
+      filters: {
+        tokenId: id
+      }
+    }
+  });
+
+  const { data: newListing, isLoading: loadingNewListing } = useContractEvents(marketPlaceContract, "NewListing", {
+    queryFilter: {
+      filters: {
+        assetContract: address,
+      },
+      order: "desc"
+    },
+  });
+
+  useEffect(() => {
+    if(newListing) {
+      
+      const filteredNewListing = newListing.map((event) => event.data.listing)
+      const nftList = filteredNewListing.filter((listing) => listing.tokenId == id);
+      nftList.map((nft) => {
+        console.table(
+          {
+            assetContract: nft.assetContract,
+            tokenId: nft.tokenId.toString(),
+            startTimestamp: new Date(BigNumber.from(nft.startTimestamp._hex).toNumber() * 1000),
+            endTimestamp: new Date(BigNumber.from(nft.endTimestamp._hex).toNumber() * 1000),
+            pricePerToken: ethers.utils.formatEther(BigNumber.from(nft.pricePerToken._hex)).toString(),
+            listingCreator: nft.listingCreator,
+          }
+        )
+      })
+    }
+  }, [newListing, loadingNewListing]);
+
   if (loadingCollection) {
     return <div>Loading collection...</div>;
   }
@@ -108,6 +148,8 @@ export default function NftCard({ address, id, likes, views}: NftCardProps) {
   if (loadingMarketplace) {
     return <div>Loading marketplace...</div>;
   }
+
+  
 
   return (
     <div className="mt-4 flex flex-col">
