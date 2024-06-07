@@ -30,6 +30,13 @@ export default function ProtectAccPage() {
         <h1 className="my-4 text-4xl font-bold md:text-5xl">
           Protect Your Account
         </h1>
+        <Image
+          src="/assets/InsightsAsset/protectKey.jpg"
+          width={1920}
+          height={1080}
+          alt="NFT Benefits Image"
+          className=" mb-12 max-h-[15rem] max-w-full rounded-lg object-cover "
+        />
         <h2 className="my-6 text-3xl font-bold">Overview</h2>
         <P>{``}</P>
       </div>
@@ -61,12 +68,6 @@ export default function ProtectAccPage() {
           </li>
         ))}
       </ul>
-       - Overview
-- Common NFT Scams
-- How to protect your Marketplace Account
-- How to protect your wallet
-- How to Protect Your Transactions
-- How to Protect Your Digital Identity   
       {images.map((image, index) => (
         <div className="self-center" key={index}>
           <Image
