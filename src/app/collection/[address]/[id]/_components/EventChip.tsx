@@ -1,6 +1,9 @@
 "use client"
 
 import { cn } from "@/utils/cn";
+import { FaRegHandPaper } from "react-icons/fa";
+import { TbTransfer } from "react-icons/tb";
+import { HiOutlineSparkles } from "react-icons/hi";
 
 type Props = {
   eventName: string;
@@ -44,7 +47,10 @@ export default function EventChip({ eventName, color }: Props) {
 
   return (
     <div>
-      <div className={cn('rounded-full border w-fit px-2', selectedVariant?.borderColor, selectedVariant?.darkBorderColor)}>
+      <div className={cn('flex items-center rounded-full border w-fit pl-1 gap-1 pr-2', selectedVariant?.borderColor, selectedVariant?.darkBorderColor)}>
+        {eventName === "Minted" && <HiOutlineSparkles className={cn("text-[12px]", selectedVariant?.textColor, selectedVariant?.darkTextColor)}/>}
+        {eventName === "Transfer" && <TbTransfer className={cn("text-[12px]", selectedVariant?.textColor, selectedVariant?.darkTextColor)}/>}
+        {eventName === "NewBid" && <FaRegHandPaper className={cn("text-[12px]", selectedVariant?.textColor, selectedVariant?.darkTextColor)}/>}
         <p className={cn('text-[10px] font-semibold w-fit', selectedVariant?.textColor, selectedVariant?.darkTextColor)}>{eventName}</p>
       </div>
     </div>

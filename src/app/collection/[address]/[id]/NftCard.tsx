@@ -32,6 +32,7 @@ import { updateNftViews } from "@/app/actions/updateNftViews";
 import { BigNumber, ethers } from "ethers";
 import DisplayBidders from "./DisplayBidders";
 import { NewBid } from "@/types/data";
+import DisplayActivities from "./DisplayActivities";
 
 type NftCardProps = {
   address: string;
@@ -122,9 +123,9 @@ export default function NftCard({ address, id, likes, views}: NftCardProps) {
   useEffect(() => {
     if(newListing) {
       
-      const filteredNewListing = newListing.map((event) => event.data.listing)
-      const nftList = filteredNewListing.filter((listing) => listing.tokenId == id);
-      nftList.map((nft) => {
+      //const filteredNewListing = newListing.map((event) => event.data.listing)
+      //const nftList = filteredNewListing.filter((listing) => listing.tokenId == id);
+      //nftList.map((nft) => {
         // console.table(
         //   {
         //     assetContract: nft.assetContract,
@@ -135,7 +136,7 @@ export default function NftCard({ address, id, likes, views}: NftCardProps) {
         //     listingCreator: nft.listingCreator,
         //   }
         // )
-      })
+      //})
     }
   }, [newListing, loadingNewListing]);
 
@@ -171,7 +172,7 @@ export default function NftCard({ address, id, likes, views}: NftCardProps) {
         </p>
         <MdVerified className="text-lg text-blue-500" />
       </div>
-      <div className="mx-4 mt-4 flex items-stretch justify-around gap-8">
+      <div className="mx-4 mt-4 flex items-start justify-around gap-8">
         <div className="w-[50svw]">
           <div className="flex w-full flex-col gap-4 py-4">
             {nft ? (
@@ -346,8 +347,7 @@ export default function NftCard({ address, id, likes, views}: NftCardProps) {
               </CardContent>
             </Card>
 
-            {/* Not Completed */}
-            {/* <DisplayOffers /> */}
+            {/* <DisplayBidders /> */}
             {auctionListing && auctionListing[0] && (
               <DisplayBidders
                 contractAddress={address}
@@ -355,7 +355,16 @@ export default function NftCard({ address, id, likes, views}: NftCardProps) {
                 marketPlaceContract={marketPlaceContract}
               />
             )}
-            
+
+            {/*  */}
+            <DisplayActivities
+              tokenId={id}
+              contractAddress={address}
+              nftContract={nftContract}
+              directListing={listings}
+              auctionListing={auctionListing}
+              marketPlaceContract={marketPlaceContract}
+            />
             
           </div>
         </div>

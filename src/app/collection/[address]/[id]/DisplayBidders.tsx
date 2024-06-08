@@ -36,6 +36,10 @@ export default function DisplayBidders({ marketPlaceContract, contractAddress, a
     },
   });
 
+  if(loadingNewBid) return (
+    <div>Loading...</div>
+  )
+
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1" className="border-0">
@@ -46,7 +50,7 @@ export default function DisplayBidders({ marketPlaceContract, contractAddress, a
           </div>
         </AccordionTrigger>
         <AccordionContent className="px-4 border pt-4 rounded-b-md bg-card">
-          {newBid ? newBid.map((bid, i) => (
+          {newBid && newBid[0] ? newBid.map((bid, i) => (
             <div key={i} className='py-2'>
               <section className="flex justify-between items-center pb-3">
                 <div className='flex flex-col gap-2'>
@@ -62,7 +66,7 @@ export default function DisplayBidders({ marketPlaceContract, contractAddress, a
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">From <span className='font-semibold text-foreground'>
-                      <Link href={`/user/${bid.data.bidder}`} className='cursor-pointer hover:underline'>
+                      <Link target='_blank' href={`/user/${bid.data.bidder}`} className='cursor-pointer hover:underline'>
                       {displayName(bid.data.bidder)}
                       </Link>
                     </span></p>
@@ -70,7 +74,7 @@ export default function DisplayBidders({ marketPlaceContract, contractAddress, a
                   </div>
                 </div>
                 <div>
-                  <Link href={`https://polygonscan.com/tx/${bid.transaction.transactionHash}`}>
+                  <Link target='_blank' href={`https://polygonscan.com/tx/${bid.transaction.transactionHash}`}>
                     Scan
                   </Link>
                   
@@ -79,11 +83,7 @@ export default function DisplayBidders({ marketPlaceContract, contractAddress, a
               <Separator />
             </div>
           )) : (
-            <div className="text-gray-500 dark:text-gray-400">
-              <div className="flex justify-between py-3 px-4 hover:bg-muted/50 gap-2 rounded-lg">
-                <p className="">NO BIDS</p>
-              </div>
-            </div>
+            <div>No Bids</div>
           )}
         </AccordionContent>
       </AccordionItem>
