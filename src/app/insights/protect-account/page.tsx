@@ -38,10 +38,39 @@ export default function ProtectAccPage() {
           className=" mb-12 max-h-[15rem] max-w-full rounded-lg object-cover "
         />
         <h2 className="my-6 text-3xl font-bold">Overview</h2>
-        <P>{``}</P>
+        <P>{`A Guide to Avoiding Scams and Protecting Yourself
+        The NFT market is thriving, but with opportunity comes risk. 
+        NFTs, like any valuable asset class, attract scammers who seek to exploit the unwary. 
+        This guide will provide you with the knowledge you need to confidently navigate the NFT world while protecting your digital collectibles and privacy.`}</P>
       </div>
       <div id="scams">
         <h2 className="my-6 text-3xl font-bold">Common NFT Scams</h2>
+        <P>{`Before we get started, let's look at some of the most common NFT scams used by criminals. 
+        We'll explain how to spot them and prevent being a victim:`}</P>
+        <ul className="-mt-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
+          <li className="mb-3">
+            <span className="font-bold">Rug Pulls:</span>
+            {` In these deceitful projects, producers hype up an NFT collection, resulting in huge investment. 
+            However, following the launch, the creators vanish with the invested monies, leaving customers with worthless NFTs.  `}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Fake Airdrops & Giveaways:</span>
+            {` Scammers promise victims free NFTs. Clicking fraudulent links in these promotions can deplete your cryptocurrency wallet. 
+            There are signs that we can watch out for, these includes unverified accounts advertising prizes and demanding you to connect your wallet to untrusted networks.`}
+          </li>
+          <li className="mb-3">
+            <span className="font-bold">Rug Pulls:</span>
+            {` It is the practice of sending deceptive emails or messages that look like official markets or customer support channels. These messages attempt to deceive you into disclosing your login information or visiting malicious links that steal your NFTs. 
+            Red signs include emails with grammatical problems or haste, pressure to act immediately, and unusual sender addresses or website URLs.`}
+          </li>
+          <li className="mb-6">
+            <span className="font-bold">
+            Phishing:
+            </span>
+            {` To prevent unauthorized changes, implement multi-factor authentication (MFA) for accessing DNS management interfaces.
+            By implementing these preventive measures, you can significantly improve the security of your NFTs and reduce your vulnerability to various cyber attacks.`}
+          </li>
+        </ul>
       </div>
       <div id="protect">
         <h2 className="my-6 text-3xl font-bold">

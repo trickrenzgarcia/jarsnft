@@ -169,7 +169,7 @@ export default function NFTSafety() {
           </li>
           <li className="mb-6">
             <span className="font-bold">
-              Multi-Factor Authentication (MFA): :
+              Multi-Factor Authentication (MFA):
             </span>
             {` To prevent unauthorized changes, implement multi-factor authentication (MFA) for accessing DNS management interfaces.
             By implementing these preventive measures, you can significantly improve the security of your NFTs and reduce your vulnerability to various cyber attacks.`}
