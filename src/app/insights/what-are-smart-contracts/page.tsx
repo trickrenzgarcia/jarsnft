@@ -185,10 +185,6 @@ export default function WhatSmartContractPage() {
         <P>{`However, smart contracts also have limitations: they require expertise to create and understand, cannot be modified once deployed, have scalability issues, have uncertain legal status in some jurisdictions and can contain security vulnerabilities.`}</P>
         <P>{`Despite these challenges, smart contracts are a powerful tool for building decentralized applications, and their ability to automate and secure transactions without central control will open up new opportunities across a range of industries and ultimately change the way digital agreements are managed and executed.`}</P>
       </div>
-      {/* <iframe
-        className="my-10 aspect-video w-full"
-        src="https://www.youtube.com/embed/ZE2HxTmxfrI"
-      ></iframe> */}
     </section>
   );
 }

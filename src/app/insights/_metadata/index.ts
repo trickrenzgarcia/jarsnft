@@ -166,17 +166,16 @@ export const rightNavList: RightNavListType[] = [
   {
     href: "/insights/protect-account",
     anchors: [
-      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
-      {
-        name: "Listing an NFT for sale a fixed price",
-        anchor: "#selling-fixed-price",
-      },
+      { name: "Overview", anchor: "overview" },
+      { name: "Common NFT Scams", anchor: "scams" },
+      { name: "Protect your Account", anchor: "protect" },
+      { name: "Conclusion", anchor: "conclusin" },
     ],
   },
-  {
-    href: "/insights/faq",
-    anchors: [{ name: "FAQs", anchor: "#" }],
-  },
+  // {
+  //   href: "/insights/faq",
+  //   anchors: [{ name: "FAQs", anchor: "#" }],
+  // },
 ];
 
 export const leftNavList: LeftNavList[] = [
@@ -226,8 +225,8 @@ export const leftNavList: LeftNavList[] = [
       { name: "Protect your account", href: "/insights/protect-account" },
     ],
   },
-  {
-    topic: "FAQs",
-    child: [{ name: "To be added", href: "#" }],
-  },
+  // {
+  //   topic: "FAQs",
+  //   child: [{ name: "To be added", href: "#" }],
+  // },
 ];

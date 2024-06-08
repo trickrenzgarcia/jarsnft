@@ -12,6 +12,7 @@ import { usePathname } from "next/navigation";
 import { PageNavTopic } from "./_components/PageNavbar";
 import SideBarHamburger from "./_components/SideBarHamburger";
 import { useEffect, useState } from "react";
+import FAQsInsight from "./_components/FAQs";
 
 type LearnProps = {
   children: React.ReactNode;
@@ -42,12 +43,12 @@ export default function LearnLayout({ children }: LearnProps) {
             <PageNextButton
               key={childIndex}
               title={Capitalize(
-                leftNavList[(index + 1) % leftNavList.length].child[0].name
+                leftNavList[(index + 1) % leftNavList.length].child[0].name,
               )}
               href={leftNavList[(index + 1) % leftNavList.length].child[0].href}
             />
           )
-        )
+        ),
       )}
     </div>
   ));
@@ -64,10 +65,11 @@ export default function LearnLayout({ children }: LearnProps) {
               <PageNavTopic color="#c117ff" />
               <div
                 key={key}
-                className="animate-fade-left animate-once animate-duration-[1200ms] animate-ease-out"
+                className="animate-once animate-duration-[1200ms] animate-ease-out animate-fade-left"
               >
                 {children}
               </div>
+              <FAQsInsight />
               {nextBtn}
             </div>
           </div>
