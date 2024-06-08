@@ -69,8 +69,8 @@ export default function LearnLayout({ children }: LearnProps) {
               >
                 {children}
               </div>
-              <FAQsInsight />
               {nextBtn}
+              <FAQsInsight />
             </div>
           </div>
           <SideNavRight />
