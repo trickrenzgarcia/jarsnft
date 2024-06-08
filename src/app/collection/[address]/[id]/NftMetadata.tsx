@@ -25,8 +25,8 @@ export default function NftMetadata() {
 
   return (
     <Tabs variant="underlined" aria-label="Tabs variants">
-      <Tab key="Properties" title="Properties">
-        <Card fullWidth className='bg-card p-2' radius='sm'>
+      <Tab key="Properties" title="Properties" className='w-full '>
+        <Card className='bg-card p-2 rounded-lg'>
           <CardHeader className='flex gap-3'>
             <LuTableProperties />
             <p className='text-md'>Properties</p>
@@ -51,8 +51,8 @@ export default function NftMetadata() {
           </CardBody>
         </Card>
       </Tab>
-      <Tab key="Token Details" title="Token Details">
-        <Card fullWidth className='bg-card  p-2'>
+      <Tab key="Token Details" title="Token Details" className='w-full'>
+        <Card className='bg-card p-2 w-full rounded-lg'>
           <CardHeader className='flex gap-3'>
             <GrStatusInfo />
             <p className='text-md'>Token Details</p>
@@ -92,8 +92,8 @@ export default function NftMetadata() {
           </CardBody>
         </Card>
       </Tab>
-      <Tab key="Collection Details" title="Collection Details">
-        <Card fullWidth className='bg-card  p-2'>
+      <Tab key="Collection Details" title="Collection Details" className='w-full'>
+        <Card className='bg-card p-2 w-full'>
           <CardHeader className='flex gap-3'>
             <BsCollection />
             <p className='text-md'>Collection Info</p>

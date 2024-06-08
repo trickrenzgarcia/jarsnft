@@ -55,6 +55,7 @@
     "framer-motion": "^11.0.24",
     "lucide-react": "^0.359.0",
     "minidenticons": "^4.2.1",
+    "moment": "^2.30.1",
     "next": "^14.2.2",
     "next-auth": "^4.24.7",
     "next-themes": "^0.3.0",
