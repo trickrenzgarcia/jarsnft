@@ -4,11 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useNftContext } from "./nft-provider";
 import {
   NFT,
-  ThirdwebNftMedia,
-  useCancelDirectListing,
-  useCancelEnglishAuction,
   useContractEvents,
-  useEnglishAuctionWinningBid,
   useValidDirectListings,
   useValidEnglishAuctions,
 } from "@thirdweb-dev/react";
@@ -34,6 +30,8 @@ import NftMetadata from "./NftMetadata";
 import Favorite from "./Favorite";
 import { updateNftViews } from "@/app/actions/updateNftViews";
 import { BigNumber, ethers } from "ethers";
+import DisplayBidders from "./DisplayBidders";
+import { NewBid } from "@/types/data";
 
 type NftCardProps = {
   address: string;
@@ -127,16 +125,16 @@ export default function NftCard({ address, id, likes, views}: NftCardProps) {
       const filteredNewListing = newListing.map((event) => event.data.listing)
       const nftList = filteredNewListing.filter((listing) => listing.tokenId == id);
       nftList.map((nft) => {
-        console.table(
-          {
-            assetContract: nft.assetContract,
-            tokenId: nft.tokenId.toString(),
-            startTimestamp: new Date(BigNumber.from(nft.startTimestamp._hex).toNumber() * 1000),
-            endTimestamp: new Date(BigNumber.from(nft.endTimestamp._hex).toNumber() * 1000),
-            pricePerToken: ethers.utils.formatEther(BigNumber.from(nft.pricePerToken._hex)).toString(),
-            listingCreator: nft.listingCreator,
-          }
-        )
+        // console.table(
+        //   {
+        //     assetContract: nft.assetContract,
+        //     tokenId: nft.tokenId.toString(),
+        //     startTimestamp: new Date(BigNumber.from(nft.startTimestamp._hex).toNumber() * 1000),
+        //     endTimestamp: new Date(BigNumber.from(nft.endTimestamp._hex).toNumber() * 1000),
+        //     pricePerToken: ethers.utils.formatEther(BigNumber.from(nft.pricePerToken._hex)).toString(),
+        //     listingCreator: nft.listingCreator,
+        //   }
+        // )
       })
     }
   }, [newListing, loadingNewListing]);
@@ -350,19 +348,27 @@ export default function NftCard({ address, id, likes, views}: NftCardProps) {
 
             {/* Not Completed */}
             {/* <DisplayOffers /> */}
-
-            {/* More NFT Details */}
-            {loadingNft ? (
-              <div className="w-full">
-                <Skeleton className="h-7 w-full" />
-              </div>
-            ) : (
-              <NftMetadata />
+            {auctionListing && auctionListing[0] && (
+              <DisplayBidders
+                contractAddress={address}
+                auctionListing={auctionListing}
+                marketPlaceContract={marketPlaceContract}
+              />
             )}
+            
+            
           </div>
         </div>
-        <div className="flex h-[70svh] w-[24svw] items-center">
+        <div className="flex flex-col w-[24svw] justify-start items-start gap-4">
           <TiltCard />
+          {/* More NFT Details */}
+          {loadingNft ? (
+            <div className="w-full">
+              <Skeleton className="h-7 w-full" />
+            </div>
+          ) : (
+            <NftMetadata />
+          )}
         </div>
       </div>
     </div>
