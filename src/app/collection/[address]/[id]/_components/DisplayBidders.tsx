@@ -12,7 +12,7 @@ import { type MarketplaceV3, type EnglishAuction } from '@thirdweb-dev/sdk';
 import { useContractEvents } from '@thirdweb-dev/react';
 import { NewBid } from '@/types/data';
 import { BigNumber, ethers } from 'ethers';
-import EventChip from './_components/EventChip';
+import EventChip from './EventChip';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { displayName } from '@/lib/utils';

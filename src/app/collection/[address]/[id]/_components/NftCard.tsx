@@ -29,9 +29,7 @@ import CancelListingButton from "./CancelListingButton";
 import NftMetadata from "./NftMetadata";
 import Favorite from "./Favorite";
 import { updateNftViews } from "@/app/actions/updateNftViews";
-import { BigNumber, ethers } from "ethers";
 import DisplayBidders from "./DisplayBidders";
-import { NewBid } from "@/types/data";
 import DisplayActivities from "./DisplayActivities";
 
 type NftCardProps = {

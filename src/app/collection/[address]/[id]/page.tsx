@@ -1,6 +1,6 @@
 import { getNFTLikes } from "@/utils/getNFTLikes";
 import { getNFTViews } from "@/utils/getNFTViews";
-import NftCard from "./NftCard";
+import { NftCard } from "./_components";
 import { jars } from "@/lib/core/api";
 import { notFound } from "next/navigation";
 

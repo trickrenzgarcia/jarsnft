@@ -9,13 +9,15 @@ import {
 import type { DirectListingV3, EnglishAuction, MarketplaceV3, SmartContract } from '@thirdweb-dev/sdk';
 import React from 'react'
 import { LuActivitySquare } from "react-icons/lu";
-import EventChip from './_components/EventChip';
+import EventChip from './EventChip';
 import Image from 'next/image';
 import { ethers } from 'ethers';
 import Link from 'next/link';
 import { displayName } from '@/lib/utils';
 import { Separator } from '@/components/ui/separator';
 import { useContractEvents } from '@thirdweb-dev/react';
+import { Button } from '@/components/ui/button';
+import { RiExternalLinkLine } from "react-icons/ri";
 
 type Props = {
   tokenId: string;
@@ -51,7 +53,7 @@ export default function DisplayActivities({ tokenId, contractAddress, nftContrac
             <p>NFT Activities</p>
           </div>
         </AccordionTrigger>
-        <AccordionContent className="px-4 border pt-4 rounded-b-md bg-card h-[350px] overflow-y-scroll">
+        <AccordionContent className="px-4 border pt-4 rounded-b-md bg-card h-fit max-h-[350px] overflow-y-scroll">
           {transfers && transfers[0] ? transfers.map((tf, i) => (
             <div key={i} className='py-2'>
               <section className="flex justify-between items-center pb-3">
@@ -83,9 +85,10 @@ export default function DisplayActivities({ tokenId, contractAddress, nftContrac
                 </div>
                 <div>
                   <Link target='_blank' href={`https://polygonscan.com/tx/${tf.transaction.transactionHash}`}>
-                    Scan
+                    <Button variant="outline" className='p-2'>
+                      <RiExternalLinkLine className='text-xl' />
+                    </Button>
                   </Link>
-                  
                 </div>
               </section>
               <Separator />

@@ -92,7 +92,7 @@ export default function NftMetadata() {
           </CardBody>
         </Card>
       </Tab>
-      <Tab key="Collection Details" title="Collection Details" className='w-full'>
+      <Tab key="Collection" title="Collection" className='w-full'>
         <Card className='bg-card p-2 w-full'>
           <CardHeader className='flex gap-3'>
             <BsCollection />
