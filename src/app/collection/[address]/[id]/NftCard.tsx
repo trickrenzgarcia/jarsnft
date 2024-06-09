@@ -172,8 +172,8 @@ export default function NftCard({ address, id, likes, views}: NftCardProps) {
         </p>
         <MdVerified className="text-lg text-blue-500" />
       </div>
-      <div className="mx-4 mt-4 flex items-start justify-around gap-8">
-        <div className="w-[50svw]">
+      <div className="mx-4 mt-4 flex flex-col md:flex-row items-start justify-around gap-8">
+        <div className="w-full md:w-[50svw] lg:w-[50svw] xl:w-[50svw]">
           <div className="flex w-full flex-col gap-4 py-4">
             {nft ? (
               <h1 className="text-4xl font-bold">{nft.metadata.name}</h1>
@@ -368,7 +368,7 @@ export default function NftCard({ address, id, likes, views}: NftCardProps) {
             
           </div>
         </div>
-        <div className="flex flex-col w-[24svw] justify-start items-start gap-4">
+        <div className="flex flex-col w-full md:w-[350px] lg:w-[350px] xl:w-[24svw] justify-start items-start gap-4">
           <TiltCard />
           {/* More NFT Details */}
           {loadingNft ? (
