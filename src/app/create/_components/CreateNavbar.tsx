@@ -7,6 +7,8 @@ import { IoArrowBack, IoCopy } from "react-icons/io5";
 import { useUserContext } from "@/components/(providers)";
 import {
   ConnectWeb3,
+  Hamburger,
+  Login,
   MinidentIconImg,
   TooltipMsg,
 } from "@/components/(interfaces)";
@@ -17,7 +19,7 @@ export default function CreateNavbar() {
   const router = useRouter();
   const { user, isLoading, isLoggedIn } = useUserContext();
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 py-2 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-14 items-center justify-between md:container">
         <div className="flex items-center gap-1">
           <Button
@@ -31,7 +33,7 @@ export default function CreateNavbar() {
           <h1 className="font-semibold">Go back</h1>
         </div>
 
-        <div className="mr-4 block lg:hidden">
+        {/* <div className="mr-4 block lg:hidden">
           {(isLoading && <Skeleton className="h-9 w-9 rounded-full" />) ||
             (!user && <></>) ||
             (user && (
@@ -53,6 +55,10 @@ export default function CreateNavbar() {
                 </button>
               </TooltipMsg>
             ))}
+        </div> */}
+
+        <div className="flex items-center gap-6 pr-[12px]">
+          <Login />
         </div>
       </div>
     </header>
