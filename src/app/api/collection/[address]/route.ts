@@ -1,9 +1,10 @@
+import { BASE_URL } from "@/lib/ctx";
 import { NextResponse } from "next/server";
 
 type RouteParams = { params: { address: string } };
 
 async function getCollection(contract: string, cacheTime?: number) {
-  const response = fetch(`http://localhost:5000/collection/${contract}`, {
+  const response = fetch(`${BASE_URL}/collection/${contract}`, {
     method: "GET",
     headers: {
       accept: "application/json",

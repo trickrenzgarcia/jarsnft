@@ -1,4 +1,5 @@
 import { NFTCard } from "@/app/_trade/_types";
+import { CLIENT_URL } from "@/lib/ctx";
 
 // HARD-CODED DATA FOR NOW
 export async function getCollections() {
@@ -46,72 +47,87 @@ export async function getCollections() {
     ] as NFTCard[];
 }
 
+type CollectionData = {
+    contract: string;
+    image: string;
+    name: string;
+    symbol: string;
+    description: string;
+    app_uri: string;
+    external_link: string;
+    fee_recipient: string;
+    seller_fee_basis_points: number;
+    primary_sale_recipient: string;
+    trusted_forwarders: string;
+    category: string;
+    owner: string;
+    is_nsfw: boolean;
+    is_verified: boolean;
+    sale_listed: boolean;
+    view_count: number;
+    created_at: Date;
+}
+
+type CollectionResponse = {
+    collections: CollectionData[];
+}
+
 export async function getArtCollections() {
-    return [
-        {
-            name: "BasePaint",
-            collection: "basepaint",
+    const response = await fetch(`${CLIENT_URL}/api/trending?category=art&page=1&limit=15`);
+    const data = await response.json() as CollectionResponse;
+
+    const nfts = data.collections.map((nft) => {
+        return {
+            name: nft.name,
+            contract: nft.contract,
             itemLink: "0",
-            logo: "/assets/samples/logo2.png",
-            image: "/assets/samples/img2.png",
+            logo: nft.image,
+            image: nft.image,
             floor_price: 5600,
-            is_verified: false,
-            volume: 100000,
-        },
-        {
-            name: "Chromie Squiggle by Snowfro",
-            collection: "chromie-squiggle-by-snowfro",
-            itemLink: "1191",
-            logo: "/assets/samples/logo3.png",
-            image: "/assets/samples/img3.png",
-            floor_price: 1673,
-            is_verified: false,
-            volume: 12356,
-        },
-        {
-            name: "alignDRAW",
-            collection: "aligndraw",
-            itemLink: "361",
-            logo: "/assets/samples/logo4.svg",
-            image: "/assets/samples/img4.png",
-            floor_price: 2572,
-            is_verified: false,
-            volume: 45326,
-        },
-        {
-            name: "Terraforms by Mathcastles",
-            collection: "terraforms",
-            itemLink: "3854",
-            logo: "/assets/samples/logo5.gif",
-            image: "/assets/samples/img5.svg",
-            floor_price: 2572,
-            is_verified: false,
-            volume: 45326,
-        },
-    ] as NFTCard[];
+            is_verified: nft.is_verified,
+            volume: nft.view_count,
+        } as NFTCard;
+    });
+
+    return nfts;
 }
 
 export async function getPhotosCollections() {
-    return [
-        {
-            name: "Hev Abi",
-            collection: "0x317197Bcbf59603cd999fFC9e090279b35b60249",
+    const response = await fetch(`${CLIENT_URL}/api/trending?category=photography&page=1&limit=15`);
+    const data = await response.json() as CollectionResponse;
+
+    const nfts = data.collections.map((nft) => {
+        return {
+            name: nft.name,
+            contract: nft.contract,
             itemLink: "0",
-            logo: "/assets/samples/logo1.webp",
-            image: "/assets/samples/img1.jpg",
+            logo: nft.image,
+            image: nft.image,
             floor_price: 5600,
-            is_verified: false,
-            volume: 100000,
-        },
-        {
-            name: "Jajars",
-            collection: "0xbf8Fda4cB565D4eF7Ef51EfB8f8A19fd2389270c",
+            is_verified: nft.is_verified,
+            volume: nft.view_count,
+        } as NFTCard;
+    });
+
+    return nfts;
+}
+
+export async function getPFPsCollections() {
+    const response = await fetch(`${CLIENT_URL}/api/trending?category=pfp&page=1&limit=15`);
+    const data = await response.json() as CollectionResponse;
+
+    const nfts = data.collections.map((nft) => {
+        return {
+            name: nft.name,
+            contract: nft.contract,
             itemLink: "0",
-            logo: "/assets/jars256.png",
-            image: "/assets/ex1.png",
+            logo: nft.image,
+            image: nft.image,
             floor_price: 5600,
-            is_verified: false,
-            volume: 100000,
-        },
-    ] as NFTCard[];
+            is_verified: nft.is_verified,
+            volume: nft.view_count,
+        } as NFTCard;
+    });
+
+    return nfts;
 }

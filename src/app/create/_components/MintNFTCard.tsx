@@ -554,6 +554,7 @@ export default function MintNFTCard() {
                           />
                           <Button
                             variant="destructive"
+                            type="button"
                             onClick={() =>
                               setAttributes(
                                 attributes.filter((_, index) => index !== i),
@@ -582,7 +583,14 @@ export default function MintNFTCard() {
                 </FormItem>
               )}
             />
-            <Button type="submit">Mint</Button>
+
+            <Button 
+              type="submit"
+              className="w-[384px] min-w-[300px] md:w-[420px] lg:w-[500px] xl:w-[600px] mt-6 mb-6"
+              >
+                Mint
+            </Button>
+
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button ref={ref} className="hidden">

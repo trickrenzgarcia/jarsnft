@@ -286,7 +286,7 @@ export default function NFTCreateContractCard({
         <CardDescription>
           {description}
           <Link
-            href="/insights/what-is-a-smart-contract"
+            href="/insights/what-are-smart-contracts"
             className="ml-1 text-blue-400 hover:text-blue-500"
             target="_blank"
           >
@@ -590,7 +590,7 @@ export default function NFTCreateContractCard({
 
             <div className="my-4 flex justify-center rounded-md border md:my-0 md:justify-end md:border-0">
               <div className="flex">
-                <Button type="submit" className="my-2 md:my-6">
+                <Button type="submit" className="my-2 md:my-6 w-[384px] min-w-[300px] md:w-[420px] lg:w-[500px] xl:w-[600px] ">
                   Create Collection
                 </Button>
               </div>

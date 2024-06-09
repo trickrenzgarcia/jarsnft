@@ -18,7 +18,7 @@ import * as getCollections from "@/utils/getCollections";
 export default async function Home() {
   const artTrendCollections = await getCollections.getArtCollections();
   const photosCollections = await getCollections.getPhotosCollections();
-
+  const pfpCollections = await getCollections.getPFPsCollections();
   return (
     <main className="bg-background">
       <Navbar />
@@ -43,7 +43,7 @@ export default async function Home() {
         <Separator className="h-[2px] w-full" />
 
         <Suspense fallback={<div>Loading...</div>}>
-          <PFPTrend collections={photosCollections} />
+          <PFPTrend collections={pfpCollections} />
         </Suspense>
 
         <Separator className="h-[2px] w-full" />
