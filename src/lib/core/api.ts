@@ -442,6 +442,15 @@ export class JarsAPI {
           }
         },
       );
+    },
+
+    /**
+     * Get NFT Transaction by Hash
+     * @param transactionHash 
+     * @returns 
+     */
+    getTransactionByHash: async (transactionHash: string) => {
+      return await this.request(`/nfts/getTransaction?transactionHash=${transactionHash}`);
     }
   };
 }
