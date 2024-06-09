@@ -7,17 +7,17 @@ export default function NFTCategories() {
         <p className="mb-12 text-center text-xl font-bold">NFT Categories</p>
         <div className="flex flex-col gap-6 md:mx-6 md:grid md:grid-cols-3">
           <NFTCardCategories
-            categoryLink="#"
+            categoryLink="/category/arts"
             categoryName="Art NFTs"
             image="/assets/categoryImages/ArtCategory.png"
           />
           <NFTCardCategories
-            categoryLink="#"
+            categoryLink="/category/photography"
             categoryName="Photography NFTs"
             image="/assets/categoryImages/PhotoCategory.png"
           />
           <NFTCardCategories
-            categoryLink="#"
+            categoryLink="/category/pfp"
             categoryName="Profile Picture NFTs"
             image="/assets/categoryImages/PFPCategory.png"
           />
