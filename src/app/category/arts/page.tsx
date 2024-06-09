@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function ArtsPage() {
   return (
-    <div className='container h-[700px]'>
+    <div className='container h-[550px]'>
       <h1 className='text-4xl'>Explore Art NFTs</h1>
     </div>
   )

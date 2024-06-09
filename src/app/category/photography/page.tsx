@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function PhotographyPage() {
   return (
-    <div className='container h-[700px]'>
+    <div className='container h-[550px]'>
       <h1 className='text-4xl'>Explore Photography NFTs</h1>
     </div>
   )
