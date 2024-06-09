@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const styles = {
-  trendingCard: `w-full dark:bg-[#1C1C1C] bg-[#CED4DA] rounded-xl py-2`,
+  trendingCard: `w-full p-6 py-5 pb-5 dark:bg-[#1C1C1C] bg-[#CED4DA] rounded-xl h-full flex flex-col justify-between`,
   trendingCardWrapper: `ml-3 flex items-center justify-between`,
 };
 
@@ -32,6 +32,7 @@ export default async function FearAndGreedCard({ title, icon }: Props) {
     return "Neutral";
   };
   const normalizedAngle = normalizeAngle(fng);
+
   return (
     <div className={styles.trendingCard}>
       <div className={styles.trendingCardWrapper}>
