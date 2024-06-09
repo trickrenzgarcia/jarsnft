@@ -36,6 +36,7 @@ export type NFTCollection = {
   safe_listed: boolean;
   view_count: number;
   trusted_forwarders: string[];
+  category: string;
   created_at: string;
   simpleHashData: SimpleHashCollections;
 };

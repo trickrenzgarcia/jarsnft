@@ -176,10 +176,14 @@ export class JarsAPI {
    * @param contractAddress address of the contract to deploy NFTCollection ERC721A
    * @returns ContractMetadata
    */
-  async deployNFTCollection(contractAddress: string, owner: string) {
+  async deployNFTCollection(contractAddress: string, owner: string, category: string) {
     return await this.request<NFTCollection>(`/deploy/nft-collection`, {
       method: "POST",
-      body: JSON.stringify({ contractAddress: contractAddress, owner: owner }),
+      body: JSON.stringify({ 
+        contractAddress: contractAddress,
+        owner: owner,
+        category: category
+      }),
     });
   }
   /**

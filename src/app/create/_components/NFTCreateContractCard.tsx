@@ -28,6 +28,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import {
   AlertDialog,
@@ -44,19 +45,16 @@ import { ACCEPTED_IMAGE_TYPES } from "@/types/constant";
 import { FaExclamationCircle } from "react-icons/fa";
 import { Textarea } from "@/components/ui/textarea";
 import { useSDK } from "@thirdweb-dev/react";
-import { Divider, Spinner } from "@nextui-org/react";
-import { useUserContext } from "@/components/(providers)";
+import { RadioGroup } from "@nextui-org/react";
 import { Separator } from "@/components/ui/separator";
 import { FaCheck } from "react-icons/fa";
-import { MdErrorOutline } from "react-icons/md";
-import { IoMdRefresh } from "react-icons/io";
 import { ProfileQuery } from "@/types/users";
-import { jars } from "@/lib/core/api";
 import { createContract } from "../actions";
 import { NFTCollection } from "@/lib/core/types";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import Category from "./Category";
 
 type NFTCreateContractCardProps = {
   user: ProfileQuery;
@@ -91,6 +89,9 @@ const ContractSchema = z.object({
     ),
   primary_sale_recipient: ethAddressSchema,
   trusted_forwarders: z.array(z.string()).optional(),
+  category: z.enum(["art", "photography", "pfp"], {
+    required_error: "You need to select an nft category."
+  }),
 });
 
 type FormContract = z.infer<typeof ContractSchema>;
@@ -262,6 +263,7 @@ export default function NFTCreateContractCard({
         const newCollection = await createContract(
           processContractAddress,
           user.data.address,
+          data.category
         );
         setCreatedCollection(newCollection);
         toast.success("Contract deployed successfully!", {
@@ -533,6 +535,54 @@ export default function NFTCreateContractCard({
                         )}
                       />
                     </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <div className="pt-8">
+              <FormField
+                control={form.control}
+                name="category"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-md flex items-center gap-1 font-semibold">
+                      <span className="text-red-400">*</span>Select NFT Category
+                    </FormLabel>
+                        <FormControl>
+                            <RadioGroup 
+                            orientation="horizontal"
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
+
+                          <FormItem>
+                            <FormControl>
+                              <Category value="art">
+                                Art
+                              </Category>
+                            </FormControl>
+                          </FormItem>
+
+                          <FormItem>
+                            <FormControl>
+                              <Category value="photography">
+                                Photography
+                              </Category>
+                            </FormControl>
+                          </FormItem>
+
+                          <FormItem>
+                            <FormControl>
+                              <Category value="pfp">
+                                Profile Picture
+                              </Category>
+                            </FormControl>
+                          </FormItem>
+
+                        </RadioGroup>
+                      </FormControl>
+                      <FormMessage />
                   </FormItem>
                 )}
               />
