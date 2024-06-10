@@ -15,7 +15,7 @@ export default function Footer() {
   };
 
   const marketplaceLinks: Array<LinkType> = [
-    { href: "/category/art", description: "Art NFTs" },
+    { href: "/category/arts", description: "Art NFTs" },
     { href: "/category/photography", description: "Photography NFTs" },
     { href: "/category/pfp", description: "Profile Picture NFTs" },
   ];

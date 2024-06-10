@@ -1,10 +1,10 @@
-import { NFTCard as NFTCardType } from "../_types";
+import { CollectionData } from "@/utils/getCollections";
 import NFTCarousel from "./NFTCarousel";
 
 export default function ArtTrend({
   collections,
 }: {
-  collections: NFTCardType[];
+  collections: CollectionData[];
 }) {
   return (
     <>

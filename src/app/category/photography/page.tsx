@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import React from 'react'
+import * as getCollections from "@/utils/getCollections";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -7,7 +7,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function PhotographyPage() {
+export default async function PhotographyPage() {
+  const photosCollections = await getCollections.getPhotosCollections();
+  
   return (
     <div className='container h-[550px]'>
       <h1 className='text-4xl'>Explore Photography NFTs</h1>
