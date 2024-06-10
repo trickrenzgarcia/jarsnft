@@ -16,13 +16,7 @@ const browsers = [
   { src: "/assets/browsers/Opera.svg", alt: "opera" },
 ];
 
-const metamaskCreateImg = [
-  {
-    src: "/assets/InsightsAsset/metamaskImages/metamask create wallet 1.png",
-  },
-  {
-    src: "/assets/InsightsAsset/metamaskImages/metamask create wallet 2.png",
-  },
+const metamaskCreate = [
   {
     src: "/assets/InsightsAsset/metamaskImages/metamask create wallet 3.png",
   },
@@ -37,13 +31,12 @@ const metamaskCreateImg = [
   },
 ];
 
-const metamaskImportImg = [
-  {
-    src: "/assets/InsightsAsset/metamaskImages/metamask existing wallet 1.png",
-  },
-  {
-    src: "/assets/InsightsAsset/metamaskImages/metamask existing wallet 2.png",
-  },
+const coinbaseCreate = [
+  { src: "/assets/InsightsAsset/CoinbaseImages/coinbase create wallet 1.png" },
+  { src: "/assets/InsightsAsset/CoinbaseImages/coinbase create wallet 2.png" },
+  { src: "/assets/InsightsAsset/CoinbaseImages/coinbase create wallet 3.png" },
+  { src: "/assets/InsightsAsset/CoinbaseImages/coinbase create wallet 4.png" },
+  { src: "/assets/InsightsAsset/CoinbaseImages/coinbase create wallet 5.png" },
 ];
 
 export default function SetupWallet() {
@@ -110,84 +103,143 @@ export default function SetupWallet() {
       </div>
       <div id="metamask">
         <hr />
-        <h2 className="my-6 text-3xl font-bold">How to setup Metamask</h2>
-        <P>{`A popular cryptocurrency wallet and browser extension that allows users to interact with the Ethereum or Polygon blockchain.`}</P>
-        <h3 className="my-6 text-xl font-bold tracking-wider">
-          Install Metamask To Your Browser
-        </h3>
-        <P>
-          {`To get started with metamask, we must install the Metamask wallet extension in our browser. `}
-          <span className="font-semibold text-[#A519D7] underline">
-            <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">
-              Download Here
-            </a>
-          </span>
-        </P>
-        <P>{`We will be redirected to this browser page, click Download and Add Extension to finish setting up our Metamask wallet.`}</P>
-        <Image
-          src="/assets/InsightsAsset/metamaskImages/metamask 1.png"
-          width={1920}
-          height={1080}
-          alt="Metamask Download Page"
-          className="mb-2 max-h-[100%] max-w-full "
-        />
-        <P>
-          <span className="italic">
-            <span className="font-bold">Step 1: </span>
-            {` Click 'Get' or 'Download' in other browsers`}
-          </span>
-        </P>
-        <Image
-          src="/assets/InsightsAsset/metamaskImages/metamask 2.png"
-          width={1920}
-          height={1080}
-          alt="Metamask Download Extension"
-          className="mb-2 max-h-[100%] max-w-full "
-        />
-        <P>
-          <span className="italic">
-            <span className="font-bold">Step 2: </span>
-            {` Click 'Add Extension' to finish`}
-          </span>
-        </P>
-        <Image
-          src="/assets/InsightsAsset/metamaskImages/metamask 3.png"
-          width={1920}
-          height={1080}
-          alt="Metamask Login"
-          className="mb-2 max-h-[100%] max-w-full "
-        />
-        <P>
-          <span className="italic">
-            <span className="font-bold">Step 3: </span>
-            {` We will be redirected to this page that allows us to Create or Import our wallet.`}
-          </span>
-        </P>
-        <h3 className="my-6 text-xl font-bold tracking-wider">
-          Create your Wallet Account
-        </h3>
+        <>
+          <h2 className="my-6 text-3xl font-bold">How to setup Metamask</h2>
+          <P>{`A popular cryptocurrency wallet and browser extension that allows users to interact with the Ethereum or Polygon blockchain.`}</P>
+          <h3 className="my-6 text-xl font-bold tracking-wider">
+            Install Metamask To Your Browser
+          </h3>
+          <P>
+            {`To get started with Metamask, we must install the Metamask wallet extension in our browser. `}
+            <span className="font-semibold text-[#A519D7] underline">
+              <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">
+                Download Here
+              </a>
+            </span>
+          </P>
+          <P>{`We will be redirected to this browser page, click Download and Add Extension to finish setting up our Metamask wallet.`}</P>
+          <Image
+            src="/assets/InsightsAsset/metamaskImages/metamask 1.png"
+            width={1920}
+            height={1080}
+            alt="Metamask Download Page"
+            className="mb-2 max-h-[100%] max-w-full "
+          />
+          <P>
+            <span className="italic">
+              <span className="font-bold">Step 1: </span>
+              {` Click 'Get' or 'Download' in other browsers`}
+            </span>
+          </P>
+          <Image
+            src="/assets/InsightsAsset/metamaskImages/metamask 2.png"
+            width={1920}
+            height={1080}
+            alt="Metamask Download Extension"
+            className="mb-2 max-h-[100%] max-w-full "
+          />
+          <P>
+            <span className="italic">
+              <span className="font-bold">Step 2: </span>
+              {` Click 'Add Extension' to finish`}
+            </span>
+          </P>
+          <Image
+            src="/assets/InsightsAsset/metamaskImages/metamask 3.png"
+            width={1920}
+            height={1080}
+            alt="Metamask Login"
+            className="mb-2 max-h-[100%] max-w-full "
+          />
+          <P>
+            <span className="italic">
+              <span className="font-bold">Step 3: </span>
+              {` We will be redirected to this page that allows us to Create or Import our wallet.`}
+            </span>
+          </P>
+        </>
+        <>
+          <h3 className="my-6 text-xl font-bold tracking-wider">
+            Create your Wallet Account
+          </h3>
+          <P>{`After clicking the Create a new Wallet, we will be redirected with the following steps:`}</P>
+          <div className="flex justify-center gap-5">
+            <Image
+              src="/assets/InsightsAsset/metamaskImages/metamask create wallet 1.png"
+              width={1920}
+              height={1080}
+              alt="Metamask Login"
+              className="mb-2 max-h-[80%] max-w-[50%]"
+            />
+            <Image
+              src="/assets/InsightsAsset/metamaskImages/metamask create wallet 2.png"
+              width={1920}
+              height={1080}
+              alt="Metamask Login"
+              className="mb-2 max-h-[80%] max-w-[50%]"
+            />
+          </div>
+          <P>{`Then continue with the following instructions by Metamask:`}</P>
+          <div className="flex justify-center gap-4">
+            {displayMetamaskCreate()}
+          </div>
+          <P>{`After finishing our account creation, it is important that our seed phrase must be stored safely. Without our seed phrase, it will be impossible to recover your assets.`}</P>
+        </>
         <h3 className="my-6 text-xl font-bold tracking-wider">
           Login your Existing Wallet Account
         </h3>
-        <Image
-          src="/assets/InsightsAsset/metamaskImages/metamask Account.png"
-          width={1920}
-          height={1080}
-          alt="Metamask Login"
-          className="mb-2 max-h-[80%] max-w-[70%]"
-        />
-        <P>
-          <span className="italic">
-            <span className="font-bold">User Account:</span>
-            {` After completing our wallet Creation or Import, we will be redirected to the main page of our wallet account.`}
-          </span>
-        </P>
+        <P>{`When we try to login our Metamask Account from a different computer, it will require us to import our wallet using a seed phrase.
+        Follow through the steps on how to Login our existing wallet.`}</P>
+        <div className="flex flex-wrap items-center justify-center gap-5">
+          <Image
+            src="/assets/InsightsAsset/metamaskImages/metamask existing wallet 1.png"
+            width={1280}
+            height={800}
+            alt="Metamask Login"
+            className="mb-2 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem]"
+          />
+          <Image
+            src="/assets/InsightsAsset/metamaskImages/metamask existing wallet 2.png"
+            width={1280}
+            height={800}
+            alt="Metamask Login"
+            className="mb-2 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem]"
+          />
+        </div>
+        <P>{`After completing our wallet Creation or Import, we will be redirected to the main page of our wallet account.`}</P>
+        <div className="flex justify-center">
+          <Image
+            src="/assets/InsightsAsset/metamaskImages/metamask Account.png"
+            width={1920}
+            height={1080}
+            alt="Metamask Login"
+            className="mb-2 max-h-full max-w-[80%]"
+          />
+        </div>
       </div>
       <div id="coinbase">
         <hr />
         <h2 className="my-6 text-3xl font-bold">How to setup Coinbase</h2>
         <P>{`A leading cryptocurrency exchange and wallet that enables users to easily buy, sell, and manage a wide range of digital assets with top-tier security and user-friendly features.`}</P>
-
+        <h3 className="my-6 text-xl font-bold tracking-wider">
+          Install Coinbase To Your Browser
+        </h3>
+        <P>
+          {`To get started with Coinbase, we must install the Coinbase wallet extension in our browser. `}
+          <span className="font-semibold text-[#A519D7] underline">
+            <a href="https://chromewebstore.google.com/detail/coinbase-wallet-extension/hnfanknocfeofbddgcijnmhnfnkdnaad?hl=en&source=wallet_coinbase_com&_branch_match_id=1310199038055708115&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT8/XS07SLddLzs/VL0/MyUkt0U3JL8/LyU9MsS/OLy1KTrWFCMcn52fmJSUWpwIZuQDVD4Z4PgAAAA%3D%3D&pli=1">
+              Download Here
+            </a>
+          </span>
+          .
+          {` Checkout the other available platforms that you can Install coinbase from by `}
+          <span className="font-semibold text-[#A519D7] underline">
+            <a href="https://www.coinbase.com/wallet/downloads">
+              Clicking Here
+            </a>
+          </span>
+          .
+        </P>
         <h3 className="my-6 text-xl font-bold tracking-wider">
           Create your Wallet Account
         </h3>
@@ -195,7 +247,7 @@ export default function SetupWallet() {
           Login your Existing Wallet Account
         </h3>
       </div>
-      <div className="mx-auto mt-2 grid w-full max-w-7xl grid-cols-1 gap-4 lg:grid-cols-3">
+      {/* <div className="mx-auto mt-2 grid w-full max-w-7xl grid-cols-1 gap-4 lg:grid-cols-3">
         <NoiseCard containerClassName="col-span-1 lg:col-span-2 h-full bg-pink-800 min-h-[500px] lg:min-h-[300px] gap-5">
           <div className="max-w-xs">
             <h2 className="text-balance text-left text-base font-semibold tracking-[-0.015em] text-white md:text-xl lg:text-3xl">
@@ -330,7 +382,45 @@ export default function SetupWallet() {
             quality={100}
           />
         </NoiseCard>
-      </div>
+      </div> */}
     </section>
+  );
+}
+
+function displayMetamaskCreate() {
+  return (
+    <div className="flex flex-wrap justify-center">
+      {metamaskCreate.map((create, index) => (
+        <>
+          <Image
+            src={create.src}
+            alt={`pictureGuide ${index + 1}`}
+            width={1980}
+            height={1080}
+            quality={90}
+            className="m-5 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem] " // lg:h-[20rem]
+          />
+        </>
+      ))}
+    </div>
+  );
+}
+
+function displayCoinbaseCreate() {
+  return (
+    <div className="flex flex-wrap justify-center">
+      {metamaskCreate.map((create, index) => (
+        <>
+          <Image
+            src={create.src}
+            alt={`pictureGuide ${index + 1}`}
+            width={1980}
+            height={1080}
+            quality={90}
+            className="m-5 max-h-full  max-w-[15rem] rounded-lg md:max-w-[20rem] " // lg:h-[20rem]
+          />
+        </>
+      ))}
+    </div>
   );
 }
