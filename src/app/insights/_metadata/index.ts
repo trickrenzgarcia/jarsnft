@@ -62,25 +62,22 @@ export const rightNavList: RightNavListType[] = [
       { name: "Setup Coinbase", anchor: "coinbase" },
     ],
   },
-  {
-    href: "/insights/create-profile",
-    anchors: [
-      { name: "Installing a wallet", anchor: "#installing-wallet" },
-      { name: "Connecting your wallet", anchor: "#connect-wallet" },
-    ],
-  },
+  // {
+  //   href: "/insights/create-profile",
+  //   anchors: [
+  //     { name: "Installing a wallet", anchor: "#installing-wallet" },
+  //     { name: "Connecting your wallet", anchor: "#connect-wallet" },
+  //   ],
+  // },
   {
     href: "/insights/create-nft",
-    anchors: [
-      { name: "Buying a fixed price NFT", anchor: "#buying-fixed-nfts" },
-      { name: "Making an offer on a NFT", anchor: "#making-offer" },
-    ],
+    anchors: [{ name: "Create your own NFT", anchor: "create" }],
   },
   {
     href: "/insights/trade-nft",
     anchors: [
-      { name: "Buy an NFT", anchor: "buying" },
-      { name: "Sell an NFT", anchor: "selling" },
+      { name: "How to Buy an NFT", anchor: "buying" },
+      { name: "How to Sell an NFT", anchor: "selling" },
     ],
   },
   {
