@@ -38,15 +38,29 @@ const coinbaseCreate = [
   { src: "/assets/InsightsAsset/CoinbaseImages/coinbase create wallet 4.png" },
   { src: "/assets/InsightsAsset/CoinbaseImages/coinbase create wallet 5.png" },
 ];
+const coinbaseImport = [
+  {
+    src: "/assets/InsightsAsset/CoinbaseImages/coinbase existing wallet 1.png",
+  },
+  {
+    src: "/assets/InsightsAsset/CoinbaseImages/coinbase existing wallet 2.png",
+  },
+  {
+    src: "/assets/InsightsAsset/CoinbaseImages/coinbase existing wallet 3.png",
+  },
+  {
+    src: "/assets/InsightsAsset/CoinbaseImages/coinbase existing wallet 4.png",
+  },
+];
 
 export default function SetupWallet() {
   return (
     <section>
       <div id="overview">
-        <h1 className="mb-4 text-4xl font-bold md:text-5xl">
+        <h1 className="mt-4 text-4xl font-bold md:text-5xl">
           Setup your Wallet
         </h1>
-        <h3 className="mb-2 font-semibold">{`Start your web3 journey here!`}</h3>
+        <h3 className="my-6 text-xl font-bold tracking-wider">{`Start your web3 journey here!`}</h3>
         <P>{`JARS NFT Marketplace allows various crypto wallet options that users can use and login with.`}</P>
         <div className="flex justify-center">
           <Image
@@ -104,7 +118,7 @@ export default function SetupWallet() {
       <div id="metamask">
         <hr />
         <>
-          <h2 className="my-6 text-3xl font-bold">How to setup Metamask</h2>
+          <h2 className="my-6 text-3xl font-bold">How to Setup Metamask</h2>
           <P>{`A popular cryptocurrency wallet and browser extension that allows users to interact with the Ethereum or Polygon blockchain.`}</P>
           <h3 className="my-6 text-xl font-bold tracking-wider">
             Install Metamask To Your Browser
@@ -168,14 +182,14 @@ export default function SetupWallet() {
               src="/assets/InsightsAsset/metamaskImages/metamask create wallet 1.png"
               width={1920}
               height={1080}
-              alt="Metamask Login"
+              alt="Metamask TOS"
               className="mb-2 max-h-[80%] max-w-[50%]"
             />
             <Image
               src="/assets/InsightsAsset/metamaskImages/metamask create wallet 2.png"
               width={1920}
               height={1080}
-              alt="Metamask Login"
+              alt="Metamask Create Password"
               className="mb-2 max-h-[80%] max-w-[50%]"
             />
           </div>
@@ -195,14 +209,14 @@ export default function SetupWallet() {
             src="/assets/InsightsAsset/metamaskImages/metamask existing wallet 1.png"
             width={1280}
             height={800}
-            alt="Metamask Login"
+            alt="Metamask Login 1"
             className="mb-2 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem]"
           />
           <Image
             src="/assets/InsightsAsset/metamaskImages/metamask existing wallet 2.png"
             width={1280}
             height={800}
-            alt="Metamask Login"
+            alt="Metamask Login 2"
             className="mb-2 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem]"
           />
         </div>
@@ -212,14 +226,14 @@ export default function SetupWallet() {
             src="/assets/InsightsAsset/metamaskImages/metamask Account.png"
             width={1920}
             height={1080}
-            alt="Metamask Login"
-            className="mb-2 max-h-full max-w-[80%]"
+            alt="Metamask Account"
+            className="mb-12 max-h-full max-w-[80%]"
           />
         </div>
       </div>
       <div id="coinbase">
         <hr />
-        <h2 className="my-6 text-3xl font-bold">How to setup Coinbase</h2>
+        <h2 className="my-6 text-3xl font-bold">How to Setup Coinbase</h2>
         <P>{`A leading cryptocurrency exchange and wallet that enables users to easily buy, sell, and manage a wide range of digital assets with top-tier security and user-friendly features.`}</P>
         <h3 className="my-6 text-xl font-bold tracking-wider">
           Install Coinbase To Your Browser
@@ -240,13 +254,66 @@ export default function SetupWallet() {
           </span>
           .
         </P>
+        <Image
+          src="/assets/InsightsAsset/CoinbaseImages/coinbase 1.png"
+          width={1920}
+          height={1080}
+          alt="Coinbase Download Extension"
+          className="mb-2 max-h-[50%] max-w-full "
+        />
+        <P>
+          <span className="italic">
+            <span className="font-bold">Step 1: </span>
+            {` Click 'Add to Chrome' or 'Download' in other browsers`}
+          </span>
+        </P>
+        <Image
+          src="/assets/InsightsAsset/CoinbaseImages/coinbase 2.png"
+          width={1920}
+          height={1080}
+          alt="Coinbase add Extension"
+          className="mb-2 max-h-[50%] max-w-full "
+        />
+        <P>
+          <span className="italic">
+            <span className="font-bold">Step 2: </span>
+            {` Click 'Add Extension' to finish`}
+          </span>
+        </P>
+        <div className="flex flex-wrap items-center justify-center gap-5">
+          <Image
+            src="/assets/InsightsAsset/CoinbaseImages/coinbase 3.png"
+            width={1920}
+            height={1080}
+            alt="Coinbase Login"
+            className="mb-2 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem] "
+          />
+          <Image
+            src="/assets/InsightsAsset/CoinbaseImages/coinbase 4.png"
+            width={1920}
+            height={1080}
+            alt="Coinbase Account"
+            className="mb-2 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem] "
+          />
+        </div>
+        <P>
+          <span className="italic">
+            <span className="font-bold">Step 3: </span>
+            {` We will be redirected to this page that allows us to Create or Import our wallet. After logging in, we will be redirected to our Wallet Account Page`}
+          </span>
+        </P>
         <h3 className="my-6 text-xl font-bold tracking-wider">
           Create your Wallet Account
         </h3>
+        <P>{`After clicking the Create a new Wallet, we will be redirected with the following steps:`}</P>
+        {displayCoinbaseCreate()}
+        <P>{`Other wallets may have different procedures or features, but overall they all have the same requirements when creating our own wallet.`}</P>
         <h3 className="my-6 text-xl font-bold tracking-wider">
           Login your Existing Wallet Account
         </h3>
+        <P>{`As mentioned earlier, our Seed Phrase is must be stored where we can access it when we need to import our wallet to a new device or computer. For coinbase, these are the following steps:`}</P>
       </div>
+      {displayCoinbaseImport()}
       {/* <div className="mx-auto mt-2 grid w-full max-w-7xl grid-cols-1 gap-4 lg:grid-cols-3">
         <NoiseCard containerClassName="col-span-1 lg:col-span-2 h-full bg-pink-800 min-h-[500px] lg:min-h-[300px] gap-5">
           <div className="max-w-xs">
@@ -398,7 +465,7 @@ function displayMetamaskCreate() {
             width={1980}
             height={1080}
             quality={90}
-            className="m-5 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem] " // lg:h-[20rem]
+            className="m-5 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem] "
           />
         </>
       ))}
@@ -409,7 +476,7 @@ function displayMetamaskCreate() {
 function displayCoinbaseCreate() {
   return (
     <div className="flex flex-wrap justify-center">
-      {metamaskCreate.map((create, index) => (
+      {coinbaseCreate.map((create, index) => (
         <>
           <Image
             src={create.src}
@@ -417,7 +484,25 @@ function displayCoinbaseCreate() {
             width={1980}
             height={1080}
             quality={90}
-            className="m-5 max-h-full  max-w-[15rem] rounded-lg md:max-w-[20rem] " // lg:h-[20rem]
+            className="m-5 max-h-full  max-w-[15rem] rounded-lg md:max-w-[20rem] "
+          />
+        </>
+      ))}
+    </div>
+  );
+}
+function displayCoinbaseImport() {
+  return (
+    <div className="flex flex-wrap justify-center">
+      {coinbaseImport.map((create, index) => (
+        <>
+          <Image
+            src={create.src}
+            alt={`pictureGuide ${index + 1}`}
+            width={1980}
+            height={1080}
+            quality={90}
+            className="m-5 max-h-full  max-w-[15rem] rounded-lg md:max-w-[20rem] "
           />
         </>
       ))}

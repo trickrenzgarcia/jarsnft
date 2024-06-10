@@ -75,7 +75,11 @@ export default function NFTCarousel({
         <CarouselNext
           className={cn(
             "hidden",
-            collections.length >= 4 && withExtra && "md:block",
+            collections.length > 4
+              ? "md:block"
+              : withExtra
+                ? "md:block"
+                : "hidden",
           )}
         />
       </Carousel>
