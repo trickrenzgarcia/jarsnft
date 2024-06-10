@@ -21,73 +21,77 @@ export default function CreateNftPage() {
       Therefore, we provide a guide on how to navigate our Marketplace and specifically how to upload, create, and mint your NFTs.`}</P>
       <P>{`First let us define what is minting first: it is a process of creating an NFT or a token in the blockchain. 
       In other words, what you've uploaded and payed for to be created is transformed into an NFT and imprinted in the blockchain.`}</P>
-      <h2 className="my-6 text-3xl font-bold">How to Create an NFT</h2>
-      <P>
-        {`First you will have to navigate to our 'Create' page found in our navigation bar or you can `}
-        <span className="font-semibold text-[#A519D7] underline">
-          <a href="/create">Click Here</a>
-        </span>
-        .
-      </P>
-      <Image
-        src="/assets/InsightsAsset/JARS create 1.png"
-        width={1920}
-        height={1080}
-        alt="JARS Navigation bar"
-        className="mb-2 max-h-[100%] max-w-full"
-      />
-      <P>{`Next you will be redirected to this page that offers us to options:`}</P>
 
-      <Image
-        src="/assets/InsightsAsset/JARS create 2.png"
-        width={1920}
-        height={1080}
-        alt="JARS Create Page"
-        className="mb-2 max-h-[100%] max-w-full "
-      />
-      <ul className="ml-14 mt-6 list-disc leading-loose tracking-wide dark:text-gray-300">
-        <li className="mb-3">
-          <span className="font-bold">Create NFT Collection:</span>
-          {` This option will be the first step for every beginner. Creating your first collection will be like creating and album for your NFTs!`}
-        </li>
-        <li className="mb-6">
-          <span className="font-bold">Mint an NFT:</span>
-          {` After creating your collection or have an existing one, you can now mint your individual NFT and save it your own collection.`}
-        </li>
-      </ul>
-      <h3 className="my-6 text-xl font-bold tracking-wider">{`Creating NFT Collection`}</h3>
-      <P>{`Here is an example of creating your collection:`}</P>
-      <Image
-        src="/assets/InsightsAsset/JARS create 3.gif"
-        width={1920}
-        height={1080}
-        alt="Creating Collection"
-        quality={100}
-        className="mb-2 max-h-[100%] max-w-[60%] "
-      />
-      <P>{`To summarize, what you will need is the image file of your collection. Then create a name and description that can attract other creators to take an interest in your NFTs.
+      <div id="create">
+        <h2 className="my-6 text-3xl font-bold">How to Create an NFT</h2>
+        <h3 className="my-6 text-xl font-bold tracking-wider">{`Step 1: Go to Create Page`}</h3>
+        <P>
+          {`First you will have to navigate to our 'Create' page found in our navigation bar or you can `}
+          <span className="font-semibold text-[#A519D7] underline">
+            <a href="/create">Click Here</a>
+          </span>
+          .
+        </P>
+        <Image
+          src="/assets/InsightsAsset/JARS create 1.png"
+          width={1920}
+          height={1080}
+          alt="JARS Navigation bar"
+          className="mb-2 max-h-[100%] max-w-full"
+        />
+        <h3 className="my-6 text-xl font-bold tracking-wider">{`Step 2: Select Your Option`}</h3>
+        <P>{`Next you will be redirected to this page that offers us to options:`}</P>
+        <Image
+          src="/assets/InsightsAsset/JARS create 2.png"
+          width={1920}
+          height={1080}
+          alt="JARS Create Page"
+          className="mb-2 max-h-[100%] max-w-full "
+        />
+        <ul className="ml-14 mt-6 list-disc leading-loose tracking-wide dark:text-gray-300">
+          <li className="mb-3">
+            <span className="font-bold">Create NFT Collection:</span>
+            {` This option will be the first step for every beginner. Creating your first collection will be like creating and album for your NFTs!`}
+          </li>
+          <li className="mb-6">
+            <span className="font-bold">Mint an NFT:</span>
+            {` After creating your collection or have an existing one, you can now mint your individual NFT and save it your own collection.`}
+          </li>
+        </ul>
+        <h3 className="my-6 text-xl font-bold tracking-wider">{`Creating NFT Collection`}</h3>
+        <P>{`Here is an example of creating your collection:`}</P>
+        <Image
+          src="/assets/InsightsAsset/JARS create 3.gif"
+          width={1920}
+          height={1080}
+          alt="Creating Collection"
+          quality={100}
+          className="mb-2 max-h-[100%] max-w-[60%] "
+        />
+        <P>{`To summarize, what you will need is the image file of your collection. Then create a name and description that can attract other creators to take an interest in your NFTs.
       Then you can set how much revenue you can receive from that collection. `}</P>
-      <h3 className="my-6 text-xl font-bold tracking-wider">{`Minting an NFT`}</h3>
-      <P>{`Next we will go through with how to mint an NFT! Select 'Mint an NFT' in the Create page`}</P>
-      <Image
-        src="/assets/InsightsAsset/JARS mint 1.png"
-        width={1920}
-        height={1080}
-        alt="Creating Collection"
-        quality={100}
-        className="mb-2 max-h-[100%] max-w-full "
-      />
-      <P>{`Then follow through the steps presented in this example:`}</P>
-      <Image
-        src="/assets/InsightsAsset/JARS mint 2.gif"
-        width={1920}
-        height={1080}
-        alt="Creating Collection"
-        quality={100}
-        className="mb-2 max-h-[100%] max-w-[60%] "
-      />
-      <P>{`To summarize, you only need to upload the image you want to be minted to an NFT. 
-      After that, adding a description and traits which adds relevancy, engagement in the community and adds more discoveribility to your NFTs`}</P>
+        <h3 className="my-6 text-xl font-bold tracking-wider">{`Minting an NFT`}</h3>
+        <P>{`Next we will go through with how to mint an NFT! Select 'Mint an NFT' in the Create page`}</P>
+        <Image
+          src="/assets/InsightsAsset/JARS mint 1.png"
+          width={1920}
+          height={1080}
+          alt="Creating Collection"
+          quality={100}
+          className="mb-2 max-h-[100%] max-w-full "
+        />
+        <P>{`Then follow through the steps presented in this example:`}</P>
+        <Image
+          src="/assets/InsightsAsset/JARS mint 2.gif"
+          width={1920}
+          height={1080}
+          alt="Creating Collection"
+          quality={100}
+          className="mb-2 max-h-[100%] max-w-[60%] "
+        />
+        <P>{`To summarize, you only need to upload the image you want to be minted to an NFT. 
+        After that, adding a description and traits which adds relevancy, engagement in the community and adds more discoveribility to your NFTs`}</P>
+      </div>
     </section>
     // <>
     // <div className="w-full h-screen">
