@@ -61,27 +61,29 @@ export default function Page() {
       <div id="nfts">
         <h2 className="my-6 text-2xl font-bold">Non-Fungible Token (NFT)</h2>
         <P>
-          {`This section you will be guided on the definition of NFTs and what they are. 
+          {`In this section, you will be guided on the definition of NFTs and what they are. 
           This also follows the common questions regarding the NFT and what benefits does it serve, and why should we trust in this new technology.`}
         </P>
         <h3 className="my-6 text-xl font-bold">1. What is an NFT?</h3>
         <ul className="mb-12 ml-8 list-disc font-semibold leading-9 text-[#A519D7]">
-          <li>Topic outline here</li>
-          <li>To Be Added</li>
+          <li>What are NFTs used for?</li>
+          <li>How it became popular</li>
+          <li>Different Types of NFTs</li>
         </ul>
 
         <h3 className="my-6 text-xl font-bold">
           2. What makes an NFT Valuable?
         </h3>
         <ul className="mb-12 ml-8 list-disc font-semibold leading-9 text-[#A519D7]">
-          <li>Topic outline here</li>
-          <li>To Be Added</li>
+          <li>How NFTs get its value</li>
+          <li>How to price NFTs</li>
+          <li>How to market NFTs</li>
         </ul>
 
         <h3 className="my-6 text-xl font-bold">3. How safe are my NFTs?</h3>
         <ul className="mb-12 ml-8 list-disc font-semibold leading-9 text-[#A519D7]">
-          <li>Topic outline here</li>
-          <li>To Be Added</li>
+          <li>How NFTs are secure</li>
+          <li>What are the common ways NFTs get stolen</li>
         </ul>
 
         <hr />
@@ -96,25 +98,40 @@ export default function Page() {
         <h3 className="my-6 text-xl font-bold">1. What Is The Blockchain?</h3>
 
         <ul className="mb-12 ml-8 list-disc font-semibold leading-9 text-[#A519D7]">
-          <li>Topic outline here</li>
-          <li>To Be Added</li>
+          <li>How the Blockchain works</li>
+          <li>History and Significance of Blockhain</li>
+          <li>What does Centralized and Decentralized mean?</li>
         </ul>
         <h3 className="my-6 text-xl font-bold">2. What Are Smart Contracts?</h3>
         <ul className="mb-12 ml-8 list-disc font-semibold leading-9 text-[#A519D7]">
-          <li>Topic outline here</li>
-          <li>To Be Added</li>
+          <li>How a Smart Contract work</li>
+          <li>Brief history</li>
+          <li>Benefits and Limitations</li>
+          <li>Examples of Use Cases</li>
         </ul>
 
         <h3 className="my-6 text-xl font-bold">3. What Are Gas Fees?</h3>
         <ul className="mb-12 ml-8 list-disc font-semibold leading-9 text-[#A519D7]">
-          <li>Topic outline here</li>
-          <li>To Be Added</li>
+          <li>Definition of Gas Fees</li>
+          <li>How Gas Fees work</li>
         </ul>
 
         <h3 className="my-6 text-xl font-bold">4. What Is Cryptocurrency?</h3>
         <ul className="mb-12 ml-8 list-disc font-semibold leading-9 text-[#A519D7]">
-          <li>Topic outline here</li>
-          <li>To Be Added</li>
+          <li>Definition and Explanation of Cryptocurrency</li>
+          <li>Brief History</li>
+          <li>How secure are Cryptocurrencies?</li>
+          <li>Real-World Use Cases</li>
+          <li>Different types of Cryptocurrenies</li>
+        </ul>
+
+        <h3 className="my-6 text-xl font-bold">
+          5. How To Earn Cryptocurrency?
+        </h3>
+        <ul className="mb-12 ml-8 list-disc font-semibold leading-9 text-[#A519D7]">
+          <li>Different ways of Earning Cryptocurrency</li>
+          <li>How to buy your first Cryptocurrency</li>
+          <li>Tips to invest safely</li>
         </ul>
         <hr />
       </div>

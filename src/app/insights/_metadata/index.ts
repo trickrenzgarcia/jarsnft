@@ -151,7 +151,7 @@ export const rightNavList: RightNavListType[] = [
     anchors: [
       { name: "Earning Cryptocurrency", anchor: "overview" },
       { name: "Buy your First Crypto", anchor: "buying" },
-      { name: "Tips to Invest Safetly", anchor: "tips" },
+      { name: "Tips to Invest Safely", anchor: "tips" },
     ],
   },
   {

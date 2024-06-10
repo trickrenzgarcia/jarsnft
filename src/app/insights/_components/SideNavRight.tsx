@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { rightNavList } from "../_metadata";
 import { cn } from "@nextui-org/react";
 // import { Item } from "@radix-ui/react-dropdown-menu";
+import { Capitalize } from "./SideNavLeft";
 
 export default function SideNavRight() {
   const path = usePathname();
@@ -32,7 +33,7 @@ export default function SideNavRight() {
                       "cursor-pointer px-5 py-2 hover:border-l-3 hover:border-l-[#151c25] hover:bg-[#d257ff56] hover:text-[#151c25] dark:hover:border-[#A519D7] dark:hover:text-[#f0f0f0]",
                     )}
                   >
-                    {val.name}
+                    {Capitalize(val.name)}
                   </li>
                 </Link>
               ))}
