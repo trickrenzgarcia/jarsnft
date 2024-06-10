@@ -32,6 +32,7 @@ export default function DropdownButton({
   const end = start + Number(perPage);
 
   useEffect(() => {
+    setLoading(true);
     async function getNFTCollectionsAPI() {
       let data;
       if (dropdownName == "Art NFTs") {

@@ -40,7 +40,7 @@ export default function PaginationUI({
           />
         </PaginationItem>
         <PaginationItem className="mx-4">
-          {page} / {Math.ceil(10 / Number(perPage))}
+          {page} / {Math.ceil(collectionsLength / Number(perPage))}
         </PaginationItem>
         <PaginationItem>
           <PaginationNext
