@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import CollectionTable from "./CollectionTable";
 import { NFTCollection } from "@/lib/core/types";
+import * as getCollections from "@/utils/getCollections";
 
 export default function DropdownButton({
   searchParams,
@@ -20,7 +21,7 @@ export default function DropdownButton({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const [dropdownName, setDropdownName] = useState("All Collections");
-  const [nftCollections, setNftCollections] = useState<NFTCollection[]>([]);
+  const [nftCollections, setNftCollections] = useState<any[]>([]);
   const [entries, setEntries] = useState<NFTCollection[]>([]);
   const [isLoading, setLoading] = useState(true);
 
@@ -32,7 +33,16 @@ export default function DropdownButton({
 
   useEffect(() => {
     async function getNFTCollectionsAPI() {
-      const data = await jars.getNFTCollections();
+      let data;
+      if (dropdownName == "Art NFTs") {
+        data = await getCollections.getCollectionsByCategory("art");
+      } else if (dropdownName == "Photography NFTs") {
+        data = await getCollections.getCollectionsByCategory("photography");
+      } else if (dropdownName == "Profile Picture NFTs") {
+        data = await getCollections.getCollectionsByCategory("pfp");
+      } else {
+        data = await jars.getNFTCollections();
+      }
       setNftCollections(data);
     }
 
