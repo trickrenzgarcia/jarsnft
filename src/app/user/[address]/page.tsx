@@ -24,13 +24,13 @@ export async function generateMetadata(
     };
 
   return {
-    title: `${shortAddress} ${truncate(user.name, 12)} Profile | JarsNFT`,
+    title: `${shortAddress} ${truncate(user.name, 12)} Profile | JarsNFT Marketplace`,
   };
 }
 
 export default async function UserAccountPage({ params: { address } }: Props) {
   const getUserProfile = jars.getUserProfile(address);
-  const getUserNFTs = jars.getNFTsForOwner(address);
+  const getUserNFTs = jars.getNFTsByWallet(address);
 
   const [user, nfts] = await Promise.all([getUserProfile, getUserNFTs]);
 
@@ -39,7 +39,7 @@ export default async function UserAccountPage({ params: { address } }: Props) {
   }
 
   return (
-    <main className="w-full bg-slate-800 md:container">
+    <main className="w-full md:container">
       <Suspense fallback={<div>Loading...</div>}>
         <UserBanner user={user} />
       </Suspense>

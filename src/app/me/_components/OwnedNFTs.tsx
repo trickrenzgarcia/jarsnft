@@ -93,7 +93,7 @@ export default function OwnedNFTs({
             </div>
             <div className="absolute block  w-full">
               <h1 className="bottom-0 top-0 h-full w-full text-center">
-                awdSADAWD
+                No NFTs Found
               </h1>
             </div>
           </div>
