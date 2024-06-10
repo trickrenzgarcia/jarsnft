@@ -8,13 +8,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { NFTCollection } from "@/lib/core/types";
+import { CollectionPopularData } from "@/utils/getCollections";
 import Image from "next/image";
 import Link from "next/link";
 import { MdVerified } from "react-icons/md";
+import CollectionCard from "./CollectionCard";
 
 type NFTCarouselProps = {
-  nftCollections: NFTCollection[];
+  nftCollections: CollectionPopularData[];
 };
 
 export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
@@ -24,11 +25,12 @@ export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
         {nftCollections.map((collection, index) => (
           <CarouselItem
             key={index}
-            className="basis-[75%] md:basis-1/3 lg:basis-1/5 xl:basis-1/6"
+            className="basis-[75%] sm:basis-1/2 md:basis-1/3 lg:basis-1/5"
           >
             <div className="animate-fade animate-once animate-duration-[1200ms] animate-ease-in cursor-pointer duration-100 ease-out hover:-translate-y-1">
               <Link href={`/collection/${collection.contract}`}>
-                <Card className="rounded-2xl hover:bg-opacity-65">
+                <CollectionCard item={collection} hideFloorPrice={false} />
+                {/* <Card className="rounded-2xl hover:bg-opacity-65">
                   <CardContent className="flex aspect-[1.25/1] items-center justify-center">
                     <Image
                       src={
@@ -65,18 +67,20 @@ export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
                       </div>
                     </div>
                   </CardFooter>
-                </Card>
+                </Card> */}
               </Link>
             </div>
           </CarouselItem>
         ))}
       </CarouselContent>
+      <div className="hidden lg:block">
       {nftCollections.length > 6 && (
         <>
           <CarouselPrevious />
           <CarouselNext />
-        </>
+        </> 
       )}
+      </div>
     </Carousel>
   );
 }

@@ -1,8 +1,8 @@
 import NFTCarousel from "./NFTCarousel";
-import { jars } from "@/lib/core/api";
+import * as getCollections from "@/utils/getCollections";
 
 async function NFTContentWrapper({ title }: { title: string }) {
-  const nftCollections = await jars.getNFTCollections();
+  const nftCollections = await getCollections.getPopularCollections();
 
   return (
     <section>

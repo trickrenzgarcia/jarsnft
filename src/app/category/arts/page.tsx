@@ -5,7 +5,7 @@ import Collections from '../_components/Collections';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Arts | JarsNFT Marketplace",
+    title: "Explore Arts Collections | JarsNFT Marketplace",
   };
 }
 
