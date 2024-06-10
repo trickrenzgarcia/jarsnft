@@ -45,8 +45,6 @@ export default function PaginationUI({
         <PaginationItem>
           <PaginationNext
             onClick={() => {
-              console.log(end);
-              console.log(collectionsLength);
               if (end < collectionsLength)
                 router.push(`/?page=${Number(page) + 1}&per_page=${perPage}`);
             }}
