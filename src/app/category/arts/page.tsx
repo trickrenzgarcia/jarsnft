@@ -5,12 +5,12 @@ import Collections from '../_components/Collections';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Arts | JarsNFT Marketplace",
+    title: "Explore Arts Collections | JarsNFT Marketplace",
   };
 }
 
 export default async function ArtsPage() {
-  const artsCollection = await getCollections.getArtCollections();
+  const artsCollection = await getCollections.getCollectionsByCategory("art");
 
   return (
     <div className='container'>

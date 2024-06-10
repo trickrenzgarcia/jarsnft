@@ -45,7 +45,10 @@ export default function NFTCard({
         </Link>
         <Link href={`/collection/${collectionLink}`}>
           <div className="absolute top-[17rem] z-10 h-16 w-16 rounded-md bg-white">
-            <Image className="p-[0.15rem]" src={logo} fill alt="logo" />
+            <Image className="p-[0.15rem] w-full h-full" src={logo} width={64} height={64} style={{
+              objectFit: "cover",
+              objectPosition: "center",
+            }} alt="logo"/>
           </div>
         </Link>
       </CardHeader>

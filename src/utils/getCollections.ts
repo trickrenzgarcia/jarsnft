@@ -68,11 +68,22 @@ export type CollectionData = {
     created_at: Date;
 }
 
+export type CollectionPopularData = CollectionData & {
+    combinedPopularityMetric: number;
+}
+
 type CollectionResponse = {
     collections: CollectionData[];
 }
 
 type Category = "art" | "photography" | "pfp" | "gaming";
+
+export async function getPopularCollections() {
+    const response = await fetch(`${CLIENT_URL}/api/popular`);
+    const data = await response.json() as CollectionPopularData[];
+
+    return data;
+}
 
 export async function getCollectionsByCategory(category: Category, page: number = 1, limit: number = 50) {
     const response = await fetch(`${CLIENT_URL}/api/trending?category=${category}&page=${page}&limit=${limit}`);

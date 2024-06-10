@@ -42,7 +42,7 @@ export default function Footer() {
 
   return (
     <footer>
-      <Separator className="h-[2px] w-full" />
+      {/* <Separator className="h-[2px] w-full" /> */}
       <div className="container">
         <section>
           {/* Footer Columns */}
@@ -59,7 +59,7 @@ export default function Footer() {
             </div>
 
             {/* Column Links */}
-            <div className="col-span-3 mb-32 grid grid-cols-2 gap-x-8 gap-y-16 md:col-span-2 md:grid-cols-4 md:gap-y-0">
+            <div className="col-span-3 mb-5 grid grid-cols-2 gap-x-8 gap-y-16 md:col-span-2 md:grid-cols-4 md:gap-y-0">
               <FooterColumn
                 titleName="Marketplace"
                 linkArray={marketplaceLinks}

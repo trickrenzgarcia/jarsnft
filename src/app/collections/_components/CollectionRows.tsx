@@ -45,14 +45,17 @@ export default function CollectionRows({
         className="grid h-24 grid-cols-10 items-center transition-background hover:bg-gray-200 dark:hover:bg-gray-900"
       >
         <div className="col-span-2 flex items-center gap-4">
-          <Image
-            src={collectionLogoSrc}
-            width={50}
-            height={50}
-            style={{ objectFit: "contain" }}
-            alt="logo of a collection"
-            className="rounded-lg"
-          />
+          <div className="rounded-lg w-[50px] h-[50px]">
+            <Image
+              src={collectionLogoSrc}
+              width={50}
+              height={50}
+              style={{ objectFit: "cover", objectPosition: "center" }}
+              alt="logo of a collection"
+              className="rounded-lg w-full h-full"
+            />
+          </div>
+          
           <p>{collectionName}</p>
           {isVerified && (
             <Image
