@@ -10,10 +10,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ProfilePicturesPage() {
-  const pfpCollections = await getCollections.getPFPsCollections();
+  const pfpCollections = await getCollections.getCollectionsByCategory("pfp");
   
   return (
-    <div className='container h-[550px]'>
+    <div className='container'>
       <h1 className='text-4xl'>Explore Profile NFTs</h1>
       <Suspense fallback={<div>Loading....</div>}>
         <Collections category="art" collections={pfpCollections} />

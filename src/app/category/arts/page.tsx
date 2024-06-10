@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ArtsPage() {
-  const artsCollection = await getCollections.getArtCollections();
+  const artsCollection = await getCollections.getCollectionsByCategory("art");
 
   return (
     <div className='container'>

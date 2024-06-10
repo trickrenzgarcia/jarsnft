@@ -26,7 +26,8 @@ export default async function Home() {
 
       <div className="container my-20 space-y-10">
         <PopularCollections />
-        <TopNFTCollections />
+
+        {/* <TopNFTCollections /> */}
 
         <Separator className="h-[2px] w-full" />
 

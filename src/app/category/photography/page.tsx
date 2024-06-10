@@ -10,10 +10,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PhotographyPage() {
-  const photosCollections = await getCollections.getPhotosCollections();
+  const photosCollections = await getCollections.getCollectionsByCategory("photography");
   
   return (
-    <div className='container h-[550px]'>
+    <div className='container'>
       <h1 className='text-4xl'>Explore Photography NFTs</h1>
       <Suspense fallback={<div>Loading....</div>}>
         <Collections category="art" collections={photosCollections} />
