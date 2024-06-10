@@ -550,7 +550,7 @@ function displaySteps(props: string) {
                   </p>
                   <Image
                     src={site.images[index]}
-                    alt={`pictureGuide ${index}`}
+                    alt={`pictureGuide ${index + 1}`}
                     width={200}
                     height={250}
                     style={{
