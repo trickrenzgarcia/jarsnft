@@ -11,6 +11,7 @@ import NFTCard from "./NFTCard";
 import { NFTCard as NFTCardType } from "../_types";
 import { NFTCollection } from "@/lib/core/types";
 import { faker } from "@faker-js/faker";
+import { CollectionData } from "@/utils/getCollections";
 
 type AlignmentOptionType =
   | "start"
@@ -19,7 +20,7 @@ type AlignmentOptionType =
   | ((viewSize: number, snapSize: number, index: number) => number);
 
 type NFTCarouselProps = {
-  collections: NFTCollection[] | NFTCardType[];
+  collections: CollectionData[];
   withExtra?: boolean;
   align?: AlignmentOptionType;
 };

@@ -156,10 +156,9 @@ export default function Page() {
         </ul>
         <h3 className="my-6 text-xl font-bold">2. Protect your Account</h3>
         <ul className="mb-12 ml-8 list-disc font-semibold leading-9 text-[#A519D7]">
-          <li>Safeguard your Wallet Account</li>
-          <li>Beware of Phishing Scams</li>
-          <li>Social Engineering</li>
-          <li>Public Wi-Fi</li>
+          <li>Commmon NFT scams you should watch out for!</li>
+          <li>How to protect your Account and Wallet</li>
+          <li>How to protect your Transactions and Digital Identity</li>
         </ul>
       </div>
     </div>

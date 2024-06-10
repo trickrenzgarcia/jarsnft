@@ -47,7 +47,7 @@ export async function getCollections() {
     ] as NFTCard[];
 }
 
-type CollectionData = {
+export type CollectionData = {
     contract: string;
     image: string;
     name: string;
@@ -72,62 +72,40 @@ type CollectionResponse = {
     collections: CollectionData[];
 }
 
-export async function getArtCollections() {
-    const response = await fetch(`${CLIENT_URL}/api/trending?category=art&page=1&limit=15`);
+type Category = "art" | "photography" | "pfp" | "gaming";
+
+export async function getCollectionsByCategory(category: Category, page: number = 1, limit: number = 50) {
+    const response = await fetch(`${CLIENT_URL}/api/trending?category=${category}&page=${page}&limit=${limit}`);
     const data = await response.json() as CollectionResponse;
 
-    const nfts = data.collections.map((nft) => {
-        return {
-            name: nft.name,
-            contract: nft.contract,
-            itemLink: "0",
-            logo: nft.image,
-            image: nft.image,
-            floor_price: 5600,
-            is_verified: nft.is_verified,
-            volume: nft.view_count,
-        } as NFTCard;
-    });
+    const nfts = data.collections.map((nft) => nft);
+
+    return nfts;
+}
+
+export async function getArtCollections() {
+    const response = await fetch(`${CLIENT_URL}/api/trending?category=art&page=1&limit=50`);
+    const data = await response.json() as CollectionResponse;
+
+    const nfts = data.collections.map((nft) => nft);
 
     return nfts;
 }
 
 export async function getPhotosCollections() {
-    const response = await fetch(`${CLIENT_URL}/api/trending?category=photography&page=1&limit=15`);
+    const response = await fetch(`${CLIENT_URL}/api/trending?category=photography&page=1&limit=50`);
     const data = await response.json() as CollectionResponse;
 
-    const nfts = data.collections.map((nft) => {
-        return {
-            name: nft.name,
-            contract: nft.contract,
-            itemLink: "0",
-            logo: nft.image,
-            image: nft.image,
-            floor_price: 5600,
-            is_verified: nft.is_verified,
-            volume: nft.view_count,
-        } as NFTCard;
-    });
+    const nfts = data.collections.map((nft) => nft);
 
     return nfts;
 }
 
 export async function getPFPsCollections() {
-    const response = await fetch(`${CLIENT_URL}/api/trending?category=pfp&page=1&limit=15`);
+    const response = await fetch(`${CLIENT_URL}/api/trending?category=pfp&page=1&limit=50`);
     const data = await response.json() as CollectionResponse;
 
-    const nfts = data.collections.map((nft) => {
-        return {
-            name: nft.name,
-            contract: nft.contract,
-            itemLink: "0",
-            logo: nft.image,
-            image: nft.image,
-            floor_price: 5600,
-            is_verified: nft.is_verified,
-            volume: nft.view_count,
-        } as NFTCard;
-    });
+    const nfts = data.collections.map((nft) => nft);
 
     return nfts;
 }
