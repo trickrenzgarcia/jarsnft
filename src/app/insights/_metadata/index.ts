@@ -27,33 +27,33 @@ export const rightNavList: RightNavListType[] = [
       { name: "Guides", anchor: "guides" },
     ],
   },
-  {
-    href: "/insights/buying-nfts",
-    anchors: [
-      { name: "Getting Started", anchor: "#getting-started" },
-      { name: "Non Fungible Token", anchor: "#buying-nfts" },
-      { name: "Blockchain", anchor: "#blockchain" },
-      { name: "Guides", anchor: "#guides" },
-    ],
-  },
-  {
-    href: "/insights/selling-nfts",
-    anchors: [
-      { name: "Getting Started", anchor: "#getting-started" },
-      { name: "Non Fungible Token", anchor: "#buying-nfts" },
-      { name: "Blockchain", anchor: "#blockchain" },
-      { name: "Guides", anchor: "#guides" },
-    ],
-  },
-  {
-    href: "/insights/getting-started",
-    anchors: [
-      { name: "Getting Started", anchor: "#getting-started" },
-      { name: "Non Fungible Token", anchor: "#buying-nfts" },
-      { name: "Blockchain", anchor: "#blockchain" },
-      { name: "Guides", anchor: "#guides" },
-    ],
-  },
+  // {
+  //   href: "/insights/buying-nfts",
+  //   anchors: [
+  //     { name: "Getting Started", anchor: "#getting-started" },
+  //     { name: "Non Fungible Token", anchor: "#buying-nfts" },
+  //     { name: "Blockchain", anchor: "#blockchain" },
+  //     { name: "Guides", anchor: "#guides" },
+  //   ],
+  // },
+  // {
+  //   href: "/insights/selling-nfts",
+  //   anchors: [
+  //     { name: "Getting Started", anchor: "#getting-started" },
+  //     { name: "Non Fungible Token", anchor: "#buying-nfts" },
+  //     { name: "Blockchain", anchor: "#blockchain" },
+  //     { name: "Guides", anchor: "#guides" },
+  //   ],
+  // },
+  // {
+  //   href: "/insights/getting-started",
+  //   anchors: [
+  //     { name: "Getting Started", anchor: "#getting-started" },
+  //     { name: "Non Fungible Token", anchor: "#buying-nfts" },
+  //     { name: "Blockchain", anchor: "#blockchain" },
+  //     { name: "Guides", anchor: "#guides" },
+  //   ],
+  // },
   {
     href: "/insights/setup-wallet",
     anchors: [
@@ -79,11 +79,8 @@ export const rightNavList: RightNavListType[] = [
   {
     href: "/insights/trade-nft",
     anchors: [
-      { name: "Accepting an offer on your NFT", anchor: "#buying-fixed-price" },
-      {
-        name: "Listing an NFT for sale a fixed price",
-        anchor: "#selling-fixed-price",
-      },
+      { name: "Buy an NFT", anchor: "buying" },
+      { name: "Sell an NFT", anchor: "selling" },
     ],
   },
   {
