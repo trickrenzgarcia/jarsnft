@@ -6,13 +6,16 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { P } from "./TailwindTags";
 
+// make each component an object so we can add more FAQs easily 
 export default function FAQsInsight() {
   return (
     <section className="mb-16">
       <h3 className="my-6 text-xl font-bold">
         Frequently Asked Questions (FAQs)
       </h3>
+      <P>{`Here are the o`}</P>
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">
           <AccordionTrigger>Q1. What can be an NFT?</AccordionTrigger>
