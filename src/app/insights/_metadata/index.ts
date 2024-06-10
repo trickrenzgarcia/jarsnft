@@ -57,8 +57,9 @@ export const rightNavList: RightNavListType[] = [
   {
     href: "/insights/setup-wallet",
     anchors: [
-      { name: "Installing a wallet", anchor: "#installing-wallet" },
-      { name: "Connecting your wallet", anchor: "#connect-wallet" },
+      { name: "Overview", anchor: "overview" },
+      { name: "Setup Metamask", anchor: "metamask" },
+      { name: "Setup Coinbase", anchor: "coinbase" },
     ],
   },
   {
