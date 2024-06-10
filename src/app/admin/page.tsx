@@ -12,24 +12,39 @@ import { TbArrowsExchange } from "react-icons/tb";
 import { FaUsers } from "react-icons/fa6";
 import { jars } from "@/lib/core/api";
 import { Overview } from "./_components";
+import { BASE_URL } from "@/lib/ctx";
+import { SalesData, TransactionData } from "./_types";
 
-export const metadata: Metadata = {
-  title: "Admin Dashboard",
-};
+async function getTransactions(): Promise<TransactionData> {
+  const res = await fetch(`${BASE_URL}/admin/getTransactions`, {
+    next: { revalidate: 60 * 60}
+  });
+  return res.json();
+}
+
+async function getSales(): Promise<SalesData> {
+  const res = await fetch(`${BASE_URL}/admin/getSales`, {
+    next: { revalidate: 60 * 60}
+  });
+  return res.json();
+}
 
 const AdminPage = async () => {
   const totalUsers = (await jars.getAllUsers()).length;
+
+
+  const [transac, sales] = await Promise.all([getTransactions(), getSales()]);
 
   // Example data for the dashboard cards
   const dashboardData = [
     {
       name: "Total Transactions",
-      value: "325.4K",
+      value: transac && transac.totalTransactionsCount ? transac.totalTransactionsCount.toString() : "--",
       icon: <TbArrowsExchange className="text-3xl" />,
     },
     {
-      name: "Tax Revenues",
-      value: "160 MATIC",
+      name: "Marketplace Revenues",
+      value: sales && sales.totalMarketplaceFee ? sales.totalMarketplaceFee.toFixed(2) + " MATIC" : "--",
       icon: (
         <Image
           src="/assets/cryptocurrency/polygon-matic.png"
@@ -39,11 +54,11 @@ const AdminPage = async () => {
         />
       ),
       growth: "+12%",
-      percentage: "USD $115.47",
+      percentage: "PHP 5.3634",
     },
     {
-      name: "24h Trading Volume",
-      value: "3.2K MATIC",
+      name: "Total Sales",
+      value: sales && sales.totalSalesPrice ? sales.totalSalesCount.toFixed(2) + " MATIC" : "--",
       icon: (
         <Image
           src="/assets/cryptocurrency/polygon-matic.png"
@@ -53,7 +68,7 @@ const AdminPage = async () => {
         />
       ),
       growth: "+5%",
-      percentage: "USD $2309.50",
+      percentage: "PHP 268.17",
     },
     {
       name: "Total Users",
