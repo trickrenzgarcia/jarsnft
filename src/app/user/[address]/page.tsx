@@ -39,7 +39,7 @@ export default async function UserAccountPage({ params: { address } }: Props) {
   }
 
   return (
-    <main className="w-full bg-slate-800 md:container">
+    <main className="w-full md:container">
       <Suspense fallback={<div>Loading...</div>}>
         <UserBanner user={user} />
       </Suspense>
