@@ -100,10 +100,10 @@ export default function ProfileButton() {
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <ProfileListButton name="My Profile" icon={<LuWallet className="text-2xl" />} link="/me" />
-                <ProfileListButton name="Activities" icon={<LuActivitySquare className="text-2xl" />} link="/me/activities" />
-                <ProfileListButton name="Favorites" icon={<TiHeartOutline className="text-2xl"/>} link="/me/favorites" />
-                <ProfileListButton name="Offers" icon={<MdOutlineLocalOffer className="text-2xl" />} link="/me/offers" />
-                <ProfileListButton name="Settings" icon={<LuSettings className="text-2xl" />} link="/me/settings" />
+                {/* <ProfileListButton name="Activities" icon={<LuActivitySquare className="text-2xl" />} link="/me/activities" /> */}
+                {/* <ProfileListButton name="Favorites" icon={<TiHeartOutline className="text-2xl"/>} link="/me/favorites" /> */}
+                {/* <ProfileListButton name="Offers" icon={<MdOutlineLocalOffer className="text-2xl" />} link="/me/offers" /> */}
+                {/* <ProfileListButton name="Settings" icon={<LuSettings className="text-2xl" />} link="/me/settings" /> */}
                 
               </div>
 
