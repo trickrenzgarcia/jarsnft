@@ -106,12 +106,12 @@ export default function CreateUserDialog({
     if(emailExists) {
       form.setError("email", {
         type: "manual",
-        message: "Email already exists",
+        message: "Email is taken. Please use another email.",
       });
       setLoading(false);
       return;
     }
-    
+
     await handleUpdateUser(values);
   }
 
@@ -150,6 +150,7 @@ export default function CreateUserDialog({
                     <Input placeholder="alan_turing@gmail.com" {...field} />
                   </FormControl>
                   <FormDescription></FormDescription>
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
