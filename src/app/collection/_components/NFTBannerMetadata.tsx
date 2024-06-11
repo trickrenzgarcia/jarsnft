@@ -13,12 +13,16 @@ import TooltipMsg from "@/components/(interfaces)/TooltipMsg";
 import { CustomContractMetadata } from "@thirdweb-dev/sdk";
 import {
   useContract,
+  useContractEvents,
   useContractMetadata,
   useMetadata,
+  useNFTs,
 } from "@thirdweb-dev/react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { NFTCollection } from "@/lib/core/types";
 import { useCollectionContext } from "./CollectionProvider";
+import { NFT_MARKETPLACE } from "@/types/constant";
+import { BigNumber, ethers } from "ethers";
 
 type BannerMetadataProps = {
   address: string;
@@ -38,12 +42,32 @@ export default function NFTBannerMetadata({
   const { data, isLoading, isError } = useContractMetadata(
     contract,
   ) as QueryMetadata;
+  const { data: nfts, isError: errorNfts, isLoading: loadingNfts } = useNFTs(contract);
+
+  const { contract: marketPlaceContract } = useContract(NFT_MARKETPLACE, "marketplace-v3");
+  const { data: sales } = useContractEvents(marketPlaceContract, "NewSale", {
+    queryFilter: {
+      filters: {
+        assetContract: address,
+      },
+    }
+  });
+
+  const totalSalesPrice = !sales ? 0 : sales.reduce((total, sale) => {
+    const price = BigNumber.from(sale.data.totalPricePaid);
+    return total.add(price); 
+  }, BigNumber.from(0));
+
+  const floorPrice = !sales ? 0 : sales.reduce((min, sale) => {
+    const price = BigNumber.from(sale.data.totalPricePaid);
+    return price.lt(min) ? price : min;
+  }, BigNumber.from(sales[0].data.totalPricePaid)).toString();
+
   const [details, setDetails] = React.useState([
-    { detail: "Total Volume", value: 1000000, currency: "MATIC" },
-    { detail: "Floor Price", value: 50, currency: "MATIC" },
-    { detail: "Best Offer", value: 51, currency: "MATIC" },
-    { detail: "Listed", value: totalListingCount },
-    { detail: "Owners(Unique)", value: 1000 },
+    { detail: "Total Volume", value: totalSalesPrice ? parseFloat(ethers.utils.formatEther(totalSalesPrice)) : 0, currency: "MATIC" },
+    { detail: "Floor Price", value: floorPrice ? parseFloat(ethers.utils.formatEther(floorPrice)) : 0, currency: "MATIC" },
+    { detail: "Listed", value: totalListingCount ? totalListingCount : 0 },
+    { detail: "Owners(Unique)", value: 1 },
   ]);
 
   useEffect(() => {
@@ -53,7 +77,9 @@ export default function NFTBannerMetadata({
       ),
     );
   }, [totalListingCount]);
-  2;
+
+  
+  
 
   if (isLoading) {
     return (
@@ -167,10 +193,18 @@ export default function NFTBannerMetadata({
             </div>
           </section>
           <section className="mb-3 flex gap-3">
-            <div>Items: </div>
-            <div>Created: </div>
-            <div>Creator Earnings: </div>
-            <div>Chain: </div>
+            <div>Items: <span className="font-bold">{nfts && nfts.length || "--"}</span></div>
+            <div>Created: <span className="font-bold">{new Date(collection.created_at).toLocaleDateString(undefined, {
+              year: "numeric",
+              month: "long",
+              day: "numeric"
+            })}</span></div>
+            <div>Creator Earnings: <span className="font-bold">
+                {`${collection.seller_fee_basis_points / 100}%`}</span>
+            </div>
+            <div>Chain: <span className="font-bold">Polygon</span>
+              {/* {collection.simpleHashData.collections.map((col) => col.chains)[0]} */}
+              </div>
           </section>
         </div>
       </main>
