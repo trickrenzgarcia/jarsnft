@@ -1,10 +1,10 @@
+import { CollectionData } from "@/utils/getCollections";
 import NFTCarousel from "./NFTCarousel";
-import { NFTCollection } from "@/lib/core/types";
 
 export default function BuySellNFT({
   collections,
 }: {
-  collections: NFTCollection[];
+  collections: CollectionData[];
 }) {
   return (
     <>
