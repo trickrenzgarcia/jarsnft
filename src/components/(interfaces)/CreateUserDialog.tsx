@@ -93,9 +93,25 @@ export default function CreateUserDialog({
     setLoading(false);
   }
 
+  async function checkEmailExists(email: string): Promise<boolean> {
+    const isEmailExists = await jars.isEmailExists(email);
+    return isEmailExists;
+  }
+
   // Define the form submit handler function
   async function onSubmit(values: z.infer<typeof formCreateUserSchema>) {
     setLoading(true);
+
+    const emailExists = await checkEmailExists(values.email);
+    if(emailExists) {
+      form.setError("email", {
+        type: "manual",
+        message: "Email already exists",
+      });
+      setLoading(false);
+      return;
+    }
+    
     await handleUpdateUser(values);
   }
 
@@ -139,12 +155,13 @@ export default function CreateUserDialog({
             />
 
             <DialogFooter>
-              <div className="flex w-full flex-col items-center justify-center gap-3">
+              <div className="flex w-full flex-col items-center justify-center gap-3 mt-8">
                 <NextButton
                   type="submit"
                   disabled={loading}
                   isLoading={loading}
                   spinner={<Spinner />}
+                  fullWidth
                   className={cn(
                     loading ? "cursor-not-allowed" : "cursor-pointer",
                   )}

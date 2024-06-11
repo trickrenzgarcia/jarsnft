@@ -84,6 +84,15 @@ export class JarsAPI {
   }
 
   /**
+   * Check if an email exists
+   * @param email 
+   * @returns 
+   */
+  async isEmailExists(email: string): Promise<boolean> {
+    return await this.request<boolean>(`/user/isEmailExists?email=${email}`);
+  }
+
+  /**
    * Save nonce in database
    */
   async saveNonce(nonce: string) {
