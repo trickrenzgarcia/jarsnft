@@ -1,19 +1,23 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from 'react'
-import { Input } from '../ui/input';
-import { useRouter } from 'next/navigation';
-import { jars } from '@/lib/core/api';
-import { NFTCollection } from '@/lib/core/types';
-import { Card, CardContent } from '../ui/card';
-import { Spinner } from '@nextui-org/react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React, { useEffect, useState } from "react";
+import { Input } from "../ui/input";
+import { useRouter } from "next/navigation";
+import { jars } from "@/lib/core/api";
+import { NFTCollection } from "@/lib/core/types";
+import { Card, CardContent } from "../ui/card";
+import { Spinner } from "@nextui-org/react";
+import { SiPolygon } from "react-icons/si";
+
+import Image from "next/image";
+import Link from "next/link";
 
 export default function SearchInput() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [dataResults, setDataResults] = useState<NFTCollection[] | null | undefined>([]);
+  const [dataResults, setDataResults] = useState<
+    NFTCollection[] | null | undefined
+  >([]);
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const router = useRouter();
 
@@ -46,49 +50,60 @@ export default function SearchInput() {
   };
 
   return (
-    <div className='w-full relative flex flex-col'>
+    <div className="relative flex w-full flex-col">
       <Input
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setTimeout(() => setIsFocused(false), 100)}
-        placeholder='Search'
-        className='rounded-lg'
+        placeholder="Search"
+        className="rounded-lg"
       />
       {isFocused && (
-        <div className='w-full absolute mt-[50px]'>
-          <Card className=''>
-            <CardContent className='p-4'>
+        <div className="absolute mt-[50px] w-full">
+          <Card className="">
+            <CardContent className="p-4">
               {isLoading ? (
-                <div className='flex justify-center'>
-                  <Spinner size='md' />
+                <div className="flex justify-center">
+                  <Spinner size="md" />
                 </div>
               ) : dataResults === null ? (
                 <div>
-                  <p className='text-sm text-muted-foreground'>Search something</p>
+                  <p className="text-sm text-muted-foreground">
+                    Search something
+                  </p>
                 </div>
               ) : dataResults && dataResults.length > 0 ? (
-                <div className='flex flex-col'>
+                <div className="flex flex-col">
                   {dataResults.map((result) => (
                     <Link
                       key={result.contract}
                       href={`/collection/${result.contract}`}
-                      className='cursor-pointer'
+                      className="cursor-pointer"
                       onClick={handleLinkClick}
                     >
-                      <div className='flex p-2 gap-2 hover:bg-muted rounded-lg'>
-                        <div className="flex aspect-square items-center justify-center">
+                      <div className="flex items-center gap-2 rounded-lg p-2 hover:bg-muted">
+                        <div className="mr-2 flex aspect-square items-center justify-center">
                           <Image
                             src={result.image}
                             alt={result.name}
                             width={30}
                             height={30}
                             style={{ objectFit: "cover" }}
-                            className='w-full h-full rounded-md border-1'
+                            className="h-50% w-50% rounded-md border-1"
                           />
                         </div>
-                        <div className='flex flex-col'>
-                          <p className='text-sm font-bold'>{result.name}</p>
+                        <div className="flex flex-col">
+                          <p className="text-sm font-bold">{result.name}</p>
+                          <p className="ml-2 flex flex-row items-center gap-2 text-sm text-gray-400">
+                            <SiPolygon />
+                            {result.view_count} {` items`}
+                          </p>
+                        </div>
+                        <div className="ml-auto">
+                          <p className="text-sm text-gray-400">
+                            {result.view_count} {` MATIC`}
+                          </p>
                         </div>
                       </div>
                     </Link>
@@ -96,7 +111,9 @@ export default function SearchInput() {
                 </div>
               ) : (
                 <div>
-                  <p className='text-sm text-muted-foreground'>No results found.</p>
+                  <p className="text-sm text-muted-foreground">
+                    No results found.
+                  </p>
                 </div>
               )}
             </CardContent>
