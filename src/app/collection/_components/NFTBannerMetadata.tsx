@@ -42,30 +42,53 @@ export default function NFTBannerMetadata({
   const { data, isLoading, isError } = useContractMetadata(
     contract,
   ) as QueryMetadata;
-  const { data: nfts, isError: errorNfts, isLoading: loadingNfts } = useNFTs(contract);
+  const {
+    data: nfts,
+    isError: errorNfts,
+    isLoading: loadingNfts,
+  } = useNFTs(contract);
 
-  const { contract: marketPlaceContract } = useContract(NFT_MARKETPLACE, "marketplace-v3");
+  const { contract: marketPlaceContract } = useContract(
+    NFT_MARKETPLACE,
+    "marketplace-v3",
+  );
   const { data: sales } = useContractEvents(marketPlaceContract, "NewSale", {
     queryFilter: {
       filters: {
         assetContract: address,
       },
-    }
+    },
   });
 
-  const totalSalesPrice = !sales ? 0 : sales.reduce((total, sale) => {
-    const price = BigNumber.from(sale.data.totalPricePaid);
-    return total.add(price); 
-  }, BigNumber.from(0));
+  const totalSalesPrice = !sales
+    ? 0
+    : sales.reduce((total, sale) => {
+        const price = BigNumber.from(sale.data.totalPricePaid);
+        return total.add(price);
+      }, BigNumber.from(0));
 
-  const floorPrice = !sales ? 0 : sales.reduce((min, sale) => {
-    const price = BigNumber.from(sale.data.totalPricePaid);
-    return price.lt(min) ? price : min;
-  }, BigNumber.from(sales[0].data.totalPricePaid)).toString();
+  const floorPrice = !sales
+    ? 0
+    : sales
+        .reduce((min, sale) => {
+          const price = BigNumber.from(sale.data.totalPricePaid);
+          return price.lt(min) ? price : min;
+        }, BigNumber.from(sales[0].data.totalPricePaid))
+        .toString();
 
   const [details, setDetails] = React.useState([
-    { detail: "Total Volume", value: totalSalesPrice ? parseFloat(ethers.utils.formatEther(totalSalesPrice)) : 0, currency: "MATIC" },
-    { detail: "Floor Price", value: floorPrice ? parseFloat(ethers.utils.formatEther(floorPrice)) : 0, currency: "MATIC" },
+    {
+      detail: "Total Volume",
+      value: totalSalesPrice
+        ? parseFloat(ethers.utils.formatEther(totalSalesPrice))
+        : 0,
+      currency: "MATIC",
+    },
+    {
+      detail: "Floor Price",
+      value: floorPrice ? parseFloat(ethers.utils.formatEther(floorPrice)) : 0,
+      currency: "MATIC",
+    },
     { detail: "Listed", value: totalListingCount ? totalListingCount : 0 },
     { detail: "Owners(Unique)", value: 1 },
   ]);
@@ -77,9 +100,6 @@ export default function NFTBannerMetadata({
       ),
     );
   }, [totalListingCount]);
-
-  
-  
 
   if (isLoading) {
     return (
@@ -169,7 +189,7 @@ export default function NFTBannerMetadata({
           </section>
 
           <section className="mb-3 flex w-full justify-between">
-            <div className="h-[160px] w-[500px] overflow-x-hidden text-sm font-semibold dark:text-gray-300">
+            <div className="h-[75px] overflow-x-hidden text-sm font-semibold dark:text-gray-300 lg:h-[160px] lg:w-[500px]">
               <ReadMore
                 id="collection-description"
                 text={data.description || ""}
@@ -192,19 +212,48 @@ export default function NFTBannerMetadata({
               ))}
             </div>
           </section>
-          <section className="mb-3 flex gap-3">
-            <div>Items: <span className="font-bold">{nfts && nfts.length || "--"}</span></div>
-            <div>Created: <span className="font-bold">{new Date(collection.created_at).toLocaleDateString(undefined, {
-              year: "numeric",
-              month: "long",
-              day: "numeric"
-            })}</span></div>
-            <div>Creator Earnings: <span className="font-bold">
-                {`${collection.seller_fee_basis_points / 100}%`}</span>
+          {/* placeholder for tablet size */}
+          <section className="my-2 border-y-2 border-[#a5a5a580] py-4 dark:border-[#6e6e6e69] lg:hidden">
+            <div className="flex items-center gap-6 lg:hidden">
+              {details.map((detail, i) => (
+                <div key={i} className={cn(poppins.className, "w-[150px]")}>
+                  <div className="flex justify-center gap-2 text-2xl font-semibold">
+                    <SiPolygon className="text-violet-500" />
+                    <p>{formatNumber(detail.value)}</p>
+                    <p>{detail.currency}</p>
+                  </div>
+                  <p className="text-center text-sm font-normal text-gray-300 dark:text-gray-500">
+                    {detail.detail}
+                  </p>
+                </div>
+              ))}
             </div>
-            <div>Chain: <span className="font-bold">Polygon</span>
+          </section>
+          <section className="my-3 flex gap-3">
+            <div>
+              Items:{" "}
+              <span className="font-bold">{(nfts && nfts.length) || "--"}</span>
+            </div>
+            <div>
+              Created:{" "}
+              <span className="font-bold">
+                {new Date(collection.created_at).toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </span>
+            </div>
+            <div>
+              Creator Earnings:{" "}
+              <span className="font-bold">
+                {`${collection.seller_fee_basis_points / 100}%`}
+              </span>
+            </div>
+            <div>
+              Chain: <span className="font-bold">Polygon</span>
               {/* {collection.simpleHashData.collections.map((col) => col.chains)[0]} */}
-              </div>
+            </div>
           </section>
         </div>
       </main>
