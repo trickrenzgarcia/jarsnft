@@ -149,7 +149,7 @@ export default function NFTBannerMetadata({
   if (data) {
     return (
       <main className="flex w-full flex-col bg-slate-600 text-white dark:bg-background">
-        <div className="relative h-[200px] w-auto md:h-[400px] ">
+        <div className="relative h-[400px] min-h-[200px] w-auto ">
           <Image
             src={data.image || "/assets/collection_banner_placeholder.png"}
             fill
@@ -157,10 +157,10 @@ export default function NFTBannerMetadata({
               objectFit: "cover",
             }}
             alt="Collection Banner"
-            className="opacity-100 blur-lg md:opacity-65 dark:md:opacity-30"
+            className="opacity-65 blur-lg dark:opacity-30"
           />
         </div>
-        <div className="absolute hidden h-[400px] w-full px-7 py-6 dark:shadow-[inset_0_-50px_100px_rgba(10,10,10,1)] md:block">
+        <div className="absolute block h-[435px] w-full px-7 py-6 dark:shadow-[inset_0_-50px_100px_rgba(10,10,10,1)] sm:h-[410px]">
           <section className="mb-4 flex justify-between">
             <div className="flex items-center gap-3">
               <Image
@@ -213,8 +213,8 @@ export default function NFTBannerMetadata({
             </div>
           </section>
           {/* placeholder for tablet size */}
-          <section className="my-2 border-y-2 border-[#a5a5a580] py-4 dark:border-[#6e6e6e69] lg:hidden">
-            <div className="flex items-center gap-6 lg:hidden">
+          <section className="my-4 border-y-2 border-[#a5a5a580] py-4 dark:border-[#6e6e6e69] lg:hidden">
+            <div className="flex items-center gap-6 overflow-x-auto lg:hidden">
               {details.map((detail, i) => (
                 <div key={i} className={cn(poppins.className, "w-[150px]")}>
                   <div className="flex justify-center gap-2 text-2xl font-semibold">

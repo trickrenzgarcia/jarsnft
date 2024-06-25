@@ -27,7 +27,10 @@ import { NFT_MARKETPLACE } from "@/types/constant";
 
 export default function NFTCards({ address }: { address: string }) {
   const { contract } = useContract(address);
-  const { contract: marketPlaceContract } = useContract(NFT_MARKETPLACE, "marketplace-v3");
+  const { contract: marketPlaceContract } = useContract(
+    NFT_MARKETPLACE,
+    "marketplace-v3",
+  );
   const { data: nfts, isError, isLoading } = useNFTs(contract);
   const { data: listings, isLoading: loadingListings } = useValidDirectListings(
     marketPlaceContract,
@@ -56,7 +59,7 @@ export default function NFTCards({ address }: { address: string }) {
 
   if (listings || auctions || nfts)
     return (
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8">
         {listings &&
           listings.map((nft, i) => (
             <Link key={i} href={`/collection/${address}/${nft.asset.id}`}>
