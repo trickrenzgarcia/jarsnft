@@ -27,8 +27,8 @@ export default async function FearAndGreedCard({ title, icon }: Props) {
   };
 
   const getFngCopy = () => {
-    if (fng > 50) return "Greed";
-    if (fng < 50) return "Fear";
+    if (fng > 55) return "Greed";
+    if (fng < 45) return "Fear";
     return "Neutral";
   };
   const normalizedAngle = normalizeAngle(fng);
@@ -44,7 +44,7 @@ export default async function FearAndGreedCard({ title, icon }: Props) {
       </div>
       <br />
 
-      <div className="flex items-center justify-center rounded-md py-5">
+      <div className="flex flex-1 items-center justify-center rounded-md py-5">
         <div className="relative mb-4">
           <div
             style={{

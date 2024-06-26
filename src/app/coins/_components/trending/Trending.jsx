@@ -13,7 +13,7 @@ import { TbCaretDownFilled } from "react-icons/tb";
 const styles = {
   trendingWrapper: `mx-auto max-w-screen-2xl`,
   h1: `font-bold text-3xl`,
-  flexCenter: `flex items-center gap-5`,
+  flexCenter: `hidden xl:flex items-center gap-5`,
 };
 
 const Trending = async () => {
@@ -46,7 +46,7 @@ const Trending = async () => {
           </p>
         </div>
         <br />
-        <div className={styles.flexCenter} style={{ height: "30svh" }}>
+        <div className={styles.flexCenter} style={{ height: "auto" }}>
           <TrendingCard title="Trending Coins (24h)" icon={fire} type="coins" />
           <TrendingCard title="Top NFTs (24h)" icon={up} type="nfts" />
           <FearAndGreedCard title="Fear and Greed Index" icon={greed} />

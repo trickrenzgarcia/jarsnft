@@ -25,14 +25,26 @@ const TopHeader = async () => {
   const formattedETH = Number(ethDominance.toFixed(1));
 
   return (
-    <div className="flex justify-around my-10">
-      <p>{`Coins: ${activeCryptos}`}</p>
-      <p>{`Exchanges: ${activeMarkets}`}</p>
-      <p>{`Market Cap: ${formattedMarketCapUSD}T`}</p>
-      <p>{`24h Vol: ${formatVolume}`}</p>
-      <p>{`Dominance: BTC ${formattedBTC}% | ETH ${formattedETH}%`}</p>
+    <div className="my-10 flex justify-around">
+      <p>
+        <span className="font-bold">{`Coins: `}</span> {`${activeCryptos}`}
+      </p>
+      <p>
+        <span className="font-bold">{`Exchanges: `}</span> {` ${activeMarkets}`}
+      </p>
+      <p>
+        <span className="font-bold">{`Market Cap: `}</span>{" "}
+        {`${formattedMarketCapUSD}T`}
+      </p>
+      <p>
+        <span className="font-bold">{`24h Vol: `}</span> {`${formatVolume}`}
+      </p>
+      <p>
+        <span className="font-bold">{`Dominance: BTC `}</span>{" "}
+        {`${formattedBTC}% | ETH ${formattedETH}%`}
+      </p>
       <span>
-        {`Gas Fee: `}
+        <span className="font-bold">{`Gas Fee: `}</span>
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>

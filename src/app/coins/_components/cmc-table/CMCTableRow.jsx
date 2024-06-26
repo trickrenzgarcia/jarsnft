@@ -44,8 +44,9 @@ const CMCTableRow = ({
         </td>
         <td>
           <p
-            className={`flex w-full gap-1 text-center ${hRate < 0 ? "text-red-500" : "text-green"
-              }`}
+            className={`flex w-full gap-1 text-center ${
+              hRate < 0 ? "text-red-500" : "text-green"
+            }`}
           >
             {hRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
             {roundTwoDecimalPlaces(hRate)}%
@@ -53,8 +54,9 @@ const CMCTableRow = ({
         </td>
         <td>
           <p
-            className={`flex w-full gap-1 text-center ${dRate < 0 ? "text-red-500" : "text-green"
-              }`}
+            className={`flex w-full gap-1 text-center ${
+              dRate < 0 ? "text-red-500" : "text-green"
+            }`}
           >
             {dRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
             {roundTwoDecimalPlaces(dRate)}%
