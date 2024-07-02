@@ -34,5 +34,23 @@ const CMCTableHeader = () => {
     </tbody>
   );
 };
+export const DesktopTableHeader = () => {
+  return (
+    <tbody>
+      <tr className="text-left">
+        <th></th>
+        <th className="flex items-center">
+          <b># </b>
+        </th>
+        <th>
+          <div className="ml-14 flex w-full">Name</div>
+        </th>
+        <th>Price</th>
+        <th>{`24h / 7d change %`}</th>
+        <th>Last 7 days</th>
+      </tr>
+    </tbody>
+  );
+};
 
 export default CMCTableHeader;
