@@ -1,15 +1,15 @@
 import {
   Navbar,
-  Hero,
   Footer,
-  PopularCollections,
 } from "@/components/(layout)";
 import {
+  Hero,
+  PopularCollections,
   ArtTrend,
   NFTCategories,
   PhotoTrend,
   PFPTrend,
-} from "@/app/_trade/_components";
+} from "@/components/(layout)/_main";
 import { Separator } from "@/components/ui/separator";
 import { Suspense } from "react";
 import * as getCollections from "@/utils/getCollections";

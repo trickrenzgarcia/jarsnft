@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { TopNFTCollectionsTable } from "../(interfaces)";
+import { TopNFTCollectionsTable } from "@/components/(interfaces)";
 
 export default async function TopNFTCollections() {
   return (

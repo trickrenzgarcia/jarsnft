@@ -8,8 +8,6 @@ import {
 import { cn } from "@/lib/utils";
 import React from "react";
 import NFTCard from "./NFTCard";
-import { NFTCard as NFTCardType } from "../_types";
-import { NFTCollection } from "@/lib/core/types";
 import { faker } from "@faker-js/faker";
 import { CollectionData } from "@/utils/getCollections";
 

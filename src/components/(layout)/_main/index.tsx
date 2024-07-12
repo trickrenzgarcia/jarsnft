@@ -4,3 +4,6 @@ export { default as PFPTrend } from "./PFPTrend";
 export { default as TradeHero } from "./TradeHero";
 export { default as BuySellNFT } from "./BuySellNFT";
 export { default as NFTCategories } from "./NFTCategories";
+export { default as PopularCollections } from "./PopularCollections";
+export { default as Hero } from "./Hero";
+export { default as TopNFTCollections } from "./TopNFTCollections";

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { TypewriterEffect } from "../ui/typewriter-effect";
+import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 
 const words = [
   {
