@@ -76,7 +76,7 @@ type CollectionResponse = {
     collections: CollectionData[];
 }
 
-type Category = "art" | "photography" | "pfp" | "gaming";
+export type Category = "art" | "photography" | "pfp" | "gaming";
 
 export async function getPopularCollections() {
     const response = await fetch(`${CLIENT_URL}/api/popular`);
