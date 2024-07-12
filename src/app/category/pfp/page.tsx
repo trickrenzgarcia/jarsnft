@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import * as getCollections from "@/utils/getCollections";
 import Collections from '../_components/Collections';
 import { Suspense } from 'react';
+import { BASE_URL } from '@/lib/ctx';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -10,8 +11,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ProfilePicturesPage() {
-  const pfpCollections = await getCollections.getCollectionsByCategory("pfp");
-  
+  // can't build while fetching at the same time in same URL localhost:3000
+  // const pfpCollections = await getCollections.getCollectionsByCategory("pfp");
+
+  // for building purposes, localhost:5000 is used instead
+  const response = await fetch(`${BASE_URL}/collections/trending?category=pfp&page=${1}&limit=${50}`);
+  const { collections } = await response.json();
+  const pfpCollections = collections.map((nft: any) => nft);
+
   return (
     <div className='container'>
       <h1 className='text-4xl'>Explore Profile NFTs</h1>
