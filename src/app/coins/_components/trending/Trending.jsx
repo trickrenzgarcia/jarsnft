@@ -24,7 +24,7 @@ const Trending = async () => {
     const formattedMarketCapUSD = (totalMarketCapUSD / 1e12).toFixed(3);
 
     return (
-      <div className={`${styles.trendingWrapper} my-5`}>
+      <div className={`${styles.trendingWrapper} mt-5 xl:my-5`}>
         <div className="flex justify-between">
           <h1 className={styles.h1}>
             Todays Cryptocurrency Prices by Market Cap

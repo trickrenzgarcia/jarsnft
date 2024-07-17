@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import { CMCTableHeader, CMCTableRow, CurrencyToggleButton } from ".";
 import useAxios from "@/app/coins/api/useAxios";
-import { DesktopTableRow } from "./CMCTableRow";
-import { DesktopTableHeader } from "./CMCTableHeader";
+import { MobileTableRow } from "./CMCTableRow";
+import { MobileTableHeader } from "./CMCTableHeader";
 
 const CMCTable = () => {
   const [currency, setCurrency] = useState("usd");
@@ -19,7 +19,7 @@ const CMCTable = () => {
   };
 
   return (
-    <div className="mx-auto mt-10 max-w-screen-2xl font-bold">
+    <div className="mx-auto max-w-screen-2xl font-bold xl:mt-10">
       <CurrencyToggleButton
         onClick={handleCurrencyChange}
         currency={currency}
@@ -56,16 +56,16 @@ const CMCTable = () => {
           )}
         </table>
       </div>
-      <div className="xl:hidden">
+      <div className="lg:hidden">
         <table
           className="mt-3 w-full"
           style={{ borderCollapse: "separate", borderSpacing: "0 20px" }}
         >
-          <DesktopTableHeader />
+          <MobileTableHeader />
           {response && response ? (
             response.map((coin, index) => {
               return (
-                <DesktopTableRow
+                <MobileTableRow
                   currency={currency}
                   key={index}
                   starNum={coin.market_cap_rank}
@@ -73,9 +73,7 @@ const CMCTable = () => {
                   coinSymbol={coin.symbol}
                   coinIcon={coin.image}
                   hRate={coin.price_change_percentage_24h}
-                  dRate={coin.price_change_percentage_7d_in_currency}
                   price={coin.current_price}
-                  sparkline={coin.sparkline_in_7d.price}
                 />
               );
             })

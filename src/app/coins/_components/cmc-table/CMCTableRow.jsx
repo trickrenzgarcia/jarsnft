@@ -7,9 +7,7 @@ import { currencyFormat } from "../../api/currencyFunctions";
 import { Sparklines, SparklinesLine } from "react-sparklines";
 
 const styles = {
-  tableRowMobile: `border-b border-gray-800 text-[0.93rem] xl:hidden`,
   tableRow: `border-b border-gray-800 text-[0.93rem]`,
-  tableRowDesktop: `border-b border-gray-800 text-[0.93rem] hidden xl:block`,
 };
 
 const CMCTableRow = ({
@@ -158,7 +156,7 @@ const CMCTableRow = ({
     </>
   );
 };
-export const DesktopTableRow = ({
+export const MobileTableRow = ({
   starNum,
   coinName,
   coinIcon,
@@ -166,8 +164,6 @@ export const DesktopTableRow = ({
   coinSymbol = "---",
   price = "----",
   hRate = "---",
-  dRate = "---",
-  sparkline,
 }) => {
   return (
     <tbody className={`${styles.tableRow}`}>
@@ -183,31 +179,18 @@ export const DesktopTableRow = ({
           <></>
         )}
 
-        <td>
-          {currency === "usd" ? "$" : "₱"} {price}
-        </td>
-        <td className="flex flex-row">
-          <p
-            className={`flex w-full gap-1 text-center ${
-              hRate < 0 ? "text-red-500" : "text-green"
-            }`}
-          >
-            {hRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
-            {roundTwoDecimalPlaces(hRate)}%
+        <td className="flex content-end justify-end">
+          <p className="text-right">
+            {currency === "usd" ? "$" : "₱"} {price}
+            <span
+              className={`flex justify-end gap-1 text-center text-sm ${
+                hRate < 0 ? "text-red-500" : "text-green"
+              }`}
+            >
+              {hRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
+              {roundTwoDecimalPlaces(hRate)}%
+            </span>
           </p>
-          <p
-            className={`flex w-full gap-1 text-center ${
-              dRate < 0 ? "text-red-500" : "text-green"
-            }`}
-          >
-            {dRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
-            {roundTwoDecimalPlaces(dRate)}%
-          </p>
-        </td>
-        <td>
-          <Sparklines svgWidth={160} height={60} data={sparkline} quality={100}>
-            <SparklinesLine color={hRate < 0 ? "red" : "#2DFE54"} />
-          </Sparklines>
         </td>
       </tr>
     </tbody>

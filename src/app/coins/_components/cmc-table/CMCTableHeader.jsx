@@ -34,10 +34,10 @@ const CMCTableHeader = () => {
     </tbody>
   );
 };
-export const DesktopTableHeader = () => {
+export const MobileTableHeader = () => {
   return (
     <tbody>
-      <tr className="text-left">
+      <tr className="text-right">
         <th></th>
         <th className="flex items-center">
           <b># </b>
@@ -45,9 +45,7 @@ export const DesktopTableHeader = () => {
         <th>
           <div className="ml-14 flex w-full">Name</div>
         </th>
-        <th>Price</th>
-        <th>{`24h / 7d change %`}</th>
-        <th>Last 7 days</th>
+        <th>{`Price/24h change %`}</th>
       </tr>
     </tbody>
   );
