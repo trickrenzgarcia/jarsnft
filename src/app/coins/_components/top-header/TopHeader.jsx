@@ -25,7 +25,7 @@ const TopHeader = async () => {
   const formattedETH = Number(ethDominance.toFixed(1));
 
   return (
-    <div className="my-10 flex justify-around">
+    <div className="my-10 flex flex-wrap justify-around gap-5">
       <p>
         <span className="font-bold">{`Coins: `}</span> {`${activeCryptos}`}
       </p>
