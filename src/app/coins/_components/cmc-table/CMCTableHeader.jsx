@@ -5,28 +5,28 @@ const styles = {
 const CMCTableHeader = () => {
   return (
     <tbody>
-      <tr>
+      <tr className="text-left">
         <th></th>
         <th className="flex items-center">
           <b># </b>
         </th>
-        <th>Name</th>
+        <th>
+          <span className="ml-14 flex w-full">Name</span>
+        </th>
         <th>Price</th>
         <th>24h %</th>
         <th>7d %</th>
         <th>
+          <p className="mx-3">Market Cap</p>
+        </th>
+        <th>
           <div className={styles.textIcon}>
-            <p className="mr-2">Market Cap</p>{" "}
+            <p className="mr-2">Volume(24h)</p>
           </div>
         </th>
         <th>
           <div className={styles.textIcon}>
-            <p className="mr-2">Volume(24h)</p>{" "}
-          </div>
-        </th>
-        <th>
-          <div className={styles.textIcon}>
-            <p className="mr-2">Circulating Supply</p>{" "}
+            <p className="mr-2">Circulating Supply</p>
           </div>
         </th>
         <th>Last 7 days</th>
@@ -43,7 +43,7 @@ export const MobileTableHeader = () => {
           <b># </b>
         </th>
         <th>
-          <div className="ml-14 flex w-full">Name</div>
+          <span className="ml-14 flex w-full">Name</span>
         </th>
         <th>{`Price/24h change %`}</th>
       </tr>

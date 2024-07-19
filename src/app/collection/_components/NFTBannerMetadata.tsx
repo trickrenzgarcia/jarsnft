@@ -185,7 +185,7 @@ export default function NFTBannerMetadata({
                 {/* <p className="font-bold">A collection of {} NFTs.</p> */}
               </div>
             </div>
-            <div className=""></div>
+            {/* <div className=""></div> */}
           </section>
 
           <section className="mb-3 flex w-full justify-between">
