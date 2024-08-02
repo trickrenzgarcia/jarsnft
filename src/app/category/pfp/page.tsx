@@ -11,13 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ProfilePicturesPage() {
-  // can't build while fetching at the same time in same URL localhost:3000
-  // const pfpCollections = await getCollections.getCollectionsByCategory("pfp");
-
-  // for building purposes, localhost:5000 is used instead
-  const response = await fetch(`${BASE_URL}/collections/trending?category=pfp&page=${1}&limit=${50}`);
-  const { collections } = await response.json();
-  const pfpCollections = collections.map((nft: any) => nft);
+  const pfpCollections = await getCollections.getCollectionsByCategory("pfp");
 
   return (
     <div className='container'>
