@@ -12,7 +12,6 @@ export default function CollectionsLayout({
       <div className="container py-8">
         <main className="bg-dark p-2">{children}</main>
       </div>
-
       <Footer />
     </div>
   );
