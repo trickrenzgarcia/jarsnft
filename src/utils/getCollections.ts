@@ -1,5 +1,5 @@
 import { NFTCard } from "@/types/nft-card";
-import { CLIENT_URL } from "@/lib/ctx";
+import { BASE_URL, CLIENT_URL } from "@/lib/ctx";
 
 export type CollectionData = {
     contract: string;
@@ -33,14 +33,22 @@ type CollectionResponse = {
 export type Category = "art" | "photography" | "pfp" | "gaming";
 
 export async function getPopularCollections() {
-    const response = await fetch(`${CLIENT_URL}/api/popular`);
-    const data = await response.json() as CollectionPopularData[];
+    // changed to fetch from localhost:5000 (BASE_URL) instead in order to be build
+    // const response = await fetch(`${CLIENT_URL}/api/popular`);
+    // const data = await response.json() as CollectionPopularData[];
 
-    return data;
+    // return data;
+
+    const response = fetch(`${BASE_URL}/collections/popular`);
+    const data = (await response).json();
+
+    return await data as CollectionPopularData[];
 }
 
 export async function getCollectionsByCategory(category: Category, page: number = 1, limit: number = 50) {
-    const response = await fetch(`${CLIENT_URL}/api/trending?category=${category}&page=${page}&limit=${limit}`);
+    // changed to fetch from localhost:5000 (BASE_URL) instead in order to be build
+    // const response = await fetch(`${CLIENT_URL}/api/trending?category=${category}&page=${page}&limit=${limit}`);
+    const response = await fetch(`${BASE_URL}/collections/trending?category=${category}&page=${1}&limit=${50}`);
     const data = await response.json() as CollectionResponse;
 
     const nfts = data.collections.map((nft) => nft);
@@ -49,7 +57,9 @@ export async function getCollectionsByCategory(category: Category, page: number 
 }
 
 export async function getArtCollections() {
-    const response = await fetch(`${CLIENT_URL}/api/trending?category=art&page=1&limit=50`);
+    // changed to fetch from localhost:5000 (BASE_URL) instead in order to be build
+    // const response = await fetch(`${CLIENT_URL}/api/trending?category=art&page=1&limit=50`);
+    const response = await fetch(`${BASE_URL}/collections/trending?category=art&page=${1}&limit=${50}`);
     const data = await response.json() as CollectionResponse;
 
     const nfts = data.collections.map((nft) => nft);
@@ -58,7 +68,9 @@ export async function getArtCollections() {
 }
 
 export async function getPhotosCollections() {
-    const response = await fetch(`${CLIENT_URL}/api/trending?category=photography&page=1&limit=50`);
+    // changed to fetch from localhost:5000 (BASE_URL) instead in order to be build
+    // const response = await fetch(`${CLIENT_URL}/api/trending?category=photography&page=1&limit=50`);
+    const response = await fetch(`${BASE_URL}/collections/trending?category=photography&page=${1}&limit=${50}`);
     const data = await response.json() as CollectionResponse;
 
     const nfts = data.collections.map((nft) => nft);
@@ -67,7 +79,9 @@ export async function getPhotosCollections() {
 }
 
 export async function getPFPsCollections() {
-    const response = await fetch(`${CLIENT_URL}/api/trending?category=pfp&page=1&limit=50`);
+    // changed to fetch from localhost:5000 (BASE_URL) instead in order to be build
+    // const response = await fetch(`${CLIENT_URL}/api/trending?category=pfp&page=1&limit=50`);
+    const response = await fetch(`${BASE_URL}/collections/trending?category=pfp&page=${1}&limit=${50}`);
     const data = await response.json() as CollectionResponse;
 
     const nfts = data.collections.map((nft) => nft);
