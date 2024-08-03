@@ -4,11 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PaginationControls from "./PaginationControls";
 
-export default async function CollectionData({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+export default async function CollectionData({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const page = searchParams["page"] ?? 1;
   const limit = 5;
 
@@ -44,11 +40,7 @@ export default async function CollectionData({
       </div>
 
       {slicedCollections.map((collection, i) => (
-        <Link
-          href={"#"}
-          className="grid grid-cols-8 place-items-center transition-background hover:bg-neutral-800"
-          key={i}
-        >
+        <Link href={"#"} className="grid grid-cols-8 place-items-center transition-background hover:bg-neutral-800" key={i}>
           <div className="flex items-center gap-4 justify-self-start py-4">
             <Image
               src={collection.image}
@@ -59,23 +51,15 @@ export default async function CollectionData({
               className="size-14 rounded-md"
             />
             <p className="h-fit truncate">{collection.name}</p>
-            {true && (
-              <Image
-                src="/assets/verify.png"
-                width={20}
-                height={20}
-                alt="verified logo"
-                className="h-fit"
-              />
-            )}
+            {true && <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" />}
           </div>
-          <div className="">{collection.seller_fee_basis_points}</div>
-          <div className="">{collection.seller_fee_basis_points}</div>
-          <div className="">{collection.seller_fee_basis_points}</div>
-          <div className="">{collection.seller_fee_basis_points}</div>
-          <div className="">{collection.seller_fee_basis_points}</div>
-          <div className="">{collection.seller_fee_basis_points}</div>
-          <div className="">{collection.seller_fee_basis_points}</div>
+          <div className="">{collection.seller_fee_basis_points}</div> {/* Floor Price */}
+          <div className="">{collection.seller_fee_basis_points}</div> {/* Floor Change */}
+          <div className="">{collection.seller_fee_basis_points}</div> {/* Volume */}
+          <div className="">{collection.seller_fee_basis_points}</div> {/* Volume Change */}
+          <div className="">{collection.seller_fee_basis_points}</div> {/* Sales */}
+          <div className="">{collection.seller_fee_basis_points}</div> {/* Sales Change */}
+          <div className="">{collection.seller_fee_basis_points}</div> {/* Listed */}
         </Link>
       ))}
       <PaginationControls

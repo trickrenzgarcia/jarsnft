@@ -67,10 +67,7 @@ export default function PaginationControls({
         )}
         {pages.map((page) => (
           <PaginationItem key={page}>
-            <PaginationLink
-              href={`?category=${category}&page=${page}`}
-              scroll={false}
-            >
+            <PaginationLink href={`?category=${category}&page=${page}`} scroll={false}>
               {page}
             </PaginationLink>
           </PaginationItem>

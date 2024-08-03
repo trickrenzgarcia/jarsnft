@@ -11,11 +11,7 @@ import {
 import { useRouter } from "next/navigation";
 import { IoIosArrowDown } from "react-icons/io";
 
-export default function DropdownControls({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+export default function DropdownControls({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const router = useRouter();
   const collectionCategory = (searchParams["category"] as string) ?? "all";
 
@@ -43,20 +39,10 @@ export default function DropdownControls({
         <IoIosArrowDown />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem onClick={() => router.push(`?category=all&page=1`)}>
-          All Collections
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push(`?category=art&page=1`)}>
-          Art NFTs
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => router.push(`?category=photography&page=1`)}
-        >
-          Photography NFTs
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => router.push(`?category=pfp&page=1`)}>
-          Profile Picture NFTs
-        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => router.push(`?category=all&page=1`)}>All Collections</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => router.push(`?category=art&page=1`)}>Art NFTs</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => router.push(`?category=photography&page=1`)}>Photography NFTs</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => router.push(`?category=pfp&page=1`)}>Profile Picture NFTs</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
