@@ -1,6 +1,7 @@
-import DropdownButton from "./_components/DropdownButton";
+import CollectionData from "./_components/CollectionData";
+import DropdownControls from "./_components/DropdownControls";
 
-export default async function Page({
+export default function CollectionsPage({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -8,7 +9,8 @@ export default async function Page({
   return (
     <>
       <h1 className="mb-4 text-4xl font-bold">Collections</h1>
-      <DropdownButton searchParams={searchParams} />
+      <DropdownControls searchParams={searchParams} />
+      <CollectionData searchParams={searchParams} />
     </>
   );
 }
