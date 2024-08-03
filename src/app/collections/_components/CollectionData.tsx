@@ -40,7 +40,11 @@ export default async function CollectionData({ searchParams }: { searchParams: {
       </div>
 
       {slicedCollections.map((collection, i) => (
-        <Link href={"#"} className="grid grid-cols-8 place-items-center transition-background hover:bg-neutral-800" key={i}>
+        <Link
+          href={`/collection/${collection.contract}`}
+          className="grid grid-cols-8 place-items-center transition-background hover:bg-neutral-800"
+          key={i}
+        >
           <div className="flex items-center gap-4 justify-self-start py-4">
             <Image
               src={collection.image}
