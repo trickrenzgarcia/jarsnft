@@ -8,6 +8,7 @@ import {
   PaginationItem,
 } from "@/components/ui/pagination";
 import { cn } from "@/lib/utils";
+import { z } from "zod";
 
 export default function PaginationControls({
   searchParams,
@@ -26,11 +27,14 @@ export default function PaginationControls({
   const limit = 5;
   const category = (searchParams["category"] as string) ?? "all";
 
-  let startPage = Number(page) - 4;
-  let endPage = startPage + 8;
-
   const pages = [];
   const totalPages = Math.ceil(collectionLength / limit);
+
+  const PageSchema = z.coerce.number().min(1).max(totalPages);
+  console.log(PageSchema.parse(page));
+
+  let startPage = Number(page) - 4;
+  let endPage = startPage + 8;
 
   if (Number(page) < 5) {
     startPage = 1;

@@ -10,17 +10,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/navigation";
 import { IoIosArrowDown } from "react-icons/io";
+import { z } from "zod";
 
 export default function DropdownControls({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const router = useRouter();
   const collectionCategory = (searchParams["category"] as string) ?? "all";
 
-  const categoryNames = ["all", "art", "photography", "pfp"];
-  let categoryFullName = "";
+  const CategorySchema = z.enum(["all", "art", "photography", "pfp"]);
+  console.log(CategorySchema.parse(collectionCategory));
 
-  if (!categoryNames.includes(collectionCategory)) {
-    console.error("category does not exists");
-  }
+  let categoryFullName = "";
 
   if (collectionCategory === "all") {
     categoryFullName = "All Collections";
