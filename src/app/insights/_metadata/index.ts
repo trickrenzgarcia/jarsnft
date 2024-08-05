@@ -155,7 +155,7 @@ export const rightNavList: RightNavListType[] = [
       { name: "Coins PH", anchor: "coinsph" },
       { name: "Bybit", anchor: "bybit" },
       { name: "Binance", anchor: "binance" },
-      { name: "More Examples", anchor: "others" },
+      { name: "Other Exchange Platforms", anchor: "others" },
     ],
   },
   {
