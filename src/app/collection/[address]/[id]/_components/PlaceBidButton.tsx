@@ -14,33 +14,20 @@ import {
   AlertDialogFooter,
 } from "@/components/ui/alert-dialog";
 import { useNftContext } from "./nft-provider";
-import {
-  type NFT,
-  ThirdwebNftMedia,
-  Web3Button,
-  useBalance,
-  type EnglishAuction,
-} from "@thirdweb-dev/react";
+import { type NFT, ThirdwebNftMedia, Web3Button, useBalance, type EnglishAuction } from "@thirdweb-dev/react";
 import { MdVerified } from "react-icons/md";
 import { NFT_MARKETPLACE } from "@/types/constant";
 import { LoginWelcomeScreen } from "@/components/(interfaces)/ConnectWeb3";
 import { toast } from "sonner";
 import { getMaticPriceInPHP } from "@/lib/core/coingecko";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { createTxHash } from "@/app/actions/createTxHash";
+import { createTxHash } from "@/actions/createTxHash";
 
 type PlaceBidButtonProps = {
   nft: NFT | undefined;
@@ -57,18 +44,11 @@ const PlaceBidSchema = z.object({
     }),
 });
 
-export default function PlaceBidButton({
-  nft,
-  auctionListing,
-  loadingAuction,
-}: PlaceBidButtonProps) {
+export default function PlaceBidButton({ nft, auctionListing, loadingAuction }: PlaceBidButtonProps) {
   const router = useRouter();
   const [minBidAmountInPhp, setMinAmountInPhp] = useState<string>("");
-  const [bidState, setBidState] = useState<"idle" | "confirmation" | "success">(
-    "idle",
-  );
+  const [bidState, setBidState] = useState<"idle" | "confirmation" | "success">("idle");
   const { marketPlaceContract, collection, balance } = useNftContext();
-
 
   const form = useForm<z.infer<typeof PlaceBidSchema>>({
     resolver: zodResolver(PlaceBidSchema),
@@ -79,9 +59,7 @@ export default function PlaceBidButton({
 
   useEffect(() => {
     if (auctionListing && auctionListing[0]) {
-      getMaticPriceInPHP(
-        auctionListing[0].minimumBidCurrencyValue.displayValue,
-      ).then((result) => {
+      getMaticPriceInPHP(auctionListing[0].minimumBidCurrencyValue.displayValue).then((result) => {
         setMinAmountInPhp(result);
       });
     }
@@ -98,7 +76,7 @@ export default function PlaceBidButton({
     if (auctionListing?.[0]) {
       txResult = await marketPlaceContract?.englishAuctions
         .makeBid(auctionListing[0].id, value)
-        .then(async(data) => {
+        .then(async (data) => {
           await createTxHash("NewBid", data.receipt.transactionHash);
           setBidState("success");
           toast.success("Bid offer has been created", {
@@ -114,31 +92,24 @@ export default function PlaceBidButton({
         .catch((e: Error) => {
           // error state
           setBidState("idle");
-          if (
-            e.message.includes(
-              "Reason: missing revert data in call exception; Transaction reverted without a reason string",
-            )
-          ) {
+          if (e.message.includes("Reason: missing revert data in call exception; Transaction reverted without a reason string")) {
             toast.error("Failed to make bid!", {
               description: `Insufficient funds to make bid.`,
               position: "bottom-right",
             });
           } else if (e.message.includes("Reason: user rejected transaction")) {
             toast.error("Failed to make bid!", {
-              description:
-                "The user denied the transaction or the transaction failed. Please try again.",
+              description: "The user denied the transaction or the transaction failed. Please try again.",
               position: "bottom-right",
             });
-          } else if(e.message.includes("Bid amount must be less than or equal to buyoutBidAmount")) {
+          } else if (e.message.includes("Bid amount must be less than or equal to buyoutBidAmount")) {
             toast.error("Failed to make bid!", {
-              description:
-                "Bid amount must be less than or equal to buyoutBidAmount. Please try again.",
+              description: "Bid amount must be less than or equal to buyoutBidAmount. Please try again.",
               position: "bottom-right",
             });
-          } else if(e.message.includes("Invariant failed: Bid price is too low based on minimum bid amount")) {
+          } else if (e.message.includes("Invariant failed: Bid price is too low based on minimum bid amount")) {
             toast.error("Failed to make bid!", {
-              description:
-                "Bid price is too low based on minimum bid amount. Please try again.",
+              description: "Bid price is too low based on minimum bid amount. Please try again.",
               position: "bottom-right",
             });
           }
@@ -171,10 +142,7 @@ export default function PlaceBidButton({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button
-          className="h-[3] w-full text-lg font-semibold"
-          variant="outline"
-        >
+        <Button className="h-[3] w-full text-lg font-semibold" variant="outline">
           Place a bid
         </Button>
       </AlertDialogTrigger>
@@ -183,20 +151,13 @@ export default function PlaceBidButton({
         {/* Header */}
         <AlertDialogHeader className="px-8 pt-8">
           <div className="flex items-center justify-between">
-            <AlertDialogTitle className="text-2xl font-bold">
-              Place a bid
-            </AlertDialogTitle>
-            <AlertDialogCancel
-              className="rounded-full"
-              disabled={bidState != "idle"}
-            >
+            <AlertDialogTitle className="text-2xl font-bold">Place a bid</AlertDialogTitle>
+            <AlertDialogCancel className="rounded-full" disabled={bidState != "idle"}>
               x
             </AlertDialogCancel>
           </div>
 
-          <AlertDialogDescription>
-            Make offer to this nft. Click &quot;PLACE BID&quot; to proceed.
-          </AlertDialogDescription>
+          <AlertDialogDescription>Make offer to this nft. Click &quot;PLACE BID&quot; to proceed.</AlertDialogDescription>
         </AlertDialogHeader>
 
         {/* Body */}
@@ -240,24 +201,17 @@ export default function PlaceBidButton({
             <p>Minimum Bid</p>
             {auctionListing && auctionListing[0] && (
               <p>
-                {auctionListing?.[0].minimumBidCurrencyValue.displayValue}{" "}
-                {auctionListing?.[0].minimumBidCurrencyValue.symbol}
+                {auctionListing?.[0].minimumBidCurrencyValue.displayValue} {auctionListing?.[0].minimumBidCurrencyValue.symbol}
               </p>
             )}
           </div>
           <div className="flex justify-between px-4">
             <p className="text-gray-500">For 1 NFT</p>
-            <p className="text-gray-500">
-              {minBidAmountInPhp && `PHP ${minBidAmountInPhp}`}
-            </p>
+            <p className="text-gray-500">{minBidAmountInPhp && `PHP ${minBidAmountInPhp}`}</p>
           </div>
           <div className="my-6 flex justify-between px-4">
             <p>Your MATIC balance</p>
-            <p>
-              {balance
-                ? `${parseFloat(balance.displayValue).toFixed(3)} ${balance.symbol}`
-                : "Not Logged In"}
-            </p>
+            <p>{balance ? `${parseFloat(balance.displayValue).toFixed(3)} ${balance.symbol}` : "Not Logged In"}</p>
           </div>
           <div>
             <Form {...form}>

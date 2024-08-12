@@ -2,63 +2,26 @@
 
 import { BigNumber, ethers } from "ethers"; // ethers v5^
 
-import { TxResult } from "@/types/tx"
+import { TxResult } from "@/types/tx";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { useDropzone } from "react-dropzone";
-import React, {
-  useState,
-  useCallback,
-  useEffect,
-  useRef,
-  useMemo,
-} from "react";
+import React, { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { cn, ipfsToCfIpfs, shortenFileName, truncate } from "@/lib/utils";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
-import {
-  useAddress,
-  useContract,
-  useMintNFT,
-  useSDK,
-} from "@thirdweb-dev/react";
-import {
-  Dropdown,
-  Link,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Accordion,
-  AccordionItem,
-  Spinner,
-} from "@nextui-org/react";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from "@/components/ui/form";
+import { useAddress, useContract, useMintNFT, useSDK } from "@thirdweb-dev/react";
+import { Dropdown, Link, DropdownTrigger, DropdownMenu, DropdownItem, Accordion, AccordionItem, Spinner } from "@nextui-org/react";
 import { Button } from "@/components/ui/button";
 import { Check, ChevronsUpDown, Loader2, PlusIcon } from "lucide-react";
 import { RxDashboard } from "react-icons/rx";
 import { jars } from "@/lib/core/api";
 import { ContractForOwner, JarsContract, NFTCollection } from "@/lib/core/types";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useUserContext } from "@/components/(providers)";
 import Image from "next/image";
 import { Image as NextUIImage } from "@nextui-org/react";
@@ -81,7 +44,7 @@ import { IoCheckmarkCircle } from "react-icons/io5";
 import { MdOutlineNearbyError } from "react-icons/md";
 import { FiShare } from "react-icons/fi";
 import { TooltipMsg } from "@/components/(interfaces)";
-import { createTxHash } from "@/app/actions/createTxHash";
+import { createTxHash } from "@/actions/createTxHash";
 
 const mintSchema = z.object({
   collection: z.string().refine((value) => ethers.utils.isAddress(value), {
@@ -125,9 +88,7 @@ export default function MintNFTCard() {
   const [loadingContract, setLoadingContract] = useState(false);
   const [imageFileUrl, setImageFileUrl] = useState<string>("");
   const [selectedContract, setSelectedContract] = useState<NFTCollection>();
-  const [attributes, setAttributes] = useState<
-    { trait_type: string; value: string }[]
-  >([{ trait_type: "", value: "" }]);
+  const [attributes, setAttributes] = useState<{ trait_type: string; value: string }[]>([{ trait_type: "", value: "" }]);
   const [mintState, setMintState] = useState<{
     state: "idle" | "loading" | "error" | "process" | "success";
     message: string;
@@ -138,11 +99,7 @@ export default function MintNFTCard() {
   const [nftTokenId, setNftTokenId] = useState<string>("");
   const ref = useRef<HTMLButtonElement>(null);
   const { contract } = useContract(selectedContract?.contract);
-  const {
-    mutateAsync: mintNft,
-    isLoading: mintLoading,
-    error: mintError,
-  } = useMintNFT(contract);
+  const { mutateAsync: mintNft, isLoading: mintLoading, error: mintError } = useMintNFT(contract);
 
   const form = useForm<FormMintNft>({
     resolver: zodResolver(mintSchema),
@@ -173,10 +130,7 @@ export default function MintNFTCard() {
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      if (
-        acceptedFiles.length > 0 &&
-        acceptedFiles[0].type.startsWith("image/")
-      ) {
+      if (acceptedFiles.length > 0 && acceptedFiles[0].type.startsWith("image/")) {
         const file = acceptedFiles[0];
 
         if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
@@ -239,9 +193,7 @@ export default function MintNFTCard() {
       type: data.image.type,
     });
     if (data.attributes) {
-      data.attributes = data.attributes.filter(
-        (attr) => attr.trait_type && attr.value,
-      );
+      data.attributes = data.attributes.filter((attr) => attr.trait_type && attr.value);
     }
     setMintState({ state: "loading", message: "Accepting transaction" });
     mintNft(
@@ -283,16 +235,11 @@ export default function MintNFTCard() {
     <Card className="w-full max-w-[800px]">
       <CardHeader>
         <CardTitle>Create an NFT</CardTitle>
-        <CardDescription>
-          Mint your NFT by uploading an image and entering the metadata.
-        </CardDescription>
+        <CardDescription>Mint your NFT by uploading an image and entering the metadata.</CardDescription>
       </CardHeader>
       <CardContent className="px-5">
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(submitMintNft)}
-            className="flex flex-col items-center gap-8"
-          >
+          <form onSubmit={form.handleSubmit(submitMintNft)} className="flex flex-col items-center gap-8">
             <FormField
               control={form.control}
               name="collection"
@@ -313,9 +260,7 @@ export default function MintNFTCard() {
                             <>
                               <div className="relative flex h-[60px] w-[60px] items-center justify-center rounded-md bg-muted">
                                 <Image
-                                  src={
-                                    selectedContract.image || ""
-                                  }
+                                  src={selectedContract.image || ""}
                                   fill
                                   style={{ objectFit: "cover" }}
                                   alt={selectedContract.name}
@@ -323,12 +268,8 @@ export default function MintNFTCard() {
                                 />
                               </div>
                               <div className="flex flex-col items-start">
-                                <h2 className="text-medium">
-                                  {truncate(selectedContract.name, 26)}
-                                </h2>
-                                <h3 className="text-xs font-light text-foreground">
-                                  ERC-721
-                                </h3>
+                                <h2 className="text-medium">{truncate(selectedContract.name, 26)}</h2>
+                                <h3 className="text-xs font-light text-foreground">ERC-721</h3>
                               </div>
                             </>
                           ) : (
@@ -337,9 +278,7 @@ export default function MintNFTCard() {
                                 <RxDashboard className="h-[24px] w-[24px]" />
                               </div>
                               <div className="flex flex-col items-start">
-                                <h2 className="text-medium">
-                                  Choose a collection
-                                </h2>
+                                <h2 className="text-medium">Choose a collection</h2>
                               </div>
                             </>
                           )}
@@ -348,10 +287,7 @@ export default function MintNFTCard() {
                     </PopoverTrigger>
                     <PopoverContent className="max-h-[400px] w-[384px] min-w-[300px] items-center justify-start gap-3 overflow-y-scroll scroll-smooth bg-background md:w-[420px] lg:w-[500px] xl:w-[600px]">
                       {loadingContract && (
-                        <Button
-                          variant="ghost"
-                          className="flex h-fit w-full justify-start gap-3"
-                        >
+                        <Button variant="ghost" className="flex h-fit w-full justify-start gap-3">
                           <Skeleton className="h-[60px] w-[60px] rounded-md" />
                           <div className="flex flex-col items-start gap-1">
                             <Skeleton className="h-5 w-28" />
@@ -372,9 +308,7 @@ export default function MintNFTCard() {
                             <PlusIcon className="h-[24px] w-[24px]" />
                           </div>
                           <div className="flex select-none flex-col items-start">
-                            <h2 className="text-medium">
-                              Create a new collection
-                            </h2>
+                            <h2 className="text-medium">Create a new collection</h2>
                           </div>
                         </Button>
                       )}
@@ -383,10 +317,7 @@ export default function MintNFTCard() {
                           variant="ghost"
                           className="flex h-fit w-full justify-start gap-3"
                           onClick={() => {
-                            form.setValue(
-                              "collection",
-                              contract.contract,
-                            );
+                            form.setValue("collection", contract.contract);
                             setSelectedContract(contracts[i]);
                             setOpen(false);
                           }}
@@ -402,12 +333,8 @@ export default function MintNFTCard() {
                             />
                           </div>
                           <div className="flex select-none flex-col items-start">
-                            <h2 className="text-medium">
-                              {truncate(contract.name, 26)}
-                            </h2>
-                            <h3 className="text-xs font-light text-foreground">
-                              ERC-721
-                            </h3>
+                            <h2 className="text-medium">{truncate(contract.name, 26)}</h2>
+                            <h3 className="text-xs font-light text-foreground">ERC-721</h3>
                           </div>
                         </Button>
                       ))}
@@ -438,22 +365,17 @@ export default function MintNFTCard() {
                         style={{ display: "none" }}
                       />
                       <div
-                        className={cn(
-                          "flex h-fit w-[384px] min-w-[300px] items-center justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]",
-                        )}
+                        className={cn("flex h-fit w-[384px] min-w-[300px] items-center justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]")}
                       >
                         <div
                           className={cn(
                             "flex h-[150px] w-[150px] cursor-pointer items-center justify-center rounded-md bg-muted lg:h-[250px] lg:w-[250px]",
-                            uploadedMedia &&
-                              "border bg-background hover:border-accent",
+                            uploadedMedia && "border bg-background hover:border-accent",
                           )}
                           {...getRootProps()}
                           onClick={(e) => {
                             e.preventDefault();
-                            const fileInput = document.getElementById(
-                              "media",
-                            ) as HTMLInputElement;
+                            const fileInput = document.getElementById("media") as HTMLInputElement;
                             fileInput?.click();
                           }}
                         >
@@ -472,16 +394,8 @@ export default function MintNFTCard() {
                           )}
                         </div>
                         <div className="flex flex-col">
-                          <h2 className="text-sm font-bold">
-                            {shortenFileName(uploadedFileName) ||
-                              "Drag and drop or click to upload"}
-                          </h2>
-                          {!uploadedFileName && (
-                            <p className="text-xs">
-                              Recommended size: 350 x 350. File types: JPG, PNG,
-                              SVG, or GIF
-                            </p>
-                          )}
+                          <h2 className="text-sm font-bold">{shortenFileName(uploadedFileName) || "Drag and drop or click to upload"}</h2>
+                          {!uploadedFileName && <p className="text-xs">Recommended size: 350 x 350. File types: JPG, PNG, SVG, or GIF</p>}
                         </div>
                       </div>
                     </>
@@ -513,9 +427,7 @@ export default function MintNFTCard() {
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-md flex items-center gap-1 font-semibold">
-                    Description
-                  </FormLabel>
+                  <FormLabel className="text-md flex items-center gap-1 font-semibold">Description</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
@@ -533,49 +445,24 @@ export default function MintNFTCard() {
               name="attributes"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-md flex items-center gap-1 font-semibold">
-                    Properties
-                  </FormLabel>
+                  <FormLabel className="text-md flex items-center gap-1 font-semibold">Properties</FormLabel>
                   <FormControl>
                     <div className="flex w-[384px] min-w-[300px] flex-col items-start justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]">
                       {attributes.map((attribute, i) => (
                         <div key={i} className="grid w-full grid-cols-12 gap-2">
-                          <Input
-                            {...form.register(
-                              `attributes.${i}.trait_type` as const,
-                            )}
-                            className="col-span-6 w-full"
-                            placeholder="trait_type"
-                          />
-                          <Input
-                            {...form.register(`attributes.${i}.value` as const)}
-                            className="col-span-5 w-full"
-                            placeholder="value"
-                          />
+                          <Input {...form.register(`attributes.${i}.trait_type` as const)} className="col-span-6 w-full" placeholder="trait_type" />
+                          <Input {...form.register(`attributes.${i}.value` as const)} className="col-span-5 w-full" placeholder="value" />
                           <Button
                             variant="destructive"
                             type="button"
-                            onClick={() =>
-                              setAttributes(
-                                attributes.filter((_, index) => index !== i),
-                              )
-                            }
+                            onClick={() => setAttributes(attributes.filter((_, index) => index !== i))}
                             className="col-span-1"
                           >
                             X
                           </Button>
                         </div>
                       ))}
-                      <Button
-                        variant="outline"
-                        type="button"
-                        onClick={() =>
-                          setAttributes([
-                            ...attributes,
-                            { trait_type: "", value: "" },
-                          ])
-                        }
-                      >
+                      <Button variant="outline" type="button" onClick={() => setAttributes([...attributes, { trait_type: "", value: "" }])}>
                         Add Property
                       </Button>
                     </div>
@@ -584,11 +471,8 @@ export default function MintNFTCard() {
               )}
             />
 
-            <Button 
-              type="submit"
-              className="w-[384px] min-w-[300px] md:w-[420px] lg:w-[500px] xl:w-[600px] mt-6 mb-6"
-              >
-                Mint
+            <Button type="submit" className="mb-6 mt-6 w-[384px] min-w-[300px] md:w-[420px] lg:w-[500px] xl:w-[600px]">
+              Mint
             </Button>
 
             <AlertDialog>
@@ -617,24 +501,16 @@ export default function MintNFTCard() {
                         )}
                       </div>
                       <div className="flex flex-col items-start">
-                        <h2 className="text-lg font-bold">
-                          {form.getValues("name").toString()}
-                        </h2>
+                        <h2 className="text-lg font-bold">{form.getValues("name").toString()}</h2>
                         <h2 className="text-sm font-semibold">ERC-721</h2>
-                        <h3 className="text-sm font-semibold text-blue-600 text-foreground">
-                          {selectedContract?.name}
-                        </h3>
+                        <h3 className="text-sm font-semibold text-blue-600 text-foreground">{selectedContract?.name}</h3>
                       </div>
                     </section>
                     <section>
                       <Card>
                         <CardHeader>
                           <CardTitle>
-                            {mintState.state === "loading"
-                              ? "Minting NFT"
-                              : mintState.state === "success"
-                                ? "NFT Minted"
-                                : "Error"}
+                            {mintState.state === "loading" ? "Minting NFT" : mintState.state === "success" ? "NFT Minted" : "Error"}
                           </CardTitle>
                           <CardDescription>
                             <div className="flex w-full flex-col">
@@ -643,8 +519,8 @@ export default function MintNFTCard() {
                                   <Loader2 className="animate-spin" />
                                 ) : mintState.state === "process" || mintState.state === "success" ? (
                                   <IoCheckmarkCircle className="text-success" />
-                                ) : mintState.state === "error" && (
-                                  <MdOutlineNearbyError className="text-danger" />
+                                ) : (
+                                  mintState.state === "error" && <MdOutlineNearbyError className="text-danger" />
                                 )}{" "}
                                 Accepting transaction.
                               </p>
@@ -654,17 +530,9 @@ export default function MintNFTCard() {
                                 ) : mintState.state === "success" ? (
                                   <IoCheckmarkCircle className="text-success" />
                                 ) : (
-                                  mintState.state === "error" && (
-                                    <MdOutlineNearbyError className="text-danger" />
-                                  )
+                                  mintState.state === "error" && <MdOutlineNearbyError className="text-danger" />
                                 )}{" "}
-                                Nft minted{" "}
-                                {mintState.state === "success"
-                                  ? "successfully"
-                                  : mintState.state === "error"
-                                    ? "failed"
-                                    : "processing"}
-                                .
+                                Nft minted {mintState.state === "success" ? "successfully" : mintState.state === "error" ? "failed" : "processing"}.
                               </p>
                             </div>
                           </CardDescription>
@@ -721,9 +589,7 @@ export default function MintNFTCard() {
                           variant="default"
                           className="bg-blue-400"
                           onClick={() => {
-                            router.push(
-                              `/collection/${selectedContract?.contract}`,
-                            ); // ${nftTokenId}
+                            router.push(`/collection/${selectedContract?.contract}`); // ${nftTokenId}
                           }}
                         >
                           Go to NFT

@@ -14,14 +14,7 @@ import {
   AlertDialogFooter,
 } from "@/components/ui/alert-dialog";
 import { useNftContext } from "./nft-provider";
-import {
-  type DirectListingV3,
-  type NFT,
-  ThirdwebNftMedia,
-  Web3Button,
-  useBalance,
-  type EnglishAuction,
-} from "@thirdweb-dev/react";
+import { type DirectListingV3, type NFT, ThirdwebNftMedia, Web3Button, useBalance, type EnglishAuction } from "@thirdweb-dev/react";
 import { MdVerified } from "react-icons/md";
 import { NFT_MARKETPLACE } from "@/types/constant";
 import { LoginWelcomeScreen } from "@/components/(interfaces)/ConnectWeb3";
@@ -30,7 +23,7 @@ import { getMaticPriceInPHP } from "@/lib/core/coingecko";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { createTxHash } from "@/app/actions/createTxHash";
+import { createTxHash } from "@/actions/createTxHash";
 
 type BuyButtonProps = {
   nft: NFT | undefined;
@@ -38,21 +31,13 @@ type BuyButtonProps = {
   auctionListing: EnglishAuction[] | undefined;
 };
 
-export default function BuyButton({
-  nft,
-  listings,
-  auctionListing,
-}: BuyButtonProps) {
+export default function BuyButton({ nft, listings, auctionListing }: BuyButtonProps) {
   const router = useRouter();
   const { collection, marketPlaceContract } = useNftContext();
-  const [buyState, setBuyState] = useState<"idle" | "confirmation" | "success">(
-    "idle",
-  );
+  const [buyState, setBuyState] = useState<"idle" | "confirmation" | "success">("idle");
   const [amountInPhp, setAmountInPhp] = useState<string>("");
   const { data: balance, isLoading: loadingBalance } = useBalance();
-  const [isListed, setIsListed] = useState<"none" | "direct" | "auction">(
-    "none",
-  );
+  const [isListed, setIsListed] = useState<"none" | "direct" | "auction">("none");
 
   useEffect(() => {
     if (listings?.[0]) {
@@ -66,15 +51,11 @@ export default function BuyButton({
 
   useEffect(() => {
     if (listings && listings[0]) {
-      getMaticPriceInPHP(listings[0].currencyValuePerToken.displayValue).then(
-        (result) => {
-          setAmountInPhp(result);
-        },
-      );
+      getMaticPriceInPHP(listings[0].currencyValuePerToken.displayValue).then((result) => {
+        setAmountInPhp(result);
+      });
     } else if (auctionListing && auctionListing[0]) {
-      getMaticPriceInPHP(
-        auctionListing[0].buyoutCurrencyValue.displayValue,
-      ).then((result) => {
+      getMaticPriceInPHP(auctionListing[0].buyoutCurrencyValue.displayValue).then((result) => {
         setAmountInPhp(result);
       });
     }
@@ -87,7 +68,7 @@ export default function BuyButton({
       setBuyState("confirmation");
       txResult = await marketPlaceContract?.englishAuctions
         .buyoutAuction(auctionListing[0].id)
-        .then(async(data) => {
+        .then(async (data) => {
           await createTxHash("NewSale", data.receipt.transactionHash);
           setBuyState("success");
           revalidatePath("/me", "page");
@@ -103,19 +84,14 @@ export default function BuyButton({
         })
         .catch((e: Error) => {
           setBuyState("idle");
-          if (
-            e.message.includes(
-              "Reason: missing revert data in call exception; Transaction reverted without a reason string",
-            )
-          ) {
+          if (e.message.includes("Reason: missing revert data in call exception; Transaction reverted without a reason string")) {
             toast.error("Failed!", {
               description: `Insufficient funds for nft price.`,
               position: "bottom-right",
             });
           } else if (e.message.includes("Reason: user rejected transaction")) {
             toast.error("Failed!", {
-              description:
-                "The user denied the transaction or the transaction failed. Please try again.",
+              description: "The user denied the transaction or the transaction failed. Please try again.",
               position: "bottom-right",
             });
           }
@@ -124,7 +100,7 @@ export default function BuyButton({
       setBuyState("confirmation");
       txResult = await marketPlaceContract?.directListings
         .buyFromListing(listings[0].id, 1)
-        .then(async(data) => {
+        .then(async (data) => {
           await createTxHash("NewSale", data.receipt.transactionHash);
           setBuyState("success");
           revalidatePath("/me", "page");
@@ -140,19 +116,14 @@ export default function BuyButton({
         })
         .catch((e: Error) => {
           setBuyState("idle");
-          if (
-            e.message.includes(
-              "Reason: missing revert data in call exception; Transaction reverted without a reason string",
-            )
-          ) {
+          if (e.message.includes("Reason: missing revert data in call exception; Transaction reverted without a reason string")) {
             toast.error("Failed!", {
               description: `Insufficient funds for nft price.`,
               position: "bottom-right",
             });
           } else if (e.message.includes("Reason: user rejected transaction")) {
             toast.error("Failed!", {
-              description:
-                "The user denied the transaction or the transaction failed. Please try again.",
+              description: "The user denied the transaction or the transaction failed. Please try again.",
               position: "bottom-right",
             });
           }
@@ -168,30 +139,20 @@ export default function BuyButton({
     <AlertDialog>
       {/* Trigger Button */}
       <AlertDialogTrigger asChild>
-        <Button className="h-[3rem] w-full text-lg font-semibold">
-          Buy Now
-        </Button>
+        <Button className="h-[3rem] w-full text-lg font-semibold">Buy Now</Button>
       </AlertDialogTrigger>
 
       <AlertDialogContent className="w-[500px] min-w-[420px] p-0">
         {/* Header */}
         <AlertDialogHeader className="px-8 pt-8">
           <div className="flex items-center justify-between">
-            <AlertDialogTitle className="text-2xl font-bold">
-              Checkout
-            </AlertDialogTitle>
-            <AlertDialogCancel
-              className="rounded-full"
-              disabled={buyState != "idle"}
-            >
+            <AlertDialogTitle className="text-2xl font-bold">Checkout</AlertDialogTitle>
+            <AlertDialogCancel className="rounded-full" disabled={buyState != "idle"}>
               x
             </AlertDialogCancel>
           </div>
 
-          <AlertDialogDescription>
-            Verify your purchase here. Click &quot;CONFIRM AND PAY&quot; to
-            proceed.
-          </AlertDialogDescription>
+          <AlertDialogDescription>Verify your purchase here. Click &quot;CONFIRM AND PAY&quot; to proceed.</AlertDialogDescription>
         </AlertDialogHeader>
 
         {/* Body */}
@@ -235,13 +196,11 @@ export default function BuyButton({
             <p>You pay</p>
             {listings && listings[0] ? (
               <p>
-                {listings?.[0].currencyValuePerToken.displayValue}{" "}
-                {listings?.[0].currencyValuePerToken.symbol}
+                {listings?.[0].currencyValuePerToken.displayValue} {listings?.[0].currencyValuePerToken.symbol}
               </p>
             ) : auctionListing && auctionListing[0] ? (
               <p>
-                {auctionListing[0].buyoutCurrencyValue.displayValue}{" "}
-                {auctionListing[0].buyoutCurrencyValue.symbol}
+                {auctionListing[0].buyoutCurrencyValue.displayValue} {auctionListing[0].buyoutCurrencyValue.symbol}
               </p>
             ) : (
               <p>N/A</p>
@@ -253,11 +212,7 @@ export default function BuyButton({
           </div>
           <div className="my-6 flex justify-between px-4">
             <p>Your MATIC balance</p>
-            <p>
-              {balance
-                ? `${parseFloat(balance.displayValue).toFixed(3)} ${balance.symbol}`
-                : "Not Logged In"}
-            </p>
+            <p>{balance ? `${parseFloat(balance.displayValue).toFixed(3)} ${balance.symbol}` : "Not Logged In"}</p>
           </div>
 
           {/* Buy button action */}

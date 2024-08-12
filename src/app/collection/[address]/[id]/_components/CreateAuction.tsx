@@ -1,12 +1,7 @@
 "use client";
 
 import { NFT_MARKETPLACE } from "@/types/constant";
-import {
-  Web3Button,
-  useContract,
-  useCreateAuctionListing,
-  useValidEnglishAuctions,
-} from "@thirdweb-dev/react";
+import { Web3Button, useContract, useCreateAuctionListing, useValidEnglishAuctions } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -15,19 +10,8 @@ import { useNftContext } from "./nft-provider";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { addDays, format } from "date-fns";
@@ -35,22 +19,18 @@ import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { LoginWelcomeScreen } from "@/components/(interfaces)/ConnectWeb3";
-import { createTxHash } from "@/app/actions/createTxHash";
+import { createTxHash } from "@/actions/createTxHash";
 
 type CreateAuctionProps = {
   sellState: "idle" | "confirmation" | "success";
-  setSellState: React.Dispatch<
-    React.SetStateAction<"idle" | "confirmation" | "success">
-  >;
+  setSellState: React.Dispatch<React.SetStateAction<"idle" | "confirmation" | "success">>;
 };
 
 const AuctionFormSchema = z
   .object({
-    nftContractAddress: z
-      .string()
-      .refine((value) => ethers.utils.isAddress(value), {
-        message: "Invalid Address",
-      }),
+    nftContractAddress: z.string().refine((value) => ethers.utils.isAddress(value), {
+      message: "Invalid Address",
+    }),
     tokenId: z.string().min(1),
     startTimestamp: z.date(),
     endTimestamp: z.date(),
@@ -78,8 +58,7 @@ export default function CreateAuction({ sellState, setSellState }: CreateAuction
 
   const { contract: nftCollection } = useContract(contractAddress);
 
-  const { mutateAsync: createAuctionListing } =
-    useCreateAuctionListing(marketPlaceContract);
+  const { mutateAsync: createAuctionListing } = useCreateAuctionListing(marketPlaceContract);
 
   const form = useForm<z.infer<typeof AuctionFormSchema>>({
     resolver: zodResolver(AuctionFormSchema),
@@ -94,16 +73,10 @@ export default function CreateAuction({ sellState, setSellState }: CreateAuction
   });
 
   async function checkAndProvideApproval() {
-    const hasApproval = await nftCollection?.call("isApprovedForAll", [
-      nft?.owner,
-      NFT_MARKETPLACE,
-    ]);
+    const hasApproval = await nftCollection?.call("isApprovedForAll", [nft?.owner, NFT_MARKETPLACE]);
 
     if (!hasApproval) {
-      const txResult = await nftCollection?.call("setApprovalForAll", [
-        NFT_MARKETPLACE,
-        true,
-      ]);
+      const txResult = await nftCollection?.call("setApprovalForAll", [NFT_MARKETPLACE, true]);
 
       if (txResult) {
         console.log("Approval provided");
@@ -124,7 +97,7 @@ export default function CreateAuction({ sellState, setSellState }: CreateAuction
       startTimestamp: new Date(data.startTimestamp),
       endTimestamp: new Date(data.endTimestamp),
     })
-      .then(async(data) => {
+      .then(async (data) => {
         await createTxHash("NewAuction", data.receipt.transactionHash);
         // success state
         setSellState("success");
@@ -141,19 +114,14 @@ export default function CreateAuction({ sellState, setSellState }: CreateAuction
       .catch((e: Error) => {
         // error state
         setSellState("idle");
-        if (
-          e.message.includes(
-            "Reason: missing revert data in call exception; Transaction reverted without a reason string",
-          )
-        ) {
+        if (e.message.includes("Reason: missing revert data in call exception; Transaction reverted without a reason string")) {
           toast.error("Failed!", {
             description: `Insufficient funds for gas.`,
             position: "bottom-right",
           });
         } else if (e.message.includes("Reason: user rejected transaction")) {
           toast.error("Failed!", {
-            description:
-              "The user denied the transaction or the transaction failed. Please try again.",
+            description: "The user denied the transaction or the transaction failed. Please try again.",
             position: "bottom-right",
           });
         }
@@ -192,17 +160,10 @@ export default function CreateAuction({ sellState, setSellState }: CreateAuction
                       <FormControl>
                         <Button
                           variant={"outline"}
-                          className={cn(
-                            "w-[200px] pl-3 text-left font-normal",
-                            !field.value && "text-muted-foreground",
-                          )}
+                          className={cn("w-[200px] pl-3 text-left font-normal", !field.value && "text-muted-foreground")}
                           disabled={sellState != "idle"}
                         >
-                          {field.value ? (
-                            format(field.value, "PPP")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
+                          {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
                           <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                         </Button>
                       </FormControl>
@@ -236,17 +197,10 @@ export default function CreateAuction({ sellState, setSellState }: CreateAuction
                       <FormControl>
                         <Button
                           variant={"outline"}
-                          className={cn(
-                            "w-[200px] pl-3 text-left font-normal",
-                            !field.value && "text-muted-foreground",
-                          )}
+                          className={cn("w-[200px] pl-3 text-left font-normal", !field.value && "text-muted-foreground")}
                           disabled={sellState != "idle"}
                         >
-                          {field.value ? (
-                            format(field.value, "PPP")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
+                          {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
                           <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                         </Button>
                       </FormControl>
