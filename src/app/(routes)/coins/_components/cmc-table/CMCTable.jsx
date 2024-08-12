@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { CMCTableHeader, CMCTableRow, CurrencyToggleButton } from ".";
-import useAxios from "@/app/coins/api/useAxios";
+import useAxios from "../../api/useAxios";
 import { MobileTableRow } from "./CMCTableRow";
 import { MobileTableHeader } from "./CMCTableHeader";
 

@@ -5,7 +5,7 @@ import DetailsCard from "../_components/DetailsCard";
 import ProfileCard from "../_components/ProfileCard";
 import { useUserContext } from "@/components/(providers)";
 import { Loading } from "@/components/(skeletons)";
-import NoConnectedWallet from "@/app/me/_components/NoConnectedWallet";
+import NoConnectedWallet from "@/app/(routes)/me/_components/NoConnectedWallet";
 
 export default function DeployContractPage() {
   const user = useUserContext();
@@ -30,9 +30,7 @@ export default function DeployContractPage() {
         />
       </section>
       <section className="hidden lg:block">
-        {(user.isLoading && <>Loading ProfileCard...</>) || (
-          <ProfileCard user={user.user} />
-        )}
+        {(user.isLoading && <>Loading ProfileCard...</>) || <ProfileCard user={user.user} />}
         <DetailsCard title="Once your contract deployment is complete, you'll have the ability to:" />
       </section>
     </main>

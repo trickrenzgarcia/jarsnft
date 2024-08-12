@@ -32,7 +32,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/coins/_components/cmc-table/index.js"
+    "src/app/(routes)/coins/_components/cmc-table/index.js"
   ],
   "exclude": [
     "node_modules"

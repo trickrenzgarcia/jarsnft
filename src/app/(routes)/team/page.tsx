@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import RaeImage from "../../../public/assets/Rae.png";
-import PatrickImage from "../../../public/assets/Trick.png";
-import RigorImage from "../../../public/assets/Rigor.png";
-import JeffImage from "../../../public/assets/Jeff.png";
+import RaeImage from "/public/assets/Rae.png";
+import PatrickImage from "/public/assets/Trick.png";
+import RigorImage from "/public/assets/Rigor.png";
+import JeffImage from "/public/assets/Jeff.png";
 import { Navbar } from "@/components/(layout)";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
@@ -70,38 +70,15 @@ const Team = () => {
                 key={member.name}
                 className="relative transform overflow-hidden rounded shadow-lg transition duration-300 hover:shadow-2xl lg:hover:-translate-y-2"
               >
-                <Image
-                  className="h-60 w-full object-cover md:h-64 xl:h-80"
-                  src={member.image}
-                  alt={member.name}
-                  width={300}
-                  height={500}
-                />
+                <Image className="h-60 w-full object-cover md:h-64 xl:h-80" src={member.image} alt={member.name} width={300} height={500} />
                 <div className="absolute inset-0 flex flex-col justify-center self-center bg-black bg-opacity-75 px-5 py-4 text-center opacity-0 transition-opacity duration-300 hover:opacity-100">
-                  <p className="mb-1 text-lg font-bold text-gray-100">
-                    {member.name}
-                  </p>
+                  <p className="mb-1 text-lg font-bold text-gray-100">{member.name}</p>
                   <p className="mb-4 text-xs text-gray-100">{member.role}</p>
-                  <p className="mb-4 text-xs tracking-wide text-gray-400">
-                    {member.description}
-                  </p>
+                  <p className="mb-4 text-xs tracking-wide text-gray-400">{member.description}</p>
                   <div className="flex items-center justify-center space-x-3">
                     <a href={member.Instagram}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        x="0px"
-                        y="0px"
-                        width="50"
-                        height="50"
-                        viewBox="0 0 48 48"
-                      >
-                        <radialGradient
-                          id="yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1"
-                          cx="19.38"
-                          cy="42.035"
-                          r="44.899"
-                          gradientUnits="userSpaceOnUse"
-                        >
+                      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48">
+                        <radialGradient id="yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse">
                           <stop offset="0" stop-color="#fd5"></stop>
                           <stop offset=".328" stop-color="#ff543f"></stop>
                           <stop offset=".348" stop-color="#fc5245"></stop>
@@ -123,11 +100,7 @@ const Team = () => {
                           gradientUnits="userSpaceOnUse"
                         >
                           <stop offset="0" stop-color="#4168c9"></stop>
-                          <stop
-                            offset=".999"
-                            stop-color="#4168c9"
-                            stop-opacity="0"
-                          ></stop>
+                          <stop offset=".999" stop-color="#4168c9" stop-opacity="0"></stop>
                         </radialGradient>
                         <path
                           fill="url(#yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2)"
@@ -137,12 +110,7 @@ const Team = () => {
                           fill="#fff"
                           d="M24,31c-3.859,0-7-3.14-7-7s3.141-7,7-7s7,3.14,7,7S27.859,31,24,31z M24,19c-2.757,0-5,2.243-5,5	s2.243,5,5,5s5-2.243,5-5S26.757,19,24,19z"
                         ></path>
-                        <circle
-                          cx="31.5"
-                          cy="16.5"
-                          r="1.5"
-                          fill="#fff"
-                        ></circle>
+                        <circle cx="31.5" cy="16.5" r="1.5" fill="#fff"></circle>
                         <path
                           fill="#fff"
                           d="M30,37H18c-3.859,0-7-3.14-7-7V18c0-3.86,3.141-7,7-7h12c3.859,0,7,3.14,7,7v12	C37,33.86,33.859,37,30,37z M18,13c-2.757,0-5,2.243-5,5v12c0,2.757,2.243,5,5,5h12c2.757,0,5-2.243,5-5V18c0-2.757-2.243-5-5-5H18z"
@@ -150,14 +118,7 @@ const Team = () => {
                       </svg>
                     </a>
                     <a href={member.facebook}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        x="0px"
-                        y="0px"
-                        width="50"
-                        height="50"
-                        viewBox="0 0 48 48"
-                      >
+                      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48">
                         <path
                           fill="#3F51B5"
                           d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"
@@ -169,14 +130,7 @@ const Team = () => {
                       </svg>
                     </a>
                     <a href={member.github}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        x="0px"
-                        y="0px"
-                        width="50"
-                        height="50"
-                        viewBox="0 0 48 48"
-                      >
+                      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48">
                         <linearGradient
                           id="rL2wppHyxHVbobwndsT6Ca_AZOZNnY73haj_gr1"
                           x1="4"

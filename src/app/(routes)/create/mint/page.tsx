@@ -3,7 +3,7 @@
 import { useUserContext } from "@/components/(providers)";
 import MintNFTCard from "../_components/MintNFTCard";
 import { Loading } from "@/components/(skeletons)";
-import NoConnectedWallet from "@/app/me/_components/NoConnectedWallet";
+import NoConnectedWallet from "@/app/(routes)/me/_components/NoConnectedWallet";
 
 export default function MintingPage() {
   const user = useUserContext();
