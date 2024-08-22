@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,22 +8,12 @@ interface NFTCardCategoriesProps {
   image: string;
 }
 
-export default function NFTCardCategories({
-  categoryLink,
-  categoryName,
-  image,
-}: NFTCardCategoriesProps) {
+export default function NFTCardCategories({ categoryLink, categoryName, image }: NFTCardCategoriesProps) {
   return (
     <Card className="mx-auto h-[300px] w-80">
       <CardHeader className="relative h-52 overflow-hidden">
         <Link href={categoryLink}>
-          <Image
-            className="rounded-[--radius]"
-            src={image}
-            fill
-            alt="NFT"
-            style={{ objectFit: "cover" }}
-          />
+          <Image className="rounded-[--radius]" src={image} fill alt="NFT Category" style={{ objectFit: "cover" }} />
         </Link>
       </CardHeader>
 
