@@ -24,7 +24,9 @@ const Trending = async () => {
     const formattedMarketCapUSD = (totalMarketCapUSD / 1e12).toFixed(3);
 
     return (
-      <div className={`${styles.trendingWrapper} mt-5 xl:my-5`}>
+      <div
+        className={`${styles.trendingWrapper} mt-5 border-y-2 border-[#a5a5a580] py-6 dark:border-[#6e6e6e69] xl:my-5`}
+      >
         <div className="flex justify-between">
           <h1 className={styles.h1}>
             Todays Cryptocurrency Prices by Market Cap
@@ -46,7 +48,7 @@ const Trending = async () => {
           </p>
         </div>
         <br />
-        <div className={styles.flexCenter} style={{ height: "auto" }}>
+        <div className={styles.flexCenter} style={{ height: "max-content" }}>
           <TrendingCard title="Trending Coins (24h)" icon={fire} type="coins" />
           <TrendingCard title="Top NFTs (24h)" icon={up} type="nfts" />
           <FearAndGreedCard title="Fear and Greed Index" icon={greed} />
