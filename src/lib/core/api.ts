@@ -17,6 +17,7 @@ import { User } from "./types";
 import { env } from "../env.mjs";
 import { SimpleHashContracts } from "@/types/simple-hash";
 import { SimpleHashNFT } from "@/types/simple-hash/nft";
+import { CollectionData } from "@/utils/getCollections";
 
 export type JarsOptions = {
   /**
@@ -224,7 +225,7 @@ export class JarsAPI {
    * @returns - An array of NFT collections
    */
   async getNFTCollections() {
-    return await this.request<NFTCollection[]>(`/deploy/nft-collection`, {
+    return await this.request<CollectionData[]>(`/deploy/nft-collection`, {
       next: { tags: ["nft-collection", "metadata", "getNFTCollections"] },
     });
   }

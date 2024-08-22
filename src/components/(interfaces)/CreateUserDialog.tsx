@@ -1,23 +1,7 @@
 "use client";
 
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Button as NextButton } from "@nextui-org/react";
 import { Input } from "@/components/ui/input";
@@ -33,8 +17,8 @@ import { useState } from "react";
 import { Profile } from "@/types/users";
 import { cn } from "@/lib/utils";
 import { jars } from "@/lib/core/api";
-import updateUser from "@/app/actions/updateUser";
-import createProfile from "@/app/actions/createProfile";
+import updateUser from "@/actions/updateUser";
+import createProfile from "@/actions/createProfile";
 
 const formCreateUserSchema = z.object({
   name: z
@@ -54,18 +38,10 @@ type UserProfile = {
   isLoading: boolean;
 };
 
-export default function CreateUserDialog({
-  isOpenCreate,
-}: {
-  isOpenCreate: boolean;
-}) {
+export default function CreateUserDialog({ isOpenCreate }: { isOpenCreate: boolean }) {
   const [loading, setLoading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(isOpenCreate);
-  const {
-    user,
-    isLoggedIn,
-    isLoading: sessionLoading,
-  } = useUser() as UserProfile;
+  const { user, isLoggedIn, isLoading: sessionLoading } = useUser() as UserProfile;
   // Logout/Disconnect the wallet
   const { logout, isLoading } = useLogout();
 
@@ -78,9 +54,7 @@ export default function CreateUserDialog({
     },
   });
 
-  async function handleUpdateUser(
-    values: z.infer<typeof formCreateUserSchema>,
-  ) {
+  async function handleUpdateUser(values: z.infer<typeof formCreateUserSchema>) {
     if (isLoggedIn) {
       const updatedUser = updateUser(user.address, {
         name: values.name,
@@ -103,7 +77,7 @@ export default function CreateUserDialog({
     setLoading(true);
 
     const emailExists = await checkEmailExists(values.email);
-    if(emailExists) {
+    if (emailExists) {
       form.setError("email", {
         type: "manual",
         message: "Email is taken. Please use another email.",
@@ -121,9 +95,7 @@ export default function CreateUserDialog({
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Create profile</DialogTitle>
-          <DialogDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
-          </DialogDescription>
+          <DialogDescription>Make changes to your profile here. Click save when you&apos;re done.</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="">
@@ -156,27 +128,21 @@ export default function CreateUserDialog({
             />
 
             <DialogFooter>
-              <div className="flex w-full flex-col items-center justify-center gap-3 mt-8">
+              <div className="mt-8 flex w-full flex-col items-center justify-center gap-3">
                 <NextButton
                   type="submit"
                   disabled={loading}
                   isLoading={loading}
                   spinner={<Spinner />}
                   fullWidth
-                  className={cn(
-                    loading ? "cursor-not-allowed" : "cursor-pointer",
-                  )}
+                  className={cn(loading ? "cursor-not-allowed" : "cursor-pointer")}
                 >
                   {!loading && "Create"}
                 </NextButton>
                 <Button variant="link" onClick={() => logout()}>
                   {isLoading ? <Spinner /> : "Logout"}
                 </Button>
-                <Link
-                  href="/insights/setup-wallet"
-                  className="text-left text-sm hover:text-fuchsia-600"
-                  target="_blank"
-                >
+                <Link href="/insights/setup-wallet" className="text-left text-sm hover:text-fuchsia-600" target="_blank">
                   New to wallet?
                 </Link>
               </div>

@@ -1,4 +1,4 @@
-import getIsUserFavorite from "@/app/actions/getIsUserFavorite";
+import getIsUserFavorite from "@/actions/getIsUserFavorite";
 import { jars } from "@/lib/core/api";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";

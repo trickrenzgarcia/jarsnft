@@ -101,6 +101,14 @@ const config: Config = {
           '0%': { transform: 'rotateX(-90deg)', opacity: '0' },
           '100%': { transform: 'rotateX(0)', opacity: '1' },
         },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "marquee-vertical": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -111,6 +119,8 @@ const config: Config = {
         "fade-right": "fade-right 1s ease-in-out",
         "flip-up": "flip-up 1s ease-in-out",
         "flip-down": "flip-down 1s ease-in-out",
+        marquee: "marquee var(--duration) linear infinite",
+        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
       },
     },
   },
