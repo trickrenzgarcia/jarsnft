@@ -1,16 +1,15 @@
 import { CollectionData } from "@/utils/getCollections";
 import NFTCarousel from "./NFTCarousel";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import CategoryTrend from "./CategoryTrend";
 
-export default function PFPTrend({
-  collections,
-}: {
-  collections: CollectionData[];
-}) {
+export default function PFPTrend({ collections }: { collections: CollectionData[] }) {
   return (
     <>
       <div>
-        <p className="mb-12 text-xl font-bold">Trending in Profile Picture</p>
-        <div className="px-0 md:px-10">
+        <CategoryTrend name={"Profile Picture"} />
+        <div className="px-0">
           <NFTCarousel collections={collections} />
         </div>
       </div>
