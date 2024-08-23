@@ -24,7 +24,7 @@ const CMCTable = () => {
         onClick={handleCurrencyChange}
         currency={currency}
       />
-      <div className="hidden xl:block">
+      <div className="hidden md:hidden lg:block xl:block">
         <table
           className="mt-3 w-full"
           style={{ borderCollapse: "unset", borderSpacing: "0 20px" }}
@@ -58,7 +58,7 @@ const CMCTable = () => {
       </div>
       
         <table
-          className="mx-auto w-svw"
+          className="mx-auto w-svw lg:hidden"
           style={{ borderCollapse: "separate", borderSpacing: "0 20px" }}
         >
           <MobileTableHeader />

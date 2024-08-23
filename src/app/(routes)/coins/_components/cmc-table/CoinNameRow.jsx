@@ -12,7 +12,7 @@ const CoinNameRow = ({ name, icon, symbol }) => {
         quality={75}
         priority={true}
       />
-      <p className="truncate">{name} </p>
+      <p className="truncate text-sky-500">{name} </p>
       <p className="text-gray-400"> &nbsp; {upperCase(symbol)} </p>
     </div>
   );
