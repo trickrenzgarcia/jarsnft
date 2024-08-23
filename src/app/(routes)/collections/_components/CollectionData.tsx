@@ -50,7 +50,7 @@ export default async function CollectionData({ searchParams }: { searchParams: {
               src={collection.image}
               width={50}
               height={50}
-              style={{ objectFit: "cover", objectPosition: "center" }}
+              style={{ minHeight: "60px", minWidth: "60px", objectFit: "cover", objectPosition: "center" }}
               alt="logo of a collection"
               className="size-14 rounded-md"
             />
