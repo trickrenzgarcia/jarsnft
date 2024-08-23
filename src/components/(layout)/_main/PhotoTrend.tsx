@@ -8,7 +8,7 @@ export default function PhotoTrend({ collections }: { collections: CollectionDat
   return (
     <>
       <div className="mx-10">
-        <CategoryTrend name={"Photography"} />
+        <CategoryTrend name={"Photography"} link="/category/photography" />
         <div className="px-0">
           <NFTCarousel collections={collections} />
         </div>

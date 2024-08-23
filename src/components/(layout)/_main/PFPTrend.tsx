@@ -8,7 +8,7 @@ export default function PFPTrend({ collections }: { collections: CollectionData[
   return (
     <>
       <div className="mx-10">
-        <CategoryTrend name={"Profile Picture"} />
+        <CategoryTrend name={"Profile Picture"} link="/category/pfp" />
         <div className="px-0">
           <NFTCarousel collections={collections} />
         </div>

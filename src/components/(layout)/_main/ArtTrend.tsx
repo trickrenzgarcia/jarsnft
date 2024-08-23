@@ -6,7 +6,7 @@ export default function ArtTrend({ collections }: { collections: CollectionData[
   return (
     <>
       <div className="mx-10">
-        <CategoryTrend name={"art"} />
+        <CategoryTrend name={"Art"} link="/category/arts" />
         <div className="px-0">
           <NFTCarousel collections={collections} />
         </div>
