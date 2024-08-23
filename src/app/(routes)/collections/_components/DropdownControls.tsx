@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { IoIosArrowDown } from "react-icons/io";
 import { z } from "zod";
 
@@ -17,7 +17,9 @@ export default function DropdownControls({ searchParams }: { searchParams: { [ke
   const collectionCategory = (searchParams["category"] as string) ?? "all";
 
   const CategorySchema = z.enum(["all", "art", "photography", "pfp"]);
-  console.log(CategorySchema.parse(collectionCategory));
+  if (!CategorySchema.safeParse(collectionCategory).success) {
+    redirect(`?category=all&page=1`);
+  }
 
   let categoryFullName = "";
 
