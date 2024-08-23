@@ -36,7 +36,7 @@ export default function Footer() {
 
   const companyLinks: Array<LinkType> = [
     { href: "/about", description: "About" },
-    { href: "/team", description: "Team" },
+    { href: "/", description: "Team" },
   ];
   //#region End
 
