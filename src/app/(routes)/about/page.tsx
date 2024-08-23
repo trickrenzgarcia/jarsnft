@@ -2,10 +2,12 @@ import React from "react";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import { TextRevealCard, TextRevealCardDescription, TextRevealCardTitle } from "@/components/ui/text-reveal";
 import { BackgroundBeams } from "@/components/ui/background-beams";
-import { Press } from "./_components/Press";
 import { Navbar } from "@/components/(layout)";
+import AboutIcon from "./_components/AboutIcon";
+import Marquee from "react-fast-marquee";
+import Image from "next/image";
 
-const people = [
+const admins = [
   {
     id: 1,
     name: "Alrae Chaluangco",
@@ -32,117 +34,85 @@ const people = [
   },
 ];
 
+const companyImages = [
+  {
+    image: "/assets/aboutImages/coinbase.png"
+  },
+  {
+    image: "/assets/aboutImages/coolcats.png"
+  },
+  {
+    image: "/assets/aboutImages/gala.png"
+  },
+  {
+    image: "/assets/aboutImages/aavegotchi.png"
+  },
+  {
+    image: "/assets/aboutImages/polygon.png"
+  },
+  {
+    image: "/assets/aboutImages/layer3.png"
+  },
+  {
+    image: "/assets/aboutImages/gods.png"
+  },
+]
+
+const nextJsIcon = {
+  d:"M9 15v-6l7.745 10.65a9 9 0 1 1 2.255 -1.993 M15 12v-3"
+}
+
+const reactJsIcon = {
+  d:"M6.306 8.711c-2.602 .723 -4.306 1.926 -4.306 3.289c0 2.21 4.477 4 10 4c.773 0 1.526 -.035 2.248 -.102 M17.692 15.289c2.603 -.722 4.308 -1.926 4.308 -3.289c0 -2.21 -4.477 -4 -10 -4c-.773 0 -1.526 .035 -2.25 .102 M6.305 15.287c-.676 2.615 -.485 4.693 .695 5.373c1.913 1.105 5.703 -1.877 8.464 -6.66c.387 -.67 .733 -1.339 1.036 -2 M17.694 8.716c.677 -2.616 .487 -4.696 -.694 -5.376c-1.913 -1.105 -5.703 1.877 -8.464 6.66c-.387 .67 -.733 1.34 -1.037 2 M12 5.424c-1.925 -1.892 -3.82 -2.766 -5 -2.084c-1.913 1.104 -1.226 5.877 1.536 10.66c.386 .67 .793 1.304 1.212 1.896 M12 18.574c1.926 1.893 3.821 2.768 5 2.086c1.913 -1.104 1.226 -5.877 -1.536 -10.66c-.375 -.65 -.78 -1.283 -1.212 -1.897 M11.5 12.866a1 1 0 1 0 1 -1.732a1 1 0 0 0 -1 1.732z"
+}
+
+const tailwindIcon = {
+  d:"M18.5 9.51a4.22 4.22 0 0 1-1.91-1.34A5.77 5.77 0 0 0 12 6a4.72 4.72 0 0 0-5 4 3.23 3.23 0 0 1 3.5-1.49 4.32 4.32 0 0 1 1.91 1.35A5.77 5.77 0 0 0 17 12a4.72 4.72 0 0 0 5-4 3.2 3.2 0 0 1-3.5 1.51zm-13 4.98a4.22 4.22 0 0 1 1.91 1.34A5.77 5.77 0 0 0 12 18a4.72 4.72 0 0 0 5-4 3.23 3.23 0 0 1-3.5 1.49 4.32 4.32 0 0 1-1.91-1.35A5.8 5.8 0 0 0 7 12a4.72 4.72 0 0 0-5 4 3.2 3.2 0 0 1 3.5-1.51z"
+}
+
+const framerIcon = {
+  d:"M12 12l-8 -8v16l16 -16v16l-4 -4 M20 12l-8 8l-4 -4"
+}
+
+const styles= {
+  h1:"relative mb-6 max-w-4xl text-left text-3xl font-bold text-zinc-700 dark:text-zinc-100 md:text-7xl",
+  h2:"font-regular relative mb-8 max-w-2xl text-left text-sm leading-loose tracking-wide text-sky-500 antialiased sm:text-xl"
+}
+
 const page = () => {
   return (
     <>
       <Navbar />
       <BackgroundBeams />
-      <div className="relative h-[830px] overflow-hidden px-2 pb-40 pt-20 md:pt-40">
+      <div className="relative my-auto mx-auto min-h-screen overflow-hidden">
         <div className="relative z-20 mx-auto w-full max-w-[84rem]">
-          <div className="grid grid-cols-1 gap-10 pb-20 xl:grid-cols-2">
-            <div className="flex flex-col items-start px-8 xl:px-0">
-              <h1 className="relative mb-6 max-w-4xl text-left text-3xl font-bold text-zinc-700 dark:text-zinc-100 md:text-7xl">About JarsNFT</h1>
-              <h2 className="font-regular relative mb-8 max-w-2xl text-left text-sm leading-loose tracking-wide text-zinc-500 antialiased sm:text-xl">
-                NFT Marketplace that empowers Artist to monetize their work.
+          <div className="grid grid-cols-1 gap-10 xl:grid-cols-2 justify-items-center lg:my-20">
+            <div className="flex flex-col items-start space-y-4 px-8 xl:px-0">
+              <h1 className={styles.h1}>About JarsNFT</h1>
+              <h2 className={styles.h2}>
+              To develop a Philippine-based decentralized art NFT trading marketplace empowered by polygon blockchain technology using a hash algorithm.
               </h2>
-              <h2 className="font-regular relative mb-8 max-w-2xl text-left text-sm leading-loose tracking-wide text-zinc-500 antialiased sm:text-xl">
-                Providing Opportunities for Traders
+              <h2 className={styles.h2}>
+              To develop a module that will allow artists to upload (NFT&apos;s)<br/> non-fungible tokens .
               </h2>
-              <h2 className="font-regular relative mb-8 max-w-2xl text-left text-sm leading-loose tracking-wide text-zinc-500 antialiased sm:text-xl">
-                Seamless Experience and Security
+              <h2 className={styles.h2}>
+              To develop a module that will allow traders to buy and sell (NFT&apos;s) non-fungible tokens .
+              </h2>
+              <h2 className={styles.h2}>
+              To develop a module that will guide users on how to exchange cryptocurrencies across different centralized exchanges.
               </h2>
               <div className="relative mt-10">
                 <div className="relative z-20 mb-4 flex flex-wrap items-center justify-start overflow-x-auto">
-                  <div className="mr-4 flex items-center space-x-2">
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="h-4 w-4 flex-shrink-0 stroke-1 text-neutral-500 md:h-10 md:w-10"
-                      >
-                        <path d="M9 15v-6l7.745 10.65a9 9 0 1 1 2.255 -1.993"></path>
-                        <path d="M15 12v-3"></path>
-                      </svg>
-                    </span>
-                    <span className="flex-shrink-0 text-sm font-semibold text-neutral-500">Next.js</span>
-                  </div>
-                  <div className="mr-4 flex items-center space-x-2">
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="h-4 w-4 flex-shrink-0 stroke-1 text-neutral-500 md:h-10 md:w-10"
-                      >
-                        <path d="M6.306 8.711c-2.602 .723 -4.306 1.926 -4.306 3.289c0 2.21 4.477 4 10 4c.773 0 1.526 -.035 2.248 -.102"></path>
-                        <path d="M17.692 15.289c2.603 -.722 4.308 -1.926 4.308 -3.289c0 -2.21 -4.477 -4 -10 -4c-.773 0 -1.526 .035 -2.25 .102"></path>
-                        <path d="M6.305 15.287c-.676 2.615 -.485 4.693 .695 5.373c1.913 1.105 5.703 -1.877 8.464 -6.66c.387 -.67 .733 -1.339 1.036 -2"></path>
-                        <path d="M17.694 8.716c.677 -2.616 .487 -4.696 -.694 -5.376c-1.913 -1.105 -5.703 1.877 -8.464 6.66c-.387 .67 -.733 1.34 -1.037 2"></path>
-                        <path d="M12 5.424c-1.925 -1.892 -3.82 -2.766 -5 -2.084c-1.913 1.104 -1.226 5.877 1.536 10.66c.386 .67 .793 1.304 1.212 1.896"></path>
-                        <path d="M12 18.574c1.926 1.893 3.821 2.768 5 2.086c1.913 -1.104 1.226 -5.877 -1.536 -10.66c-.375 -.65 -.78 -1.283 -1.212 -1.897"></path>
-                        <path d="M11.5 12.866a1 1 0 1 0 1 -1.732a1 1 0 0 0 -1 1.732z"></path>
-                      </svg>
-                    </span>
-                    <span className="flex-shrink-0 text-sm font-semibold text-neutral-500">React</span>
-                  </div>
-                  <div className="mr-4 flex items-center space-x-2">
-                    <span>
-                      <svg
-                        stroke="currentColor"
-                        fill="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 24 24"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        className="h-4 w-4 flex-shrink-0 stroke-[0.5px] text-neutral-500 md:h-10 md:w-10"
-                        height="1em"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M18.5 9.51a4.22 4.22 0 0 1-1.91-1.34A5.77 5.77 0 0 0 12 6a4.72 4.72 0 0 0-5 4 3.23 3.23 0 0 1 3.5-1.49 4.32 4.32 0 0 1 1.91 1.35A5.77 5.77 0 0 0 17 12a4.72 4.72 0 0 0 5-4 3.2 3.2 0 0 1-3.5 1.51zm-13 4.98a4.22 4.22 0 0 1 1.91 1.34A5.77 5.77 0 0 0 12 18a4.72 4.72 0 0 0 5-4 3.23 3.23 0 0 1-3.5 1.49 4.32 4.32 0 0 1-1.91-1.35A5.8 5.8 0 0 0 7 12a4.72 4.72 0 0 0-5 4 3.2 3.2 0 0 1 3.5-1.51z"></path>
-                      </svg>
-                    </span>
-                    <span className="flex-shrink-0 text-sm font-semibold text-neutral-500">TailwindCSS</span>
-                  </div>
-                  <div className="mr-4 flex items-center space-x-2">
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        stroke="currentColor"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        className="h-4 w-4 flex-shrink-0 stroke-1 text-neutral-500 md:h-10 md:w-10"
-                      >
-                        <path d="M12 12l-8 -8v16l16 -16v16l-4 -4"></path>
-                        <path d="M20 12l-8 8l-4 -4"></path>
-                      </svg>
-                    </span>
-                    <span className="flex-shrink-0 text-sm font-semibold text-neutral-500">Framer Motion</span>
-                  </div>
+                  <AboutIcon icon={nextJsIcon} iconName="Next JS"/>
+                  <AboutIcon icon={reactJsIcon} iconName={"React JS"}/>
+                  <AboutIcon icon={tailwindIcon} iconName={"Tailwind CSS"}/>
+                  <AboutIcon icon={framerIcon} iconName={"Framer Motion"}/>
                 </div>
               </div>
             </div>
             <div className="relative hidden h-full w-full xl:block">
               <div className="mb-2 flex w-full flex-row items-end justify-end pr-4">
-                <AnimatedTooltip items={people} />
+                <AnimatedTooltip items={admins} />
               </div>
               <div className="p-auto relative w-auto overflow-hidden rounded-xl">
                 <TextRevealCard text="You know the business" revealText="We have the solution">
@@ -152,7 +122,18 @@ const page = () => {
               </div>
             </div>
           </div>
-          <Press />
+          <Marquee speed={50} pauseOnHover loop={0}>
+            {companyImages.map((companyImage, index) => (
+              <Image
+                key={index}
+                src={companyImage.image}
+                width={200}
+                height={100}
+                sizes="(max-width: 200px), (max-height: 100px)"
+                alt="company logo"
+              />
+            ))}
+          </Marquee>
         </div>
       </div>
     </>
