@@ -11,7 +11,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@devnomic/marquee": "^1.0.2",
     "@hookform/resolvers": "^3.3.4",
     "@nextui-org/modal": "^2.0.29",
     "@nextui-org/react": "^2.2.10",
