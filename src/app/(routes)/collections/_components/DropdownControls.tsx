@@ -35,7 +35,7 @@ export default function DropdownControls({ searchParams }: { searchParams: { [ke
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex h-12 w-52 items-center justify-center gap-2 rounded-lg bg-background">
+      <DropdownMenuTrigger className="flex h-12 w-52 items-center justify-center gap-2 rounded-lg bg-accent-foreground/5 hover:bg-accent-foreground/10">
         {categoryFullName}
         <IoIosArrowDown />
       </DropdownMenuTrigger>
