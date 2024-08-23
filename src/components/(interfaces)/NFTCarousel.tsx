@@ -12,6 +12,7 @@ type NFTCarouselProps = {
   nftCollections: CollectionPopularData[];
 };
 
+// This carousel is used for popular collections in the home page
 export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
   return (
     <Carousel className="m-auto w-[100%]">
@@ -64,7 +65,7 @@ export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div className="hidden lg:block">
+      <div className="hidden md:block">
         {nftCollections.length > 6 && (
           <>
             <CarouselPrevious />

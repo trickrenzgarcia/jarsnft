@@ -7,7 +7,7 @@ import CategoryTrend from "./CategoryTrend";
 export default function PFPTrend({ collections }: { collections: CollectionData[] }) {
   return (
     <>
-      <div>
+      <div className="mx-10">
         <CategoryTrend name={"Profile Picture"} />
         <div className="px-0">
           <NFTCarousel collections={collections} />

@@ -19,7 +19,7 @@ export default function NFTCarousel({ collections, withExtra = false, align = "s
       <Carousel className="w-full " opts={{ align: align }}>
         <CarouselContent className="">
           {collections.map((data, index) => (
-            <CarouselItem key={index} className={cn(`basis-[75%] md:basis-1/2 lg:basis-1/3 xl:basis-1/4`)}>
+            <CarouselItem key={index} className={cn(`basis-[60%] md:basis-1/2 lg:basis-1/3`)}>
               <NFTCard
                 collectionLink={data.contract}
                 itemLink={data.contract}
