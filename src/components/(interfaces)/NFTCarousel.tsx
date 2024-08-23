@@ -40,9 +40,7 @@ export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
                   <CardFooter className="flex flex-col gap-3 pt-2">
                     <div className="flex w-full items-center gap-1">
                       <div className="truncate">
-                        <p className="truncate font-medium">
-                          {collection.name}
-                        </p>
+                        <p className="truncate font-medium">{collection.name}</p>
                       </div>
                       <div>
                         <MdVerified className="text-xl" />
