@@ -3,7 +3,7 @@ import { upperCase } from "../../api/currencyFunctions";
 
 const CoinNameRow = ({ name, icon, symbol }) => {
   return (
-    <div className="flex flex-initial space-x-1 gap-1 grow-0">
+    <div className="flex flex-none gap-1 max-w-[300px]">
       <Image
         src={icon}
         alt={name}
@@ -12,7 +12,7 @@ const CoinNameRow = ({ name, icon, symbol }) => {
         quality={75}
         priority={true}
       />
-      <p>{name} </p>
+      <p className="truncate">{name} </p>
       <p className="text-gray-400"> &nbsp; {upperCase(symbol)} </p>
     </div>
   );

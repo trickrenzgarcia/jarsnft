@@ -25,29 +25,27 @@ const Trending = async () => {
 
     return (
       <div
-        className={`${styles.trendingWrapper} mt-5 border-y-2 border-[#a5a5a580] py-6 dark:border-[#6e6e6e69] xl:my-5`}
+        className={`${styles.trendingWrapper} border-y-2 border-[#a5a5a580] py-6 dark:border-[#6e6e6e69] xl:my-5`}
       >
         <div className="flex justify-between">
           <h1 className={styles.h1}>
             Todays Cryptocurrency Prices by Market Cap
           </h1>
         </div>
-        <br />
-        <div className="flex items-center">
+        <div className="flex items-center gap-2 my-2">
           <p>
-            The Global Crypto Market Cap is ${formattedMarketCapUSD} Trillion, a
+            The Global Crypto Market Cap is ${formattedMarketCapUSD}, a
           </p>
           <span
-            className={`flex gap-1 ${percentageChange < 0 ? "text-red-500" : "text-green-500"}`}
+            className={`flex gap-1 ${percentageChange < 0 ? "text-red-500" : "text-green"}`}
           >
             {percentageChange < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
-            {roundTwoDecimalPlaces(percentageChange)} %&nbsp;
+            {roundTwoDecimalPlaces(percentageChange)}%
           </span>
           <p className="gap-1">
             {percentageChange < 0 ? "decrease" : "increase"} over the last day.
           </p>
         </div>
-        <br />
         <div className={styles.flexCenter} style={{ height: "max-content" }}>
           <TrendingCard title="Trending Coins (24h)" icon={fire} type="coins" />
           <TrendingCard title="Top NFTs (24h)" icon={up} type="nfts" />

@@ -27,7 +27,7 @@ const TopHeader = async () => {
     h2: "text-lg font-bold"
   };
   return (
-    <div className="space-y-6 flex flex-wrap justify-center gap-5">
+    <div className="my-4 flex flex-wrap justify-center gap-5">
       <p>
         <span className={styles.h2}>{`Coins: `}</span> {`${activeCryptos}`}
       </p>

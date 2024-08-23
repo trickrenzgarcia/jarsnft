@@ -7,7 +7,7 @@ import { currencyFormat } from "../../api/currencyFunctions";
 import { Sparklines, SparklinesLine } from "react-sparklines";
 
 const styles = {
-  tableRow: `border-b border-gray-800 text-[0.93rem]`,
+  tableRow: `mx-auto border-b border-gray-800 text-[0.93rem]`,
 };
 
 const CMCTableRow = ({
@@ -26,7 +26,7 @@ const CMCTableRow = ({
   sparkline,
 }) => {
   return (
-    <tbody className={`${styles.tableRow}`}>
+    <tbody className="table-auto">
       <tr>
         <td></td>
         <td>{starNum}</td>
@@ -99,25 +99,25 @@ export const MobileTableRow = ({
   hRate = "---",
 }) => {
   return (
-    <tbody className={`${styles.tableRow}`}>
-      <tr>
+    <tbody className={`${styles.tableRow}`} > 
+      <tr> 
         <td></td>
         <td>{starNum}</td>
 
         {coinIcon && coinIcon ? (
-          <td>
-            <CoinNameRow name={coinName} icon={coinIcon} symbol={coinSymbol} />
+          <td className="max-w-[100px]">
+            <CoinNameRow name={coinName} icon={coinIcon} symbol=""/>
           </td>
         ) : (
           <></>
         )}
 
-        <td className="flex content-end justify-end">
-          <p className="text-right">
+        <td>
+          <p className="text-end">
             {currency === "usd" ? "$" : "₱"} {price}
             <span
-              className={`flex justify-end gap-1 text-center text-sm ${
-                hRate < 0 ? "text-red-500" : "text-green"
+              className={`flex justify-end gap-1 text-sm ${
+                hRate < 0 ? "text-red-500" : "text-green-600"
               }`}
             >
               {hRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
