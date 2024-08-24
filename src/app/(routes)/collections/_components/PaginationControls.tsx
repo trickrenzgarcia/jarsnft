@@ -73,7 +73,7 @@ export default function PaginationControls({
           </PaginationItem>
         )}
         {pages.map((page) => (
-          <PaginationItem key={page} className={cn({ "rounded-md bg-accent text-accent-foreground": page == Number(searchParams["page"]) })}>
+          <PaginationItem key={page} className={cn({ "rounded-md bg-accent text-accent-foreground": page == (Number(searchParams["page"]) || 1)})}>
             <PaginationLink href={`?category=${category}&page=${page}`} scroll={false}>
               {page}
             </PaginationLink>
