@@ -14,7 +14,7 @@ export default async function Home() {
       <Navbar />
       <Hero />
 
-      <div className="container my-20 space-y-10">
+      <div className="container my-10 space-y-10">
         <PopularCollections />
 
         {/* <TopNFTCollections /> */}
