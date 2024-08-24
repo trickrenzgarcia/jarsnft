@@ -51,7 +51,7 @@ export const LoginWelcomeScreen = () => {
         <Image 
           src="/assets/background/login_wall.webp" 
           alt="Modal Login Wallpaper"
-          className="opacity-60"
+          className="opacity-80"
           width={500}
           height={500}
         />
@@ -73,7 +73,7 @@ export const LoginWelcomeScreen = () => {
         </motion.div>
         <p className="mt-2 mb-8 font-medium stroke-black">Connect your wallet to trade NFTs.</p>
         <Link
-          href="/insights/getting-started#installing-wallet"
+          href="/insights/setup-wallet"
           target="_blank"
           className="mt-52 cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
         >
