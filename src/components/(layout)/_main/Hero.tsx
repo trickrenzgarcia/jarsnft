@@ -45,9 +45,9 @@ export default function Hero() {
           className="animate-fade animate-once animate-duration-[1200ms] animate-ease-in"
         />
       </div>
-      <div className="absolute z-10 ml-2 mt-6 w-[500px] rounded-xl bg-white/85 p-2 dark:bg-black/85 sm:ml-28 sm:p-8">
+      <div className="hidden lg:block xl:block absolute z-10 ml-2 mt-6 w-[500px] rounded-xl bg-white/85 p-2 dark:bg-black/85 sm:ml-28 sm:p-8">
         <h1 className="text-xl font-bold sm:text-[2rem] sm:leading-normal">
-          <TypewriterEffect words={words} />
+          <TypewriterEffect words={words} className="hidden lg:block xl:block " />
         </h1>
       </div>
     </section>
