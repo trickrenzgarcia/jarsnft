@@ -49,17 +49,17 @@ export default async function CollectionData({ searchParams }: { searchParams: {
       {slicedCollections.map((collection, i) => (
         <Link
           href={`/collection/${collection.contract}`}
-          className="grid grid-cols-5 lg:grid-cols-8 place-items-center transition-background hover:bg-accent-foreground/15 space-x-4"
+          className="grid grid-cols-5 lg:grid-cols-8 place-items-center transition-background hover:bg-accent-foreground/15 rounded-lg space-x-4"
           key={i}
         >
-          <div className="flex items-center gap-4 justify-self-start py-4">
+          <div className="ml-1 flex items-center gap-4 justify-self-start py-4">
             <Image
               src={collection.image}
               width={50}
               height={50}
               style={{ minHeight: "60px", minWidth: "60px", objectFit: "cover", objectPosition: "center" }}
               alt="logo of a collection"
-              className="size-14 rounded-md"
+              className="size-14 rounded-lg"
             />
             <p className="max-w-[14rem] h-fit w-full truncate">{collection.name}</p>
             {true && <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" />}
