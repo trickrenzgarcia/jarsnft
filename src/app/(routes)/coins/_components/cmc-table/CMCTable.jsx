@@ -12,7 +12,7 @@ const CMCTable = () => {
   );
 
   // Function to handle currency change
-  const handleCurrencyChange = () => {
+  const CurrencyChange = () => {
     // Toggle between USD and PHP
     const newCurrency = currency === "usd" ? "php" : "usd";
     setCurrency(newCurrency);
@@ -21,7 +21,7 @@ const CMCTable = () => {
   return (
     <div className="mx-auto my-2 space-y-4 max-w-screen-lg font-bold">
       <CurrencyToggleButton
-        onClick={handleCurrencyChange}
+        onClick={CurrencyChange}
         currency={currency}
       />
       <div className="hidden md:hidden lg:block xl:block">
