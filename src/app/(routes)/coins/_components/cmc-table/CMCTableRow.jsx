@@ -45,8 +45,9 @@ const CMCTableRow = ({
         <td>
           <p
             className={`flex w-full gap-1 text-center ${
-              hRate < 0 ? "text-red-500" : "text-green"
+              hRate < 0 ? "text-red-500" : ""
             }`}
+            style={hRate >= 0 ? { color: '#39dd15' }: {}}
           >
             {hRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
             {roundTwoDecimalPlaces(hRate)}%
@@ -55,8 +56,8 @@ const CMCTableRow = ({
         <td>
           <p
             className={`flex w-full gap-1 text-center ${
-              dRate < 0 ? "text-red-500" : "text-green"
-            }`}
+              dRate < 0 ? "text-red-500" : ""}`}
+              style={dRate >= 0 ? { color: '#39dd15' }: {}}
           >
             {dRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
             {roundTwoDecimalPlaces(dRate)}%
@@ -82,7 +83,7 @@ const CMCTableRow = ({
 
         <td>
           <Sparklines svgWidth={160} height={60} data={sparkline} quality={100}>
-            <SparklinesLine color={hRate < 0 ? "red" : "#2DFE54"} />
+            <SparklinesLine color={hRate < 0 ? "red" : "#2eff00"} />
           </Sparklines>
         </td>
       </tr>
@@ -117,8 +118,9 @@ export const MobileTableRow = ({
             {currency === "usd" ? "$" : "₱"} {price}
             <span
               className={`flex justify-end gap-1 text-sm ${
-                hRate < 0 ? "text-red-500" : "text-green-600"
+                hRate < 0 ? "text-red-500" : ""
               }`}
+              style={hRate >= 0 ? { color: '#39dd15' }: {}}
             >
               {hRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
               {roundTwoDecimalPlaces(hRate)}%
