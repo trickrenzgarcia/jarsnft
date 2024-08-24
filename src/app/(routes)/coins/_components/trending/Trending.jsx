@@ -47,7 +47,7 @@ const Trending = async () => {
             {percentageChange < 0 ? "decrease" : "increase"} over the last day.
           </p>
         </div>
-        <div className={styles.flexCenter} style={{ height: "max-content" }}>
+        <div className={`${styles.flexCenter} mt-8`} style={{ height: "max-content" }}>
           <TrendingCard title="Trending Coins (24h)" icon={fire} type="coins" />
           <TrendingCard title="Top NFTs (24h)" icon={up} type="nfts" />
           <FearAndGreedCard title="Fear and Greed Index" icon={greed} />

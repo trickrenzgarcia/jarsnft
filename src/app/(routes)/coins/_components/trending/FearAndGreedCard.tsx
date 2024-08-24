@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const styles = {
-  trendingCard: `w-full p-6 py-5 pb-5 dark:bg-[#1C1C1C] bg-[#CED4DA] rounded-xl h-full flex flex-col justify-between`,
+  trendingCard: `w-full p-6 py-5 pb-5 dark:bg-[#1C1C1C] bg-[#CED4DA] rounded-xl min-h-64 flex flex-col justify-between`,
   trendingCardWrapper: `ml-3 flex items-center justify-between`,
 };
 
@@ -21,8 +21,7 @@ export default async function FearAndGreedCard({ title, icon }: Props) {
     const maxValue = 100;
     const minAngle = 0;
     const maxAngle = 180;
-    const normalizedAngle =
-      (value * (maxAngle - minAngle)) / maxValue + minAngle;
+    const normalizedAngle = (value * (maxAngle - minAngle)) / maxValue + minAngle;
     return normalizedAngle;
   };
 
@@ -57,13 +56,7 @@ export default async function FearAndGreedCard({ title, icon }: Props) {
             <p className="text-xl font-bold">{fng}</p>
             <p className="font-light">{getFngCopy()}</p>
           </div>
-          <svg
-            width="177"
-            height="89"
-            viewBox="0 0 177 89"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg width="177" height="89" viewBox="0 0 177 89" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M4.32557 89C1.87842 89 -0.116956 87.0063 0.00533754 84.5517C0.699657 70.6157 4.64771 57.0372 11.5298 44.9158C12.7419 42.7809 15.492 42.1788 17.5547 43.5013C19.6173 44.8239 20.2101 47.5697 19.0098 49.7114C13.0232 60.393 9.55721 72.3137 8.87958 84.5522C8.74371 87.006 6.77273 89 4.32557 89Z"
               fill="#EA3943"
