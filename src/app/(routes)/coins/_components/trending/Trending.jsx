@@ -37,7 +37,8 @@ const Trending = async () => {
             The Global Crypto Market Cap is ${formattedMarketCapUSD}, a
           </p>
           <span
-            className={`flex gap-1 ${percentageChange < 0 ? "text-red-500" : "text-green"}`}
+            className={`flex gap-1 ${percentageChange < 0 ? "text-red-500" : ""}`}
+            style={percentageChange >= 0 ? { color: "#39dd15" } : {}}
           >
             {percentageChange < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
             {roundTwoDecimalPlaces(percentageChange)}%
