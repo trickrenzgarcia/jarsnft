@@ -18,7 +18,7 @@ export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
     <Carousel className="m-auto w-[100%]">
       <CarouselContent className="px-2 py-2 md:px-0">
         {nftCollections.map((collection, index) => (
-          <CarouselItem key={index} className="basis-[50%] sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
+          <CarouselItem key={index} className="basis-[50%] md:basis-1/3 lg:basis-1/4 xl:basis-1/5">
             <div className="animate-fade animate-once animate-duration-[1200ms] animate-ease-in cursor-pointer duration-100 ease-out hover:-translate-y-1">
               <Link href={`/collection/${collection.contract}`}>
                 <CollectionCard item={collection} hideFloorPrice={false} />
@@ -63,7 +63,7 @@ export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div className="hidden md:block">
+      <div>
         {nftCollections.length > 6 && (
           <>
             <CarouselPrevious />

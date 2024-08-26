@@ -6,7 +6,7 @@ async function NFTContentWrapper({ title }: { title: string }) {
 
   return (
     <section>
-      <h2 className="mb-3 text-left text-2xl lg:text-5xl font-bold">{title}</h2>
+      <h2 className="mb-3 text-left text-2xl font-bold lg:text-4xl">{title}</h2>
       <NFTCarousel nftCollections={nftCollections} />
     </section>
   );

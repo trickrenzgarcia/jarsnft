@@ -7,7 +7,7 @@ import CategoryTrend from "./CategoryTrend";
 export default function PhotoTrend({ collections }: { collections: CollectionData[] }) {
   return (
     <>
-      <div className="mx-10">
+      <div className="mx-5 md:mx-10">
         <CategoryTrend name={"Photography"} link="/category/photography" />
         <div className="px-0">
           <NFTCarousel collections={collections} />
