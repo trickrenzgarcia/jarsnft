@@ -1,9 +1,11 @@
 # JarsNFT
 
 A web3 NFT marketplace is designed and developed to allow artists to gain monetary funds from their artworks through the buying and selling of NFTs. This also aims to develop a decentralized NFT marketplace that will
-solve the problems pertaining to the _trading of NFTs_**, _NFT authenticity_**, and _fees_**, with a focus on enhancing intuitiveness, transparency, and design. The system will help artists and collectors to have a comfortable environment in which they can seamlessly interact and transact. Developed using React, nextJS, nodeJS, and the Web3 Technology. 
+solve the problems pertaining to the **_trading of NFTs_**, **_NFT authenticity_**, and **_fees_**, with a focus on enhancing intuitiveness, transparency, and design. 
 
-**An MOR / Thesis Project by Alrae, Patrick, Jeffrey, Rigor**
+The system will help artists and collectors to have a comfortable environment in which they can seamlessly interact and transact. Developed using React, nextJS, nodeJS, and the Web3 Technology. 
+
+**- An MOR / Thesis Project by Alrae, Patrick, Jeffrey, Rigor**
 
 ## Getting Started
 
