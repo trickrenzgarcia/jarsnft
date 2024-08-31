@@ -10,9 +10,9 @@ const CoinNameRow = ({ name, icon, symbol }) => {
         width={25}
         height={25}
         quality={75}
-        priority={true}
+        loading="lazy"
       />
-      <p className="truncate text-sky-500">{name} </p>
+      <p className="truncate text-sky-500">{name}</p>
       <p className="text-gray-400"> &nbsp; {upperCase(symbol)} </p>
     </div>
   );

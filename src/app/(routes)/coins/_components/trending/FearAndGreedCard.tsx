@@ -1,8 +1,8 @@
 import Image from "next/image";
 
 const styles = {
-  trendingCard: `w-full p-6 py-5 pb-5 dark:bg-[#1C1C1C] bg-[#CED4DA] rounded-xl min-h-64 flex flex-col justify-between`,
-  trendingCardWrapper: `ml-3 flex items-center justify-between`,
+  trendingCard: `w-full p-6 my-6 dark:bg-[#1C1C1C] bg-[#CED4DA] min-h-[268px] rounded-lg flex flex-col`,
+  trendingCardWrapper: `flex items-center`,
 };
 
 type Props = {
@@ -11,10 +11,10 @@ type Props = {
 };
 
 export default async function FearAndGreedCard({ title, icon }: Props) {
-  const fngFetch = await fetch("https://api.alternative.me/fng/", {
+  const fearData = await fetch("https://api.alternative.me/fng/", {
     next: { revalidate: 300 },
   });
-  const fngData = await fngFetch.json();
+  const fngData = await fearData.json();
   const fng = fngData.data[0].value;
 
   const normalizeAngle = (value: number) => {
@@ -26,19 +26,33 @@ export default async function FearAndGreedCard({ title, icon }: Props) {
   };
 
   const getFngCopy = () => {
-    if (fng > 55) return "Greed";
-    if (fng < 45) return "Fear";
-    return "Neutral";
+    if(fng <= 20)
+    {
+      return "Extreme fear";
+    }
+    else if (fng <= 49){
+      return "Fear";
+    }
+    else if (fng >= 50)
+    {
+      return "Neutral"
+    }
+    else if (fng >= 69)
+      {
+        return "Greed"
+      }
+      else{
+        return "Extreme Greed"
+      }
   };
   const normalizedAngle = normalizeAngle(fng);
 
   return (
     <div className={styles.trendingCard}>
       <div className={styles.trendingCardWrapper}>
-        <div className="flex">
-          {icon && <Image src={icon} width={30} height={30} alt="" />}
-          &nbsp;&nbsp;
-          <p className="font-bold">{title}</p>
+        <div className="flex flex-row gap-5">
+          {icon && <Image src={icon} width={40} height={40} alt="Image" />}
+          <p className="text-lg font-bold">{title}</p>
         </div>
       </div>
       <br />

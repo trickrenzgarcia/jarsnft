@@ -19,16 +19,10 @@ const CMCTable = () => {
   };
 
   return (
-    <div className="mx-auto my-2 space-y-4 max-w-screen-lg font-bold">
-      <CurrencyToggleButton
-        onClick={CurrencyChange}
-        currency={currency}
-      />
+    <div className="mx-auto my-2 max-w-screen-lg space-y-4 font-bold">
+      <CurrencyToggleButton onClick={CurrencyChange} currency={currency} />
       <div className="hidden md:hidden lg:block xl:block">
-        <table
-          className="mt-3 w-full"
-          style={{ borderCollapse: "unset", borderSpacing: "0 20px" }}
-        >
+        <table className="w-full" style={{ borderCollapse: "unset", borderSpacing: "0 20px" }}>
           <CMCTableHeader />
           {response && response ? (
             response.map((coin, index) => {
@@ -56,33 +50,29 @@ const CMCTable = () => {
           )}
         </table>
       </div>
-      
-        <table
-          className="mx-auto w-svw lg:hidden"
-          style={{ borderCollapse: "separate", borderSpacing: "0 20px" }}
-        >
-          <MobileTableHeader />
-          {response && response ? (
-            response.map((coin, index) => {
-              return (
-                <MobileTableRow
-                  currency={currency}
-                  key={index}
-                  starNum={coin.market_cap_rank}
-                  coinName={coin.name}
-                  coinSymbol={coin.symbol}
-                  coinIcon={coin.image}
-                  hRate={coin.price_change_percentage_24h}
-                  price={coin.current_price}
-                />
-              );
-            })
-          ) : (
-            <></>
-          )}
-        </table>
-      </div>
- 
+
+      <table className="w-full lg:hidden" style={{ borderCollapse: "separate", borderSpacing: "0 20px" }}>
+        <MobileTableHeader />
+        {response && response ? (
+          response.map((coin, index) => {
+            return (
+              <MobileTableRow
+                currency={currency}
+                key={index}
+                starNum={coin.market_cap_rank}
+                coinName={coin.name}
+                coinSymbol={coin.symbol}
+                coinIcon={coin.image}
+                hRate={coin.price_change_percentage_24h}
+                price={coin.current_price}
+              />
+            );
+          })
+        ) : (
+          <></>
+        )}
+      </table>
+    </div>
   );
 };
 

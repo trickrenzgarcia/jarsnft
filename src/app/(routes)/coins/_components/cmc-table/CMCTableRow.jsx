@@ -43,22 +43,13 @@ const CMCTableRow = ({
           {currency === "usd" ? "$" : "₱"} {price}
         </td>
         <td>
-          <p
-            className={`flex w-full gap-1 text-center ${
-              hRate < 0 ? "text-red-500" : ""
-            }`}
-            style={hRate >= 0 ? { color: '#39dd15' }: {}}
-          >
+          <p className="flex w-full gap-1 text-center" style={hRate >= 0 ? { color: "#39dd15" } : { color: "#DC143C" }}>
             {hRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
             {roundTwoDecimalPlaces(hRate)}%
           </p>
         </td>
         <td>
-          <p
-            className={`flex w-full gap-1 text-center ${
-              dRate < 0 ? "text-red-500" : ""}`}
-              style={dRate >= 0 ? { color: '#39dd15' }: {}}
-          >
+          <p className="flex w-full gap-1 text-center" style={dRate >= 0 ? { color: "#39dd15" } : { color: "#DC143C" }}>
             {dRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
             {roundTwoDecimalPlaces(dRate)}%
           </p>
@@ -82,32 +73,24 @@ const CMCTableRow = ({
         </td>
 
         <td>
-          <Sparklines svgWidth={160} height={60} data={sparkline} quality={100}>
-            <SparklinesLine color={hRate < 0 ? "red" : "#2eff00"} />
+          <Sparklines svgWidth={150} height={70} data={sparkline} quality={75}>
+            <SparklinesLine color={hRate < 0 ? "#DC143C" : "#2eff00"} />
           </Sparklines>
         </td>
       </tr>
     </tbody>
   );
 };
-export const MobileTableRow = ({
-  starNum,
-  coinName,
-  coinIcon,
-  currency,
-  coinSymbol = "---",
-  price = "----",
-  hRate = "---",
-}) => {
+export const MobileTableRow = ({ starNum, coinName, coinIcon, currency, coinSymbol = "---", price = "----", hRate = "---" }) => {
   return (
-    <tbody className={`${styles.tableRow}`} > 
-      <tr> 
+    <tbody className={`${styles.tableRow}`}>
+      <tr>
         <td></td>
         <td>{starNum}</td>
 
         {coinIcon && coinIcon ? (
           <td className="max-w-[100px]">
-            <CoinNameRow name={coinName} icon={coinIcon} symbol=""/>
+            <CoinNameRow name={coinName} icon={coinIcon} symbol="" />
           </td>
         ) : (
           <></>
@@ -116,12 +99,7 @@ export const MobileTableRow = ({
         <td>
           <p className="text-end">
             {currency === "usd" ? "$" : "₱"} {price}
-            <span
-              className={`flex justify-end gap-1 text-sm ${
-                hRate < 0 ? "text-red-500" : ""
-              }`}
-              style={hRate >= 0 ? { color: '#39dd15' }: {}}
-            >
+            <span className={`flex justify-end gap-1 text-sm ${hRate < 0 ? "text-red-500" : ""}`} style={hRate >= 0 ? { color: "#39dd15" } : {}}>
               {hRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
               {roundTwoDecimalPlaces(hRate)}%
             </span>

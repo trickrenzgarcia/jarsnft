@@ -1,58 +1,38 @@
 import React from "react";
-import fire from "../../assets/gif/fire.gif";
-import up from "../../assets/gif/up.gif";
-import greed from "../../assets/gif/greed.gif";
+import flame from "../../assets/svg/flame.svg";
+import rocket from "../../assets/svg/rocket.svg";
+import dollar from "../../assets/svg/dollar.svg";
 import { TrendingCard, FearAndGreedCard } from ".";
-// import TrendingCard from "./TrendingCard";
-// import FearAndGreedCard from "./FearAndGreedCard";
 import { getCoingeckoGlobalData } from "../../api/apiCoingecko";
 import { roundTwoDecimalPlaces } from "../../api/currencyFunctions";
 import { TbCaretUpFilled } from "react-icons/tb";
 import { TbCaretDownFilled } from "react-icons/tb";
 
-const styles = {
-  trendingWrapper: `mx-auto max-w-screen-2xl`,
-  h1: `font-bold text-3xl`,
-  flexCenter: `hidden xl:flex items-center gap-5`,
-};
-
 const Trending = async () => {
   try {
-    const data = await getCoingeckoGlobalData();
-    const percentageChange = data.data.market_cap_change_percentage_24h_usd;
-    const totalMarketCapUSD = data.data.total_market_cap.usd;
-    const formattedMarketCapUSD = (totalMarketCapUSD / 1e12).toFixed(3);
+    let data = await getCoingeckoGlobalData();
+    let percentChange = data.data.market_cap_change_percentage_24h_usd;
+    let usdCap = (data.data.total_market_cap.usd / 1e12).toFixed(3);
+    const icon = percentChange < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />;
+    const result = percentChange < 0 ? "decrease" : "increase";
+    const resultColor = percentChange < 0 ? "#DC143C" : "#2eff00";
 
     return (
-      <div
-        className={`${styles.trendingWrapper} border-y-2 border-[#a5a5a580] py-6 dark:border-[#6e6e6e69] xl:my-5`}
-      >
-        <div className="flex justify-between">
-          <h1 className={styles.h1}>
-            Todays Cryptocurrency Prices by Market Cap
-          </h1>
+      <>
+        <div className="my-4 flex flex-1 flex-col gap-4">
+          <div className="text-sm font-bold lg:text-4xl">Todays Cryptocurrency Prices by Market Cap</div>
+          <div className="flex items-center gap-1 text-sm font-semibold lg:text-3xl">
+            {`The Global Crypto Market Cap is ${usdCap}T,`} <span style={{ color: resultColor }}>{icon}</span>
+            <span style={{ color: resultColor }}>{`a ${roundTwoDecimalPlaces(percentChange)}% ${result}`}</span> over the last day.
+          </div>
         </div>
-        <div className="flex items-center gap-2 my-2">
-          <p>
-            The Global Crypto Market Cap is ${formattedMarketCapUSD}, a
-          </p>
-          <span
-            className={`flex gap-1 ${percentageChange < 0 ? "text-red-500" : ""}`}
-            style={percentageChange >= 0 ? { color: "#39dd15" } : {}}
-          >
-            {percentageChange < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
-            {roundTwoDecimalPlaces(percentageChange)}%
-          </span>
-          <p className="gap-1">
-            {percentageChange < 0 ? "decrease" : "increase"} over the last day.
-          </p>
+
+        <div className="flex-1 items-center gap-5 lg:flex">
+          <TrendingCard title="Trending Coins (24h)" icon={flame} type="coins" />
+          <TrendingCard title="Top NFTs (24h)" icon={rocket} type="nfts" />
+          <FearAndGreedCard title="Fear and Greed Index" icon={dollar} />
         </div>
-        <div className={`${styles.flexCenter} mt-8`} style={{ height: "max-content" }}>
-          <TrendingCard title="Trending Coins (24h)" icon={fire} type="coins" />
-          <TrendingCard title="Top NFTs (24h)" icon={up} type="nfts" />
-          <FearAndGreedCard title="Fear and Greed Index" icon={greed} />
-        </div>
-      </div>
+      </>
     );
   } catch (error) {
     console.error("Error fetching global data:", error);
