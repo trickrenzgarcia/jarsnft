@@ -1,4 +1,4 @@
-import CollectionData from "./_components/CollectionData";
+import Collections from "./_components/Collections";
 import DropdownControls from "./_components/DropdownControls";
 
 export default function CollectionsPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
@@ -8,7 +8,7 @@ export default function CollectionsPage({ searchParams }: { searchParams: { [key
         Collections
       </h1>
       <DropdownControls searchParams={searchParams} />
-      <CollectionData searchParams={searchParams} />
+      <Collections searchParams={searchParams} />
     </>
   );
 }

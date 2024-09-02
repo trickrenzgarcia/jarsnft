@@ -6,10 +6,8 @@ import Image from "next/image";
 import { MdVerified } from "react-icons/md";
 import { ReadMore } from "./ReadMore";
 import React, { useEffect } from "react";
-// import { FaEthereum } from "react-icons/fa";
 import { SiPolygon } from "react-icons/si";
 import TooltipMsg from "@/components/(interfaces)/TooltipMsg";
-// import { MetadataSchema } from "@/types";
 import { CustomContractMetadata } from "@thirdweb-dev/sdk";
 import {
   useContract,

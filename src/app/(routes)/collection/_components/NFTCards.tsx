@@ -22,8 +22,6 @@ import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
 import { NFT_MARKETPLACE } from "@/types/constant";
-// import { useEffect } from "react";
-// import { jars } from "@/lib/core/api";
 
 export default function NFTCards({ address }: { address: string }) {
   const { contract } = useContract(address);
