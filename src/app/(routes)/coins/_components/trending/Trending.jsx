@@ -1,7 +1,7 @@
 import React from "react";
-import flame from "../../assets/svg/flame.svg";
-import rocket from "../../assets/svg/rocket.svg";
-import dollar from "../../assets/svg/dollar.svg";
+import flame from "/public/flame.svg";
+import rocket from "/public/rocket.svg";
+import dollar from "/public/dollar.svg";
 import { TrendingCard, FearAndGreedCard } from ".";
 import { getCoingeckoGlobalData } from "../../api/apiCoingecko";
 import { roundTwoDecimalPlaces } from "../../api/currencyFunctions";

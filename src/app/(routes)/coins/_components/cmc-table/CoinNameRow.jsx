@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { upperCase } from "../../api/currencyFunctions";
 
 const CoinNameRow = ({ name, icon, symbol }) => {
+  const cryptoSymbol = symbol.toUpperCase();
+
   return (
     <div className="flex flex-none gap-1 max-w-[300px]">
       <Image
@@ -13,7 +14,7 @@ const CoinNameRow = ({ name, icon, symbol }) => {
         loading="lazy"
       />
       <p className="truncate text-sky-500">{name}</p>
-      <p className="text-gray-400"> &nbsp; {upperCase(symbol)} </p>
+      <p className="text-gray-400">{cryptoSymbol}</p>
     </div>
   );
 };

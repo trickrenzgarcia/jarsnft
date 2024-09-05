@@ -1,7 +1,6 @@
 import CoinNameRow from "./CoinNameRow";
 import { TbCaretUpFilled } from "react-icons/tb";
 import { TbCaretDownFilled } from "react-icons/tb";
-import { upperCase } from "../../api/currencyFunctions";
 import { roundTwoDecimalPlaces } from "../../api/currencyFunctions";
 import { currencyFormat } from "../../api/currencyFunctions";
 import { Sparklines, SparklinesLine } from "react-sparklines";
@@ -62,13 +61,13 @@ const CMCTableRow = ({
         <td>
           <p>{currencyFormat(volumeValue)}</p>
           <p className="text-gray-400">
-            {currencyFormat(volumeCryptoValue)} {upperCase(coinSymbol)}
+            {currencyFormat(volumeCryptoValue)} {coinSymbol.toUpperCase()}
           </p>
         </td>
 
         <td>
           <p>
-            {currencyFormat(circulatingSupply)} {upperCase(coinSymbol)}
+            {currencyFormat(circulatingSupply)} {coinSymbol.toUpperCase()}
           </p>
         </td>
 
