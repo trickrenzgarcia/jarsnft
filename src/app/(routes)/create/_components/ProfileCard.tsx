@@ -2,15 +2,13 @@
 
 import {
   BoringAvatar,
-  ConnectWeb3,
-  MinidentIconImg,
+  ConnectWalletV4,
   TooltipMsg,
 } from "@/components/(interfaces)";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { shortenAddress } from "@/lib/utils";
 import { Profile } from "@/types/users";
-import { minidenticon } from "minidenticons";
 import { IoCopy } from "react-icons/io5";
 
 export default function ProfileCard({ user }: { user: Profile }) {
@@ -21,7 +19,7 @@ export default function ProfileCard({ user }: { user: Profile }) {
           <CardTitle className="text-red-400">No Wallet Detected!</CardTitle>
         </CardHeader>
         <CardContent className="flex justify-center pb-5">
-          <ConnectWeb3 btnTitle="Connect Wallet" />
+          <ConnectWalletV4 btnTitle="Connect Wallet" />
         </CardContent>
       </Card>
     );

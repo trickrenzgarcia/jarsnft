@@ -1,6 +1,6 @@
 "use client"
 
-import { NFT_MARKETPLACE } from '@/types/constant';
+import { NFT_MARKETPLACE } from '@/lib/constant';
 import { MarketplaceV3, NFT, SmartContract, Token, useAddress, useBalance, useContract, useContractMetadata, useNFT, useOwnedNFTs } from '@thirdweb-dev/react';
 import { BaseContract, BigNumber } from 'ethers';
 import React, { createContext, use, useMemo, useState } from 'react'

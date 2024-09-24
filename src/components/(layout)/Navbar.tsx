@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { Login, Hamburger, JarsLogo, SearchInput } from "@/components/(interfaces)";
-import AdminAccessLink from "./AdminAccessLink";
-import { Separator } from "../ui/separator";
+import { Separator } from "@/components/ui/separator";
+import { ConnectWalletV4, JarsLogo, SearchInput } from "@/components/(interfaces)";
 
 export default function Navbar() {
   return (
@@ -56,13 +55,13 @@ export default function Navbar() {
 
         {/* Right-side <UserNavigationComponent>*/}
         <div className="flex items-center gap-6">
-          <Hamburger />
-          <Login />
+          {/* <Hamburger /> */}
+          <ConnectWalletV4 btnTitle="Connect Wallet" />
         </div>
       </div>
 
       {/* Admin Access */}
-      <AdminAccessLink />
+      {/* <AdminAccessLink /> */}
     </nav>
-  );
+  )
 }

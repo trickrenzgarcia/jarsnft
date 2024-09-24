@@ -1,7 +1,7 @@
 import UserNFTs from "./UserNFTs";
 import UserBanner from "./UserBanner";
 import { notFound } from "next/navigation";
-import { jars } from "@/lib/core/api";
+import jars from "@/lib/api";
 import { Suspense } from "react";
 
 async function UserWrapper({ address }: { address: string }) {

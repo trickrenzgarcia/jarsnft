@@ -1,3 +1,3 @@
-import { ThirdwebAuthHandler } from "./thirdwebAuth"
+import { ThirdwebAuthHandler } from "./twAuth";
 
-export { ThirdwebAuthHandler as GET, ThirdwebAuthHandler as POST }
+export { ThirdwebAuthHandler as GET, ThirdwebAuthHandler as POST };

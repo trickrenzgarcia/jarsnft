@@ -1,22 +1,40 @@
+
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      NEXT_PUBLIC_APP_URL: string;
-      NEXT_PUBLIC_LOCAL_URL: string;
-      NEXT_PUBLIC_AUTH_SECRET: string;
-      NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN: string;
-      NEXT_PUBLIC_JWT_AUTH_TOKEN: string;
+      NODE_ENV: 'development' | 'production';
+      APP_URL: string;
+      LOCAL_URL: string;
+      BACKEND_URL: string;
       THIRDWEB_CLIENT_ID: string;
       THIRDWEB_API_KEY: string;
-      THIRDWEB_AUTH_PRIVATE_KEY: string;
       PRIVATE_KEY: string;
+      JWT_SECRET: string;
+      JWT_TOKEN: string;
+      DATABASE_URL: string;
+      DB_HOST: string;
+      DB_PORT: string;
+      DB_USER: string;
+      DB_NAME: string;
+      DB_PASS: string;
+      NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN: string;
       NEXT_PUBLIC_THIRDWEB_CLIENT_ID: string;
       NEXT_PUBLIC_THIRDWEB_API_KEY: string;
-      NEXT_PUBLIC_BACKEND_URL: string;
-      JWT_AUTH_TOKEN: string;
+      PRIVATE_KEY: string;
+      AUTH_PRIVATE_KEY: string | undefined;
       NFTMARKETPLACE_JARS_CONTRACT: string;
+      SIMPLEHASH_BASE_URL: string;
+      SIMPLEHASH_API_KEY: string;
+      SEPOLIA_ALCHEMY_API_KEY: string;
+      SEPOLIA_ALCHEMY_BASE_URL: string;
+      SEPOLIA_ALCHEMY_WEBSOCKET: string;
+      SUPABASE_URL: string;
+      SUPABASE_API_KEY: string;
     }
+  }
+  interface BigInt {
+    toJSON(): Number;
   }
 }
 
-export {};
+export {}

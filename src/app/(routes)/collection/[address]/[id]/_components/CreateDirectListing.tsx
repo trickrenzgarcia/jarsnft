@@ -1,6 +1,6 @@
 "use client";
 
-import { NFT_MARKETPLACE } from "@/types/constant";
+import { NFT_MARKETPLACE } from "@/lib/constant";
 import { Web3Button, useContract, useCreateDirectListing } from "@thirdweb-dev/react";
 import React from "react";
 import { useNftContext } from "./nft-provider";
@@ -19,7 +19,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import "./input.css";
-import { LoginWelcomeScreen } from "@/components/(interfaces)/ConnectWeb3";
+import { LoginWelcomeScreen } from "@/components/(interfaces)";
 import { useRouter } from "next/navigation";
 import { TxResult } from "@/types/tx";
 import { createTxHash } from "@/actions/createTxHash";

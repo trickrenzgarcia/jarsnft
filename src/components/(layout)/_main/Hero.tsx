@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 
 const words = [
@@ -44,9 +45,9 @@ export default function Hero() {
           className="animate-fade animate-once animate-duration-[1200ms] animate-ease-in"
         />
       </div>
-      <div className="hidden lg:block xl:block absolute z-10 ml-2 mt-6 w-[500px] rounded-xl bg-white/85 p-2 dark:bg-black/85 sm:ml-28 sm:p-8">
+      <div className="absolute z-10 ml-2 mt-6 w-[500px] rounded-xl bg-white/85 p-2 dark:bg-black/85 sm:ml-28 sm:p-8">
         <h1 className="text-xl font-bold sm:text-[2rem] sm:leading-normal">
-          <TypewriterEffect words={words} className="hidden lg:block xl:block " />
+          <TypewriterEffect words={words} />
         </h1>
       </div>
     </section>

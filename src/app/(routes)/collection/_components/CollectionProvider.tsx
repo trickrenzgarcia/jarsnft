@@ -1,10 +1,10 @@
 "use client"
 
-import { NFT_MARKETPLACE } from '@/types/constant';
+import { NFT_MARKETPLACE } from '@/lib/constant';
 import { type MarketplaceV3, useContract, useNFTs, type NFT, type DirectListingV3, type EnglishAuction, useValidDirectListings, useValidEnglishAuctions } from '@thirdweb-dev/react';
 import React, { createContext, use, useEffect, useMemo, useState } from 'react'
 
-type CollectionProviderProps = {
+type CollectionProvderProps = {
   children: React.ReactNode;
   address: string;
 };
@@ -20,7 +20,7 @@ type CollectionContextProps = {
 
 const CollectionContext = createContext<CollectionContextProps | undefined>(undefined);
 
-export default function CollectionProvider({ children, address }: CollectionProviderProps) {
+export default function CollectionProvider({ children, address }: CollectionProvderProps) {
   const [totalListingCount, setTotalListingCount] = useState<number>(0);
   const { contract: nftContract } = useContract(address);
   const { contract: marketplace, isLoading: loadingMarketplace } = useContract(NFT_MARKETPLACE, "marketplace-v3");
@@ -36,6 +36,7 @@ export default function CollectionProvider({ children, address }: CollectionProv
     start: 0,
     count: 100,
   });
+
 
   useEffect(() => {
     if (directListings || auctionListings) {

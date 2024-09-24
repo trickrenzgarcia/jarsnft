@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Profile } from "@/types/users";
 import { cn } from "@/lib/utils";
-import { jars } from "@/lib/core/api";
+import jars from "@/lib/api";
 import updateUser from "@/actions/updateUser";
 import createProfile from "@/actions/createProfile";
 

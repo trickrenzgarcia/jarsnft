@@ -1,24 +1,29 @@
 "use client";
 
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { CollectionPopularData } from "@/utils/getCollections";
-import Image from "next/image";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { CollectionPopularData } from "@/types";
 import Link from "next/link";
-import { MdVerified } from "react-icons/md";
 import CollectionCard from "./CollectionCard";
 
 type NFTCarouselProps = {
   nftCollections: CollectionPopularData[];
 };
 
-// This carousel is used for popular collections in the home page
 export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
   return (
-    <Carousel className="m-auto w-[100%]">
+    <Carousel className="m-auto w-[95%]">
       <CarouselContent className="px-2 py-2 md:px-0">
         {nftCollections.map((collection, index) => (
-          <CarouselItem key={index} className="basis-[50%] md:basis-1/3 lg:basis-1/4 xl:basis-1/5">
+          <CarouselItem
+            key={index}
+            className="basis-[75%] sm:basis-1/2 md:basis-1/3 lg:basis-1/5"
+          >
             <div className="animate-fade animate-once animate-duration-[1200ms] animate-ease-in cursor-pointer duration-100 ease-out hover:-translate-y-1">
               <Link href={`/collection/${collection.contract}`}>
                 <CollectionCard item={collection} hideFloorPrice={false} />
@@ -40,7 +45,9 @@ export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
                   <CardFooter className="flex flex-col gap-3 pt-2">
                     <div className="flex w-full items-center gap-1">
                       <div className="truncate">
-                        <p className="truncate font-medium">{collection.name}</p>
+                        <p className="truncate font-medium">
+                          {collection.name}
+                        </p>
                       </div>
                       <div>
                         <MdVerified className="text-xl" />
@@ -63,13 +70,13 @@ export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div>
-        {nftCollections.length > 6 && (
-          <>
-            <CarouselPrevious />
-            <CarouselNext />
-          </>
-        )}
+      <div className="hidden lg:block">
+      {nftCollections.length > 6 && (
+        <>
+          <CarouselPrevious />
+          <CarouselNext />
+        </> 
+      )}
       </div>
     </Carousel>
   );

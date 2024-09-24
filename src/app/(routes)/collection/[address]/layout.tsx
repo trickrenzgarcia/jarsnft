@@ -1,6 +1,6 @@
 import { Navbar, Footer } from "@/components/(layout)";
 import { Metadata } from "next";
-import { jars } from "@/lib/core/api";
+import jars from "@/lib/api";
 import CollectionProvider from "../_components/CollectionProvider";
 
 type CollectionParams = {

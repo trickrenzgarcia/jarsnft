@@ -44,9 +44,9 @@ export type ApiProfile = {
   uid: string;
   name: string;
   email: string;
-  is_listed: boolean;
+  isListed: boolean;
   role: "user" | "admin";
-  create_at: string;
+  createAt: string;
 };
 
 export type ProfileData = {

@@ -1,8 +1,6 @@
 "use client";
 
 import {
-  ThirdwebNftMedia,
-  useActiveListings,
   useContract,
   useNFTs,
   useValidDirectListings,
@@ -13,15 +11,11 @@ import LoadingNFTCards from "./LoadingNFTCards";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
-import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
-import { NFT_MARKETPLACE } from "@/types/constant";
+import { NFT_MARKETPLACE } from "@/lib/constant";
 
 export default function NFTCards({ address }: { address: string }) {
   const { contract } = useContract(address);
@@ -30,20 +24,20 @@ export default function NFTCards({ address }: { address: string }) {
     "marketplace-v3",
   );
   const { data: nfts, isError, isLoading } = useNFTs(contract);
-  const { data: listings, isLoading: loadingListings } = useValidDirectListings(
-    marketPlaceContract,
-    {
-      count: 100,
-      start: 0,
-      tokenContract: address,
-    },
-  );
-  const { data: auctions, isLoading: loadingAuctions } =
-    useValidEnglishAuctions(marketPlaceContract, {
-      count: 100,
-      start: 0,
-      tokenContract: address,
-    });
+  // const { data: listings, isLoading: loadingListings } = useValidDirectListings(
+  //   marketPlaceContract,
+  //   {
+  //     count: 100,
+  //     start: 0,
+  //     tokenContract: address,
+  //   },
+  // );
+  // const { data: auctions, isLoading: loadingAuctions } =
+  //   useValidEnglishAuctions(marketPlaceContract, {
+  //     count: 100,
+  //     start: 0,
+  //     tokenContract: address,
+  //   });
 
   //marketPlaceContract?.directListings
 
@@ -51,14 +45,14 @@ export default function NFTCards({ address }: { address: string }) {
 
   if (isLoading) return <LoadingNFTCards />;
 
-  if (loadingListings) return <LoadingNFTCards />;
+  //if (loadingListings) return <LoadingNFTCards />;
 
-  if (loadingAuctions) return <LoadingNFTCards />;
+  //if (loadingAuctions) return <LoadingNFTCards />;
 
-  if (listings || auctions || nfts)
+  if (nfts)
     return (
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8">
-        {listings &&
+        {/* {listings &&
           listings.map((nft, i) => (
             <Link key={i} href={`/collection/${address}/${nft.asset.id}`}>
               <Card className="rounded-xl hover:-translate-y-1">
@@ -125,19 +119,19 @@ export default function NFTCards({ address }: { address: string }) {
                 </CardFooter>
               </Card>
             </Link>
-          ))}
+          ))} */}
         {nfts &&
           nfts
-            .filter((nft) =>
-              listings?.every(
-                (listing) => listing.asset.id !== nft.metadata.id,
-              ),
-            )
-            .filter((nft) =>
-              auctions?.every(
-                (auction) => auction.asset.id !== nft.metadata.id,
-              ),
-            )
+            // .filter((nft) =>
+            //   listings?.every(
+            //     (listing) => listing.asset.id !== nft.metadata.id,
+            //   ),
+            // )
+            // .filter((nft) =>
+            //   auctions?.every(
+            //     (auction) => auction.asset.id !== nft.metadata.id,
+            //   ),
+            // )
             .map((nft, i) => (
               <Link key={i} href={`/collection/${address}/${nft.metadata.id}`}>
                 <Card className="rounded-xl hover:-translate-y-1">
@@ -160,7 +154,7 @@ export default function NFTCards({ address }: { address: string }) {
                       <h1 className="truncate text-sm font-semibold">
                         {nft.metadata.name}
                       </h1>
-                      <p className="text-sm">Not Listed</p>
+                      {/* <p className="text-sm">Not Listed</p> */}
                     </div>
                   </CardFooter>
                 </Card>

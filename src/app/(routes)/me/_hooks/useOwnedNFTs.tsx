@@ -1,5 +1,4 @@
-import { jars } from '@/lib/core/api';
-import { AlchemyNFTs } from '@/lib/core/types';
+import jars from '@/lib/api';
 import { SimpleHashNFT } from '@/types/simple-hash/nft';
 import { useEffect, useState } from 'react'
 

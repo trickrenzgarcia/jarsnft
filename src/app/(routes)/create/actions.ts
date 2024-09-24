@@ -1,6 +1,6 @@
 "use server";
 
-import { jars } from "@/lib/core/api";
+import jars from "@/lib/api";
 import { revalidatePath, revalidateTag } from "next/cache";
 
 export async function createContract(contractAddress: string, owner: string, category: "art" | "photography" | "pfp" | "gaming") {

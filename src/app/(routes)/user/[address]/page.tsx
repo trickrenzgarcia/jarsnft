@@ -1,4 +1,4 @@
-import { jars } from "@/lib/core/api";
+import jars from "@/lib/api";
 import { shortenAddress, truncate } from "@/lib/utils";
 import { Metadata, ResolvingMetadata } from "next";
 import UserBanner from "../_components/UserBanner";

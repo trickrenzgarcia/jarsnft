@@ -1,6 +1,6 @@
 "use client";
 
-import { NFT_MARKETPLACE } from "@/types/constant";
+import { NFT_MARKETPLACE } from "@/lib/constant";
 import { Web3Button, useContract, useCreateAuctionListing, useValidEnglishAuctions } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 import { useRouter } from "next/navigation";
@@ -18,7 +18,7 @@ import { addDays, format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
-import { LoginWelcomeScreen } from "@/components/(interfaces)/ConnectWeb3";
+import { LoginWelcomeScreen } from "@/components/(interfaces)";
 import { createTxHash } from "@/actions/createTxHash";
 
 type CreateAuctionProps = {

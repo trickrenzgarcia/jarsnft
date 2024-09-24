@@ -43,4 +43,3 @@ export type DataNewBidAuction = {
   tokenId: BigNumber;
   tokenType: number;
 }
-

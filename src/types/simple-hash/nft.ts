@@ -4,6 +4,13 @@
 //
 //   const simpleHashNFT = Convert.toSimpleHashNFT(json);
 
+export type SimpleHashNFTByWallet = {
+  next_cursor: string | null;
+  next: string | null;
+  previous: string | null;
+  nfts: SimpleHashNFT[];
+}
+
 export type SimpleHashNFT = {
   nft_id:           string;
   chain:            string;

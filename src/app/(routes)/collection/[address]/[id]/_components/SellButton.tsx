@@ -9,7 +9,7 @@ import {
   useCreateDirectListing,
   ThirdwebNftMedia,
 } from "@thirdweb-dev/react";
-import { NFT_MARKETPLACE } from "@/types/constant";
+import { NFT_MARKETPLACE } from "@/lib/constant";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {

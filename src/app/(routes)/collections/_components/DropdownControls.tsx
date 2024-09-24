@@ -4,9 +4,11 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { IoIosArrowDown } from "react-icons/io";
 import { z } from "zod";
 
@@ -15,9 +17,7 @@ export default function DropdownControls({ searchParams }: { searchParams: { [ke
   const collectionCategory = (searchParams["category"] as string) ?? "all";
 
   const CategorySchema = z.enum(["all", "art", "photography", "pfp"]);
-  if (!CategorySchema.safeParse(collectionCategory).success) {
-    redirect(`?category=all&page=1`);
-  }
+  console.log(CategorySchema.parse(collectionCategory));
 
   let categoryFullName = "";
 
@@ -33,7 +33,7 @@ export default function DropdownControls({ searchParams }: { searchParams: { [ke
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex h-12 w-52 items-center justify-center gap-2 rounded-lg bg-accent-foreground/5 hover:bg-accent-foreground/10">
+      <DropdownMenuTrigger className="flex h-12 w-52 items-center justify-center gap-2 rounded-lg bg-background">
         {categoryFullName}
         <IoIosArrowDown />
       </DropdownMenuTrigger>

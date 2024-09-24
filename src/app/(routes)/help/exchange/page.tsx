@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-const page = () => {
+const HelpPage = () => {
   return (
     <>
       <h1 className="bg-gradient-to-b from-neutral-200 to-neutral-600 bg-clip-text p-10 text-center font-sans text-lg font-bold text-transparent md:text-7xl">
@@ -71,4 +71,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default HelpPage;

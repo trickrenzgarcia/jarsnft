@@ -16,10 +16,10 @@ import {
 import { useNftContext } from "./nft-provider";
 import { type NFT, ThirdwebNftMedia, Web3Button, useBalance, type EnglishAuction } from "@thirdweb-dev/react";
 import { MdVerified } from "react-icons/md";
-import { NFT_MARKETPLACE } from "@/types/constant";
-import { LoginWelcomeScreen } from "@/components/(interfaces)/ConnectWeb3";
+import { NFT_MARKETPLACE } from "@/lib/constant";
+import { LoginWelcomeScreen } from "@/components/(interfaces)";
 import { toast } from "sonner";
-import { getMaticPriceInPHP } from "@/lib/core/coingecko";
+import { getMaticPriceInPHP } from "@/lib/coingecko";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { z } from "zod";

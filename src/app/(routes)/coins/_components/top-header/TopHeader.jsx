@@ -1,46 +1,64 @@
 import { getCoingeckoGlobalData, getGasFee } from "../../api/apiCoingecko";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const TopHeader = async () => {
-  let [data, gasData] = await Promise.all([getCoingeckoGlobalData(), getGasFee()]);
-
-  let {
-    active_cryptocurrencies: activeCryptos,
-    markets: activeExchanges,
-    total_market_cap: { usd: marketCapUSD },
-    total_volume: totalVolume,
-    market_cap_percentage: { btc, eth },
-  } = data.data;
-
-  let marketCap = (marketCapUSD / 1e12).toFixed(3);
-  let formattedVolume = (Object.values(totalVolume).reduce((acc, value) => acc + value, 0) / 1e12).toFixed(3);
-  let btcDominance = Number(btc.toFixed(1));
-  let ethDominance = Number(eth.toFixed(1));
-
-  const styles = {
-    base: "text-md lg:text-lg font-semibold",
-  };
+  const data = await getCoingeckoGlobalData();
+  const gasData = await getGasFee();
+  const activeCryptos = data.data.active_cryptocurrencies;
+  const activeMarkets = data.data.markets;
+  const volume24h = data.data.total_volume;
+  const formattedVolume = Object.values(volume24h).reduce(
+    (acc, value) => acc + value,
+    0,
+  );
+  const formatVolume = (formattedVolume / 1e12).toFixed(3);
+  const totalMarketCapUSD = data.data.total_market_cap.usd;
+  const formattedMarketCapUSD = (totalMarketCapUSD / 1e12).toFixed(3);
+  const btcDominance = data.data.market_cap_percentage.btc;
+  const formattedBTC = Number(btcDominance.toFixed(1));
+  const ethDominance = data.data.market_cap_percentage.eth;
+  const formattedETH = Number(ethDominance.toFixed(1));
 
   return (
-    <div className="my-4 flex flex-wrap justify-center gap-5">
-      <h2 className={styles.base}>{`Coins: ${activeCryptos}`}</h2>
-      <h2 className={styles.base}>{`Exchanges: ${activeExchanges}`}</h2>
-      <h2 className={styles.base}>{`Market Cap: ${marketCap}`}T</h2>
-      <h2 className={styles.base}>{`24h Vol: ${formattedVolume}`}B</h2>
-      <h2 className={styles.base}>{`Dominance: BTC ${btcDominance}% | ETH ${ethDominance}%`}</h2>
-
-      <h2 className={styles.base}>Gas Fee:</h2>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger className={styles.base}>{gasData.result.ProposeGasPrice} Gwei</TooltipTrigger>
-          <TooltipContent side="bottom">
-            <h2 className={styles.base}>Fast: {gasData.result.FastGasPrice} Gwei</h2>
-            <h2 className={styles.base}>Standard: {gasData.result.ProposeGasPrice} Gwei</h2>
-            <h2 className={styles.base}>Safe: {gasData.result.SafeGasPrice} Gwei</h2>
-            <h2 className={styles.base}>Base Fee: {gasData.result.suggestBaseFee} Gwei</h2>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+    <div className="my-10 flex flex-wrap justify-around gap-5">
+      <p>
+        <span className="font-bold">{`Coins: `}</span> {`${activeCryptos}`}
+      </p>
+      <p>
+        <span className="font-bold">{`Exchanges: `}</span> {` ${activeMarkets}`}
+      </p>
+      <p>
+        <span className="font-bold">{`Market Cap: `}</span>{" "}
+        {`${formattedMarketCapUSD}T`}
+      </p>
+      <p>
+        <span className="font-bold">{`24h Vol: `}</span> {`${formatVolume}`}
+      </p>
+      <p>
+        <span className="font-bold">{`Dominance: BTC `}</span>{" "}
+        {`${formattedBTC}% | ETH ${formattedETH}%`}
+      </p>
+      <span>
+        <span className="font-bold">{`Gas Fee: `}</span>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              {gasData.result.ProposeGasPrice} GWEI
+            </TooltipTrigger>
+            <TooltipContent side="bottom">
+              <p>Fast: {gasData.result.FastGasPrice} GWEI</p>
+              <p>Standard: {gasData.result.ProposeGasPrice} GWEI</p>
+              <p>Safe: {gasData.result.SafeGasPrice} GWEI</p>
+              <p>Base Fee: {gasData.result.suggestBaseFee} GWEI</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </span>
     </div>
   );
 };

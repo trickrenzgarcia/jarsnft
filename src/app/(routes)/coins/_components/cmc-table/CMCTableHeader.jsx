@@ -11,7 +11,7 @@ const CMCTableHeader = () => {
           <b># </b>
         </th>
         <th>
-          <span>Name</span>
+          <span className="ml-14 flex w-full">Name</span>
         </th>
         <th>Price</th>
         <th>24h %</th>
@@ -37,15 +37,15 @@ const CMCTableHeader = () => {
 export const MobileTableHeader = () => {
   return (
     <tbody>
-      <tr>
+      <tr className="text-right">
         <th></th>
-        <th>
+        <th className="flex items-center">
           <b># </b>
         </th>
-        <th className="text-start">
-          <span>Name</span>
+        <th>
+          <span className="ml-14 flex w-full">Name</span>
         </th>
-        <th className="text-end">{`Price/24h`}</th>
+        <th>{`Price/24h change %`}</th>
       </tr>
     </tbody>
   );

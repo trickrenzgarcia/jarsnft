@@ -41,7 +41,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { ACCEPTED_IMAGE_TYPES } from "@/types/constant";
+import { ACCEPTED_IMAGE_TYPES } from "@/lib/constant";
 import { FaExclamationCircle } from "react-icons/fa";
 import { Textarea } from "@/components/ui/textarea";
 import { useSDK } from "@thirdweb-dev/react";
@@ -50,7 +50,7 @@ import { Separator } from "@/components/ui/separator";
 import { FaCheck } from "react-icons/fa";
 import { ProfileQuery } from "@/types/users";
 import { createContract } from "../actions";
-import { NFTCollection } from "@/lib/core/types";
+import { NFTCollection } from "@/types";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";

@@ -1,29 +1,26 @@
 import type { Metadata } from "next";
-import { inter } from "@/lib/fonts";
+import { Inter } from "next/font/google";
+import { ThirdwebProvider as ThirdwebProviderV5 } from "thirdweb/react"
 import "./globals.css";
-import {
-  ThemeProvider,
-  ThirdwebProvider,
-  UserProvider,
-} from "@/components/(providers)";
+import { appConfig } from "@/lib/app.config";
 import { cn } from "@/lib/utils";
-import { appConfig as config } from "@/lib/config";
-import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider, ThirdwebProviderV4, UserProvider } from "@/components/(providers)";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(config.url.base),
-  title: config.name,
-  authors: config.author,
-  description: config.description,
-  keywords: config.keywords,
+  title: appConfig.name,
+  authors: appConfig.author,
+  description: appConfig.description,
+  keywords: appConfig.keywords,
   openGraph: {
     type: "website",
     locale: "en-US",
-    url: config.url.base,
-    title: config.name,
-    description: config.description,
-    siteName: config.name,
-  },
+    url: appConfig.url.base,
+    title: appConfig.name,
+    description: appConfig.description,
+    siteName: appConfig.name
+  }
 };
 
 export default function RootLayout({
@@ -32,26 +29,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "w-screen overflow-x-hidden antialiased",
-          inter.className,
-        )}
-      >
-        <ThirdwebProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <UserProvider>
-              {children}
-              <Toaster richColors />
-            </UserProvider>
-          </ThemeProvider>
-        </ThirdwebProvider>
+    <html lang="en">
+      <body className={cn(
+        "w-screen overflow-x-hidden antialiased",
+        inter.className,
+      )}>
+        <ThirdwebProviderV4>
+          <ThirdwebProviderV5>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <UserProvider>
+                {children}
+              </UserProvider>
+            </ThemeProvider>
+          </ThirdwebProviderV5>
+        </ThirdwebProviderV4>
       </body>
     </html>
   );

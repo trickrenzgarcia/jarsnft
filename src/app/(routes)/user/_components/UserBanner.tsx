@@ -1,10 +1,10 @@
 "use client";
 
-import { BoringAvatar, MinidentIconImg, TooltipMsg } from "@/components/(interfaces)";
+import { BoringAvatar, TooltipMsg } from "@/components/(interfaces)";
 import AddressClipboard from "@/components/(interfaces)/AddressClipboard";
-import { StorageProfile, User } from "@/lib/core/types";
+import { StorageProfile, User } from "@/types";
 import { open_sans } from "@/lib/fonts";
-import { cn } from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { MdVerified } from "react-icons/md";

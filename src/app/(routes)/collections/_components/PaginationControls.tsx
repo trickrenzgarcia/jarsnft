@@ -8,7 +8,6 @@ import {
   PaginationItem,
 } from "@/components/ui/pagination";
 import { cn } from "@/lib/utils";
-import { redirect } from "next/navigation";
 import { z } from "zod";
 
 export default function PaginationControls({
@@ -32,9 +31,7 @@ export default function PaginationControls({
   const totalPages = Math.ceil(collectionLength / limit);
 
   const PageSchema = z.coerce.number().min(1).max(totalPages);
-  if (!PageSchema.safeParse(Number(page)).success) {
-    redirect(`?category=${category}&page=1`);
-  }
+  console.log(PageSchema.parse(page));
 
   let startPage = Number(page) - 4;
   let endPage = startPage + 8;
@@ -73,7 +70,7 @@ export default function PaginationControls({
           </PaginationItem>
         )}
         {pages.map((page) => (
-          <PaginationItem key={page} className={cn({ "rounded-md bg-accent text-accent-foreground": page == (Number(searchParams["page"]) || 1)})}>
+          <PaginationItem key={page} className={cn({ "rounded-md bg-accent text-accent-foreground": page == Number(searchParams["page"]) })}>
             <PaginationLink href={`?category=${category}&page=${page}`} scroll={false}>
               {page}
             </PaginationLink>

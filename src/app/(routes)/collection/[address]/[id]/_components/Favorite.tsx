@@ -6,7 +6,6 @@ import useIsUserLiked from "@/hooks/useIsUserLiked";
 import React, { useOptimistic } from "react";
 import { IoHeartOutline } from "react-icons/io5";
 import { IoHeartSharp } from "react-icons/io5";
-import useSWR from "swr";
 
 type Props = {
   favorite: {

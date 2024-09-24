@@ -1,6 +1,6 @@
 "use client";
 
-import { ConnectWeb3 } from "@/components/(interfaces)";
+import { ConnectWalletV4 } from "@/components/(interfaces)";
 import { Wallet } from "lucide-react";
 import React from "react";
 
@@ -17,7 +17,7 @@ export default function NoConnectedWallet() {
           exclusive features, securely manage your digital assets, and dive into
           a world of unique NFTs.
         </p>
-        <ConnectWeb3 btnTitle="Connect Wallet" />
+        <ConnectWalletV4 btnTitle="Connect Wallet" />
       </div>
     </div>
   );

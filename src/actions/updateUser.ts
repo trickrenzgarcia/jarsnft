@@ -1,6 +1,6 @@
 "use server";
 
-import { jars } from "@/lib/core/api";
+import jars from "@/lib/api";
 import { revalidateTag } from "next/cache";
 
 type UserUpdateData = {

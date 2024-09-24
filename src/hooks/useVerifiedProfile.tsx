@@ -1,7 +1,7 @@
 "use client"
 
 import { useUserContext } from '@/components/(providers)';
-import { jars } from '@/lib/core/api';
+import jars from '@/lib/api';
 import React from 'react'
 
 export default function useVerifiedProfile() {
@@ -17,8 +17,8 @@ export default function useVerifiedProfile() {
       try {
         // fetch verified profile
         const status = await jars.getUserProfile(user.address);
-        const { is_verified } = status.profile;
-        if(is_verified) setIsVerified(true);
+        const { isVerified } = status.profile;
+        if(isVerified) setIsVerified(true);
       } catch(error) {
         setIsError(true);
       }

@@ -1,11 +1,11 @@
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlchemyNFTs } from "@/lib/core/types";
+import { AlchemyNFTs } from "@/types";
 import { ProfileQuery } from "@/types/users";
 import { useEffect, useState } from "react";
 import OwnedNFTs from "./OwnedNFTs";
-import { jars } from "@/lib/core/api";
+import jars from "@/lib/api";
 import { Spinner } from "@nextui-org/react";
 import { SimpleHashNFT } from "@/types/simple-hash/nft";
 

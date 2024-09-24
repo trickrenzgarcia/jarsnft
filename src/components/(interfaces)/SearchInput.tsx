@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { useRouter } from "next/navigation";
-import { jars } from "@/lib/core/api";
-import { NFTCollection } from "@/lib/core/types";
+import jars from "@/lib/api";
+import { NFTCollection } from "@/types";
 import { Card, CardContent } from "../ui/card";
 import { Spinner } from "@nextui-org/react";
 import { SiPolygon } from "react-icons/si";
@@ -97,12 +97,12 @@ export default function SearchInput() {
                           <p className="text-sm font-bold">{result.name}</p>
                           <p className="ml-2 flex flex-row items-center gap-2 text-sm text-gray-400">
                             <SiPolygon />
-                            {result.view_count} {` items`}
+                            {result.viewCount} {` items`}
                           </p>
                         </div>
                         <div className="ml-auto">
                           <p className="text-sm text-gray-400">
-                            {result.view_count} {` MATIC`}
+                            {result.viewCount} {` MATIC`}
                           </p>
                         </div>
                       </div>

@@ -5,8 +5,7 @@ import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogT
 import React from "react";
 import useOwnedNFTs from "../_hooks/useOwnedNFTs";
 import { Image } from "@nextui-org/react";
-import { ipfsToCfIpfs } from "@/lib/utils";
-import { cn } from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import updateAvatar from "@/actions/updateAvatar";
 import { useUserContext } from "@/components/(providers)";

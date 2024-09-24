@@ -1,4 +1,4 @@
-import { jars } from "@/lib/core/api";
+import jars from "@/lib/api";
 import NFTCards from "../_components/NFTCards";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";

@@ -1,6 +1,6 @@
 "use client"
 
-import { Separator } from "../ui/separator";
+import { Separator } from "@/components/ui/separator";
 import {
   PrivacyTermsButtons,
   SocialLinkButtons,
@@ -36,7 +36,7 @@ export default function Footer() {
 
   const companyLinks: Array<LinkType> = [
     { href: "/about", description: "About" },
-    { href: "/", description: "Team" },
+    { href: "/team", description: "Team" },
   ];
   //#region End
 
@@ -51,9 +51,10 @@ export default function Footer() {
             <div className="col-span-3 mb-16 flex flex-col gap-y-5 text-center md:col-span-1 md:mb-0 md:text-left">
               <h1 className="mb-1 text-2xl font-semibold">JarsNFT</h1>
               <p>
-                The biggest and largest NFT marketplace in the Philippines. <br />
-                Endless Opportunities for Artists and Traders. <br />
-                Create, Trade, and Collect Your Legacy.
+                Turn your passion into a lasting legacy. <br />
+                Mint your artwork as an NFT and showcase your talent. <br />
+                Connect with traders, and build a secure future for your creative
+                endeavors.
               </p>
             </div>
 

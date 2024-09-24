@@ -1,7 +1,7 @@
 "use client"
 
 import { useUserContext } from '@/components/(providers)';
-import { jars } from '@/lib/core/api';
+import jars from '@/lib/api';
 import React from 'react'
 
 export default function useIsUserLiked(optimisticLikes: number, contract: string, tokenId: string) {

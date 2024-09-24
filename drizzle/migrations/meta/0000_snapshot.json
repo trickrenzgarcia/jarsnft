@@ -1,0 +1,664 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "5",
+  "dialect": "mysql",
+  "tables": {
+    "api_keys": {
+      "name": "api_keys",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "address": {
+          "autoincrement": false,
+          "name": "address",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "apiKey": {
+          "autoincrement": false,
+          "name": "apiKey",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "default": "'current_timestamp(3)'",
+          "autoincrement": false,
+          "name": "created_at",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expired_at": {
+          "autoincrement": false,
+          "name": "expired_at",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "contracts": {
+      "name": "contracts",
+      "columns": {
+        "contract_id": {
+          "autoincrement": false,
+          "name": "contract_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image": {
+          "autoincrement": false,
+          "name": "image",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "external_link": {
+          "autoincrement": false,
+          "name": "external_link",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "symbol": {
+          "autoincrement": false,
+          "name": "symbol",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "owner": {
+          "autoincrement": false,
+          "name": "owner",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "primary_sale_recipient": {
+          "autoincrement": false,
+          "name": "primary_sale_recipient",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fee_recipient": {
+          "autoincrement": false,
+          "name": "fee_recipient",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "app_uri": {
+          "autoincrement": false,
+          "name": "app_uri",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "default": "'current_timestamp()'",
+          "autoincrement": false,
+          "name": "createdAt",
+          "type": "datetime",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updatedAt": {
+          "default": "'current_timestamp()'",
+          "autoincrement": false,
+          "name": "updatedAt",
+          "type": "datetime",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "nft_collections": {
+      "name": "nft_collections",
+      "columns": {
+        "contract": {
+          "autoincrement": false,
+          "name": "contract",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "image",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "symbol": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "symbol",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "app_uri": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "app_uri",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "external_link": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "external_link",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fee_recipient": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "fee_recipient",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "seller_fee_basis_points": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "seller_fee_basis_points",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "primary_sale_recipient": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "primary_sale_recipient",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "trusted_forwarders": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "trusted_forwarders",
+          "type": "longtext",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "owner": {
+          "autoincrement": false,
+          "name": "owner",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "view_count": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "view_count",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "default": "'current_timestamp()'",
+          "autoincrement": false,
+          "name": "created_at",
+          "type": "datetime",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_nsfw": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "is_nsfw",
+          "type": "tinyint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_verified": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "is_verified",
+          "type": "tinyint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "safe_listed": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "safe_listed",
+          "type": "tinyint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "category": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "category",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "nft_collections_contract_name_idx": {
+          "name": "nft_collections_contract_name_idx",
+          "columns": [
+            "contract",
+            "name"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "nft_events": {
+      "name": "nft_events",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "event_id": {
+          "autoincrement": false,
+          "name": "event_id",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "event_type": {
+          "autoincrement": false,
+          "name": "event_type",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "transaction_hash": {
+          "autoincrement": false,
+          "name": "transaction_hash",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "default": "'current_timestamp()'",
+          "autoincrement": false,
+          "name": "created_at",
+          "type": "datetime",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "address": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "address",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "nft_events_event_id_key": {
+          "name": "nft_events_event_id_key",
+          "columns": [
+            "event_id"
+          ]
+        }
+      }
+    },
+    "nft_views": {
+      "name": "nft_views",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contract": {
+          "autoincrement": false,
+          "name": "contract",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "token_id": {
+          "autoincrement": false,
+          "name": "token_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "view_count": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "view_count",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "nonce": {
+      "name": "nonce",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nonce": {
+          "autoincrement": false,
+          "name": "nonce",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "logged_at": {
+          "default": "'current_timestamp(3)'",
+          "autoincrement": false,
+          "name": "logged_at",
+          "type": "datetime(3)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "nonce_nonce_key": {
+          "name": "nonce_nonce_key",
+          "columns": [
+            "nonce"
+          ]
+        }
+      }
+    },
+    "users": {
+      "name": "users",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "uid": {
+          "autoincrement": false,
+          "name": "uid",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "name": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "address": {
+          "autoincrement": false,
+          "name": "address",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_listed": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "is_listed",
+          "type": "tinyint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "default": "'current_timestamp(3)'",
+          "autoincrement": false,
+          "name": "created_at",
+          "type": "datetime(3)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "role": {
+          "default": "''user''",
+          "autoincrement": false,
+          "name": "role",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "Users_address_key": {
+          "name": "Users_address_key",
+          "columns": [
+            "address"
+          ]
+        },
+        "uid": {
+          "name": "uid",
+          "columns": [
+            "uid"
+          ]
+        }
+      }
+    },
+    "user_favorites": {
+      "name": "user_favorites",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int(11)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "uid": {
+          "autoincrement": false,
+          "name": "uid",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contract": {
+          "autoincrement": false,
+          "name": "contract",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "token_id": {
+          "autoincrement": false,
+          "name": "token_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "added_at": {
+          "default": "'current_timestamp()'",
+          "autoincrement": false,
+          "name": "added_at",
+          "type": "datetime",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "user_profile": {
+      "name": "user_profile",
+      "columns": {
+        "address": {
+          "autoincrement": false,
+          "name": "address",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_url": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "banner_url": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "banner_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_verified": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "is_verified",
+          "type": "tinyint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "socials": {
+          "default": "'NULL'",
+          "autoincrement": false,
+          "name": "socials",
+          "type": "longtext",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "updated_at": {
+          "default": "'current_timestamp()'",
+          "autoincrement": false,
+          "name": "updated_at",
+          "type": "datetime",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "user_profile_address_fkey": {
+          "name": "user_profile_address_fkey",
+          "tableFrom": "user_profile",
+          "tableTo": "users",
+          "columnsFrom": [
+            "address"
+          ],
+          "columnsTo": [
+            "address"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        }
+      },
+      "uniqueConstraints": {
+        "user_profile_address_key": {
+          "name": "user_profile_address_key",
+          "columns": [
+            "address"
+          ]
+        }
+      }
+    }
+  },
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {},
+    "indexes": {}
+  }
+}

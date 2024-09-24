@@ -11,3 +11,7 @@ export function roundTwoDecimalPlaces(number) {
   // Use parseFloat to handle any unexpected types and toFixed to round to two decimal places
   return parseFloat(number.toFixed(2));
 }
+
+export function upperCase(symbol) {
+  return symbol.toUpperCase();
+}

@@ -6,8 +6,10 @@ import Image from "next/image";
 import { MdVerified } from "react-icons/md";
 import { ReadMore } from "./ReadMore";
 import React, { useEffect } from "react";
+// import { FaEthereum } from "react-icons/fa";
 import { SiPolygon } from "react-icons/si";
 import TooltipMsg from "@/components/(interfaces)/TooltipMsg";
+// import { MetadataSchema } from "@/types";
 import { CustomContractMetadata } from "@thirdweb-dev/sdk";
 import {
   useContract,
@@ -17,9 +19,9 @@ import {
   useNFTs,
 } from "@thirdweb-dev/react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { NFTCollection } from "@/lib/core/types";
+import { NFTCollection } from "@/types";
 import { useCollectionContext } from "./CollectionProvider";
-import { NFT_MARKETPLACE } from "@/types/constant";
+import { NFT_MARKETPLACE } from "@/lib/constant";
 import { BigNumber, ethers } from "ethers";
 
 type BannerMetadataProps = {
@@ -235,7 +237,7 @@ export default function NFTBannerMetadata({
             <div>
               Created:{" "}
               <span className="font-bold">
-                {new Date(collection.created_at).toLocaleDateString(undefined, {
+                {new Date(collection.createdAt).toLocaleDateString(undefined, {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
@@ -245,7 +247,7 @@ export default function NFTBannerMetadata({
             <div>
               Creator Earnings:{" "}
               <span className="font-bold">
-                {`${collection.seller_fee_basis_points / 100}%`}
+                {`${collection.sellerFeeBasisPoints / 100}%`}
               </span>
             </div>
             <div>

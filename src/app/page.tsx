@@ -1,47 +1,37 @@
-import { Navbar, Footer } from "@/components/(layout)";
-import { Hero, PopularCollections, ArtTrend, NFTCategories, PhotoTrend, PFPTrend } from "@/components/(layout)/_main";
+import { Footer, Navbar } from "@/components/(layout)";
+import { Hero, Trend, ListComponents } from "@/components/(layout)/_main";
 import { Separator } from "@/components/ui/separator";
-import { Suspense } from "react";
-import * as getCollections from "@/utils/getCollections";
+import jars from "@/lib/api";
 
 export default async function Home() {
-  const artTrendCollections = await getCollections.getCollectionsByCategory("art");
-  const photosCollections = await getCollections.getCollectionsByCategory("photography");
-  const pfpCollections = await getCollections.getCollectionsByCategory("pfp");
+  const t1 = await jars.collection.getTrending("art")
+  const t2 = await jars.collection.getTrending("photography")
+  const t3 = await jars.collection.getTrending("pfp")
+
+  const collections = [
+    { category: "Art", data: t1 },
+    { category: "Photography", data: t2 },
+    { category: "Profile Picture", data: t3 },
+  ]
 
   return (
     <main className="bg-background">
       <Navbar />
       <Hero />
 
-      <div className="container my-10 space-y-10">
-        <PopularCollections />
-
-        {/* <TopNFTCollections /> */}
-
-        <Separator className="h-[2px] w-full" />
-
-        <Suspense fallback={<div>Loading...</div>}>
-          <ArtTrend collections={artTrendCollections} />
-        </Suspense>
-
-        <Separator className="h-[2px] w-full" />
-
-        <Suspense fallback={<div>Loading...</div>}>
-          <PhotoTrend collections={photosCollections} />
-        </Suspense>
-
-        <Separator className="h-[2px] w-full" />
-
-        <Suspense fallback={<div>Loading...</div>}>
-          <PFPTrend collections={pfpCollections} />
-        </Suspense>
-
-        <Separator className="h-[2px] w-full" />
-
-        <Suspense fallback={<div>Loading...</div>}>
-          <NFTCategories />
-        </Suspense>
+      <div className="container my-20">
+        <ListComponents
+          data={collections}
+          renderItem={(collection, index) => (
+            <section key={index} className="space-y-10">
+              <Trend
+                category={collection.category}
+                collections={collection.data}
+              />
+              <Separator className="h-[2px] w-full" />
+            </section>
+          )}
+        />
       </div>
 
       <Footer />

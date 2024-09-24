@@ -15,7 +15,7 @@ import { Web3Button, useCancelDirectListing, useCancelEnglishAuction } from "@th
 import { DirectListingV3, EnglishAuction, NFT } from "@thirdweb-dev/sdk";
 import { useNftContext } from "./nft-provider";
 import { useEffect, useState } from "react";
-import { NFT_MARKETPLACE } from "@/types/constant";
+import { NFT_MARKETPLACE } from "@/lib/constant";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { createTxHash } from "@/actions/createTxHash";

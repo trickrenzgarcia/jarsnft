@@ -1,46 +1,23 @@
-"use client";
+'use client'
 
-import {
-  ThirdwebProvider as ThirdwebProviderLayout,
-  metamaskWallet,
-  coinbaseWallet,
-  walletConnect,
-  trustWallet,
-  bloctoWallet,
-  phantomWallet,
-  safeWallet,
-} from "@thirdweb-dev/react";
-import { Sepolia } from "@thirdweb-dev/chains";
-import { env } from "@/lib/env.mjs";
-import { SessionProvider } from "next-auth/react";
+import React from 'react'
+import { ThirdwebProvider as ThirdwebProviderV4 } from "@thirdweb-dev/react"
+import { Sepolia } from '@thirdweb-dev/chains'
 
-export default function ThirdwebProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ThirdwebProvider(
+  { children }: Readonly<{ children: React.ReactNode }>
+) {
   return (
-    <SessionProvider>
-      <ThirdwebProviderLayout
-        activeChain={Sepolia}
-        clientId="2c570ac5995e3d8c067e868aa87a13fe"
-        secretKey="NjoqpdzbYOAjrTYR_rr-fcRi3F0HKXqF5bQzk9sZ8LexTD9Yz2eg2tFdmqrozGnfwP5UNiwi4zgOnVSrmZjJLQ"
-        supportedWallets={[
-          metamaskWallet({ recommended: true }),
-          coinbaseWallet({ recommended: true }),
-          walletConnect(),
-          trustWallet(),
-          bloctoWallet(),
-          phantomWallet(),
-          safeWallet(),
-        ]}
-        authConfig={{
-          domain: env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN,
-          authUrl: "/api/auth",
-        }}
-      >
-        {children}
-      </ThirdwebProviderLayout>
-    </SessionProvider>
-  );
+    <ThirdwebProviderV4
+      activeChain={Sepolia}
+      clientId={process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID}
+      secretKey={process.env.NEXT_PUBLIC_THIRDWEB_API_KEY}
+      authConfig={{
+        domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN,
+        authUrl: '/api/auth'
+      }}
+    >
+      {children}
+    </ThirdwebProviderV4>
+  )
 }

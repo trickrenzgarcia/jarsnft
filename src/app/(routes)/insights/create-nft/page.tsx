@@ -1,11 +1,6 @@
 "use client";
 
 import { useUser } from "@thirdweb-dev/react";
-import {
-  ConnectWeb3,
-  CreateUserDialog,
-  ProfileButton,
-} from "@/components/(interfaces)/index";
 import { ProfileQuery } from "@/types/users";
 import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";

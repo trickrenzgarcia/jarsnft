@@ -1,9 +1,5 @@
-export { default as ArtTrend } from "./ArtTrend";
-export { default as PhotoTrend } from "./PhotoTrend";
-export { default as PFPTrend } from "./PFPTrend";
-export { default as TradeHero } from "./TradeHero";
-export { default as BuySellNFT } from "./BuySellNFT";
-export { default as NFTCategories } from "./NFTCategories";
-export { default as PopularCollections } from "./PopularCollections";
-export { default as Hero } from "./Hero";
-export { default as TopNFTCollections } from "./TopNFTCollections";
+export { default as Hero } from "./Hero"
+export { default as NFTCarousel } from "./NFTCarousel"
+export { default as NFTCard } from "./NFTCard"
+export { default as Trend } from "./Trend"
+export { default as ListComponents } from "./ListComponents"

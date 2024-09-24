@@ -13,7 +13,7 @@ import { BoringAvatar } from "@/components/(interfaces)";
 import { displayName } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import BuyButton from "./BuyButton";
-import { getMaticPriceInPHP } from "@/lib/core/coingecko";
+import { getMaticPriceInPHP } from "@/lib/coingecko";
 import SellButton from "./SellButton";
 import PlaceBidButton from "./PlaceBidButton";
 import AuctionEndTime from "./AuctionEndTime";
@@ -34,7 +34,7 @@ type NftCardProps = {
     count: number;
   };
   views: {
-    view_count: number;
+    viewCount: number;
   };
 };
 
@@ -177,7 +177,7 @@ export default function NftCard({ address, id, likes, views }: NftCardProps) {
               <div className="flex items-center gap-4">
                 <div className="flex gap-1">
                   <FaRegEye className="text-2xl" />
-                  <p>{views ? views.view_count : "--"}</p>
+                  <p>{views ? views.viewCount : "--"}</p>
                 </div>
                 <Favorite favorite={likes} address={address} id={id} />
               </div>

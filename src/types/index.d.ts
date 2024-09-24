@@ -1,39 +1,4 @@
-import {
-  CustomContractMetadata,
-  NFT as ThirdwebNFT,
-} from "@thirdweb-dev/react";
-import { z } from "zod";
-
-export type NFT = ThirdwebNFT;
-
-const CollectionMetadataOutput: z.ZodObject<{
-  name: z.ZodString;
-  description: z.ZodOptional<z.ZodString>;
-  image: z.ZodOptional<z.ZodString>;
-  external_link: z.ZodOptional<z.ZodString>;
-  app_uri: z.ZodOptional<z.ZodString>;
-  social_urls: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
-  seller_fee_basis_points: z.ZodOptional<z.ZodDefault<z.ZodNumber>>;
-  fee_recipient: z.ZodOptional<
-    z.ZodDefault<
-      z.ZodUnion<
-        [
-          z.ZodType<string, z.ZodTypeDef, string>,
-          z.ZodType<
-            `0x${string}`,
-            z.ZodTypeDef,
-            `${string}.eth` | `${string}.cb.id`
-          >,
-        ]
-      >
-    >
-  >;
-  merkle: z.ZodOptional<z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodString>>>;
-  symbol: z.ZodOptional<z.ZodDefault<z.ZodString>>;
-}>;
-export type CollectionMetadata = z.output<typeof CollectionMetadataOutput>;
-
-type AppConfig = {
+export type AppConfig = {
   name: string;
   author: Array<{
     name: string;
@@ -51,136 +16,224 @@ type AppConfig = {
   ogImage?: string;
 };
 
-type Collections = {
-  collections: Collection[];
-};
-
-type Collection = {
-  collection: string;
-  name: string;
-  description: string;
-  imgUrl: string;
-  bannerImgUrl: string;
-  listStatus: string;
-  category: string;
-  isDisabled: boolean;
-  isNsfw: boolean;
-  jarsnftUrl: string;
-  projectUrl: string;
-  wikiUrl: string;
-  discordUrl: string;
-  twitterUsername: string;
-  instagramUsername: string;
-  contracts: Contract[];
-  editors: string[];
-  fees: Array<{
-    fee: number;
-    recipient: string;
-    required: boolean;
-  }>;
-};
-
-type NFTCollections = {
-  page: number;
-  results: NFTCollection[];
-  total_pages: number;
-  total_results: number;
-};
-
-type NFTCollection = {
+export type User = {
   id: number;
-  cid: string;
-  collection: string;
+  uid: string;
+  address: string;
+  name: string;
+  email: string;
+  isListed: boolean;
+  role: "user" | "admin";
+  createdAt: string;
+};
+
+export type StorageProfile = {
+  address: string;
+  imageUrl?: string;
+  bannerUrl?: string;
+  isVerified: boolean;
+  updatedAt: string;
+};
+
+export type NFTCollection = {
+  contract: string;
+  image: string;
+  name: string;
+  symbol: string;
+  description: string;
+  appUri: string;
+  externalLink: string;
+  feeRecipient: string;
+  sellerFeeBasisPoints: number;
+  primarySaleRecipient: string;
+  owner: string;
+  isNsfw: number | boolean;
+  isVerified: number | boolean;
+  safeListed: number | boolean;
+  viewCount: number;
+  trustedForwarders: string[];
+  category: string;
+  createdAt: string;
+  simpleHashData: SimpleHashCollections;
+};
+
+export type CollectionData = {
+  contract: string;
+  image: string;
+  name: string;
+  symbol: string;
+  description: string;
+  appUri: string;
+  externalLink: string;
+  feeRecipient: string;
+  sellerFeeBasisPoints: number;
+  primarySaleRecipient: string;
+  trustedForwarders: string;
+  category: string;
+  owner: string;
+  isNsfw: boolean;
+  isVerified: boolean;
+  saleListed: boolean;
+  viewCount: number;
+  createdAt: Date;
+}
+
+export type AlchemyContractMetadata = {
+  address: string;
+  name: string;
+  symbol?: string;
+  tokenSupply?: string;
+  tokenType: string;
+  contractDeployer: string | null;
+  deployedBlockNumber: number | null;
+  openSeaMetadata: OpenSeaMetadata;
+};
+
+export type AlchemyContract = {
+  contract: {
+    address: string;
+    name: string;
+    symbol?: string;
+    totalSupply?: string;
+    tokenType: string;
+    openSeaMetadata: OpenSeaMetadata;
+    isSpam: boolean | null;
+    spamClassifications: any[];
+  };
+  tokenId: string;
+  tokenType: string;
   name: string;
   description: string;
-  image_url: string;
-  banner_image_url: string;
-  owner: string;
-  safelist_status: string;
-  category: string;
-  is_disabled: boolean;
-  is_nsfw: boolean;
-  trait_offers_enabled: boolean;
-  collection_offers_enabled: boolean;
-  jarsnft_url: string;
-  project_url: string;
-  wiki_url: string;
-  discord_url: string;
-  telegram_url: string;
-  twitter_username: string;
-  instagram_username: string;
-};
-
-type NFTContentWrapperProps = {
-  title: string;
-};
-
-type NFTCarouselProps = {
-  collections: NFTCollection[];
-};
-
-type NFTCollectionCard = {
-  name: string;
-  contract: string;
-  floor_price: number;
-  imgUrl: string;
-};
-
-type MultiCollectionContextProps = {
-  popular: NFTCollection[];
-  arts: NFTCollection[];
-  pfps: NFTCollection[];
-  photography: NFTCollection[];
-};
-
-export type GetUserResponse = {
-  success: boolean;
-  user?: {
-    id: number;
-    email: string;
-    name: string;
-    address: string;
-    createdAt: Date;
+  tokenUri: string;
+  image: {
+    cachedUrl: string | null;
+    thumbnailUrl: string | null;
+    pngUrl: string;
+    contentType: string | null;
+    size: string | null;
+    originalUrl: string;
+  };
+  raw: {
+    tokenUri: string | null;
+    metadata: {
+      image: string | null;
+      external_url: string | null;
+      background_color: string | null;
+      name: string;
+      description: string | null;
+      customImage: string | null;
+      attibutes: any[] | null;
+      customAnimationUrl: string;
+    };
+    error: string | null;
+  };
+  collection: string | null;
+  mint: {
+    mintAddress: string;
+    blockNumber: number;
+    timestamp: string;
+    transactionHash: string;
+  };
+  owners: any[] | null;
+  timeLastUpdated: string;
+  balance: string;
+  acquiredAt: {
+    blockTimestamp: string | null;
+    blockNumber: number | null;
   };
 };
 
-export type MetadataSchema = {
+export type AlchemyNFTs = {
+  ownedNfts: AlchemyContract[];
+  pageKey: string | number | null;
+  totalCount: number;
+  validAt: {
+    blockHash: string;
+    blockNumber: number | null;
+    blockTimestamp: string | null;
+  };
+};
+
+export type NFTFavorite = {
   id: number;
-  cid: string;
-  collection: string;
+  uid: string;
+  contract: string;
+  tokenId: string;
   name: string;
+  imageUrl: string;
+  addedAt: string | Date;
+  updatedAt: string | Date | null;
+}
+
+export type CollectionData = {
+  contract: string;
+  image: string;
+  name: string;
+  symbol: string;
   description: string;
-  image_url: string;
-  banner_image_url: string;
-  owner: string;
-  safelist_status: string;
+  appUri: string;
+  externalLink: string;
+  feeRecipient: string;
+  sellerFeeBasisPoints: number;
+  primarySaleRecipient: string;
+  trustedForwarders: string;
   category: string;
-  is_disabled: boolean;
-  is_nsfw: boolean;
-  trait_offers_enabled: boolean;
-  collection_offers_enabled: boolean;
-  jarsnft_url: string;
-  project_url: string;
-  wiki_url: string;
-  discord_url: string;
-  telegram_url: string;
-  twitter_username: string;
-  instagram_username: string;
-  created_at: string | Date;
+  owner: string;
+  isNsfw: boolean;
+  isVerified: boolean;
+  saleListed: boolean;
+  viewCount: number;
+  createdAt: Date;
+}
+
+export type CollectionPopularData = CollectionData & {
+  combinedPopularityMetric: number;
+}
+
+type CollectionResponse = {
+  collections: CollectionData[];
+}
+
+export type Category = "art" | "photography" | "pfp" | "gaming";
+
+export type JarsContract = {
+  contract: string;
+  image: string;
+  name: string;
+  symbol?: string;
+  description?: string;
+  app_uri?: string;
+  external_link?: string;
+  fee_recipient: string;
+  seller_fee_basis_points: number;
+  primary_sale_recipient: string;
+  trusted_forwarders: string[];
+  owner: string;
+  created_at: string;
 };
 
-export type ContractMetadata = {
-  data: CustomContractMetadata | unknown;
-  isLoading: boolean;
-  isError: boolean;
+export type ContractForOwner = {
+  address: string;
+  name: string;
+  symbol: string;
+  totalSupply: string | null;
+  tokenType: string;
+  openSeaMetadata: OpenSeaMetadata;
+  totalBalance: string | null;
+  numDistinctTokensOwned: string | null;
+  isSpam: boolean;
+  displayNft: {
+    tokenId: string;
+    name: string;
+  };
+  image: {
+    cachedUrl: string;
+    thumbnailUrl: string | null;
+    pngUrl: string | null;
+    contentType: string | null;
+    size: string | null;
+    originalUrl: string;
+  };
 };
 
-export {
-  AppConfig,
-  NFTCollections,
-  NFTCollection,
-  NFTContentWrapperProps,
-  NFTCarouselProps,
-  NFTCollectionCard,
-  MultiCollectionContextProps,
-};
+export type EventType = "TokensMinted" | "Transfer" | "NewListing" | "NewAuction" | "NewBid" | "NewSale" | "CancelledAuction" | "CancelledListing";

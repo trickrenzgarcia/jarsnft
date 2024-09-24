@@ -6,10 +6,9 @@ import { Button } from "@/components/ui/button";
 import { IoArrowBack, IoCopy } from "react-icons/io5";
 import { useUserContext } from "@/components/(providers)";
 import {
-  ConnectWeb3,
+  ConnectWalletV4,
   Hamburger,
   Login,
-  MinidentIconImg,
   TooltipMsg,
 } from "@/components/(interfaces)";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -33,7 +32,7 @@ export default function CreateNavbar() {
           <h1 className="font-semibold">Go back</h1>
         </div>
 
-        {/* <div className="mr-4 block lg:hidden">
+        <div className="mr-4 block lg:hidden">
           {(isLoading && <Skeleton className="h-9 w-9 rounded-full" />) ||
             (!user && <></>) ||
             (user && (
@@ -45,17 +44,12 @@ export default function CreateNavbar() {
                   }}
                   className="flex cursor-pointer items-center gap-2"
                 >
-                  <MinidentIconImg
-                    address={user.data.address}
-                    width={36}
-                    height={36}
-                  />
                   <p>{shortenAddress(user.data.address, 4, 3)}</p>
                   <IoCopy className="cursor-pointer" />
                 </button>
               </TooltipMsg>
             ))}
-        </div> */}
+        </div>
 
         <div className="flex items-center gap-6 pr-[12px]">
           <Login />

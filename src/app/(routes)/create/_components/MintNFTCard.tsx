@@ -19,8 +19,8 @@ import { Dropdown, Link, DropdownTrigger, DropdownMenu, DropdownItem, Accordion,
 import { Button } from "@/components/ui/button";
 import { Check, ChevronsUpDown, Loader2, PlusIcon } from "lucide-react";
 import { RxDashboard } from "react-icons/rx";
-import { jars } from "@/lib/core/api";
-import { ContractForOwner, JarsContract, NFTCollection } from "@/lib/core/types";
+import jars from "@/lib/api";
+import { ContractForOwner, JarsContract, NFTCollection } from "@/types";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useUserContext } from "@/components/(providers)";
 import Image from "next/image";
@@ -29,7 +29,7 @@ import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { sdk } from "@/lib/sdk";
 import { Textarea } from "@/components/ui/textarea";
-import { ACCEPTED_IMAGE_TYPES } from "@/types/constant";
+import { ACCEPTED_IMAGE_TYPES } from "@/lib/constant";
 import { MdPermMedia } from "react-icons/md";
 import {
   AlertDialogTrigger,
@@ -218,7 +218,6 @@ export default function MintNFTCard() {
             message: "NFT minted successfully",
           });
           await createTxHash("TokensMinted", data.receipt.transactionHash);
-          console.log("Minted DATA", data);
         },
       },
     )

@@ -1,6 +1,6 @@
 "use client"
 
-import { jars } from '@/lib/core/api';
+import jars from '@/lib/api';
 import React from 'react'
 
 export default function useBanner(address: string, refreshBanner: string) {
@@ -13,7 +13,7 @@ export default function useBanner(address: string, refreshBanner: string) {
       setIsLoading(true);
       try {
         const profile = await jars.getUserProfile(address);
-        if(profile) setBanner(profile.profile.banner_url);
+        if(profile) setBanner(profile.profile.bannerUrl);
       } catch(error) {
         setIsError(true);
       }

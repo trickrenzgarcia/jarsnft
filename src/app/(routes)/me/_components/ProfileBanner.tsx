@@ -6,11 +6,11 @@ import { cn, shortenAddress, truncate } from "@/lib/utils";
 import React, { useState } from "react";
 import { MdVerified } from "react-icons/md";
 import Link from "next/link";
-import AddressClipboard from "@/components/(interfaces)/AddressClipboard";
+import { AddressClipboard } from "@/components/(interfaces)";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ProfileQuery } from "@/types/users";
 import Image from "next/image";
-import { StorageProfile } from "@/lib/core/types";
+import { StorageProfile } from "@/types";
 import BoringAvatar from "@/components/(interfaces)/BoringAvatar";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { RiVerifiedBadgeLine } from "react-icons/ri";
@@ -83,7 +83,7 @@ export default function ProfileBanner({
       <div className="relative h-[100px] w-auto md:h-[300px]">
         {!profileLoading ? (
           <Image
-            src={profile?.banner_url || "/assets/collection_banner.webp"}
+            src={profile?.bannerUrl || "/assets/collection_banner.webp"}
             fill
             style={{ objectFit: "cover", opacity: 0.7 }}
             alt="Banner"

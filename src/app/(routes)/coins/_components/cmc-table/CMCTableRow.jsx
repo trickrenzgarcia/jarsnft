@@ -1,12 +1,13 @@
 import CoinNameRow from "./CoinNameRow";
 import { TbCaretUpFilled } from "react-icons/tb";
 import { TbCaretDownFilled } from "react-icons/tb";
+import { upperCase } from "../../api/currencyFunctions";
 import { roundTwoDecimalPlaces } from "../../api/currencyFunctions";
 import { currencyFormat } from "../../api/currencyFunctions";
 import { Sparklines, SparklinesLine } from "react-sparklines";
 
 const styles = {
-  tableRow: `mx-auto border-b border-gray-800 text-[0.93rem]`,
+  tableRow: `border-b border-gray-800 text-[0.93rem]`,
 };
 
 const CMCTableRow = ({
@@ -25,7 +26,7 @@ const CMCTableRow = ({
   sparkline,
 }) => {
   return (
-    <tbody className="table-auto">
+    <tbody className={`${styles.tableRow}`}>
       <tr>
         <td></td>
         <td>{starNum}</td>
@@ -42,13 +43,21 @@ const CMCTableRow = ({
           {currency === "usd" ? "$" : "₱"} {price}
         </td>
         <td>
-          <p className="flex w-full gap-1 text-center" style={hRate >= 0 ? { color: "#39dd15" } : { color: "#DC143C" }}>
+          <p
+            className={`flex w-full gap-1 text-center ${
+              hRate < 0 ? "text-red-500" : "text-green"
+            }`}
+          >
             {hRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
             {roundTwoDecimalPlaces(hRate)}%
           </p>
         </td>
         <td>
-          <p className="flex w-full gap-1 text-center" style={dRate >= 0 ? { color: "#39dd15" } : { color: "#DC143C" }}>
+          <p
+            className={`flex w-full gap-1 text-center ${
+              dRate < 0 ? "text-red-500" : "text-green"
+            }`}
+          >
             {dRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
             {roundTwoDecimalPlaces(dRate)}%
           </p>
@@ -61,26 +70,34 @@ const CMCTableRow = ({
         <td>
           <p>{currencyFormat(volumeValue)}</p>
           <p className="text-gray-400">
-            {currencyFormat(volumeCryptoValue)} {coinSymbol.toUpperCase()}
+            {currencyFormat(volumeCryptoValue)} {upperCase(coinSymbol)}
           </p>
         </td>
 
         <td>
           <p>
-            {currencyFormat(circulatingSupply)} {coinSymbol.toUpperCase()}
+            {currencyFormat(circulatingSupply)} {upperCase(coinSymbol)}
           </p>
         </td>
 
         <td>
-          <Sparklines svgWidth={150} height={70} data={sparkline} quality={75}>
-            <SparklinesLine color={hRate < 0 ? "#DC143C" : "#2eff00"} />
+          <Sparklines svgWidth={160} height={60} data={sparkline} quality={100}>
+            <SparklinesLine color={hRate < 0 ? "red" : "#2DFE54"} />
           </Sparklines>
         </td>
       </tr>
     </tbody>
   );
 };
-export const MobileTableRow = ({ starNum, coinName, coinIcon, currency, coinSymbol = "---", price = "----", hRate = "---" }) => {
+export const MobileTableRow = ({
+  starNum,
+  coinName,
+  coinIcon,
+  currency,
+  coinSymbol = "---",
+  price = "----",
+  hRate = "---",
+}) => {
   return (
     <tbody className={`${styles.tableRow}`}>
       <tr>
@@ -88,17 +105,21 @@ export const MobileTableRow = ({ starNum, coinName, coinIcon, currency, coinSymb
         <td>{starNum}</td>
 
         {coinIcon && coinIcon ? (
-          <td className="max-w-[100px]">
-            <CoinNameRow name={coinName} icon={coinIcon} symbol="" />
+          <td>
+            <CoinNameRow name={coinName} icon={coinIcon} symbol={coinSymbol} />
           </td>
         ) : (
           <></>
         )}
 
-        <td>
-          <p className="text-end">
+        <td className="flex content-end justify-end">
+          <p className="text-right">
             {currency === "usd" ? "$" : "₱"} {price}
-            <span className={`flex justify-end gap-1 text-sm ${hRate < 0 ? "text-red-500" : ""}`} style={hRate >= 0 ? { color: "#39dd15" } : {}}>
+            <span
+              className={`flex justify-end gap-1 text-center text-sm ${
+                hRate < 0 ? "text-red-500" : "text-green"
+              }`}
+            >
               {hRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
               {roundTwoDecimalPlaces(hRate)}%
             </span>

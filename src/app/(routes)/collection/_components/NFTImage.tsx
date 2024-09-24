@@ -17,7 +17,7 @@ export default function NFTImage({ image_url, name }: Props) {
           src={image_url}
           alt={name}
           style={{ objectFit: "cover" }}
-          className="h-full w-full rounded-lg "
+          className="h-full w-full  rounded-lg "
         />
       ): (
         <Image 

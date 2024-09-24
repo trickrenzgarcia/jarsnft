@@ -1,6 +1,6 @@
 "use client"
 
-import { cn } from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import { FaRegHandPaper } from "react-icons/fa";
 import { TbTransfer } from "react-icons/tb";
 import { HiOutlineSparkles } from "react-icons/hi";

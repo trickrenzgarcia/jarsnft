@@ -1,3 +1,10 @@
+export type SimpleHashCollection = {
+  next_cursor: null;
+  next: null;
+  previous: null;
+  collections: Collection[];
+};
+
 export type SimpleHashCollections = {
   next_cursor: null;
   next: null;

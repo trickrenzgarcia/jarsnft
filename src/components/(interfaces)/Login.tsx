@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser } from "@thirdweb-dev/react";
-import { ConnectWeb3, CreateUserDialog, ProfileButton } from ".";
+import { ConnectWalletV4, CreateUserDialog, ProfileButton } from ".";
 import { ProfileQuery } from "@/types/users";
 import { Skeleton } from "../ui/skeleton";
 
@@ -16,15 +16,15 @@ export default function Login() {
       ) : isLoggedIn ? (
         <div className="flex items-center gap-2">
           <ProfileButton />
-          <ConnectWeb3 btnTitle="Connect" />
+          <ConnectWalletV4 btnTitle="Connect" />
         </div>
       ) : (
-        <ConnectWeb3 btnTitle="Connect" />
+        <ConnectWalletV4 btnTitle="Connect" />
       )}
 
       {/* If the user is logged in but not listed. */}
-      {isLoggedIn && !user.data.session.is_listed && (
-        <CreateUserDialog isOpenCreate={!user.data.session.is_listed} />
+      {isLoggedIn && !user.data.session.isListed && (
+        <CreateUserDialog isOpenCreate={!user.data.session.isListed} />
       )}
     </div>
   );

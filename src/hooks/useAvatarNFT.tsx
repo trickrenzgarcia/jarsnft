@@ -1,7 +1,7 @@
 "use client"
 
 import { useUserContext } from '@/components/(providers)';
-import { jars } from '@/lib/core/api';
+import jars from '@/lib/api';
 import React from 'react'
 
 export default function useAvatarNFT() {
@@ -16,7 +16,7 @@ export default function useAvatarNFT() {
       setIsLoading(true);
       try {
         const profile = await jars.getUserProfile(user.address);
-        if(profile) setAvatar(profile.profile.image_url);
+        if(profile) setAvatar(profile.profile.imageUrl);
       } catch(error) {
         setIsError(true);
       }

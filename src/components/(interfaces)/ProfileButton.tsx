@@ -2,26 +2,18 @@
 
 import {
   ButtonGroup,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
   Spinner,
 } from "@nextui-org/react";
 import { Button } from "@/components/ui/button";
-import React, { useEffect } from "react";
 import { BoringAvatar } from ".";
-import { CgDetailsMore } from "react-icons/cg";
-import { TiHeartOutline } from "react-icons/ti";
-import { LuWallet, LuActivitySquare, LuSettings } from "react-icons/lu";
-import { MdOutlineLocalOffer } from "react-icons/md";
+import { LuWallet } from "react-icons/lu";
 import Link from "next/link";
 
 import { useLogout, useUser } from "@thirdweb-dev/react";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { ProfileQuery } from "@/types/users";
 import { Skeleton } from "../ui/skeleton";
-import { jars } from "@/lib/core/api";
+import jars from "@/lib/api";
 import useAvatarNFT from "@/hooks/useAvatarNFT";
 import Image from "next/image";
 import { shortenAddress } from "@/lib/utils";
@@ -33,19 +25,8 @@ export default function ProfileButton() {
     isLoggedIn,
   } = useUser() as ProfileQuery;
   const { logout, isLoading: logoutLoading } = useLogout();
-  const [name, setName] = React.useState<string>("");
 
   const { avatar, isLoading, isError } = useAvatarNFT();
-
-  useEffect(() => {
-    const fetchName = async () => {
-      if (isLoggedIn) {
-        const data = await jars.getUser(user.address);
-        setName(data.name);
-      }
-    };
-    fetchName();
-  }, [user, isUserLoading, isLoggedIn]);
 
   return (
     <div className="">
@@ -91,7 +72,7 @@ export default function ProfileButton() {
                     }
                     
                     <div>
-                      <p className="truncate font-bold">{name}</p>
+                      <p className="truncate font-bold">{user.data.session.name}</p>
                       <p className="text-xs">{shortenAddress(user.address,6 ,4)}</p>
                     </div>
                       
