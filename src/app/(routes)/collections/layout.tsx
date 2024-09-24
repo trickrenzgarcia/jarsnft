@@ -9,7 +9,7 @@ export default function CollectionsLayout({
   return (
     <div>
       <Navbar />
-      <div className="mx-auto py-auto max-w-7xl pl-2 overflow-hidden">
+      <div className="mx-auto py-auto max-w-7xl px-2 overflow-hidden">
         {children}
       </div>
       <Footer />
