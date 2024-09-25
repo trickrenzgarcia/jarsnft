@@ -1,7 +1,9 @@
 import { Footer, Navbar } from "@/components/(layout)";
 import { Hero, Trend, ListComponents } from "@/components/(layout)/_main";
+import NFTCategories from "@/components/(layout)/_main/NFTCategories";
 import { Separator } from "@/components/ui/separator";
 import jars from "@/lib/api";
+import { Suspense } from "react";
 
 export default async function Home() {
   const t1 = await jars.collection.getTrending("art")
@@ -34,6 +36,9 @@ export default async function Home() {
         />
       </div>
 
+      <Suspense fallback={<div>Loading...</div>}>
+        <NFTCategories />
+      </Suspense>
       <Footer />
     </main>
   );
