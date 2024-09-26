@@ -14,7 +14,7 @@ export default async function ProfilePicturesPage() {
 
   return (
     <div className='container'>
-      <h1 className='text-4xl'>Explore Profile NFTs</h1>
+      <h1 className='text-4xl my-5'>Explore Profile NFTs</h1>
       <Suspense fallback={<div>Loading....</div>}>
         <Collections category="art" collections={pfpCollections} />
       </Suspense>
