@@ -43,22 +43,7 @@ export default function NFTCarousel({
               )}
             >
               <NFTCard
-                collectionLink={data.contract}
-                itemLink={data.contract}
-                logo={data.image}
-                image={data.image}
-                name={data.name}
-                verified={false}
-                floor={faker.number.float({
-                  min: 1,
-                  max: 50,
-                  fractionDigits: 2,
-                })}
-                volume={faker.number.float({
-                  min: 100,
-                  max: 500,
-                  fractionDigits: 2,
-                })}
+                item={data}
               />
             </CarouselItem>
           ))}
