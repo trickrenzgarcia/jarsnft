@@ -1,11 +1,11 @@
 import NFTCardCategories from "./NFTCardCategories";
 
-export default function NFTCategories() {
+export default function NFTCategories({ className }: { className: string }) {
   return (
     <>
-      <div>
+      <div className={className}>
         <p className="mb-12 text-center text-xl font-bold">NFT Categories</p>
-        <div className="flex flex-col gap-6 md:mx-6 md:grid md:grid-cols-3">
+        <div className="flex gap-12 justify-center">
           <NFTCardCategories
             categoryLink="/category/arts"
             categoryName="Art NFTs"

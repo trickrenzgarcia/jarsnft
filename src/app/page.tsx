@@ -34,11 +34,12 @@ export default async function Home() {
             </section>
           )}
         />
+
+        <Suspense fallback={<div>Loading...</div>}>
+          <NFTCategories className="my-16" />
+        </Suspense>
       </div>
 
-      <Suspense fallback={<div>Loading...</div>}>
-        <NFTCategories />
-      </Suspense>
       <Footer />
     </main>
   );
