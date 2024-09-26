@@ -39,7 +39,7 @@ export default function NFTCarousel({
             <CarouselItem
               key={index}
               className={cn(
-                `basis-[75%] md:basis-1/2 lg:basis-1/3 xl:basis-1/4`,
+                `basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4 2xl:basis-1/5`,
               )}
             >
               <NFTCard
