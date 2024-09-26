@@ -21,7 +21,7 @@ export default function NFTCardCategories({
   image,
 }: NFTCardCategoriesProps) {
   return (
-    <Card className="mx-auto h-[300px] w-80">
+    <Card className="h-[300px] w-full">
       <CardHeader className="relative h-52 overflow-hidden">
         <Link href={categoryLink}>
           <Image
@@ -34,8 +34,8 @@ export default function NFTCardCategories({
         </Link>
       </CardHeader>
 
-      <CardFooter className="flex h-[5.5rem] items-start p-0 pl-6">
-        <p className="my-auto">{categoryName}</p>
+      <CardFooter className="flex h-[5.5rem] p-0 pl-6">
+        <p className="my-auto font-semibold">{categoryName}</p>
       </CardFooter>
     </Card>
   );
