@@ -25,43 +25,52 @@ export default async function CollectionData({ searchParams }: { searchParams: {
 
   const slicedCollections = currentCollections.slice(start, end);
 
+  const dataUse = {
+    hide: "hidden lg:grid",
+    hidelg: "lg:hidden",
+  }
+
   return (
     <div className="flex flex-col">
-      <div className="grid grid-cols-8 place-items-center py-4">
+      <div className="grid grid-cols-5 lg:grid-cols-8 place-items-center py-4 space-x-4">
+        <div className={dataUse.hidelg}></div>
+        <div className={dataUse.hidelg}>Name</div>
         <div></div>
         <div>Floor Price</div>
-        <div>Floor Change</div>
-        <div>Volume</div>
-        <div>Volume Change</div>
-        <div>Sales</div>
-        <div>Sales Change</div>
+        <div className={dataUse.hide}>Floor Change</div>
+        <div className={dataUse.hide}>Volume</div>
+        <div className={dataUse.hide}>Volume Change</div>
+        <div className={dataUse.hide}>Sales</div>
+        <div className={dataUse.hide}>Sales Change</div>
         <div>Listed</div>
       </div>
 
       {slicedCollections.map((collection, i) => (
         <Link
           href={`/collection/${collection.contract}`}
-          className="grid grid-cols-8 place-items-center transition-background hover:bg-neutral-800"
+          className="grid grid-cols-5 lg:grid-cols-8 place-items-center transition-background hover:bg-accent-foreground/15 rounded-lg space-x-4"
           key={i}
         >
-          <div className="flex items-center gap-4 justify-self-start py-4">
+          <div className="ml-1 flex items-center gap-4 justify-self-start py-4">
             <Image
               src={collection.image}
               width={50}
               height={50}
-              style={{ objectFit: "cover", objectPosition: "center" }}
+              style={{ minHeight: "60px", minWidth: "60px", objectFit: "cover", objectPosition: "center" }}
               alt="logo of a collection"
-              className="size-14 rounded-md"
+              className="size-14 rounded-lg"
             />
-            <p className="h-fit truncate">{collection.name}</p>
+            <p className="max-w-[14rem] h-fit w-full truncate">{collection.name}</p>
             {true && <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" />}
           </div>
+          <div className={dataUse.hidelg}></div>
+          <div className={dataUse.hidelg}></div>
           <div className="">{collection.sellerFeeBasisPoints}</div> {/* Floor Price */}
-          <div className="">{collection.sellerFeeBasisPoints}</div> {/* Floor Change */}
-          <div className="">{collection.sellerFeeBasisPoints}</div> {/* Volume */}
-          <div className="">{collection.sellerFeeBasisPoints}</div> {/* Volume Change */}
-          <div className="">{collection.sellerFeeBasisPoints}</div> {/* Sales */}
-          <div className="">{collection.sellerFeeBasisPoints}</div> {/* Sales Change */}
+          <div className={dataUse.hide}>{collection.sellerFeeBasisPoints}</div> {/* Floor Change */}
+          <div className={dataUse.hide}>{collection.sellerFeeBasisPoints}</div> {/* Volume */}
+          <div className={dataUse.hide}>{collection.sellerFeeBasisPoints}</div> {/* Volume Change */}
+          <div className={dataUse.hide}>{collection.sellerFeeBasisPoints}</div> {/* Sales */}
+          <div className={dataUse.hide}>{collection.sellerFeeBasisPoints}</div> {/* Sales Change */}
           <div className="">{collection.sellerFeeBasisPoints}</div> {/* Listed */}
         </Link>
       ))}
