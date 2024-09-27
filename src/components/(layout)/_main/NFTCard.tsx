@@ -52,7 +52,7 @@ export default function NFTCard({ item }: { item: CollectionData }) {
         </CardTitle>
       </CardContent>
 
-      <CardFooter className={cn('hidden', 'w-full mt-2 sm:flex justify-between rounded-lg p-3 bg-muted dark:bg-muted/30')}>
+      <CardFooter className={cn('w-full mt-2 flex justify-between rounded-lg p-3 bg-muted dark:bg-muted/30')}>
         <div className='flex flex-col gap-1'>
           <p className='text-xs truncate text-muted-foreground'>Floor</p>
           <p className='text-sm font-semibold truncate'>100 MATIC</p>
