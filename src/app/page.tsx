@@ -11,9 +11,9 @@ export default async function Home() {
   const t3 = await jars.collection.getTrending("pfp")
 
   const collections = [
-    { category: "Art", data: t1 },
-    { category: "Photography", data: t2 },
-    { category: "Profile Picture", data: t3 },
+    { category: "Art", data: t1, link: "/category/arts" },
+    { category: "Photography", data: t2, link: "/category/photography" },
+    { category: "Profile Picture", data: t3, link: "/category/pfp" },
   ]
 
   return (
@@ -29,6 +29,7 @@ export default async function Home() {
               <Trend
                 category={collection.category}
                 collections={collection.data}
+                link={collection.link}
               />
               <Separator className="h-[2px] w-full" />
             </section>

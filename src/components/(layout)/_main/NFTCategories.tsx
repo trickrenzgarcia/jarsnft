@@ -5,7 +5,7 @@ export default function NFTCategories({ className }: { className: string }) {
     <>
       <div className={className}>
         <p className="mb-12 text-center text-xl font-bold">NFT Categories</p>
-        <div className="flex gap-12 justify-center">
+        <div className="flex flex-col md:flex-row gap-12 md:justify-center">
           <NFTCardCategories
             categoryLink="/category/arts"
             categoryName="Art NFTs"
