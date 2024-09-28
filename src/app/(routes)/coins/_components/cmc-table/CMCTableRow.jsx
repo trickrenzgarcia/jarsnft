@@ -45,7 +45,7 @@ const CMCTableRow = ({
         <td>
           <p
             className={`flex w-full gap-1 text-center ${
-              hRate < 0 ? "text-red-500" : "text-green"
+              hRate < 0 ? "text-red-500" : "text-green-400"
             }`}
           >
             {hRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
@@ -55,7 +55,7 @@ const CMCTableRow = ({
         <td>
           <p
             className={`flex w-full gap-1 text-center ${
-              dRate < 0 ? "text-red-500" : "text-green"
+              dRate < 0 ? "text-red-500" : "text-green-400"
             }`}
           >
             {dRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
@@ -117,7 +117,7 @@ export const MobileTableRow = ({
             {currency === "usd" ? "$" : "₱"} {price}
             <span
               className={`flex justify-end gap-1 text-center text-sm ${
-                hRate < 0 ? "text-red-500" : "text-green"
+                hRate < 0 ? "text-red-500" : "text-[#4ade80]"
               }`}
             >
               {hRate < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />}
