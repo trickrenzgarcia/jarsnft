@@ -25,33 +25,31 @@ export default async function CollectionData({ searchParams }: { searchParams: {
 
   const slicedCollections = currentCollections.slice(start, end);
 
-  const dataUse = {
-    hide: "hidden lg:grid",
-    hidelg: "lg:hidden",
+  const hide = () => {
+    return 'hidden lg:inline-block'
   }
 
   return (
     <div className="flex flex-col">
-      <div className="grid grid-cols-5 lg:grid-cols-8 place-items-center py-4 space-x-4">
-        <div className={dataUse.hidelg}></div>
-        <div className={dataUse.hidelg}>Name</div>
-        <div></div>
+      <div className="grid grid-cols-3 lg:grid-cols-9 place-items-center py-4 space-x-4">
+      <div>Name</div>
         <div>Floor Price</div>
-        <div className={dataUse.hide}>Floor Change</div>
-        <div className={dataUse.hide}>Volume</div>
-        <div className={dataUse.hide}>Volume Change</div>
-        <div className={dataUse.hide}>Sales</div>
-        <div className={dataUse.hide}>Sales Change</div>
+        <div className={hide()}>Floor Change</div>
+        <div className={hide()}>Volume</div>
+        <div className={hide()}>Volume Change</div>
+        <div className={hide()}>Sales</div>
+        <div className={hide()}>Sales Change</div>
         <div>Listed</div>
+        <div className={hide()}>Verified</div>
       </div>
 
       {slicedCollections.map((collection, i) => (
         <Link
           href={`/collection/${collection.contract}`}
-          className="grid grid-cols-5 lg:grid-cols-8 place-items-center transition-background hover:bg-accent-foreground/15 rounded-lg space-x-4"
+          className="grid grid-cols-3 lg:grid-cols-9 lg:pl-5 place-items-center transition-background hover:bg-accent-foreground/15 rounded-lg space-x-6 gap-4"
           key={i}
         >
-          <div className="ml-1 flex items-center gap-4 justify-self-start py-4">
+          <div className="flex items-center gap-1 justify-self-start py-4">
             <Image
               src={collection.image}
               width={50}
@@ -60,18 +58,17 @@ export default async function CollectionData({ searchParams }: { searchParams: {
               alt="logo of a collection"
               className="size-14 rounded-lg"
             />
-            <p className="max-w-[14rem] h-fit w-full truncate">{collection.name}</p>
-            {true && <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" />}
+            <p className="max-w-[6rem] h-fit truncate">{collection.name}</p>
           </div>
-          <div className={dataUse.hidelg}></div>
-          <div className={dataUse.hidelg}></div>
-          <div className="">{collection.sellerFeeBasisPoints}</div> {/* Floor Price */}
-          <div className={dataUse.hide}>{collection.sellerFeeBasisPoints}</div> {/* Floor Change */}
-          <div className={dataUse.hide}>{collection.sellerFeeBasisPoints}</div> {/* Volume */}
-          <div className={dataUse.hide}>{collection.sellerFeeBasisPoints}</div> {/* Volume Change */}
-          <div className={dataUse.hide}>{collection.sellerFeeBasisPoints}</div> {/* Sales */}
-          <div className={dataUse.hide}>{collection.sellerFeeBasisPoints}</div> {/* Sales Change */}
-          <div className="">{collection.sellerFeeBasisPoints}</div> {/* Listed */}
+          <div>{collection.sellerFeeBasisPoints}</div> {/* Floor Price */}
+          <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Floor Change */}
+          <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Volume */}
+          <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Volume Change */}
+          <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales */}
+          <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales Change */}
+          <div >{collection.sellerFeeBasisPoints}</div> {/* Listed */}
+          <div className={hide()}>{true && <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit"/>}</div> {/* Verified */}
+
         </Link>
       ))}
       <PaginationControls

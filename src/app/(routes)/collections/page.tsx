@@ -8,7 +8,9 @@ export default function CollectionsPage({
 }) {
   return (
     <>
-      <h1 className="mb-4 text-4xl font-bold">Collections</h1>
+       <h1 className="animate-once animate-duration-[1200ms] animate-ease-in mx-auto my-4 animate-flip-down text-3xl font-bold lg:text-7xl">
+        Collections
+      </h1>
       <DropdownControls searchParams={searchParams} />
       <CollectionData searchParams={searchParams} />
     </>
