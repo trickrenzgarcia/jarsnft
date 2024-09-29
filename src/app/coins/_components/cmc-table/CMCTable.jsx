@@ -12,23 +12,17 @@ const CMCTable = () => {
   );
 
   // Function to handle currency change
-  const handleCurrencyChange = () => {
+  const CurrencyChange = () => {
     // Toggle between USD and PHP
     const newCurrency = currency === "usd" ? "php" : "usd";
     setCurrency(newCurrency);
   };
 
   return (
-    <div className="mx-auto mt-10 max-w-screen-2xl font-bold">
-      <CurrencyToggleButton
-        onClick={handleCurrencyChange}
-        currency={currency}
-      />
-      <div className="hidden xl:block">
-        <table
-          className="mt-3 w-full"
-          style={{ borderCollapse: "separate", borderSpacing: "0 20px" }}
-        >
+    <div className="mx-auto my-2 max-w-screen-lg space-y-4 font-bold">
+      <CurrencyToggleButton onClick={CurrencyChange} currency={currency} />
+      <div className="hidden md:hidden lg:block xl:block">
+        <table className="w-full" style={{ borderCollapse: "unset", borderSpacing: "0 20px" }}>
           <CMCTableHeader />
           {response && response ? (
             response.map((coin, index) => {
@@ -56,32 +50,28 @@ const CMCTable = () => {
           )}
         </table>
       </div>
-      <div className="lg:hidden">
-        <table
-          className="mt-3 w-full"
-          style={{ borderCollapse: "separate", borderSpacing: "0 20px" }}
-        >
-          <MobileTableHeader />
-          {response && response ? (
-            response.map((coin, index) => {
-              return (
-                <MobileTableRow
-                  currency={currency}
-                  key={index}
-                  starNum={coin.market_cap_rank}
-                  coinName={coin.name}
-                  coinSymbol={coin.symbol}
-                  coinIcon={coin.image}
-                  hRate={coin.price_change_percentage_24h}
-                  price={coin.current_price}
-                />
-              );
-            })
-          ) : (
-            <></>
-          )}
-        </table>
-      </div>
+
+      <table className="w-full lg:hidden" style={{ borderCollapse: "separate", borderSpacing: "0 20px" }}>
+        <MobileTableHeader />
+        {response && response ? (
+          response.map((coin, index) => {
+            return (
+              <MobileTableRow
+                currency={currency}
+                key={index}
+                starNum={coin.market_cap_rank}
+                coinName={coin.name}
+                coinSymbol={coin.symbol}
+                coinIcon={coin.image}
+                hRate={coin.price_change_percentage_24h}
+                price={coin.current_price}
+              />
+            );
+          })
+        ) : (
+          <></>
+        )}
+      </table>
     </div>
   );
 };

@@ -3,16 +3,15 @@ import TrendingCardRow from "./TrendingCardRow";
 import { getNftMarketCap, getTrendingCoins } from "../../api/apiCoingecko";
 
 const styles = {
-  trendingCard: `w-full p-6 py-5 pb-5 dark:bg-[#1C1C1C] bg-[#CED4DA] rounded-xl h-full flex flex-col justify-between`,
+  trendingCard: `w-full my-6 p-6 dark:bg-[#1C1C1C] bg-[#CED4DA] rounded-xl min-h-64 flex flex-col justify-between self-center`,
 };
 
 const TrendingCard = async ({ title, icon, type }) => {
-  const data =
-    type === "coins" ? await getTrendingCoins() : await getNftMarketCap();
+  const data = type === "coins" ? await getTrendingCoins() : await getNftMarketCap();
   return (
     <div className={styles.trendingCard}>
-      <div className="flex flex-row gap-5">
-        {icon && <Image src={icon} width={30} height={30} alt="image" />}
+      <div className="flex flex-row gap-4">
+        {icon && <Image src={icon} width={40} height={40} alt="image" />}
         <p className="text-lg font-bold">{title}</p>
       </div>
       {type === "coins"
@@ -38,9 +37,7 @@ const TrendingCard = async ({ title, icon, type }) => {
                 symbol={nft.symbol}
                 icon={nft.thumb}
                 sparklines={nft.data.sparkline}
-                percentChange={
-                  nft.data.floor_price_in_usd_24h_percentage_change
-                }
+                percentChange={nft.data.floor_price_in_usd_24h_percentage_change}
               />
             );
           })}
