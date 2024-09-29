@@ -43,7 +43,7 @@ export default function OnBoardingCarousel() {
                 alt={`Art piece ${index + 1}`}
                 width={512}
                 loading="eager"
-                className="aspect-[1/1.29]"
+                className="aspect-[1/1.29] w-[80vw] h-[80vh]"
               />
             </div>
           </CarouselItem>

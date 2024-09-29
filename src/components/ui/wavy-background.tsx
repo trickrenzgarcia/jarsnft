@@ -12,7 +12,7 @@ export const WavyBackground = ({
   backgroundFill,
   blur = 10,
   speed = "fast",
-  waveOpacity = 0.5,
+  waveOpacity = 10,
   ...props
 }: {
   children?: any;
@@ -122,7 +122,7 @@ export const WavyBackground = ({
           ...(isSafari ? { filter: `blur(${blur}px)` } : {}),
         }}
       ></canvas>
-      <div className={cn("relative z-10", className)} {...props}>
+      <div className={cn("w-full h-auto", className)} {...props}>
         {children}
       </div>
     </div>
