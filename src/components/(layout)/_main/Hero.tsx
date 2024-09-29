@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 
 const words = [
@@ -36,7 +35,7 @@ const words = [
 export default function Hero() {
   return (
     <section className="flex items-center">
-      <div className="relative h-96 w-full overflow-hidden">
+      <div className="relative h-96 w-screen">
         <Image
           src="/assets/hero-icon.svg"
           fill
