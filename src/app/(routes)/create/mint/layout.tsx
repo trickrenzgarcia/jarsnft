@@ -9,5 +9,5 @@ export default function MintLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="md:container">{children}</div>;
+  return <div className="max-w-7xl p-6">{children}</div>;
 }

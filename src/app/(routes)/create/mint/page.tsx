@@ -4,6 +4,7 @@ import { useUserContext } from "@/components/(providers)";
 import MintNFTCard from "../_components/MintNFTCard";
 import { Loading } from "@/components/(skeletons)";
 import NoConnectedWallet from "@/app/(routes)/me/_components/NoConnectedWallet";
+import Image from "next/image";
 
 export default function MintingPage() {
   const user = useUserContext();
@@ -19,7 +20,15 @@ export default function MintingPage() {
   if (!user.isLoggedIn) return <NoConnectedWallet />;
 
   return (
-    <main className="mx-auto flex w-full flex-col justify-center gap-5 md:flex-row md:py-8">
+    <main className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full justify-items-center">
+      <div className="bg-cover w-full h-full">
+        <Image
+        src = "/assets/monke.jpg"
+        width={960}
+        height={540}
+        alt="image"
+        />
+      </div>
       <MintNFTCard />
     </main>
   );
