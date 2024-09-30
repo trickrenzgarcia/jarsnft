@@ -17,8 +17,8 @@ export default function Trend({
   return (
     <div className="my-12">
       <div className="flex items-center justify-between gap-2">
-        <p className="max-[490px]:text-lg text-2xl font-bold">Trending in {category}</p>
-        <Button variant="ghost" className="font-bold text-sm lg:text-md leading-md rounded-xl dark:bg-[#1b1b1b] py-4 hover:bg-[#252525] lg:px-6 ">
+        <p className="text-sm lg:text-4xl font-bold">Trending in {category}</p>
+        <Button className="font-bold text-sm lg:text-md leading-md rounded-xl light:hover:bg-[#252525] py-4 lg:px-6 ">
           <Link href={link}>View {category}</Link>
         </Button>
       </div>

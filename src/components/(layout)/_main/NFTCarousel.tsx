@@ -10,7 +10,6 @@ import {
 import { cn } from "@/lib/utils";
 import React from "react";
 import NFTCard from "./NFTCard";
-import { faker } from "@faker-js/faker";
 import { CollectionData } from "@/types";
 
 
