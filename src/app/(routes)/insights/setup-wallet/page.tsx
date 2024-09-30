@@ -1,11 +1,6 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { NoiseCard } from "@/components/ui/noise-card";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { FaUsers } from "react-icons/fa";
-import { MdStars, MdCheckBox } from "react-icons/md";
 import { P } from "../_components/TailwindTags";
 
 const browsers = [
@@ -78,7 +73,7 @@ export default function SetupWallet() {
           {" and "}
           <span className="font-bold">Coinbase</span>.
         </p>
-        <div className="flex justify-center gap-[5rem]">
+        <div className="w-full flex-wrap flex justify-center gap-[5rem]">
           <Image
             src="/assets/InsightsAsset/Metamask_Fox.png"
             width={1920}
@@ -100,7 +95,7 @@ export default function SetupWallet() {
           {" and "}
           <span className="font-bold">Opera</span>.
         </p>
-        <div className="flex justify-center gap-[5rem]">
+        <div className="flex flex-wrap w-full justify-center gap-[5rem]">
           {browsers.map((browser, index) => (
             <Image
               key={index}

@@ -61,7 +61,7 @@ export default function LearnLayout({ children }: LearnProps) {
         <SideNavLeft />
         <main className="ml-5 mr-5 mt-5 lg:gap-10 xl:grid xl:grid-cols-[1fr_250px]">
           <div className="min-w-full sm:mt-16 lg:mt-0">
-            <div className="container md:my-5">
+            <div className="container m-auto p-auto mt-24 lg:mt-6">
               <PageNavTopic color="#c117ff" />
               <div
                 key={key}

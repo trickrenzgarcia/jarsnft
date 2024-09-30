@@ -74,7 +74,7 @@ export default function TradeNftPage() {
         />
         <P>{`For Direct Listing you only have to set a date on when the listing ends and Price of your NFT. `}</P>
         <P>{`For Auction you will also set the date for when the listing ends, while also setting up the starting bid and the buyout price of your NFT.`}</P>
-        <div className="flex justify-center gap-5">
+        <div className="flex flex-col lg:flex-row justify-center gap-5">
           <Image
             src="/assets/InsightsAsset/TradeNFT/JARS Sell 3.png"
             width={1920}
