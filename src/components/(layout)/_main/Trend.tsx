@@ -16,13 +16,13 @@ export default function Trend({
 }) {
   return (
     <div className="my-12">
-      <div className="flex">
-        <p className="mb-12 text-2xl font-bold">Trending in {category}</p>
-        <Button variant="ghost" className="lg:text-md leading-md ml-auto rounded-xl bg-[#1b1b1b] py-4 text-sm font-bold hover:bg-[#252525] lg:px-6 ">
-          <Link href={link}>View Category</Link>
+      <div className="flex items-center justify-between gap-2">
+        <p className="text-sm lg:text-4xl font-bold">Trending in {category}</p>
+        <Button className="font-bold text-sm lg:text-md leading-md rounded-xl light:hover:bg-[#252525] py-4 lg:px-6 ">
+          <Link href={link}>View {category}</Link>
         </Button>
       </div>
-      <div className="px-0 md:px-10">
+      <div className="my-12 px-0 md:px-10">
         <NFTCarousel collections={collections} />
       </div>
     </div>

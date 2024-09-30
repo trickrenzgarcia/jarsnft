@@ -21,17 +21,15 @@ export default function Footer() {
   ];
 
   const resourceLinks: Array<LinkType> = [
-    { href: "/insights/getting-started", description: "Getting Started" },
+    { href: "/insights/setup-wallet", description: "Getting Started" },
     { href: "/insights", description: "Insights" },
-    { href: "/insights/faq", description: "FAQs" },
   ];
 
   const helpLinks: Array<LinkType> = [
-    { href: "", description: "What is NFT?" },
-    { href: "/insights/buying-nfts", description: "How to buy an NFT?" },
-    { href: "/insights/selling-nfts", description: "How to sell an NFT?" },
-    { href: "", description: "What are blockchain gas fees?" },
-    { href: "", description: "What is a blockchain?" },
+    { href: "/insights/what-is-nft", description: "What is NFT?" },
+    { href: "/insights/trade-nft", description: "How to buy & sell an NFT?" },
+    { href: "/insights/what-are-gas-fees", description: "What are blockchain gas fees?" },
+    { href: "/insights/what-is-blockchain", description: "What is a blockchain?" },
   ];
 
   const companyLinks: Array<LinkType> = [

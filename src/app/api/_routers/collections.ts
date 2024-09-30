@@ -13,7 +13,6 @@ import { trendingSchema } from "@/schema/zod";
 
 export const collections = new Hono()
 
-
 collections.get('/test', async (c) => {
   const contract = await getContract({ 
     client,

@@ -17,11 +17,11 @@ export default async function Home() {
   ]
 
   return (
-    <main className="bg-background">
+    <main className="w-screen bg-background">
       <Navbar />
       <Hero />
 
-      <div className="container my-20">
+      <div className="container my-20 max-w-7xl">
         <ListComponents
           data={collections}
           renderItem={(collection, index) => (

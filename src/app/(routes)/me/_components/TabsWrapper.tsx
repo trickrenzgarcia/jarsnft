@@ -33,7 +33,7 @@ export default function TabsWrapper({
   return (
     <div className="mb-8 w-full">
       <Tabs defaultValue="owned">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center ml-5 md:ml-0 gap-2">
           <TabsList>
             <TabsTrigger value="owned" className="gap-1">
               <span>Owned NFTs</span>

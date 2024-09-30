@@ -8,7 +8,7 @@ export default function CoinsLayout({
   return (
     <>
       <Navbar />
-      <main className="container px-10">{children}</main>
+      <main className="mx-auto my-auto container">{children}</main>
       <Footer />
     </>
   );

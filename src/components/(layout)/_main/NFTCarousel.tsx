@@ -10,7 +10,6 @@ import {
 import { cn } from "@/lib/utils";
 import React from "react";
 import NFTCard from "./NFTCard";
-import { faker } from "@faker-js/faker";
 import { CollectionData } from "@/types";
 
 
@@ -39,7 +38,7 @@ export default function NFTCarousel({
             <CarouselItem
               key={index}
               className={cn(
-                `basis-1/2 lg:basis-1/3 xl:basis-1/4 2xl:basis-1/5 pt-1`,
+                `max-[490px]:basis-full basis-1/2 lg:basis-1/3 xl:basis-1/4 2xl:basis-1/5 pt-1`,
               )}
             >
               <NFTCard

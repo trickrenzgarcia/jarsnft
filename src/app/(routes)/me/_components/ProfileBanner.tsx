@@ -97,7 +97,7 @@ export default function ProfileBanner({
       {/* Banner on mobile screen */}
       <div className="absolute left-0 right-0 block h-[250px] w-full md:hidden">
         <div className="flex flex-col h-full items-start mx-4 justify-center">
-          <div className="w-full flex justify-between items-end">
+          <div className="w-full mt-8 flex justify-between items-end">
             <EditModeAvatarDialog address={user.address}>
               <div className="relative flex h-[100px] w-[100px] select-none items-center justify-center rounded-full border-2 border-fuchsia-600 p-[2px]">
                 <div
@@ -141,7 +141,7 @@ export default function ProfileBanner({
           
 
           <div className="w-full">
-            <div className="text-2xl font-bold flex gap-1 items-center">
+            <div className="text-2xl my-2 font-bold flex gap-1 items-center">
               <h1 className="truncate text-start">
                 {(user.session.name && truncate(user.session.name, 20)) ||
                   shortenAddress(user.address)}

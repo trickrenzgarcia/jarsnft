@@ -45,7 +45,7 @@ export default function SideBarHamburger() {
               className="fixed inset-0 bg-black/20 backdrop-blur-sm dark:bg-zinc-900/80"
               onClick={() => setIsOpen(false)}
             ></div>
-            <div className="absolute flex w-80 max-w-[calc(100%-3rem)] flex-col justify-center bg-background p-4">
+            <div className="absolute flex w-80 max-w-[calc(100%-3rem)] flex-col bg-background p-4">
               <div className="mt-4 flex flex-row items-end justify-between">
                 <h1 className=" ml-4 text-2xl font-semibold tracking-wide text-[#A519D7]">
                   Navigate

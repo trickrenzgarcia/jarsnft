@@ -82,6 +82,11 @@ export default function OwnedNFTs({
           </div>
         )) || (
           <div className="mx-auto flex w-full flex-col p-5">
+            <div className="block mb-5 w-full">
+              <h1 className="bottom-0 top-0 h-full w-full text-center">
+                No NFTs Found
+              </h1>
+            </div>
             <div className="relative grid w-auto grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5">
               {Array.from({ length: 5 }).map((_, i) => (
                 <div key={i} className="w-full">
@@ -89,12 +94,7 @@ export default function OwnedNFTs({
                     <CardContent className="h-[200px] w-full"></CardContent>
                   </Card>
                 </div>
-              ))}
-            </div>
-            <div className="absolute block  w-full">
-              <h1 className="bottom-0 top-0 h-full w-full text-center">
-                No NFTs Found
-              </h1>
+              ))} 
             </div>
           </div>
         )
