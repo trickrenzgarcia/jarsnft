@@ -231,20 +231,20 @@ export default function MintNFTCard() {
   };
 
   return (
-    <Card className="w-full max-w-[800px]">
+    <Card className="w-full p-2 lg:p-6 my-2 overflow-hidden">
       <CardHeader>
         <CardTitle>Create an NFT</CardTitle>
         <CardDescription>Mint your NFT by uploading an image and entering the metadata.</CardDescription>
       </CardHeader>
-      <CardContent className="px-5">
+      <CardContent className="flex flex-col items-center justify-center">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(submitMintNft)} className="flex flex-col items-center gap-8">
+          <form onSubmit={form.handleSubmit(submitMintNft)} className="">
             <FormField
               control={form.control}
               name="collection"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-md flex items-center gap-1 font-semibold">
+                  <FormLabel className="text-md font-semibold">
                     <span className="text-red-400">*</span>Choose a collection
                   </FormLabel>
                   <Popover open={open} onOpenChange={setOpen}>
@@ -253,7 +253,7 @@ export default function MintNFTCard() {
                         <Button
                           role="combobox"
                           variant="outline"
-                          className="flex h-fit w-[384px] min-w-[300px] items-center justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]"
+                          className="flex h-fit w-full min-w-[300px] items-center justify-start gap-3"
                         >
                           {selectedContract ? (
                             <>
@@ -266,7 +266,7 @@ export default function MintNFTCard() {
                                   className="absolute h-[60px] w-[60px] rounded-md"
                                 />
                               </div>
-                              <div className="flex flex-col items-start">
+                              <div className="flex flex-col items-center">
                                 <h2 className="text-medium">{truncate(selectedContract.name, 26)}</h2>
                                 <h3 className="text-xs font-light text-foreground">ERC-721</h3>
                               </div>
@@ -357,14 +357,14 @@ export default function MintNFTCard() {
                         {...getInputProps()}
                         {...form.register("image")}
                         id="media"
-                        className="h-full w-full"
+                        className="h-[100px] w-[100px]"
                         type="file"
                         accept="image/*"
                         onChange={handleImageChange}
                         style={{ display: "none" }}
                       />
                       <div
-                        className={cn("flex h-fit w-[384px] min-w-[300px] items-center justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]")}
+                        className={cn("flex h-fit max-w-[600px] gap-2")}
                       >
                         <div
                           className={cn(
@@ -392,7 +392,7 @@ export default function MintNFTCard() {
                             </div>
                           )}
                         </div>
-                        <div className="flex flex-col">
+                        <div className="flex flex-col self-center">
                           <h2 className="text-sm font-bold">{shortenFileName(uploadedFileName) || "Drag and drop or click to upload"}</h2>
                           {!uploadedFileName && <p className="text-xs">Recommended size: 350 x 350. File types: JPG, PNG, SVG, or GIF</p>}
                         </div>
@@ -414,7 +414,7 @@ export default function MintNFTCard() {
                   <FormControl>
                     <Input
                       {...field}
-                      className="flex h-fit w-[384px] min-w-[300px] items-center justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]"
+                      className="flex h-fit min-w-[300px]"
                     />
                   </FormControl>
                 </FormItem>
@@ -432,7 +432,7 @@ export default function MintNFTCard() {
                       {...field}
                       id="description"
                       placeholder="Enter the description of your NFT (Optional)"
-                      className="flex h-fit w-[384px] min-w-[300px] items-center justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]"
+                      className="flex h-fit min-w-[300px]"
                     />
                   </FormControl>
                 </FormItem>
@@ -446,16 +446,16 @@ export default function MintNFTCard() {
                 <FormItem>
                   <FormLabel className="text-md flex items-center gap-1 font-semibold">Properties</FormLabel>
                   <FormControl>
-                    <div className="flex w-[384px] min-w-[300px] flex-col items-start justify-start gap-3 md:w-[420px] lg:w-[500px] xl:w-[600px]">
+                    <div className="flex min-w-[300px] flex-col items-center justify-center gap-6">
                       {attributes.map((attribute, i) => (
-                        <div key={i} className="grid w-full grid-cols-12 gap-2">
-                          <Input {...form.register(`attributes.${i}.trait_type` as const)} className="col-span-6 w-full" placeholder="trait_type" />
-                          <Input {...form.register(`attributes.${i}.value` as const)} className="col-span-5 w-full" placeholder="value" />
+                        <div key={i} >
+                          <Input {...form.register(`attributes.${i}.trait_type` as const)} className="my-4 w-full" placeholder="trait_type" />
+                          <Input {...form.register(`attributes.${i}.value` as const)} className="my-4 w-full" placeholder="value" />
                           <Button
                             variant="destructive"
                             type="button"
                             onClick={() => setAttributes(attributes.filter((_, index) => index !== i))}
-                            className="col-span-1"
+                            className="flex justify-center"
                           >
                             X
                           </Button>
@@ -469,10 +469,11 @@ export default function MintNFTCard() {
                 </FormItem>
               )}
             />
-
-            <Button type="submit" className="mb-6 mt-6 w-[384px] min-w-[300px] md:w-[420px] lg:w-[500px] xl:w-[600px]">
+            <div className="flex justify-center">
+            <Button type="submit" className="my-4 min-w-[300px]">
               Mint
-            </Button>
+            </Button></div>
+          
 
             <AlertDialog>
               <AlertDialogTrigger asChild>

@@ -12,7 +12,7 @@ type CreateLayoutProps = {
 
 export default function CreateLayout({ children }: CreateLayoutProps) {
   return (
-    <main className="flex-1 bg-background">
+    <main className="bg-background">
       <CreateNavbar />
       {children}
     </main>
