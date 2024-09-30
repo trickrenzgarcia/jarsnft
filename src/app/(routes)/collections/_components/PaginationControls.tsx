@@ -72,10 +72,10 @@ export default function PaginationControls({
             <PaginationEllipsis />
           </PaginationItem>
         )}
-        {pages.map((page) => (
-          <PaginationItem key={page} className={cn({ "rounded-md bg-accent text-accent-foreground": page == Number(searchParams["page"]) })}>
-            <PaginationLink href={`?category=${category}&page=${page}`} scroll={false}>
-              {page}
+        {pages.map((p) => (
+          <PaginationItem key={p} className={cn({ "rounded-md bg-accent text-accent-foreground": p == page })}>
+            <PaginationLink href={`?category=${category}&page=${p}`} scroll={false}>
+              {p}
             </PaginationLink>
           </PaginationItem>
         ))}
