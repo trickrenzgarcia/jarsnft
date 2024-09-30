@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
-import { ConnectWalletV4, JarsLogo, SearchInput } from "@/components/(interfaces)";
+import { ConnectWalletV4, JarsLogo, Login, SearchInput } from "@/components/(interfaces)";
 
 export default function Navbar() {
   return (
@@ -56,7 +56,7 @@ export default function Navbar() {
         {/* Right-side <UserNavigationComponent>*/}
         <div className="flex items-center gap-6">
           {/* <Hamburger /> */}
-          <ConnectWalletV4 btnTitle="Connect Wallet" />
+          <Login />
         </div>
       </div>
 
