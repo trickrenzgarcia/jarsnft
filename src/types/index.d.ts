@@ -72,7 +72,7 @@ export type CollectionData = {
   category: string;
   owner: string;
   isNsfw: boolean;
-  isVerified: boolean;
+  isVerified: boolean | number;
   saleListed: boolean;
   viewCount: number;
   createdAt: Date;
