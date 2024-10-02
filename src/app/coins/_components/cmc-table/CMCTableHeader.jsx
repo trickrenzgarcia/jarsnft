@@ -38,8 +38,7 @@ export const MobileTableHeader = () => {
   return (
     <tbody>
       <tr>
-        <th></th>
-        <th>
+        <th className="text-start">
           <b># </b>
         </th>
         <th className="text-start">

@@ -22,7 +22,7 @@ const TopHeader = async () => {
   };
 
   return (
-    <div className="my-4 flex flex-wrap justify-center gap-5">
+    <div className="my-6 flex flex-wrap justify-center gap-5">
       <h2 className={styles.base}>{`Coins: ${activeCryptos}`}</h2>
       <h2 className={styles.base}>{`Exchanges: ${activeExchanges}`}</h2>
       <h2 className={styles.base}>{`Market Cap: ${marketCap}`}T</h2>
