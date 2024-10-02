@@ -21,7 +21,7 @@ export default async function Home() {
       <Navbar />
       <Hero />
 
-      <div className="container my-20 max-w-7xl">
+      <div className="container my-20">
         <ListComponents
           data={collections}
           renderItem={(collection, index) => (
