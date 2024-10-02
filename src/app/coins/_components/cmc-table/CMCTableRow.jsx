@@ -84,7 +84,6 @@ export const MobileTableRow = ({ starNum, coinName, coinIcon, currency, coinSymb
   return (
     <tbody className={`${styles.tableRow}`}>
       <tr>
-        <td></td>
         <td>{starNum}</td>
 
         {coinIcon && coinIcon ? (
