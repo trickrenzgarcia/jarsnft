@@ -20,14 +20,14 @@ const Trending = async () => {
     return (
       <>
         <div className="mt-10 mb-6 flex flex-1 flex-col gap-4">
-          <h1 className="text-sm font-bold lg:text-4xl">Todays Cryptocurrency Prices by Market Cap</h1>
-          <h2 className="flex items-center gap-1 text-sm font-semibold lg:text-3xl">
+          <h1 className="text-xl font-bold lg:text-4xl">Todays Cryptocurrency Prices by Market Cap</h1>
+          <h2 className="flex items-center gap-1 text-md font-semibold lg:text-3xl">
             {`The Global Crypto Market Cap is ${usdCap}T,`} <span style={{ color: resultColor }}>{icon}</span>
             <span style={{ color: resultColor }}>{`a ${roundTwoDecimalPlaces(percentChange)}% ${result}`}</span> over the last day.
           </h2>
         </div>
 
-        <div className="flex-1 gap-5 lg:flex">
+        <div className="hidden flex-1 gap-5 xl:flex">
           <TrendingCard title="Trending Coins (24h)" icon={flame} type="coins" />
           <TrendingCard title="Top NFTs (24h)" icon={rocket} type="nfts" />
           <FearAndGreedCard title="Fear and Greed Index" icon={dollar} />

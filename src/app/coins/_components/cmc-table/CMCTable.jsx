@@ -19,9 +19,9 @@ const CMCTable = () => {
   };
 
   return (
-    <div className="mx-auto my-2 max-w-screen-lg space-y-4 font-bold">
+    <div className="my-2 max-w-screen space-y-4 font-bold">
       <CurrencyToggleButton onClick={CurrencyChange} currency={currency} />
-      <div className="hidden md:hidden lg:block xl:block">
+      <div className="hidden xl:block">
         <table className="w-full" style={{ borderCollapse: "unset", borderSpacing: "0 20px" }}>
           <CMCTableHeader />
           {response && response ? (
@@ -51,7 +51,7 @@ const CMCTable = () => {
         </table>
       </div>
 
-      <table className="w-full lg:hidden" style={{ borderCollapse: "separate", borderSpacing: "0 20px" }}>
+      <table className="w-full xl:hidden" style={{ borderCollapse: "separate", borderSpacing: "0 20px" }}>
         <MobileTableHeader />
         {response && response ? (
           response.map((coin, index) => {
