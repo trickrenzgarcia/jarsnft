@@ -3,7 +3,7 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv {
       NODE_ENV: 'development' | 'production';
-      APP_URL: string;
+      NEXT_PUBLIC_APP_URL: string;
       LOCAL_URL: string;
       BACKEND_URL: string;
       THIRDWEB_CLIENT_ID: string;

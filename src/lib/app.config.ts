@@ -19,7 +19,7 @@ export const appConfig: AppConfig = {
     "collectible tokens"
   ],
   url: {
-    base: process.env.APP_URL || "http://localhost:3000",
+    base: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
     author: "https://rwick.pro"
   },
   links: {
