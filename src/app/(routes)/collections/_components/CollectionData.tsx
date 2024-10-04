@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PaginationControls from "./PaginationControls";
 import { collections } from "@/app/api/_routers";
+import { CircleCheckBig } from "lucide-react";
 
 export default async function CollectionData({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const page = searchParams["page"] ?? 1;
@@ -40,7 +41,7 @@ export default async function CollectionData({ searchParams }: { searchParams: {
         <h3 className={hide()}>Volume Change</h3>
         <h3 className={hide()}>Sales</h3>
         <h3 className={hide()}>Sales Change</h3>
-        <h3>Listed</h3>
+        <h3>NSFW</h3>
         <h3 className={hide()}>Verified</h3>
       </div>
 
@@ -68,7 +69,9 @@ export default async function CollectionData({ searchParams }: { searchParams: {
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Volume Change */}
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales */}
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales Change */}
-          <div>{collection.isNsfw}</div> {/* Listed */}
+          <div>{collection.isNsfw? (
+           <CircleCheckBig color="#fd0d0d" />
+          ) : null}</div> {/* NSFW */}
           <div className={hide()}>
           {collection.isVerified ? (
             <Image
