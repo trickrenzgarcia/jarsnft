@@ -40,7 +40,7 @@ export default async function CollectionData({ searchParams }: { searchParams: {
         <h3 className={hide()}>Volume</h3>
         <h3 className={hide()}>Volume Change</h3>
         <h3 className={hide()}>Sales</h3>
-        <h3 className={hide()}>Sales Change</h3>
+        <h3 className={hide()}>Total Items</h3>
         <h3>NSFW</h3>
         <h3 className={hide()}>Verified</h3>
       </div>

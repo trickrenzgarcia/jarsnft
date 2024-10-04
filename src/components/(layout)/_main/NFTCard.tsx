@@ -10,7 +10,6 @@ import { cn, formatNumber } from "@/lib/utils";
 import { CollectionData } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import { MdVerified } from "react-icons/md";
 
 // interface NFTCardProps {
 //   logo: string;
@@ -42,14 +41,17 @@ export default function NFTCard({ item }: { item: CollectionData }) {
           />
         </CardHeader>
 
-        <CardContent className='mt-1 pl-1'>
-          <CardDescription className='flex items-center gap-1 text-xs'>
-            <span className='truncate'>{item.name}</span>
-            {item.isVerified && (<MdVerified className='text-xs' />)}
-          </CardDescription>
-          <CardTitle className='flex items-center text-sm'>
-            <span className='truncate'>{item.name}</span>
-            <span>&nbsp;{item.symbol && `(${item.symbol})`}</span>
+        <CardContent className='p-6'>
+          <CardTitle className='flex items-center justify-center gap-2'>
+            <span className='truncate text-sm'>{item.name}</span>
+            <span className="truncate text-sm">{item.symbol && `(${item.symbol})`}</span>
+            <span>{item.isVerified ? <Image
+              src="/assets/verify.png"
+              width={20}
+              height={20}
+              alt="verified logo"
+              className="h-fit"
+            /> : null}</span>
           </CardTitle>
         </CardContent>
 
