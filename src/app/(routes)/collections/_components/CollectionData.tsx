@@ -33,15 +33,15 @@ export default async function CollectionData({ searchParams }: { searchParams: {
   return (
     <div className="flex flex-col">
       <div className="grid grid-cols-3 lg:grid-cols-9 place-items-center py-4 space-x-4">
-      <div>Name</div>
-        <div>Floor Price</div>
-        <div className={hide()}>Floor Change</div>
-        <div className={hide()}>Volume</div>
-        <div className={hide()}>Volume Change</div>
-        <div className={hide()}>Sales</div>
-        <div className={hide()}>Sales Change</div>
-        <div>Listed</div>
-        <div className={hide()}>Verified</div>
+      <h3>Name</h3>
+        <h3>Floor Price</h3>
+        <h3 className={hide()}>Floor Change</h3>
+        <h3 className={hide()}>Volume</h3>
+        <h3 className={hide()}>Volume Change</h3>
+        <h3 className={hide()}>Sales</h3>
+        <h3 className={hide()}>Sales Change</h3>
+        <h3>Listed</h3>
+        <h3 className={hide()}>Verified</h3>
       </div>
 
       {slicedCollections.map((collection, i) => (
@@ -50,7 +50,7 @@ export default async function CollectionData({ searchParams }: { searchParams: {
         className="grid grid-cols-3 lg:grid-cols-9 lg:pl-5 place-items-center transition-background hover:bg-accent-foreground/15 rounded-lg space-x-6 gap-4"
         key={i}
       >
-    <div className="flex items-center gap-1 justify-self-start py-4">
+    <div className="flex items-center gap-2 justify-self-start py-4">
       <Image
         src={collection.image}
         width={50}
