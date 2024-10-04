@@ -3,6 +3,8 @@ import jars from '@/lib/api';
 import { Suspense } from 'react';
 import Collections from '../_components/Collections';
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Explore Arts Collections | JarsNFT Marketplace",

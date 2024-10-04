@@ -5,16 +5,18 @@ import { Separator } from "@/components/ui/separator";
 import jars from "@/lib/api";
 import { Suspense } from "react";
 
-export default async function Home() {
-  const t1 = await jars.collection.getTrending("art")
-  const t2 = await jars.collection.getTrending("photography")
-  const t3 = await jars.collection.getTrending("pfp")
+export const dynamic = "force-dynamic";
 
-  const collections = [
-    { category: "Art", data: t1, link: "/category/arts" },
-    { category: "Photography", data: t2, link: "/category/photography" },
-    { category: "Profile Picture", data: t3, link: "/category/pfp" },
-  ]
+export default async function Home() {
+  // const t1 = await jars.collection.getTrending("art")
+  // const t2 = await jars.collection.getTrending("photography")
+  // const t3 = await jars.collection.getTrending("pfp")
+
+  // const collections = [
+  //   { category: "Art", data: t1, link: "/category/arts" },
+  //   { category: "Photography", data: t2, link: "/category/photography" },
+  //   { category: "Profile Picture", data: t3, link: "/category/pfp" },
+  // ]
 
   return (
     <main className="w-screen bg-background">
