@@ -8,7 +8,7 @@ import { SimpleHashContracts } from "@/types/simple-hash";
 import { SimpleHashNFT } from "@/types/simple-hash/nft";
 
 export type JarsOptions = {
-  baseUrl: string;
+  baseUrl?: string;
   secretKey: string;
 }
 
@@ -17,7 +17,7 @@ export class JarsAPI {
   private secretKey: string;
 
   constructor(private options: JarsOptions) {
-    this.baseUrl = options.baseUrl!;
+    this.baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
     this.secretKey = options.secretKey
   }
 
@@ -41,7 +41,7 @@ export class JarsAPI {
       const data = await response.json()
       return data as TData
     } catch (err) {
-      throw new Error(`Failed to fetch data from ${this.baseUrl}/api/v1/${endPoint}`);
+      throw new Error(`Failed to fetch data from ${this.baseUrl}/api/v1${endPoint}`);
     }
   }
 
@@ -518,7 +518,6 @@ export class JarsAPI {
 }
 
 const jars = new JarsAPI({
-  baseUrl: process.env.NEXT_PUBLIC_APP_URL,
   secretKey: process.env.JWT_TOKEN
 })
 
