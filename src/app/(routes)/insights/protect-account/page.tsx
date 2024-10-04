@@ -214,7 +214,7 @@ export default function ProtectAccPage() {
         </ol>
       </div>
       <div id="conclusion">
-        <hr />
+        <hr className="my-4"/>
         <h2 className="my-6 text-3xl font-bold">Conclusion</h2>
         <P>{`The world of NFTs provides several opportunities for both collectors and creators. However, with this excitement comes the duty of protecting yourself from those who may attempt to exploit it. Understanding common scams, securing your accounts and transactions, and protecting your privacy will allow you to confidently navigate the NFT world. Remember: information is power.  Stay informed, use caution, and enjoy the new world of digital ownership!`}</P>
       </div>
