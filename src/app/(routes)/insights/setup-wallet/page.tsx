@@ -75,7 +75,7 @@ export default function SetupWallet() {
         </p>
         <div className="w-full flex-wrap flex justify-center gap-[5rem]">
           <Image
-            src="/assets/InsightsAsset/Metamask_Fox.png"
+            src="/assets/InsightsAsset/MetaMask_Fox.png"
             width={1920}
             height={1080}
             alt="Metamask Logo"
@@ -128,7 +128,7 @@ export default function SetupWallet() {
           </P>
           <P>{`We will be redirected to this browser page, click Download and Add Extension to finish setting up our Metamask wallet.`}</P>
           <Image
-            src="/assets/InsightsAsset/metamaskImages/metamask 1.png"
+            src="/assets/InsightsAsset/MetamaskImages/metamask 1.png"
             width={1920}
             height={1080}
             alt="Metamask Download Page"
@@ -141,7 +141,7 @@ export default function SetupWallet() {
             </span>
           </P>
           <Image
-            src="/assets/InsightsAsset/metamaskImages/metamask 2.png"
+            src="/assets/InsightsAsset/MetamaskImages/metamask 2.png"
             width={1920}
             height={1080}
             alt="Metamask Download Extension"
@@ -154,7 +154,7 @@ export default function SetupWallet() {
             </span>
           </P>
           <Image
-            src="/assets/InsightsAsset/metamaskImages/metamask 3.png"
+            src="/assets/InsightsAsset/MetamaskImages/metamask 3.png"
             width={1920}
             height={1080}
             alt="Metamask Login"
@@ -174,14 +174,14 @@ export default function SetupWallet() {
           <P>{`After clicking the Create a new Wallet, we will be redirected with the following steps:`}</P>
           <div className="flex justify-center gap-5">
             <Image
-              src="/assets/InsightsAsset/metamaskImages/metamask create wallet 1.png"
+              src="/assets/InsightsAsset/MetamaskImages/metamask create wallet 1.png"
               width={1920}
               height={1080}
               alt="Metamask TOS"
               className="mb-2 max-h-[80%] max-w-[50%]"
             />
             <Image
-              src="/assets/InsightsAsset/metamaskImages/metamask create wallet 2.png"
+              src="/assets/InsightsAsset/MetamaskImages/metamask create wallet 2.png"
               width={1920}
               height={1080}
               alt="Metamask Create Password"
@@ -201,14 +201,14 @@ export default function SetupWallet() {
         Follow through the steps on how to Login our existing wallet.`}</P>
         <div className="flex flex-wrap items-center justify-center gap-5">
           <Image
-            src="/assets/InsightsAsset/metamaskImages/metamask existing wallet 1.png"
+            src="/assets/InsightsAsset/MetamaskImages/metamask existing wallet 1.png"
             width={1280}
             height={800}
             alt="Metamask Login 1"
             className="mb-2 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem]"
           />
           <Image
-            src="/assets/InsightsAsset/metamaskImages/metamask existing wallet 2.png"
+            src="/assets/InsightsAsset/MetamaskImages/metamask existing wallet 2.png"
             width={1280}
             height={800}
             alt="Metamask Login 2"
