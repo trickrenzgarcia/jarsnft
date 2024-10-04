@@ -13,16 +13,16 @@ const browsers = [
 
 const metamaskCreate = [
   {
-    src: "/assets/InsightsAsset/metamaskImages/metamask create wallet 3.png",
+    src: "/assets/InsightsAsset/MetamaskImages/metamask create wallet 3.png",
   },
   {
-    src: "/assets/InsightsAsset/metamaskImages/metamask create wallet 4.png",
+    src: "/assets/InsightsAsset/MetamaskImages/metamask create wallet 4.png",
   },
   {
-    src: "/assets/InsightsAsset/metamaskImages/metamask create wallet 5.png",
+    src: "/assets/InsightsAsset/MetamaskImages/metamask create wallet 5.png",
   },
   {
-    src: "/assets/InsightsAsset/metamaskImages/metamask create wallet 6.png",
+    src: "/assets/InsightsAsset/MetamaskImages/metamask create wallet 6.png",
   },
 ];
 
@@ -218,7 +218,7 @@ export default function SetupWallet() {
         <P>{`After completing our wallet Creation or Import, we will be redirected to the main page of our wallet account.`}</P>
         <div className="flex justify-center">
           <Image
-            src="/assets/InsightsAsset/metamaskImages/metamask Account.png"
+            src="/assets/InsightsAsset/MetamaskImages/metamask Account.png"
             width={1920}
             height={1080}
             alt="Metamask Account"
