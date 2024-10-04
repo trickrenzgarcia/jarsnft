@@ -25,11 +25,7 @@ export default function SearchInput() {
     const fetchSearch = async () => {
       setIsLoading(true);
       const res = await jars.getSearchResults(searchQuery);
-      if (res === null) {
-        setDataResults(null);
-      } else {
-        setDataResults(res);
-      }
+      setDataResults(res);
       setIsLoading(false);
       console.log(dataResults);
     };

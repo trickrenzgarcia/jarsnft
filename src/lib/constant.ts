@@ -1,4 +1,4 @@
-export const NFT_MARKETPLACE: string = process.env.NFTMARKETPLACE_JARS_CONTRACT;
+export const NFT_MARKETPLACE: string = process.env.NEXT_PUBLIC_NFTMARKETPLACE_JARS_CONTRACT;
 export const APP_URL: string = process.env.NEXT_PUBLIC_APP_URL;
 export const LOCAL_URL: string = process.env.LOCAL_URL;
 export const BACKEND_URL: string = process.env.BACKEND_URL;
