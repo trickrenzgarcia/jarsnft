@@ -8,22 +8,22 @@ import { Suspense } from "react";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  // const t1 = await jars.collection.getTrending("art")
-  // const t2 = await jars.collection.getTrending("photography")
-  // const t3 = await jars.collection.getTrending("pfp")
+  const t1 = await jars.collection.getTrending("art")
+  const t2 = await jars.collection.getTrending("photography")
+  const t3 = await jars.collection.getTrending("pfp")
 
-  // const collections = [
-  //   { category: "Art", data: t1, link: "/category/arts" },
-  //   { category: "Photography", data: t2, link: "/category/photography" },
-  //   { category: "Profile Picture", data: t3, link: "/category/pfp" },
-  // ]
+  const collections = [
+    { category: "Art", data: t1, link: "/category/arts" },
+    { category: "Photography", data: t2, link: "/category/photography" },
+    { category: "Profile Picture", data: t3, link: "/category/pfp" },
+  ]
 
   return (
     <main className="w-screen bg-background">
       <Navbar />
       <Hero />
 
-      {/* <div className="container my-20">
+      <div className="container my-20">
         <ListComponents
           data={collections}
           renderItem={(collection, index) => (
@@ -41,7 +41,7 @@ export default async function Home() {
         <Suspense fallback={<div>Loading...</div>}>
           <NFTCategories className="my-16" />
         </Suspense>
-      </div> */}
+      </div>
 
       <Footer />
     </main>
