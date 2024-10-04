@@ -9,13 +9,6 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
   domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN!,
   wallet: new PrivateKeyWallet(process.env.AUTH_PRIVATE_KEY as string, "sepolia"),
   authOptions: {
-    validateNonce: async (nonce: string) => {
-      if(await jars.nonceExists(nonce)) {
-        throw new Error("Nonce already used!");
-      }
-
-      await jars.saveNonce(nonce);
-    },
     tokenDurationInSeconds: 60 * 60 * 24 * 7,
     loginPayloadDurationInSeconds: 60 * 60 * 24 * 7,
     refreshIntervalInSeconds: 60 * 60 * 24 * 7,

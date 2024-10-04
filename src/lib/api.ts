@@ -17,7 +17,7 @@ export class JarsAPI {
   private secretKey: string;
 
   constructor(private options: JarsOptions) {
-    this.baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    this.baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://jarsnft.vercel.app";
     this.secretKey = options.secretKey
   }
 
