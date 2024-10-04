@@ -10,14 +10,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ProfilePicturesPage() {
-  //const pfpCollections = await jars.collection.getTrending("pfp");
+  const pfpCollections = await jars.collection.getTrending("pfp");
 
   return (
     <div className='container'>
       <h1 className='text-4xl my-5'>Explore Profile NFTs</h1>
-      {/* <Suspense fallback={<div>Loading....</div>}>
+      <Suspense fallback={<div>Loading....</div>}>
         <Collections category="art" collections={pfpCollections} />
-      </Suspense> */}
+      </Suspense>
     </div>
   )
 }

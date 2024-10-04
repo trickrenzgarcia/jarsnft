@@ -12,14 +12,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ArtsPage() {
-  //const artsCollection = await jars.collection.getTrending("art");
+  const artsCollection = await jars.collection.getTrending("art");
 
   return (
     <div className='container'>
       <h1 className='text-4xl'>Explore Art NFTs</h1>
-      {/* <Suspense fallback={<div>Loading....</div>}>
+      <Suspense fallback={<div>Loading....</div>}>
         <Collections category="art" collections={artsCollection} />
-      </Suspense> */}
+      </Suspense>
 
     </div>
   )

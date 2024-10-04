@@ -10,14 +10,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PhotographyPage() {
-  //const photosCollections =await jars.collection.getTrending("photography");
+  const photosCollections =await jars.collection.getTrending("photography");
 
   return (
     <div className='container'>
       <h1 className='text-4xl'>Explore Photography NFTs</h1>
-      {/* <Suspense fallback={<div>Loading....</div>}>
+      <Suspense fallback={<div>Loading....</div>}>
         <Collections category="art" collections={photosCollections} />
-      </Suspense> */}
+      </Suspense>
     </div>
   )
 }
