@@ -69,7 +69,8 @@ export default async function CollectionData({ searchParams }: { searchParams: {
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales */}
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales Change */}
           <div>{collection.isNsfw}</div> {/* Listed */}
-          <div className={hide()}>{collection.isVerified === true && (
+          <div className={hide()}>
+          {collection.isVerified ? (
             <Image
               src="/assets/verify.png"
               width={20}
@@ -77,7 +78,8 @@ export default async function CollectionData({ searchParams }: { searchParams: {
               alt="verified logo"
               className="h-fit"
             />
-          )}</div> {/* Verified */}
+          ) : null}
+        </div> {/* Verified */}
         </Link>
       ))}
       <PaginationControls
