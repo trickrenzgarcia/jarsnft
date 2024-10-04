@@ -49,10 +49,9 @@ export default function Footer() {
             <div className="col-span-3 mb-16 flex flex-col gap-y-5 text-center md:col-span-1 md:mb-0 md:text-left">
               <h1 className="mb-1 text-2xl font-semibold">JarsNFT</h1>
               <p>
-                Turn your passion into a lasting legacy. <br />
-                Mint your artwork as an NFT and showcase your talent. <br />
-                Connect with traders, and build a secure future for your creative
-                endeavors.
+              The biggest and largest NFT marketplace in the Philippines. <br />
+              Endless Opportunities for Artists and Traders. <br />
+              Create, Trade, and Collect Your Legacy.
               </p>
             </div>
 
