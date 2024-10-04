@@ -9,14 +9,24 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function ProfilePicturesPage() {
+async function getServerSideProps() {
   const pfpCollections = await jars.collection.getTrending("pfp");
+
+  return {
+    props: {
+      pfpCollections,
+    }
+  }
+}
+
+export default async function ProfilePicturesPage() {
+  const repo = await getServerSideProps();
 
   return (
     <div className='container'>
       <h1 className='text-4xl my-5'>Explore Profile NFTs</h1>
       <Suspense fallback={<div>Loading....</div>}>
-        <Collections category="art" collections={pfpCollections} />
+        <Collections category="art" collections={repo.props.pfpCollections} />
       </Suspense>
     </div>
   )

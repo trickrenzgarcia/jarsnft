@@ -9,14 +9,24 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+async function getServerSideProps() {
+  const photosCollections = await jars.collection.getTrending("photography");
+
+  return {
+    props: {
+      photosCollections,
+    }
+  }
+}
+
 export default async function PhotographyPage() {
-  const photosCollections =await jars.collection.getTrending("photography");
+  const repo = await getServerSideProps();
 
   return (
     <div className='container'>
       <h1 className='text-4xl'>Explore Photography NFTs</h1>
       <Suspense fallback={<div>Loading....</div>}>
-        <Collections category="art" collections={photosCollections} />
+        <Collections category="art" collections={repo.props.photosCollections} />
       </Suspense>
     </div>
   )
