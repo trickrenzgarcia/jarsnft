@@ -32,7 +32,7 @@ const TopHeader = async () => {
       <h2 className={styles.base}>Gas Fee:</h2>
       <TooltipProvider>
         <Tooltip>
-          <TooltipTrigger className={styles.base}>{gasData.result.ProposeGasPrice} Gwei</TooltipTrigger>
+          <TooltipTrigger className={styles.base}><span className="text-gray-400"> {gasData.result.ProposeGasPrice} Gwei</span></TooltipTrigger>
           <TooltipContent side="bottom">
           <h2 className={styles.base}>Fast: <span className="text-gray-400">{gasData.result.FastGasPrice} Gwei</span></h2>
           <h2 className={styles.base}>Standard: <span className="text-gray-400">{gasData.result.ProposeGasPrice} Gwei</span></h2>
