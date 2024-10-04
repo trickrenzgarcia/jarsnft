@@ -4,12 +4,12 @@ export default function NFTCategories({ className }: { className: string }) {
   return (
     <>
       <div className={className}>
-        <p className="mb-12 text-center text-xl font-bold">NFT Categories</p>
+        <p className="text-sm lg:text-4xl font-bold py-6">NFT Categories</p>
         <div className="flex flex-col md:flex-row gap-12 md:justify-center">
           <NFTCardCategories
             categoryLink="/category/arts"
             categoryName="Art NFTs"
-            image="/assets/categoryImages/ArtCategory.png"
+            image="/assets/categoryImages/artGIF.gif"
           />
           <NFTCardCategories
             categoryLink="/category/photography"
@@ -19,7 +19,7 @@ export default function NFTCategories({ className }: { className: string }) {
           <NFTCardCategories
             categoryLink="/category/pfp"
             categoryName="Profile Picture NFTs"
-            image="/assets/categoryImages/PFPCategory.png"
+            image="/assets/categoryImages/pfpGIF.gif"
           />
         </div>
       </div>
