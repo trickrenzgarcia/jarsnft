@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { z } from "zod";
 import Collections from "../_components/Collections";
 import jars from "@/lib/api";
+import { notFound } from "next/navigation";
 
 type Props = {
     params: { categoryId: string }
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Categories({ params }: Props) {
     const CategorySchema = z.enum(["art", "photography", "pfp"]);
     if (!CategorySchema.safeParse(params.categoryId).success) {
-        return <div>Invalid category</div>
+        notFound();
     }
 
     const collections = await jars.collection.getTrending(params.categoryId);
