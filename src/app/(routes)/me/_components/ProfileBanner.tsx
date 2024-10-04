@@ -13,7 +13,6 @@ import Image from "next/image";
 import { StorageProfile } from "@/types";
 import BoringAvatar from "@/components/(interfaces)/BoringAvatar";
 import { MdOutlineModeEdit } from "react-icons/md";
-import { RiVerifiedBadgeLine } from "react-icons/ri";
 import { EditModeAvatarDialog } from "./EditModeAvatarDialog";
 import useAvatarNFT from "@/hooks/useAvatarNFT";
 import { Button } from "@/components/ui/button";

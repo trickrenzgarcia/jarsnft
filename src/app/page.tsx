@@ -21,7 +21,7 @@ export default async function Home() {
       <Navbar />
       <Hero />
 
-      <div className="container my-20">
+      {/* <div className="container my-20">
         <ListComponents
           data={collections}
           renderItem={(collection, index) => (
@@ -39,7 +39,7 @@ export default async function Home() {
         <Suspense fallback={<div>Loading...</div>}>
           <NFTCategories className="my-16" />
         </Suspense>
-      </div>
+      </div> */}
 
       <Footer />
     </main>
