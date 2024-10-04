@@ -14,7 +14,7 @@ const TrendingCardRow = ({ number, icon, name, sparklines }) => {
           <p className="overflow-hidden text-ellipsis">{name}</p>
           <span className="text-gray-400">{formattedNumber}</span>
         </div>
-        <div className="basis-1/3">
+        <div className="basis-1/4">
           {sparklines && <Image alt="sparkline.svg" src={sparklines} width={100} height={80} quality={100} priority={true} />}
         </div>
       </div>
