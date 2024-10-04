@@ -13,7 +13,7 @@ export default async function Home() {
   const t3 = await jars.collection.getTrending("pfp")
 
   const collections = [
-    { category: "Art", data: t1, link: "/category/arts" },
+    { category: "Art", data: t1, link: "/category/art" },
     { category: "Photography", data: t2, link: "/category/photography" },
     { category: "Profile Picture", data: t3, link: "/category/pfp" },
   ]

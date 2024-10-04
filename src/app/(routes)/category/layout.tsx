@@ -1,9 +1,8 @@
 import { Footer, Navbar } from '@/components/(layout)'
 import React from 'react'
 
-export default function CategoryLayout({ 
-  children }: { children: React.ReactNode }) 
-{
+export default function CategoryLayout({
+  children }: { children: React.ReactNode }) {
   return (
     <main>
       <Navbar />

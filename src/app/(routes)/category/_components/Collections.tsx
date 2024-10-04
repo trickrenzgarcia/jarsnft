@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { CollectionData } from '@/types'
 
 type Props = {
-  category: "art" | "photography" | "pfp" | "gaming";
   collections: CollectionData[];
 }
 
