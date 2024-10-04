@@ -12,6 +12,7 @@ import { P } from "./TailwindTags";
 export default function FAQsInsight() {
   return (
     <section className="mb-16">
+      <hr className="my-4"/>
       <h3 className="my-6 text-xl font-bold">
         Frequently Asked Questions (FAQs)
       </h3>

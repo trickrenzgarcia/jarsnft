@@ -24,7 +24,7 @@ export default function Page() {
           {`Read through the following outline of each topics and what you will
           learn in it.`}
         </P>
-        <p className="text-md mb-2 font-bold text-[#ec0000] underline dark:text-[#ce0000]">
+        <p className="text-md mb-8 font-bold text-[#ec0000] underline dark:text-[#ce0000]">
           Disclaimer: Please do your own research before investing
         </p>
         <hr />

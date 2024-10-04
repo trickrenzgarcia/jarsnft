@@ -23,21 +23,21 @@ const TopHeader = async () => {
 
   return (
     <div className="my-6 flex flex-wrap justify-center gap-5">
-      <h2 className={styles.base}>{`Coins: ${activeCryptos}`}</h2>
-      <h2 className={styles.base}>{`Exchanges: ${activeExchanges}`}</h2>
-      <h2 className={styles.base}>{`Market Cap: ${marketCap}`}T</h2>
-      <h2 className={styles.base}>{`24h Vol: ${formattedVolume}`}B</h2>
-      <h2 className={styles.base}>{`Dominance: BTC ${btcDominance}% | ETH ${ethDominance}%`}</h2>
+      <h2 className={styles.base}>Coins: <span className="text-gray-400">{activeCryptos}</span></h2>
+      <h2 className={styles.base}>Exchanges: <span className="text-gray-400">{activeExchanges}</span></h2>
+      <h2 className={styles.base}>Market Cap: <span className="text-gray-400">{marketCap}T</span></h2>
+      <h2 className={styles.base}>24h Vol: <span className="text-gray-400">{formattedVolume}B</span></h2>
+      <h2 className={styles.base}>Dominance: BTC <span className="text-gray-400">{btcDominance}%</span> | ETH <span className="text-gray-400">{ethDominance}%</span></h2>
 
       <h2 className={styles.base}>Gas Fee:</h2>
       <TooltipProvider>
         <Tooltip>
-          <TooltipTrigger className={styles.base}>{gasData.result.ProposeGasPrice} Gwei</TooltipTrigger>
+          <TooltipTrigger className={styles.base}><span className="text-gray-400"> {gasData.result.ProposeGasPrice} Gwei</span></TooltipTrigger>
           <TooltipContent side="bottom">
-            <h2 className={styles.base}>Fast: {gasData.result.FastGasPrice} Gwei</h2>
-            <h2 className={styles.base}>Standard: {gasData.result.ProposeGasPrice} Gwei</h2>
-            <h2 className={styles.base}>Safe: {gasData.result.SafeGasPrice} Gwei</h2>
-            <h2 className={styles.base}>Base Fee: {gasData.result.suggestBaseFee} Gwei</h2>
+          <h2 className={styles.base}>Fast: <span className="text-gray-400">{gasData.result.FastGasPrice} Gwei</span></h2>
+          <h2 className={styles.base}>Standard: <span className="text-gray-400">{gasData.result.ProposeGasPrice} Gwei</span></h2>
+          <h2 className={styles.base}>Safe: <span className="text-gray-400">{gasData.result.SafeGasPrice} Gwei</span> </h2>
+          <h2 className={styles.base}>Base Fee: <span className="text-gray-400">{gasData.result.suggestBaseFee} Gwei</span> </h2>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>

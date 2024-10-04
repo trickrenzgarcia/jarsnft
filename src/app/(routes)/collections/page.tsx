@@ -1,5 +1,6 @@
 import CollectionData from "./_components/CollectionData";
 import DropdownControls from "./_components/DropdownControls";
+import React from "react";
 
 export default function CollectionsPage({
   searchParams,
@@ -8,9 +9,10 @@ export default function CollectionsPage({
 }) {
   return (
     <>
-       <h1 className="animate-once animate-duration-[1200ms] animate-ease-in mx-auto my-4 animate-flip-down text-3xl font-bold lg:text-7xl">
-        Collections
+       <h1 className="animate-once animate-duration-[1200ms] animate-ease-in mx-auto my-10 animate-flip-down text-3xl font-bold lg:text-5xl">
+        Collections Stats
       </h1>
+      <hr />
       <DropdownControls searchParams={searchParams} />
       <CollectionData searchParams={searchParams} />
     </>
