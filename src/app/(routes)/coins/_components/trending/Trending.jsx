@@ -27,7 +27,7 @@ const Trending = async () => {
           </h2>
         </div>
 
-        <div className="hidden flex-1 gap-5 xl:flex">
+        <div className="hidden flex-initial gap-5 xl:flex">
           <TrendingCard title="Trending Coins (24h)" icon={flame} type="coins" />
           <TrendingCard title="Top NFTs (24h)" icon={rocket} type="nfts" />
           <FearAndGreedCard title="Fear and Greed Index" icon={dollar} />
