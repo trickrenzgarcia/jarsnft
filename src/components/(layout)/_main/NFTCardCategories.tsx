@@ -23,18 +23,18 @@ export default function NFTCardCategories({
 }: NFTCardCategoriesProps) {
   return (
     <Card className="rounded-[24px] w-full">
-      <CardHeader className="relative overflow-hidden">
-        <Link href={categoryLink}>
-          <Image
-            className="bg-cover bg-center rounded-[14px] max-h-[350px] min-w-[350px]"
+      <CardContent className="relative overflow-hidden p-4 rounded-lg">
+      <Link href={categoryLink}>
+        <Image
+            className="w-full max-h-[350px] p-2 rounded-[--radius]"
             src={image}
             width={350}
             height={350}
             alt="NFT"
             style={{objectFit:"contain"}}
           />
-        </Link>
-      </CardHeader>
+      </Link>
+      </CardContent>
 
       <CardFooter className="flex justify-center">
         <p className="font-semibold">{categoryName}</p>
