@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
-import { ConnectWalletV4, JarsLogo, Login, SearchInput } from "@/components/(interfaces)";
+import { ConnectWalletV4, Hamburger, JarsLogo, Login, SearchInput } from "@/components/(interfaces)";
 
 export default function Navbar() {
   return (
@@ -8,7 +8,9 @@ export default function Navbar() {
       {/* Nav Container */}
       <div className="flex w-full justify-between px-5 py-4 md:px-10">
         {/* Left-side <NavigationComponent> */}
+        {/* <Hamburger /> */}
         <div className="flex items-center gap-4">
+
           <Link href="/">
             <div className="flex items-end">
               <JarsLogo />
@@ -55,7 +57,6 @@ export default function Navbar() {
 
         {/* Right-side <UserNavigationComponent>*/}
         <div className="flex items-center gap-6">
-          {/* <Hamburger /> */}
           <Login />
         </div>
       </div>

@@ -12,7 +12,7 @@ export default function Hamburger() {
   }
 
   return (
-    <div className="flex lg:hidden">
+    <div className="flex z-10 lg:hidden">
       {isOpen === false ? (
         <button className="text-2xl" onClick={handleClick}>
           &#9776;

@@ -15,9 +15,10 @@ export default function Login() {
         <Skeleton className="h-[35px] w-[35px] rounded-full" />
       ) : isLoggedIn ? (
         <div className="flex items-center gap-2">
+          {/* <div className="flex items-center absolute max-lg:right-0 lg:relative gap-2"> - temporary fix */}
           <ProfileButton />
           <ConnectWalletV4 btnTitle="Connect" />
-        </div>
+        </div>  
       ) : (
         <ConnectWalletV4 btnTitle="Connect" />
       )}
