@@ -160,7 +160,7 @@ export default function NFTBannerMetadata({
         </div>
         <div className="absolute block h-[435px] w-full px-7 py-6 dark:shadow-[inset_0_-50px_100px_rgba(10,10,10,1)] sm:h-[410px]">
           <section className="mb-4 flex justify-between">
-            <div className="flex items-center gap-3">
+            <div className="flex w-full items-center gap-3">
               <Image
                 src={data.image || "/assets/image_not_found.jpg"}
                 width={125}
