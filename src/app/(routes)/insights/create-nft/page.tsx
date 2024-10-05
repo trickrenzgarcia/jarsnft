@@ -32,7 +32,7 @@ export default function CreateNftPage() {
           width={1920}
           height={1080}
           alt="JARS Navigation bar"
-          className="mb-2 max-h-[100%] max-w-full"
+          className="mb-2 max-h-[100%] max-w-full rounded-lg"
         />
         <h3 className="my-6 text-xl font-bold tracking-wider">{`Step 2: Select Your Option`}</h3>
         <P>{`Next you will be redirected to this page that offers us to options:`}</P>
@@ -41,7 +41,7 @@ export default function CreateNftPage() {
           width={1920}
           height={1080}
           alt="JARS Create Page"
-          className="mb-2 max-h-[100%] max-w-full "
+          className="mb-2 max-h-[100%] max-w-full rounded-lg"
         />
         <ul className="ml-14 mt-6 list-disc leading-loose tracking-wide dark:text-gray-300">
           <li className="mb-3">
@@ -61,7 +61,7 @@ export default function CreateNftPage() {
           height={1080}
           alt="Creating Collection"
           quality={100}
-          className="mb-2 max-h-[100%] max-w-[60%] "
+          className="mb-2 max-h-[80%] max-w-full rounded-lg"
         />
         <P>{`To summarize, what you will need is the image file of your collection. Then create a name and description that can attract other creators to take an interest in your NFTs.
       Then you can set how much revenue you can receive from that collection. `}</P>
@@ -73,7 +73,7 @@ export default function CreateNftPage() {
           height={1080}
           alt="Creating Collection"
           quality={100}
-          className="mb-2 max-h-[100%] max-w-full "
+          className="mb-2 max-h-[100%] max-w-full"
         />
         <P>{`Then follow through the steps presented in this example:`}</P>
         <Image
@@ -82,7 +82,7 @@ export default function CreateNftPage() {
           height={1080}
           alt="Creating Collection"
           quality={100}
-          className="mb-2 max-h-[100%] max-w-[60%] "
+          className="mb-2 max-h-[100%] max-w-full"
         />
         <P>{`To summarize, you only need to upload the image you want to be minted to an NFT. 
         After that, adding a description and traits which adds relevancy, engagement in the community and adds more discoveribility to your NFTs`}</P>
