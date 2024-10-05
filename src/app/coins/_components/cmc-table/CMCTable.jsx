@@ -8,9 +8,8 @@ import { MobileTableHeader } from "./CMCTableHeader";
 const CMCTable = () => {
   const [currency, setCurrency] = useState("usd");
   const { response } = useAxios(
-    `coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=7d&locale=en&x_cg_demo_api_key=CG-Kt6d2R6fUzMk9o7qE8AvSa7F`,
+    `coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=7d&locale=en&x_cg_demo_api_key=${process.env.NEXT_PUBLIC_COINGECKO_API_KEY}`,
   );
-
   // Function to handle currency change
   const CurrencyChange = () => {
     // Toggle between USD and PHP

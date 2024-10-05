@@ -44,8 +44,7 @@ export async function getCoingeckoGlobalData(cacheTime?: number): Promise<any> {
 }
 
 export async function getGasFee(cacheTime?: number): Promise<any> {
-  const apiUrl: string =
-    "https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=1YFCZB8YSYNTWPS4DCRN91G2P3VHCGZ1GE";
+  const apiUrl: string =`https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${process.env.ETHERSCAN_API_KEY}`;;
   const response: Response = await fetch(apiUrl.toString(), {
     method: "GET",
     headers: {
