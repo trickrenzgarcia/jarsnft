@@ -231,7 +231,7 @@ export default function MintNFTCard() {
   };
 
   return (
-    <Card className="w-full p-2 lg:p-6 my-2 overflow-hidden">
+    <Card className="w-full p-2 lg:p-4 overflow-hidden">
       <CardHeader>
         <CardTitle>Create an NFT</CardTitle>
         <CardDescription>Mint your NFT by uploading an image and entering the metadata.</CardDescription>
