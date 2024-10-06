@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { MouseEvent, useState } from "react";
+import SearchInput from "./SearchInput";
 
 export default function Hamburger() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +23,7 @@ export default function Hamburger() {
           <button className="self-end pr-2 text-4xl" onClick={handleClick}>
             &times;
           </button>
+          <SearchInput />
           <nav className="flex min-h-screen flex-col items-center py-8">
             <Link
               href="/"

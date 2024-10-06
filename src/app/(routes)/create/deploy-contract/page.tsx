@@ -6,6 +6,7 @@ import ProfileCard from "../_components/ProfileCard";
 import { useUserContext } from "@/components/(providers)";
 import { Loading } from "@/components/(skeletons)";
 import NoConnectedWallet from "@/app/(routes)/me/_components/NoConnectedWallet";
+import React from "react";
 
 export default function DeployContractPage() {
   const user = useUserContext();

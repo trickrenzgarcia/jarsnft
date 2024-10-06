@@ -1,18 +1,21 @@
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import { ConnectWalletV4, Hamburger, JarsLogo, Login, SearchInput } from "@/components/(interfaces)";
+import React from "react";
+import HeroMessage from "../(interfaces)/HeroMessage";
 
 export default function Navbar() {
   return (
+    <>
     <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md">
       {/* Nav Container */}
-      <div className="flex w-full justify-between px-5 py-4 md:px-10">
+      <div className="flex w-full gap-2 px-5 py-4 md:px-10">
         {/* Left-side <NavigationComponent> */}
-        {/* <Hamburger /> */}
+        <Hamburger />
         <div className="flex items-center gap-4">
 
           <Link href="/">
-            <div className="flex items-end">
+            <div className="flex mb-2 items-end">
               <JarsLogo />
               <h1 className="animate-flip-down animate-once animate-duration-[1200ms] animate-ease-in mb-2 text-xl font-bold">Jars</h1>
             </div>
@@ -56,13 +59,15 @@ export default function Navbar() {
         </div>
 
         {/* Right-side <UserNavigationComponent>*/}
-        <div className="flex items-center gap-6">
+        <div className="flex  ml-auto items-center gap-6">
           <Login />
         </div>
       </div>
 
       {/* Admin Access */}
       {/* <AdminAccessLink /> */}
+    <HeroMessage />
     </nav>
+    </>
   )
 }
