@@ -59,9 +59,9 @@ export default function LearnLayout({ children }: LearnProps) {
       <div className="flex-1 items-start border-t-2 xl:container lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-6 xl:grid-cols-[240px_minmax(0,1fr)] xl:gap-10">
         <SideBarHamburger />
         <SideNavLeft />
-        <main className="ml-5 mr-5 mt-5 lg:gap-10 xl:grid xl:grid-cols-[1fr_250px]">
-          <div className="min-w-full sm:mt-16 lg:mt-0">
-            <div className="lg:mt-4">
+        <main className="container mt-5 lg:gap-10 xl:grid xl:grid-cols-[1fr_250px]">
+          <div className="min-w-full mt-[4.2rem] lg:mt-0">
+            <div className="lg:mt-4 lg:ml-5 xl:ml-0">
               <PageNavTopic color="#c117ff" />
               <div
                 key={key}

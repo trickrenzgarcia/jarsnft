@@ -22,21 +22,6 @@ export default function PageNavbar() {
   );
 }
 
-export function PageNavCurrent() {
-  const path = usePathname();
-  const getTitle = leftNavList.map((item) =>
-    item.child.map(
-      (childItem, index) =>
-        path === childItem.href && (
-          <h2 key={index} className="font-bold text-[#A519D7]">
-            {childItem.name.replace(/\b\w/g, (char) => char.toUpperCase())}
-          </h2>
-        ),
-    ),
-  );
-  return getTitle;
-}
-
 export function PageNavTopic(props: any) {
   const path = usePathname();
   const getTitle = leftNavList.map((item, index) =>
@@ -45,9 +30,24 @@ export function PageNavTopic(props: any) {
         path === childItem.href && (
           <h2
             key={index}
-            className={cn(`text-lg font-bold text-[${props.color}]`)}
-          >
+            className={cn(`text-md sm:text-lg font-bold text-[${props.color}]`)}
+            >
             {item.topic.replace(/\b\w/g, (char) => char.toUpperCase())}
+          </h2>
+        ),
+      ),
+  );
+  return getTitle;
+}
+
+export function PageNavCurrent() {
+  const path = usePathname();
+  const getTitle = leftNavList.map((item) =>
+    item.child.map(
+      (childItem, index) =>
+        path === childItem.href && (
+          <h2 key={index} className="text-md sm:text-lg font-bold text-[#A519D7]">
+            {childItem.name.replace(/\b\w/g, (char) => char.toUpperCase())}
           </h2>
         ),
     ),
