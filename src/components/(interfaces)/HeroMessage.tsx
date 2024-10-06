@@ -21,7 +21,7 @@ export default function HeroMessage() {
   };
 
   // "reference error" here 
-  const isMetaMask = window.ethereum && window.ethereum.isMetaMask;
+  const isMetaMask = typeof window !== 'undefined' && window.ethereum && window.ethereum.isMetaMask;
 
   if (hasBeenClosed || isMetaMask) return null;
 
