@@ -11,6 +11,7 @@
     "db:migrate": "bun drizzle/migrate.ts"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^0.0.66",
     "@faker-js/faker": "^8.4.1",
     "@hookform/resolvers": "^3.9.0",
     "@nextui-org/modal": "^2.0.39",
@@ -37,6 +38,7 @@
     "@thirdweb-dev/sdk": "^4.0.38",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.5.0",
+    "ai": "^3.4.9",
     "alchemy-sdk": "^3.2.1",
     "boring-avatars": "^1.10.2",
     "class-variance-authority": "^0.7.0",
