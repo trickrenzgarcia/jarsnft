@@ -59,6 +59,7 @@ export default function CreateUserDialog({ isOpenCreate }: { isOpenCreate: boole
       const updatedUser = updateUser(user.address, {
         name: values.name,
         email: values.email,
+        isListed: 1
       });
       const createUserProfile = createProfile(user.address);
       await Promise.all([updatedUser, createUserProfile]);

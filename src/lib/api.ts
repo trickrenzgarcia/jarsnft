@@ -105,7 +105,7 @@ export class JarsAPI {
     address: string,
     data: Omit<
       User,
-      "id" | "uid" | "address" | "isListed" | "role" | "createdAt"
+      "id" | "uid" | "address" | "role" | "createdAt"
     >,
   ) {
     return await this.request<User>('/user/update', {
