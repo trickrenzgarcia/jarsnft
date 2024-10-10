@@ -1,25 +1,33 @@
-import { withPWA } from 'next-pwa';
+import {
+  PHASE_DEVELOPMENT_SERVER,
+  PHASE_PRODUCTION_BUILD,
+} from "next/constants.js";
 
 /** @type {import('next').NextConfig} */
-const nextConfig = withPWA({
-  dest: 'public', // This will generate the service worker and other PWA assets in the public folder
+const nextConfig = {
   reactStrictMode: false,
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
-      },
-    ],
+        hostname: '**'
+      }
+    ]
   },
   webpack: (config) => {
-    config.externals.push('pino-pretty', 'lokijs', 'encoding');
-    return config;
-  },
-  pwa: {
-    dest: 'public',
-    disable: process.env.NODE_ENV === 'development', // Disable PWA in development mode
-  },
-});
+    config.externals.push('pino-pretty', 'lokijs', 'encoding')
+    return config
+  }
+};
 
-export default nextConfig;
+const nextConfigFunction = async (phase) => {
+  if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
+    const withPWA = (await import("@ducanh2912/next-pwa")).default({
+      dest: "public",
+    });
+    return withPWA(nextConfig);
+  }
+  return nextConfig;
+};
+
+export default nextConfigFunction;
