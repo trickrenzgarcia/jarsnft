@@ -14,7 +14,7 @@ export default function NFTCategories({ className }: { className: string }) {
           <NFTCardCategories
             categoryLink="/category/photography"
             categoryName="Photography NFTs"
-            image="/assets/categoryImages/PhotoCategory.png"
+            image="/assets/categoryImages/photoGIF.gif"
           />
           <NFTCardCategories
             categoryLink="/category/pfp"
