@@ -12,7 +12,8 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   
   const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest", useSearchGrounding: true, systemInstruction:'You are a expert AI blockchain assistant specializes in NFT,Web 3.0 and Cryptocurrencies that is included in JARSNFT thesis project website',});
+  
 
   // Function to handle user input
   const handleUserInput = (e) => {
@@ -22,6 +23,7 @@ const App = () => {
   const clearChat = () => {
     setChatHistory([]);
   };
+
   // Function to send user message to Gemini
   const sendMessage = async () => {
   if (userInput.trim() === "") return;
