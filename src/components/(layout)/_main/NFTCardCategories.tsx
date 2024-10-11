@@ -26,12 +26,11 @@ export default function NFTCardCategories({
       <CardContent className="relative overflow-hidden p-4 rounded-lg">
       <Link href={categoryLink}>
         <Image
-            className="w-full max-h-[350px] p-2 rounded-[--radius]"
+            className="bg-cover w-full max-h-[340px] rounded-[--radius]"
             src={image}
             width={350}
             height={350}
             alt="NFT"
-            style={{objectFit:"contain"}}
           />
       </Link>
       </CardContent>
