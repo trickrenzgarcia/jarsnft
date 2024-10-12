@@ -6,6 +6,7 @@ import { revalidateTag } from "next/cache";
 type UserUpdateData = {
   name: string;
   email: string;
+  isListed: number;
 };
 
 const updateUser = async (address: string, userData: UserUpdateData) => {

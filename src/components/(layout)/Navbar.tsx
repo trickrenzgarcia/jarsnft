@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
-import { ConnectWalletV4, Hamburger, JarsLogo, Login, SearchInput } from "@/components/(interfaces)";
+import { Hamburger, JarsLogo, Login, SearchInput } from "@/components/(interfaces)";
 import React from "react";
 import HeroMessage from "../(interfaces)/HeroMessage";
 import { ImSearch } from "react-icons/im";
@@ -8,7 +8,6 @@ import { ImSearch } from "react-icons/im";
 
 export default function Navbar() {
   return (
-    <>
     <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md">
       {/* Nav Container */}
       <div className="flex w-full justify-between items-center gap-2 px-5 py-4 md:px-10">
@@ -69,10 +68,8 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Admin Access */}
       {/* <AdminAccessLink /> */}
-    <HeroMessage />
+      <HeroMessage />
     </nav>
-    </>
   )
 }

@@ -6,6 +6,7 @@ import {
   SocialLinkButtons,
   FooterColumn,
 } from "../(interfaces)";
+import ContactForm from "@/components/(interfaces)/Contact-Form";
 
 export default function Footer() {
   //#region Column links
@@ -53,6 +54,7 @@ export default function Footer() {
               Endless Opportunities for Artists and Traders. <br />
               Create, Trade, and Collect Your Legacy.
               </p>
+            <ContactForm/>
             </div>
 
             {/* Column Links */}

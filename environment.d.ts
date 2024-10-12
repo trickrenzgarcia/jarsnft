@@ -20,6 +20,7 @@ declare global {
       NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN: string;
       NEXT_PUBLIC_THIRDWEB_CLIENT_ID: string;
       NEXT_PUBLIC_THIRDWEB_API_KEY: string;
+      NEXT_PUBLIC_NFTMARKETPLACE_JARS_CONTRACT: string;
       PRIVATE_KEY: string;
       AUTH_PRIVATE_KEY: string | undefined;
       NFTMARKETPLACE_JARS_CONTRACT: string;

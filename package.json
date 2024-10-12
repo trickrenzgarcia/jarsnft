@@ -11,6 +11,7 @@
     "db:migrate": "bun drizzle/migrate.ts"
   },
   "dependencies": {
+    "@ducanh2912/next-pwa": "^10.2.9",
     "@faker-js/faker": "^8.4.1",
     "@hookform/resolvers": "^3.9.0",
     "@nextui-org/modal": "^2.0.39",
@@ -37,6 +38,7 @@
     "@thirdweb-dev/sdk": "^4.0.38",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.5.0",
+    "ai": "^3.4.9",
     "alchemy-sdk": "^3.2.1",
     "boring-avatars": "^1.10.2",
     "class-variance-authority": "^0.7.0",
@@ -55,6 +57,7 @@
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.11.0",
     "next": "14.2.5",
+    "next-pwa": "^5.6.0",
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-day-picker": "8.10.1",
@@ -63,8 +66,10 @@
     "react-fast-marquee": "^1.6.5",
     "react-hook-form": "^7.52.2",
     "react-icons": "^5.3.0",
+    "react-markdown": "^9.0.1",
     "react-scroll": "^1.9.0",
     "react-sparklines": "^1.7.0",
+    "resend": "^4.0.0",
     "sharp": "^0.33.5",
     "simplex-noise": "^4.0.3",
     "sonner": "^1.5.0",
@@ -88,6 +93,7 @@
     "eslint-config-next": "14.2.5",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "webpack": "^5.95.0"
   }
 }

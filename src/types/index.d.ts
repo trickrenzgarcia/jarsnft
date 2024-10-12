@@ -22,7 +22,7 @@ export type User = {
   address: string;
   name: string;
   email: string;
-  isListed: boolean;
+  isListed: number;
   role: "user" | "admin";
   createdAt: string;
 };

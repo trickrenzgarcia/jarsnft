@@ -9,6 +9,7 @@ import { ThemeProvider, ThirdwebProviderV4, UserProvider } from "@/components/(p
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  manifest: "/manifest.json",
   title: appConfig.name,
   authors: appConfig.author,
   description: appConfig.description,

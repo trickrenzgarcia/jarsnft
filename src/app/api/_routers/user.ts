@@ -180,7 +180,7 @@ user.get('/email/:email', async (c) => {
   })
 
   if(!user) {
-    return c.json(false, 404)
+    return c.json(false, 200)
   }
 
   return c.json(true, 200)
@@ -211,7 +211,7 @@ user.post('/create', async (c) => {
   }
 })
 
-user.put('/update', async (c) => {
+user.post('/update', async (c) => {
   try {
     const body = await c.req.json()
     const user = updateUser.safeParse(body)
@@ -219,14 +219,14 @@ user.put('/update', async (c) => {
     if(!user.success) {
       return c.json(user.error.errors, 400)
     }
-
-    // Check if user exists
+    
+    // Check if user's address exists
     const cUser = await db.query.users.findFirst({
       where: eq(usersTable.address, user.data.address)
     })
 
     if(!cUser) {
-      return c.json({ message: "User not found" }, 404)
+      return c.json({ message: "User not found" }, 403)
     }
 
     // Update user data

@@ -1,0 +1,22 @@
+{
+  "name": "JarsNFT",
+  "short_name": "JarsNFT",
+  "description": "Discover, trade, and collect unique digital assets at Jars - your premier NFT marketplace. Explore an exclusive range of digital collectibles, artworks, and more. Join us to elevate your digital asset journey today!",
+  "icons": [
+    {
+      "src": "/jars_transparent_dark.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/jars_transparent_dark.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#000000",
+  "orientation": "portrait"
+}
