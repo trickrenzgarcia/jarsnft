@@ -29,7 +29,7 @@ export default function ProfileButton() {
   const { avatar, isLoading, isError } = useAvatarNFT();
 
   return (
-    <div className="">
+    <div className="hidden lg:block">
       <ButtonGroup className="gap-2">
         <Sheet>
           <SheetTrigger asChild>
@@ -116,7 +116,53 @@ export default function ProfileButton() {
   );
 }
 
-function ProfileListButton({ name, icon, link }: { name: string; icon: JSX.Element; link: string }) {
+export function ProfileHamburger(){
+  const {
+    user,
+    isLoading: isUserLoading,
+    isLoggedIn,
+  } = useUser() as ProfileQuery;
+  const { logout, isLoading: logoutLoading } = useLogout();
+
+  const { avatar, isLoading, isError } = useAvatarNFT()
+
+  return(
+    <>
+      <div className="rounded-lg px-3 py-2">
+        {isUserLoading ? (
+          <div className="flex items-center gap-3">
+            <Skeleton className="h-[50] w-[50] rounded-full" />
+            <Skeleton className="h-4 w-full rounded-full" />
+          </div>
+        ) : (
+          <div className="flex w-full items-center gap-3">
+            {isLoading ? 
+            (<Skeleton className="h-[50] w-[50] rounded-full" />) : avatar && (<div className="relative w-[50px] h-[50px] rounded-full">
+            <Image 
+            src={avatar} 
+            fill
+            alt="Avatar"
+            style={{ objectFit: "cover" }}
+            className="absolute rounded-full"
+            loading="lazy"
+          /> </div>) ||  <BoringAvatar size={50} name={user.address} />
+            }
+            
+            <div>
+              <p className="truncate font-bold">{user.data.session.name}</p>
+              <p className="text-xs">{shortenAddress(user.address,6 ,4)}</p>
+            </div>
+              
+          </div>
+        )}
+      </div>
+    <ProfileListButton name="My Profile" icon={<LuWallet className="text-2xl" />} link="/me" />
+    
+    </>
+  )
+}
+
+export function ProfileListButton({ name, icon, link }: { name: string; icon: JSX.Element; link: string }) {
   return (
     <Link href={link}>
       <Button className="w-full rounded-xl flex justify-start gap-2 text-sm py-6 text-gray-500 dark:text-gray-400" variant="ghost">

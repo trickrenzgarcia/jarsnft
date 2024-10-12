@@ -3,23 +3,24 @@ import { Separator } from "@/components/ui/separator";
 import { ConnectWalletV4, Hamburger, JarsLogo, Login, SearchInput } from "@/components/(interfaces)";
 import React from "react";
 import HeroMessage from "../(interfaces)/HeroMessage";
+import { ImSearch } from "react-icons/im";
+
 
 export default function Navbar() {
   return (
     <>
     <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md">
       {/* Nav Container */}
-      <div className="flex w-full gap-2 px-5 py-4 md:px-10">
+      <div className="flex w-full justify-between items-center gap-2 px-5 py-4 md:px-10">
         {/* Left-side <NavigationComponent> */}
-        <Hamburger />
         <div className="flex items-center gap-4">
-
-          <Link href="/">
-            <div className="flex mb-2 items-end">
-              <JarsLogo />
-              <h1 className="animate-flip-down animate-once animate-duration-[1200ms] animate-ease-in mb-2 text-xl font-bold">Jars</h1>
-            </div>
-          </Link>
+            <Hamburger />
+            <Link href="/">
+              <div className="flex mb-2 items-end">
+                <JarsLogo />
+                <h1 className="animate-flip-down animate-once animate-duration-[1200ms] animate-ease-in mb-2 text-xl font-bold">Jars</h1>
+              </div>
+            </Link>
 
           <Separator className="w-[2px] h-[30px] hidden lg:block bg-gray-200 dark:bg-gray-600" orientation="vertical" />
 
@@ -57,9 +58,13 @@ export default function Navbar() {
             <SearchInput />
           </div>
         </div>
+       
 
         {/* Right-side <UserNavigationComponent>*/}
-        <div className="flex  ml-auto items-center gap-6">
+        <div className="flex items-center gap-6">
+          <div className="xl:hidden text-2xl">
+            <ImSearch />
+          </div>
           <Login />
         </div>
       </div>
