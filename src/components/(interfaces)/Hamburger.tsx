@@ -92,11 +92,7 @@ export default function Hamburger() {
                 &times;
               </button> */}
             </div>
-            <div className="my-6">
-              <ProfileHamburger />
-              {/* <ProfileListButton {...{ name: "My Profile", icon: <LuWallet className="text-2xl" />, link: "/me" }} /> */}
-
-            </div>
+            <ProfileHamburger />
 
             {/* <SearchInput /> */}
             <nav className="flex min-h-screen flex-col text-[#dddddd] items-center py-4">
