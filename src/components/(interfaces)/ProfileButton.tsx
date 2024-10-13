@@ -17,6 +17,7 @@ import jars from "@/lib/api";
 import useAvatarNFT from "@/hooks/useAvatarNFT";
 import Image from "next/image";
 import { shortenAddress } from "@/lib/utils";
+import { IoWallet } from "react-icons/io5";
 
 export default function ProfileButton() {
   const {
@@ -123,42 +124,52 @@ export function ProfileHamburger(){
     isLoggedIn,
   } = useUser() as ProfileQuery;
   const { logout, isLoading: logoutLoading } = useLogout();
-
+  console.log(isLoggedIn)
   const { avatar, isLoading, isError } = useAvatarNFT()
 
   return(
     <>
-      <div className="rounded-lg px-3 py-2">
-        {isUserLoading ? (
-          <div className="flex items-center gap-3">
-            <Skeleton className="h-[50] w-[50] rounded-full" />
-            <Skeleton className="h-4 w-full rounded-full" />
-          </div>
-        ) : (
-          <div className="flex w-full items-center gap-3">
-            {isLoading ? 
-            (<Skeleton className="h-[50] w-[50] rounded-full" />) : avatar && (<div className="relative w-[50px] h-[50px] rounded-full">
-            <Image 
-            src={avatar} 
-            fill
-            alt="Avatar"
-            style={{ objectFit: "cover" }}
-            className="absolute rounded-full"
-            loading="lazy"
-          /> </div>) ||  <BoringAvatar size={50} name={user.address} />
-            }
-            
-            <div>
-              <p className="truncate font-bold">{user.data.session.name}</p>
-              <p className="text-xs">{shortenAddress(user.address,6 ,4)}</p>
+    {isLoggedIn && (
+      <div className="my-6">
+        <div className="rounded-lg px-3 py-2">
+          {isUserLoading ? (
+            <div className="flex items-center gap-3">
+              <Skeleton className="h-[50] w-[50] rounded-full" />
+              <Skeleton className="h-4 w-full rounded-full" />
             </div>
+          ) : (
+            <div className="flex w-full items-center gap-3">
+              {isLoading ? 
+              (<Skeleton className="h-[50] w-[50] rounded-full" />) : avatar && (<div className="relative w-[50px] h-[50px] rounded-full">
+              <Image 
+              src={avatar} 
+              fill
+              alt="Avatar"
+              style={{ objectFit: "cover" }}
+              className="absolute rounded-full"
+              loading="lazy"
+            /> </div>) ||  <BoringAvatar size={50} name={user.address} />
+              }
               
-          </div>
-        )}
-      </div>
-    <ProfileListButton name="My Profile" icon={<LuWallet className="text-2xl" />} link="/me" />
-    
+              <div>
+                <p className="truncate font-bold">{user.data.session.name}</p>
+                <p className="text-xs">{shortenAddress(user.address,6 ,4)}</p>
+              </div>
+                
+            </div>
+          )}
+        </div>
+        {/* <ProfileListButton name="My Profile" icon={<LuWallet className="text-2xl" />} link="/me" /> */}
+        <Link href="/me">
+          <Button className="w-full border-[#A519D7] border-l-1 rounded-xl flex mt-2 justify-start gap-2 text-sm py-6 text-[#c5c5c5] dark:text-[#dddddd]" variant="ghost">
+            <IoWallet className="text-2xl" />
+            {"My Profile"}
+          </Button>
+        </Link>
+        </div>
+      )}
     </>
+
   )
 }
 
