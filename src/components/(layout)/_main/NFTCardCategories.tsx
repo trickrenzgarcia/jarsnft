@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -31,6 +30,7 @@ export default function NFTCardCategories({
             width={350}
             height={350}
             alt="NFT"
+            unoptimized={true}
           />
       </Link>
       </CardContent>

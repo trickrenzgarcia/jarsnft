@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -6,21 +6,21 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import ChatHistory from "./_components/ChatHistory";
 import Loading from "./_components/Loading";
 
-const App = () => {
+const Chatbot = () => {
   const [userInput, setUserInput] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  
-  const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest", useSearchGrounding: true, 
-  systemInstruction:`You are a expert AI blockchain assistant specializes in NFT,Web 3.0 and Cryptocurrencies that is included in JARSNFT thesis project website
-  that aims to develop a Philippine-based decentralized art NFT trading marketplace empowered by polygon blockchain technology using secure hashing algorithm,
-  To develop a module that will allow artists to create/upload (NFT's) non-fungible tokens,To develop a module that will allow traders to buy and sell (NFT's) non-fungible tokens,
-  To develop a module that will guide users on how to exchange cryptocurrencies across different centralized exchanges anywhere anytime and educate Filipinos in web 3 and blockchain.
-  `,});
-  
 
-  // Function to handle user input
+  const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
+  const model = genAI.getGenerativeModel({
+    model: "gemini-1.5-flash",
+    useSearchGrounding: true,
+    systemInstruction: `
+      You are an expert AI blockchain assistant specializing in NFT, Web 3.0, and Cryptocurrencies included in JARSNFT thesis project website
+      that aims to develop a Philippine-based decentralized art NFT trading marketplace empowered by Polygon blockchain technology.
+    `,
+  });
+
   const handleUserInput = (e) => {
     setUserInput(e.target.value);
   };
@@ -29,66 +29,70 @@ const App = () => {
     setChatHistory([]);
   };
 
-  // Function to send user message to Gemini
-  const sendMessage = async () => {
-  if (userInput.trim() === "") return;
+   const sendMessage = async () => {
+    if (userInput.trim() === "") return;
 
-  setIsLoading(true);
-  try {
-    // call Gemini Api to get a response
-    const result = await model.generateContent(userInput);
-    const response =  result.response; 
+    setIsLoading(true);
+    try {
+      const result = await model.generateContent(userInput);
+      const response = result.response;
 
-    if (!response || !response.text) {
-      throw new Error("Invalid response structure");
+      if (!response || !response.text) {
+        throw new Error("Invalid response structure");
+      }
+
+      setChatHistory((prevChatHistory) => [
+        ...prevChatHistory,
+        { type: "user", message: userInput },
+        { type: "bot", message: response.text() },
+      ]);
+    } catch (error) {
+      console.error("Error sending message:", error);
+    } finally {
+      setUserInput("");
+      setIsLoading(false);
     }
-
-    // add Gemini's response to the chat history
-    setChatHistory((prevChatHistory) => [
-      ...prevChatHistory,
-      { type: "user", message: userInput },
-      { type: "bot", message: response.text() }, // Ensure this is correct
-    ]);
-  } catch (error) {
-    console.error("Error sending message:", error);
-  } finally {
-    setUserInput("");
-    setIsLoading(false);
+  };  
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // Prevent the default action (e.g., form submission)
+      sendMessage();
+    }
   }
-};
+  
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-center mb-4">Chatbot</h1>
-
       <div className="chat-container rounded-lg shadow-md p-4">
         <ChatHistory chatHistory={chatHistory} />
         <Loading isLoading={isLoading} />
       </div>
-
-      <div className="flex mt-4">
+      <div className="my-4">
         <input
           type="text"
-          className="flex-grow px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full flex-grow px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Type your message..."
           value={userInput}
           onChange={handleUserInput}
+          onKeyDown={handleKeyDown}
         />
-        <button
-          className="px-4 py-2 ml-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 focus:outline-none"
-          onClick={sendMessage}
-          disabled={isLoading}
-        >
-          Send
-        </button>
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          <button
+            className="p-2 rounded-lg bg-sky-500 focus:outline-none"
+            onClick={sendMessage}
+            disabled={isLoading}
+            >Send
+          </button>
+
+          <button
+          className="p-2 rounded-lg bg-red-500 focus:outline-none"
+          onClick={clearChat}
+          >
+          Clear Chat
+          </button>
       </div>
-      <button
-        className="mt-4 block px-4 py-2 rounded-lg bg-gray-400 text-white hover:bg-gray-500 focus:outline-none"
-        onClick={clearChat}
-      >
-        Clear Chat
-      </button>
     </div>
   );
 };
 
-export default App;
+export default Chatbot;
