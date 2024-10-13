@@ -6,12 +6,11 @@ import { MobileTableRow } from "./CMCTableRow";
 import { MobileTableHeader } from "./CMCTableHeader";
 
 const CMCTable = () => {
-  
+  const apiKey = process.env.NEXT_PUBLIC_CG_API_KEY
   const [currency, setCurrency] = useState("usd");
   const { response } = useAxios(
-    `coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=7d&locale=en&x_cg_demo_api_key=${process.env.NEXT_PUBLIC_CG_API_KEY}`,
+    `coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=7d&locale=en&x_cg_demo_api_key=${apiKey}`,
   );
-  console.log(process.env.NEXT_PUBLIC_CG_API_KEY);
   // Function to handle currency change
   const CurrencyChange = () => {
     // Toggle between USD and PHP
