@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react";
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 import ChatHistory from "./_components/ChatHistory";
 import Loading from "./_components/Loading";
