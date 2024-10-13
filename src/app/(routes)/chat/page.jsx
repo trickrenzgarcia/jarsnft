@@ -12,7 +12,12 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   
   const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest", useSearchGrounding: true, systemInstruction:'You are a expert AI blockchain assistant specializes in NFT,Web 3.0 and Cryptocurrencies that is included in JARSNFT thesis project website',});
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest", useSearchGrounding: true, 
+  systemInstruction:`You are a expert AI blockchain assistant specializes in NFT,Web 3.0 and Cryptocurrencies that is included in JARSNFT thesis project website
+  that aims to develop a Philippine-based decentralized art NFT trading marketplace empowered by polygon blockchain technology using secure hashing algorithm,
+  To develop a module that will allow artists to create/upload (NFT's) non-fungible tokens,To develop a module that will allow traders to buy and sell (NFT's) non-fungible tokens,
+  To develop a module that will guide users on how to exchange cryptocurrencies across different centralized exchanges anywhere anytime and educate Filipinos in web 3 and blockchain.
+  `,});
   
 
   // Function to handle user input
