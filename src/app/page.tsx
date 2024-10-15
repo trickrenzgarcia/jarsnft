@@ -4,7 +4,6 @@ import NFTCategories from "@/components/(layout)/_main/NFTCategories";
 import { Separator } from "@/components/ui/separator";
 import jars from "@/lib/api";
 import { Suspense } from "react";
-import ChatbotModal from "@/components/(layout)/_main/ChatbotModal";
 
 export const dynamic = "force-dynamic";
 
@@ -43,7 +42,6 @@ export default async function Home() {
           <NFTCategories className="my-16" />
         </Suspense>
       </div>
-      <ChatbotModal className="fixed bottom-0 right-0 m-6 z-10"/>
       <Footer />
     </main>
   );

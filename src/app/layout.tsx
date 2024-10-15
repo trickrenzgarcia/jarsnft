@@ -5,6 +5,7 @@ import "./globals.css";
 import { appConfig } from "@/lib/app.config";
 import { cn } from "@/lib/utils";
 import { ThemeProvider, ThirdwebProviderV4, UserProvider } from "@/components/(providers)";
+import ChatbotModal from "@/components/(layout)/_main/ChatbotModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -49,6 +50,7 @@ export default function RootLayout({
             </ThemeProvider>
           </ThirdwebProviderV5>
         </ThirdwebProviderV4>
+        <ChatbotModal className="fixed bottom-0 right-0 m-6 z-10"/>
       </body>
     </html>
   );
