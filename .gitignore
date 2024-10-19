@@ -9,10 +9,8 @@
 package-lock.json
 
 # pwa builds
-/public/sw.js
-/public/sw.js.map
-/workbox-7144475a.js
-/workbox-7144475a.js.map
+/public/*.js
+/public/*.js.map
 
 # testing
 /coverage

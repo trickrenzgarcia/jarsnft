@@ -518,7 +518,7 @@ export class JarsAPI {
 }
 
 const jars = new JarsAPI({
-  secretKey: process.env.JWT_TOKEN
+  secretKey: process.env.NEXT_PUBLIC_JWT_TOKEN!
 })
 
 export default jars;
