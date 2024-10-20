@@ -80,9 +80,9 @@ export default function Hamburger() {
         )}
       </div> */}
       <Sheet>
-      <SheetTrigger className="text-2xl">&#9776;</SheetTrigger>
-      <SheetContent side="left">
-        <section className="absolute left-0 top-0 flex flex-col justify-center bg-background p-4">
+        <SheetTrigger className="text-2xl">&#9776;</SheetTrigger>
+        <SheetContent side="left">
+          <section className="absolute left-0 top-0 flex flex-col justify-center bg-background p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-end mb-4">
                 <JarsLogo />
@@ -101,9 +101,9 @@ export default function Hamburger() {
                 className="w-full py-5 md:py-6 ml-4 hover:opacity-90"
               >
                 <div className="flex border-[#A519D7] border-l-1 items-center gap-2">
-                  <IoHomeSharp className="text-2xl ml-3"/>
+                  <IoHomeSharp className="text-2xl ml-3" />
                   <span className="text-lg">
-                    Home  
+                    Home
                   </span>
                 </div>
               </Link>
@@ -112,18 +112,18 @@ export default function Hamburger() {
                 className="w-full py-5 md:py-6 ml-4 hover:opacity-90"
               >
                 <div className="flex border-[#A519D7] border-l-1 items-center gap-2">
-                  <IoCreate className="text-2xl ml-3"/>
+                  <IoCreate className="text-2xl ml-3" />
                   <span className="text-lg">
                     Create
                   </span>
                 </div>
               </Link>
               <Link
-                href="/collection"
+                href="/collections"
                 className="w-full py-5 md:py-6 ml-4 hover:opacity-90"
               >
                 <div className="flex border-[#A519D7] border-l-1 items-center gap-2">
-                <MdCollections className="text-2xl ml-3"/>
+                  <MdCollections className="text-2xl ml-3" />
                   <span className="text-lg">
                     Collections
                   </span>
@@ -134,18 +134,18 @@ export default function Hamburger() {
                 className="w-full py-5 md:py-6 ml-4 hover:opacity-90"
               >
                 <div className="flex border-[#A519D7] border-l-1 items-center gap-2">
-                  <MdAnalytics className="text-2xl ml-3"/>
+                  <MdAnalytics className="text-2xl ml-3" />
                   <span className="text-lg">
                     Coin Analytics
                   </span>
-                </div>  
+                </div>
               </Link>
               <Link
                 href="/insights"
                 className="w-full py-5 md:py-6 ml-4 hover:opacity-90"
               >
                 <div className="flex border-[#A519D7] border-l-1 items-center gap-2">
-                  <FaLightbulb className="text-2xl ml-3"/>
+                  <FaLightbulb className="text-2xl ml-3" />
                   <span className="text-lg">
                     Insights
                   </span>
@@ -153,15 +153,15 @@ export default function Hamburger() {
               </Link>
             </nav>
           </section>
-        {/* <SheetHeader>
+          {/* <SheetHeader>
           <SheetTitle>Are you absolutely sure?</SheetTitle>
           <SheetDescription>
             This action cannot be undone. This will permanently delete your account
             and remove your data from our servers.
           </SheetDescription>
         </SheetHeader> */}
-      </SheetContent>
-    </Sheet>
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }
