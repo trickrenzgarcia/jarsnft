@@ -12,7 +12,7 @@ import { SiPolygon } from "react-icons/si";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function SearchInput() {
+export default function SearchInput(props: any) {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [dataResults, setDataResults] = useState<
@@ -47,14 +47,19 @@ export default function SearchInput() {
 
   return (
     <div className="relative flex w-full flex-col">
-      <Input
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setTimeout(() => setIsFocused(false), 100)}
-        placeholder="Search"
-        className="rounded-lg"
-      />
+      <div className="flex gap-4 items-center">
+        <Input
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setTimeout(() => setIsFocused(false), 100)}
+          placeholder="Search"
+          className="rounded-lg"
+        />
+        <button onClick={props.handleClick} className="block xl:hidden text-3xl">
+          &times;
+        </button>
+      </div>
       {isFocused && (
         <div className="absolute mt-[50px] w-full">
           <Card className="">
