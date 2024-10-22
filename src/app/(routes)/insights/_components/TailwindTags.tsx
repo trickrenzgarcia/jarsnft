@@ -19,7 +19,7 @@ export function Disclaimer(props: React.HTMLAttributes<HTMLParagraphElement>){
 export function H1(props: React.HTMLAttributes<HTMLParagraphElement>){
   const { children } = props;
   return (
-    <h1 className="mb-6 text-4xl font-bold md:text-5xl">
+    <h1 className="my-4 text-4xl font-bold md:text-5xl">
       {children}
     </h1>
   );
@@ -28,7 +28,7 @@ export function H1(props: React.HTMLAttributes<HTMLParagraphElement>){
 export function H2(props: React.HTMLAttributes<HTMLParagraphElement>){
   const { children } = props;
   return (
-    <h1 className="my-6 text-2xl font-bold">
+    <h1 className="my-4 text-2xl font-bold">
       {children}
     </h1>
   );
@@ -37,7 +37,7 @@ export function H2(props: React.HTMLAttributes<HTMLParagraphElement>){
 export function H3(props: React.HTMLAttributes<HTMLParagraphElement>){
   const { children } = props;
   return (
-    <h1 className="my-6 text-xl font-bold">
+    <h1 className="my-4 text-xl font-bold">
       {children}
     </h1>
   );
@@ -47,6 +47,15 @@ export function IList(props: React.HTMLAttributes<HTMLUListElement>) {
   const { children } = props;
   return (
     <ul className="mb-12 ml-8 list-disc font-semibold leading-9 text-[#A519D7]">
+      {children}
+    </ul>
+  );
+}
+
+export function H4(props: React.HTMLAttributes<HTMLUListElement>) {
+  const { children } = props;
+  return (
+    <ul className="my-6 text-lg font-bold tracking-wider">
       {children}
     </ul>
   );
