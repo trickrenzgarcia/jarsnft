@@ -11,6 +11,9 @@ type NFTCardProps = {
 }
 
 export default function NFTCard({ contractAddress, nft, isHidePrice = true }: NFTCardProps) {
+
+  console.log(nft)
+  
   return (
     <Card className='p-2 border-2 bg-background rounded-lg hover:-translate-y-1 cursor-pointer hover:border-zinc-200 dark:hover:border-zinc-800'>
       <CardHeader className='flex items-center justify-center aspect-square p-0'>
