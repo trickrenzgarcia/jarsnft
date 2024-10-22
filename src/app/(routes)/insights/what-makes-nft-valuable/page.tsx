@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { P,H1, H2, H4 } from "../_components/TailwindTags";
+import { P,H1, H2, H4, UL } from "../_components/TailwindTags";
 
 export default function NFTValuablePage() {
   return (
@@ -11,14 +11,14 @@ export default function NFTValuablePage() {
           width={1920}
           height={1080}
           alt="NFT Benefits Image"
-          className=" mb-12 max-h-[20rem] max-w-full rounded-lg object-cover "
+          className="mb-12 max-h-[20rem] max-w-full rounded-lg object-cover"
         />
       </div>
       <div id="value">
         <H2>How do NFTs get its value?</H2>
         <H4>1. Scarcity & Rarity</H4>
         <P>These are two sides of the same coin. Scarce NFTs, such as limited edition releases, are more appealing because they express a sense of exclusivity. Rarity can also be derived from unique features within an NFT collection. </P>
-        <ul className="space-y-4 my-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
+        <UL>
           <li>
             <b>Scarcity:</b>
             The number of NFTs available in a collection. Scarcity is created via limited edition releases or collections that contain a set quantity of NFTs. Consider a collection of 100 unique NFTs vs one of 10,000. Because of its scarcity, the one with 100 will most likely be worth more.
@@ -27,7 +27,7 @@ export default function NFTValuablePage() {
             <b>Rarity:</b>
             Looks beyond just the quantity to identify distinctive features within a collection. The rarity of NFT-associated traits varies. CryptoPunks with uncommon features, such as laser eyes or ape fur, are far more expensive than typical ones. Collectors can use rarity analysis techniques to find these more traits.
           </li>
-        </ul>
+        </UL>
 
         <H4>2. Authenticity</H4>
         <P>NFTs are created using blockchain technology, which generates a tamper-proof record of ownership. This assures collectors that their NFT is genuine and not a clone. Authenticity is especially critical for high-value NFTs and those that are linked to physical assets. Blockchain technology supports NFTs, allowing for a secure and transparent record of ownership. This ensures that collectors own the genuine NFT rather than a clone. Consider purchasing a rare painting - authenticity is critical to its worth. Similarly, authenticity is critical for pricey NFTs and those related to actual assets (for example, an NFT reflecting ownership of a real-world painting).</P>
@@ -37,7 +37,7 @@ export default function NFTValuablePage() {
         
         <H4>4. Utility</H4>
         <P>Some NFTs provide additional benefits or usefulness beyond just simply owning a digital collection.  This could include access to special content, membership in a club, or even in-game goodies.  Utility provides value since it gives the NFT a purpose other than just looking good in a digital wallet. Utility for NFTs related to video games may include unique in-game objects or avatars that may be used within the game.</P>
-        <ul className="space-y-4 my-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
+        <UL>
           <li>
             <b>Exclusive stuff:</b>
             Members-only stuff, such as behind-the-scenes footage or early access to a creator&apos;s upcoming releases.
@@ -46,7 +46,7 @@ export default function NFTValuablePage() {
             <b>Community Membership:</b>
             Membership in a club or group affiliated with the NFT project, which provides access to events or online forums.
           </li>
-        </ul>
+        </UL>
 
         <H4>5. Historical Significance</H4>
         <P>NFTs that were early milestones in the development of technology or created by well-known artists can be valuable due to their historical importance.  Owning one of the first NFTs minted, or an NFT by a well-known artist, is like owning a piece of online history. These NFTs are valued similarly to historical objects or works of art.</P>
@@ -59,7 +59,7 @@ export default function NFTValuablePage() {
         <H2>How to price your NFTs</H2>
         <P>To price your NFT effectively, understand the various factors influencing its market value, which will serve as a guiding framework.</P>
         <H4>1. Consider the Factors Affecting Value</H4>
-        <ul className="space-y-4 my-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
+        <UL>
           <li>
             <b>Scarcity and Rarity:</b>
           How many NFTs are in your collection? Are there any distinguishing qualities in the collection?
@@ -76,9 +76,9 @@ export default function NFTValuablePage() {
             <b>Historical Significance:</b>
           Is your NFT part of an important project or made by a famous artist?
           </li>
-        </ul>
+        </UL>
         <H4>2. Research Similar NFTs</H4>
-        <ul className="space-y-4 my-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
+        <UL>
           <li>
             <b>Floor Price:</b>
             The lowest asking price for an NFT in a collection on a secondary market.
@@ -87,9 +87,9 @@ export default function NFTValuablePage() {
             <b>Recent Sales:</b>
             Look at recent sales data for similar NFTs to determine the actual selling price, not simply the asking price.
           </li>
-        </ul>
+        </UL>
         <H4>3. Choose a pricing strategy.</H4>
-        <ul className="space-y-4 my-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
+        <UL>
           <li>
             <b>Fixed Price:</b>
             Decide on a fixed price for your NFTs throughout the minting process. This is an excellent alternative if you believe in the worth of your NFTs or want to dominate the first market.
@@ -102,13 +102,13 @@ export default function NFTValuablePage() {
             <b>Free Mint with Gas costs:</b>
             This option requires users to pay just the transaction costs (gas fees) to mint the NFT. This can be an effective technique for creating a community around your project, but it may not bring immediate cash.
           </li>
-        </ul>
+        </UL>
         <H4>4. Consider additional costs:</H4>
         <P>When determining your pricing, consider any additional costs related with minting and selling your NFTs, such as platform or gas fees.</P>
         <H4>5. Start Competitive and Adjust as Needed:</H4>
         <P>It&apos;s typically best to begin with a competitive pricing, particularly for rookie creators. You can always change the price later based on market demand.
         Here are some more tips:</P>
-        <ul className="space-y-4 my-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
+        <UL>
           <li>
             <b>Offer Tiers:</b>
             Consider selling different tiers of NFTs with varying rarities and pricing to reach a larger audience.
@@ -121,11 +121,11 @@ export default function NFTValuablePage() {
             <b>Consider Long-Term Value:</b>
             Focus on creating long-term value for your NFTs by including outstanding art, utility, and community participation.
           </li>
-        </ul>
+        </UL>
         <P>Remember, NFT pricing is ever-changing, conduct research, be smart, and change your strategy in response to market conditions and community criticism.</P>
         <H4>How do i market my NFTs?</H4>
         <P>Starting a successful NFT project requires a comprehensive marketing approach. Here are some crucial factors to consider:</P>
-        <ul className="space-y-4 my-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
+        <UL>
           <li>
             <b>Build a Strong Social Media Presence:</b>
             Twitter and Discord are popular channels for NFT communities. Use these sites to promote your artwork, communicate with potential collectors, and generate interest for your project.
@@ -146,7 +146,7 @@ export default function NFTValuablePage() {
             <b>SEO Optimization:</b>
             To boost search engine visibility, optimize your project&apos;s website and social media profiles using relevant keywords.
           </li>
-        </ul>
+        </UL>
       </div>
       <div id="conclusion">
         <hr />

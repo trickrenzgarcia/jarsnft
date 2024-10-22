@@ -16,7 +16,7 @@ export function Disclaimer(props: React.HTMLAttributes<HTMLParagraphElement>){
   );
 }
 
-export function H1(props: React.HTMLAttributes<HTMLParagraphElement>){
+export function H1(props: React.HTMLAttributes<HTMLTitleElement>){
   const { children } = props;
   return (
     <h1 className="my-4 text-4xl font-bold md:text-5xl">
@@ -25,7 +25,7 @@ export function H1(props: React.HTMLAttributes<HTMLParagraphElement>){
   );
 }
 
-export function H2(props: React.HTMLAttributes<HTMLParagraphElement>){
+export function H2(props: React.HTMLAttributes<HTMLTitleElement>){
   const { children } = props;
   return (
     <h1 className="my-4 text-2xl font-bold">
@@ -34,7 +34,7 @@ export function H2(props: React.HTMLAttributes<HTMLParagraphElement>){
   );
 }
 
-export function H3(props: React.HTMLAttributes<HTMLParagraphElement>){
+export function H3(props: React.HTMLAttributes<HTMLTitleElement>){
   const { children } = props;
   return (
     <h1 className="my-4 text-xl font-bold">
@@ -52,11 +52,30 @@ export function IList(props: React.HTMLAttributes<HTMLUListElement>) {
   );
 }
 
-export function H4(props: React.HTMLAttributes<HTMLUListElement>) {
+export function H4(props: React.HTMLAttributes<HTMLTitleElement>) {
   const { children } = props;
   return (
-    <ul className="my-6 text-lg font-bold tracking-wider">
+    <h4 className="my-6 text-lg font-bold tracking-wider">
+      {children}
+    </h4>
+  );
+}
+
+export function UL(props: React.HTMLAttributes<HTMLUListElement>) {
+  const { children } = props;
+  return (
+    <ul className="space-y-4 mt-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
       {children}
     </ul>
   );
 }
+
+export function OL(props: React.HTMLAttributes<HTMLOListElement>) {
+  const { children } = props;
+  return (
+    <ol className="space-y-4 mt-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
+      {children}
+    </ol>
+  );
+}
+
