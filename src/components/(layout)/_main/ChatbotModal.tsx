@@ -12,12 +12,12 @@ export default function ChatbotModal ({className} : {className: string}) {
     <>
     <div className={className}>
         <div className='flex flex-col items-baseline self-center'>
-        <Button onPress={onOpen}><Bot /></Button>
+        <Button color='primary' onPress={onOpen}><Bot /></Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} size='5xl' scrollBehavior='inside'>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex items-center justify-center gap-2"><FaRobot className='text-5xl'/> JARS AI Chatbot</ModalHeader>
+              <ModalHeader className="flex items-center justify-center gap-2"><FaRobot className='text-5xl'/>JARS AI Chatbot</ModalHeader>
               <ModalBody>
                 <Chatbot/>
               </ModalBody>

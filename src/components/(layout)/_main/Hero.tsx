@@ -39,9 +39,10 @@ export default function Hero() {
         <Image
           src="/assets/hero-icon.svg"
           fill
-          style={{ objectFit: "cover" }}
           alt="image of a banner"
-          className="animate-fade animate-once animate-duration-[1200ms] animate-ease-in"
+          className="animate-fade animate-once animate-duration-[1200ms] animate-ease-in object-cover"
+          priority={true}
+          quality={100}
         />
       </div>
       <div className="absolute lg:w-[500px] rounded-xl bg-white/85 p-8 dark:bg-black/85 lg:ml-28 ">

@@ -10,9 +10,9 @@ import { TbCaretDownFilled } from "react-icons/tb";
 
 const Trending = async () => {
   try {
-    let data = await getCoingeckoGlobalData();
-    let percentChange = data.data.market_cap_change_percentage_24h_usd;
-    let usdCap = (data.data.total_market_cap.usd / 1e12).toFixed(3);
+    const data = await getCoingeckoGlobalData();
+    const percentChange = data.data.market_cap_change_percentage_24h_usd;
+    const usdCap = (data.data.total_market_cap.usd / 1e12).toFixed(3);
     const icon = percentChange < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />;
     const result = percentChange < 0 ? "decrease" : "increase";
     const resultColor = percentChange < 0 ? "#DC143C" : "#2eff00";

@@ -25,7 +25,7 @@ export default function NFTCardCategories({
       <CardContent className="relative overflow-hidden p-4 rounded-lg">
       <Link href={categoryLink}>
         <Image
-            className="bg-cover w-full max-h-[340px] rounded-[--radius]"
+            className="bg-cover min-h-[30rem] max-h-[30rem] w-full rounded-[--radius]"
             src={image}
             width={350}
             height={350}
