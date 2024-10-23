@@ -225,7 +225,7 @@ const Page = () => {
           <P>ByBit is a cryptocurrency exchange known for its speed and focus on trading derivatives, particularly perpetual contracts. It offers leveraged trading, allowing users to control larger positions than their account balances. This makes it ideal for experienced traders looking for a fast, user-friendly platform with potential for higher returns and risks. However, it may not be suitable for beginners or those seeking a wider range of cryptocurrencies or a simple platform for buying and storing digital assets.</P>
           <H2>Home Page</H2>
           <Image
-            src="/assets/InsightsAsset/bybit_homepage.png"
+            src="/assets/InsightsAsset/Bybit_Homepage.png"
             alt="Bybit HomePage"
             width={1920}
             height={1080}
