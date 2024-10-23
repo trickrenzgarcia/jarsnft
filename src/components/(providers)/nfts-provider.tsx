@@ -2,10 +2,10 @@
 
 import { NFT, useContract, useNFTs } from '@thirdweb-dev/react';
 import { createContext, ReactNode, useMemo } from 'react';
+import { useContractContext } from '../hooks/use-context';
 
 type Props = {
   children: ReactNode;
-  address: string;
 }
 
 export type NFTsContext = {
@@ -16,8 +16,8 @@ export type NFTsContext = {
 
 export const NFTsContext = createContext<NFTsContext | undefined>(undefined)
 
-function NFTsProvider({ children, address }: Props) {
-  const { contract } = useContract(address)
+function NFTsProvider({ children }: Props) {
+  const { contract } = useContractContext()
   const { data: nfts, isLoading: loadingNfts, isError: errorNfts } = useNFTs(contract)
 
   const memoizeNfts = useMemo(() => {

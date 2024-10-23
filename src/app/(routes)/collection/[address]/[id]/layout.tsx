@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import { ThirdwebSDK } from '@thirdweb-dev/sdk';
 import { Sepolia } from "@thirdweb-dev/chains"
 import jars from '@/lib/api';
+import NFTProvider from '@/components/(providers)/nft-provider';
 
 type NFTProps = {
   params: {
@@ -31,5 +32,9 @@ export async function generateMetadata({ params: { address, id }}: PageParams)
 }
 
 export default function NFTLayout({ children, params: { address, id } }: NFTProps) {
-  return <NftProvider address={address} id={id}>{children}</NftProvider>
+  return (
+    <NFTProvider address={address} tokenId={id}>
+      {children}
+    </NFTProvider>
+  )
 }

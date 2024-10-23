@@ -13,7 +13,6 @@ import {
   AlertDialogTrigger,
   AlertDialogFooter,
 } from "@/components/ui/alert-dialog";
-import { useNftContext } from "./nft-provider";
 import { type NFT, ThirdwebNftMedia, Web3Button, useBalance, type EnglishAuction } from "@thirdweb-dev/react";
 import { MdVerified } from "react-icons/md";
 import { NFT_MARKETPLACE } from "@/lib/constant";
@@ -28,6 +27,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createTxHash } from "@/actions/createTxHash";
+import { useContractContext, useMarketPlaceContext } from '@/components/hooks/use-context';
 
 type PlaceBidButtonProps = {
   nft: NFT | undefined;
@@ -48,8 +48,9 @@ export default function PlaceBidButton({ nft, auctionListing, loadingAuction }: 
   const router = useRouter();
   const [minBidAmountInPhp, setMinAmountInPhp] = useState<string>("");
   const [bidState, setBidState] = useState<"idle" | "confirmation" | "success">("idle");
-  const { marketPlaceContract, collection, balance } = useNftContext();
-
+  const { collection, loadingCollection, errorCollection } = useContractContext()
+  const { marketPlaceContract, loadingMarketPlace, errorMarketPlace } = useMarketPlaceContext()
+  const { data: balance, isLoading: loadingBalance } = useBalance()
   const form = useForm<z.infer<typeof PlaceBidSchema>>({
     resolver: zodResolver(PlaceBidSchema),
     defaultValues: {

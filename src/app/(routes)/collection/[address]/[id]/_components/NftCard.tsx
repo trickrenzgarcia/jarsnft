@@ -59,6 +59,7 @@ export default function NftCard({ address, id, likes, views }: NftCardProps) {
     tokenId: id,
   });
 
+  
   const { data: auctionListing, isLoading: loadingAuction } = useValidEnglishAuctions(marketPlaceContract, {
     tokenContract: address,
     tokenId: id,

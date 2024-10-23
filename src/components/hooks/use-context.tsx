@@ -1,7 +1,23 @@
 'use client'
 
 import { use } from 'react'
-import { MarketPlaceContext, ListingsContext, NFTsContext } from '@/components/(providers)'
+import { 
+  MarketPlaceContext,
+  ListingsContext,
+  NFTContext,
+  NFTsContext,
+  ContractContext
+} from '@/components/(providers)'
+
+export function useContractContext() {
+  const context = use(ContractContext)
+
+  if(context === undefined) {
+    throw new Error('useContractContext must be used within the ContractProvider.')
+  }
+  
+  return context;
+}
 
 export function useMarketPlaceContext() {
   const context = use(MarketPlaceContext)
@@ -18,6 +34,16 @@ export function useListingsContext() {
 
   if(context === undefined) {
     throw new Error('useListings must be used within the ListingsProvider.')
+  }
+
+  return context
+}
+
+export function useNFTContext() {
+  const context = use(NFTContext)
+
+  if(context === undefined) {
+    throw new Error('useNFTContext must be used within the NFTProvider.')
   }
 
   return context

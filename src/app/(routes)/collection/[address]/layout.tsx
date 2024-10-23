@@ -1,7 +1,7 @@
 import { Navbar, Footer } from "@/components/(layout)";
 import { Metadata } from "next";
 import jars from "@/lib/api";
-import { MarketPlaceProvider, ListingsProvider } from '@/components/(providers)';
+import { MarketPlaceProvider, ListingsProvider, ContractProvider } from '@/components/(providers)';
 
 type CollectionParams = {
   children: React.ReactNode;
@@ -31,11 +31,13 @@ export default async function CollectionLayout({
   return (
     <main>
       <Navbar />
-        <MarketPlaceProvider>
-          <ListingsProvider address={address}>
-            {children}
-          </ListingsProvider>
-        </MarketPlaceProvider>
+        <ContractProvider address={address}>
+          <MarketPlaceProvider>
+            <ListingsProvider address={address}>
+              {children}
+            </ListingsProvider>
+          </MarketPlaceProvider>
+        </ContractProvider>
       <Footer />
     </main>
   );

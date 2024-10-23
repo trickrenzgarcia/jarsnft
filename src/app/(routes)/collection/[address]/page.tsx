@@ -1,7 +1,6 @@
 import jars from "@/lib/api";
 import NFTCards from "../_components/NFTCards";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 import NFTBanner from "../_components/NFTBanner";
 import { NFTsProvider } from '@/components/(providers)';
 
@@ -20,12 +19,10 @@ export default async function CollectionPage({
 
   return (
     <main>
-      <Suspense fallback={<></>}>
-        <NFTBanner address={address} collection={collection} />
-      </Suspense>
+      <NFTBanner address={address} collection={collection} />
       <div className="flex w-full items-center">
         <section className="relative m-14">
-          <NFTsProvider address={address}>
+          <NFTsProvider>
             <NFTCards contractAddress={address}/>
           </NFTsProvider>
         </section>

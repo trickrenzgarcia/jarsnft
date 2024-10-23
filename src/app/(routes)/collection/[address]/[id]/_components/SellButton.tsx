@@ -2,14 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { useNftContext } from "./nft-provider";
 import {
   type NFT,
-  useContract,
-  useCreateDirectListing,
   ThirdwebNftMedia,
 } from "@thirdweb-dev/react";
-import { NFT_MARKETPLACE } from "@/lib/constant";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -28,6 +24,7 @@ import { Card, CardBody, Tab, Tabs } from "@nextui-org/react";
 import CreateDirectListing from "./CreateDirectListing";
 import CreateAuction from "./CreateAuction";
 import Image from "next/image";
+import { useContractContext } from '@/components/hooks/use-context';
 
 type SellButtonProps = {
   nft: NFT | undefined;
@@ -36,7 +33,7 @@ type SellButtonProps = {
 
 export default function SellButton({ nft }: SellButtonProps) {
   const router = useRouter();
-  const { collection } = useNftContext();
+  const { collection } = useContractContext();
   const [sellState, setSellState] = useState<
     "idle" | "confirmation" | "success"
   >("idle");

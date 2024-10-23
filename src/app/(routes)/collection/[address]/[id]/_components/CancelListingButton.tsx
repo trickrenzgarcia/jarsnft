@@ -13,12 +13,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { Web3Button, useCancelDirectListing, useCancelEnglishAuction } from "@thirdweb-dev/react";
 import { DirectListingV3, EnglishAuction, NFT } from "@thirdweb-dev/sdk";
-import { useNftContext } from "./nft-provider";
 import { useEffect, useState } from "react";
 import { NFT_MARKETPLACE } from "@/lib/constant";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { createTxHash } from "@/actions/createTxHash";
+import { useMarketPlaceContext } from '@/components/hooks/use-context';
 
 type CancelListingButtonProps = {
   nft: NFT | undefined;
@@ -29,7 +29,7 @@ type CancelListingButtonProps = {
 
 export default function CancelListingButton({ listings, auctionListing }: CancelListingButtonProps) {
   const [cancelState, setCancelState] = useState<"idle" | "confirmation" | "success">("idle");
-  const { marketPlaceContract } = useNftContext();
+  const { marketPlaceContract } = useMarketPlaceContext();
   const router = useRouter();
 
   const {

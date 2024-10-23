@@ -11,19 +11,21 @@ type Props = {
 export type MarketPlaceContext = {
   marketPlaceContract: MarketplaceV3 | undefined;
   loadingMarketPlace: boolean;
+  errorMarketPlace: boolean;
 }
 
 export const MarketPlaceContext = createContext<MarketPlaceContext | undefined>(undefined)
 
 function MarketPlaceProvider({ children }: Props) {
-  const { contract: marketPlaceContract, isLoading: loadingMarketPlace } = useContract(NFT_MARKETPLACE, "marketplace-v3")
+  const { contract: marketPlaceContract, isLoading: loadingMarketPlace, isError: errorMarketPlace } = useContract(NFT_MARKETPLACE, "marketplace-v3")
 
   const marketPlace = useMemo(() => {
    return {
     marketPlaceContract,
-    loadingMarketPlace
+    loadingMarketPlace,
+    errorMarketPlace
    } 
-  }, [marketPlaceContract, loadingMarketPlace])
+  }, [marketPlaceContract, loadingMarketPlace, errorMarketPlace])
 
   return <MarketPlaceContext.Provider value={marketPlace}>{children}</MarketPlaceContext.Provider>
 }

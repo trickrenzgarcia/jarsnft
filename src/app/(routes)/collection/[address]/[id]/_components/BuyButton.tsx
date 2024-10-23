@@ -13,7 +13,6 @@ import {
   AlertDialogTrigger,
   AlertDialogFooter,
 } from "@/components/ui/alert-dialog";
-import { useNftContext } from "./nft-provider";
 import { type DirectListingV3, type NFT, ThirdwebNftMedia, Web3Button, useBalance, type EnglishAuction } from "@thirdweb-dev/react";
 import { MdVerified } from "react-icons/md";
 import { NFT_MARKETPLACE } from "@/lib/constant";
@@ -24,6 +23,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createTxHash } from "@/actions/createTxHash";
+import { useContractContext, useMarketPlaceContext } from '@/components/hooks/use-context';
 
 type BuyButtonProps = {
   nft: NFT | undefined;
@@ -33,7 +33,8 @@ type BuyButtonProps = {
 
 export default function BuyButton({ nft, listings, auctionListing }: BuyButtonProps) {
   const router = useRouter();
-  const { collection, marketPlaceContract } = useNftContext();
+  const { collection } = useContractContext();
+  const { marketPlaceContract } = useMarketPlaceContext();
   const [buyState, setBuyState] = useState<"idle" | "confirmation" | "success">("idle");
   const [amountInPhp, setAmountInPhp] = useState<string>("");
   const { data: balance, isLoading: loadingBalance } = useBalance();

@@ -23,6 +23,7 @@ import { LoginWelcomeScreen } from "@/components/(interfaces)";
 import { useRouter } from "next/navigation";
 import { TxResult } from "@/types/tx";
 import { createTxHash } from "@/actions/createTxHash";
+import { useContractContext, useMarketPlaceContext, useNFTContext } from '@/components/hooks/use-context';
 
 type CreateDirectListingProps = {
   sellState: "idle" | "confirmation" | "success";
@@ -49,17 +50,17 @@ const DirectListingFormSchema = z
 
 export default function CreateDirectListing({ sellState, setSellState }: CreateDirectListingProps) {
   const router = useRouter();
-  const { nft, marketPlaceContract, collection, contractAddress, tokenId } = useNftContext();
-
-  const { contract: nftCollection } = useContract(contractAddress);
+  const { contract } = useContractContext()
+  const { marketPlaceContract } = useMarketPlaceContext()
+  const { nft, address, tokenId } = useNFTContext()
 
   const { mutateAsync: createDirectListing } = useCreateDirectListing(marketPlaceContract);
 
   const form = useForm<z.infer<typeof DirectListingFormSchema>>({
     resolver: zodResolver(DirectListingFormSchema),
     defaultValues: {
-      nftContractAddress: contractAddress,
-      tokenId: nft?.metadata.id,
+      nftContractAddress: address,
+      tokenId: tokenId,
       price: "0",
       startTimestamp: new Date(),
       endTimestamp: addDays(new Date(), 1),
@@ -67,10 +68,10 @@ export default function CreateDirectListing({ sellState, setSellState }: CreateD
   });
 
   async function checkAndProvideApproval() {
-    const hasApproval = await nftCollection?.call("isApprovedForAll", [nft?.owner, NFT_MARKETPLACE]);
+    const hasApproval = await contract?.call("isApprovedForAll", [nft?.owner, NFT_MARKETPLACE]);
 
     if (!hasApproval) {
-      const txResult = await nftCollection?.call("setApprovalForAll", [NFT_MARKETPLACE, true]);
+      const txResult = await contract?.call("setApprovalForAll", [NFT_MARKETPLACE, true]);
 
       if (txResult) {
         console.log("Approval provided");

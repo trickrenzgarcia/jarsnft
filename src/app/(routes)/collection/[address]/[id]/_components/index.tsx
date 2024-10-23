@@ -13,3 +13,4 @@ export { default as NftMetadata } from "./NftMetadata";
 export { default as PlaceBidButton } from "./PlaceBidButton";
 export { default as SellButton } from "./SellButton";
 export { default as TiltCard } from "./TiltCard";
+export { default as NFTItem } from "./NFTItem";
