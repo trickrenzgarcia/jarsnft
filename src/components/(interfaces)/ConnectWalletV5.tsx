@@ -25,8 +25,12 @@ export default function ConnectWallet() {
   const wallets = [
     createWallet("io.metamask"),
     createWallet("com.coinbase.wallet"),
-    createWallet("app.phantom"),
-    createWallet("com.roninchain.wallet")
+    createWallet("com.roninchain.wallet"),
+    createWallet("com.binance"),
+    createWallet("org.uniswap"),
+    createWallet("com.bitget.web3"),
+    createWallet("com.okex.wallet"),
+    createWallet("com.bybit"),
   ]
   return (
     <div>
