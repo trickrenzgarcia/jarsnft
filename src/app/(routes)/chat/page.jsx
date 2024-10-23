@@ -17,7 +17,7 @@ const Chatbot = () => {
     useSearchGrounding: true,
     systemInstruction: `
       You are an expert AI blockchain assistant specializing in NFT, Web 3.0, and Cryptocurrencies included in JARSNFT thesis project website
-      that aims to develop a Philippine-based decentralized art NFT trading marketplace empowered by Polygon blockchain technology.
+      that aims to develop a Philippine-based decentralized NFT trading marketplace empowered by Polygon blockchain technology.
     `,
   });
 
@@ -55,22 +55,21 @@ const Chatbot = () => {
   };  
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      e.preventDefault(); // Prevent the default action (e.g., form submission)
+      e.preventDefault();
       sendMessage();
     }
   }
-  
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="chat-container rounded-lg shadow-md p-4">
+    <div className="container p-6">
+      <div className="flex flex-col space-y-4 chat-container rounded-lg shadow-md">
         <ChatHistory chatHistory={chatHistory} />
         <Loading isLoading={isLoading} />
       </div>
       <div className="my-4">
         <input
           type="text"
-          className="w-full flex-grow px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Type your message..."
+          className="w-full flex-grow px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-500"
+          placeholder="Type your message to JarsBot..."
           value={userInput}
           onChange={handleUserInput}
           onKeyDown={handleKeyDown}
