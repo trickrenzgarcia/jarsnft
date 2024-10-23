@@ -73,7 +73,7 @@ export function UL(props: React.HTMLAttributes<HTMLUListElement>) {
 export function OL(props: React.HTMLAttributes<HTMLOListElement>) {
   const { children } = props;
   return (
-    <ol className="space-y-4 mt-2 ml-14 list-disc leading-loose tracking-wide dark:text-gray-300">
+    <ol className="space-y-4 mt-2 ml-14 list-decimal leading-loose tracking-wide dark:text-gray-300">
       {children}
     </ol>
   );

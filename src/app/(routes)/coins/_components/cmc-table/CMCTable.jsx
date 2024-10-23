@@ -5,6 +5,8 @@ import useAxios from "../../api/useAxios";
 import { MobileTableRow } from "./CMCTableRow";
 import { MobileTableHeader } from "./CMCTableHeader";
 
+export const dynamic = 'force-dynamic'
+
 const CMCTable = () => {
   const apiKey = process.env.NEXT_PUBLIC_CG_API_KEY
   const [currency, setCurrency] = useState("usd");
