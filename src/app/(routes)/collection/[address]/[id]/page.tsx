@@ -1,7 +1,6 @@
 // import { NftCard } from "./_components";
 import jars from "@/lib/api";
 import { notFound } from "next/navigation";
-import { NftCard } from './_components';
 import NFTItem from './_components/NFTItem';
 
 
