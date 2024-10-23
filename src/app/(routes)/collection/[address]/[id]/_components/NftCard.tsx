@@ -263,7 +263,6 @@ export default function NftCard({ address, id, likes, views }: NftCardProps) {
             <DisplayActivities
               tokenId={id}
               contractAddress={address}
-              nftContract={nftContract}
               directListing={listings}
               auctionListing={auctionListing}
               marketPlaceContract={marketPlaceContract}

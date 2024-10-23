@@ -1,9 +1,8 @@
 "use client";
 
 import { NFT_MARKETPLACE } from "@/lib/constant";
-import { Web3Button, useContract, useCreateDirectListing } from "@thirdweb-dev/react";
+import { Web3Button, useCreateDirectListing } from "@thirdweb-dev/react";
 import React from "react";
-import { useNftContext } from "./nft-provider";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

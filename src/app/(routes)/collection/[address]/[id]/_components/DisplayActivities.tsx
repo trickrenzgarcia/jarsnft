@@ -10,26 +10,25 @@ import type { DirectListingV3, EnglishAuction, MarketplaceV3, SmartContract } fr
 import React from 'react'
 import { LuActivitySquare } from "react-icons/lu";
 import EventChip from './EventChip';
-import Image from 'next/image';
-import { ethers } from 'ethers';
 import Link from 'next/link';
 import { displayName } from '@/lib/utils';
 import { Separator } from '@/components/ui/separator';
 import { useContractEvents } from '@thirdweb-dev/react';
 import { Button } from '@/components/ui/button';
 import { RiExternalLinkLine } from "react-icons/ri";
+import { useContractContext } from '@/components/hooks/use-context';
 
 type Props = {
   tokenId: string;
   contractAddress: string;
-  nftContract: SmartContract<ethers.BaseContract> | undefined;
   directListing: DirectListingV3[] | undefined;
   auctionListing: EnglishAuction[] | undefined;
   marketPlaceContract: MarketplaceV3 | undefined;
 }
 
-export default function DisplayActivities({ tokenId, contractAddress, nftContract, directListing, auctionListing, marketPlaceContract }: Props) {
-  const { data: transfers, isLoading: loadingTransfers } = useContractEvents(nftContract, "Transfer", {
+export default function DisplayActivities({ tokenId, contractAddress, directListing, auctionListing, marketPlaceContract }: Props) {
+  const { contract } = useContractContext()
+  const { data: transfers, isLoading: loadingTransfers } = useContractEvents(contract, "Transfer", {
     queryFilter: {
       filters: {
         tokenId: tokenId

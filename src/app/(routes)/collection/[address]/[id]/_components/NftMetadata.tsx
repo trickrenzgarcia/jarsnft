@@ -5,10 +5,10 @@ import {Tabs, Tab, Card, CardBody, CardHeader, Divider} from "@nextui-org/react"
 import { LuTableProperties } from "react-icons/lu";
 import { GrStatusInfo } from "react-icons/gr";
 import { BsCollection } from "react-icons/bs";
-import { useNftContext } from './nft-provider';
 import { useChain } from '@thirdweb-dev/react';
 import { shortenAddress } from '@/lib/utils';
 import Image from 'next/image';
+import { useContractContext, useNFTContext } from '@/components/hooks/use-context';
 
 type NftAttributes = {
   trait_type: string;
@@ -16,10 +16,11 @@ type NftAttributes = {
 }
 
 export default function NftMetadata() {
-  const { nft, loadingNft, contractAddress, collection } = useNftContext();
+  const { collection } = useContractContext()
+  const { nft, loadingNFT, address } = useNFTContext()
   const chain = useChain();
 
-  if(loadingNft) return (
+  if(loadingNFT) return (
     <div>Loading...</div>
   )
 
@@ -78,7 +79,7 @@ export default function NftMetadata() {
                 <div className='flex justify-between py-3 px-4 hover:bg-muted/50 gap-2 rounded-lg'>
                   <p className=''>CONTRACT</p>
                   <p className=' font-semibold hover:underline hover:cursor-pointer'>
-                    {shortenAddress(contractAddress, 2, 4)}
+                    {shortenAddress(address, 2, 4)}
                   </p>
                 </div>
                 <div className='flex justify-between py-3 px-4 hover:bg-muted/50 gap-2 rounded-lg'>
@@ -113,7 +114,7 @@ export default function NftMetadata() {
                 </div>
                 <div className='flex flex-col gap-1'>
                   <p className='font-bold'>{collection.name} {collection.symbol && `(${collection.symbol})`}</p>
-                  <p>{shortenAddress(contractAddress, 2, 4)}</p>
+                  <p>{shortenAddress(address, 2, 4)}</p>
                 </div>
               </div>
             )}

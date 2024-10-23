@@ -8,15 +8,15 @@ import {
   useSpring,
 } from "framer-motion";
 import { ThirdwebNftMedia } from "@thirdweb-dev/react";
-import { useNftContext } from "./nft-provider";
 import Image from "next/image";
+import { useNFTContext } from '@/components/hooks/use-context';
 
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = 32.5 / 2;
 
 const TiltCard = () => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const { nft } = useNftContext();
+  const { nft } = useNFTContext();
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);

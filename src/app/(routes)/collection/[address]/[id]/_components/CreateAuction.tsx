@@ -1,12 +1,11 @@
 "use client";
 
 import { NFT_MARKETPLACE } from "@/lib/constant";
-import { Web3Button, useContract, useCreateAuctionListing, useValidEnglishAuctions } from "@thirdweb-dev/react";
+import { Web3Button, useCreateAuctionListing } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { z } from "zod";
-import { useNftContext } from "./nft-provider";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
@@ -20,6 +19,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { LoginWelcomeScreen } from "@/components/(interfaces)";
 import { createTxHash } from "@/actions/createTxHash";
+import { useContractContext, useMarketPlaceContext, useNFTContext } from '@/components/hooks/use-context';
 
 type CreateAuctionProps = {
   sellState: "idle" | "confirmation" | "success";
@@ -54,17 +54,17 @@ const AuctionFormSchema = z
 
 export default function CreateAuction({ sellState, setSellState }: CreateAuctionProps) {
   const router = useRouter();
-  const { nft, marketPlaceContract, contractAddress } = useNftContext();
-
-  const { contract: nftCollection } = useContract(contractAddress);
+  const { contract } = useContractContext()
+  const { marketPlaceContract } = useMarketPlaceContext()
+  const { nft, address, tokenId } = useNFTContext()
 
   const { mutateAsync: createAuctionListing } = useCreateAuctionListing(marketPlaceContract);
 
   const form = useForm<z.infer<typeof AuctionFormSchema>>({
     resolver: zodResolver(AuctionFormSchema),
     defaultValues: {
-      nftContractAddress: contractAddress,
-      tokenId: nft?.metadata.id,
+      nftContractAddress: address,
+      tokenId: tokenId,
       startTimestamp: new Date(),
       endTimestamp: new Date(),
       floorPrice: "0",
@@ -73,10 +73,10 @@ export default function CreateAuction({ sellState, setSellState }: CreateAuction
   });
 
   async function checkAndProvideApproval() {
-    const hasApproval = await nftCollection?.call("isApprovedForAll", [nft?.owner, NFT_MARKETPLACE]);
+    const hasApproval = await contract?.call("isApprovedForAll", [nft?.owner, NFT_MARKETPLACE]);
 
     if (!hasApproval) {
-      const txResult = await nftCollection?.call("setApprovalForAll", [NFT_MARKETPLACE, true]);
+      const txResult = await contract?.call("setApprovalForAll", [NFT_MARKETPLACE, true]);
 
       if (txResult) {
         console.log("Approval provided");
