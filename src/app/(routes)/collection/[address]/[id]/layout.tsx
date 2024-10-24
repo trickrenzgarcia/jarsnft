@@ -1,8 +1,5 @@
 import React from 'react'
-import { NftProvider } from "./_components";
 import { Metadata } from 'next';
-import { ThirdwebSDK } from '@thirdweb-dev/sdk';
-import { Sepolia } from "@thirdweb-dev/chains"
 import jars from '@/lib/api';
 import NFTProvider from '@/components/(providers)/nft-provider';
 
