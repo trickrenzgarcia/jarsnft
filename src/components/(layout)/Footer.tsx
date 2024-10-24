@@ -16,39 +16,36 @@ export default function Footer() {
   };
 
   const marketplaceLinks: Array<LinkType> = [
-    { href: "/category/arts", description: "Art NFTs" },
-    { href: "/category/photography", description: "Photography NFTs" },
-    { href: "/category/pfp", description: "Profile Picture NFTs" },
+    { href: "/category/arts", description: "Art" },
+    { href: "/category/photography", description: "Photography" },
+    { href: "/category/pfp", description: "Profile Picture" },
   ];
 
   const resourceLinks: Array<LinkType> = [
     { href: "/insights/setup-wallet", description: "Getting Started" },
-    { href: "/insights", description: "Insights" },
+    { href: "/insights/exchange-crypto", description: "Exchange Cryptocurrency" },
+    { href: "/insights/protect-account", description: "Protect Your Account" },
   ];
 
   const helpLinks: Array<LinkType> = [
-    { href: "/insights/what-is-nft", description: "What is NFT?" },
+    { href: "/insights/what-is-nft", description: "What is an NFT?" },
     { href: "/insights/trade-nft", description: "How to buy & sell an NFT?" },
-    { href: "/insights/what-are-gas-fees", description: "What are blockchain gas fees?" },
     { href: "/insights/what-is-blockchain", description: "What is a blockchain?" },
+    { href: "/insights/#faq-section", description: "FAQs" },
   ];
 
   const companyLinks: Array<LinkType> = [
     { href: "/about", description: "About" },
-    { href: "/team", description: "Team" },
   ];
   //#region End
 
   return (
     <footer>
-      {/* <Separator className="h-[2px] w-full" /> */}
       <div className="container">
         <section>
-          {/* Footer Columns */}
           <div className="mt-16 grid grid-cols-3 gap-x-24 gap-y-10">
-            {/* Company Description */}
             <div className="col-span-3 mb-16 flex flex-col gap-y-5 text-center md:col-span-1 md:mb-0 md:text-left">
-              <h1 className="mb-1 text-2xl font-semibold">JarsNFT</h1>
+              <h1 className="text-2xl font-semibold">JarsNFT</h1>
               <p>
               The biggest and largest NFT marketplace in the Philippines. <br />
               Endless Opportunities for Artists and Traders. <br />
