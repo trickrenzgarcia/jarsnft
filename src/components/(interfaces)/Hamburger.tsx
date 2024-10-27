@@ -95,7 +95,7 @@ export default function Hamburger() {
             <ProfileHamburger />
 
             {/* <SearchInput /> */}
-            <nav className="flex min-h-screen flex-col text-[#dddddd] items-center py-4">
+            <nav className="flex min-h-screen flex-col dark:text-[#dddddd] items-center py-4">
               <Link
                 href="/"
                 className="w-full py-5 md:py-6 ml-4 hover:opacity-90"
