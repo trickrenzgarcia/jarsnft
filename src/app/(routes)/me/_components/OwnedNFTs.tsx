@@ -36,17 +36,18 @@ export default function OwnedNFTs({
         </div>
       ) : (
         (nfts && (
-          <div className="w-full columns-2 space-y-4 p-5 sm:columns-3 md:columns-4 lg:columns-5 xl:grid-cols-5 2xl:grid-cols-6">
+          // <div className="w-full columns-2 space-y-4 p-5 sm:columns-3 md:columns-4 lg:columns-5 xl:grid-cols-5 2xl:grid-cols-6">
+          <div className="w-full grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 2xl:grid-cols-5">
             {nfts?.map((nft) => (
-              <div key={nft.name + nft.token_id} className="w-full rounded-2xl">
+              <div key={nft.name + nft.token_id} className="rounded-2xl p-4 mx-auto">
                 <HoverCard>
                   <HoverCardTrigger asChild>
                     <Link
                       href={`/collection/${nft.contract_address}/${nft.token_id}`}
                     >
                       <Image
-                        width={512}
-                        height={512}
+                        width={350}
+                        height={350}
                         src={
                           nft.image_url ||
                           "/assets/placeholder/nft_placeholder.svg"
@@ -94,7 +95,7 @@ export default function OwnedNFTs({
                     <CardContent className="h-[200px] w-full"></CardContent>
                   </Card>
                 </div>
-              ))} 
+              ))}
             </div>
           </div>
         )
