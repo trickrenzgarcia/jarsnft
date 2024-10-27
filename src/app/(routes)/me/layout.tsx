@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/(layout)";
+import { Footer, Navbar } from "@/components/(layout)";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,11 +12,9 @@ export default function AccountLayout({
 }) {
   return (
     <main className="">
-      <header>
-        <Navbar />
-      </header>
-
+      <Navbar />
       <main className="md:container">{children}</main>
+      <Footer />
     </main>
   );
 }
