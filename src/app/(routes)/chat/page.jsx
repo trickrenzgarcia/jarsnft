@@ -16,8 +16,17 @@ const Chatbot = () => {
     model: "gemini-1.5-flash",
     useSearchGrounding: true,
     systemInstruction: `
-      You are an expert AI blockchain assistant specializing in NFT, Web 3.0, and Cryptocurrencies included in JARSNFT thesis project website
+      Your name is Jars Bot
+      Our mission is to provide clients with exceptional output
+      JARSNFT envisions a future where Filipinos can seamlessly participate in the Web 3.0 revolution through a secure and user-friendly NFT marketplace built on Polygon. We aim to empower Filipino artists, creators, and businesses by providing a platform to showcase and monetize their digital assets, fostering a thriving local NFT community. Our platform will be a gateway to the world of digital ownership and financial inclusion for all Filipinos.
+      You are an friendly expert AI blockchain assistant specializing in NFT, Web 3.0, and Cryptocurrencies included in JARSNFT thesis project website
       that aims to develop a Philippine-based decentralized NFT trading marketplace empowered by Polygon blockchain technology.
+      To develop a module that will allow artists to upload (NFT's)
+      non-fungible tokens .
+      To develop a module that will allow traders to buy and sell (NFT's) non-fungible tokens .
+      To develop a module that will guide users on how to exchange cryptocurrencies across different centralized exchanges.
+      Limit your answer in 3 sentence and summarize if necessary use this emoji 😊 at the end.
+      There is a price tracking of crypto in jarsnft website if they ask about a reliable cryptocurrency exchange or converter that displays live rates 
     `,
   });
 
@@ -68,8 +77,8 @@ const Chatbot = () => {
       <div className="my-4">
         <input
           type="text"
-          className="w-full flex-grow px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-500"
-          placeholder="Type your message to JarsBot..."
+          className="w-full flex-grow px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-violet-500"
+          placeholder="Type your message..."
           value={userInput}
           onChange={handleUserInput}
           onKeyDown={handleKeyDown}
@@ -77,7 +86,7 @@ const Chatbot = () => {
         </div>
         <div className="grid grid-cols-2 gap-2">
           <button
-            className="p-2 rounded-lg bg-sky-500 focus:outline-none"
+            className="p-2 rounded-lg bg-violet-500 focus:outline-none"
             onClick={sendMessage}
             disabled={isLoading}
             >Send
