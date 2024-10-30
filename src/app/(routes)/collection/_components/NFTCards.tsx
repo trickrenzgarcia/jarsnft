@@ -23,7 +23,6 @@ export default function NFTCards({ contractAddress }: { contractAddress: string 
       {nfts.map((nft, i) => (
         <Link key={i} href={`/collection/${contractAddress}/${nft.metadata.id}`}>
           <NFTCard
-            contractAddress={contractAddress}
             nft={nft}
           />
         </Link>

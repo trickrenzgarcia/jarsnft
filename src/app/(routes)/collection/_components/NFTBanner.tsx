@@ -26,14 +26,16 @@ type Details = {
   currency?: "MATIC"
 }
 
-
-export default function NFTBanner({ address, collection }: NFTBannerProps) {
+export default function NFTBanner({ address, collection}: NFTBannerProps) {
   const [details, setDetails] = useState<Details[]>()
   const { directListings, auctionListings } = useListingsContext()
   const { contract } = useContract(address)
   const { data: metadata, isLoading: loadingMetadata, isError: errorMetadata } = useContractMetadata(contract)
   const { marketPlaceContract, loadingMarketPlace } = useMarketPlaceContext()
 
+  const shortenAddress = (address:string) =>{
+    return `${address.slice(0, 7)}...${address.slice(-5)}`;
+  }
 
   const { data: sales, isLoading: salesLoading, isError: salesError } = useContractEvents(marketPlaceContract, "NewSale", {
     queryFilter: {
@@ -113,8 +115,8 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
           className="opacity-65 blur-lg dark:opacity-30"
         />
       </div>
-      <div className="absolute block h-[435px] w-full px-7 py-6 dark:shadow-[inset_0_-50px_100px_rgba(10,10,10,1)] sm:h-[410px]">
-        <section className="mb-4 flex justify-between">
+      <div className="absolute block h-[26rem] w-full p-6 dark:shadow-[inset_0_-50px_100px_rgba(10,10,10,1)] sm:h-[410px]">
+        <section className="flex justify-between p-6">
           <div className="flex w-full items-center gap-3">
             <Image
               src={metadata.image || "/assets/image_not_found.jpg"}
@@ -125,21 +127,22 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
             />
             <div className={cn("w-[500px]")}>
               <div className="flex w-full items-center gap-1 text-2xl font-semibold">
-                <div className="truncate">
-                  <h2 className="truncate">{metadata.name}</h2>
-                </div>
+                <div className="flex flex-row">
+                <h2 className="truncate">{metadata.name}</h2>
+                {collection.isVerified ? (
                 <TooltipMsg message="Verified">
                   <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
                     <MdVerified className="text-blue-500" />
                   </div>
                 </TooltipMsg>
+                ):null}
+                </div>
               </div>
-
-              {/* <p className="font-bold">A collection of {} NFTs.</p> */}
+              <p className='text-gray-500 text-sm lg:text-2xl w-full'>{shortenAddress(address)}</p>
             </div>
           </div>
         </section>
-        <section className="mb-3 flex w-full justify-between">
+        <section className="flex w-full justify-between mt-14">
           <div className="h-[75px] overflow-x-hidden text-sm font-semibold dark:text-gray-300 lg:h-[160px] lg:w-[500px]">
             <ReadMore
               id="collection-description"
@@ -148,9 +151,9 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
             />
           </div>
           {/* Placeholder for data will get in Simplehash */}
-          <div className="hidden items-center gap-6 pl-3 lg:flex">
+          <div className="hidden items-center gap-4 lg:flex">
             {details && details.map((detail: Details, i) => (
-              <div key={i} className={cn("w-[150px]")}>
+              <div key={i} className={cn("w-full")}>
                 <div className="flex justify-center gap-2 text-2xl font-semibold">
                   {detail.currency && <SiPolygon className="text-violet-500" />}
                   <p>{detail.value !== undefined ? formatNumber(detail.value) : <Spinner />}</p>
