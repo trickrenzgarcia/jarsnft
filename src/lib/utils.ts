@@ -30,6 +30,10 @@ export function formatNumber(number: number): string {
   );
 }
 
+export function shortenWalletAddress(address:string){
+  return `${address.slice(0, 7)}...${address.slice(-5)}`;
+}
+
 export function shortenAddress(
   address: string,
   char1: number = 6,

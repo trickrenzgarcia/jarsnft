@@ -2,7 +2,6 @@ import jars from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
 import PaginationControls from "./PaginationControls";
-import { collections } from "@/app/api/_routers";
 import { CircleCheckBig } from "lucide-react";
 
 export default async function CollectionData({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {

@@ -25,7 +25,7 @@ import Link from "next/link";
 export default function NFTCard({ item }: { item: CollectionData }) {
   return (
     <Link href={`/collection/${item.contract}`}>
-      <Card className="p-2 border-2 bg-background rounded-lg hover:-translate-y-1 cursor-pointer hover:border-3 hover:border-zinc-200 dark:hover:border-zinc-800">
+      <Card className="p-2 border-2 bg-background rounded-lg hover:-translate-y-1 cursor-pointer hover:border-3 hover:border-violet-500 dark:hover:border-violet-500">
         <CardHeader className='flex items-center justify-center aspect-square p-0'>
           <Image
             src={item.image}

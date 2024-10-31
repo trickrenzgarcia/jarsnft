@@ -14,6 +14,7 @@ import { SiPolygon } from 'react-icons/si';
 import { BigNumber, ethers } from 'ethers';
 import { Spinner } from '@nextui-org/spinner';
 import { useMarketPlaceContext, useListingsContext } from '@/components/hooks/use-context';
+import { shortenWalletAddress } from '@/lib/utils';
 
 type NFTBannerProps = {
   address: string;
@@ -32,10 +33,6 @@ export default function NFTBanner({ address, collection}: NFTBannerProps) {
   const { contract } = useContract(address)
   const { data: metadata, isLoading: loadingMetadata, isError: errorMetadata } = useContractMetadata(contract)
   const { marketPlaceContract, loadingMarketPlace } = useMarketPlaceContext()
-
-  const shortenAddress = (address:string) =>{
-    return `${address.slice(0, 7)}...${address.slice(-5)}`;
-  }
 
   const { data: sales, isLoading: salesLoading, isError: salesError } = useContractEvents(marketPlaceContract, "NewSale", {
     queryFilter: {
@@ -138,7 +135,7 @@ export default function NFTBanner({ address, collection}: NFTBannerProps) {
                 ):null}
                 </div>
               </div>
-              <p className='text-gray-500 text-sm lg:text-2xl w-full'>{shortenAddress(address)}</p>
+              <p className='text-gray-500 text-sm lg:text-2xl w-full'>{shortenWalletAddress(address)}</p>
             </div>
           </div>
         </section>

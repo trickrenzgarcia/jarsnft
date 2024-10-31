@@ -5,7 +5,7 @@ import { useContractContext, useMarketPlaceContext, useNFTContext } from '@/comp
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
-import { displayName } from '@/lib/utils'
+import { displayName, shortenWalletAddress } from '@/lib/utils'
 import { useBalance, useValidDirectListings, useValidEnglishAuctions } from '@thirdweb-dev/react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -22,6 +22,7 @@ import DisplayBidders from './DisplayBidders'
 import DisplayActivities from './DisplayActivities'
 import NftMetadata from './NftMetadata'
 import TiltCard from './TiltCard'
+import { TooltipMsg } from '@/components/(interfaces)';
 
 export default function NFTItem() {
   const router = useRouter()
@@ -80,7 +81,13 @@ export default function NFTItem() {
         <p className="hover:underline">
           <Link href={`/collection/${address}`}>{collection.name}</Link>
         </p>
-        <MdVerified className="text-lg text-blue-500" />
+        {/* {collection.isVerified ? (
+        <TooltipMsg message="Verified">
+        <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
+          <MdVerified className="text-blue-500" />
+        </div>
+        </TooltipMsg>
+        ):`not verified`} */}
       </div>
       <div className="mx-4 mt-4 flex flex-col items-start justify-around gap-8 md:flex-row">
         <div className="w-full md:w-[50svw] lg:w-[50svw] xl:w-[50svw]">
@@ -96,13 +103,7 @@ export default function NFTItem() {
                       href={`/user/${directListings && directListings[0] ? directListings[0].creatorAddress : auctionListings && auctionListings[0] ? auctionListings[0].creatorAddress : nft.owner}`}
                     >
                       <p className="cursor-pointer text-medium font-bold hover:underline">
-                        {nft.owner
-                          ? directListings && directListings[0] && directListings[0].creatorAddress
-                            ? displayName(directListings[0].creatorAddress)
-                            : auctionListings && auctionListings[0] && auctionListings[0].creatorAddress
-                              ? displayName(auctionListings[0].creatorAddress)
-                              : displayName(nft.owner)
-                          : displayName(nft.owner)}
+                        {shortenWalletAddress(nft.owner)}
                       </p>
                     </Link>
                   ) : (
