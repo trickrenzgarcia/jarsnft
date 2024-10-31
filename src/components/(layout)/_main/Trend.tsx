@@ -16,9 +16,9 @@ export default function Trend({
   return (
     <div className="my-12">
       <div className="flex items-center justify-between gap-2">
-        <p className="text-sm lg:text-4xl font-bold">Trending in {category}</p>
+        <p className="text-md sm:text-xl md:text-3xl lg:text-4xl font-bold">Trending in {category}</p>
         <RainbowButton>
-          <Link href={link}>View {category}</Link>
+          <Link href={link} className="text-sm sm:text-md">View {category}</Link>
         </RainbowButton>
       </div>
       <div className="my-12 px-0 md:px-10">

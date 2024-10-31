@@ -36,11 +36,11 @@ export default function HeroMessage() {
   return (
     <div className={cn("bg-purple-600 flex gap-4 lg:hidden items-center min-h-8 p-4")}>
       <h3 className='ml-auto text-center'>
-        We recommend using <span className='font-bold'>Metamask</span>, 
-        {` check our guide `} 
+        We recommend using <span className='font-bold'>Metamask</span>. 
+        {` Check our guide `} 
         <Link href="/insights/setup-wallet" className='font-bold underline'>
           here
-        </Link>.
+        </Link>!
       </h3>
       <button className="text-3xl ml-auto" onClick={handleClose}>&times;</button>
     </div>
