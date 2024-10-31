@@ -19,7 +19,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { LoginWelcomeScreen } from "@/components/(interfaces)";
 import { createTxHash } from "@/actions/createTxHash";
-import { useContractContext, useMarketPlaceContext, useNFTContext } from '@/components/hooks/use-context';
+import { useContractContext, useMarketPlaceContext, useNFTContext } from "@/components/hooks/use-context";
 
 type CreateAuctionProps = {
   sellState: "idle" | "confirmation" | "success";
@@ -54,9 +54,9 @@ const AuctionFormSchema = z
 
 export default function CreateAuction({ sellState, setSellState }: CreateAuctionProps) {
   const router = useRouter();
-  const { contract } = useContractContext()
-  const { marketPlaceContract } = useMarketPlaceContext()
-  const { nft, address, tokenId } = useNFTContext()
+  const { contract } = useContractContext();
+  const { marketPlaceContract } = useMarketPlaceContext();
+  const { nft, address, tokenId } = useNFTContext();
 
   const { mutateAsync: createAuctionListing } = useCreateAuctionListing(marketPlaceContract);
 
@@ -148,7 +148,7 @@ export default function CreateAuction({ sellState, setSellState }: CreateAuction
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleOnSubmit)}>
-          <div className="mb-5 flex justify-between">
+          <div className="mb-4 mt-2 grid grid-cols-1 items-stretch space-y-4 sm:grid-cols-2 sm:space-y-0">
             <FormField
               control={form.control}
               name="startTimestamp"
@@ -160,7 +160,7 @@ export default function CreateAuction({ sellState, setSellState }: CreateAuction
                       <FormControl>
                         <Button
                           variant={"outline"}
-                          className={cn("w-[200px] pl-3 text-left font-normal", !field.value && "text-muted-foreground")}
+                          className={cn("w-full pl-3 text-left font-normal sm:w-[200px]", !field.value && "text-muted-foreground")}
                           disabled={sellState != "idle"}
                         >
                           {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
@@ -190,14 +190,14 @@ export default function CreateAuction({ sellState, setSellState }: CreateAuction
               control={form.control}
               name="endTimestamp"
               render={({ field }) => (
-                <FormItem className="flex flex-col">
+                <FormItem className="flex flex-col sm:ml-auto">
                   <FormLabel>Listing ends on</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
                         <Button
                           variant={"outline"}
-                          className={cn("w-[200px] pl-3 text-left font-normal", !field.value && "text-muted-foreground")}
+                          className={cn("w-full pl-3 text-left font-normal sm:w-[200px]", !field.value && "text-muted-foreground")}
                           disabled={sellState != "idle"}
                         >
                           {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}

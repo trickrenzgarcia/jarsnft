@@ -22,7 +22,7 @@ import { LoginWelcomeScreen } from "@/components/(interfaces)";
 import { useRouter } from "next/navigation";
 import { TxResult } from "@/types/tx";
 import { createTxHash } from "@/actions/createTxHash";
-import { useContractContext, useMarketPlaceContext, useNFTContext } from '@/components/hooks/use-context';
+import { useContractContext, useMarketPlaceContext, useNFTContext } from "@/components/hooks/use-context";
 
 type CreateDirectListingProps = {
   sellState: "idle" | "confirmation" | "success";
@@ -49,9 +49,9 @@ const DirectListingFormSchema = z
 
 export default function CreateDirectListing({ sellState, setSellState }: CreateDirectListingProps) {
   const router = useRouter();
-  const { contract } = useContractContext()
-  const { marketPlaceContract } = useMarketPlaceContext()
-  const { nft, address, tokenId } = useNFTContext()
+  const { contract } = useContractContext();
+  const { marketPlaceContract } = useMarketPlaceContext();
+  const { nft, address, tokenId } = useNFTContext();
 
   const { mutateAsync: createDirectListing } = useCreateDirectListing(marketPlaceContract);
 
@@ -143,7 +143,7 @@ export default function CreateDirectListing({ sellState, setSellState }: CreateD
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleOnSubmit)}>
-          <div className="mb-5 flex justify-between">
+          <div className="mb-4 mt-2 grid grid-cols-1 items-stretch space-y-4 sm:grid-cols-2 sm:space-y-0">
             <FormField
               control={form.control}
               name="startTimestamp"
@@ -155,7 +155,7 @@ export default function CreateDirectListing({ sellState, setSellState }: CreateD
                       <FormControl>
                         <Button
                           variant={"outline"}
-                          className={cn("w-[200px] pl-3 text-left font-normal", !field.value && "text-muted-foreground")}
+                          className={cn("w-full pl-3 text-left font-normal sm:w-[200px]", !field.value && "text-muted-foreground")}
                           disabled={sellState != "idle"}
                         >
                           {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
@@ -185,14 +185,14 @@ export default function CreateDirectListing({ sellState, setSellState }: CreateD
               control={form.control}
               name="endTimestamp"
               render={({ field }) => (
-                <FormItem className="flex flex-col">
+                <FormItem className="flex flex-col sm:ml-auto">
                   <FormLabel>Listing ends on</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
                         <Button
                           variant={"outline"}
-                          className={cn("w-[200px] pl-3 text-left font-normal", !field.value && "text-muted-foreground")}
+                          className={cn("w-full pl-3 text-left font-normal sm:w-[200px]", !field.value && "text-muted-foreground")}
                           disabled={sellState != "idle"}
                         >
                           {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
@@ -240,6 +240,7 @@ export default function CreateDirectListing({ sellState, setSellState }: CreateD
               </FormItem>
             )}
           />
+
           <Web3Button
             contractAddress={NFT_MARKETPLACE}
             action={async () => {

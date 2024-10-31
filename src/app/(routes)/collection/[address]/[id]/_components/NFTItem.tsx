@@ -1,74 +1,74 @@
-'use client'
+"use client";
 
-import { BoringAvatar } from '@/components/(interfaces)'
-import { useContractContext, useMarketPlaceContext, useNFTContext } from '@/components/hooks/use-context'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
-import { displayName, shortenWalletAddress } from '@/lib/utils'
-import { useBalance, useValidDirectListings, useValidEnglishAuctions } from '@thirdweb-dev/react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import { FaRegEye } from 'react-icons/fa'
-import { MdArrowBackIosNew, MdVerified } from 'react-icons/md'
-import AuctionEndTime from './AuctionEndTime'
-import SellButton from './SellButton'
-import BuyButton from './BuyButton'
-import PlaceBidButton from './PlaceBidButton'
-import CancelListingButton from './CancelListingButton'
-import DisplayBidders from './DisplayBidders'
-import DisplayActivities from './DisplayActivities'
-import NftMetadata from './NftMetadata'
-import TiltCard from './TiltCard'
-import { TooltipMsg } from '@/components/(interfaces)';
+import { BoringAvatar } from "@/components/(interfaces)";
+import { useContractContext, useMarketPlaceContext, useNFTContext } from "@/components/hooks/use-context";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { displayName, shortenWalletAddress } from "@/lib/utils";
+import { useBalance, useValidDirectListings, useValidEnglishAuctions } from "@thirdweb-dev/react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { FaRegEye } from "react-icons/fa";
+import { MdArrowBackIosNew, MdVerified } from "react-icons/md";
+import AuctionEndTime from "./AuctionEndTime";
+import SellButton from "./SellButton";
+import BuyButton from "./BuyButton";
+import PlaceBidButton from "./PlaceBidButton";
+import CancelListingButton from "./CancelListingButton";
+import DisplayBidders from "./DisplayBidders";
+import DisplayActivities from "./DisplayActivities";
+import NftMetadata from "./NftMetadata";
+import TiltCard from "./TiltCard";
+import { TooltipMsg } from "@/components/(interfaces)";
 
 export default function NFTItem() {
-  const router = useRouter()
-  const { collection, loadingCollection, errorCollection } = useContractContext()
-  const { marketPlaceContract, loadingMarketPlace, errorMarketPlace } = useMarketPlaceContext()
-  const { address, tokenId, nft, loadingNFT, errorNFT, ownedNFTs, filteredNFT, connectedAddress } = useNFTContext()
-  const { data: balance, isLoading: loadingBalance } = useBalance()
+  const router = useRouter();
+  const { collection, loadingCollection, errorCollection } = useContractContext();
+  const { marketPlaceContract, loadingMarketPlace, errorMarketPlace } = useMarketPlaceContext();
+  const { address, tokenId, nft, loadingNFT, errorNFT, ownedNFTs, filteredNFT, connectedAddress } = useNFTContext();
+  const { data: balance, isLoading: loadingBalance } = useBalance();
 
-  const { 
+  const {
     data: directListings,
     isLoading: loadingDirectListings,
-    isError: errorDirectListings 
+    isError: errorDirectListings,
   } = useValidDirectListings(marketPlaceContract, {
     tokenContract: address,
-    tokenId: tokenId
-  })
+    tokenId: tokenId,
+  });
 
-  const { 
+  const {
     data: auctionListings,
     isLoading: loadingAuctionListings,
-    isError: errorAuctionListings
+    isError: errorAuctionListings,
   } = useValidEnglishAuctions(marketPlaceContract, {
     tokenContract: address,
-    tokenId: tokenId
-  })
+    tokenId: tokenId,
+  });
 
-  if(loadingCollection) {
-    return <div>Loading Collection...</div>
-  } else if(errorCollection) {
-    return <div>Error Collection...</div>
+  if (loadingCollection) {
+    return <div>Loading Collection...</div>;
+  } else if (errorCollection) {
+    return <div>Error Collection...</div>;
   }
 
-  if(loadingMarketPlace) {
-    return <div>Loading MarketPlace...</div>
-  } else if(errorMarketPlace) {
-    return <div>Error MarketPlace...</div>
+  if (loadingMarketPlace) {
+    return <div>Loading MarketPlace...</div>;
+  } else if (errorMarketPlace) {
+    return <div>Error MarketPlace...</div>;
   }
 
-  if(loadingNFT) {
-    return <div>Loading NFT...</div>
-  } else if(errorNFT) {
-    return <div>Error NFT...</div>
+  if (loadingNFT) {
+    return <div>Loading NFT...</div>;
+  } else if (errorNFT) {
+    return <div>Error NFT...</div>;
   }
 
-  if(loadingAuctionListings || loadingDirectListings) {
-    return <div>Loading Listings...</div>
+  if (loadingAuctionListings || loadingDirectListings) {
+    return <div>Loading Listings...</div>;
   }
 
   return (
@@ -102,9 +102,7 @@ export default function NFTItem() {
                     <Link
                       href={`/user/${directListings && directListings[0] ? directListings[0].creatorAddress : auctionListings && auctionListings[0] ? auctionListings[0].creatorAddress : nft.owner}`}
                     >
-                      <p className="cursor-pointer text-medium font-bold hover:underline">
-                        {shortenWalletAddress(nft.owner)}
-                      </p>
+                      <p className="cursor-pointer text-medium font-bold hover:underline">{shortenWalletAddress(nft.owner)}</p>
                     </Link>
                   ) : (
                     <Skeleton className="h-4 w-8" />
@@ -120,12 +118,16 @@ export default function NFTItem() {
               </div>
             </div>
 
-            <Card className='mt-4'>
-              <CardContent className='w-full p-5'>
-                <div className="grid grid-cols-2 gap-3 md:gap-0">
-                  <div className="col-span-2 flex flex-col gap-2 md:col-span-1">
+            <Card className="mt-4">
+              <CardContent className="w-full p-5">
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-col">
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                      {directListings && directListings[0] ? "Current Price" : auctionListings && auctionListings[0] ? "Buyout Price" : "Current Price"}
+                      {directListings && directListings[0]
+                        ? "Current Price"
+                        : auctionListings && auctionListings[0]
+                          ? "Buyout Price"
+                          : "Current Price"}
                     </p>
                     <div className="flex flex-col justify-center gap-1">
                       {loadingDirectListings ? (
@@ -158,7 +160,7 @@ export default function NFTItem() {
                       )}
                     </div>
                   </div>
-                  <div className="col-span-2 md:col-span-1">
+                  <div className="basis-1/4">
                     {loadingDirectListings || loadingAuctionListings ? (
                       <div className="flex w-full flex-col gap-2">
                         <Skeleton className="h-10 w-full" />
@@ -169,7 +171,9 @@ export default function NFTItem() {
                         {filteredNFT && directListings && !directListings[0] ? (
                           <SellButton nft={nft} contractAddress={address} />
                         ) : (
-                          !filteredNFT && directListings && directListings[0] && <BuyButton nft={nft} listings={directListings} auctionListing={auctionListings} />
+                          !filteredNFT &&
+                          directListings &&
+                          directListings[0] && <BuyButton nft={nft} listings={directListings} auctionListing={auctionListings} />
                         )}
                         {auctionListings && auctionListings[0] && !filteredNFT && auctionListings[0].creatorAddress != connectedAddress && (
                           <BuyButton nft={nft} listings={directListings} auctionListing={auctionListings} />
@@ -178,10 +182,20 @@ export default function NFTItem() {
                           <PlaceBidButton nft={nft} auctionListing={auctionListings} loadingAuction={loadingAuctionListings} />
                         )}
                         {filteredNFT && directListings && directListings[0] && (
-                          <CancelListingButton nft={nft} listings={directListings} auctionListing={auctionListings} contractAddress={connectedAddress} />
+                          <CancelListingButton
+                            nft={nft}
+                            listings={directListings}
+                            auctionListing={auctionListings}
+                            contractAddress={connectedAddress}
+                          />
                         )}
                         {auctionListings && auctionListings[0] && auctionListings[0].creatorAddress == connectedAddress && (
-                          <CancelListingButton nft={nft} listings={directListings} auctionListing={auctionListings} contractAddress={connectedAddress} />
+                          <CancelListingButton
+                            nft={nft}
+                            listings={directListings}
+                            auctionListing={auctionListings}
+                            contractAddress={connectedAddress}
+                          />
                         )}
                       </div>
                     )}
@@ -206,7 +220,7 @@ export default function NFTItem() {
           </div>
         </div>
         <div className="flex w-full flex-col items-start justify-start gap-4 md:w-[350px] lg:w-[350px] xl:w-[24svw]">
-        <TiltCard />
+          <TiltCard />
           {/* More NFT Details */}
           {loadingNFT ? (
             <div className="w-full">
@@ -218,5 +232,5 @@ export default function NFTItem() {
         </div>
       </div>
     </div>
-  )
+  );
 }

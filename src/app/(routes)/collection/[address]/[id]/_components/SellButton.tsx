@@ -2,10 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import {
-  type NFT,
-  ThirdwebNftMedia,
-} from "@thirdweb-dev/react";
+import { type NFT, ThirdwebNftMedia } from "@thirdweb-dev/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -24,7 +21,7 @@ import { Card, CardBody, Tab, Tabs } from "@nextui-org/react";
 import CreateDirectListing from "./CreateDirectListing";
 import CreateAuction from "./CreateAuction";
 import Image from "next/image";
-import { useContractContext } from '@/components/hooks/use-context';
+import { useContractContext } from "@/components/hooks/use-context";
 
 type SellButtonProps = {
   nft: NFT | undefined;
@@ -34,9 +31,7 @@ type SellButtonProps = {
 export default function SellButton({ nft }: SellButtonProps) {
   const router = useRouter();
   const { collection } = useContractContext();
-  const [sellState, setSellState] = useState<
-    "idle" | "confirmation" | "success"
-  >("idle");
+  const [sellState, setSellState] = useState<"idle" | "confirmation" | "success">("idle");
 
   return (
     <AlertDialog>
@@ -45,24 +40,16 @@ export default function SellButton({ nft }: SellButtonProps) {
         <Button className="h-[3] w-full text-lg font-semibold">Sell</Button>
       </AlertDialogTrigger>
 
-      <AlertDialogContent className="w-[500px] min-w-[420px] p-0">
+      <AlertDialogContent className="w-3/4 p-0">
         {/* Header */}
         <AlertDialogHeader className="px-8 pt-8">
           <div className="flex items-center justify-between">
-            <AlertDialogTitle className="text-2xl font-bold">
-              Sell
-            </AlertDialogTitle>
-            <AlertDialogCancel
-              className="rounded-full"
-              disabled={sellState != "idle"}
-            >
+            <AlertDialogTitle className="text-2xl font-bold">Sell</AlertDialogTitle>
+            <AlertDialogCancel className="rounded-full" disabled={sellState != "idle"}>
               x
             </AlertDialogCancel>
           </div>
-          <AlertDialogDescription>
-            Enter the price of the item. Click &quot;CONFIRM AND SELL&quot; to
-            proceed.
-          </AlertDialogDescription>
+          <AlertDialogDescription>Enter the price of the item. Click &quot;CONFIRM AND SELL&quot; to proceed.</AlertDialogDescription>
         </AlertDialogHeader>
 
         {/* Body */}
@@ -95,25 +82,19 @@ export default function SellButton({ nft }: SellButtonProps) {
             <h1 className="text-xl font-bold">{nft?.metadata.name}</h1>
             <p className="flex items-center gap-1 text-sm text-gray-400">
               {collection.name}
-              <MdVerified className=" text-blue-500" />
+              <MdVerified className="text-blue-500" />
             </p>
           </div>
         </div>
 
         {/* Footer */}
-        <AlertDialogFooter className="flex rounded-b-lg rounded-t-3xl bg-neutral-200 px-6 py-8 dark:bg-neutral-800 sm:flex-col sm:space-x-0">
+        <AlertDialogFooter className="flex flex-col rounded-b-lg rounded-t-3xl bg-neutral-200 px-6 py-8 dark:bg-neutral-800 sm:flex-col sm:space-x-0">
           <Tabs variant="underlined" aria-label="Options" isDisabled={sellState != "idle"}>
             <Tab key="direct" title="Direct Listing">
-              <CreateDirectListing
-                sellState={sellState}
-                setSellState={setSellState}
-              />
+              <CreateDirectListing sellState={sellState} setSellState={setSellState} />
             </Tab>
             <Tab key="auction" title="Auction">
-              <CreateAuction
-                sellState={sellState}
-                setSellState={setSellState}
-              />
+              <CreateAuction sellState={sellState} setSellState={setSellState} />
             </Tab>
           </Tabs>
         </AlertDialogFooter>
