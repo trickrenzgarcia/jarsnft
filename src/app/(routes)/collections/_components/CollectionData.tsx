@@ -38,7 +38,7 @@ export default async function CollectionData({ searchParams }: { searchParams: {
     }
     return counts;
   };
-  const ownerCounts = await getOwnersForContracts(contractAddresses); 
+  const ownerCounts = await getOwnersForContracts(contractAddresses);
 
   if (selectedCategory === "all") {
     currentCollections = await jars.getNFTCollections();
@@ -53,13 +53,13 @@ export default async function CollectionData({ searchParams }: { searchParams: {
   const slicedCollections = currentCollections.slice(start, end);
 
   const hide = () => {
-    return 'hidden lg:inline-block'
-  }
+    return "hidden lg:inline-block";
+  };
 
   return (
     <div className="flex flex-col">
-      <div className="grid grid-cols-3 lg:grid-cols-9 place-items-center py-4 space-x-4">
-        <h3>Name</h3>
+      <div className="grid grid-cols-3 place-items-center space-x-4 p-4 lg:grid-cols-9">
+        <h3 className="mr-8">Name</h3>
         <h3>Floor Price</h3>
         <h3 className={hide()}>Floor Change</h3>
         <h3 className={hide()}>Volume</h3>
@@ -73,10 +73,10 @@ export default async function CollectionData({ searchParams }: { searchParams: {
       {slicedCollections.map((collection, i) => (
         <Link
           href={`/collection/${collection.contract}`}
-          className="grid grid-cols-3 lg:grid-cols-9 lg:pl-5 place-items-center transition-background hover:bg-accent-foreground/15 rounded-lg space-x-6 gap-4"
+          className="grid grid-cols-3 place-items-center space-x-4 rounded-lg p-4 transition-background hover:bg-accent-foreground/15 lg:grid-cols-9"
           key={i}
         >
-          <div className="flex items-center gap-2 justify-self-start py-4">
+          <div className="mr-8 flex items-center gap-4 justify-self-start">
             <Image
               src={collection.image}
               width={50}
@@ -85,8 +85,7 @@ export default async function CollectionData({ searchParams }: { searchParams: {
               alt="logo of a collection"
               className="size-14 rounded-lg"
             />
-            <p className="max-w-[6rem] h-fit truncate">{collection.name}</p>
-
+            <p className="h-fit max-w-[6rem] truncate">{collection.name}</p>
           </div>
           <div>{collection.sellerFeeBasisPoints}</div> {/* Floor Price */}
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Floor Change */}
@@ -94,22 +93,14 @@ export default async function CollectionData({ searchParams }: { searchParams: {
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Volume Change */}
           <div className={hide()}>{}</div> {/* Sales */}
           <div className={hide()}>{ownerCounts[collection.contract] || 0}</div> {/* Unique Owners */}
-          <div>{collection.isNsfw? (
-           <CircleCheckBig color="#fd0d0d" />
-          ) : null}</div> {/* NSFW */}
+          <div>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div> {/* NSFW */}
           <div className={hide()}>
-          {collection.isVerified ? (
-            <Image
-              src="/assets/verify.png"
-              width={20}
-              height={20}
-              alt="verified logo"
-              className="h-fit"
-            />
-          ) : null}
-        </div> {/* Verified */}
+            {collection.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" /> : null}
+          </div>{" "}
+          {/* Verified */}
         </Link>
       ))}
+
       <PaginationControls
         searchParams={searchParams}
         className="py-4"
