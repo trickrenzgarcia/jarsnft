@@ -5,6 +5,10 @@ import PaginationControls from "./PaginationControls";
 import { CircleCheckBig } from "lucide-react";
 import { Network, Alchemy } from "alchemy-sdk";
 
+interface OwnerCounts {
+  [contract: string]: number;
+}
+
 export default async function CollectionData({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const page = searchParams["page"] ?? 1;
   const limit = 5;
@@ -16,16 +20,14 @@ export default async function CollectionData({ searchParams }: { searchParams: {
   let currentCollections = await jars.getNFTCollections();
 
   const contractAddresses = currentCollections.map((collection) => collection.contract);
-  const settings = {
-    apiKey: process.env.SEPOLIA_ALCHEMY_API_KEY, // Alchemy API KEY
-    network: Network.ETH_SEPOLIA, // REPLACE WITH MAINNET IF DEPLOYED
-  };
-  const alchemy = new Alchemy(settings);
-  interface OwnerCounts {
-    [contract: string]: number;
-  }
-
+  
+  // Get Total of Unique Owners (Alchemy API )
   const getOwnersForContracts = async (contractAddresses: string[]): Promise<OwnerCounts> => {
+    const settings = {
+      apiKey: process.env.SEPOLIA_ALCHEMY_API_KEY, // Alchemy API KEY
+      network: Network.ETH_SEPOLIA, // REPLACE WITH MAINNET IF DEPLOYED
+    };
+    const alchemy = new Alchemy(settings);
     const counts: OwnerCounts = {};
     for (const contract of contractAddresses) {
       try {
@@ -39,6 +41,40 @@ export default async function CollectionData({ searchParams }: { searchParams: {
     return counts;
   };
   const ownerCounts = await getOwnersForContracts(contractAddresses);
+
+  // Get Total Items of Collection (SimpleHash)
+  const getTotalItems = async (): Promise<{ [contract: string]: number }> => {
+    const totalQuantities: { [contract: string]: number } = {};
+  
+    try {
+      const promises = contractAddresses.map((address) =>
+        fetch(`https://api.simplehash.com/api/v0/nfts/collections/ethereum-sepolia/${address}?limit=1`, {
+          method: 'GET',
+          headers: {
+            'X-API-KEY': process.env.SIMPLEHASH_API_KEY,
+            'accept': 'application/json',
+          },
+        }).then(async (response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          const totalQuantity = data.collections[0]?.total_quantity || 0; // Fallback to 0 if undefined
+          totalQuantities[address] = totalQuantity;
+          return totalQuantity;
+        })
+      );
+  
+      await Promise.all(promises);
+    } catch (error) {
+      console.error('Error fetching NFT collections:', error);
+    }
+    return totalQuantities;
+  };
+  
+  getTotalItems();
+  const totalItems = await getTotalItems();
+
 
   if (selectedCategory === "all") {
     currentCollections = await jars.getNFTCollections();
@@ -90,8 +126,8 @@ export default async function CollectionData({ searchParams }: { searchParams: {
           <div>{collection.sellerFeeBasisPoints}</div> {/* Floor Price */}
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Floor Change */}
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Volume */}
-          <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Volume Change */}
-          <div className={hide()}>{}</div> {/* Sales */}
+          <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales */}
+          <div className={hide()}>{totalItems[collection.contract] || 0}</div> {/* Total Items */}
           <div className={hide()}>{ownerCounts[collection.contract] || 0}</div> {/* Unique Owners */}
           <div>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div> {/* NSFW */}
           <div className={hide()}>
