@@ -71,10 +71,7 @@ export default async function CollectionData({ searchParams }: { searchParams: {
     }
     return totalQuantities;
   };
-  
-  getTotalItems();
   const totalItems = await getTotalItems();
-
 
   if (selectedCategory === "all") {
     currentCollections = await jars.getNFTCollections();
@@ -97,9 +94,9 @@ export default async function CollectionData({ searchParams }: { searchParams: {
       <div className="grid grid-cols-3 place-items-center space-x-4 p-4 lg:grid-cols-9">
         <h3 className="mr-8">Name</h3>
         <h3>Floor Price</h3>
-        <h3 className={hide()}>Floor Change</h3>
         <h3 className={hide()}>Volume</h3>
         <h3 className={hide()}>Sales</h3>
+        <h3 className={hide()}>Listed</h3>
         <h3 className={hide()}>Total Items</h3>
         <h3 className={hide()}>Unique Owners</h3>
         <h3>NSFW</h3>
@@ -124,9 +121,9 @@ export default async function CollectionData({ searchParams }: { searchParams: {
             <p className="h-fit max-w-[6rem] truncate">{collection.name}</p>
           </div>
           <div>{collection.sellerFeeBasisPoints}</div> {/* Floor Price */}
-          <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Floor Change */}
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Volume */}
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales */}
+          <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Listed */}
           <div className={hide()}>{totalItems[collection.contract] || 0}</div> {/* Total Items */}
           <div className={hide()}>{ownerCounts[collection.contract] || 0}</div> {/* Unique Owners */}
           <div>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div> {/* NSFW */}
