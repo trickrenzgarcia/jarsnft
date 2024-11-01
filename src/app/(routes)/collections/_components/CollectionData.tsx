@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PaginationControls from "./PaginationControls";
 import { CircleCheckBig } from "lucide-react";
+import { Network, Alchemy } from "alchemy-sdk";
 
 export default async function CollectionData({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const page = searchParams["page"] ?? 1;
@@ -13,6 +14,31 @@ export default async function CollectionData({ searchParams }: { searchParams: {
 
   const selectedCategory = (searchParams["category"] as string) ?? "all";
   let currentCollections = await jars.getNFTCollections();
+
+  const contractAddresses = currentCollections.map((collection) => collection.contract);
+  const settings = {
+    apiKey: process.env.SEPOLIA_ALCHEMY_API_KEY, // Alchemy API KEY
+    network: Network.ETH_SEPOLIA, // REPLACE WITH MAINNET IF DEPLOYED
+  };
+  const alchemy = new Alchemy(settings);
+  interface OwnerCounts {
+    [contract: string]: number;
+  }
+
+  const getOwnersForContracts = async (contractAddresses: string[]): Promise<OwnerCounts> => {
+    const counts: OwnerCounts = {};
+    for (const contract of contractAddresses) {
+      try {
+        const response = await alchemy.nft.getOwnersForContract(contract);
+        counts[contract] = response.owners.length;
+      } catch (error) {
+        console.error(`Error fetching owners for contract ${contract}:`, error);
+        counts[contract] = 0;
+      }
+    }
+    return counts;
+  };
+  const ownerCounts = await getOwnersForContracts(contractAddresses); 
 
   if (selectedCategory === "all") {
     currentCollections = await jars.getNFTCollections();
@@ -37,9 +63,9 @@ export default async function CollectionData({ searchParams }: { searchParams: {
         <h3>Floor Price</h3>
         <h3 className={hide()}>Floor Change</h3>
         <h3 className={hide()}>Volume</h3>
-        <h3 className={hide()}>Volume Change</h3>
         <h3 className={hide()}>Sales</h3>
         <h3 className={hide()}>Total Items</h3>
+        <h3 className={hide()}>Unique Owners</h3>
         <h3>NSFW</h3>
         <h3 className={hide()}>Verified</h3>
       </div>
@@ -66,8 +92,8 @@ export default async function CollectionData({ searchParams }: { searchParams: {
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Floor Change */}
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Volume */}
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Volume Change */}
-          <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales */}
-          <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales Change */}
+          <div className={hide()}>{}</div> {/* Sales */}
+          <div className={hide()}>{ownerCounts[collection.contract] || 0}</div> {/* Unique Owners */}
           <div>{collection.isNsfw? (
            <CircleCheckBig color="#fd0d0d" />
           ) : null}</div> {/* NSFW */}
