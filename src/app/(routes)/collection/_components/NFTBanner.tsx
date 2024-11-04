@@ -97,7 +97,6 @@ export default function NFTBanner({ address, collection}: NFTBannerProps) {
   if(loadingMetadata || !metadata || salesLoading) {
     return <NFTBannerLoading />
   }
-
   
   return (
     <main className="flex w-full flex-col bg-slate-600 text-white dark:bg-background">

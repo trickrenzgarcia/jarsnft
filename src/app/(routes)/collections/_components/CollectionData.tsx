@@ -18,7 +18,6 @@ export default async function CollectionData({ searchParams }: { searchParams: {
 
   const selectedCategory = (searchParams["category"] as string) ?? "all";
   let currentCollections = await jars.getNFTCollections();
-
   const contractAddresses = currentCollections.map((collection) => collection.contract);
   
   // Get Total of Unique Owners (Alchemy API )
@@ -64,7 +63,6 @@ export default async function CollectionData({ searchParams }: { searchParams: {
           return totalQuantity;
         })
       );
-  
       await Promise.all(promises);
     } catch (error) {
       console.error('Error fetching NFT collections:', error);
@@ -129,8 +127,7 @@ export default async function CollectionData({ searchParams }: { searchParams: {
           <div>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div> {/* NSFW */}
           <div className={hide()}>
             {collection.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" /> : null}
-          </div>{" "}
-          {/* Verified */}
+          </div>
         </Link>
       ))}
 
