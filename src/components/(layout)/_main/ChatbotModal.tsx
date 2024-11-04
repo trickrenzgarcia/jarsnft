@@ -11,7 +11,7 @@ export default function ChatbotModal ({className} : {className: string}) {
   return (
     <>
     <div className={className}>
-        <div className='flex flex-col items-baseline self-center'>
+      <div className='flex flex-col items-baseline self-center'>
         <Button color='primary' onPress={onOpen}><Bot /></Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} size='5xl' scrollBehavior='inside'>
         <ModalContent>
@@ -24,8 +24,8 @@ export default function ChatbotModal ({className} : {className: string}) {
             </>
           )}
         </ModalContent>
-      </Modal>
-        </div>
+        </Modal>
+      </div>
     </div>
     </>
   )

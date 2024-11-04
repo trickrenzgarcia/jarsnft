@@ -27,7 +27,7 @@ export default function PrivacyTermsButtons() {
 
   return (
     <div className="ml-auto flex gap-4">
-      <Button onPress={onOpenPrivacy}>Privacy Policy</Button>
+      <Button color="primary" onPress={onOpenPrivacy}>Privacy Policy</Button>
       <Modal
         isOpen={isPrivacyPolicyOpen}
         onOpenChange={onOpenChangePrivacy}
@@ -76,13 +76,13 @@ export default function PrivacyTermsButtons() {
           )}
         </ModalContent>
       </Modal>
-      <Button onPress={onOpenTerms}>Terms and Service</Button>
+      <Button color="primary" onPress={onOpenTerms}>Terms and Service</Button>
       <Modal
         isOpen={isTermsOpen}
         onOpenChange={onOpenChangeTerms}
         scrollBehavior="inside"
         size="3xl"
-        backdrop="opaque"
+        backdrop="blur"
         classNames={{
           body: "py-5 px-5 mx-5 my-5",
           backdrop: "bg-[#121212]/50 backdrop-opacity-40",

@@ -50,7 +50,7 @@ export default function RootLayout({
             </ThemeProvider>
           </ThirdwebProviderV5>
         </ThirdwebProviderV4>
-        <ChatbotModal className="fixed bottom-0 right-0 p-6 z-10"/>
+        <ChatbotModal className="fixed bottom-0 right-0 p-2 mb-6 z-10"/>
       </body>
     </html>
   );

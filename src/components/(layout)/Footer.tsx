@@ -80,7 +80,7 @@ export default function Footer() {
 
               {/* Right-side */}
               <li className="w-fit">
-                {/* <PrivacyTermsButtons /> */}
+                <PrivacyTermsButtons />
               </li>
             </ul>
           </div>
