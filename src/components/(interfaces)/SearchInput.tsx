@@ -13,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function SearchInput(props: any) {
+  
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [dataResults, setDataResults] = useState<
