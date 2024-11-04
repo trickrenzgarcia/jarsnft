@@ -5,9 +5,10 @@ import { cn } from "@/lib/utils";
 
 type CollectionCardProps = {
   item: CollectionData;
+  hideFloorPrice: boolean
 }
 
-export default function CollectionCard({ item }: CollectionCardProps) {
+export default function CollectionCard({ item, hideFloorPrice = true }: CollectionCardProps) {
   return (
     <Card key={item.contract} className='p-2 border-2 bg-background rounded-lg hover:-translate-y-1 cursor-pointer hover:border-3 hover:border-violet-500 dark:hover:border-violet-500'>
       <CardHeader className='flex items-center justify-center aspect-square p-0'>
@@ -38,7 +39,7 @@ export default function CollectionCard({ item }: CollectionCardProps) {
           /> : null}</span>
         </CardTitle>
       </CardContent>
-      <CardFooter className={cn('w-full mt-2 flex justify-between rounded-lg p-3 bg-muted dark:bg-muted/30')}>
+      <CardFooter className={cn(hideFloorPrice &&'w-full mt-2 flex justify-between rounded-lg p-3 bg-muted dark:bg-muted/30')}>
           <div className='flex flex-col gap-1'>
             <p className='text-xs truncate text-muted-foreground'>Floor</p>
             <p className='text-sm font-semibold truncate'>100 MATIC</p>
