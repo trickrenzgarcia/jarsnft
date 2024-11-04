@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const styles = {
-  trendingCard: `w-full p-6 my-6 dark:bg-[#1C1C1C] bg-[#CED4DA] min-h-[268px] rounded-lg flex flex-col`,
+  trendingCard: `w-full dark:bg-[#1C1C1C] bg-[#CED4DA] rounded-lg flex flex-col p-6`,
   trendingCardWrapper: `flex items-center`,
 };
 
@@ -33,15 +33,15 @@ export default async function FearAndGreedCard({ title, icon }: Props) {
     else if (fng <= 49){
       return "Fear";
     }
-    else if (fng >= 50)
+    else if (fng == 50)
     {
       return "Neutral"
     }
-    else if (fng >= 70)
+    else if (fng >= 69)
       {
         return "Greed"
       }
-      else{
+    else if (fng >= 80){
         return "Extreme Greed"
       }
   };

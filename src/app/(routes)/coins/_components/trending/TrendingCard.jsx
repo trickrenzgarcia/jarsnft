@@ -3,7 +3,7 @@ import TrendingCardRow from "./TrendingCardRow";
 import { getNftMarketCap, getTrendingCoins } from "../../api/apiCoingecko";
 
 const styles = {
-  trendingCard: `w-full my-6 p-6 dark:bg-[#1C1C1C] bg-[#CED4DA] rounded-xl min-h-64 flex flex-col justify-between`,
+  trendingCard: `w-full p-6 dark:bg-[#1C1C1C] bg-[#CED4DA] rounded-xl flex flex-col`,
 };
 
 const TrendingCard = async ({ title, icon, type }) => {
