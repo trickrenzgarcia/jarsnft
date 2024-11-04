@@ -16,7 +16,7 @@ export default function Footer() {
   };
 
   const marketplaceLinks: Array<LinkType> = [
-    { href: "/category/arts", description: "Art" },
+    { href: "/category/art", description: "Art" },
     { href: "/category/photography", description: "Photography" },
     { href: "/category/pfp", description: "Profile Picture" },
   ];
