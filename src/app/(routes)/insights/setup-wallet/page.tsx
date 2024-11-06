@@ -212,6 +212,22 @@ export default function SetupWallet() {
             className="mb-12 max-h-full max-w-[80%] rounded-lg"
           />
         </div>
+        <div>
+          <h3 className="my-6 text-xl font-bold tracking-wider">
+            For Mobile Users 
+          </h3>
+          <P>{`Using Metamask in your mobile device also requires you to do the steps from above. To start you should begin by downloading the Metamask App, it is advisable to download from your phone's appstore.
+          Then follow the steps to create a new wallet or import an existing one.`}</P>
+          <Image
+            src="/assets/InsightsAsset/MetamaskPlaystore.jpg"
+            width={1920}
+            height={1080}
+            alt="Metamask Download Extension"
+            className="mb-2 max-h-[50%] max-w-[50%] mx-auto my-6 rounded-lg"
+          />
+          <p className="text-red-600 my-6 leading-loose tracking-wide mb-4">strong reminder, <strong>BE CAREFUL</strong> in where you download the app from. Such risks involves phishing apps that may try to steal your wallet.</p>
+        </div>
+
       </div>
       <div id="coinbase">
         <hr />
