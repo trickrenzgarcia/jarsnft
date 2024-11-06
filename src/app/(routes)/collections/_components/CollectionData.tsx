@@ -123,7 +123,15 @@ export default async function CollectionData({ searchParams }: { searchParams: {
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales */}
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Listed */}
           <div className={hide()}>{totalItems[collection.contract] || 0}</div> {/* Total Items */}
-          <div className={hide()}>{ownerCounts[collection.contract] || 0}</div> {/* Unique Owners */}
+          <div className={hide()}>{(() => {
+          const owners = ownerCounts[collection.contract] || 0;
+          const items = totalItems[collection.contract] || 0
+          if (items === 0 || owners === 0) {
+            return '0 (0.00%)';
+          }
+          const percentage = ((owners / items) * 100).toFixed(2);
+          return `${owners} (${percentage}%)`;
+          })()}</div> {/* Unique Owners */}
           <div>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div> {/* NSFW */}
           <div className={hide()}>
             {collection.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" /> : null}
