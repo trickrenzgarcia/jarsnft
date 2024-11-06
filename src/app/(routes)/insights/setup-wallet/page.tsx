@@ -216,7 +216,7 @@ export default function SetupWallet() {
           <h3 className="my-6 text-xl font-bold tracking-wider">
             For Mobile Users 
           </h3>
-          <P>{`Using Metamask in your mobile device also requires you to do the steps from above. To start you should begin by downloading the Metamask App, it is advisable to download from your phone's appstore.
+          <P>{`Using Metamask in your mobile device also requires you to do the steps from above. To begin, you should start by downloading the Metamask App, it is advisable to download from your phone's appstore.
           Then follow the steps to create a new wallet or import an existing one.`}</P>
           <Image
             src="/assets/InsightsAsset/MetamaskPlaystore.jpg"
