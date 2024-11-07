@@ -107,10 +107,10 @@ export const TypewriterEffectSmooth = ({
       <div className="break-words">
         {wordsArray.map((word, idx) => {
           return (
-            <div key={`word-${idx}`}>
+            <div key={`word-${idx}`} className="flex flex-wrap">
               {word.text.map((char, index) => (
                 <span key={`char-${index}`} className={cn(`text-black dark:text-white`, word.className)}>
-                  {char}
+                  {(char.length === 1 && char === " ") || char === "\n" ? <>&nbsp;</> : char}
                 </span>
               ))}
               &nbsp;
