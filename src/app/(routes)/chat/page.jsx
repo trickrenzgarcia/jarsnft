@@ -27,6 +27,7 @@ const Chatbot = () => {
       To develop a module that will guide users on how to exchange cryptocurrencies across different centralized exchanges.
       Limit your answer in 3 sentence and summarize if necessary use this emoji 😊 at the end.
       There is a price tracking of crypto in jarsnft website if they ask about a reliable cryptocurrency exchange or converter that displays live rates 
+      Don't answer anything outside the topic of jarsnft, cryptocurrencies,crypto, web3 because you are specifically designed for just it.
     `,
   });
 
@@ -38,7 +39,7 @@ const Chatbot = () => {
     setChatHistory([]);
   };
 
-   const sendMessage = async () => {
+  const sendMessage = async () => {
     if (userInput.trim() === "") return;
 
     setIsLoading(true);
@@ -50,54 +51,44 @@ const Chatbot = () => {
         throw new Error("Invalid response structure");
       }
 
-      setChatHistory((prevChatHistory) => [
-        ...prevChatHistory,
-        { type: "user", message: userInput },
-        { type: "bot", message: response.text() },
-      ]);
+      setChatHistory((prevChatHistory) => [...prevChatHistory, { type: "user", message: userInput }, { type: "bot", message: response.text() }]);
     } catch (error) {
       console.error("Error sending message:", error);
     } finally {
       setUserInput("");
       setIsLoading(false);
     }
-  };  
+  };
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
       sendMessage();
     }
-  }
+  };
   return (
     <div className="container p-6">
-      <div className="flex flex-col space-y-4 chat-container rounded-lg shadow-md">
+      <div className="chat-container flex flex-col space-y-4 rounded-lg shadow-md">
         <ChatHistory chatHistory={chatHistory} />
         <Loading isLoading={isLoading} />
       </div>
       <div className="my-4">
         <input
           type="text"
-          className="w-full flex-grow px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-violet-500"
+          className="w-full flex-grow rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
           placeholder="Type your message..."
           value={userInput}
           onChange={handleUserInput}
           onKeyDown={handleKeyDown}
         />
-        </div>
-        <div className="grid grid-cols-2 gap-2">
-          <button
-            className="p-2 rounded-lg bg-violet-500 focus:outline-none"
-            onClick={sendMessage}
-            disabled={isLoading}
-            >Send
-          </button>
+      </div>
+      <div className="grid grid-cols-2 gap-2">
+        <button className="rounded-lg bg-violet-500 p-2 focus:outline-none" onClick={sendMessage} disabled={isLoading}>
+          Send
+        </button>
 
-          <button
-          className="p-2 rounded-lg bg-red-500 focus:outline-none"
-          onClick={clearChat}
-          >
+        <button className="rounded-lg bg-red-500 p-2 focus:outline-none" onClick={clearChat}>
           Clear Chat
-          </button>
+        </button>
       </div>
     </div>
   );
