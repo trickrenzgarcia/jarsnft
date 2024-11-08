@@ -1,22 +1,27 @@
 import React from "react";
 import Markdown from "react-markdown";
-import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
+import { TypewriterEffectV2 } from "@/components/ui/typewriter-effect";
+import { Card, CardBody } from "@nextui-org/react";
 
 const ChatHistory = ({ chatHistory }) => {
   return (
     <>
       {chatHistory.map((message, index) => (
-        <div
-          key={index}
-          className={`flex w-full items-center gap-4 space-x-2 rounded-lg p-6 ${
-            message.type === "user" ? "bg-gray-100 text-gray-800" : "bg-violet-500 text-white"
-          }`}
-        >
-          <div className="font-bold leading-tight">{message.type === "user" ? "You:" : "Bot:"}</div>
-          <div className="w-full">
-            {message.type === "user" ? <Markdown>{message.message}</Markdown> : <TypewriterEffectSmooth words={[{ text: message.message }]} />}
-          </div>
-        </div>
+        <Card key={index}>
+          <CardBody className="w-full">
+            <div className="flex flex-row items-center gap-4">
+              {message.type === "user" ? (
+                <>
+                  <span>You:</span> <Markdown className="whitespace-pre-line">{message.message}</Markdown>
+                </>
+              ) : (
+                <>
+                  <span>Bot:</span> <TypewriterEffectV2 className="whitespace-pre-line" words={[{ text: message.message }]} />
+                </>
+              )}
+            </div>
+          </CardBody>
+        </Card>
       ))}
     </>
   );
