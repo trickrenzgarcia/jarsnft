@@ -33,7 +33,7 @@ export default function Navbar() {
       </div>
       <nav className={cn(isSearchOpen && "hidden","sticky top-0 z-40 w-full bg-background/80 backdrop-blur-md")}>
         {/* Nav Container */}
-        <div className="flex w-full justify-between items-center gap-2 px-5 py-4 md:px-10">
+        <div className="flex w-full justify-between items-center gap-2 px-5 max-[415px]:py-2 py-4 md:px-10">
           {/* Left-side <NavigationComponent> */}
           <div className="flex items-center gap-4">
               <Hamburger />

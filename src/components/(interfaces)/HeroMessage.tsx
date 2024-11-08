@@ -31,18 +31,18 @@ export default function HeroMessage() {
   };
 
   // If the component hasn't mounted yet, don't render anything
-  if (!isMounted || hasBeenClosed || isMetaMask) return null;
+  // if (!isMounted || hasBeenClosed || isMetaMask) return null;
 
   return (
-    <div className={cn("bg-purple-600 flex gap-4 lg:hidden items-center min-h-8 p-4")}>
-      <h3 className='ml-auto text-center'>
+    <div className={cn("bg-purple-600 flex gap-4 lg:hidden items-center min-h-8 px-4 max-[415px]:py-2 py-4")}>
+      <h3 className='ml-auto text-center max-[415px]:text-xs'>
         We recommend using <span className='font-bold'>Metamask</span>. 
         {` Check our guide `} 
         <Link href="/insights/setup-wallet" className='font-bold underline'>
           here
         </Link>!
       </h3>
-      <button className="text-3xl ml-auto" onClick={handleClose}>&times;</button>
+      <button className="max-[415px]:text-2xl text-3xl ml-auto" onClick={handleClose}>&times;</button>
     </div>
   );
 }
