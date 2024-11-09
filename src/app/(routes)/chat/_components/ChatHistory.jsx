@@ -7,7 +7,7 @@ const ChatHistory = ({ chatHistory }) => {
   return (
     <>
       {chatHistory.map((message, index) => (
-        <Card key={index}>
+        <Card key={index} className="shadow-lg">
           <CardBody className="w-full">
             <div className="flex flex-row items-center gap-4">
               {message.type === "user" ? (
@@ -16,7 +16,7 @@ const ChatHistory = ({ chatHistory }) => {
                 </>
               ) : (
                 <>
-                  <span>Bot:</span> <TypewriterEffectV2 className="whitespace-pre-line" words={[{ text: message.message }]} />
+                  <span>Bot:</span> <TypewriterEffectV2 words={[{ text: message.message }]} />
                 </>
               )}
             </div>

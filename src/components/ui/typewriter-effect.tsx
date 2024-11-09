@@ -86,7 +86,6 @@ export const TypewriterEffect = ({
 export const TypewriterEffectV2 = ({
   words,
   className,
-  cursorClassName,
 }: {
   words: {
     text: string;
@@ -111,13 +110,12 @@ export const TypewriterEffectV2 = ({
       animate(
         "span",
         {
-          display: "inline-block",
+          display: "inline",
           opacity: 1,
-          width: "fit-content",
         },
         {
           duration: 0.4, // Reduced duration for faster typing
-          delay: stagger(0.05), // Decreased stagger delay between characters
+          delay: stagger(0.04), // Decreased stagger delay between characters
           ease: "easeInOut",
         },
       );
@@ -128,36 +126,17 @@ export const TypewriterEffectV2 = ({
     return (
       <motion.div ref={scope} className="inline">
         {wordsArray.map((word, idx) => (
-          <div key={`word-${idx}`} className="inline-block whitespace-pre-wrap">
+          <div key={`word-${idx}`} className="inline whitespace-pre-wrap">
             {word.text.map((char, index) => (
               <motion.span initial={{}} key={`char-${index}`} className={cn(`hidden text-black opacity-0 dark:text-white`, word.className)}>
                 {char}
               </motion.span>
             ))}
-            <span>&nbsp;</span>
           </div>
         ))}
       </motion.div>
     );
   };
 
-  return (
-    <div className={cn("text-center text-sm font-bold md:text-lg lg:text-xl", className)}>
-      {renderWords()}
-      <motion.span
-        initial={{
-          opacity: 0,
-        }}
-        animate={{
-          opacity: 1,
-        }}
-        transition={{
-          duration: 0.8, // Faster cursor blink duration
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-        className={cn("hidden h-6 w-[4px] rounded-sm bg-purple-600 md:h-8 lg:h-10", cursorClassName)}
-      ></motion.span>
-    </div>
-  );
+  return <div className={cn("text-sm font-bold md:text-lg lg:text-xl", className)}>{renderWords()}</div>;
 };
