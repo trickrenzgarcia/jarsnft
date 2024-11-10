@@ -12,16 +12,16 @@ const words = [
     text: "Future:",
   },
   {
-    text: "Create",
+    text: "Discover",
   },
   {
-    text: "Collect",
+    text: "Create",
   },
   {
     text: "and",
   },
   {
-    text: "Conquer",
+    text: "Collect",
   },
   {
     text: "with",
@@ -45,8 +45,8 @@ export default function Hero() {
           quality={100}
         />
       </div>
-      <div className="absolute lg:w-[500px] rounded-xl bg-white/85 p-8 dark:bg-black/85 lg:ml-28 ">
-        <h1 className="max-[400px]:text-2xl text-3xl font-bold leading-normal">
+      <div className="absolute rounded-xl bg-white/85 p-8 dark:bg-black/85 lg:ml-28 lg:w-[500px]">
+        <h1 className="text-3xl font-bold leading-normal max-[400px]:text-2xl">
           <TypewriterEffect words={words} />
         </h1>
       </div>
