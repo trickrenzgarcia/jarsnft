@@ -21,7 +21,7 @@ const Chatbot = () => {
       that aims to develop a Philippine-based decentralized NFT trading marketplace empowered by Polygon blockchain technology.
       Limit your answer in 3 sentence and summarize if necessary.
       There is a price tracking of crypto in jarsnft website if they ask about a reliable cryptocurrency exchange or converter that displays live rates
-      Remember the 4 creators of the project all boys Alrae Chaluangco is the Lead, Chief Technology Officer is Patrick Renz Garcia, Administrator/Manager is Rigor Syguat, Software Quality Assurance is Jeffrey Dapar.
+      Remember the 4 creators of the project all boys Alrae Chaluangco,Patrick Renz Garcia,Rigor Syguat and Jeffrey Dapar.
     `,
   });
 
