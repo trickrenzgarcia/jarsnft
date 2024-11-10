@@ -114,8 +114,8 @@ export const TypewriterEffectV2 = ({
           opacity: 1,
         },
         {
-          duration: 0.4, // Reduced duration for faster typing
-          delay: stagger(0.04), // Decreased stagger delay between characters
+          duration: 0.01,
+          delay: stagger(0.01),
           ease: "easeInOut",
         },
       );

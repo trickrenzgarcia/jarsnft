@@ -12,7 +12,8 @@ const ChatHistory = ({ chatHistory }) => {
             <div className="flex flex-row items-center gap-4">
               {message.type === "user" ? (
                 <>
-                  <span>You:</span> <Markdown className="whitespace-pre-line">{message.message}</Markdown>
+                  <span>You:</span>
+                  <div className="overflow-hidden">{message.message}</div>
                 </>
               ) : (
                 <>
