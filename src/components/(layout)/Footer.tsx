@@ -1,11 +1,7 @@
-"use client"
+"use client";
 
 import { Separator } from "@/components/ui/separator";
-import {
-  PrivacyTermsButtons,
-  SocialLinkButtons,
-  FooterColumn,
-} from "../(interfaces)";
+import { PrivacyTermsButtons, SocialLinkButtons, FooterColumn } from "../(interfaces)";
 import ContactForm from "@/components/(interfaces)/Contact-Form";
 
 export default function Footer() {
@@ -34,9 +30,7 @@ export default function Footer() {
     { href: "/insights/#faq-section", description: "FAQs" },
   ];
 
-  const companyLinks: Array<LinkType> = [
-    { href: "/about", description: "About" },
-  ];
+  const companyLinks: Array<LinkType> = [{ href: "/about", description: "About" }];
   //#region End
 
   return (
@@ -47,19 +41,16 @@ export default function Footer() {
             <div className="col-span-3 mb-16 flex flex-col gap-y-5 text-center md:col-span-1 md:mb-0 md:text-left">
               <h1 className="text-2xl font-semibold">JarsNFT</h1>
               <p>
-              The biggest and largest NFT marketplace in the Philippines. <br />
-              Endless Opportunities for Artists and Traders. <br />
-              Create, Trade, and Collect Your Legacy.
+                The biggest and largest NFT marketplace in the Philippines. <br />
+                Endless Opportunities for Artists and Traders. <br />
+                Create, Trade, and Collect Your Legacy.
               </p>
-            <ContactForm/>
+              <ContactForm />
             </div>
 
             {/* Column Links */}
             <div className="col-span-3 mb-5 grid grid-cols-2 gap-x-8 gap-y-16 md:col-span-2 md:grid-cols-4 md:gap-y-0">
-              <FooterColumn
-                titleName="Marketplace"
-                linkArray={marketplaceLinks}
-              />
+              <FooterColumn titleName="Marketplace" linkArray={marketplaceLinks} />
               <FooterColumn titleName="Resource" linkArray={resourceLinks} />
               <FooterColumn titleName="Help" linkArray={helpLinks} />
               <FooterColumn titleName="Company" linkArray={companyLinks} />
@@ -71,8 +62,8 @@ export default function Footer() {
           <Separator className="h-[2px] w-full" />
 
           {/* Copyright */}
-          <div className="pb-5">
-            <ul className="mt-5 flex flex-col items-center justify-between gap-8 md:flex-row md:gap-0">
+          <div className="p-2">
+            <ul className="flex flex-col items-center justify-between gap-8 md:flex-row md:gap-0">
               {/* Left-side */}
               <li className="w-fit">
                 <div>© 2023 Alrae, Jeffrey, Patrick, Rigor</div>

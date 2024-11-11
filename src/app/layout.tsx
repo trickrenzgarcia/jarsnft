@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThirdwebProvider as ThirdwebProviderV5 } from "thirdweb/react"
+import { ThirdwebProvider as ThirdwebProviderV5 } from "thirdweb/react";
 import "./globals.css";
 import { appConfig } from "@/lib/app.config";
 import { cn } from "@/lib/utils";
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     url: appConfig.url.base,
     title: appConfig.name,
     description: appConfig.description,
-    siteName: appConfig.name
-  }
+    siteName: appConfig.name,
+  },
 };
 
 export default function RootLayout({
@@ -32,25 +32,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(
-        "w-screen overflow-x-hidden antialiased",
-        inter.className,
-      )}>
+      <body className={cn("w-screen overflow-x-hidden antialiased", inter.className)}>
         <ThirdwebProviderV4>
           <ThirdwebProviderV5>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <UserProvider>
-                {children}
-              </UserProvider>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+              <UserProvider>{children}</UserProvider>
             </ThemeProvider>
           </ThirdwebProviderV5>
         </ThirdwebProviderV4>
-        <ChatbotModal className="fixed bottom-0 right-0 p-2 mb-6 z-10"/>
+        <ChatbotModal className="fixed bottom-0 right-0 z-10 mt-2 p-2" />
       </body>
     </html>
   );
