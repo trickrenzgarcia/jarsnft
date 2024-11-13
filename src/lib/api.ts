@@ -10,36 +10,33 @@ import { SimpleHashNFT } from "@/types/simple-hash/nft";
 export type JarsOptions = {
   baseUrl?: string;
   secretKey: string;
-}
+};
 
 export class JarsAPI {
   private baseUrl: string;
   private secretKey: string;
 
   constructor(private options: JarsOptions) {
-    this.baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://jarsnft.vercel.app";
-    this.secretKey = options.secretKey
+    this.baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://jarsnft.com";
+    this.secretKey = options.secretKey;
   }
 
-  private async request<TData>(
-    endPoint: string,
-    configs?: RequestInit
-  ): Promise<TData> {
+  private async request<TData>(endPoint: string, configs?: RequestInit): Promise<TData> {
     try {
       const response = await fetch(`${this.baseUrl}/api/v1${endPoint}`, {
         headers: {
-          'Authorization': `Bearer ${this.secretKey}`,
-          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.secretKey}`,
+          "Content-Type": "application/json",
         },
         ...configs,
-      })
+      });
 
-      if(!response.ok) {
-        return undefined as TData
+      if (!response.ok) {
+        return undefined as TData;
       }
 
-      const data = await response.json()
-      return data as TData
+      const data = await response.json();
+      return data as TData;
     } catch (err) {
       throw new Error(`Failed to fetch data from ${this.baseUrl}/api/v1${endPoint}`);
     }
@@ -60,8 +57,8 @@ export class JarsAPI {
    */
   async getUser(address: string): Promise<User> {
     return await this.request<User>(`/user/${address}`, {
-      next: { tags: ['user'] }
-    })
+      next: { tags: ["user"] },
+    });
   }
 
   /**
@@ -77,8 +74,8 @@ export class JarsAPI {
 
   /**
    * Check if an email exists
-   * @param email 
-   * @returns 
+   * @param email
+   * @returns
    */
   async isEmailExists(email: string): Promise<boolean> {
     return await this.request<boolean>(`/user/email/${email}`);
@@ -89,7 +86,7 @@ export class JarsAPI {
    * @param address - The user's address
    */
   async createUser(address: string) {
-    return await this.request<User>('/user/create', {
+    return await this.request<User>("/user/create", {
       method: "POST",
       body: JSON.stringify({ address: address }),
     });
@@ -101,14 +98,8 @@ export class JarsAPI {
    * @param data - The user's data
    * @returns - A user
    */
-  async updateUser(
-    address: string,
-    data: Omit<
-      User,
-      "id" | "uid" | "address" | "role" | "createdAt"
-    >,
-  ) {
-    return await this.request<User>('/user/update', {
+  async updateUser(address: string, data: Omit<User, "id" | "uid" | "address" | "role" | "createdAt">) {
+    return await this.request<User>("/user/update", {
       method: "POST",
       body: JSON.stringify({ address: address, ...data }),
     });
@@ -118,7 +109,7 @@ export class JarsAPI {
    * Save nonce in database
    */
   async saveNonce(nonce: string) {
-    return await this.request('/nonce/create', {
+    return await this.request("/nonce/create", {
       method: "POST",
       body: JSON.stringify({ nonce: nonce }),
     });
@@ -128,7 +119,7 @@ export class JarsAPI {
    * Verify nonce in database
    */
   async nonceExists(nonce: string) {
-    return await this.request<boolean>('/nonce/validate', {
+    return await this.request<boolean>("/nonce/validate", {
       method: "POST",
       body: JSON.stringify({ nonce: nonce }),
     });
@@ -140,7 +131,7 @@ export class JarsAPI {
    * @returns - A user's profile
    */
   async createProfile(address: string) {
-    return await this.request<StorageProfile>('/storage/profile/create', {
+    return await this.request<StorageProfile>("/storage/profile/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ address: address }),
@@ -153,7 +144,7 @@ export class JarsAPI {
    * @param imageUrl - The user's profile data
    */
   async updateUserAvatar(address: string, imageUrl: string) {
-    return await this.request<StorageProfile>('/storage/profile/update', {
+    return await this.request<StorageProfile>("/storage/profile/update", {
       method: "POST",
       body: JSON.stringify({ address: address, imageUrl: imageUrl }),
     });
@@ -165,14 +156,11 @@ export class JarsAPI {
    * @returns - A user's profile
    */
   async getUserProfile(address: string) {
-    const data = await this.request<User & { profile: StorageProfile }>(
-      `/user/${address}/profile`,
-      {
-        next: {
-          tags: ["user", "profile", "getUserProfile"]
-        }
-      }
-    );
+    const data = await this.request<User & { profile: StorageProfile }>(`/user/${address}/profile`, {
+      next: {
+        tags: ["user", "profile", "getUserProfile"],
+      },
+    });
     return data;
   }
 
@@ -182,12 +170,12 @@ export class JarsAPI {
    * @returns ContractMetadata
    */
   async deployNFTCollection(contractAddress: string, owner: string, category: string) {
-    return await this.request<NFTCollection>('/deploy/nft-collection', {
+    return await this.request<NFTCollection>("/deploy/nft-collection", {
       method: "POST",
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         contractAddress: contractAddress,
         owner: owner,
-        category: category
+        category: category,
       }),
     });
   }
@@ -200,10 +188,10 @@ export class JarsAPI {
   async deployNFTDrop(contractAddress: string, owner: string, category: string) {
     return await this.request(`/deploy/nft-collection`, {
       method: "POST",
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         contractAddress: contractAddress,
         owner: owner,
-        category: category
+        category: category,
       }),
     });
   }
@@ -214,12 +202,9 @@ export class JarsAPI {
    * @param contractAddress
    */
   async getCollection(contractAddress: string) {
-    return await this.request<NFTCollection>(
-      `/collection/${contractAddress}`,
-      {
-        next: { tags: ["collection", "getCollection", contractAddress] },
-      },
-    );
+    return await this.request<NFTCollection>(`/collection/${contractAddress}`, {
+      next: { tags: ["collection", "getCollection", contractAddress] },
+    });
   }
 
   /**
@@ -238,12 +223,9 @@ export class JarsAPI {
    * @returns - A contract metadata of an NFT collection
    */
   async getContractMetadata(contractAddress: string) {
-    return await this.request<AlchemyContractMetadata>(
-      `/metadata/${contractAddress}`,
-      {
-        next: { tags: ["metadata", "getContractMetadata"] },
-      },
-    );
+    return await this.request<AlchemyContractMetadata>(`/metadata/${contractAddress}`, {
+      next: { tags: ["metadata", "getContractMetadata"] },
+    });
   }
 
   /**
@@ -252,12 +234,9 @@ export class JarsAPI {
    * @returns
    */
   async getNFTsForOwner(walletAddress: string) {
-    return await this.request<AlchemyNFTs>(
-      `/nfts/getNFTsForOwner?owner=${walletAddress}`,
-      {
-        next: { tags: ["nfts", "getNFTsForOwner"] },
-      },
-    );
+    return await this.request<AlchemyNFTs>(`/nfts/getNFTsForOwner?owner=${walletAddress}`, {
+      next: { tags: ["nfts", "getNFTsForOwner"] },
+    });
   }
 
   /**
@@ -267,12 +246,9 @@ export class JarsAPI {
    * @returns SimpleHashNFT
    */
   async getNFTByTokenId(contractAddress: string, tokenId: string) {
-    return await this.request<SimpleHashNFT>(
-      `/nfts/${contractAddress}/${tokenId}`,
-      {
-        next: { tags: ["nfts", "nft", "getNFTByTokenId"] },
-      },
-    );
+    return await this.request<SimpleHashNFT>(`/nfts/${contractAddress}/${tokenId}`, {
+      next: { tags: ["nfts", "nft", "getNFTByTokenId"] },
+    });
   }
 
   /**
@@ -291,11 +267,9 @@ export class JarsAPI {
    * @param walletAddress
    */
   async getCollectionsByOwner(walletAddress: string) {
-    return await this.request<Omit<NFTCollection[], "simpleHashData">>(`/collection/getCollectionsByOwner?owner=${walletAddress}`,
-      {
-        next: { tags: ["collections", "getCollectionsByOwner"] }
-      }
-    )
+    return await this.request<Omit<NFTCollection[], "simpleHashData">>(`/collection/getCollectionsByOwner?owner=${walletAddress}`, {
+      next: { tags: ["collections", "getCollectionsByOwner"] },
+    });
   }
 
   async getFavoriteCount(contractAddress: string, tokenId: string) {
@@ -307,7 +281,7 @@ export class JarsAPI {
       },
       next: {
         tags: ["likes"],
-      }
+      },
     });
   }
 
@@ -316,7 +290,7 @@ export class JarsAPI {
       `/user/favorite/isLiked?
       uid=${uid}&
       contract=${contractAddress}&
-      tokenId=${tokenId}`
+      tokenId=${tokenId}`,
     );
   }
 
@@ -324,14 +298,13 @@ export class JarsAPI {
     return await this.request<NFTFavorite>(`/user/favorite/create`, {
       method: "POST",
       cache: "no-cache",
-      body: JSON.stringify({ 
-        uid: uid, 
+      body: JSON.stringify({
+        uid: uid,
         contract: contractAddress,
-        tokenId: tokenId 
+        tokenId: tokenId,
       }),
     });
   }
-
 
   async getSearchResults(query: string) {
     return await this.request<Omit<NFTCollection[], "simpleHashData">>(`/search?q=${query}`, {
@@ -340,18 +313,15 @@ export class JarsAPI {
   }
 
   /**
-  * Get all ERC721 Contracts for an owner
-  * @param walletAddress
-  * @returns
-  */
+   * Get all ERC721 Contracts for an owner
+   * @param walletAddress
+   * @returns
+   */
   async getContractsForOwner(walletAddress: string) {
-    return await this.request<SimpleHashContracts>(
-      `/contracts/getContractsForOwner?walletAddress=${walletAddress}`,
-      {
-        cache: "no-store",
-        next: { tags: ["contracts"] },
-      },
-    );
+    return await this.request<SimpleHashContracts>(`/contracts/getContractsForOwner?walletAddress=${walletAddress}`, {
+      cache: "no-store",
+      next: { tags: ["contracts"] },
+    });
   }
 
   public storage = {
@@ -363,13 +333,10 @@ export class JarsAPI {
      * @returns - A user profile
      */
     updateProfileBanner: async (formData: FormData) => {
-      return await this.request<{ bannerUrl: string }>(
-        "/storage/profile/cover",
-        {
-          method: "POST",
-          body: formData,
-        },
-      );
+      return await this.request<{ bannerUrl: string }>("/storage/profile/cover", {
+        method: "POST",
+        body: formData,
+      });
     },
 
     /**
@@ -380,18 +347,14 @@ export class JarsAPI {
      * @returns - A user profile
      */
     updateProfileAvatar: async (formData: FormData) => {
-      return await this.request<{ imageUrl: string }>(
-        "/storage/profile/update",
-        {
-          method: "POST",
-          body: formData,
-        },
-      );
+      return await this.request<{ imageUrl: string }>("/storage/profile/update", {
+        method: "POST",
+        body: formData,
+      });
     },
   };
 
   public collection = {
-
     /**
      * Get collection trending
      */
@@ -406,34 +369,25 @@ export class JarsAPI {
      * @param contractAddress - The contract address
      */
     updateCollectionViewCount: async (contractAddress: string) => {
-      return await this.request<{ viewCount: number }>(
-        `/collection/${contractAddress}/update-view-count`,
-        {
-          method: "PUT",
-        },
-      );
+      return await this.request<{ viewCount: number }>(`/collection/${contractAddress}/update-view-count`, {
+        method: "PUT",
+      });
     },
-
-
   };
 
   public nft = {
-
     /**
      * Get NFT view count
      * @param contractAddress - The contract address
      * @param tokenId - The token id
      */
     getNftViews: async (contractAddress: string, tokenId: string) => {
-      return await this.request<{ viewCount: number }>(
-        `/nfts/views?contractAddress=${contractAddress}&tokenId=${tokenId}`,
-        {
-          cache: "no-cache",
-          next: {
-            tags: ["views", "getNftViews"],
-          }
+      return await this.request<{ viewCount: number }>(`/nfts/views?contractAddress=${contractAddress}&tokenId=${tokenId}`, {
+        cache: "no-cache",
+        next: {
+          tags: ["views", "getNftViews"],
         },
-      );
+      });
     },
 
     /**
@@ -442,15 +396,12 @@ export class JarsAPI {
      * @param tokenId - The token id
      */
     getNftLikes: async (contractAddress: string, tokenId: string) => {
-      return await this.request<{ count: number }>(
-        `/nfts/likes?contractAddress=${contractAddress}&tokenId=${tokenId}`,
-        {
-          cache: "no-cache",
-          next: {
-            tags: ["likes", "getNftLikes"],
-          }
+      return await this.request<{ count: number }>(`/nfts/likes?contractAddress=${contractAddress}&tokenId=${tokenId}`, {
+        cache: "no-cache",
+        next: {
+          tags: ["likes", "getNftLikes"],
         },
-      )
+      });
     },
 
     /**
@@ -459,17 +410,14 @@ export class JarsAPI {
      * @param tokenId - The token id
      */
     updateNftViews: async (contractAddress: string, tokenId: string) => {
-      return await this.request<{ view_count: number }>(
-        `/nfts/views`,
-        {
-          method: "POST",
-          body: JSON.stringify({ contractAddress, tokenId }),
-          cache: "no-cache",
-          next: {
-            tags: ["views", "updateNftViews"],
-          }
+      return await this.request<{ view_count: number }>(`/nfts/views`, {
+        method: "POST",
+        body: JSON.stringify({ contractAddress, tokenId }),
+        cache: "no-cache",
+        next: {
+          tags: ["views", "updateNftViews"],
         },
-      );
+      });
     },
 
     /**
@@ -478,21 +426,18 @@ export class JarsAPI {
      * @param tokenId - The token id
      */
     getNftActivities: async (contractAddress: string, tokenId: string) => {
-      return await this.request(
-        `/nfts/activities?contractAddress=${contractAddress}&tokenId=${tokenId}`,
-        {
-          cache: "no-cache",
-          next: {
-            tags: ["activities", "getNftActivities"],
-          }
+      return await this.request(`/nfts/activities?contractAddress=${contractAddress}&tokenId=${tokenId}`, {
+        cache: "no-cache",
+        next: {
+          tags: ["activities", "getNftActivities"],
         },
-      );
+      });
     },
 
     /**
      * Get NFT Transaction by Hash
-     * @param transactionHash 
-     * @returns 
+     * @param transactionHash
+     * @returns
      */
     getTransactionByHash: async (transactionHash: string) => {
       return await this.request(`/nfts/tx?transactionHash=${transactionHash}`);
@@ -502,23 +447,23 @@ export class JarsAPI {
      * Create NFT Transaction Hash and Event Type
      * @param event
      * @param txHash
-     * @returns 
+     * @returns
      */
     createTxHash: async (event: EventType, txHash: string) => {
-      if(!txHash) return;
-      return await this.request('/nfts/tx', {
+      if (!txHash) return;
+      return await this.request("/nfts/tx", {
         method: "POST",
         body: JSON.stringify({
           transactionHash: txHash,
           eventType: event,
-        })
-      })
-    }
+        }),
+      });
+    },
   };
 }
 
 const jars = new JarsAPI({
-  secretKey: process.env.NEXT_PUBLIC_JWT_TOKEN!
-})
+  secretKey: process.env.NEXT_PUBLIC_JWT_TOKEN!,
+});
 
 export default jars;

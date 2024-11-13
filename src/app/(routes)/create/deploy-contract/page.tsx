@@ -26,7 +26,7 @@ export default function DeployContractPage() {
       <section>
         <NFTCreateContractCard
           user={user}
-          title="Create NFT Collection ERC-721"
+          title="Create NFT Collection"
           description="The NFT Collection contract is suitable for when you want to have a collection of unique NFTs."
         />
       </section>

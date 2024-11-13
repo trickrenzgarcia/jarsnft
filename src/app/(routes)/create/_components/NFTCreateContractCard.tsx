@@ -55,6 +55,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import Category from "./Category";
+import { Loader2 } from 'lucide-react';
 
 type NFTCreateContractCardProps = {
   user: ProfileQuery;
@@ -246,11 +247,12 @@ export default function NFTCreateContractCard({
         symbol: data.symbol,
         platform_fee_recipient: process.env.PLATFORM_ADDRESS,
         external_link: data.external_link,
-        app_uri: "https://jarsnft.vercel.app/",
+        app_uri: "https://jarsnft.com",
         fee_recipient: data.fee_recipient,
         description: data.description,
         platform_fee_basis_points: 100,
         seller_fee_basis_points: seller_fee_basis_points,
+        trusted_forwarders: undefined,
       })
 
       setContractError(false);
@@ -258,13 +260,13 @@ export default function NFTCreateContractCard({
       setContractState("accepted");
 
       if (processContractAddress?.includes("0x")) {
-        setContractState("completed");
         setContractAddress(processContractAddress);
         const newCollection = await createContract(
           processContractAddress,
           user.data.address,
           data.category
         );
+        setContractState("completed");
         setCreatedCollection(newCollection);
         toast.success("Contract deployed successfully!", {
           position: "top-center",
@@ -666,6 +668,7 @@ export default function NFTCreateContractCard({
                             </div>
                             <div className="w-full flex items-center justify-end gap-2 mt-5">
                               <Button
+                                type="button"
                                 onClick={(e) => {
                                   e.preventDefault();
                                   router.push(`/`);
@@ -675,7 +678,9 @@ export default function NFTCreateContractCard({
                                 To Marketplace
                               </Button>
                               <Button
+                                type="button"
                                 className="flex gap-3"
+                                disabled={!createdCollection}
                                 onClick={(e) => {
                                   e.preventDefault();
                                   router.push(
@@ -683,137 +688,13 @@ export default function NFTCreateContractCard({
                                   );
                                 }}
                               >
-                                Go to New Collection <FaExternalLinkAlt />
+                                Go to New Collection {createdCollection ? <FaExternalLinkAlt /> : <Loader2 className='animate-spin' />}
                               </Button>
                               
                             </div>
                           </div>
                         )}
-
                       </div>
-                      {/* <div className="flex items-start gap-2">
-                        <div className="flex">
-
-                        </div>
-                        <div className="flex items-center justify-center rounded-full bg-default p-1">
-                          {contractState === "ongoing" ? (
-                            <Spinner size="sm" />
-                          ) : contractError === true ? (
-                            <div className="flex h-5 w-5 items-center justify-center">
-                              <MdErrorOutline className="text-danger" />
-                            </div>
-                          ) : (
-                            <div className="flex h-5 w-5 items-center justify-center">
-                              <FaCheck />
-                            </div>
-                          )}
-                        </div>
-                        <h2 className="text-lg">Accepting transaction</h2>
-                      </div>
-                      <div className="flex h-32 pl-3">
-                        <Separator orientation="vertical" className="w-[2px]" />
-                        <div className="ml-5 h-fit rounded-lg border p-3">
-                          <p className="text-justify">
-                            Wait for the wallet to be popup, it will be asked to
-                            pay gas fees and sign in your order to deploy your
-                            contract on the blockchain.
-                          </p>
-                          {contractError && (
-                            <div className="flex gap-3">
-                              <Button
-                                className="flex gap-1 bg-danger"
-                                onClick={(e) => {
-                                  form.handleSubmit(submitCreateContract)();
-                                  setContractError(false);
-                                  setContractState("ongoing");
-                                }}
-                              >
-                                <IoMdRefresh className="text-xl" />
-                                Retry
-                              </Button>
-                              <AlertDialogCancel
-                                onClick={(e) => {
-                                  setContractError(false);
-                                  setContractState("idle");
-                                }}
-                              >
-                                Close
-                              </AlertDialogCancel>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <div className="flex items-center justify-center rounded-full bg-default p-1">
-                          {contractState === "accepted" ? (
-                            <Spinner size="sm" />
-                          ) : contractState === "completed" ? (
-                            <div className="flex h-5 w-5 items-center justify-center">
-                              <FaCheck />
-                            </div>
-                          ) : contractError === true ? (
-                            <div className="flex h-5 w-5 items-center justify-center">
-                              <MdErrorOutline />
-                            </div>
-                          ) : (
-                            <div className="h-5 w-5" />
-                          )}
-                        </div>
-                        <h2 className="text-lg">Deploying your contract</h2>
-                      </div>
-                      <div className="flex h-28 pl-3">
-                        <Separator orientation="vertical" className="w-[2px]" />
-                        <div className="ml-5 h-fit w-full rounded-lg border p-3">
-                          <p className="text-justify">
-                            It may take some time for the transaction to be
-                            processed.
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <div className="flex items-center justify-center rounded-full bg-default p-1">
-                          {contractState === "completed" ? (
-                            <div className="flex h-5 w-5 items-center justify-center">
-                              <FaCheck />
-                            </div>
-                          ) : (
-                            <div className="h-5 w-5" />
-                          )}
-                        </div>
-                        <h2 className="text-lg">Created NFT Collection.</h2>
-                      </div>
-                      {contractState === "completed" && (
-                        <div className="flex pl-3">
-                          <div className="ml-5 flex h-fit w-full flex-col gap-3 rounded-lg border p-3">
-                            <p className="text-justify">
-                              Your NFT Collection has been created successfully.
-                            </p>
-
-                            {createdCollection && (
-                                <Button
-                                  className="flex gap-3"
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    router.push(
-                                      `/collection/${createdCollection.contract}`,
-                                    );
-                                  }}
-                                >
-                                  Go to NFT Collection <FaExternalLinkAlt />
-                                </Button>
-                              ) && (
-                                <Button
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    router.push(`/`);
-                                  }}
-                                >
-                                  Back to marketplace
-                                </Button>
-                              )}
-                          </div>
-                        </div>
-                      )} */}
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                 </AlertDialogContent>
