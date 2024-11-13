@@ -1,12 +1,12 @@
-import { defineConfig } from 'drizzle-kit'
+import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
-  schema: './drizzle/migrations/schema.ts',
-  out: './drizzle/migrations',
-  dialect: 'mysql',
+  schema: "./drizzle/migrations/schema.ts",
+  out: "./drizzle/migrations",
+  dialect: "mysql",
   dbCredentials: {
-    url: ''
+    url: "",
   },
   verbose: true,
   strict: true,
-})
+});
