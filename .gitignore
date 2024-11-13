@@ -11,6 +11,8 @@ package-lock.json
 # pwa builds
 /public/*.js
 /public/*.js.map
+/public/workbox-*.js
+/public/workbox-*.js.map
 
 # testing
 /coverage

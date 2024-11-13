@@ -29,6 +29,7 @@ export const contracts = mysqlTable("contracts", {
 
 export const nftCollections = mysqlTable("nft_collections", {
 	contract: varchar("contract", { length: 255 }).notNull(),
+	collectionId: varchar("collection_id", { length: 255 }).default('NULL'),
 	image: text("image").default('NULL'),
 	name: text("name").notNull(),
 	symbol: text("symbol").default('NULL'),
@@ -46,6 +47,7 @@ export const nftCollections = mysqlTable("nft_collections", {
 	isVerified: tinyint("is_verified").default(0).notNull(),
 	safeListed: tinyint("safe_listed").default(0).notNull(),
 	category: text("category").default('NULL'),
+	floorPrice: int("floor_price").notNull(),
 },
 (table) => {
 	return {
@@ -93,7 +95,7 @@ export const users = mysqlTable("users", {
 	address: varchar("address", { length: 191 }).notNull(),
 	isListed: tinyint("is_listed").default(0).notNull(),
 	createdAt: datetime("created_at", { mode: 'string', fsp: 3 }).default('current_timestamp(3)').notNull(),
-	role: varchar("role", { length: 191 }).default('user').notNull(),
+	role: varchar("role", { length: 191 }).default("user").notNull(),
 },
 (table) => {
 	return {
