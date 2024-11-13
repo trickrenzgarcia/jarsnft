@@ -19,7 +19,6 @@ deploy.get('/nft-collection', async (c) => {
 })
 
 deploy.post('/nft-collection', async (c) => {
-  try {
     const body = await c.req.json()
     const schema = deployContract.safeParse(body)
 
@@ -39,20 +38,27 @@ deploy.post('/nft-collection', async (c) => {
       return c.json({ message: "Failed to fetch metadata" }, 400)
     }
 
+    console.log(metadata)
+
     await db.insert(nftCollections).values({
       contract: schema.data.contractAddress,
+      collectionId: '',
+      image: metadata.image,
       name: metadata.name,
       symbol: metadata.symbol,
-      appUri: metadata.app_uri,
       description: metadata.description,
-      image: metadata.image,
+      appUri: metadata.app_uri,
       externalLink: metadata.external_link,
       feeRecipient: metadata.fee_recipient,
       sellerFeeBasisPoints: metadata.seller_fee_basis_points,
       primarySaleRecipient: metadata.primary_sale_recipient,
       owner: schema.data.owner,
-      trustedForwarders: metadata.trusted_forwarders,
       category: schema.data.category,
+      safeListed: 0,
+      isVerified: 0,
+      isNsfw: 0,
+      viewCount: 0,
+      floorPrice: 0
     })
 
     const contractData = await db
@@ -65,7 +71,4 @@ deploy.post('/nft-collection', async (c) => {
     }
     
     return c.json(contractData, 200)
-  } catch(error) {
-    return c.json({ message: "Invalid Request!" }, 500)
-  }
 })
