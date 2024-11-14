@@ -10,7 +10,7 @@ const TrendingCard = async ({ title, icon, type }) => {
   const data = type === "coins" ? await getTrendingCoins() : await getNftMarketCap();
   return (
     <div className={styles.trendingCard}>
-      <div className="flex flex-row gap-4">
+      <div className="flex flex-row items-center justify-center gap-4">
         {icon && <Image src={icon} width={40} height={40} alt="image" />}
         <p className="text-lg font-bold">{title}</p>
       </div>

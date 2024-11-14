@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const styles = {
   trendingCard: `w-full dark:bg-[#1C1C1C] bg-[#CED4DA] rounded-lg flex flex-col p-6`,
-  trendingCardWrapper: `flex items-center`,
+  trendingCardWrapper: `flex flex-row items-center justify-center gap-4`,
 };
 
 type Props = {
@@ -26,51 +26,42 @@ export default async function FearAndGreedCard({ title, icon }: Props) {
   };
 
   const getFngCopy = () => {
-    if(fng <= 20)
-    {
-      return "Extreme fear";
-    }
-    else if (fng <= 49){
+    if (fng <= 20) {
+      return "Extreme Fear";
+    } else if (fng <= 49) {
       return "Fear";
+    } else if (fng === 50) {
+      return "Neutral";
+    } else if (fng <= 69) {
+      return "Greed";
+    } else if (fng >= 80) {
+      return "Extreme Greed";
     }
-    else if (fng == 50)
-    {
-      return "Neutral"
-    }
-    else if (fng >= 69)
-      {
-        return "Greed"
-      }
-    else if (fng >= 80){
-        return "Extreme Greed"
-      }
   };
   const normalizedAngle = normalizeAngle(fng);
 
   return (
     <div className={styles.trendingCard}>
       <div className={styles.trendingCardWrapper}>
-        <div className="flex flex-row gap-5">
-          {icon && <Image src={icon} width={40} height={40} alt="Image" />}
-          <p className="text-lg font-bold">{title}</p>
-        </div>
+        {icon && <Image src={icon} width={40} height={40} alt="Image" />}
+        <p className="text-center text-lg font-bold">{title}</p>
       </div>
       <br />
 
-      <div className="flex flex-1 items-center justify-center rounded-md py-5">
-        <div className="relative mb-4">
+      <div className="mb-6 flex w-full flex-1 items-center justify-center">
+        <div className="relative">
           <div
             style={{
               transform: `rotate(${normalizedAngle}deg)`,
               transformOrigin: "93.5px 8px",
             }}
-            className="absolute left-[-5px] top-[81px] h-5 w-5 rounded-full border-2 border-white bg-gray-700"
+            className="absolute left-[-5px] top-[82px] h-5 w-5 rounded-full border-2 border-white bg-gray-700"
           />
-          <div className="-translate-y-1/6 absolute left-1/2 top-1/2 flex -translate-x-1/2 flex-col items-center justify-center">
+          <div className="-translate-y-1/6 absolute left-1/2 top-1/2 mb-2 flex -translate-x-1/2 flex-col items-center justify-center">
             <p className="text-xl font-bold">{fng}</p>
-            <p className="font-light">{getFngCopy()}</p>
+            <p className="whitespace-nowrap font-light">{getFngCopy()}</p>
           </div>
-          <Image src="/FNG.svg" alt="fng.svg" width={177} height={89}/>
+          <Image src="/FNG.svg" alt="fng.svg" width={177} height={100} />
         </div>
       </div>
     </div>
