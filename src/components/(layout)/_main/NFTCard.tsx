@@ -1,26 +1,14 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { cn, ipfsToHttps } from "@/lib/utils";
 import { CollectionData } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-
-// interface NFTCardProps {
-//   logo: string;
-//   image: string;
-//   name: string;
-//   collectionLink: string;
-//   itemLink: string;
-//   floor: number;
-//   volume: number;
-//   verified: boolean;
-// }
 
 export default function NFTCard({ item }: { item: CollectionData }) {
   return (
@@ -28,7 +16,7 @@ export default function NFTCard({ item }: { item: CollectionData }) {
       <Card className="p-2 border-2 bg-background rounded-lg hover:-translate-y-1 cursor-pointer hover:border-3 hover:border-violet-500 dark:hover:border-violet-500">
         <CardHeader className='flex items-center justify-center aspect-square p-0'>
           <Image
-            src={item.image}
+            src={ipfsToHttps(item.image)}
             alt={item.name}
             width={300}
             height={300}

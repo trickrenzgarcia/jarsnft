@@ -1,17 +1,16 @@
 import { Category, CollectionPopularData, CollectionResponse } from "@/types";
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 import { BACKEND_URL } from "./constant";
 import { ethers } from "ethers";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export const weiToEth = (wei: number | ethers.BigNumberish) => ethers.utils.formatEther(wei);
 
-export const weiToGwei = (wei: number | ethers.BigNumberish) =>
-  ethers.utils.formatUnits(wei, "gwei");
+export const weiToGwei = (wei: number | ethers.BigNumberish) => ethers.utils.formatUnits(wei, "gwei");
 
 export const usdCentsToUSD = (usdCents: number) => usdCents / 100;
 
@@ -24,21 +23,14 @@ export function formatNumber(number: number): string {
     suffixIndex++;
   }
 
-  return (
-    number.toLocaleString("en-US", { maximumFractionDigits: 2 }) +
-    suffixes[suffixIndex]
-  );
+  return number.toLocaleString("en-US", { maximumFractionDigits: 2 }) + suffixes[suffixIndex];
 }
 
-export function shortenWalletAddress(address:string){
+export function shortenWalletAddress(address: string) {
   return `${address.slice(0, 7)}...${address.slice(-5)}`;
 }
 
-export function shortenAddress(
-  address: string,
-  char1: number = 6,
-  char2: number = 4,
-): string {
+export function shortenAddress(address: string, char1: number = 6, char2: number = 4): string {
   // Check if the address has at least 10 characters
   if (address.length >= 10) {
     // Extract the first 6 characters
@@ -62,18 +54,11 @@ export function shortenAddress(
  * @default last 5
  * @returns The shortened file name
  */
-export function shortenFileName(
-  fileName: string,
-  first: number = 10,
-  last: number = 5,
-): string {
+export function shortenFileName(fileName: string, first: number = 10, last: number = 5): string {
   // Check if fileName length is greater than 24
   if (fileName.length > 24) {
     // Extracting file name without extension
-    const nameWithoutExtension = fileName.substring(
-      0,
-      fileName.lastIndexOf("."),
-    );
+    const nameWithoutExtension = fileName.substring(0, fileName.lastIndexOf("."));
 
     // Extracting file extension
     const fileExtension = fileName.substring(fileName.lastIndexOf("."));
@@ -85,9 +70,7 @@ export function shortenFileName(
     const truncatedFileName =
       nameWithoutExtension.substring(0, first) +
       "..." +
-      nameWithoutExtension.substring(
-        nameWithoutExtension.length - middleChars,
-      ) +
+      nameWithoutExtension.substring(nameWithoutExtension.length - middleChars) +
       nameWithoutExtension.substring(nameWithoutExtension.length - last) +
       fileExtension;
 
@@ -125,7 +108,7 @@ export function truncate(str: string, maxLength: number): string {
 }
 
 export function displayName(address: string, maxLength: number = 8) {
-  if(address.length <= maxLength) return address;
+  if (address.length <= maxLength) return address;
 
   // if(address.includes("0x69b05D8ed116Bb160B8a268a4315D2767123eFA1")) {
   //   return "In Auction"
@@ -170,11 +153,15 @@ export function slugify(text: string) {
     .replace(/[^\w-]+/g, "");
 }
 
-const BASE_URL = BACKEND_URL + '/v1'
+const BASE_URL = BACKEND_URL + "/v1";
 
 export async function getPopularCollections() {
   const response = fetch(`${BASE_URL}/collections/popular`);
   const data = (await response).json();
 
-  return await data as CollectionPopularData[];
+  return (await data) as CollectionPopularData[];
+}
+
+export function ipfsToHttps(ipfs: string) {
+  return ipfs.replace("ipfs://", process.env.NEXT_PUBLIC_IPFS_GATEWAY!);
 }
