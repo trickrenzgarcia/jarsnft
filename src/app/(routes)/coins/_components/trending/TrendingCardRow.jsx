@@ -14,7 +14,7 @@ const TrendingCardRow = ({ number, icon, name, sparklines }) => {
           <p className="max-w-[90px] overflow-hidden whitespace-nowrap lg:max-w-[210px]">{name}</p>
           <span className="max-w-[90px] overflow-hidden whitespace-nowrap text-gray-400 lg:max-w-[210px]">{formattedNumber}</span>
         </div>
-        <div className="">{sparklines && <Image alt="sparkline.svg" src={sparklines} width={100} height={80} quality={100} priority={true} />}</div>
+        <div>{sparklines && <Image alt="sparkline.svg" src={sparklines} width={100} height={80} quality={100} priority={true} />}</div>
       </div>
     </>
   );
