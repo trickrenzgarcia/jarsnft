@@ -45,6 +45,7 @@ export const nftCollections = mysqlTable(
   "nft_collections",
   {
     contract: varchar("contract", { length: 255 }).notNull(),
+    collectionId: varchar("collection_id", { length: 255 }).default("NULL"),
     image: text("image").default("NULL"),
     name: text("name").notNull(),
     symbol: text("symbol").default("NULL"),
@@ -62,6 +63,7 @@ export const nftCollections = mysqlTable(
     isVerified: tinyint("is_verified").default(0).notNull(),
     safeListed: tinyint("safe_listed").default(0).notNull(),
     category: text("category").default("NULL"),
+    floorPrice: tinyint("floor_Price").default(0).notNull(),
   },
   (table) => {
     return {
