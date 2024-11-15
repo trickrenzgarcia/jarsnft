@@ -19,7 +19,7 @@ export default async function CollectionData({ searchParams }: { searchParams: {
   const selectedCategory = (searchParams["category"] as string) ?? "all";
   let currentCollections = await jars.getNFTCollections();
   const contractAddresses = currentCollections.map((collection) => collection.contract);
-  
+
   // Get Total of Unique Owners (Alchemy API )
   const getOwnersForContracts = async (contractAddresses: string[]): Promise<OwnerCounts> => {
     const settings = {
@@ -44,14 +44,14 @@ export default async function CollectionData({ searchParams }: { searchParams: {
   // Get Total Items of Collection (SimpleHash)
   const getTotalItems = async (): Promise<{ [contract: string]: number }> => {
     const totalQuantities: { [contract: string]: number } = {};
-  
+
     try {
       const promises = contractAddresses.map((address) =>
         fetch(`https://api.simplehash.com/api/v0/nfts/collections/ethereum-sepolia/${address}?limit=1`, {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'X-API-KEY': process.env.SIMPLEHASH_API_KEY,
-            'accept': 'application/json',
+            "X-API-KEY": process.env.SIMPLEHASH_API_KEY,
+            accept: "application/json",
           },
         }).then(async (response) => {
           if (!response.ok) {
@@ -61,11 +61,11 @@ export default async function CollectionData({ searchParams }: { searchParams: {
           const totalQuantity = data.collections[0]?.total_quantity || 0; // Fallback to 0 if undefined
           totalQuantities[address] = totalQuantity;
           return totalQuantity;
-        })
+        }),
       );
       await Promise.all(promises);
     } catch (error) {
-      console.error('Error fetching NFT collections:', error);
+      console.error("Error fetching NFT collections:", error);
     }
     return totalQuantities;
   };
@@ -97,8 +97,8 @@ export default async function CollectionData({ searchParams }: { searchParams: {
         <h3 className={hide()}>Listed</h3>
         <h3 className={hide()}>Total Items</h3>
         <h3 className={hide()}>Unique Owners</h3>
-        <h3>NSFW</h3>
-        <h3 className={hide()}>Verified</h3>
+        <h3 className={hide()}>NSFW</h3>
+        <h3>Verified</h3>
       </div>
 
       {slicedCollections.map((collection, i) => (
@@ -116,26 +116,27 @@ export default async function CollectionData({ searchParams }: { searchParams: {
               alt="logo of a collection"
               className="size-14 rounded-lg"
             />
-            <p className="h-fit max-w-[6rem] truncate">{collection.name}</p>
+            <p className="h-fit max-w-[3rem] truncate sm:max-w-[6rem]">{collection.name}</p>
           </div>
           <div>{collection.sellerFeeBasisPoints}</div> {/* Floor Price */}
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Volume */}
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales */}
           <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Listed */}
           <div className={hide()}>{totalItems[collection.contract] || 0}</div> {/* Total Items */}
-          <div className={hide()}>{(() => {
-          const owners = ownerCounts[collection.contract] || 0;
-          const items = totalItems[collection.contract] || 0
-          if (items === 0 || owners === 0) {
-            return '0 (0.00%)';
-          }
-          const percentage = ((owners / items) * 100).toFixed(2);
-          return `${owners} (${percentage}%)`;
-          })()}</div> {/* Unique Owners */}
-          <div>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div> {/* NSFW */}
           <div className={hide()}>
-            {collection.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" /> : null}
-          </div>
+            {(() => {
+              const owners = ownerCounts[collection.contract] || 0;
+              const items = totalItems[collection.contract] || 0;
+              if (items === 0 || owners === 0) {
+                return "0 (0.00%)";
+              }
+              const percentage = ((owners / items) * 100).toFixed(2);
+              return `${owners} (${percentage}%)`;
+            })()}
+          </div>{" "}
+          {/* Unique Owners */}
+          <div className={hide()}>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div> {/* NSFW */}
+          <div>{collection.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" /> : null}</div>
         </Link>
       ))}
 
