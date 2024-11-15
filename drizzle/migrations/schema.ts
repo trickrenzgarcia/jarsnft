@@ -63,6 +63,7 @@ export const nftCollections = mysqlTable(
     isVerified: tinyint("is_verified").default(0).notNull(),
     safeListed: tinyint("safe_listed").default(0).notNull(),
     category: text("category").default("NULL"),
+    floorPrice: tinyint("floor_Price").default(0).notNull(),
   },
   (table) => {
     return {
