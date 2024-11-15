@@ -138,7 +138,7 @@ export default function NFTBanner({ address, collection}: NFTBannerProps) {
             </div>
           </div>
         </section>
-        <section className="flex w-full justify-between mt-14">
+        <section className="w-full justify-between px-6 mt-6 lg:mt-4 lg:flex">
           <div className="h-[75px] overflow-x-hidden text-sm font-semibold dark:text-gray-300 lg:h-[160px] lg:w-[500px]">
             <ReadMore
               id="collection-description"
@@ -147,7 +147,7 @@ export default function NFTBanner({ address, collection}: NFTBannerProps) {
             />
           </div>
           {/* Placeholder for data will get in Simplehash */}
-          <div className="hidden items-center gap-4 lg:flex">
+          <div className="items-end gap-4 mt-8 flex overflow-x-auto">
             {details && details.map((detail: Details, i) => (
               <div key={i} className={cn("w-full")}>
                 <div className="flex justify-center gap-2 text-2xl font-semibold">
