@@ -97,8 +97,8 @@ export default async function CollectionData({ searchParams }: { searchParams: {
         <h3 className={hide()}>Listed</h3>
         <h3 className={hide()}>Total Items</h3>
         <h3 className={hide()}>Unique Owners</h3>
-        <h3>NSFW</h3>
-        <h3 className={hide()}>Verified</h3>
+        <h3 className={hide()}>NSFW</h3>
+        <h3>Verified</h3>
       </div>
 
       {slicedCollections.map((collection, i) => (
@@ -135,10 +135,8 @@ export default async function CollectionData({ searchParams }: { searchParams: {
             })()}
           </div>{" "}
           {/* Unique Owners */}
-          <div>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div> {/* NSFW */}
-          <div className={hide()}>
-            {collection.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" /> : null}
-          </div>
+          <div className={hide()}>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div> {/* NSFW */}
+          <div>{collection.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" /> : null}</div>
         </Link>
       ))}
 
