@@ -4,7 +4,7 @@ import jars from '@/lib/api'
 import { useEffect, useState } from 'react'
 
 export default function useFloorPrice(contractAddress: string) {
-  const [loading, setLoading] = useState<boolean>(true)
+  const [isLoading, setLoading] = useState<boolean>(true)
   const [floorPrice, setFloorPrice] = useState<number | "N/A">(0)
   
   useEffect(() => {
@@ -20,6 +20,6 @@ export default function useFloorPrice(contractAddress: string) {
   }, [contractAddress])
 
   return {
-    loading, floorPrice
+    isLoading, floorPrice
   }
 }

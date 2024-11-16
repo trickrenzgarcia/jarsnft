@@ -8,6 +8,7 @@ import { CircleCheckBig, Loader2 } from 'lucide-react';
 import { ipfsToHttps } from '@/lib/utils';
 import useFloorPrice from '@/hooks/useFloorPrice';
 import { useMarketPlaceContext } from '@/components/hooks/use-context';
+import useTradingVolume from '@/hooks/useTradingVolume';
 
 type CollectionDataRowProps = {
   collection: CollectionData;
@@ -18,10 +19,8 @@ type CollectionDataRowProps = {
 }
 
 export default function CollectionDataRow({ collection, ownerCounts, totalItems}: CollectionDataRowProps) {
-  const { floorPrice, loading } = useFloorPrice(collection.contract);
-  const { sales } = useMarketPlaceContext()
-
-  console.log(sales)
+  const { floorPrice, isLoading: loadingFloorPrice } = useFloorPrice(collection.contract);
+  const { volume, isLoading: loadingVolume } = useTradingVolume(collection.contract)
 
   const hide = () => {
     return "hidden lg:inline-block";
@@ -43,7 +42,7 @@ export default function CollectionDataRow({ collection, ownerCounts, totalItems}
         <p className="h-fit max-w-[3rem] truncate sm:max-w-[6rem]">{collection.name}</p>
       </div>
       <div>
-        {loading ? <Loader2 className='animate-spin' size={14} /> : floorPrice}
+        {loadingFloorPrice ? <Loader2 className='animate-spin' size={14} /> : floorPrice}
       </div> {/* Floor Price */}
       <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Volume */}
       <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales */}
