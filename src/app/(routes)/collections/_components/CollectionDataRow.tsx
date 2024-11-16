@@ -1,12 +1,10 @@
-"use client"
 
 import { CollectionData } from '@/types'
 import React from 'react'
 import { OwnerCounts } from './CollectionData';
 import Image from 'next/image';
 import { CircleCheckBig } from 'lucide-react';
-import useFloorPrice from '@/hooks/useFloorPrice';
-import { useListingsContext } from '@/components/hooks/use-context';
+import { ipfsToHttps } from '@/lib/utils';
 
 type CollectionDataRowProps = {
   collection: CollectionData;
@@ -16,9 +14,21 @@ type CollectionDataRowProps = {
   };
 }
 
-export default function CollectionDataRow({ collection, ownerCounts, totalItems}: CollectionDataRowProps) {
+export default async function CollectionDataRow({ collection, ownerCounts, totalItems}: CollectionDataRowProps) {
 
-  const { } = useFloorPrice(collection.contract);
+  const response = await fetch(`http://localhost:3000/api/v1/getFloorPrice?contractAddress=${collection.contract}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${process.env.NEXT_PUBLIC_JWT_TOKEN}`
+    },
+    next: {
+      revalidate: 1
+    }
+  })
+  const floorPrice = await response.json() as number
+
+  console.log(floorPrice, collection.contract, collection.name)
 
   const hide = () => {
     return "hidden lg:inline-block";
@@ -30,7 +40,7 @@ export default function CollectionDataRow({ collection, ownerCounts, totalItems}
     >
       <div className="mr-8 flex items-center gap-4 justify-self-start">
         <Image
-          src={collection.image}
+          src={ipfsToHttps(collection.image)}
           width={50}
           height={50}
           style={{ minHeight: "60px", minWidth: "60px", objectFit: "cover", objectPosition: "center" }}
@@ -39,7 +49,7 @@ export default function CollectionDataRow({ collection, ownerCounts, totalItems}
         />
         <p className="h-fit max-w-[3rem] truncate sm:max-w-[6rem]">{collection.name}</p>
       </div>
-      <div>{collection.sellerFeeBasisPoints}</div> {/* Floor Price */}
+      <div>{floorPrice}</div> {/* Floor Price */}
       <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Volume */}
       <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales */}
       <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Listed */}

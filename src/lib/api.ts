@@ -373,6 +373,14 @@ export class JarsAPI {
         method: "PUT",
       });
     },
+
+    /**
+     * Get floor price
+     * @param contractAddress - The contract address
+     */
+    getFloorPrice: async (contractAddress: string) => {
+      return await this.request<number>(`/getFloorPrice?contractAddress=${contractAddress}`);
+    },
   };
 
   public nft = {

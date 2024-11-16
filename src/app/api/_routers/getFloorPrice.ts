@@ -1,10 +1,17 @@
 import { weiToEth } from "@/lib/utils";
 import { contractAddress } from "@/schema/zod";
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import { Hono } from "hono";
 import { createThirdwebClient, getContract } from "thirdweb";
 import { sepolia } from "thirdweb/chains";
-import { getAllAuctions, getAllListings, getAllValidAuctions, getAllValidListings } from "thirdweb/extensions/marketplace";
+import {
+  DirectListing,
+  EnglishAuction,
+  getAllAuctions,
+  getAllListings,
+  getAllValidAuctions,
+  getAllValidListings,
+} from "thirdweb/extensions/marketplace";
 
 export const getFloorPrice = new Hono();
 
@@ -43,13 +50,29 @@ getFloorPrice.get("/", async (c) => {
 
   const [auctions, listings] = await Promise.all([a1, a2]);
 
-  const activeAuctions = auctions.filter((auction) => auction.status === "ACTIVE");
-  const activeListings = listings.filter((listing) => listing.status === "ACTIVE");
+  const activeAuctions: EnglishAuction[] = JSON.parse(
+    JSON.stringify(
+      auctions.filter((auction) => auction.assetContractAddress === schema.data).filter((auction) => auction.status === "ACTIVE"),
+      replacer,
+    ),
+  );
+  const activeListings: DirectListing[] = JSON.parse(
+    JSON.stringify(
+      listings.filter((listing) => listing.assetContractAddress === schema.data).filter((listing) => listing.status === "ACTIVE"),
+      replacer,
+    ),
+  );
 
-  const activeAuctionFloorPrice = Math.min(...activeAuctions.map((auction) => Number(weiToEth(auction.minimumBidCurrencyValue.value))));
-  const activeListingFloorPrice = Math.min(...activeListings.map((listing) => Number(weiToEth(listing.pricePerToken))));
+  const activeAuctionFloorPrice = Math.min(
+    ...activeAuctions.map((auction) => Number(weiToEth(BigNumber.from(auction.minimumBidCurrencyValue.value)))),
+  );
+  const activeListingFloorPrice = Math.min(...activeListings.map((listing) => Number(weiToEth(BigNumber.from(listing.pricePerToken)))));
 
-  if (activeAuctionFloorPrice === 0) return c.json(activeListingFloorPrice, 200);
+  const checkIfNullAuctions = activeAuctionFloorPrice === Infinity; // Check if there are no active auctions
+  const checkIfNullListings = activeListingFloorPrice === Infinity; // Check if there are no active listings
+
+  if (checkIfNullAuctions && checkIfNullListings) return c.json("N/A", 200);
+  else if (activeAuctionFloorPrice === 0) return c.json(activeListingFloorPrice, 200);
   else if (activeListingFloorPrice === 0) return c.json(activeAuctionFloorPrice, 200);
   else {
     const floorPrice = Math.min(activeAuctionFloorPrice, activeListingFloorPrice);
