@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
@@ -8,13 +8,12 @@ import HeroMessage from "../(interfaces)/HeroMessage";
 import { ImSearch } from "react-icons/im";
 import { cn } from "@/lib/utils";
 
-
 export default function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   // const searchRef = useRef(null)
 
   const handleSearchClick = () => {
-    setIsSearchOpen(prev => !prev);
+    setIsSearchOpen((prev) => !prev);
   };
 
   // const handleClickOutside = () => {
@@ -25,49 +24,51 @@ export default function Navbar() {
   //     return !prev
   //   })
   // }
-  
+
   return (
     <>
-      <div className={cn(!isSearchOpen && "hidden", "sticky w-full z-50 top-0 bg-background/80 backdrop-blur-md py-[30px] px-4")}>
+      <div className={cn(!isSearchOpen && "hidden", "sticky top-0 z-50 w-full bg-background/80 px-4 py-[30px] backdrop-blur-md")}>
         <SearchInput handleClick={handleSearchClick} />
       </div>
-      <nav className={cn(isSearchOpen && "hidden","sticky top-0 z-40 w-full bg-background/80 backdrop-blur-md")}>
+      <nav className={cn(isSearchOpen && "hidden", "sticky top-0 z-40 w-full bg-background/80 backdrop-blur-md")}>
         {/* Nav Container */}
-        <div className="flex w-full justify-between items-center gap-2 px-5 max-[415px]:py-2 py-4 md:px-10">
+        <div className="flex w-full items-center justify-between gap-2 px-5 py-4 max-[415px]:py-2 md:px-10">
           {/* Left-side <NavigationComponent> */}
           <div className="flex items-center gap-4">
-              <Hamburger />
-              <Link href="/">
-                <div className="flex mb-2 items-end">
-                  <JarsLogo />
-                  <h1 className="animate-flip-down animate-once animate-duration-[1200ms] animate-ease-in mb-2 text-xl font-bold">Jars</h1>
-                </div>
-              </Link>
+            <Hamburger />
+            <Link href="/">
+              <div className="mb-2 flex items-end">
+                <JarsLogo />
+                <h1 className="animate-once animate-duration-[1200ms] animate-ease-in mb-2 hidden animate-flip-down text-xl font-bold sm:block">
+                  Jars
+                </h1>
+              </div>
+            </Link>
 
-            <Separator className="w-[2px] h-[30px] hidden lg:block bg-gray-200 dark:bg-gray-600" orientation="vertical" />
+            <Separator className="hidden h-[30px] w-[2px] bg-gray-200 dark:bg-gray-600 lg:block" orientation="vertical" />
 
             <div className="hidden gap-1 lg:flex xl:mr-5">
               <Link
                 href="/create"
-                className="animate-fade-right animate-once animate-duration-[1200ms] animate-ease-linear cursor-pointer px-3 font-semibold hover:text-zinc-500"
+                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-zinc-500"
               >
                 Create
               </Link>
               <Link
                 href="/collections"
-                className="animate-fade-right animate-once animate-duration-[1200ms] animate-ease-linear cursor-pointer px-3 font-semibold hover:text-zinc-500"
+                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-zinc-500"
               >
                 Collections
               </Link>
               <Link
                 href="/coins"
-                className="animate-fade-right animate-once animate-duration-[1200ms] animate-ease-linear cursor-pointer px-3 font-semibold hover:text-zinc-500"
+                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-zinc-500"
               >
                 Analytics
               </Link>
               <Link
                 href="/insights"
-                className="animate-fade-right animate-once animate-duration-[1200ms] animate-ease-linear cursor-pointer px-3 font-semibold hover:text-zinc-500"
+                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-zinc-500"
               >
                 Insights
               </Link>
@@ -75,12 +76,12 @@ export default function Navbar() {
           </div>
 
           {/* Middle <SearchBarComponent> */}
-          <div className="hidden xl:flex items-center justify-center">
-            <div className="flex items-center justify-center max-w-md w-[448px] h-full min-w-96">
-              <SearchInput handleClick={handleSearchClick}/>
+          <div className="hidden items-center justify-center xl:flex">
+            <div className="flex h-full w-[448px] min-w-96 max-w-md items-center justify-center">
+              <SearchInput handleClick={handleSearchClick} />
             </div>
           </div>
-        
+
           {/* <div className="xl:hidden text-2xl">
               {isSearchOpen ? (
                 <SearchInput handleClick={handleSearchClick} />
@@ -90,10 +91,10 @@ export default function Navbar() {
           </div> */}
 
           {/* Right-side <UserNavigationComponent>*/}
-          <div className="flex items-center gap-6">    
-            <button onClick={handleSearchClick} className="cursor-pointer xl:hidden text-2xl">
+          <div className="flex items-center gap-6">
+            <button onClick={handleSearchClick} className="cursor-pointer text-2xl xl:hidden">
               <ImSearch />
-            </button>     
+            </button>
             <Login />
           </div>
         </div>
@@ -102,5 +103,5 @@ export default function Navbar() {
         <HeroMessage />
       </nav>
     </>
-  )
+  );
 }
