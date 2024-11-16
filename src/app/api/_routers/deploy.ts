@@ -7,7 +7,6 @@ import { getContractMetadata } from "thirdweb/extensions/common";
 import { nftCollections } from "@/../drizzle/migrations/schema";
 import { ContractMetadata } from "@/schema/types";
 import { eq } from "drizzle-orm";
-import { getCollection } from "@/lib/simplehash";
 
 export const deploy = new Hono();
 
@@ -38,11 +37,8 @@ deploy.post("/nft-collection", async (c) => {
     return c.json({ message: "Failed to fetch metadata" }, 400);
   }
 
-  const fromSimpleHash = await getCollection(schema.data.contractAddress);
-
   await db.insert(nftCollections).values({
     contract: schema.data.contractAddress,
-    collectionId: fromSimpleHash.collections[0].collection_id,
     image: metadata.image,
     name: metadata.name,
     symbol: metadata.symbol,

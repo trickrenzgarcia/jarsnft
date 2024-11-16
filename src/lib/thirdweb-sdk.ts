@@ -9,4 +9,4 @@ const client = createThirdwebClient({
   secretKey,
 });
 
-export { chain, client }
+export { chain, client };

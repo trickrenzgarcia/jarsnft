@@ -10,4 +10,4 @@ export * from "./address";
 export * from "./storage";
 export * from "./contracts";
 export * from "./search";
-export * from "./test";
+export * from "./getFloorPrice";

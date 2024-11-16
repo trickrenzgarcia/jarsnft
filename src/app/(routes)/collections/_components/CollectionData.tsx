@@ -1,11 +1,10 @@
 import jars from "@/lib/api";
-import Image from "next/image";
 import Link from "next/link";
 import PaginationControls from "./PaginationControls";
-import { CircleCheckBig } from "lucide-react";
 import { Network, Alchemy } from "alchemy-sdk";
+import CollectionDataRow from './CollectionDataRow';
 
-interface OwnerCounts {
+export interface OwnerCounts {
   [contract: string]: number;
 }
 
@@ -104,39 +103,13 @@ export default async function CollectionData({ searchParams }: { searchParams: {
       {slicedCollections.map((collection, i) => (
         <Link
           href={`/collection/${collection.contract}`}
-          className="grid grid-cols-3 place-items-center space-x-4 rounded-lg p-4 transition-background hover:bg-accent-foreground/15 lg:grid-cols-9"
           key={i}
         >
-          <div className="mr-8 flex items-center gap-4 justify-self-start">
-            <Image
-              src={collection.image}
-              width={50}
-              height={50}
-              style={{ minHeight: "60px", minWidth: "60px", objectFit: "cover", objectPosition: "center" }}
-              alt="logo of a collection"
-              className="size-14 rounded-lg"
-            />
-            <p className="h-fit max-w-[3rem] truncate sm:max-w-[6rem]">{collection.name}</p>
-          </div>
-          <div>{collection.sellerFeeBasisPoints}</div> {/* Floor Price */}
-          <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Volume */}
-          <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales */}
-          <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Listed */}
-          <div className={hide()}>{totalItems[collection.contract] || 0}</div> {/* Total Items */}
-          <div className={hide()}>
-            {(() => {
-              const owners = ownerCounts[collection.contract] || 0;
-              const items = totalItems[collection.contract] || 0;
-              if (items === 0 || owners === 0) {
-                return "0 (0.00%)";
-              }
-              const percentage = ((owners / items) * 100).toFixed(2);
-              return `${owners} (${percentage}%)`;
-            })()}
-          </div>{" "}
-          {/* Unique Owners */}
-          <div className={hide()}>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div> {/* NSFW */}
-          <div>{collection.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" /> : null}</div>
+          <CollectionDataRow
+            collection={collection}
+            ownerCounts={ownerCounts}
+            totalItems={totalItems}
+          />
         </Link>
       ))}
 

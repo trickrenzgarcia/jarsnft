@@ -28,7 +28,7 @@ app.route("/deploy", router.deploy);
 app.route("/nfts", router.nfts);
 app.route("/storage", router.storage);
 app.route("/search", router.search);
-app.route("/test", router.test);
+app.route("/getFloorPrice", router.getFloorPrice);
 
 export const GET = handle(app);
 export const POST = handle(app);
