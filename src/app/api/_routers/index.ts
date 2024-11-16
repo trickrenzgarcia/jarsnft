@@ -11,3 +11,4 @@ export * from "./storage";
 export * from "./contracts";
 export * from "./search";
 export * from "./getFloorPrice";
+export * from "./event";

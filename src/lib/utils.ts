@@ -14,6 +14,9 @@ export const weiToGwei = (wei: number | ethers.BigNumberish) => ethers.utils.for
 
 export const usdCentsToUSD = (usdCents: number) => usdCents / 100;
 
+// Utility to handle BigInt serialization
+export const replacer = (key: string, value: any) => (typeof value === "bigint" ? value.toString() : value);
+
 export function formatNumber(number: number): string {
   const suffixes = ["", "K", "M", "B", "T"];
   let suffixIndex = 0;

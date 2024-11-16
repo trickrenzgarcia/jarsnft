@@ -8,7 +8,6 @@ export const THIRDWEB_CLIENT_ID: string = process.env.THIRDWEB_CLIENT_ID;
 export const THIRDWEB_API_KEY: string = process.env.THIRDWEB_API_KEY;
 export const PRIVATE_KEY: string = process.env.PRIVATE_KEY;
 
-
 export const ACCEPTED_IMAGE_TYPES = [
   "image/png",
   "image/jpg",

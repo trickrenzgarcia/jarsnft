@@ -4,20 +4,19 @@ import jars from '@/lib/api'
 import { useEffect, useState } from 'react'
 
 export default function useFloorPrice(contractAddress: string) {
-  const [loading, setLoading] = useState<boolean>(false)
-  const [floorPrice, setFloorPrice] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(true)
+  const [floorPrice, setFloorPrice] = useState<number | "N/A">(0)
   
   useEffect(() => {
     setLoading(true)
-    async function getFloorPrice() {
+    const getFloorPrice = async () => {
       // Fetch floor price from contract
       const fp = await jars.collection.getFloorPrice(contractAddress)
-      console.log('Floor Price:', fp)
-      //setFloorPrice(fp)
+      setFloorPrice(fp)
+      setLoading(false)
     }
 
     getFloorPrice()
-    setLoading(false)
   }, [contractAddress])
 
   return {

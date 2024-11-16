@@ -1,13 +1,15 @@
+"use client"
 
 import { CollectionData } from '@/types'
 import React from 'react'
 import { OwnerCounts } from './CollectionData';
 import Image from 'next/image';
-import { CircleCheckBig } from 'lucide-react';
+import { CircleCheckBig, Loader2 } from 'lucide-react';
 import { ipfsToHttps } from '@/lib/utils';
+import useFloorPrice from '@/hooks/useFloorPrice';
+import { useMarketPlaceContext } from '@/components/hooks/use-context';
 
 type CollectionDataRowProps = {
-  floorPrice: number | "N/A";
   collection: CollectionData;
   ownerCounts: OwnerCounts;
   totalItems: {
@@ -15,9 +17,11 @@ type CollectionDataRowProps = {
   };
 }
 
-export default async function CollectionDataRow({ floorPrice, collection, ownerCounts, totalItems}: CollectionDataRowProps) {
+export default function CollectionDataRow({ collection, ownerCounts, totalItems}: CollectionDataRowProps) {
+  const { floorPrice, loading } = useFloorPrice(collection.contract);
+  const { sales } = useMarketPlaceContext()
 
-  console.log(floorPrice, collection.contract, collection.name)
+  console.log(sales)
 
   const hide = () => {
     return "hidden lg:inline-block";
@@ -38,7 +42,9 @@ export default async function CollectionDataRow({ floorPrice, collection, ownerC
         />
         <p className="h-fit max-w-[3rem] truncate sm:max-w-[6rem]">{collection.name}</p>
       </div>
-      <div>{floorPrice}</div> {/* Floor Price */}
+      <div>
+        {loading ? <Loader2 className='animate-spin' size={14} /> : floorPrice}
+      </div> {/* Floor Price */}
       <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Volume */}
       <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Sales */}
       <div className={hide()}>{collection.sellerFeeBasisPoints}</div> {/* Listed */}

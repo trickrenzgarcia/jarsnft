@@ -1,22 +1,12 @@
-import { weiToEth } from "@/lib/utils";
+import { replacer, weiToEth } from "@/lib/utils";
 import { contractAddress } from "@/schema/zod";
 import { BigNumber, ethers } from "ethers";
 import { Hono } from "hono";
 import { createThirdwebClient, getContract } from "thirdweb";
 import { sepolia } from "thirdweb/chains";
-import {
-  DirectListing,
-  EnglishAuction,
-  getAllAuctions,
-  getAllListings,
-  getAllValidAuctions,
-  getAllValidListings,
-} from "thirdweb/extensions/marketplace";
+import { DirectListing, EnglishAuction, getAllAuctions, getAllListings } from "thirdweb/extensions/marketplace";
 
 export const getFloorPrice = new Hono();
-
-// Utility to handle BigInt serialization
-const replacer = (key: string, value: any) => (typeof value === "bigint" ? value.toString() : value);
 
 const client = createThirdwebClient({
   secretKey: process.env.THIRDWEB_API_KEY!,

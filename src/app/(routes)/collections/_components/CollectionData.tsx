@@ -3,6 +3,7 @@ import Link from "next/link";
 import PaginationControls from "./PaginationControls";
 import { Network, Alchemy } from "alchemy-sdk";
 import CollectionDataRow from './CollectionDataRow';
+import { MarketPlaceProvider } from '@/components/(providers)';
 
 export interface OwnerCounts {
   [contract: string]: number;
@@ -100,36 +101,22 @@ export default async function CollectionData({ searchParams }: { searchParams: {
         <h3>Verified</h3>
       </div>
 
-      {slicedCollections.map(async (collection, i) => {
-
-        const floorPrice = await fetch(`http://localhost:3000/api/v1/getFloorPrice?contractAddress=${collection.contract}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          cache: "no-cache"
-        }).then(async (response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const data = await response.json();
-          return data.floorPrice;
-        })
-        
-        return (
-          <Link
-            href={`/collection/${collection.contract}`}
-            key={i}
-          >
-            <CollectionDataRow
-              floorPrice={floorPrice}
-              collection={collection}
-              ownerCounts={ownerCounts}
-              totalItems={totalItems}
-            />
-          </Link>
-        )
-      })}
+      <MarketPlaceProvider>
+        {slicedCollections.map(async (collection, i) => {  
+          return (
+            <Link
+              href={`/collection/${collection.contract}`}
+              key={i}
+            >
+              <CollectionDataRow
+                collection={collection}
+                ownerCounts={ownerCounts}
+                totalItems={totalItems}
+              />
+            </Link>
+          )
+        })}
+      </MarketPlaceProvider>
 
       <PaginationControls
         searchParams={searchParams}
