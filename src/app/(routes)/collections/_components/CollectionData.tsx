@@ -100,18 +100,24 @@ export default async function CollectionData({ searchParams }: { searchParams: {
         <h3>Verified</h3>
       </div>
 
-      {slicedCollections.map((collection, i) => (
-        <Link
-          href={`/collection/${collection.contract}`}
-          key={i}
-        >
-          <CollectionDataRow
-            collection={collection}
-            ownerCounts={ownerCounts}
-            totalItems={totalItems}
-          />
-        </Link>
-      ))}
+      {slicedCollections.map(async (collection, i) => {
+
+        const floorPrice = await jars.collection.getFloorPrice(collection.contract)
+        
+        return (
+          <Link
+            href={`/collection/${collection.contract}`}
+            key={i}
+          >
+            <CollectionDataRow
+              floorPrice={floorPrice}
+              collection={collection}
+              ownerCounts={ownerCounts}
+              totalItems={totalItems}
+            />
+          </Link>
+        )
+      })}
 
       <PaginationControls
         searchParams={searchParams}

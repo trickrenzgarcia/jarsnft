@@ -7,6 +7,7 @@ import { CircleCheckBig } from 'lucide-react';
 import { ipfsToHttps } from '@/lib/utils';
 
 type CollectionDataRowProps = {
+  floorPrice: number | "N/A";
   collection: CollectionData;
   ownerCounts: OwnerCounts;
   totalItems: {
@@ -14,19 +15,7 @@ type CollectionDataRowProps = {
   };
 }
 
-export default async function CollectionDataRow({ collection, ownerCounts, totalItems}: CollectionDataRowProps) {
-
-  const response = await fetch(`http://localhost:3000/api/v1/getFloorPrice?contractAddress=${collection.contract}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.NEXT_PUBLIC_JWT_TOKEN}`
-    },
-    next: {
-      revalidate: 1
-    }
-  })
-  const floorPrice = await response.json() as number
+export default async function CollectionDataRow({ floorPrice, collection, ownerCounts, totalItems}: CollectionDataRowProps) {
 
   console.log(floorPrice, collection.contract, collection.name)
 

@@ -13,7 +13,7 @@ export default function useFloorPrice(contractAddress: string) {
       // Fetch floor price from contract
       const fp = await jars.collection.getFloorPrice(contractAddress)
       console.log('Floor Price:', fp)
-      setFloorPrice(fp)
+      //setFloorPrice(fp)
     }
 
     getFloorPrice()
