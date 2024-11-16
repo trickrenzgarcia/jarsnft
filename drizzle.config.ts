@@ -5,7 +5,7 @@ export default defineConfig({
   out: "./drizzle/migrations",
   dialect: "mysql",
   dbCredentials: {
-    url: "mysql://u943563710_root:@Jarsnft2024@auth-db1237.hstgr.io:3306/u943563710_jarsnft",
+    url: "",
   },
   verbose: true,
   strict: true,
