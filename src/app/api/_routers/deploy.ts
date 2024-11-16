@@ -7,68 +7,66 @@ import { getContractMetadata } from "thirdweb/extensions/common";
 import { nftCollections } from "@/../drizzle/migrations/schema";
 import { ContractMetadata } from "@/schema/types";
 import { eq } from "drizzle-orm";
+import { getCollection } from "@/lib/simplehash";
 
-export const deploy = new Hono()
+export const deploy = new Hono();
 
-
-deploy.get('/nft-collection', async (c) => {
+deploy.get("/nft-collection", async (c) => {
   const data = await db.query.nftCollections.findMany({
-    limit: 100
-  })
-  return c.json(data, 200)
-})
+    limit: 100,
+  });
+  return c.json(data, 200);
+});
 
-deploy.post('/nft-collection', async (c) => {
-    const body = await c.req.json()
-    const schema = deployContract.safeParse(body)
+deploy.post("/nft-collection", async (c) => {
+  const body = await c.req.json();
+  const schema = deployContract.safeParse(body);
 
-    if(!schema.success) {
-      return c.json(schema.error.errors, 400)
-    }
+  if (!schema.success) {
+    return c.json(schema.error.errors, 400);
+  }
 
-    const contract = getContract({
-      client: client,
-      chain,
-      address: schema.data.contractAddress,
-    })
-  
-    const metadata: ContractMetadata = await getContractMetadata({ contract }) as ContractMetadata
+  const contract = getContract({
+    client: client,
+    chain,
+    address: schema.data.contractAddress,
+  });
 
-    if(!metadata) {
-      return c.json({ message: "Failed to fetch metadata" }, 400)
-    }
+  const metadata: ContractMetadata = (await getContractMetadata({ contract })) as ContractMetadata;
 
-    console.log(metadata)
+  if (!metadata) {
+    return c.json({ message: "Failed to fetch metadata" }, 400);
+  }
 
-    await db.insert(nftCollections).values({
-      contract: schema.data.contractAddress,
-      collectionId: '',
-      image: metadata.image,
-      name: metadata.name,
-      symbol: metadata.symbol,
-      description: metadata.description,
-      appUri: metadata.app_uri,
-      externalLink: metadata.external_link,
-      feeRecipient: metadata.fee_recipient,
-      sellerFeeBasisPoints: metadata.seller_fee_basis_points,
-      primarySaleRecipient: metadata.primary_sale_recipient,
-      owner: schema.data.owner,
-      category: schema.data.category,
-      safeListed: 0,
-      isVerified: 0,
-      isNsfw: 0,
-      viewCount: 0,
-      floorPrice: 0
-    })
+  const fromSimpleHash = await getCollection(schema.data.contractAddress);
 
-    const contractData = await db
-      .query.nftCollections.findFirst({
-        where: eq(nftCollections.contract, schema.data.contractAddress)
-      })
+  await db.insert(nftCollections).values({
+    contract: schema.data.contractAddress,
+    collectionId: fromSimpleHash.collections[0].collection_id,
+    image: metadata.image,
+    name: metadata.name,
+    symbol: metadata.symbol,
+    description: metadata.description,
+    appUri: metadata.app_uri,
+    externalLink: metadata.external_link,
+    feeRecipient: metadata.fee_recipient,
+    sellerFeeBasisPoints: metadata.seller_fee_basis_points,
+    primarySaleRecipient: metadata.primary_sale_recipient,
+    owner: schema.data.owner,
+    category: schema.data.category,
+    safeListed: 0,
+    isVerified: 0,
+    isNsfw: 0,
+    viewCount: 0,
+  });
 
-    if(!contractData) {
-      return c.json({ message: "Failed to create contract" }, 500)
-    }
-    
-    return c.json(contractData, 200)
-})
+  const contractData = await db.query.nftCollections.findFirst({
+    where: eq(nftCollections.contract, schema.data.contractAddress),
+  });
+
+  if (!contractData) {
+    return c.json({ message: "Failed to create contract" }, 500);
+  }
+
+  return c.json(contractData, 200);
+});
