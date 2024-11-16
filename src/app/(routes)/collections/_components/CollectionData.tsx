@@ -8,8 +8,6 @@ export interface OwnerCounts {
   [contract: string]: number;
 }
 
-export const dynamic = "force-dynamic";
-
 export default async function CollectionData({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const page = searchParams["page"] ?? 1;
   const limit = 5;
