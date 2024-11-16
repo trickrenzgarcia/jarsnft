@@ -2,6 +2,8 @@ import CollectionData from "./_components/CollectionData";
 import DropdownControls from "./_components/DropdownControls";
 import React from "react";
 
+export const dynamic = "force-dynamic";
+
 export default function CollectionsPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   return (
     <>

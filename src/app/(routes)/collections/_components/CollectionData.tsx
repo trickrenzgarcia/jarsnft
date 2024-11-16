@@ -8,6 +8,8 @@ export interface OwnerCounts {
   [contract: string]: number;
 }
 
+export const dynamic = "force-dynamic";
+
 export default async function CollectionData({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const page = searchParams["page"] ?? 1;
   const limit = 5;
@@ -102,7 +104,19 @@ export default async function CollectionData({ searchParams }: { searchParams: {
 
       {slicedCollections.map(async (collection, i) => {
 
-        const floorPrice = await jars.collection.getFloorPrice(collection.contract)
+        const floorPrice = await fetch(`http://localhost:3000/api/v1/getFloorPrice?contractAddress=${collection.contract}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          cache: "no-cache"
+        }).then(async (response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          return data.floorPrice;
+        })
         
         return (
           <Link
