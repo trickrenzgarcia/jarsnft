@@ -120,9 +120,9 @@ export default function NFTItem() {
 
             <Card className="mt-4">
               <CardContent className="w-full p-5">
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-col">
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                <div className="flex basis-full flex-col items-start justify-between sm:flex-row sm:items-center">
+                  <div className="mb-4 flex flex-col sm:mb-0">
+                    <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                       {directListings && directListings[0]
                         ? "Current Price"
                         : auctionListings && auctionListings[0]
@@ -144,7 +144,7 @@ export default function NFTItem() {
                         <div className="flex flex-col gap-4">
                           <div className="flex items-center gap-1">
                             <Image src="/assets/cryptocurrency/polygon-matic.png" width={20} height={20} alt="Polygon" />
-                            <p className="text-2xl font-bold">
+                            <p className="space-x-4 text-2xl font-bold">
                               {auctionListings[0].buyoutCurrencyValue.displayValue} {auctionListings[0].buyoutCurrencyValue.symbol}
                               <span className="text-xs font-normal text-gray-500 dark:text-gray-400"> (PHP {0})</span>
                             </p>
@@ -155,12 +155,12 @@ export default function NFTItem() {
                       ) : (
                         <p className="text-2xl font-bold">
                           N/A
-                          <span className="text-xs font-normal text-gray-500 dark:text-gray-400">(Not Listed)</span>
+                          <span className="ml-2 text-xs font-normal text-gray-500 dark:text-gray-400">(Not Listed)</span>
                         </p>
                       )}
                     </div>
                   </div>
-                  <div className="basis-1/4">
+                  <div className="w-full sm:w-1/4">
                     {loadingDirectListings || loadingAuctionListings ? (
                       <div className="flex w-full flex-col gap-2">
                         <Skeleton className="h-10 w-full" />
