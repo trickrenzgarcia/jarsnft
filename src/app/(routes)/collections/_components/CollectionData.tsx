@@ -5,7 +5,7 @@ import PaginationControls from "./PaginationControls";
 import { CircleCheckBig } from "lucide-react";
 import { Network, Alchemy } from "alchemy-sdk";
 
-interface OwnerCounts {
+export interface OwnerCounts {
   [contract: string]: number;
 }
 
