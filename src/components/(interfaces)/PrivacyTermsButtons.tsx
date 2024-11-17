@@ -49,7 +49,6 @@ export default function PrivacyTermsButtons() {
                 <p>
                   Last Updated: <b>November 11,2024</b>
                 </p>
-                <P>1. Introduction</P>
                 <P>
                   Welcome to JARS, owned and operated by Alrae, Jeffrey, Patrick, Rigor, Inc. d/b/a JARS (“JARS,” “we,” “us”, or “our”). These Terms
                   of Service (“Terms”) govern your access to and use of the JARS website(s),software, tools, features, or functionalities provided on

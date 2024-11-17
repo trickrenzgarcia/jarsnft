@@ -1,63 +1,59 @@
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+"use client";
+
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn, ipfsToHttps } from "@/lib/utils";
 import { CollectionData } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+import useFloorPrice from "@/hooks/useFloorPrice";
+import { Loader2 } from "lucide-react";
 
 export default function NFTCard({ item }: { item: CollectionData }) {
+  const { floorPrice, isLoading: loadingFloorPrice } = useFloorPrice(item.contract);
   return (
     <Link href={`/collection/${item.contract}`}>
-      <Card className="p-2 border-2 bg-background rounded-lg hover:-translate-y-1 cursor-pointer hover:border-3 hover:border-violet-500 dark:hover:border-violet-500">
-        <CardHeader className='flex items-center justify-center aspect-square p-0'>
+      <Card className="cursor-pointer rounded-lg border-2 bg-background p-2 hover:-translate-y-1 hover:border-3 hover:border-violet-500 dark:hover:border-violet-500">
+        <CardHeader className="flex aspect-square items-center justify-center p-0">
           <Image
             src={ipfsToHttps(item.image)}
             alt={item.name}
             width={300}
             height={300}
-            loading='eager'
+            loading="eager"
             style={{
-              objectFit: 'cover',
-              objectPosition: 'center'
+              objectFit: "cover",
+              objectPosition: "center",
             }}
             className="h-full w-full rounded-md"
           />
         </CardHeader>
 
-        <CardContent className='p-6'>
-          <CardTitle className='flex items-center justify-center gap-2'>
-            <span className='truncate text-sm'>{item.name}</span>
+        <CardContent className="p-6">
+          <CardTitle className="flex items-center justify-center gap-2">
+            <span className="truncate text-sm">{item.name}</span>
             <span className="truncate text-sm">{item.symbol && `(${item.symbol})`}</span>
-            <span>{item.isVerified ? <Image
-              src="/assets/verify.png"
-              width={20}
-              height={20}
-              alt="verified logo"
-              className="h-fit"
-            /> : null}</span>
+            <span>{item.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" /> : null}</span>
           </CardTitle>
         </CardContent>
 
-        <CardFooter className={cn('w-full mt-2 flex justify-between rounded-lg p-3 bg-muted dark:bg-muted/30')}>
-          <div className='flex flex-col gap-1'>
-            <p className='text-xs truncate text-muted-foreground'>Floor</p>
-            <p className='text-sm font-semibold truncate'>100 MATIC</p>
+        <CardFooter className={cn("mt-2 flex w-full justify-between rounded-lg bg-muted p-3 dark:bg-muted/30")}>
+          <div className="flex flex-col gap-1">
+            <p className="truncate text-xs text-muted-foreground">Floor</p>
+            <p className="truncate text-sm font-semibold">
+              {loadingFloorPrice ? <Loader2 className="animate-spin" size={14} /> : `${floorPrice || 0} MATIC`}
+            </p>
           </div>
-          <div className='flex flex-col gap-1'>
-            <p className='text-xs truncate text-muted-foreground'>Volume</p>
-            <p className='text-sm font-semibold truncate'>100 MATIC</p>
+          <div className="flex flex-col gap-1">
+            <p className="truncate text-xs text-muted-foreground">Volume</p>
+            <p className="truncate text-sm font-semibold">100 MATIC</p>
           </div>
         </CardFooter>
-      </Card >
+      </Card>
     </Link>
   );
 
-  {/* <CardHeader className="relative h-80">
+  {
+    /* <CardHeader className="relative h-80">
         <Link href={`/collection/${collectionLink}`}>
           <Image
             src={image}
@@ -75,11 +71,17 @@ export default function NFTCard({ item }: { item: CollectionData }) {
             }} alt="logo"/>
           </div>
         </Link>
-      </CardHeader> */}
+      </CardHeader> */
+  }
 
-  {/* <CardFooter className="mt-10 flex flex-col items-start gap-4"> */ }
-  {/* Name & Badge */ }
-  {/* <div className="flex gap-2">
+  {
+    /* <CardFooter className="mt-10 flex flex-col items-start gap-4"> */
+  }
+  {
+    /* Name & Badge */
+  }
+  {
+    /* <div className="flex gap-2">
           <Link href={`/collection/${collectionLink}`}>
             <p className="font-bold">{name}</p>
           </Link>
@@ -91,10 +93,14 @@ export default function NFTCard({ item }: { item: CollectionData }) {
               alt="badge"
             />
           )}
-        </div> */}
+        </div> */
+  }
 
-  {/* Statistics */ }
-  {/* <div className="flex w-full justify-between">
+  {
+    /* Statistics */
+  }
+  {
+    /* <div className="flex w-full justify-between">
           <div className="flex flex-col">
             <p className="text-gray-500">Floor</p>
             <p className="font-bold">
@@ -111,5 +117,6 @@ export default function NFTCard({ item }: { item: CollectionData }) {
             </p>
           </div>
         </div>
-      </CardFooter> */}
+      </CardFooter> */
+  }
 }
