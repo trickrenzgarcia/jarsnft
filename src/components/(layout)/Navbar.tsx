@@ -68,7 +68,7 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/insights"
-                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-zinc-500"
+                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-violet-500"
               >
                 Insights
               </Link>
