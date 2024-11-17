@@ -383,6 +383,16 @@ export class JarsAPI {
         cache: "no-store",
       });
     },
+
+    /**
+     * Get listed nft counts
+     * @param contractAddress - The contract address
+     */
+    getListedNfts: async (contractAddress: string) => {
+      return await this.request<number>(`/getListedNfts?contractAddress=${contractAddress}`, {
+        cache: "no-store",
+      });
+    },
   };
 
   public nft = {

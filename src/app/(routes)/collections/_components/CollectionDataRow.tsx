@@ -8,6 +8,7 @@ import { CircleCheckBig, Loader2 } from "lucide-react";
 import { ipfsToHttps } from "@/lib/utils";
 import useFloorPrice from "@/hooks/useFloorPrice";
 import useVolumeAndSales from "@/hooks/useVolumeAndSales";
+import useListedNfts from '@/hooks/useListedNfts';
 
 type CollectionDataRowProps = {
   collection: CollectionData;
@@ -20,8 +21,7 @@ type CollectionDataRowProps = {
 export default function CollectionDataRow({ collection, ownerCounts, totalItems }: CollectionDataRowProps) {
   const { floorPrice, isLoading: loadingFloorPrice } = useFloorPrice(collection.contract);
   const { totalVolume, totalSales, isLoading: loadingVolumeSale, isError } = useVolumeAndSales(collection.contract);
-  // const { sales, isLoading: loadingSales } = useSales(collection.contract);
-  // const { listed, isLoading: loadingListed } = useListed(collection.contract);
+  const { listedCount, isLoading: loadingListedCount } = useListedNfts(collection.contract);
 
   const hide = () => {
     return "hidden lg:inline-block";
@@ -43,11 +43,10 @@ export default function CollectionDataRow({ collection, ownerCounts, totalItems 
       <div>{loadingFloorPrice ? <Loader2 className="animate-spin" size={14} /> : floorPrice}</div> {/* Floor Price */}
       {/* Replace */}
       {/* <div className={hide()}>{loadingVolume ? <Loader2 className="animate-spin" size={14} /> : volume}</div> Volume */}
-      <div className={hide()}>{loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalVolume}</div> {/* Volume*/}
+      <div className={hide()}>{loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalVolume!.toFixed(2)}</div> {/* Volume*/}
       {/* <div className={hide()}>{loadingSales ? <Loader2 className="animate-spin" size={14} /> : sales} </div> Sales */}
       <div className={hide()}>{loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalSales}</div> {/* Sales*/}
-      {/* <div className={hide()}>{loadingListed ? <Loader2 className="animate-spin" size={14} /> : listed} </div> Listed */}
-      <div className={hide()}></div> {/* Listed */}
+      <div className={hide()}>{loadingListedCount ? <Loader2 className="animate-spin" size={14} /> : listedCount} </div>
       <div className={hide()}>{totalItems[collection.contract] || 0}</div> {/* Total Items */}
       <div className={hide()}>
         {(() => {
