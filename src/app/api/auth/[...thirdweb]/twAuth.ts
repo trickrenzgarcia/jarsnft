@@ -3,8 +3,8 @@ import { PrivateKeyWallet } from "@thirdweb-dev/auth/evm";
 import jars from "@/lib/api";
 
 export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
-  domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN!,
-  wallet: new PrivateKeyWallet(process.env.AUTH_PRIVATE_KEY as string, "sepolia"),
+  domain: process.env.APP_URL!,
+  wallet: new PrivateKeyWallet(process.env.AUTH_PRIVATE_KEY as string, "polygon"),
   callbacks: {
     onLogin: async (address: string) => {
       const isUser = await jars.isUserExists(address);

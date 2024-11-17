@@ -6,6 +6,7 @@
 import { AlchemyContractMetadata, AlchemyNFTs, CollectionData, EventType, NFTCollection, NFTFavorite, StorageProfile, User } from "@/types";
 import { SimpleHashContracts } from "@/types/simple-hash";
 import { SimpleHashNFT } from "@/types/simple-hash/nft";
+import { APP_URL } from "./constant";
 
 export type JarsOptions = {
   baseUrl?: string;
@@ -17,7 +18,7 @@ export class JarsAPI {
   private secretKey: string;
 
   constructor(private options: JarsOptions) {
-    this.baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://jarsnft.com";
+    this.baseUrl = APP_URL!;
     this.secretKey = options.secretKey;
   }
 

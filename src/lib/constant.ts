@@ -1,12 +1,12 @@
-export const NFT_MARKETPLACE: string = process.env.NEXT_PUBLIC_NFTMARKETPLACE_JARS_CONTRACT;
-export const APP_URL: string = process.env.NEXT_PUBLIC_APP_URL;
-export const LOCAL_URL: string = process.env.LOCAL_URL;
-export const BACKEND_URL: string = process.env.BACKEND_URL;
-export const JWT_SECRET: string = process.env.JWT_SECRET;
-export const JWT_TOKEN: string = process.env.JWT_TOKEN;
-export const THIRDWEB_CLIENT_ID: string = process.env.THIRDWEB_CLIENT_ID;
-export const THIRDWEB_API_KEY: string = process.env.THIRDWEB_API_KEY;
-export const PRIVATE_KEY: string = process.env.PRIVATE_KEY;
+const env = process.env.NODE_ENV;
+
+export const NFT_MARKETPLACE = process.env.NEXT_PUBLIC_PLATFORM_ADDRESS;
+export const APP_URL = env === "production" ? process.env.APP_URL : "http://localhost:3000";
+export const API_URL = env === "production" ? process.env.API_URL : "http://localhost:3000/api";
+
+export const TH_CLIENT_ID = process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID;
+export const TH_API_KEY = process.env.NEXT_PUBLIC_THIRDWEB_API_KEY;
+export const TH_AUTH_DOMAIN = process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN;
 
 export const ACCEPTED_IMAGE_TYPES = [
   "image/png",

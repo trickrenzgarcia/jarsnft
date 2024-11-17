@@ -27,7 +27,6 @@ import { SimpleHashNFT } from "@/types/simple-hash/nft";
 import Image from "next/image";
 import React from "react";
 import { MdVerified } from "react-icons/md";
-import { useMakeBid } from "@thirdweb-dev/react";
 
 type MakeOfferButtonProps = {
   contractAddress: string;

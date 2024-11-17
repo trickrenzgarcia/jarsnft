@@ -37,7 +37,7 @@ export default function AddressClipboard({ address, content }: Props) {
         className="rounded-bl-none rounded-tl-none px-3 font-bold"
       >
         <Link
-          href={`https://sepolia.etherscan.io/address/${address}`}
+          href={`https://polygonscan.com/address/${address}`}
           target="_blank"
           className="flex h-full w-full items-center justify-center"
         >

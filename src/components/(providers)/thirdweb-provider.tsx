@@ -2,18 +2,19 @@
 
 import React from 'react'
 import { ThirdwebProvider as ThirdwebProviderV4 } from "@thirdweb-dev/react"
-import { Sepolia } from '@thirdweb-dev/chains'
+import { Polygon } from '@thirdweb-dev/chains'
+import { TH_API_KEY, TH_AUTH_DOMAIN, TH_CLIENT_ID } from '@/lib/constant'
 
 export default function ThirdwebProvider(
   { children }: Readonly<{ children: React.ReactNode }>
 ) {
   return (
     <ThirdwebProviderV4
-      activeChain={Sepolia}
-      clientId={process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID}
-      secretKey={process.env.NEXT_PUBLIC_THIRDWEB_API_KEY}
+      activeChain={Polygon}
+      clientId={TH_CLIENT_ID}
+      secretKey={TH_API_KEY}
       authConfig={{
-        domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN,
+        domain: TH_AUTH_DOMAIN,
         authUrl: '/api/auth'
       }}
     >

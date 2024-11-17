@@ -5,7 +5,7 @@ import { createWallet, inAppWallet } from "thirdweb/wallets";
 import { client } from "@/lib/thirdweb-sdk";
 import { useTheme } from "next-themes";
 import { generatePayload, isLoggedIn, login, logout } from "@/actions/login";
-import { sepolia } from "thirdweb/chains"
+import { polygon } from "thirdweb/chains"
 import LoginWelcomeScreen from "./LoginWelcomeScreen";
 
 const walletsWithAuth = [inAppWallet({
@@ -85,7 +85,7 @@ export default function ConnectWallet() {
             maxHeight: '53px'
           },
         }}
-        chain={sepolia}
+        chain={polygon}
       />
     </div>
   )
