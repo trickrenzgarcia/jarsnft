@@ -3,7 +3,6 @@ import Link from "next/link";
 import PaginationControls from "./PaginationControls";
 import { CircleCheckBig } from "lucide-react";
 import { Network, Alchemy } from "alchemy-sdk";
-import MarketPlaceProvider from "@/components/(providers)/marketplace-provider";
 import CollectionDataRow from "./CollectionDataRow";
 
 export interface OwnerCounts {
@@ -103,15 +102,13 @@ export default async function CollectionData({ searchParams }: { searchParams: {
         <h3>Verified</h3>
       </div>
 
-      <MarketPlaceProvider>
-        {slicedCollections.map(async (collection, i) => {
-          return (
-            <Link href={`/collection/${collection.contract}`} key={i}>
-              <CollectionDataRow collection={collection} ownerCounts={ownerCounts} totalItems={totalItems} />
-            </Link>
-          );
-        })}
-      </MarketPlaceProvider>
+      {slicedCollections.map(async (collection, i) => {
+        return (
+          <Link href={`/collection/${collection.contract}`} key={i}>
+            <CollectionDataRow collection={collection} ownerCounts={ownerCounts} totalItems={totalItems} />
+          </Link>
+        );
+      })}
 
       <PaginationControls
         searchParams={searchParams}

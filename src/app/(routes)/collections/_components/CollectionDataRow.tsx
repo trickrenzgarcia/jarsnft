@@ -7,8 +7,7 @@ import Image from "next/image";
 import { CircleCheckBig, Loader2 } from "lucide-react";
 import { ipfsToHttps } from "@/lib/utils";
 import useFloorPrice from "@/hooks/useFloorPrice";
-import { useMarketPlaceContext } from "@/components/hooks/use-context";
-import useTradingVolume from "@/hooks/useTradingVolume";
+import useVolumeAndSales from "@/hooks/useVolumeAndSales";
 
 type CollectionDataRowProps = {
   collection: CollectionData;
@@ -20,7 +19,7 @@ type CollectionDataRowProps = {
 
 export default function CollectionDataRow({ collection, ownerCounts, totalItems }: CollectionDataRowProps) {
   const { floorPrice, isLoading: loadingFloorPrice } = useFloorPrice(collection.contract);
-  // const { volume, isLoading: loadingVolume } = useTradingVolume(collection.contract);
+  const { totalVolume, totalSales, isLoading: loadingVolumeSale, isError } = useVolumeAndSales(collection.contract);
   // const { sales, isLoading: loadingSales } = useSales(collection.contract);
   // const { listed, isLoading: loadingListed } = useListed(collection.contract);
 
@@ -44,9 +43,9 @@ export default function CollectionDataRow({ collection, ownerCounts, totalItems 
       <div>{loadingFloorPrice ? <Loader2 className="animate-spin" size={14} /> : floorPrice}</div> {/* Floor Price */}
       {/* Replace */}
       {/* <div className={hide()}>{loadingVolume ? <Loader2 className="animate-spin" size={14} /> : volume}</div> Volume */}
-      <div className={hide()}></div> {/* Volume*/}
+      <div className={hide()}>{loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalVolume}</div> {/* Volume*/}
       {/* <div className={hide()}>{loadingSales ? <Loader2 className="animate-spin" size={14} /> : sales} </div> Sales */}
-      <div className={hide()}></div> {/* Sales*/}
+      <div className={hide()}>{loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalSales}</div> {/* Sales*/}
       {/* <div className={hide()}>{loadingListed ? <Loader2 className="animate-spin" size={14} /> : listed} </div> Listed */}
       <div className={hide()}></div> {/* Listed */}
       <div className={hide()}>{totalItems[collection.contract] || 0}</div> {/* Total Items */}
