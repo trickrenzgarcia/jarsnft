@@ -10,9 +10,10 @@ type Sales = ContractEvent<Record<string, any>>[] | undefined;
 
 export default function useVolumeAndSales(contractAddress: string) {
   const { contract } = useContract(NFT_MARKETPLACE, "marketplace-v3")
-  const { data: sales, isLoading: loadingEvents, isError: errorEvents } = useContractEvents(contract, "NewSale")
+  const { data: sales, isError: errorEvents } = useContractEvents(contract, "NewSale")
   const [totalVolume, setTotalVolume] = useState<number | undefined>(undefined)
   const [totalSales, setTotalSales] = useState<number | undefined>(undefined)
+  const [isLoading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     if(sales) {
@@ -24,12 +25,13 @@ export default function useVolumeAndSales(contractAddress: string) {
       setTotalVolume(0)
       setTotalSales(0)
     }
-  }, [contractAddress, contract, sales, loadingEvents, errorEvents])
+    setLoading(false)
+  }, [contractAddress, contract, sales, errorEvents])
 
   return {
     totalVolume,
     totalSales,
-    isLoading: loadingEvents,
+    isLoading,
     isError: errorEvents
   }
 }
