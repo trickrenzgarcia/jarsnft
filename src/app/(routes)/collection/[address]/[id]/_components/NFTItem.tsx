@@ -81,6 +81,7 @@ export default function NFTItem() {
         <p className="hover:underline">
           <Link href={`/collection/${address}`}>{collection.name}</Link>
         </p>
+
         {/* {collection.isVerified ? (
         <TooltipMsg message="Verified">
         <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
@@ -221,7 +222,6 @@ export default function NFTItem() {
         </div>
         <div className="flex w-full flex-col items-start justify-start gap-4 md:w-[350px] lg:w-[350px] xl:w-[24svw]">
           <TiltCard />
-          {/* More NFT Details */}
           {loadingNFT ? (
             <div className="w-full">
               <Skeleton className="h-7 w-full" />
