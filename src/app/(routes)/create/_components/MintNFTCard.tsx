@@ -12,7 +12,7 @@ import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { useDropzone } from "react-dropzone";
 import React, { useState, useCallback, useEffect, useRef, useMemo } from "react";
-import { cn, ipfsToCfIpfs, shortenFileName, truncate } from "@/lib/utils";
+import { cn, ipfsToCfIpfs, ipfsToHttps, shortenFileName, truncate } from "@/lib/utils";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { useAddress, useContract, useMintNFT, useSDK } from "@thirdweb-dev/react";
 import { Dropdown, Link, DropdownTrigger, DropdownMenu, DropdownItem, Accordion, AccordionItem, Spinner } from "@nextui-org/react";
@@ -259,7 +259,7 @@ export default function MintNFTCard() {
                             <>
                               <div className="relative flex h-[60px] w-[60px] items-center justify-center rounded-md bg-muted">
                                 <Image
-                                  src={selectedContract.image || ""}
+                                  src={ipfsToHttps(selectedContract.image) || ""}
                                   fill
                                   style={{ objectFit: "cover" }}
                                   alt={selectedContract.name}
