@@ -1,15 +1,10 @@
-"use client"
+"use client";
 
 import React, { useRef } from "react";
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useSpring,
-} from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
 import { ThirdwebNftMedia } from "@thirdweb-dev/react";
 import Image from "next/image";
-import { useNFTContext } from '@/components/hooks/use-context';
+import { useNFTContext } from "@/components/hooks/use-context";
 
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = 32.5 / 2;
@@ -58,36 +53,20 @@ const TiltCard = () => {
         transformStyle: "preserve-3d",
         transform,
       }}
-      className="relative m-auto h-[60svh] w-[inherit] rounded-xl bg-[#000000] dark:bg-[#ffffff]"
+      className="relative m-auto h-[26rem] w-[inherit] rounded-xl lg:block"
     >
       <div
         style={{
           transform: "translateZ(75px)",
           transformStyle: "preserve-3d",
         }}
-        className="absolute inset-3 grid place-content-center rounded-xl bg-[#ffffff] from-violet-700 to-violet-300 shadow-lg dark:bg-gradient-to-br"
+        className="absolute inset-0 grid place-content-center rounded-xl"
       >
         {nft &&
           (nft.metadata.image ? (
-            <ThirdwebNftMedia
-              metadata={nft.metadata}
-              width="485px"
-              height="485px"
-              style={{
-                minWidth: "320px",
-                maxWidth: "320px",
-                minHeight: "320px",
-                maxHeight: "320px",
-                borderRadius: "12px",
-              }}
-            />
+            <ThirdwebNftMedia className="h-[400px] max-h-[400px] w-[300px] max-w-[300px] rounded-[12px]" metadata={nft.metadata} />
           ) : (
-            <Image
-              src="/assets/placeholder/nft_placeholder.svg"
-              width={500}
-              height={500}
-              alt="image of an NFT"
-            />
+            <Image src="/assets/placeholder/nft_placeholder.svg" width={500} height={500} alt="image of an NFT" />
           ))}
       </div>
     </motion.div>
