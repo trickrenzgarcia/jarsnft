@@ -10,6 +10,7 @@ import { Loader2 } from "lucide-react";
 
 export default function NFTCard({ item }: { item: CollectionData }) {
   const { floorPrice, isLoading: loadingFloorPrice } = useFloorPrice(item.contract);
+  // const { volume, isLoading: loadingVolume } = useTradingVolume(collection.contract);
   return (
     <Link href={`/collection/${item.contract}`}>
       <Card className="cursor-pointer rounded-lg border-2 bg-background p-2 hover:-translate-y-1 hover:border-3 hover:border-violet-500 dark:hover:border-violet-500">
@@ -45,7 +46,7 @@ export default function NFTCard({ item }: { item: CollectionData }) {
           </div>
           <div className="flex flex-col gap-1">
             <p className="truncate text-xs text-muted-foreground">Volume</p>
-            <p className="truncate text-sm font-semibold">100 MATIC</p>
+            <p className="truncate text-sm font-semibold">{/* {loadingVolume ? <Loader2 className="animate-spin" size={14} /> : volume} */}</p>
           </div>
         </CardFooter>
       </Card>

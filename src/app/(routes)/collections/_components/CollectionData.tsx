@@ -1,5 +1,4 @@
 import jars from "@/lib/api";
-import Image from "next/image";
 import Link from "next/link";
 import PaginationControls from "./PaginationControls";
 import { CircleCheckBig } from "lucide-react";
