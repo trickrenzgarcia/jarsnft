@@ -41,12 +41,12 @@ export default function NFTCard({ item }: { item: CollectionData }) {
           <div className="flex flex-col gap-1">
             <p className="truncate text-xs text-muted-foreground">Floor</p>
             <p className="truncate text-sm font-semibold">
-              {loadingFloorPrice ? <Loader2 className="animate-spin" size={14} /> : `${floorPrice || 0} MATIC`}
+              {loadingFloorPrice ? <Loader2 className="animate-spin" size={14} /> : `${floorPrice || 0} POL`}
             </p>
           </div>
           <div className="flex flex-col gap-1">
             <p className="truncate text-xs text-muted-foreground">Volume</p>
-            <p className="truncate text-sm font-semibold">{/* {loadingVolume ? <Loader2 className="animate-spin" size={14} /> : volume} */}</p>
+            <p className="truncate text-sm font-semibold">{/* {loadingVolume ? <Loader2 className="animate-spin" size={14} /> : volume} */} POL</p>
           </div>
         </CardFooter>
       </Card>

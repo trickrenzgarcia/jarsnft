@@ -50,19 +50,19 @@ export default function Navbar() {
             <div className="hidden gap-1 lg:flex xl:mr-5">
               <Link
                 href="/create"
-                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-zinc-500"
+                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-violet-500"
               >
                 Create
               </Link>
               <Link
                 href="/collections"
-                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-zinc-500"
+                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-violet-500"
               >
                 Collections
               </Link>
               <Link
                 href="/coins"
-                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-zinc-500"
+                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-violet-500"
               >
                 Analytics
               </Link>
