@@ -31,7 +31,6 @@ export default function ContactForm() {
     const result = await sendEmail(data);
 
     if (result?.success) {
-      console.log({ data: result.data });
       toast.success("Email sent!");
       reset();
       return;
@@ -42,50 +41,25 @@ export default function ContactForm() {
   };
 
   return (
-      <div className="flex flex-col flex-1 justify-center gap-4">
-        <h1 className="mb-1 text-2xl font-semibold">Get Verified Now!</h1>
-      <form
-        onSubmit={handleSubmit(processForm)}
-        className="flex flex-col gap-4"
-        autoComplete="off"
-      >
+    <div className="flex flex-1 flex-col justify-center gap-4">
+      <h1 className="mb-1 text-2xl font-semibold">Get Verified Now!</h1>
+      <form onSubmit={handleSubmit(processForm)} className="flex flex-col gap-4" autoComplete="off">
         <div>
           <Input type="text" placeholder="Name" {...register("name")} />
-          {errors.name?.message && (
-            <p className="text-center text-md text-red-500">
-              {errors.name.message}
-            </p>
-          )}
+          {errors.name?.message && <p className="text-md text-center text-red-500">{errors.name.message}</p>}
         </div>
 
         <div>
           <Input type="email" placeholder="Email" {...register("email")} />
-          {errors.email?.message && (
-            <p className="text-center text-md text-red-500">
-              {errors.email.message}
-            </p>
-          )}
+          {errors.email?.message && <p className="text-md text-center text-red-500">{errors.email.message}</p>}
         </div>
 
         <div>
-          <Textarea
-            placeholder="Type your message"
-            className="w-full rounded-md h-"
-            autoComplete="off"
-            {...register("message")}
-          />
-          {errors.message?.message && (
-            <p className="text-center text-md text-red-500">
-              {errors.message.message}
-            </p>
-          )}
+          <Textarea placeholder="Type your message" className="h- w-full rounded-md" autoComplete="off" {...register("message")} />
+          {errors.message?.message && <p className="text-md text-center text-red-500">{errors.message.message}</p>}
         </div>
 
-        <Button
-          variant="outline"
-          disabled={isSubmitting}
-          className="font-bold dark:text-sky-500 w-[50%] self-center"
-        >
+        <Button variant="outline" disabled={isSubmitting} className="w-[50%] self-center font-bold dark:text-sky-500">
           {isSubmitting ? "Submitting..." : "Submit"}
         </Button>
       </form>

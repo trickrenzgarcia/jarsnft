@@ -13,12 +13,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function SearchInput(props: any) {
-  
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [dataResults, setDataResults] = useState<
-    NFTCollection[] | null | undefined
-  >([]);
+  const [dataResults, setDataResults] = useState<NFTCollection[] | null | undefined>([]);
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const router = useRouter();
 
@@ -28,7 +25,6 @@ export default function SearchInput(props: any) {
       const res = await jars.getSearchResults(searchQuery);
       setDataResults(res);
       setIsLoading(false);
-      console.log(dataResults);
     };
     if (searchQuery.length >= 3) {
       fetchSearch();
@@ -48,7 +44,7 @@ export default function SearchInput(props: any) {
 
   return (
     <div className="relative flex w-full flex-col">
-      <div className="flex gap-4 items-center">
+      <div className="flex items-center gap-4">
         <Input
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -57,7 +53,7 @@ export default function SearchInput(props: any) {
           placeholder="Search"
           className="rounded-lg"
         />
-        <button onClick={props.handleClick} className="block xl:hidden text-3xl">
+        <button onClick={props.handleClick} className="block text-3xl xl:hidden">
           &times;
         </button>
       </div>
@@ -71,19 +67,12 @@ export default function SearchInput(props: any) {
                 </div>
               ) : dataResults === null ? (
                 <div>
-                  <p className="text-sm text-muted-foreground">
-                    Search something
-                  </p>
+                  <p className="text-sm text-muted-foreground">Search something</p>
                 </div>
               ) : dataResults && dataResults.length > 0 ? (
                 <div className="flex flex-col">
                   {dataResults.map((result) => (
-                    <Link
-                      key={result.contract}
-                      href={`/collection/${result.contract}`}
-                      className="cursor-pointer"
-                      onClick={handleLinkClick}
-                    >
+                    <Link key={result.contract} href={`/collection/${result.contract}`} className="cursor-pointer" onClick={handleLinkClick}>
                       <div className="flex items-center gap-2 rounded-lg p-2 hover:bg-muted">
                         <div className="mr-2 flex aspect-square items-center justify-center">
                           <Image
@@ -113,9 +102,7 @@ export default function SearchInput(props: any) {
                 </div>
               ) : (
                 <div>
-                  <p className="text-sm text-muted-foreground">
-                    No results found.
-                  </p>
+                  <p className="text-sm text-muted-foreground">No results found.</p>
                 </div>
               )}
             </CardContent>

@@ -1,20 +1,20 @@
 "use client";
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import { NFTCollection } from "@/types";
-import { useContract, useContractEvents, useContractMetadata, useValidDirectListings, useValidEnglishAuctions } from '@thirdweb-dev/react';
-import NFTBannerLoading from './NFTBannerLoading';
-import { NFT_MARKETPLACE } from '@/lib/constant';
-import Image from 'next/image';
-import { cn, formatNumber } from '@/lib/utils';
-import { TooltipMsg } from '@/components/(interfaces)';
-import { MdVerified } from 'react-icons/md';
-import { ReadMore } from './ReadMore';
-import { SiPolygon } from 'react-icons/si';
-import { BigNumber, ethers } from 'ethers';
-import { Spinner } from '@nextui-org/spinner';
-import { useMarketPlaceContext, useListingsContext } from '@/components/hooks/use-context';
-import { shortenWalletAddress } from '@/lib/utils';
+import { useContract, useContractEvents, useContractMetadata, useValidDirectListings, useValidEnglishAuctions } from "@thirdweb-dev/react";
+import NFTBannerLoading from "./NFTBannerLoading";
+import { NFT_MARKETPLACE } from "@/lib/constant";
+import Image from "next/image";
+import { cn, formatNumber } from "@/lib/utils";
+import { TooltipMsg } from "@/components/(interfaces)";
+import { MdVerified } from "react-icons/md";
+import { ReadMore } from "./ReadMore";
+import { SiPolygon } from "react-icons/si";
+import { BigNumber, ethers } from "ethers";
+import { Spinner } from "@nextui-org/spinner";
+import { useMarketPlaceContext, useListingsContext } from "@/components/hooks/use-context";
+import { shortenWalletAddress } from "@/lib/utils";
 
 type NFTBannerProps = {
   address: string;
@@ -24,37 +24,42 @@ type NFTBannerProps = {
 type Details = {
   detail: string;
   value?: number;
-  currency?: "MATIC"
-}
+  currency?: "MATIC";
+};
 
-export default function NFTBanner({ address, collection}: NFTBannerProps) {
-  const [details, setDetails] = useState<Details[]>()
-  const { directListings, auctionListings } = useListingsContext()
-  const { contract } = useContract(address)
-  const { data: metadata, isLoading: loadingMetadata, isError: errorMetadata } = useContractMetadata(contract)
-  const { marketPlaceContract, loadingMarketPlace } = useMarketPlaceContext()
+export default function NFTBanner({ address, collection }: NFTBannerProps) {
+  const [details, setDetails] = useState<Details[]>();
+  const { directListings, auctionListings } = useListingsContext();
+  const { contract } = useContract(address);
+  const { data: metadata, isLoading: loadingMetadata, isError: errorMetadata } = useContractMetadata(contract);
+  const { marketPlaceContract, loadingMarketPlace } = useMarketPlaceContext();
 
-  const { data: sales, isLoading: salesLoading, isError: salesError } = useContractEvents(marketPlaceContract, "NewSale", {
+  const {
+    data: sales,
+    isLoading: salesLoading,
+    isError: salesError,
+  } = useContractEvents(marketPlaceContract, "NewSale", {
     queryFilter: {
       filters: {
-        assetContract: address
-      }
-    }
-  })
+        assetContract: address,
+      },
+    },
+  });
 
   useEffect(() => {
-    const listingCount = (directListings?.length || 0) + (auctionListings?.length || 0)
-    console.log(listingCount)
-    if (sales && sales.length > 0 ) {
+    const listingCount = (directListings?.length || 0) + (auctionListings?.length || 0);
+    if (sales && sales.length > 0) {
       const totalSalesPrice = sales.reduce((total, sale) => {
         const price = BigNumber.from(sale.data.totalPricePaid);
         return total.add(price);
       }, BigNumber.from(0));
 
-      const floorPrice = sales.reduce((min, sale) => {
-        const price = BigNumber.from(sale.data.totalPricePaid);
-        return price.lt(min) ? price : min;
-      }, BigNumber.from(sales[0].data.totalPricePaid)).toString();
+      const floorPrice = sales
+        .reduce((min, sale) => {
+          const price = BigNumber.from(sale.data.totalPricePaid);
+          return price.lt(min) ? price : min;
+        }, BigNumber.from(sales[0].data.totalPricePaid))
+        .toString();
 
       setDetails([
         {
@@ -78,29 +83,29 @@ export default function NFTBanner({ address, collection}: NFTBannerProps) {
         {
           detail: "Total Volume",
           value: 0,
-          currency: "MATIC"
+          currency: "MATIC",
         },
         {
           detail: "Floor Price",
           value: 0,
-          currency: "MATIC"
+          currency: "MATIC",
         },
         {
           detail: "Listed",
           value: listingCount,
         },
         { detail: "Owners(Unique)", value: 0 },
-      ])
+      ]);
     }
   }, [sales, address, collection, directListings, auctionListings]);
 
-  if(loadingMetadata || !metadata || salesLoading) {
-    return <NFTBannerLoading />
+  if (loadingMetadata || !metadata || salesLoading) {
+    return <NFTBannerLoading />;
   }
-  
+
   return (
     <main className="flex w-full flex-col bg-slate-600 text-white dark:bg-background">
-      <div className="relative h-[400px] min-h-[200px] w-auto ">
+      <div className="relative h-[400px] min-h-[200px] w-auto">
         <Image
           src={metadata.image || "/assets/collection_banner_placeholder.png"}
           fill
@@ -124,45 +129,40 @@ export default function NFTBanner({ address, collection}: NFTBannerProps) {
             <div className={cn("w-[500px]")}>
               <div className="flex w-full items-center gap-1 text-2xl font-semibold">
                 <div className="flex flex-row">
-                <h2 className="truncate">{metadata.name}</h2>
-                {collection.isVerified ? (
-                <TooltipMsg message="Verified">
-                  <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
-                    <MdVerified className="text-blue-500" />
-                  </div>
-                </TooltipMsg>
-                ):null}
+                  <h2 className="truncate">{metadata.name}</h2>
+                  {collection.isVerified ? (
+                    <TooltipMsg message="Verified">
+                      <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
+                        <MdVerified className="text-blue-500" />
+                      </div>
+                    </TooltipMsg>
+                  ) : null}
                 </div>
               </div>
-              <p className='text-gray-500 text-sm lg:text-2xl w-full'>{shortenWalletAddress(address)}</p>
+              <p className="w-full text-sm text-gray-500 lg:text-2xl">{shortenWalletAddress(address)}</p>
             </div>
           </div>
         </section>
-        <section className="w-full justify-between px-6 mt-6 lg:mt-4 lg:flex">
+        <section className="mt-6 w-full justify-between px-6 lg:mt-4 lg:flex">
           <div className="h-[75px] overflow-x-hidden text-sm font-semibold dark:text-gray-300 lg:h-[160px] lg:w-[500px]">
-            <ReadMore
-              id="collection-description"
-              text={metadata.description || ""}
-              amountOfWords={24}
-            />
+            <ReadMore id="collection-description" text={metadata.description || ""} amountOfWords={24} />
           </div>
           {/* Placeholder for data will get in Simplehash */}
-          <div className="items-end gap-4 mt-8 flex overflow-x-auto">
-            {details && details.map((detail: Details, i) => (
-              <div key={i} className={cn("w-full")}>
-                <div className="flex justify-center gap-2 text-2xl font-semibold">
-                  {detail.currency && <SiPolygon className="text-violet-500" />}
-                  <p>{detail.value !== undefined ? formatNumber(detail.value) : <Spinner />}</p>
-                  <p>{detail.currency}</p>
+          <div className="mt-8 flex items-end gap-4 overflow-x-auto">
+            {details &&
+              details.map((detail: Details, i) => (
+                <div key={i} className={cn("w-full")}>
+                  <div className="flex justify-center gap-2 text-2xl font-semibold">
+                    {detail.currency && <SiPolygon className="text-violet-500" />}
+                    <p>{detail.value !== undefined ? formatNumber(detail.value) : <Spinner />}</p>
+                    <p>{detail.currency}</p>
+                  </div>
+                  <p className="text-center text-sm font-normal text-gray-300 dark:text-gray-500">{detail.detail}</p>
                 </div>
-                <p className="text-center text-sm font-normal text-gray-300 dark:text-gray-500">
-                  {detail.detail}
-                </p>
-              </div>
-            ))}
+              ))}
           </div>
         </section>
       </div>
     </main>
-  )
+  );
 }
