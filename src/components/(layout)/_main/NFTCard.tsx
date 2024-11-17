@@ -48,7 +48,7 @@ export default function NFTCard({ item }: { item: CollectionData }) {
           <div className="flex flex-col gap-1">
             <p className="truncate text-xs text-muted-foreground">Volume</p>
             <p className="flex flex-row truncate text-sm font-semibold">
-              {loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalVolume ? `${totalVolume.toFixed(2)} POL` : "N/A"}
+              {loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalVolume ? `${totalVolume.toFixed(2)} POL` : "0"}
             </p>
           </div>
         </CardFooter>

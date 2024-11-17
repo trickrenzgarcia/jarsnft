@@ -42,7 +42,7 @@ export default function CollectionDataRow({ collection, ownerCounts, totalItems 
       </div>
       <div>{loadingFloorPrice ? <Loader2 className="animate-spin" size={14} /> : floorPrice}</div> {/* Floor Price */}
       <div className={hide()}>
-        {loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalVolume ? totalVolume.toFixed(2) : "N/A"}
+        {loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalVolume ? totalVolume.toFixed(2) : "0"}
       </div>{" "}
       {/* Volume*/}
       <div className={hide()}>{loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalSales}</div> {/* Sales*/}
