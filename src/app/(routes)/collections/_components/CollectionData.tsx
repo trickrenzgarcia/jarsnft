@@ -20,7 +20,6 @@ export default async function CollectionData({ searchParams }: { searchParams: {
   let currentCollections = await jars.getNFTCollections();
   const contractAddresses = currentCollections.map((collection) => collection.contract);
 
-  console.log(contractAddresses);
   // Get Total of Unique Owners (Alchemy API )
   const getOwnersForContracts = async (contractAddresses: string[]): Promise<OwnerCounts> => {
     const settings = {
