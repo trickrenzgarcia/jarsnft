@@ -1,7 +1,7 @@
-'use client'
+"use client";
 import { ConnectWallet, darkTheme, lightTheme } from "@thirdweb-dev/react";
 import { useTheme } from "next-themes";
-import React from 'react'
+import React from "react";
 import LoginWelcomeScreen from "./LoginWelcomeScreen";
 
 export default function ConnectWalletV4({ btnTitle }: { btnTitle: string | undefined }) {
@@ -24,5 +24,5 @@ export default function ConnectWalletV4({ btnTitle }: { btnTitle: string | undef
       }}
       theme={theme === "light" ? light : dark}
     />
-  )
+  );
 }
