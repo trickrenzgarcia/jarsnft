@@ -8,7 +8,7 @@ import { CircleCheckBig, Loader2 } from "lucide-react";
 import { ipfsToHttps } from "@/lib/utils";
 import useFloorPrice from "@/hooks/useFloorPrice";
 import useVolumeAndSales from "@/hooks/useVolumeAndSales";
-import useListedNfts from '@/hooks/useListedNfts';
+import useListedNfts from "@/hooks/useListedNfts";
 
 type CollectionDataRowProps = {
   collection: CollectionData;
@@ -41,10 +41,7 @@ export default function CollectionDataRow({ collection, ownerCounts, totalItems 
         <p className="h-fit max-w-[3rem] truncate sm:max-w-[6rem]">{collection.name}</p>
       </div>
       <div>{loadingFloorPrice ? <Loader2 className="animate-spin" size={14} /> : floorPrice}</div> {/* Floor Price */}
-      {/* Replace */}
-      {/* <div className={hide()}>{loadingVolume ? <Loader2 className="animate-spin" size={14} /> : volume}</div> Volume */}
       <div className={hide()}>{loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalVolume!.toFixed(2)}</div> {/* Volume*/}
-      {/* <div className={hide()}>{loadingSales ? <Loader2 className="animate-spin" size={14} /> : sales} </div> Sales */}
       <div className={hide()}>{loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalSales}</div> {/* Sales*/}
       <div className={hide()}>{loadingListedCount ? <Loader2 className="animate-spin" size={14} /> : listedCount} </div>
       <div className={hide()}>{totalItems[collection.contract] || 0}</div> {/* Total Items */}

@@ -8,15 +8,15 @@ import { Suspense } from "react";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const t1 = await jars.collection.getTrending("art")
-  const t2 = await jars.collection.getTrending("photography")
-  const t3 = await jars.collection.getTrending("pfp")
+  const t1 = await jars.collection.getTrending("art");
+  const t2 = await jars.collection.getTrending("photography");
+  const t3 = await jars.collection.getTrending("pfp");
 
   const collections = [
     { category: "Art", data: t1, link: "/category/art" },
     { category: "Photography", data: t2, link: "/category/photography" },
     { category: "Profile Picture", data: t3, link: "/category/pfp" },
-  ]
+  ];
 
   return (
     <main className="w-screen bg-background">
@@ -28,11 +28,7 @@ export default async function Home() {
           data={collections}
           renderItem={(collection, index) => (
             <section key={index} className="space-y-10">
-              <Trend
-                category={collection.category}
-                collections={collection.data}
-                link={collection.link}
-              />
+              <Trend category={collection.category} collections={collection.data} link={collection.link} />
               <Separator className="h-[2px] w-full" />
             </section>
           )}
