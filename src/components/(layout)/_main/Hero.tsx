@@ -12,7 +12,7 @@ const words = [
     text: "Future:",
   },
   {
-    text: "Discover",
+    text: "Discover,",
   },
   {
     text: "Create",

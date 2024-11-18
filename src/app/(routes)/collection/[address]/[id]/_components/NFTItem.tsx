@@ -22,7 +22,6 @@ import DisplayBidders from "./DisplayBidders";
 import DisplayActivities from "./DisplayActivities";
 import NftMetadata from "./NftMetadata";
 import TiltCard from "./TiltCard";
-import { TooltipMsg } from "@/components/(interfaces)";
 
 export default function NFTItem() {
   const router = useRouter();
@@ -92,7 +91,7 @@ export default function NFTItem() {
       </div>
       <div className="mx-4 mt-4 flex flex-col items-start justify-around gap-8 md:flex-row">
         <div className="w-full md:w-[50svw] lg:w-[50svw] xl:w-[50svw]">
-          <div className="flex w-full flex-col gap-4 py-4">
+          <div className="flex w-full flex-col gap-4">
             {nft ? <h1 className="text-4xl font-bold">{nft.metadata.name}</h1> : <Skeleton className="h-9 w-28" />}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -118,8 +117,7 @@ export default function NFTItem() {
                 {/* <Favorite favorite={likes} address={address} id={id} /> */}
               </div>
             </div>
-
-            <Card className="mt-4">
+            <Card>
               <CardContent className="w-full p-5">
                 <div className="flex basis-full flex-col items-start justify-between sm:flex-row sm:items-center">
                   <div className="mb-4 flex flex-col sm:mb-0">
@@ -204,31 +202,25 @@ export default function NFTItem() {
                 </div>
               </CardContent>
             </Card>
+            <div>
+              <TiltCard />
+            </div>
 
             {/* <DisplayBidders /> */}
             {auctionListings && auctionListings[0] && (
               <DisplayBidders contractAddress={address} auctionListing={auctionListings} marketPlaceContract={marketPlaceContract} />
             )}
-
-            {/* <DisplayActivities /> */}
-            <DisplayActivities
-              tokenId={tokenId}
-              contractAddress={address}
-              directListing={directListings}
-              auctionListing={auctionListings}
-              marketPlaceContract={marketPlaceContract}
-            />
           </div>
         </div>
         <div className="flex w-full flex-col items-start justify-start gap-4 md:w-[350px] lg:w-[350px] xl:w-[24svw]">
-          <TiltCard />
-          {loadingNFT ? (
-            <div className="w-full">
-              <Skeleton className="h-7 w-full" />
-            </div>
-          ) : (
-            <NftMetadata />
-          )}
+          <NftMetadata />
+          <DisplayActivities
+            tokenId={tokenId}
+            contractAddress={address}
+            directListing={directListings}
+            auctionListing={auctionListings}
+            marketPlaceContract={marketPlaceContract}
+          />
         </div>
       </div>
     </div>
