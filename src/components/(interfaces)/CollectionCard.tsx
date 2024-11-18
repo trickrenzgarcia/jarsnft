@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { CollectionData } from '@/types';
 import Image from 'next/image';
-import { cn } from "@/lib/utils";
+import { cn, ipfsToHttps } from "@/lib/utils";
 
 type CollectionCardProps = {
   item: CollectionData;
@@ -13,7 +13,7 @@ export default function CollectionCard({ item, hideFloorPrice = true }: Collecti
     <Card key={item.contract} className='p-2 border-2 bg-background rounded-lg hover:-translate-y-1 cursor-pointer hover:border-3 hover:border-violet-500 dark:hover:border-violet-500'>
       <CardHeader className='flex items-center justify-center aspect-square p-0'>
         <Image
-          src={item.image}
+          src={ipfsToHttps(item.image)}
           alt={item.name}
           width={300}
           height={300}

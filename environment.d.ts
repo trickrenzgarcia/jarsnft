@@ -8,6 +8,7 @@ declare global {
       PLATFORM_ADDRESS: string;
       JWT_SECRET: string;
       JWT_TOKEN: string;
+      NEXT_PUBLIC_JWT_TOKEN: string;
       DATABASE_URL: string;
       DB_HOST: string;
       DB_PORT: string;
