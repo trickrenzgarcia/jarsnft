@@ -35,22 +35,14 @@ import { Tooltip } from "@nextui-org/react";
 import useVerifiedProfile from "@/hooks/useVerifiedProfile";
 import ShareProfileDialog from "./ShareProfileDialog";
 
-export default function ProfileBanner({
-  user: userContext,
-}: {
-  user: ProfileQuery;
-}) {
+export default function ProfileBanner({ user: userContext }: { user: ProfileQuery }) {
   const { user, isLoading } = userContext;
 
   const [profile, setProfile] = useState<StorageProfile | undefined>(undefined);
   const [profileLoading, setProfileLoading] = useState(false);
   const [hoverAvatar, setHoverAvatar] = useState(false);
   const [copyLink, setCopyLink] = useState(false);
-  const {
-    avatar,
-    isLoading: loadingAvatar,
-    isError: errorAvatar,
-  } = useAvatarNFT();
+  const { avatar, isLoading: loadingAvatar, isError: errorAvatar } = useAvatarNFT();
   const { isVerified, isLoading: loadingVerified } = useVerifiedProfile();
 
   if (isLoading) {
@@ -86,17 +78,17 @@ export default function ProfileBanner({
             fill
             style={{ objectFit: "cover", opacity: 0.7 }}
             alt="Banner"
-            className="rounded-none md:rounded-lg hover:bg-black"
+            className="rounded-none hover:bg-black md:rounded-lg"
           />
         ) : (
-          <Skeleton className="h-[100px] w-full rounded-none md:rounded-t-lg md:h-[300px]" />
+          <Skeleton className="h-[100px] w-full rounded-none md:h-[300px] md:rounded-t-lg" />
         )}
       </div>
 
       {/* Banner on mobile screen */}
       <div className="absolute left-0 right-0 block h-[250px] w-full md:hidden">
-        <div className="flex flex-col h-full items-start mx-4 justify-center">
-          <div className="w-full mt-8 flex justify-between items-end">
+        <div className="mx-4 flex h-full flex-col items-start justify-center">
+          <div className="mt-8 flex w-full items-end justify-between">
             <EditModeAvatarDialog address={user.address}>
               <div className="relative flex h-[100px] w-[100px] select-none items-center justify-center rounded-full border-2 border-fuchsia-600 p-[2px]">
                 <div
@@ -105,12 +97,7 @@ export default function ProfileBanner({
                   onMouseLeave={() => setHoverAvatar(false)}
                 >
                   <div className="flex h-full w-full items-center justify-center">
-                    <MdOutlineModeEdit
-                      className={cn(
-                        "text-2xl text-white",
-                        hoverAvatar ? "block" : "hidden",
-                      )}
-                    />
+                    <MdOutlineModeEdit className={cn("text-2xl text-white", hoverAvatar ? "block" : "hidden")} />
                   </div>
                 </div>
 
@@ -134,20 +121,18 @@ export default function ProfileBanner({
             </EditModeAvatarDialog>
             <div className="flex gap-2">
               <ShareProfileDialog user={user} copyLink={copyLink} setCopyLink={setCopyLink} variant="ghost" size="sm" />
-              <Button className="p-2" size="sm" variant="outline">Upload Cover</Button>
+              <Button className="p-2" size="sm" variant="outline">
+                Upload Cover
+              </Button>
             </div>
           </div>
-          
 
           <div className="w-full">
-            <div className="text-2xl my-2 font-bold flex gap-1 items-center">
-              <h1 className="truncate text-start">
-                {(user.session.name && truncate(user.session.name, 20)) ||
-                  shortenAddress(user.address)}
-              </h1>
+            <div className="my-2 flex items-center gap-1 text-2xl font-bold">
+              <h1 className="truncate text-start">{(user.session.name && truncate(user.session.name, 20)) || shortenAddress(user.address)}</h1>
               <MdVerified className={cn(isVerified ? "text-blue-500" : "text-gray-400 dark:text-gray-400")} />
             </div>
-           
+
             <AddressClipboard address={user.address} content="Copy Address" />
           </div>
         </div>
@@ -165,12 +150,7 @@ export default function ProfileBanner({
                   onMouseLeave={() => setHoverAvatar(false)}
                 >
                   <div className="flex h-full w-full items-center justify-center">
-                    <MdOutlineModeEdit
-                      className={cn(
-                        "text-2xl text-white",
-                        hoverAvatar ? "block" : "hidden",
-                      )}
-                    />
+                    <MdOutlineModeEdit className={cn("text-2xl text-white", hoverAvatar ? "block" : "hidden")} />
                   </div>
                 </div>
 
@@ -193,39 +173,25 @@ export default function ProfileBanner({
               </div>
             </EditModeAvatarDialog>
 
-            <div
-              className={cn(
-                open_sans.className,
-                "flex  max-w-[400px] flex-col gap-2 md:max-w-[400px] lg:max-w-[540px] xl:max-w-[640px]",
-              )}
-            >
+            <div className={cn(open_sans.className, "flex max-w-[400px] flex-col gap-2 md:max-w-[400px] lg:max-w-[540px] xl:max-w-[640px]")}>
               <div className="flex w-full items-center gap-1 text-4xl font-bold">
-                <div className="truncate">
-                  <h2 className="truncate text-zinc-100">
-                    {user.session.name || user.address}
-                  </h2>
+                <div className="truncate rounded-md bg-black px-4 py-2">
+                  <h2 className="truncate text-zinc-100">{user.session.name || user.address}</h2>
                 </div>
                 <TooltipMsg message={isVerified ? "Verified" : "Not Verified"} delay={250}>
-                  <Link href="/me">
-                    <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
-                      {!loadingVerified && (
-                        <MdVerified className={cn(isVerified ? "text-blue-500" : "text-gray-400 dark:text-gray-400")} />
-                      )}
-                    </div>
-                  </Link>
+                  <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
+                    {!loadingVerified && <MdVerified className={cn(isVerified ? "text-blue-500" : "text-gray-400 dark:text-gray-400")} />}
+                  </div>
                 </TooltipMsg>
               </div>
               <div>
-                <AddressClipboard
-                  address={user.address}
-                  content="Copy Address"
-                />
+                <AddressClipboard address={user.address} content="Copy Address" />
               </div>
             </div>
           </div>
           <div className="flex gap-2">
             <ShareProfileDialog user={user} copyLink={copyLink} setCopyLink={setCopyLink} />
-            
+
             <Button className="hidden gap-2 p-2 md:flex" variant="outline">
               <FiEdit3 className="text-xl lg:hidden" />
               <span className="hidden lg:block">Upload Cover</span>

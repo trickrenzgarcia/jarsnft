@@ -16,11 +16,7 @@ export default function AddressClipboard({ address, content }: Props) {
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
   return (
     <ButtonGroup className="gap-[2px]" radius="sm">
-      <Tooltip
-        isOpen={isTooltipOpen}
-        onOpenChange={(open) => setIsTooltipOpen(open)}
-        content={content}
-      >
+      <Tooltip isOpen={isTooltipOpen} onOpenChange={(open) => setIsTooltipOpen(open)} content={content} placement="bottom">
         <Button
           variant="outline"
           className="rounded-br-none rounded-tr-none text-xs font-bold"
@@ -32,15 +28,8 @@ export default function AddressClipboard({ address, content }: Props) {
         </Button>
       </Tooltip>
 
-      <Button
-        variant="outline"
-        className="rounded-bl-none rounded-tl-none px-3 font-bold"
-      >
-        <Link
-          href={`https://sepolia.etherscan.io/address/${address}`}
-          target="_blank"
-          className="flex h-full w-full items-center justify-center"
-        >
+      <Button variant="outline" className="rounded-bl-none rounded-tl-none px-3 font-bold">
+        <Link href={`https://sepolia.etherscan.io/address/${address}`} target="_blank" className="flex h-full w-full items-center justify-center">
           <FaExternalLinkAlt className="text-sm dark:text-gray-400" />
         </Link>
       </Button>
