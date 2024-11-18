@@ -35,7 +35,7 @@ export default function NftMetadata() {
             {/* @ts-ignore */}
             {nft &&
               nft.metadata.attributes &&
-              nft.metadata.attributes.map((attr: NftAttributes, i) => (
+              (nft.metadata.attributes as NftAttributes[]).map((attr: NftAttributes, i) => (
                 <div key={i} className="flex justify-between gap-2 rounded-lg px-4 py-3 text-gray-500 hover:bg-muted/50 dark:text-gray-400">
                   <p className="text-lg">{attr.trait_type}</p>
                   <p className="text-lg font-semibold">{attr.value}</p>
