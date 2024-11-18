@@ -233,7 +233,7 @@ export default function CreateAuction({ sellState, setSellState }: CreateAuction
                 <FormControl>
                   <Input
                     type="number"
-                    placeholder="0.0 MATIC"
+                    placeholder="0.0 POL"
                     {...field}
                     onKeyDown={handleKeyDown}
                     onPaste={handlePaste}
@@ -255,7 +255,7 @@ export default function CreateAuction({ sellState, setSellState }: CreateAuction
                 <FormControl>
                   <Input
                     type="number"
-                    placeholder="0.0 MATIC"
+                    placeholder="0.0 POL"
                     {...field}
                     onKeyDown={handleKeyDown}
                     onPaste={handlePaste}

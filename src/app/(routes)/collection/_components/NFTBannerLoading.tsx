@@ -9,12 +9,12 @@ const details = [
   {
     detail: "Total Volume",
     value: 1,
-    currency: "MATIC",
+    currency: "POL",
   },
   {
     detail: "Floor Price",
     value: 1,
-    currency: "MATIC",
+    currency: "POL",
   },
   { detail: "Listed", value: 1 },
   { detail: "Owners(Unique)", value: 1 },

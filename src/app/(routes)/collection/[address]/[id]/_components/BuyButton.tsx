@@ -212,7 +212,7 @@ export default function BuyButton({ nft, listings, auctionListing }: BuyButtonPr
             <p className="text-gray-500">PHP {amountInPhp}</p>
           </div>
           <div className="my-6 flex justify-between px-4">
-            <p>Your MATIC balance</p>
+            <p>Your POL balance</p>
             <p>{balance ? `${parseFloat(balance.displayValue).toFixed(3)} ${balance.symbol}` : "Not Logged In"}</p>
           </div>
 

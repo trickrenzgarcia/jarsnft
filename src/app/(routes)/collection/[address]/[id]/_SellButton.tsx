@@ -38,7 +38,7 @@ export default function SellButton({ image, name, collection, isVerified }: Sell
               <h2>{collection}</h2>
               {isVerified && <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" />}
             </div>
-            <p className="mt-auto">Last sale: 000 MATIC</p>
+            <p className="mt-auto">Last sale: 000 POL</p>
           </div>
         </div>
 

@@ -40,11 +40,11 @@ export default function NFTCard({nft, isHidePrice = true }: NFTCardProps) {
       <CardFooter className={cn(isHidePrice && 'hidden', 'w-full sm:flex justify-between rounded-sm p-3 bg-muted dark:bg-muted/30')}>
         <div className='flex flex-col gap-1'>
           <p className='text-xs truncate text-muted-foreground'>Price</p>
-          <p className='text-sm font-semibold truncate'>100 MATIC</p>
+          <p className='text-sm font-semibold truncate'>100 POL</p>
         </div>
         <div className='flex flex-col gap-1'>
           <p className='text-xs truncate text-muted-foreground'>Highest Bid</p>
-          <p className='text-sm font-semibold truncate'>100 MATIC</p>
+          <p className='text-sm font-semibold truncate'>100 POL</p>
         </div>
       </CardFooter>
     </Card>

@@ -24,7 +24,7 @@ type NFTBannerProps = {
 type Details = {
   detail: string;
   value?: number;
-  currency?: "MATIC";
+  currency?: "POL";
 };
 
 export default function NFTBanner({ address, collection }: NFTBannerProps) {
@@ -65,12 +65,12 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
         {
           detail: "Total Volume",
           value: totalSalesPrice ? parseFloat(ethers.utils.formatEther(totalSalesPrice)) : 0,
-          currency: "MATIC",
+          currency: "POL",
         },
         {
           detail: "Floor Price",
           value: floorPrice ? parseFloat(ethers.utils.formatEther(floorPrice)) : 0,
-          currency: "MATIC",
+          currency: "POL",
         },
         {
           detail: "Listed",
@@ -83,12 +83,12 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
         {
           detail: "Total Volume",
           value: 0,
-          currency: "MATIC",
+          currency: "POL",
         },
         {
           detail: "Floor Price",
           value: 0,
-          currency: "MATIC",
+          currency: "POL",
         },
         {
           detail: "Listed",

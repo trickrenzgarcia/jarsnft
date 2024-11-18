@@ -56,11 +56,11 @@ export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
                     <div className="flex w-full justify-between gap-1 text-sm">
                       <div>
                         <p className="">Floor</p>
-                        <p className="font-semibold">{0.1} MATIC</p>
+                        <p className="font-semibold">{0.1} POL</p>
                       </div>
                       <div>
                         <p className="">Total Volume</p>
-                        <p className="font-semibold">{100} MATIC</p>
+                        <p className="font-semibold">{100} POL</p>
                       </div>
                     </div>
                   </CardFooter>

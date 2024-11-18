@@ -93,7 +93,7 @@ export default function SearchInput(props: any) {
                         </div>
                         <div className="ml-auto">
                           <p className="text-sm text-gray-400">
-                            {result.viewCount} {` MATIC`}
+                            {result.viewCount} {`POL`}
                           </p>
                         </div>
                       </div>
