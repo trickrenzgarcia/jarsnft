@@ -8,7 +8,7 @@ const jars = new JarsAPI({
 });
 
 export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
-  domain: process.env.APP_URL!,
+  domain: "https://www.jarsnft.com",
   wallet: new PrivateKeyWallet(process.env.AUTH_PRIVATE_KEY as string, "polygon"),
   callbacks: {
     onLogin: async (address: string) => {

@@ -6,7 +6,6 @@
 import { AlchemyContractMetadata, AlchemyNFTs, CollectionData, EventType, NFTCollection, NFTFavorite, StorageProfile, User } from "@/types";
 import { SimpleHashContracts } from "@/types/simple-hash";
 import { SimpleHashNFT } from "@/types/simple-hash/nft";
-import { APP_URL } from "./constant";
 
 export type JarsOptions = {
   baseUrl?: string;
@@ -18,8 +17,8 @@ export class JarsAPI {
   private secretKey: string;
 
   constructor(private options: JarsOptions) {
-    this.baseUrl = "https://jarsnft.com";
-    this.secretKey = options.secretKey || process.env.JWT_TOKEN;
+    this.baseUrl = options.baseUrl || process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN;
+    this.secretKey = options.secretKey || process.env.NEXT_PUBLIC_JWT_TOKEN;
   }
 
   private async request<TData>(endPoint: string, configs?: RequestInit): Promise<TData> {
@@ -484,6 +483,7 @@ export class JarsAPI {
 }
 
 const jars = new JarsAPI({
+  baseUrl: process.env.NEXT_PUBLIC_APP_URL,
   secretKey: process.env.NEXT_PUBLIC_JWT_TOKEN!,
 });
 
