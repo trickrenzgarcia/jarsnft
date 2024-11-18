@@ -66,3 +66,13 @@ deploy.post("/nft-collection", async (c) => {
 
   return c.json(contractData, 200);
 });
+
+deploy.get("polygon", async (c) => {
+  const contract = getContract({
+    client: client,
+    chain,
+    address: "0xDEF2a9B7e68b0849418Fed04A6298520705BCE98",
+  });
+  const metadata = (await getContractMetadata({ contract })) as ContractMetadata;
+  return c.json(metadata, 200);
+});
