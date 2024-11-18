@@ -18,8 +18,8 @@ export class JarsAPI {
   private secretKey: string;
 
   constructor(private options: JarsOptions) {
-    this.baseUrl = APP_URL!;
-    this.secretKey = options.secretKey;
+    this.baseUrl = "https://jarsnft.com";
+    this.secretKey = options.secretKey || process.env.JWT_TOKEN;
   }
 
   private async request<TData>(endPoint: string, configs?: RequestInit): Promise<TData> {
