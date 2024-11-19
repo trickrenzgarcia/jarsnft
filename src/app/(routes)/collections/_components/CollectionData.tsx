@@ -23,8 +23,8 @@ export default async function CollectionData({ searchParams }: { searchParams: {
   // Get Total of Unique Owners (Alchemy API )
   const getOwnersForContracts = async (contractAddresses: string[]): Promise<OwnerCounts> => {
     const settings = {
-      apiKey: process.env.SEPOLIA_ALCHEMY_API_KEY, // Alchemy API KEY
-      network: Network.ETH_SEPOLIA, // REPLACE WITH MAINNET IF DEPLOYED
+      apiKey: process.env.POLYGON_ALCHEMY_API_KEY, // Alchemy API KEY
+      network: Network.MATIC_MAINNET, // REPLACE WITH MAINNET IF DEPLOYED
     };
     const alchemy = new Alchemy(settings);
     const counts: OwnerCounts = {};
@@ -47,7 +47,7 @@ export default async function CollectionData({ searchParams }: { searchParams: {
 
     try {
       const promises = contractAddresses.map((address) =>
-        fetch(`https://api.simplehash.com/api/v0/nfts/collections/ethereum-sepolia/${address}?limit=1`, {
+        fetch(`https://api.simplehash.com/api/v0/nfts/collections/polygon/${address}?limit=1`, {
           method: "GET",
           headers: {
             "X-API-KEY": process.env.SIMPLEHASH_API_KEY,

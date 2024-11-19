@@ -1,7 +1,7 @@
 import { Category, CollectionPopularData, CollectionResponse } from "@/types";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { BACKEND_URL } from "./constant";
+import { APP_URL } from "./constant";
 import { ethers } from "ethers";
 
 export function cn(...inputs: ClassValue[]) {
@@ -156,7 +156,7 @@ export function slugify(text: string) {
     .replace(/[^\w-]+/g, "");
 }
 
-const BASE_URL = BACKEND_URL + "/v1";
+const BASE_URL = APP_URL + "/v1";
 
 export async function getPopularCollections() {
   const response = fetch(`${BASE_URL}/collections/popular`);

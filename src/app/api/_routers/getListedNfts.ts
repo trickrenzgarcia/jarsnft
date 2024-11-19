@@ -2,7 +2,7 @@ import { replacer } from "@/lib/utils";
 import { contractAddress } from "@/schema/zod";
 import { Hono } from "hono";
 import { createThirdwebClient, getContract } from "thirdweb";
-import { sepolia } from "thirdweb/chains";
+import { polygon } from "thirdweb/chains";
 import { DirectListing, EnglishAuction, getAllAuctions, getAllListings } from "thirdweb/extensions/marketplace";
 
 export const getListedNfts = new Hono();
@@ -22,7 +22,7 @@ getListedNfts.get("/", async (c) => {
   const contract = getContract({
     client,
     address: process.env.PLATFORM_ADDRESS!,
-    chain: sepolia,
+    chain: polygon,
   });
 
   const a1 = getAllAuctions({

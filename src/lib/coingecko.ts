@@ -17,14 +17,14 @@ export async function getMaticPriceInPHP(value: string): Promise<string> {
     },
     method: "GET",
     next: {
-      revalidate: 60 * 60 * 3
+      revalidate: 60 * 60 * 3,
     },
-    cache: "force-cache"
+    cache: "force-cache",
   });
   const data = await response.json();
 
   let rate = data["matic-network"].php;
   let amount = parseFloat(value);
-  
+
   return (rate * amount).toFixed(3);
 }

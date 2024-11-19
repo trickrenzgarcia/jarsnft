@@ -4,7 +4,7 @@ import jars from "@/lib/api";
 
 export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
   domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN!,
-  wallet: new PrivateKeyWallet(process.env.AUTH_PRIVATE_KEY as string, "sepolia"),
+  wallet: new PrivateKeyWallet(process.env.AUTH_PRIVATE_KEY as string, "polygon"),
   callbacks: {
     onLogin: async (address: string) => {
       const isUser = await jars.isUserExists(address);
