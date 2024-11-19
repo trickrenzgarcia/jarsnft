@@ -3,6 +3,7 @@
 import React from 'react'
 import { ThirdwebProvider as ThirdwebProviderV4 } from "@thirdweb-dev/react"
 import { Polygon } from '@thirdweb-dev/chains'
+import { TH_API_KEY, TH_AUTH_DOMAIN, TH_CLIENT_ID } from '@/lib/constant'
 
 export default function ThirdwebProvider(
   { children }: Readonly<{ children: React.ReactNode }>
@@ -10,10 +11,10 @@ export default function ThirdwebProvider(
   return (
     <ThirdwebProviderV4
       activeChain={Polygon}
-      clientId={process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID}
-      secretKey={process.env.NEXT_PUBLIC_THIRDWEB_API_KEY}
+      clientId={TH_CLIENT_ID}
+      secretKey={TH_API_KEY}
       authConfig={{
-        domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN,
+        domain: TH_AUTH_DOMAIN,
         authUrl: '/api/auth'
       }}
     >
