@@ -12,7 +12,6 @@ type Props = {
 };
 
 export default function UserNFTs({ nfts }: Props) {
-
   return (
     <div className="flex w-full flex-col rounded-2xl border p-2">
       <div className="m-4 text-lg font-bold">
@@ -26,44 +25,27 @@ export default function UserNFTs({ nfts }: Props) {
         </div>
       ) : (
         (nfts && (
-          <div className="w-full columns-2 space-y-4 p-5 sm:columns-3 md:columns-4 lg:columns-5 xl:grid-cols-5 2xl:grid-cols-6">
+          // <div className="w-full columns-2 space-y-4 p-5 sm:columns-3 md:columns-4 lg:columns-5 xl:grid-cols-5 2xl:grid-cols-6">
+          <div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
             {nfts?.map((nft) => (
-              <div key={nft.name + nft.token_id} className="w-full rounded-2xl">
+              <div key={nft.name + nft.token_id} className="mx-auto rounded-2xl p-4">
                 <HoverCard>
                   <HoverCardTrigger asChild>
-                    <Link
-                      href={`/collection/${nft.contract_address}/${nft.token_id}`}
-                    >
+                    <Link href={`/collection/${nft.contract_address}/${nft.token_id}`}>
                       <Image
-                        width={512}
-                        height={512}
-                        src={
-                          nft.image_url ||
-                          "/assets/placeholder/nft_placeholder.svg"
-                        }
+                        width={350}
+                        height={350}
+                        src={nft.image_url || "/assets/placeholder/nft_placeholder.svg"}
                         alt={nft.name}
                         className="hover:-translate-y-[2px] hover:border-2"
                       />
                     </Link>
                   </HoverCardTrigger>
                   <HoverCardContent className="flex w-fit bg-background">
-                    <Image
-                      isBlurred
-                      width={100}
-                      height={100}
-                      src={
-                        nft.image_url ||
-                        "/assets/placeholder/nft_placeholder.svg"
-                      }
-                      alt={nft.name}
-                    />
+                    <Image isBlurred width={100} height={100} src={nft.image_url || "/assets/placeholder/nft_placeholder.svg"} alt={nft.name} />
                     <div className="flex w-full max-w-72 flex-col px-2">
-                      <div className="truncate text-lg font-bold">
-                        {nft.name}
-                      </div>
-                      <div className="truncate text-sm">
-                        {nft.contract.name}
-                      </div>
+                      <div className="truncate text-lg font-bold">{nft.name}</div>
+                      <div className="truncate text-sm">{nft.contract.name}</div>
                     </div>
                   </HoverCardContent>
                 </HoverCard>
@@ -81,14 +63,12 @@ export default function UserNFTs({ nfts }: Props) {
                 </div>
               ))}
             </div>
-            <div className="absolute block  w-full">
-              <h1 className="bottom-0 top-0 h-full w-full text-center">
-                No NFTs Found
-              </h1>
+            <div className="absolute block w-full">
+              <h1 className="bottom-0 top-0 h-full w-full text-center">No NFTs Found</h1>
             </div>
           </div>
         )
       )}
     </div>
-  )
+  );
 }

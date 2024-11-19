@@ -6,6 +6,7 @@ import { appConfig } from "@/lib/app.config";
 import { cn } from "@/lib/utils";
 import { ThemeProvider, ThirdwebProviderV4, UserProvider } from "@/components/(providers)";
 import ChatbotModal from "@/components/(layout)/_main/ChatbotModal";
+import ModeToggle from "@/components/(interfaces)/ModeToggle";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,10 +38,11 @@ export default function RootLayout({
           <ThirdwebProviderV5>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
               <UserProvider>{children}</UserProvider>
+              <ModeToggle className="fixed bottom-0 right-0 z-20 mt-2 rounded-lg p-2" />
             </ThemeProvider>
           </ThirdwebProviderV5>
         </ThirdwebProviderV4>
-        <ChatbotModal className="fixed bottom-0 right-0 z-10 mt-2 p-2" />
+        <ChatbotModal className="fixed bottom-0 right-0 z-10 rounded-lg p-2 pb-16" />
       </body>
     </html>
   );

@@ -16,11 +16,7 @@ export default function AddressClipboard({ address, content }: Props) {
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
   return (
     <ButtonGroup className="gap-[2px]" radius="sm">
-      <Tooltip
-        isOpen={isTooltipOpen}
-        onOpenChange={(open) => setIsTooltipOpen(open)}
-        content={content}
-      >
+      <Tooltip isOpen={isTooltipOpen} onOpenChange={(open) => setIsTooltipOpen(open)} content={content} placement="bottom">
         <Button
           variant="outline"
           className="rounded-br-none rounded-tr-none text-xs font-bold"

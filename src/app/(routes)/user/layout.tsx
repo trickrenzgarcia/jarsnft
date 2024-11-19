@@ -1,15 +1,11 @@
-import { Navbar } from "@/components/(layout)";
+import { Footer, Navbar } from "@/components/(layout)";
 
-export default function UserProfileLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function UserProfileLayout({ children }: { children: React.ReactNode }) {
   return (
     <main>
       <Navbar />
-
       <main>{children}</main>
+      <Footer />
     </main>
   );
 }

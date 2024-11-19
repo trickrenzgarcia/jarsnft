@@ -32,33 +32,23 @@ export default async function UserBanner({ user }: Props) {
       <div className="absolute hidden h-[300px] w-full px-7 py-6 md:block">
         <div className="mb-4 flex justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-[125px] w-[125px] flex justify-center items-center select-none rounded-full border-2 border-fuchsia-600 p-1">
+            <div className="flex h-[125px] w-[125px] select-none items-center justify-center rounded-full border-2 border-fuchsia-600 p-1">
               <BoringAvatar size={115} name={user.address} />
             </div>
 
-            <div
-              className={cn(
-                open_sans.className,
-                "flex w-[600px] flex-col gap-2",
-              )}
-            >
+            <div className={cn(open_sans.className, "flex w-[600px] flex-col gap-2")}>
               <div className="flex w-full items-center gap-1 text-4xl font-bold">
-                <div className="truncate">
-                  <h2 className="truncate">{user.name || ""}</h2>
+                <div className="truncate rounded-md bg-black px-4 py-2">
+                  <h2 className="truncate text-zinc-100">{user.name || ""}</h2>
                 </div>
                 <TooltipMsg message="Not Verified" delay={250}>
-                  <Link href="/me/settings">
-                    <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
-                      <MdVerified className="text-gray-500 dark:text-gray-400" />
-                    </div>
-                  </Link>
+                  <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
+                    <MdVerified className="text-gray-500 dark:text-gray-400" />
+                  </div>
                 </TooltipMsg>
               </div>
               <div>
-                <AddressClipboard
-                  address={user.address}
-                  content="Copy Address"
-                />
+                <AddressClipboard address={user.address} content="Copy Address" />
               </div>
             </div>
           </div>
