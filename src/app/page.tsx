@@ -28,19 +28,19 @@ export default async function Home() {
       <Hero />
 
       <div className="container my-20">
-        <ListComponents
-          data={collections}
-          renderItem={(collection, index) => (
-            <section key={index} className="space-y-10">
-              {!collection.data ? (
-                <div>N/A</div>
-              ) : (
+        {collections.length > 0 ? (
+          <ListComponents
+            data={collections}
+            renderItem={(collection, index) => (
+              <section key={index} className="space-y-10">
                 <Trend category={collection.category} collections={collection.data} link={collection.link} />
-              )}
-              <Separator className="h-[2px] w-full" />
-            </section>
-          )}
-        />
+                <Separator className="h-[2px] w-full" />
+              </section>
+            )}
+          />
+        ) : (
+          <p>No collections available.</p> // Fallback message
+        )}
 
         <Suspense fallback={<div>Loading...</div>}>
           <NFTCategories className="my-16" />

@@ -22,7 +22,11 @@ export default function Trend({
         </RainbowButton>
       </div>
       <div className="my-12 px-0 md:px-10">
-        <NFTCarousel collections={collections} />
+        {!collections ? (
+          <p>No collections available.</p>
+        ) : (
+          <NFTCarousel collections={collections} />
+        )}
       </div>
     </div>
   );
