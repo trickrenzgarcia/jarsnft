@@ -32,7 +32,7 @@ export default async function Home() {
           data={collections}
           renderItem={(collection, index) => (
             <section key={index} className="space-y-10">
-              {!collection.data ? (
+              {!collection.data.length ? (
                 <div>N/A</div>
               ): (
                 <Trend category={collection.category} collections={collection.data} link={collection.link} />
