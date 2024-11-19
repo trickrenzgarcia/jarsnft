@@ -32,12 +32,7 @@ export default async function Home() {
           data={collections}
           renderItem={(collection, index) => (
             <section key={index} className="space-y-10">
-              {!collection.data.length ? (
-                <div>N/A</div>
-              ): (
-                <Trend category={collection.category} collections={collection.data} link={collection.link} />
-              )}
-              
+              <Trend category={collection.category} collections={collection.data} link={collection.link} />
               <Separator className="h-[2px] w-full" />
             </section>
           )}
