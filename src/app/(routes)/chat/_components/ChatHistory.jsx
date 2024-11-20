@@ -16,7 +16,7 @@ const ChatHistory = ({ chatHistory }) => {
                 </>
               ) : (
                 <>
-                  <span>Bot:</span> <TypewriterEffectV2 words={[{ text: message.message }]} />
+                  <span>Bot:</span> {<TypewriterEffectV2 words={[{ text: message.message }]} />}
                 </>
               )}
             </div>

@@ -13,7 +13,7 @@ const Chatbot = () => {
 
   const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
   const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-flash",
+    model: "gemini-1.5-pro",
     useSearchGrounding: true,
     systemInstruction: `
       Your name is Jars Bot, Never use emoji. Our team is composed of Alrae Chaluangco,Patrick Renz Garcia,Rigor Syguat and Jeffrey Dapar.
