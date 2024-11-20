@@ -1,54 +1,58 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { CollectionData } from '@/types';
-import Image from 'next/image';
+"use client";
+
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { CollectionData } from "@/types";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { ipfsToHttps } from "@/lib/utils";
+import useFloorPrice from "@/hooks/useFloorPrice";
+import useVolumeAndSales from "@/hooks/useVolumeAndSales";
+import { Loader2 } from "lucide-react";
 
-type CollectionCardProps = {
-  item: CollectionData;
-  hideFloorPrice: boolean
-}
-
-export default function CollectionCard({ item, hideFloorPrice = true }: CollectionCardProps) {
+export default function CollectionCard({ item }: { item: CollectionData }) {
+  const { floorPrice, isLoading: loadingFloorPrice } = useFloorPrice(item.contract);
+  const { totalVolume, isLoading: loadingVolumeSale } = useVolumeAndSales(item.contract);
   return (
-    <Card key={item.contract} className='p-2 border-2 bg-background rounded-lg hover:-translate-y-1 cursor-pointer hover:border-3 hover:border-violet-500 dark:hover:border-violet-500'>
-      <CardHeader className='flex items-center justify-center aspect-square p-0'>
+    <Card
+      key={item.contract}
+      className="cursor-pointer rounded-lg border-2 bg-background p-2 hover:-translate-y-1 hover:border-3 hover:border-violet-500 dark:hover:border-violet-500"
+    >
+      <CardHeader className="flex aspect-square items-center justify-center p-0">
         <Image
-          src={item.image}
+          src={ipfsToHttps(item.image)}
           alt={item.name}
           width={300}
           height={300}
-          loading='eager'
+          loading="eager"
           style={{
-            objectFit: 'cover',
-            objectPosition: 'center'
+            objectFit: "cover",
+            objectPosition: "center",
           }}
           className="h-full w-full rounded-md"
         />
       </CardHeader>
 
-      <CardContent className='mt-1 p-4'>
-        <CardTitle className='flex items-center justify-center text-sm gap-2'>
-          <span className='truncate max-w-[5rem]'>{item.name} </span>
+      <CardContent className="mt-1 p-4">
+        <CardTitle className="flex items-center justify-center gap-2 text-sm">
+          <span className="max-w-[5rem] truncate">{item.name} </span>
           <span className="truncate text-sm">{item.symbol && `(${item.symbol})`}</span>
-          <span>{item.isVerified ? <Image
-            src="/assets/verify.png"
-            width={20}
-            height={20}
-            alt="verified logo"
-            className="h-fit"
-          /> : null}</span>
+          <span>{item.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" /> : null}</span>
         </CardTitle>
       </CardContent>
-      <CardFooter className={cn(hideFloorPrice &&'w-full mt-2 flex justify-between rounded-lg p-3 bg-muted dark:bg-muted/30')}>
-          <div className='flex flex-col gap-1'>
-            <p className='text-xs truncate text-muted-foreground'>Floor</p>
-            <p className='text-sm font-semibold truncate'>100 MATIC</p>
-          </div>
-          <div className='flex flex-col gap-1'>
-            <p className='text-xs truncate text-muted-foreground'>Volume</p>
-            <p className='text-sm font-semibold truncate'>100 MATIC</p>
-          </div>
-        </CardFooter>
+      <CardFooter className={cn("mt-2 flex w-full justify-between rounded-lg bg-muted p-3 dark:bg-muted/30")}>
+        <div className="flex flex-col gap-1">
+          <p className="truncate text-xs text-muted-foreground">Floor</p>
+          <p className="truncate text-sm font-semibold">
+            {loadingFloorPrice ? <Loader2 className="animate-spin" size={14} /> : `${floorPrice || 0} POL`}
+          </p>
+        </div>
+        <div className="flex flex-col gap-1">
+          <p className="truncate text-xs text-muted-foreground">Volume</p>
+          <p className="truncate text-sm font-semibold">
+            {loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalVolume ? `${totalVolume.toFixed(2)} POL` : "0"}
+          </p>
+        </div>
+      </CardFooter>
     </Card>
   );
 }
