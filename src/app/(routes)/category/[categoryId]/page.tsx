@@ -51,11 +51,11 @@ export default async function Categories({ params }: Props) {
   }
 
   return (
-    <div className="p-auto container m-auto">
-      <h1 className="text-4xl antialiased lg:text-5xl">{title}</h1>
-      <hr className="my-4" />
+    <div className="container">
+      <h1 className="m-6 text-center text-4xl antialiased lg:text-5xl">{title}</h1>
+      <hr className="p-6" />
       <Suspense fallback={<div>Loading....</div>}>
-        <Collections collections={collections} className="px-8" />
+        <Collections collections={collections} />
       </Suspense>
     </div>
   );
