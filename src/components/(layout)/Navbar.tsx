@@ -10,6 +10,11 @@ import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const linkStyle = () => {
+    return "animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-violet-500 subpixel-antialiased";
+  };
+
   // const searchRef = useRef(null)
 
   const handleSearchClick = () => {
@@ -39,7 +44,7 @@ export default function Navbar() {
             <Link href="/">
               <div className="mb-2 flex items-end">
                 <JarsLogo />
-                <h1 className="animate-once animate-duration-[1200ms] animate-ease-in mb-2 hidden animate-flip-down text-xl font-bold sm:block">
+                <h1 className="animate-once animate-duration-[1200ms] animate-ease-in mb-2 hidden animate-flip-down text-xl font-bold antialiased sm:block">
                   Jars
                 </h1>
               </div>
@@ -48,28 +53,16 @@ export default function Navbar() {
             <Separator className="hidden h-[30px] w-[2px] bg-gray-200 dark:bg-gray-600 lg:block" orientation="vertical" />
 
             <div className="hidden gap-1 lg:flex xl:mr-5">
-              <Link
-                href="/create"
-                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-violet-500"
-              >
+              <Link href="/create" className={linkStyle()}>
                 Create
               </Link>
-              <Link
-                href="/collections"
-                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-violet-500"
-              >
+              <Link href="/collections" className={linkStyle()}>
                 Collections
               </Link>
-              <Link
-                href="/coins"
-                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-violet-500"
-              >
+              <Link href="/coins" className={linkStyle()}>
                 Analytics
               </Link>
-              <Link
-                href="/insights"
-                className="animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-violet-500"
-              >
+              <Link href="/insights" className={linkStyle()}>
                 Insights
               </Link>
             </div>
