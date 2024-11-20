@@ -19,7 +19,7 @@ import { Dropdown, Link, DropdownTrigger, DropdownMenu, DropdownItem, Accordion,
 import { Button } from "@/components/ui/button";
 import { Check, ChevronsUpDown, Loader2, PlusIcon } from "lucide-react";
 import { RxDashboard } from "react-icons/rx";
-import jars from "@/lib/api";
+import { JarsAPI } from "@/lib/api";
 import { ContractForOwner, JarsContract, NFTCollection } from "@/types";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useUserContext } from "@/components/(providers)";
@@ -74,6 +74,11 @@ const mintSchema = z.object({
       }),
     )
     .optional(),
+});
+
+const jars = new JarsAPI({
+  baseUrl: process.env.NEXT_PUBLIC_APP_URL,
+  secretKey: process.env.NEXT_PUBLIC_JWT_TOKEN
 });
 
 type FormMintNft = z.infer<typeof mintSchema>;
