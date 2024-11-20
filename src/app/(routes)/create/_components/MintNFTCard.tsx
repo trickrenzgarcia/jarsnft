@@ -85,8 +85,9 @@ type FormMintNft = z.infer<typeof mintSchema>;
 
 export default function MintNFTCard() {
   const router = useRouter();
-  const { user, isLoading, isLoggedIn } = useUserContext();
+  const { user, isLoading: isLoadingUser, isLoggedIn } = useUserContext();
   const [contracts, setContracts] = useState<Omit<NFTCollection[], "simpleHashData">>();
+  const address = useAddress();
   const [open, setOpen] = useState(false);
   const [uploadedMedia, setUploadedMedia] = useState<string | null>(null);
   const [uploadedFileName, setUploadedFileName] = useState<string>("");
@@ -131,7 +132,7 @@ export default function MintNFTCard() {
       }
     };
     fetchCollections();
-  }, []);
+  }, [address, user, isLoadingUser, isLoggedIn]);
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
