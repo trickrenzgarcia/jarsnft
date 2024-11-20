@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import { Hamburger, JarsLogo, Login, SearchInput } from "@/components/(interfaces)";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import HeroMessage from "../(interfaces)/HeroMessage";
 import { ImSearch } from "react-icons/im";
 import { cn } from "@/lib/utils";
@@ -15,30 +15,18 @@ export default function Navbar() {
     return "animate-once animate-duration-[1200ms] animate-ease-linear animate-fade-right cursor-pointer px-3 font-semibold hover:text-violet-500 subpixel-antialiased";
   };
 
-  // const searchRef = useRef(null)
-
   const handleSearchClick = () => {
     setIsSearchOpen((prev) => !prev);
   };
-
-  // const handleClickOutside = () => {
-  //   setIsSearchOpen(false);
-  // };
-  // function searchOpen(){
-  //   setIsSearchOpen(prev => {
-  //     return !prev
-  //   })
-  // }
 
   return (
     <>
       <div className={cn(!isSearchOpen && "hidden", "sticky top-0 z-50 w-full bg-background/80 px-4 py-[30px] backdrop-blur-md")}>
         <SearchInput handleClick={handleSearchClick} />
       </div>
+
       <nav className={cn(isSearchOpen && "hidden", "sticky top-0 z-40 w-full bg-background/80 backdrop-blur-md")}>
-        {/* Nav Container */}
         <div className="flex w-full items-center justify-between gap-2 px-5 py-4 max-[415px]:py-2 md:px-10">
-          {/* Left-side <NavigationComponent> */}
           <div className="flex items-center gap-4">
             <Hamburger />
             <Link href="/">
@@ -68,22 +56,12 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Middle <SearchBarComponent> */}
           <div className="hidden items-center justify-center xl:flex">
             <div className="flex h-full w-[448px] min-w-96 max-w-md items-center justify-center">
               <SearchInput handleClick={handleSearchClick} />
             </div>
           </div>
 
-          {/* <div className="xl:hidden text-2xl">
-              {isSearchOpen ? (
-                <SearchInput handleClick={handleSearchClick} />
-              ) : (
-                
-              )}
-          </div> */}
-
-          {/* Right-side <UserNavigationComponent>*/}
           <div className="flex items-center gap-6">
             <button onClick={handleSearchClick} className="cursor-pointer text-2xl xl:hidden">
               <ImSearch />
@@ -92,7 +70,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* <AdminAccessLink /> */}
         <HeroMessage />
       </nav>
     </>
