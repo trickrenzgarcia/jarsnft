@@ -360,7 +360,7 @@ export class JarsAPI {
      */
     getTrending: async (category: string, page: number = 1, limit: number = 50) => {
       return await this.request<CollectionData[]>(`/collections/trending?category=${category}&page=${1}&limit=${50}`, {
-        next: { tags: ["collections", "getTrending", category] },
+        next: { tags: ["collections", "getTrending", category], revalidate: 2 },
       });
     },
 
