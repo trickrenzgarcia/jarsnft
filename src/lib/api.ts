@@ -17,7 +17,7 @@ export class JarsAPI {
   private secretKey: string;
 
   constructor(private options: JarsOptions) {
-    this.baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://jarsnft.com";
+    this.baseUrl = "https://jarsnft.com";
     this.secretKey = options.secretKey;
   }
 
