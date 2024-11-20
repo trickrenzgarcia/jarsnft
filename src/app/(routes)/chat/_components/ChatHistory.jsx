@@ -1,5 +1,4 @@
 import React from "react";
-import Markdown from "react-markdown";
 import { TypewriterEffectV2 } from "@/components/ui/typewriter-effect";
 import { Card, CardBody } from "@nextui-org/react";
 

@@ -4,12 +4,11 @@ import { CollectionData } from "@/types";
 
 type Props = {
   collections: CollectionData[];
-  className: string;
 };
 
-export default function Collections({ collections, className }: Props) {
+export default function Collections({ collections }: Props) {
   return (
-    <div className={`${className} grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6`}>
+    <div className={`grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5`}>
       {collections.map((item) => (
         <Link key={item.contract} href={`/collection/${item.contract}`}>
           <CollectionCard item={item} />
