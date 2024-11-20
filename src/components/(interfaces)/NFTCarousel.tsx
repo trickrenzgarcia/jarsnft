@@ -26,7 +26,7 @@ export default function NFTCarousel({ nftCollections }: NFTCarouselProps) {
           >
             <div className="animate-fade animate-once animate-duration-[1200ms] animate-ease-in cursor-pointer duration-100 ease-out hover:-translate-y-1">
               <Link href={`/collection/${collection.contract}`}>
-                <CollectionCard item={collection} hideFloorPrice={false} />
+                <CollectionCard item={collection} />
                 {/* <Card className="rounded-2xl hover:bg-opacity-65">
                   <CardContent className="flex aspect-[1.25/1] items-center justify-center">
                     <Image
