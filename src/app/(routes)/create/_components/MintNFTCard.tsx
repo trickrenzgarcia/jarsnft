@@ -320,7 +320,7 @@ export default function MintNFTCard() {
                         >
                           <div className="relative flex h-[60px] w-[60px] select-none rounded-md bg-muted">
                             <Image
-                              src={contract.image}
+                              src={ipfsToHttps(contract.image) || ""}
                               alt={contract.name}
                               style={{ objectFit: "cover" }}
                               fill
