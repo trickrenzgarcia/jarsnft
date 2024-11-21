@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-const allowedOrigins = ["*", "https://www.jarsnft.com", "https://jarsnft.com", "https://jarsnft.vercel.app", "http://localhost:3000"];
+const allowedOrigins = ["https://www.jarsnft.com", "https://jarsnft.com", "https://jarsnft.vercel.app", "http://localhost:3000"];
 
 const corsOptions = {
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
