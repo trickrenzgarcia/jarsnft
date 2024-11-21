@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const styles = {
-  trendingCard: `w-full dark:bg-[#1C1C1C] bg-[#CED4DA] rounded-lg flex flex-col p-6`,
+  trendingCard: `w-full dark:bg-[#1C1C1C] bg-[#e3e3e3] rounded-lg flex flex-col p-6`,
   trendingCardWrapper: `flex flex-row items-center justify-center gap-4`,
 };
 
