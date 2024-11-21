@@ -15,14 +15,14 @@ const Trending = async () => {
     const usdCap = (data.data.total_market_cap.usd / 1e12).toFixed(3);
     const icon = percentChange < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />;
     const result = percentChange < 0 ? "decrease" : "increase";
-    const resultColor = percentChange < 0 ? "#DC143C" : "#2eff00";
+    const resultColor = percentChange < 0 ? "dark:#DC143C" : "dark:#2eff00";
 
     return (
       <>
         <div className="mb-6 mt-10 flex flex-1 flex-col gap-4">
           <h1 className="text-xl font-bold lg:text-4xl">Todays Cryptocurrency Prices by Market Cap</h1>
           <h2 className="text-md flex items-center gap-1 font-semibold lg:text-3xl">
-            {`The Global Crypto Market Cap is ${usdCap}T,`} <span style={{ color: resultColor }}>{icon}</span>
+            {`The Global Crypto Market Cap is ${usdCap}T,`} <span className={resultcolor}>{icon}</span>
             <span style={{ color: resultColor }}>{`a ${roundTwoDecimalPlaces(percentChange)}% ${result}`}</span> over the last day.
           </h2>
         </div>
