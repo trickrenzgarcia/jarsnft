@@ -17,8 +17,8 @@ export class JarsAPI {
   private secretKey: string;
 
   constructor(private options: JarsOptions) {
-    this.baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://jarsnft.com";
-    this.secretKey = options.secretKey;
+    this.baseUrl = options.baseUrl || process.env.NEXT_PUBLIC_APP_URL || process.env.APP_URL;
+    this.secretKey = options.secretKey || process.env.NEXT_PUBLIC_JWT_TOKEN || process.env.JWT_TOKEN;
   }
 
   private async request<TData>(endPoint: string, configs?: RequestInit): Promise<TData> {
@@ -360,7 +360,7 @@ export class JarsAPI {
      */
     getTrending: async (category: string, page: number = 1, limit: number = 50) => {
       return await this.request<CollectionData[]>(`/collections/trending?category=${category}&page=${1}&limit=${50}`, {
-        next: { tags: ["collections", "getTrending", category] },
+        next: { tags: ["collections", "getTrending", category], revalidate: 2 },
       });
     },
 
@@ -483,7 +483,8 @@ export class JarsAPI {
 }
 
 const jars = new JarsAPI({
-  secretKey: process.env.NEXT_PUBLIC_JWT_TOKEN!,
+  baseUrl: process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL,
+  secretKey: process.env.JWT_TOKEN || process.env.NEXT_PUBLIC_JWT_TOKEN,
 });
 
 export default jars;

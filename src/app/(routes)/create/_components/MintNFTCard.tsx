@@ -19,7 +19,7 @@ import { Dropdown, Link, DropdownTrigger, DropdownMenu, DropdownItem, Accordion,
 import { Button } from "@/components/ui/button";
 import { Check, ChevronsUpDown, Loader2, PlusIcon } from "lucide-react";
 import { RxDashboard } from "react-icons/rx";
-import jars from "@/lib/api";
+import { JarsAPI } from "@/lib/api";
 import { ContractForOwner, JarsContract, NFTCollection } from "@/types";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useUserContext } from "@/components/(providers)";
@@ -76,12 +76,18 @@ const mintSchema = z.object({
     .optional(),
 });
 
+const jars = new JarsAPI({
+  baseUrl: process.env.NEXT_PUBLIC_APP_URL,
+  secretKey: process.env.NEXT_PUBLIC_JWT_TOKEN
+});
+
 type FormMintNft = z.infer<typeof mintSchema>;
 
 export default function MintNFTCard() {
   const router = useRouter();
-  const { user, isLoading, isLoggedIn } = useUserContext();
+  const { user, isLoading: isLoadingUser, isLoggedIn } = useUserContext();
   const [contracts, setContracts] = useState<Omit<NFTCollection[], "simpleHashData">>();
+  const address = useAddress();
   const [open, setOpen] = useState(false);
   const [uploadedMedia, setUploadedMedia] = useState<string | null>(null);
   const [uploadedFileName, setUploadedFileName] = useState<string>("");
@@ -126,7 +132,7 @@ export default function MintNFTCard() {
       }
     };
     fetchCollections();
-  }, []);
+  }, [address, user, isLoadingUser, isLoggedIn]);
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {

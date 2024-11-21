@@ -15,7 +15,7 @@ const Trending = async () => {
     const usdCap = (data.data.total_market_cap.usd / 1e12).toFixed(3);
     const icon = percentChange < 0 ? <TbCaretDownFilled /> : <TbCaretUpFilled />;
     const result = percentChange < 0 ? "decrease" : "increase";
-    const resultColor = percentChange < 0 ? "#DC143C" : "#2eff00";
+    const resultColor = percentChange < 0 ? "#DC143C" : "#39dd15";
 
     return (
       <>

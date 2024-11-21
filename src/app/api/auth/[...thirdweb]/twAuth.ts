@@ -1,6 +1,11 @@
 import { ThirdwebAuthAppRouter, ThirdwebAuthUser } from "@thirdweb-dev/auth/next";
 import { PrivateKeyWallet } from "@thirdweb-dev/auth/evm";
-import jars from "@/lib/api";
+import { JarsAPI } from "@/lib/api";
+
+const jars = new JarsAPI({
+  baseUrl: process.env.APP_URL,
+  secretKey: process.env.JWT_TOKEN,
+});
 
 export const { ThirdwebAuthHandler, getUser } = ThirdwebAuthAppRouter({
   domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN!,

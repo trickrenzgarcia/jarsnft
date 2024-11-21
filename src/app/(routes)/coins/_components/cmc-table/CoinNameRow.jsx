@@ -14,7 +14,7 @@ const CoinNameRow = ({ name, icon, symbol }) => {
         loading="lazy"
       />
       <p className="truncate text-sky-500">{name}</p>
-      <p className="text-gray-400">{cryptoSymbol}</p>
+      <p className="dark:text-gray-400 text-gray-600">{cryptoSymbol}</p>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import { Suspense } from "react";
 export const dynamic = "force-dynamic";
 
 const jars = new JarsAPI({
+  baseUrl: process.env.APP_URL,
   secretKey: process.env.JWT_TOKEN
 })
 
@@ -30,12 +31,18 @@ export default async function Home() {
       <div className="container my-20">
         <ListComponents
           data={collections}
-          renderItem={(collection, index) => (
-            <section key={index} className="space-y-10">
-              <Trend category={collection.category} collections={collection.data} link={collection.link} />
-              <Separator className="h-[2px] w-full" />
-            </section>
-          )}
+          renderItem={(collection, index) => {
+            if(collection.data === undefined) {
+              return null;
+            }
+            
+            return (
+              <section key={index} className="space-y-10">
+                <Trend category={collection.category} collections={collection.data} link={collection.link} />
+                <Separator className="h-[2px] w-full" />
+              </section>
+            )
+          }}
         />
 
         <Suspense fallback={<div>Loading...</div>}>
