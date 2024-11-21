@@ -29,13 +29,7 @@ export const WavyBackground = ({
 }) => {
   const { theme } = useTheme();
   const noise = createNoise3D();
-  let w: number,
-    h: number,
-    nt: number,
-    i: number,
-    x: number,
-    ctx: any,
-    canvas: any;
+  let w: number, h: number, nt: number, i: number, x: number, ctx: any, canvas: any;
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const getSpeed = () => {
     switch (speed) {
@@ -48,13 +42,7 @@ export const WavyBackground = ({
     }
   };
 
-  const waveColors = colors ?? [
-    "#38bdf8",
-    "#818cf8",
-    "#c084fc",
-    "#e879f9",
-    "#22d3ee",
-  ];
+  const waveColors = colors ?? ["#38bdf8", "#818cf8", "#c084fc", "#e879f9", "#22d3ee"];
   const drawWave = (n: number) => {
     nt += getSpeed();
     for (i = 0; i < n; i++) {
@@ -102,20 +90,11 @@ export const WavyBackground = ({
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
     // I'm sorry but i have got to support it on safari.
-    setIsSafari(
-      typeof window !== "undefined" &&
-        navigator.userAgent.includes("Safari") &&
-        !navigator.userAgent.includes("Chrome"),
-    );
+    setIsSafari(typeof window !== "undefined" && navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome"));
   }, []);
 
   return (
-    <div
-      className={cn(
-        "flex h-screen flex-col items-center justify-center",
-        containerClassName,
-      )}
-    >
+    <div className={cn("flex h-screen flex-col items-center justify-center", containerClassName)}>
       <canvas
         className="absolute inset-0 z-0"
         ref={canvasRef}
@@ -124,7 +103,7 @@ export const WavyBackground = ({
           ...(isSafari ? { filter: `blur(${blur}px)` } : {}),
         }}
       ></canvas>
-      <div className={cn("w-full h-auto", className)} {...props}>
+      <div className={cn("h-auto w-full", className)} {...props}>
         {children}
       </div>
     </div>
