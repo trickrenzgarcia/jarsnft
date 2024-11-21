@@ -5,5 +5,12 @@ import { useTheme } from "next-themes";
 
 export default function WavyEffect() {
   const { theme } = useTheme();
-  return <WavyBackground className="w-screen my-auto" backgroundFill={theme === "light" ? "white" : "black"}/>;
+
+  return (
+    <WavyBackground
+      key={theme} // Re-renders WavyBackground whenever the theme changes
+      className="my-auto w-screen"
+      backgroundFill={theme === "light" ? "white" : "black"}
+    />
+  );
 }
