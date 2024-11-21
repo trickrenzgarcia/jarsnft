@@ -62,7 +62,7 @@ export default function Footer() {
           <Separator className="h-[2px] w-full" />
 
           {/* Copyright */}
-          <div className="p-2">
+          <div className="mt-4 p-2">
             <ul className="flex flex-col items-center justify-between gap-8 md:flex-row md:gap-0">
               {/* Left-side */}
               <li className="w-fit">
