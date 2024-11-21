@@ -76,7 +76,7 @@ export type CollectionData = {
   saleListed: boolean;
   viewCount: number;
   createdAt: Date;
-}
+};
 
 export type AlchemyContractMetadata = {
   address: string;
@@ -163,7 +163,7 @@ export type NFTFavorite = {
   imageUrl: string;
   addedAt: string | Date;
   updatedAt: string | Date | null;
-}
+};
 
 export type CollectionData = {
   contract: string;
@@ -184,15 +184,15 @@ export type CollectionData = {
   saleListed: boolean;
   viewCount: number;
   createdAt: Date;
-}
+};
 
 export type CollectionPopularData = CollectionData & {
   combinedPopularityMetric: number;
-}
+};
 
 type CollectionResponse = {
   collections: CollectionData[];
-}
+};
 
 export type Category = "art" | "photography" | "pfp" | "gaming";
 

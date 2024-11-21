@@ -267,7 +267,7 @@ export class JarsAPI {
    * @param walletAddress
    */
   async getCollectionsByOwner(walletAddress: string) {
-    return await this.request<Omit<NFTCollection[], "simpleHashData">>(`/collection/getCollectionsByOwner?owner=${walletAddress}`, {
+    return await this.request<NFTCollection[]>(`/collection/getCollectionsByOwner?owner=${walletAddress}`, {
       next: { tags: ["collections", "getCollectionsByOwner"] },
     });
   }

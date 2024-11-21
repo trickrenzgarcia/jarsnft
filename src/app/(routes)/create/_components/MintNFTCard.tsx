@@ -45,6 +45,7 @@ import { MdOutlineNearbyError } from "react-icons/md";
 import { FiShare } from "react-icons/fi";
 import { TooltipMsg } from "@/components/(interfaces)";
 import { createTxHash } from "@/actions/createTxHash";
+import useCollectionsByOwner from '@/hooks/useCollectionsByOwner';
 
 const mintSchema = z.object({
   collection: z.string().refine((value) => ethers.utils.isAddress(value), {
@@ -76,24 +77,18 @@ const mintSchema = z.object({
     .optional(),
 });
 
-const jars = new JarsAPI({
-  baseUrl: process.env.NEXT_PUBLIC_APP_URL,
-  secretKey: process.env.NEXT_PUBLIC_JWT_TOKEN
-});
-
 type FormMintNft = z.infer<typeof mintSchema>;
 
 export default function MintNFTCard() {
   const router = useRouter();
   const { user, isLoading: isLoadingUser, isLoggedIn } = useUserContext();
-  const [contracts, setContracts] = useState<Omit<NFTCollection[], "simpleHashData">>();
   const address = useAddress();
+  const { collections, isLoading: isLoadingCollections, isError: isErrorCollections, errorMessage } = useCollectionsByOwner(address);
   const [open, setOpen] = useState(false);
   const [uploadedMedia, setUploadedMedia] = useState<string | null>(null);
   const [uploadedFileName, setUploadedFileName] = useState<string>("");
-  const [loadingContract, setLoadingContract] = useState(false);
   const [imageFileUrl, setImageFileUrl] = useState<string>("");
-  const [selectedContract, setSelectedContract] = useState<NFTCollection>();
+  const [selectedContract, setSelectedContract] = useState<NFTCollection | undefined>();
   const [attributes, setAttributes] = useState<{ trait_type: string; value: string }[]>([{ trait_type: "", value: "" }]);
   const [mintState, setMintState] = useState<{
     state: "idle" | "loading" | "error" | "process" | "success";
@@ -121,18 +116,6 @@ export default function MintNFTCard() {
       properties: [],
     },
   });
-
-  useEffect(() => {
-    const fetchCollections = async () => {
-      if (user) {
-        setLoadingContract(true);
-        const collections = await jars.getCollectionsByOwner(user.address);
-        setContracts(collections);
-        setLoadingContract(false);
-      }
-    };
-    fetchCollections();
-  }, [address, user, isLoadingUser, isLoggedIn]);
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
@@ -287,7 +270,7 @@ export default function MintNFTCard() {
                       </FormControl>
                     </PopoverTrigger>
                     <PopoverContent className="max-h-[400px] w-[384px] min-w-[300px] items-center justify-start gap-3 overflow-y-scroll scroll-smooth bg-background md:w-[420px] lg:w-[500px] xl:w-[600px]">
-                      {loadingContract && (
+                      {isLoadingCollections && (
                         <Button variant="ghost" className="flex h-fit w-full justify-start gap-3">
                           <Skeleton className="h-[60px] w-[60px] rounded-md" />
                           <div className="flex flex-col items-start gap-1">
@@ -296,7 +279,7 @@ export default function MintNFTCard() {
                           </div>
                         </Button>
                       )}
-                      {!loadingContract && (
+                      {!isLoadingCollections && (
                         <Button
                           variant="ghost"
                           className="flex h-fit w-full justify-start gap-3"
@@ -313,29 +296,29 @@ export default function MintNFTCard() {
                           </div>
                         </Button>
                       )}
-                      {contracts?.map((contract, i) => (
+                      {collections?.map((col, i) => (
                         <Button
                           variant="ghost"
                           className="flex h-fit w-full justify-start gap-3"
                           onClick={() => {
-                            form.setValue("collection", contract.contract);
-                            setSelectedContract(contracts[i]);
+                            form.setValue("collection", col.contract);
+                            setSelectedContract(collections[i]);
                             setOpen(false);
                           }}
                           key={i}
                         >
                           <div className="relative flex h-[60px] w-[60px] select-none rounded-md bg-muted">
                             <Image
-                              src={ipfsToHttps(contract.image) || ""}
-                              alt={contract.name}
+                              src={ipfsToHttps(col.image) || ""}
+                              alt={col.name}
                               style={{ objectFit: "cover" }}
                               fill
                               className="absolute h-24 w-24 rounded-md"
                             />
                           </div>
                           <div className="flex select-none flex-col items-start">
-                            <h2 className="text-medium">{truncate(contract.name, 26)}</h2>
-                            <h3 className="text-xs font-light text-foreground">ERC-721</h3>
+                            <h2 className="text-medium">{truncate(col.name, 26)}</h2>
+                            <h3 className="text-xs font-light text-foreground">POLYGON [ERC-721]</h3>
                           </div>
                         </Button>
                       ))}
