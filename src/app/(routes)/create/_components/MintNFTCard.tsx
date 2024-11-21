@@ -83,7 +83,7 @@ export default function MintNFTCard() {
   const router = useRouter();
   const { user, isLoading: isLoadingUser, isLoggedIn } = useUserContext();
   const address = useAddress();
-  const { collections, isLoading: isLoadingCollections, isError: isErrorCollections, errorMessage } = useCollectionsByOwner(address);
+  const { collections, isLoading: isLoadingCollections, isError: isErrorCollections, errorMessage } = useCollectionsByOwner();
   const [open, setOpen] = useState(false);
   const [uploadedMedia, setUploadedMedia] = useState<string | null>(null);
   const [uploadedFileName, setUploadedFileName] = useState<string>("");
@@ -101,7 +101,7 @@ export default function MintNFTCard() {
   const ref = useRef<HTMLButtonElement>(null);
   const { contract } = useContract(selectedContract?.contract);
   const { mutateAsync: mintNft, isLoading: mintLoading, error: mintError } = useMintNFT(contract);
-
+  console.log(collections);
   const form = useForm<FormMintNft>({
     resolver: zodResolver(mintSchema),
     defaultValues: {

@@ -2,10 +2,13 @@
 
 import { NFTCollection } from '@/types'
 import { useState, useEffect } from 'react'
-import { fetchCollections as jarsCollectionsByOwner } from '@/actions/getCollectionsByOwner'
+import { useAddress } from '@thirdweb-dev/react'
 
+const url = process.env.NEXT_PUBLIC_APP_URL;
+const token = process.env.NEXT_PUBLIC_JWT_TOKEN;
 
-export default function useCollectionsByOwner(owner: string | undefined) {
+export default function useCollectionsByOwner() {
+  const address = useAddress()
   const [isLoading, setLoading] = useState(false)
   const [isError, setError] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>('')
@@ -15,8 +18,16 @@ export default function useCollectionsByOwner(owner: string | undefined) {
     const fetchCollections = async () => {
       setLoading(true)
       try {
-        const collections = await jarsCollectionsByOwner(owner);
+        const response = await fetch(`${url}/api/v1/collection/getCollectionsByOwner?owner=${address}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        })
+        const collections = await response.json()
         setCollections(collections)
+        console.log(collections, 'tite')
       } catch (error: any) {
         setErrorMessage(error.message)
         setError(true)
@@ -26,7 +37,7 @@ export default function useCollectionsByOwner(owner: string | undefined) {
     }
 
     fetchCollections()
-  }, [owner])
+  }, [address])
 
   return {
     collections,
