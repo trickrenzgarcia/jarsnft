@@ -9,10 +9,10 @@ export default function SocialLinkButtons() {
       <h1 className="mb-3 text-center text-2xl font-semibold md:text-left">Join us</h1>
       <div className="flex flex-col flex-wrap items-center gap-8 md:flex-row md:justify-between md:gap-0">
         <div className="flex gap-2">
-          <SocialLinkButton Icon={<FaFacebookF />} link="" />
+          {/* <SocialLinkButton Icon={<FaFacebookF />} link="" /> */}
           <SocialLinkButton Icon={<FaDiscord />} link="https://discord.gg/scBduTZyGd" />
-          <SocialLinkButton Icon={<FaTwitter />} link="" />
-          <SocialLinkButton Icon={<FaInstagram />} link="" />
+          {/* <SocialLinkButton Icon={<FaTwitter />} link="" />
+          <SocialLinkButton Icon={<FaInstagram />} link="" /> */}
           <SocialLinkButton Icon={<FaGithub />} link="https://github.com/BroJavaDevs" />
         </div>
       </div>
