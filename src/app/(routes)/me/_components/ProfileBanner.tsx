@@ -121,9 +121,9 @@ export default function ProfileBanner({ user: userContext }: { user: ProfileQuer
             </EditModeAvatarDialog>
             <div className="flex gap-2">
               <ShareProfileDialog user={user} copyLink={copyLink} setCopyLink={setCopyLink} variant="ghost" size="sm" />
-              <Button className="p-2" size="sm" variant="outline">
+              {/* <Button className="p-2" size="sm" variant="outline">
                 Upload Cover
-              </Button>
+              </Button> */}
             </div>
           </div>
 
@@ -192,10 +192,10 @@ export default function ProfileBanner({ user: userContext }: { user: ProfileQuer
           <div className="flex gap-2">
             <ShareProfileDialog user={user} copyLink={copyLink} setCopyLink={setCopyLink} />
 
-            <Button className="hidden gap-2 p-2 md:flex" variant="outline">
+            {/* <Button className="hidden gap-2 p-2 md:flex" variant="outline">
               <FiEdit3 className="text-xl lg:hidden" />
               <span className="hidden lg:block">Upload Cover</span>
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
