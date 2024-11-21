@@ -41,36 +41,6 @@ export default async function CollectionData({ searchParams }: { searchParams: {
   };
   const ownerCounts = await getOwnersForContracts(contractAddresses);
 
-  // Get Total Items of Collection (SimpleHash)
-  const getTotalItems = async (): Promise<{ [contract: string]: number }> => {
-    const totalQuantities: { [contract: string]: number } = {};
-
-    try {
-      const promises = contractAddresses.map((address) =>
-        fetch(`https://api.simplehash.com/api/v0/nfts/collections/polygon/${address}?limit=1`, {
-          method: "GET",
-          headers: {
-            "X-API-KEY": process.env.SIMPLEHASH_API_KEY,
-            accept: "application/json",
-          },
-        }).then(async (response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const data = await response.json();
-          const totalQuantity = data.collections[0]?.total_quantity || 0; // Fallback to 0 if undefined
-          totalQuantities[address] = totalQuantity;
-          return totalQuantity;
-        }),
-      );
-      await Promise.all(promises);
-    } catch (error) {
-      console.error("Error fetching NFT collections:", error);
-    }
-    return totalQuantities;
-  };
-  const totalItems = await getTotalItems();
-
   if (selectedCategory === "all") {
     currentCollections = await jars.getNFTCollections();
   } else if (selectedCategory === "art") {
@@ -104,7 +74,7 @@ export default async function CollectionData({ searchParams }: { searchParams: {
       {slicedCollections.map(async (collection, i) => {
         return (
           <Link href={`/collection/${collection.contract}`} key={i}>
-            <CollectionDataRow collection={collection} ownerCounts={ownerCounts} totalItems={totalItems} />
+            <CollectionDataRow collection={collection} ownerCounts={ownerCounts} />
           </Link>
         );
       })}

@@ -9,19 +9,18 @@ import { ipfsToHttps } from "@/lib/utils";
 import useFloorPrice from "@/hooks/useFloorPrice";
 import useVolumeAndSales from "@/hooks/useVolumeAndSales";
 import useListedNfts from "@/hooks/useListedNfts";
+import useTotalItems from '@/hooks/useTotalItems';
 
 type CollectionDataRowProps = {
   collection: CollectionData;
   ownerCounts: OwnerCounts;
-  totalItems: {
-    [contract: string]: number;
-  };
 };
 
-export default function CollectionDataRow({ collection, ownerCounts, totalItems }: CollectionDataRowProps) {
+export default function CollectionDataRow({ collection, ownerCounts }: CollectionDataRowProps) {
   const { floorPrice, isLoading: loadingFloorPrice } = useFloorPrice(collection.contract);
   const { totalVolume, totalSales, isLoading: loadingVolumeSale, isError } = useVolumeAndSales(collection.contract);
   const { listedCount, isLoading: loadingListedCount } = useListedNfts(collection.contract);
+  const { totalItems, isLoading: loadingTotalItems } = useTotalItems(collection.contract);
 
   const hide = () => {
     return "hidden lg:inline-block";
@@ -47,9 +46,9 @@ export default function CollectionDataRow({ collection, ownerCounts, totalItems 
       {/* Volume*/}
       <div className={hide()}>{loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalSales}</div> {/* Sales*/}
       <div className={hide()}>{loadingListedCount ? <Loader2 className="animate-spin" size={14} /> : listedCount} </div>
-      <div className={hide()}>{totalItems[collection.contract] || 0}</div> {/* Total Items */}
+      <div className={hide()}>{0}</div> {/* Total Items */}
       <div className={hide()}>
-        {(() => {
+        {/* {(() => {
           const owners = ownerCounts[collection.contract] || 0;
           const items = totalItems[collection.contract] || 0;
           if (items === 0 || owners === 0) {
@@ -57,7 +56,7 @@ export default function CollectionDataRow({ collection, ownerCounts, totalItems 
           }
           const percentage = ((owners / items) * 100).toFixed(2);
           return `${owners} (${percentage}%)`;
-        })()}
+        })()} */}
       </div>{" "}
       {/* Unique Owners */}
       <div className={hide()}>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div> {/* NSFW */}
