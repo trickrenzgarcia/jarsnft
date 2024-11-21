@@ -46,7 +46,7 @@ export default function CollectionDataRow({ collection, ownerCounts }: Collectio
       {/* Volume*/}
       <div className={hide()}>{loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalSales}</div> {/* Sales*/}
       <div className={hide()}>{loadingListedCount ? <Loader2 className="animate-spin" size={14} /> : listedCount} </div>
-      <div className={hide()}>{0}</div> {/* Total Items */}
+      <div className={hide()}>{loadingTotalItems ? <Loader2 className="animate-spin" size={14} /> : totalItems}</div> {/* Total Items */}
       <div className={hide()}>
         {/* {(() => {
           const owners = ownerCounts[collection.contract] || 0;
