@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import React, { useEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
+import { useTheme } from "next-themes";
 
 export const WavyBackground = ({
   children,
@@ -26,6 +27,7 @@ export const WavyBackground = ({
   waveOpacity?: number;
   [key: string]: any;
 }) => {
+  const { theme } = useTheme();
   const noise = createNoise3D();
   let w: number,
     h: number,
@@ -71,7 +73,7 @@ export const WavyBackground = ({
   useEffect(() => {
     let animationId: number;
     const render = () => {
-      ctx.fillStyle = backgroundFill || "black";
+      ctx.fillStyle = theme === "dark" ? "#000" : "#fff";
       ctx.globalAlpha = waveOpacity || 0.5;
       ctx.fillRect(0, 0, w, h);
       drawWave(5);
@@ -95,7 +97,7 @@ export const WavyBackground = ({
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, []);
+  }, [theme]);
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
