@@ -17,7 +17,7 @@ export class JarsAPI {
   private secretKey: string;
 
   constructor(private options: JarsOptions) {
-    this.baseUrl = "https://www.jarsnft.com";
+    this.baseUrl = options.baseUrl || "https://www.jarsnft.com";
     this.secretKey = options.secretKey || process.env.JWT_TOKEN || process.env.NEXT_PUBLIC_JWT_TOKEN;
   }
 
@@ -483,7 +483,7 @@ export class JarsAPI {
 }
 
 const jars = new JarsAPI({
-  baseUrl: process.env.NEXT_PUBLIC_APP_URL,
+  baseUrl: process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://www.jarsnft.com",
   secretKey: process.env.NEXT_PUBLIC_JWT_TOKEN,
 });
 
