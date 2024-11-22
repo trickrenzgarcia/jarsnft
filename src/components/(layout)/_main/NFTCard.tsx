@@ -11,7 +11,7 @@ import { Loader2 } from "lucide-react";
 
 export default function NFTCard({ item }: { item: CollectionData }) {
   const { floorPrice, isLoading: loadingFloorPrice } = useFloorPrice(item.contract);
-  const { totalVolume, totalSales, isLoading: loadingVolumeSale, isError } = useVolumeAndSales(item.contract);
+  const { totalVolume, isLoading: loadingVolumeSale } = useVolumeAndSales(item.contract);
   return (
     <Link href={`/collection/${item.contract}`}>
       <Card className="cursor-pointer rounded-lg border-2 bg-background p-2 hover:-translate-y-1 hover:border-3 hover:border-violet-500 dark:hover:border-violet-500">
