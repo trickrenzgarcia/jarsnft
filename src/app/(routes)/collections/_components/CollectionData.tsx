@@ -5,10 +5,6 @@ import { CircleCheckBig } from "lucide-react";
 import { Network, Alchemy } from "alchemy-sdk";
 import CollectionDataRow from "./CollectionDataRow";
 
-export interface OwnerCounts {
-  [contract: string]: number;
-}
-
 export default async function CollectionData({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
   const page = searchParams["page"] ?? 1;
   const limit = 5;
@@ -18,28 +14,28 @@ export default async function CollectionData({ searchParams }: { searchParams: {
 
   const selectedCategory = (searchParams["category"] as string) ?? "all";
   let currentCollections = await jars.getNFTCollections();
-  const contractAddresses = currentCollections.map((collection) => collection.contract);
+  // const contractAddresses = currentCollections.map((collection) => collection.contract);
 
   // Get Total of Unique Owners (Alchemy API )
-  const getOwnersForContracts = async (contractAddresses: string[]): Promise<OwnerCounts> => {
-    const settings = {
-      apiKey: process.env.POLYGON_ALCHEMY_API_KEY, // Alchemy API KEY
-      network: Network.MATIC_MAINNET, // REPLACE WITH MAINNET IF DEPLOYED
-    };
-    const alchemy = new Alchemy(settings);
-    const counts: OwnerCounts = {};
-    for (const contract of contractAddresses) {
-      try {
-        const response = await alchemy.nft.getOwnersForContract(contract);
-        counts[contract] = response.owners.length;
-      } catch (error) {
-        console.error(`Error fetching owners for contract ${contract}:`, error);
-        counts[contract] = 0;
-      }
-    }
-    return counts;
-  };
-  const ownerCounts = await getOwnersForContracts(contractAddresses);
+  // const getOwnersForContracts = async (contractAddresses: string[]): Promise<OwnerCounts> => {
+  //   const settings = {
+  //     apiKey: process.env.POLYGON_ALCHEMY_API_KEY, // Alchemy API KEY
+  //     network: Network.MATIC_MAINNET, // REPLACE WITH MAINNET IF DEPLOYED
+  //   };
+  //   const alchemy = new Alchemy(settings);
+  //   const counts: OwnerCounts = {};
+  //   for (const contract of contractAddresses) {
+  //     try {
+  //       const response = await alchemy.nft.getOwnersForContract(contract);
+  //       counts[contract] = response.owners.length;
+  //     } catch (error) {
+  //       console.error(`Error fetching owners for contract ${contract}:`, error);
+  //       counts[contract] = 0;
+  //     }
+  //   }
+  //   return counts;
+  // };
+  // const ownerCounts = await getOwnersForContracts(contractAddresses);
 
   if (selectedCategory === "all") {
     currentCollections = await jars.getNFTCollections();
@@ -74,7 +70,7 @@ export default async function CollectionData({ searchParams }: { searchParams: {
       {slicedCollections.map(async (collection, i) => {
         return (
           <Link href={`/collection/${collection.contract}`} key={i}>
-            <CollectionDataRow collection={collection} ownerCounts={ownerCounts} />
+            <CollectionDataRow collection={collection} />
           </Link>
         );
       })}

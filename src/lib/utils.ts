@@ -3,6 +3,8 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { APP_URL } from "./constant";
 import { ethers } from "ethers";
+import { getAllOwners } from "thirdweb/extensions/erc721";
+import { ContractOptions } from "thirdweb";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -167,4 +169,14 @@ export async function getPopularCollections() {
 
 export function ipfsToHttps(ipfs: string) {
   return ipfs.replace("ipfs://", process.env.NEXT_PUBLIC_IPFS_GATEWAY);
+}
+
+export async function getOwners(contract: Readonly<ContractOptions<any>>) {
+  const owners = await getAllOwners({
+    contract,
+    start: 0,
+    count: 10,
+  });
+
+  return owners;
 }

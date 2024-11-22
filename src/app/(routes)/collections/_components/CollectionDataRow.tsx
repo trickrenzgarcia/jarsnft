@@ -1,26 +1,26 @@
 "use client";
 
 import { CollectionData } from "@/types";
-import React from "react";
-import { OwnerCounts } from "./CollectionData";
+import React, { use, useEffect } from "react";
 import Image from "next/image";
 import { CircleCheckBig, Loader2 } from "lucide-react";
-import { ipfsToHttps } from "@/lib/utils";
+import { getOwners, ipfsToHttps } from "@/lib/utils";
 import useFloorPrice from "@/hooks/useFloorPrice";
 import useVolumeAndSales from "@/hooks/useVolumeAndSales";
 import useListedNfts from "@/hooks/useListedNfts";
-import useTotalItems from '@/hooks/useTotalItems';
+import useTotalItems from "@/hooks/useTotalItems";
+import useOwnersLength from "@/hooks/useOwnersLength";
 
 type CollectionDataRowProps = {
   collection: CollectionData;
-  ownerCounts: OwnerCounts;
 };
 
-export default function CollectionDataRow({ collection, ownerCounts }: CollectionDataRowProps) {
+export default function CollectionDataRow({ collection }: CollectionDataRowProps) {
   const { floorPrice, isLoading: loadingFloorPrice } = useFloorPrice(collection.contract);
   const { totalVolume, totalSales, isLoading: loadingVolumeSale, isError } = useVolumeAndSales(collection.contract);
   const { listedCount, isLoading: loadingListedCount } = useListedNfts(collection.contract);
   const { totalItems, isLoading: loadingTotalItems } = useTotalItems(collection.contract);
+  const { ownersLength } = useOwnersLength(collection.contract);
 
   const hide = () => {
     return "hidden lg:inline-block";
@@ -57,8 +57,9 @@ export default function CollectionDataRow({ collection, ownerCounts }: Collectio
           const percentage = ((owners / items) * 100).toFixed(2);
           return `${owners} (${percentage}%)`;
         })()} */}
+        {ownersLength}
       </div>{" "}
-      {/* Unique Owners */}
+      {/* Number of Owners */}
       <div className={hide()}>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div> {/* NSFW */}
       <div>{collection.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" /> : null}</div>
     </div>
