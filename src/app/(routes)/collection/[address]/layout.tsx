@@ -31,6 +31,7 @@ export default async function CollectionLayout({ children, params: { address } }
           <ListingsProvider address={address}>{children}</ListingsProvider>
         </MarketPlaceProvider>
       </ContractProvider>
+      <Footer />
     </main>
   );
 }
