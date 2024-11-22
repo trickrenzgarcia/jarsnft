@@ -60,7 +60,7 @@ export default function CollectionDataRow({ collection }: CollectionDataRowProps
         {ownersLength}
       </div>{" "}
       {/* Number of Owners */}
-      <div className={hide()}>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div> {/* NSFW */}
+      {/* <div className={hide()}>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div> NSFW */}
       <div>{collection.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" /> : null}</div>
     </div>
   );
