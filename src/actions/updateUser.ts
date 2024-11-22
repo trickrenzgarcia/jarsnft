@@ -1,7 +1,7 @@
 "use server";
 
 import jars from "@/lib/api";
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 type UserUpdateData = {
   name: string;
@@ -12,6 +12,7 @@ type UserUpdateData = {
 const updateUser = async (address: string, userData: UserUpdateData) => {
   await jars.updateUser(address, userData);
   revalidateTag("user");
+  revalidatePath("/");
 };
 
 export default updateUser;

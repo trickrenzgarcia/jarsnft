@@ -5,6 +5,7 @@ import { ConnectWalletV4, CreateUserDialog, ProfileButton } from ".";
 import { ProfileQuery } from "@/types/users";
 import { Skeleton } from "../ui/skeleton";
 import { useEffect } from "react";
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
   const { user, isLoading, isLoggedIn } = useUser() as ProfileQuery;

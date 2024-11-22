@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
 import jars from "@/lib/api";
 import updateUser from "@/actions/updateUser";
 import createProfile from "@/actions/createProfile";
+import { useRouter } from 'next/navigation';
 
 const formCreateUserSchema = z.object({
   name: z
@@ -42,6 +43,7 @@ export default function CreateUserDialog({ isOpenCreate }: { isOpenCreate: boole
   const [loading, setLoading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(isOpenCreate);
   const { user, isLoggedIn, isLoading: sessionLoading } = useUser() as UserProfile;
+  const router = useRouter();
   // Logout/Disconnect the wallet
   const { logout, isLoading } = useLogout();
 
@@ -66,6 +68,7 @@ export default function CreateUserDialog({ isOpenCreate }: { isOpenCreate: boole
       setDialogOpen(false);
     }
     setLoading(false);
+    router.refresh();
   }
 
   async function checkEmailExists(email: string): Promise<boolean> {
