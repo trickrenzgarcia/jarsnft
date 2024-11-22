@@ -16,7 +16,9 @@ import { Spinner } from "@nextui-org/spinner";
 import { useMarketPlaceContext, useListingsContext } from "@/components/hooks/use-context";
 import { shortenWalletAddress } from "@/lib/utils";
 import useOwnersLength from "@/hooks/useOwnersLength";
-import AddressButton from './AddressButton';
+import AddressButton from "./AddressButton";
+import useFloorPrice from "@/hooks/useFloorPrice";
+import useVolumeAndSales from "@/hooks/useVolumeAndSales";
 
 type NFTBannerProps = {
   address: string;
@@ -25,7 +27,7 @@ type NFTBannerProps = {
 
 type Details = {
   detail: string;
-  value?: number;
+  value?: number | string;
   currency?: "POL";
 };
 
@@ -36,6 +38,8 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
   const { data: metadata, isLoading: loadingMetadata, isError: errorMetadata } = useContractMetadata(contract);
   const { marketPlaceContract, loadingMarketPlace } = useMarketPlaceContext();
   const { ownersLength } = useOwnersLength(collection.contract);
+  const { floorPrice, isLoading: loadingFloorPrice } = useFloorPrice(address);
+  const { totalVolume, totalSales, isLoading: loadingVolumeSale, isError } = useVolumeAndSales(address);
 
   const {
     data: sales,
@@ -52,27 +56,29 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
   useEffect(() => {
     const listingCount = (directListings?.length || 0) + (auctionListings?.length || 0);
     if (sales && sales.length > 0) {
-      const totalSalesPrice = sales.reduce((total, sale) => {
-        const price = BigNumber.from(sale.data.totalPricePaid);
-        return total.add(price);
-      }, BigNumber.from(0));
+      // const totalSalesPrice = sales.reduce((total, sale) => {
+      //   const price = BigNumber.from(sale.data.totalPricePaid);
+      //   return total.add(price);
+      // }, BigNumber.from(0));
 
-      const floorPrice = sales
-        .reduce((min, sale) => {
-          const price = BigNumber.from(sale.data.totalPricePaid);
-          return price.lt(min) ? price : min;
-        }, BigNumber.from(sales[0].data.totalPricePaid))
-        .toString();
+      // const floorPrice = sales
+      //   .reduce((min, sale) => {
+      //     const price = BigNumber.from(sale.data.totalPricePaid);
+      //     return price.lt(min) ? price : min;
+      //   }, BigNumber.from(sales[0].data.totalPricePaid))
+      //   .toString();
 
       setDetails([
         {
           detail: "Total Volume",
-          value: totalSalesPrice ? parseFloat(ethers.utils.formatEther(totalSalesPrice)) : 0,
+          // value: totalSalesPrice ? parseFloat(ethers.utils.formatEther(totalSalesPrice)) : 0,
+          value: totalVolume ? totalVolume : 0,
           currency: "POL",
         },
         {
           detail: "Floor Price",
-          value: floorPrice ? parseFloat(ethers.utils.formatEther(floorPrice)) : 0,
+          // value: floorPrice ? parseFloat(ethers.utils.formatEther(floorPrice)) : 0,
+          value: floorPrice,
           currency: "POL",
         },
         {
@@ -142,9 +148,7 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
                   ) : null}
                 </div>
               </div>
-              <AddressButton
-                address={address}
-              />
+              <AddressButton address={address} />
             </div>
           </div>
         </section>
@@ -159,7 +163,7 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
                 <div key={i} className={cn("w-full flex-col items-center")}>
                   <div className="flex justify-center gap-2 text-2xl font-semibold">
                     {detail.currency && <SiPolygon className="text-violet-500" />}
-                    <p>{detail.value !== undefined ? formatNumber(detail.value) : <Spinner />}</p>
+                    <p>{detail.value !== undefined ? typeof detail.value === "number" ? formatNumber(detail.value) : detail.value : <Spinner />}</p>
                     {detail.currency && <p>{detail.currency}</p>}
                   </div>
                   <p className="text-center text-sm font-normal text-gray-300 dark:text-gray-500">{detail.detail}</p>

@@ -379,7 +379,7 @@ export class JarsAPI {
      * @param contractAddress - The contract address
      */
     getFloorPrice: async (contractAddress: string) => {
-      return await this.request<number | "N/A">(`/getFloorPrice?contractAddress=${contractAddress}`, {
+      return await this.request<number | "--">(`/getFloorPrice?contractAddress=${contractAddress}`, {
         cache: "no-store",
       });
     },
