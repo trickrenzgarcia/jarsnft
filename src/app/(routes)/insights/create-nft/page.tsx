@@ -1,11 +1,15 @@
 import Image from "next/image";
-import { P, H1,H2,H3 } from "../_components/TailwindTags";
+import { P, H1, H2, H3 } from "../_components/TailwindTags";
 
 export default function CreateNftPage() {
   return (
     <section>
       <H1>Create your NFT</H1>
-      <P>Creating your first NFT can be an anxious and intimidating process. To help you navigate our Marketplace, we provide a guide on how to upload, create, and mint your NFTs. Minting refers to the process of creating an NFT or token on the blockchain. This means that what you&apos;ve uploaded and paid for is transformed into an NFT and recorded on the blockchain.</P>
+      <P>
+        Creating your first NFT can be an anxious and intimidating process. To help you navigate our Marketplace, we provide a guide on how to upload,
+        create, and mint your NFTs. Minting refers to the process of creating an NFT or token on the blockchain. This means that what you&apos;ve
+        uploaded and paid for is transformed into an NFT and recorded on the blockchain.
+      </P>
 
       <div id="create">
         <H2>How to Create an NFT</H2>
@@ -33,7 +37,7 @@ export default function CreateNftPage() {
           alt="JARS Create Page"
           className="mb-2 max-h-[100%] max-w-full rounded-lg"
         />
-        <ul className="p-6 list-disc leading-loose tracking-wide dark:text-gray-300">
+        <ul className="list-disc p-6 leading-loose tracking-wide dark:text-gray-300">
           <li className="mb-3">
             <span className="font-bold">Create NFT Collection:</span>
             {` This option will be the first step for every beginner. Creating your first collection will be like creating and album for your NFTs!`}
@@ -46,6 +50,7 @@ export default function CreateNftPage() {
         <H3>Creating NFT Collection</H3>
         <P>{`Here is an example of creating your collection:`}</P>
         <Image
+          unoptimized
           src="/assets/InsightsAsset/JARS create 3.gif"
           width={1920}
           height={1080}
@@ -53,7 +58,10 @@ export default function CreateNftPage() {
           quality={100}
           className="mb-2 max-h-[80%] max-w-full rounded-lg"
         />
-        <P>To summarize, what you will need is the image file of your collection. Then create a name and description that can attract other creators to take an interest in your NFTs. Then you can set how much revenue you can receive from that collection.</P>
+        <P>
+          To summarize, what you will need is the image file of your collection. Then create a name and description that can attract other creators to
+          take an interest in your NFTs. Then you can set how much revenue you can receive from that collection.
+        </P>
         <H3>Minting an NFT</H3>
         <P>Next we will go through with how to mint an NFT! Select &apos;Mint an NFT&apos; in the Create page</P>
         <Image
@@ -66,6 +74,7 @@ export default function CreateNftPage() {
         />
         <P>{`Then follow through the steps presented in this example:`}</P>
         <Image
+          unoptimized
           src="/assets/InsightsAsset/JARS mint 2.gif"
           width={1920}
           height={1080}
@@ -73,7 +82,10 @@ export default function CreateNftPage() {
           quality={100}
           className="mb-2 max-h-[100%] max-w-full"
         />
-        <P>You only need to upload the image you want to be minted to an NFT. After that, adding a description and traits which adds relevancy, engagement in the community and adds more traceability to your NFTs</P>
+        <P>
+          You only need to upload the image you want to be minted to an NFT. After that, adding a description and traits which adds relevancy,
+          engagement in the community and adds more traceability to your NFTs
+        </P>
       </div>
     </section>
     // <>

@@ -14,12 +14,12 @@ export default function NFTCardCategories({ categoryLink, categoryName, image }:
       <CardContent className="relative overflow-hidden rounded-lg p-4">
         <Link href={categoryLink}>
           <Image
+            unoptimized
             className="max-h-[30rem] min-h-[30rem] w-full rounded-[--radius] bg-cover"
             src={image}
             width={350}
             height={350}
             alt="NFT"
-            unoptimized={true}
           />
         </Link>
       </CardContent>
