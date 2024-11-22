@@ -39,13 +39,13 @@ export default function NFTCard({ item }: { item: CollectionData }) {
         </CardContent>
 
         <CardFooter className={cn("mt-2 flex w-full justify-between rounded-lg bg-muted p-3 dark:bg-muted/30")}>
-          <div className="flex flex-col items-center gap-1">
+          <div className="flex flex-col items-start gap-1">
             <p className="truncate text-xs text-muted-foreground">Floor</p>
             <p className="truncate text-sm font-semibold">
               {loadingFloorPrice ? <Loader2 className="animate-spin" size={14} /> : `${floorPrice || 0} POL`}
             </p>
           </div>
-          <div className="flex flex-col items-center gap-1">
+          <div className="flex flex-col items-end gap-1">
             <p className="truncate text-xs text-muted-foreground">Volume</p>
             <p className="flex flex-row truncate text-sm font-semibold">
               {loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalVolume ? `${totalVolume.toFixed(2)} POL` : "0"}
