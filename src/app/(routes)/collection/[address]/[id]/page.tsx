@@ -20,7 +20,7 @@ export default async function NFTDetails({ params: { address, id } }: NFTProps) 
   }
 
   return (
-    <main className="container pb-20">
+    <main className="container">
       <NFTItem />
       {/* <NftCard 
         address={address} 
