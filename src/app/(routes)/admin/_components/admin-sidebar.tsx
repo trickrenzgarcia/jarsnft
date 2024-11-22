@@ -25,8 +25,8 @@ export function AdminSidebar() {
 
   return (
     <div className="hidden border-r lg:block bg-[#F3F3F3] dark:bg-[#272727] transition-colors">
-      <div className="flex h-full max-h-screen flex-col gap-2">
-        <div className="flex h-[60px] items-center px-8">
+      <div className="flex h-full max-h-screen flex-col gap-4">
+        <div className="flex h-[60px] items-center px-12">
           <Link className="flex items-center font-semibold" href="/">
             <Image src='/assets/Jarsu.png' alt='Admin Logo' width={60} height={60} />
             <span className="text-2xl">JarsNFT Admin</span>

@@ -55,3 +55,41 @@ getListedNfts.get("/", async (c) => {
   const listingCount = activeListings.length + activeAuctions.length;
   return c.json(listingCount, 200);
 });
+
+getListedNfts.get("/count", async (c) => {
+  const contract = getContract({
+    client,
+    address: process.env.PLATFORM_ADDRESS!,
+    chain: polygon,
+  });
+
+  const a1 = getAllAuctions({
+    contract,
+    start: 0,
+    count: 1000n,
+  });
+
+  const a2 = getAllListings({
+    contract,
+    start: 0,
+    count: 1000n,
+  });
+
+  const [auctions, listings] = await Promise.all([a1, a2]);
+
+  const activeAuctions: EnglishAuction[] = JSON.parse(
+    JSON.stringify(
+      auctions.filter((auction) => auction.status === "ACTIVE"),
+      replacer,
+    ),
+  );
+  const activeListings: DirectListing[] = JSON.parse(
+    JSON.stringify(
+      listings.filter((listing) => listing.status === "ACTIVE"),
+      replacer,
+    ),
+  );
+
+  const listingCount = activeListings.length + activeAuctions.length;
+  return c.json(listingCount, 200);
+});
