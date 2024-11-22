@@ -9,7 +9,7 @@ import { DirectListing, EnglishAuction, getAllAuctions, getAllListings } from "t
 export const getFloorPrice = new Hono();
 
 const client = createThirdwebClient({
-  secretKey: process.env.THIRDWEB_API_KEY!,
+  secretKey: process.env.THIRDWEB_API_KEY,
 });
 
 getFloorPrice.get("/", async (c) => {
@@ -22,7 +22,7 @@ getFloorPrice.get("/", async (c) => {
 
   const contract = getContract({
     client,
-    address: process.env.PLATFORM_ADDRESS!,
+    address: "0x7877FfDdb8805ca61e13DA091BEEC61B268df3dc",
     chain: polygon,
   });
 
@@ -42,13 +42,17 @@ getFloorPrice.get("/", async (c) => {
 
   const activeAuctions: EnglishAuction[] = JSON.parse(
     JSON.stringify(
-      auctions.filter((auction) => auction.assetContractAddress === schema.data).filter((auction) => auction.status === "ACTIVE"),
+      auctions
+        .filter((auction) => auction.assetContractAddress === "0x9448b8B775bC3E3B9452D5Ef08923DFDdD16F30c")
+        .filter((auction) => auction.status === "ACTIVE"),
       replacer,
     ),
   );
   const activeListings: DirectListing[] = JSON.parse(
     JSON.stringify(
-      listings.filter((listing) => listing.assetContractAddress === schema.data).filter((listing) => listing.status === "ACTIVE"),
+      listings
+        .filter((listing) => listing.assetContractAddress === "0x9448b8B775bC3E3B9452D5Ef08923DFDdD16F30c")
+        .filter((listing) => listing.status === "ACTIVE"),
       replacer,
     ),
   );
