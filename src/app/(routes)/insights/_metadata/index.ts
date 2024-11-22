@@ -164,7 +164,7 @@ export const rightNavList: RightNavListType[] = [
       { name: "Overview", anchor: "overview" },
       { name: "Common NFT Scams", anchor: "scams" },
       { name: "Protect your Account", anchor: "protect" },
-      { name: "Conclusion", anchor: "conclusin" },
+      // { name: "Conclusion", anchor: "conclusion" },
     ],
   },
   // {
