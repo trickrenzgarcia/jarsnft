@@ -27,10 +27,6 @@ export default async function Home() {
         <ListComponents
           data={collections}
           renderItem={(collection, index) => {
-            if(collection.data === undefined) {
-              return null;
-            }
-            
             return (
               <section key={index} className="space-y-10">
                 <Trend category={collection.category} collections={collection.data} link={collection.link} />

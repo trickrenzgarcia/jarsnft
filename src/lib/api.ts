@@ -483,8 +483,8 @@ export class JarsAPI {
 }
 
 const jars = new JarsAPI({
-  baseUrl: process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL,
-  secretKey: process.env.JWT_TOKEN || process.env.NEXT_PUBLIC_JWT_TOKEN,
+  baseUrl: process.env.NEXT_PUBLIC_APP_URL,
+  secretKey: process.env.NEXT_PUBLIC_JWT_TOKEN,
 });
 
 export default jars;
