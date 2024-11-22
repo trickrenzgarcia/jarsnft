@@ -17,8 +17,8 @@ export class JarsAPI {
   private secretKey: string;
 
   constructor(private options: JarsOptions) {
-    this.baseUrl = options.baseUrl || process.env.NEXT_PUBLIC_APP_URL || process.env.APP_URL;
-    this.secretKey = options.secretKey || process.env.NEXT_PUBLIC_JWT_TOKEN || process.env.JWT_TOKEN;
+    this.baseUrl = options.baseUrl || "https://www.jarsnft.com";
+    this.secretKey = options.secretKey || process.env.JWT_TOKEN || process.env.NEXT_PUBLIC_JWT_TOKEN;
   }
 
   private async request<TData>(endPoint: string, configs?: RequestInit): Promise<TData> {
@@ -267,7 +267,7 @@ export class JarsAPI {
    * @param walletAddress
    */
   async getCollectionsByOwner(walletAddress: string) {
-    return await this.request<Omit<NFTCollection[], "simpleHashData">>(`/collection/getCollectionsByOwner?owner=${walletAddress}`, {
+    return await this.request<NFTCollection[]>(`/collection/getCollectionsByOwner?owner=${walletAddress}`, {
       next: { tags: ["collections", "getCollectionsByOwner"] },
     });
   }
@@ -483,8 +483,8 @@ export class JarsAPI {
 }
 
 const jars = new JarsAPI({
-  baseUrl: process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL,
-  secretKey: process.env.JWT_TOKEN || process.env.NEXT_PUBLIC_JWT_TOKEN,
+  baseUrl: process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://www.jarsnft.com",
+  secretKey: process.env.NEXT_PUBLIC_JWT_TOKEN,
 });
 
 export default jars;

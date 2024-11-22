@@ -166,5 +166,5 @@ export async function getPopularCollections() {
 }
 
 export function ipfsToHttps(ipfs: string) {
-  return ipfs.replace("ipfs://", process.env.NEXT_PUBLIC_IPFS_GATEWAY!);
+  return ipfs.replace("ipfs://", process.env.NEXT_PUBLIC_IPFS_GATEWAY);
 }
