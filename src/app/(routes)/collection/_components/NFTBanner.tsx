@@ -86,6 +86,7 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
           value: listingCount,
         },
         { detail: "Owners(Unique)", value: ownersLength },
+        { detail: "Royalty", value: collection.sellerFeeBasisPoints / 100 + "%" },
       ]);
     } else {
       setDetails([
@@ -96,7 +97,7 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
         },
         {
           detail: "Floor Price",
-          value: 0,
+          value: "--",
           currency: "POL",
         },
         {
@@ -104,6 +105,7 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
           value: listingCount,
         },
         { detail: "Owners(Unique)", value: 0 },
+        { detail: "Royalty", value: collection.sellerFeeBasisPoints / 100 + "%" },
       ]);
     }
   }, [sales, address, collection, directListings, auctionListings]);
