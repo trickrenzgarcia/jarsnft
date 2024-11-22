@@ -28,9 +28,9 @@ export default function ProfileCard({ user }: { user: Profile }) {
   return (
     <Card className="mb-5 w-[300px] max-w-[300px] bg-default-200 dark:bg-neutral-900">
       <CardHeader className="flex w-full flex-col items-center">
-        <div className="rounded-full border-2 border-purple-600">
+        {/* <div className="rounded-full border-2 border-purple-600">
           <BoringAvatar name={user.data.address} size={100} />
-        </div>
+        </div> */}
         <h1 className="w-full truncate py-2 text-center text-xl font-semibold">
           {user.data.session.name}
         </h1>
