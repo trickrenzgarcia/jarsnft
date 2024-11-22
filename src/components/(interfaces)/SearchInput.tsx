@@ -11,6 +11,7 @@ import { SiPolygon } from "react-icons/si";
 
 import Image from "next/image";
 import Link from "next/link";
+import { ipfsToHttps } from "@/lib/utils";
 
 export default function SearchInput(props: any) {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -76,7 +77,7 @@ export default function SearchInput(props: any) {
                       <div className="flex items-center gap-2 rounded-lg p-2 hover:bg-muted">
                         <div className="mr-2 flex aspect-square items-center justify-center">
                           <Image
-                            src={result.image}
+                            src={ipfsToHttps(result.image)}
                             alt={result.name}
                             width={30}
                             height={30}
