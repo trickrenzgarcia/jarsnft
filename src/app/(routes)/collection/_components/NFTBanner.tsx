@@ -15,6 +15,7 @@ import { BigNumber, ethers } from "ethers";
 import { Spinner } from "@nextui-org/spinner";
 import { useMarketPlaceContext, useListingsContext } from "@/components/hooks/use-context";
 import { shortenWalletAddress } from "@/lib/utils";
+import useOwnersLength from "@/hooks/useOwnersLength";
 
 type NFTBannerProps = {
   address: string;
@@ -33,6 +34,7 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
   const { contract } = useContract(address);
   const { data: metadata, isLoading: loadingMetadata, isError: errorMetadata } = useContractMetadata(contract);
   const { marketPlaceContract, loadingMarketPlace } = useMarketPlaceContext();
+  const { ownersLength } = useOwnersLength(collection.contract);
 
   const {
     data: sales,
@@ -76,7 +78,7 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
           detail: "Listed",
           value: listingCount,
         },
-        { detail: "Owners(Unique)", value: 1 }, // Replace with actual unique owner count if available.
+        { detail: "Owners(Unique)", value: ownersLength },
       ]);
     } else {
       setDetails([
