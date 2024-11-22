@@ -27,7 +27,6 @@ export default function useCollectionsByOwner() {
         })
         const collections = await response.json()
         setCollections(collections)
-        console.log(collections, 'tite')
       } catch (error: any) {
         setErrorMessage(error.message)
         setError(true)

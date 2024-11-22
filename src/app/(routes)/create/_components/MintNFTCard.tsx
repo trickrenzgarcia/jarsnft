@@ -12,7 +12,7 @@ import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { useDropzone } from "react-dropzone";
 import React, { useState, useCallback, useEffect, useRef, useMemo } from "react";
-import { cn, ipfsToCfIpfs, ipfsToHttps, shortenFileName, truncate } from "@/lib/utils";
+import { cn, ipfsToHttps, shortenFileName, truncate } from "@/lib/utils";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { useAddress, useContract, useMintNFT, useSDK } from "@thirdweb-dev/react";
 import { Dropdown, Link, DropdownTrigger, DropdownMenu, DropdownItem, Accordion, AccordionItem, Spinner } from "@nextui-org/react";
@@ -46,6 +46,7 @@ import { FiShare } from "react-icons/fi";
 import { TooltipMsg } from "@/components/(interfaces)";
 import { createTxHash } from "@/actions/createTxHash";
 import useCollectionsByOwner from '@/hooks/useCollectionsByOwner';
+import NoConnectedWallet from '../../me/_components/NoConnectedWallet';
 
 const mintSchema = z.object({
   collection: z.string().refine((value) => ethers.utils.isAddress(value), {
@@ -101,7 +102,6 @@ export default function MintNFTCard() {
   const ref = useRef<HTMLButtonElement>(null);
   const { contract } = useContract(selectedContract?.contract);
   const { mutateAsync: mintNft, isLoading: mintLoading, error: mintError } = useMintNFT(contract);
-  console.log(collections);
   const form = useForm<FormMintNft>({
     resolver: zodResolver(mintSchema),
     defaultValues: {
@@ -211,13 +211,16 @@ export default function MintNFTCard() {
       },
     )
       .then((settled) => {
-        console.log(settled);
         setMintState({ state: "success", message: "NFT minted successfully" });
       })
       .catch((error) => {
         setMintState({ state: "error", message: error.message });
       });
   };
+
+  if(!address) {
+    return <NoConnectedWallet />
+  }
 
   return (
     <Card className="w-full overflow-hidden p-8">
@@ -244,7 +247,7 @@ export default function MintNFTCard() {
                             <>
                               <div className="relative flex h-[60px] w-[60px] items-center justify-center rounded-md bg-muted">
                                 <Image
-                                  src={ipfsToHttps(selectedContract.image) || ""}
+                                  src={selectedContract.image.replace("ipfs://", process.env.NEXT_PUBLIC_IPFS_GATEWAY) || ""}
                                   fill
                                   style={{ objectFit: "cover" }}
                                   alt={selectedContract.name}
@@ -296,7 +299,7 @@ export default function MintNFTCard() {
                           </div>
                         </Button>
                       )}
-                      {collections?.map((col, i) => (
+                      {collections && collections.map((col, i) => (
                         <Button
                           variant="ghost"
                           className="flex h-fit w-full justify-start gap-3"
@@ -557,7 +560,7 @@ export default function MintNFTCard() {
                   {mintState.state === "success" && (
                     <div className="flex w-full justify-between">
                       <TooltipMsg message="Share">
-                        <Button variant="ghost">
+                        <Button variant="ghost" >
                           <FiShare />
                         </Button>
                       </TooltipMsg>
