@@ -6,6 +6,7 @@ import React from 'react'
 import AdminMenuToggle from './_components/admin-menu'
 import { Metadata } from 'next'
 import { AdminSidebar } from './_components/admin-sidebar'
+import { MarketPlaceProvider } from '@/components/(providers)'
 
 export async function generateMetadata(): Promise<Metadata>{
   const user = (await getUser()) as AuthUser
@@ -42,7 +43,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <div className="flex h-screen">
       <AdminSidebar />
       <main className="flex-1 overflow-y-auto p-8 bg-[#FAFAFA] dark:bg-[#212121]">
-        {children}
+        <MarketPlaceProvider>
+          {children}
+        </MarketPlaceProvider>
       </main>
     </div>
   )
