@@ -12,6 +12,7 @@ import { SiPolygon } from "react-icons/si";
 import Image from "next/image";
 import Link from "next/link";
 import { ipfsToHttps } from "@/lib/utils";
+import SearchResult from "./SearchResult";
 
 export default function SearchInput(props: any) {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -73,32 +74,7 @@ export default function SearchInput(props: any) {
               ) : dataResults && dataResults.length > 0 ? (
                 <div className="flex flex-col">
                   {dataResults.map((result) => (
-                    <Link key={result.contract} href={`/collection/${result.contract}`} className="cursor-pointer" onClick={handleLinkClick}>
-                      <div className="flex items-center gap-2 rounded-lg p-2 hover:bg-muted">
-                        <div className="mr-2 flex aspect-square items-center justify-center">
-                          <Image
-                            src={ipfsToHttps(result.image)}
-                            alt={result.name}
-                            width={30}
-                            height={30}
-                            style={{ objectFit: "cover" }}
-                            className="h-50% w-50% rounded-md border-1"
-                          />
-                        </div>
-                        <div className="flex flex-col">
-                          <p className="text-sm font-bold">{result.name}</p>
-                          <p className="ml-2 flex flex-row items-center gap-2 text-sm text-gray-400">
-                            <SiPolygon />
-                            {result.viewCount} {` items`}
-                          </p>
-                        </div>
-                        <div className="ml-auto">
-                          <p className="text-sm text-gray-400">
-                            {result.viewCount} {` POL`}
-                          </p>
-                        </div>
-                      </div>
-                    </Link>
+                    <SearchResult result={result} handleLinkClick={handleLinkClick} />
                   ))}
                 </div>
               ) : (
