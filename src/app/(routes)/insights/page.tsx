@@ -7,7 +7,7 @@ export default function Page() {
     <div>
       <div id="welcome">
         <H1>Overview</H1>
-        <P>The following are the overview of contents that will help you be informed in the basics of Crypto! Therefore this page serves to help individuals especially beginners in getting a grasp of blockchain. We will guide you into learning the basics and definition of each of the termsused. Read through the following outline of each topics</P>
+        <P>The following are the overview of contents that will help you be informed in the basics of Crypto! Therefore this page serves to help individuals especially beginners in getting a grasp of blockchain. We will guide you into learning the basics and definition of each of the terms used. Read through the following outline of each topics</P>
         <Disclaimer>Disclaimer: Please do your own research (DYOR) before investing</Disclaimer>
         <hr />
       </div>
