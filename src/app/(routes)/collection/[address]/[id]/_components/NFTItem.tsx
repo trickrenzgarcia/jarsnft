@@ -5,7 +5,7 @@ import { useContractContext, useMarketPlaceContext, useNFTContext } from "@/comp
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { displayName, shortenWalletAddress } from "@/lib/utils";
+import { displayName, polygonScan, shortenWalletAddress } from "@/lib/utils";
 import { useBalance, useValidDirectListings, useValidEnglishAuctions } from "@thirdweb-dev/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -100,7 +100,7 @@ export default function NFTItem() {
                   <p className="text-xs text-gray-500 dark:text-gray-400">Owned by</p>
                   {nft ? (
                     <Link
-                      href={`/user/${directListings && directListings[0] ? directListings[0].creatorAddress : auctionListings && auctionListings[0] ? auctionListings[0].creatorAddress : nft.owner}`}
+                      href={polygonScan(directListings && directListings[0] ? directListings[0].creatorAddress : auctionListings && auctionListings[0] ? auctionListings[0].creatorAddress : nft.owner)}
                     >
                       <p className="cursor-pointer text-medium font-bold hover:underline">{shortenWalletAddress(nft.owner)}</p>
                     </Link>

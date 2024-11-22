@@ -180,3 +180,7 @@ export async function getOwners(contract: Readonly<ContractOptions<any>>) {
 
   return owners;
 }
+
+export function polygonScan(address: string) {
+  return `https://polygonscan.com/address/${address}`;
+}

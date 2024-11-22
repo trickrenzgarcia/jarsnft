@@ -16,6 +16,7 @@ import { Spinner } from "@nextui-org/spinner";
 import { useMarketPlaceContext, useListingsContext } from "@/components/hooks/use-context";
 import { shortenWalletAddress } from "@/lib/utils";
 import useOwnersLength from "@/hooks/useOwnersLength";
+import AddressButton from './AddressButton';
 
 type NFTBannerProps = {
   address: string;
@@ -141,7 +142,9 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
                   ) : null}
                 </div>
               </div>
-              <p className="w-full text-sm text-gray-500 lg:text-2xl">{shortenWalletAddress(address)}</p>
+              <AddressButton
+                address={address}
+              />
             </div>
           </div>
         </section>
