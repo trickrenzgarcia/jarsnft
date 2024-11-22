@@ -1,6 +1,6 @@
 "use client";
 
-import { useUser, useLogout } from "@thirdweb-dev/react";
+import { useUser, useLogout, useAddress } from "@thirdweb-dev/react";
 import { ConnectWalletV4, CreateUserDialog, ProfileButton } from ".";
 import { ProfileQuery } from "@/types/users";
 import { Skeleton } from "../ui/skeleton";
@@ -8,6 +8,7 @@ import { useEffect } from "react";
 
 export default function Login() {
   const { user, isLoading, isLoggedIn } = useUser() as ProfileQuery;
+  const address = useAddress();
   const { logout, isLoading: logoutLoading } = useLogout();
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function Login() {
       // Clean up the event listener when the component unmounts
       window.removeEventListener("beforeunload", handleUnload);
     };
-  }, [isLoggedIn, logout]);
+  }, [isLoggedIn, logout, user]);
 
   return (
     <div className="flex items-center">
@@ -33,7 +34,7 @@ export default function Login() {
         <Skeleton className="h-[35px] w-[35px] rounded-full" />
       ) : isLoggedIn ? (
         <div className="flex items-center gap-2">
-          {isLoggedIn && user.data.session.isListed && <ProfileButton />} {/* ProfileButton will only be shown if isLoggedIn is true */}
+          {isLoggedIn && user.data.session.isListed && address && <ProfileButton />} {/* ProfileButton will only be shown if isLoggedIn is true */}
           <ConnectWalletV4 btnTitle="Connect" />
         </div>
       ) : (

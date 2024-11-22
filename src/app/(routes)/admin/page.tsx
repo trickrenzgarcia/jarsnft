@@ -10,9 +10,7 @@ async function getListedNftsCount(): Promise<number> {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${process.env.JWT_TOKEN}`
     },
-    next: {
-      revalidate: 5
-    }
+    cache: 'no-store',
   });
   const data = await response.json() as number;
   return data;
@@ -25,9 +23,7 @@ async function getTotalNftsCount(): Promise<number> {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${process.env.JWT_TOKEN}`
     },
-    next: {
-      revalidate: 5
-    }
+    cache: 'no-store',
   });
   const data = await response.json();
   return data;
@@ -40,9 +36,7 @@ async function getAllUsersCount(): Promise<number> {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${process.env.JWT_TOKEN}`
     },
-    next: {
-      revalidate: 10
-    }
+    cache: 'no-store',
   });
   const data = await response.json();
   return data.length;
