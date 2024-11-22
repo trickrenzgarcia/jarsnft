@@ -82,7 +82,7 @@ export default async function AdminPage() {
         </Card>
         <Card className='bg-purple-300/70 dark:bg-[#404040] shadow-[rgba(0,0,15,1)_0px_6px_0px_0px] rounded-2xl'>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total NFTs</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Collections</CardTitle>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
