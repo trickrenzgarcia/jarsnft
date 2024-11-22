@@ -153,11 +153,11 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
           <div className="mt-8 flex items-end gap-4 overflow-x-auto">
             {details &&
               details.map((detail: Details, i) => (
-                <div key={i} className={cn("w-full")}>
+                <div key={i} className={cn("w-full flex-col items-center")}>
                   <div className="flex justify-center gap-2 text-2xl font-semibold">
                     {detail.currency && <SiPolygon className="text-violet-500" />}
                     <p>{detail.value !== undefined ? formatNumber(detail.value) : <Spinner />}</p>
-                    <p>{detail.currency}</p>
+                    {detail.currency && <p>{detail.currency}</p>}
                   </div>
                   <p className="text-center text-sm font-normal text-gray-300 dark:text-gray-500">{detail.detail}</p>
                 </div>
