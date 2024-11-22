@@ -137,10 +137,10 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
               alt=""
               className="aspect-square rounded-xl border bg-background object-fill"
             />
-            <div className={cn("w-[500px]")}>
+            <div className="text-sm lg:text-4xl">
               <div className="flex w-full items-center gap-1 text-2xl font-semibold">
                 <div className="flex flex-row">
-                  <h2 className="truncate">{metadata.name}</h2>
+                  <h2>{metadata.name}</h2>
                   {collection.isVerified ? (
                     <TooltipMsg message="Verified">
                       <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">

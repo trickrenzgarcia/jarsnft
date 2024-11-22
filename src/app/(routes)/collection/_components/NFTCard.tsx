@@ -37,7 +37,7 @@ export default function NFTCard({ nft, isHidePrice = true }: NFTCardProps) {
         </CardTitle>
       </CardContent>
 
-      <CardFooter className={cn(isHidePrice && "hidden", "w-full justify-between rounded-sm bg-muted p-3 dark:bg-muted/30 sm:flex")}>
+      {/* <CardFooter className={cn(isHidePrice && "hidden", "w-full justify-between rounded-sm bg-muted p-3 dark:bg-muted/30 sm:flex")}>
         <div className="flex flex-col items-start gap-1">
           <p className="truncate text-xs text-muted-foreground">Price</p>
           <p className="truncate text-sm font-semibold">100 POL</p>
@@ -46,7 +46,7 @@ export default function NFTCard({ nft, isHidePrice = true }: NFTCardProps) {
           <p className="truncate text-xs text-muted-foreground">Highest Bid</p>
           <p className="truncate text-sm font-semibold">100 POL</p>
         </div>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 }
