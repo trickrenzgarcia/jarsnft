@@ -27,7 +27,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createTxHash } from "@/actions/createTxHash";
-import { useContractContext, useMarketPlaceContext } from '@/components/hooks/use-context';
+import { useContractContext, useMarketPlaceContext } from "@/components/hooks/use-context";
 
 type PlaceBidButtonProps = {
   nft: NFT | undefined;
@@ -48,9 +48,9 @@ export default function PlaceBidButton({ nft, auctionListing, loadingAuction }: 
   const router = useRouter();
   const [minBidAmountInPhp, setMinAmountInPhp] = useState<string>("");
   const [bidState, setBidState] = useState<"idle" | "confirmation" | "success">("idle");
-  const { collection, loadingCollection, errorCollection } = useContractContext()
-  const { marketPlaceContract, loadingMarketPlace, errorMarketPlace } = useMarketPlaceContext()
-  const { data: balance, isLoading: loadingBalance } = useBalance()
+  const { collection, loadingCollection, errorCollection } = useContractContext();
+  const { marketPlaceContract, loadingMarketPlace, errorMarketPlace } = useMarketPlaceContext();
+  const { data: balance, isLoading: loadingBalance } = useBalance();
   const form = useForm<z.infer<typeof PlaceBidSchema>>({
     resolver: zodResolver(PlaceBidSchema),
     defaultValues: {
@@ -191,7 +191,7 @@ export default function PlaceBidButton({ nft, auctionListing, loadingAuction }: 
             <h1 className="text-xl font-bold">{nft?.metadata.name}</h1>
             <p className="flex items-center gap-1 text-sm text-gray-400">
               {collection.name}
-              <MdVerified className=" text-blue-500" />
+              <MdVerified className="text-blue-500" />
             </p>
           </div>
         </div>
@@ -211,7 +211,7 @@ export default function PlaceBidButton({ nft, auctionListing, loadingAuction }: 
             <p className="text-gray-500">{minBidAmountInPhp && `PHP ${minBidAmountInPhp}`}</p>
           </div>
           <div className="my-6 flex justify-between px-4">
-            <p>Your MATIC balance</p>
+            <p>Your POL balance</p>
             <p>{balance ? `${parseFloat(balance.displayValue).toFixed(3)} ${balance.symbol}` : "Not Logged In"}</p>
           </div>
           <div>

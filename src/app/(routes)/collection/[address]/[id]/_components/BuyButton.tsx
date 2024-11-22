@@ -23,7 +23,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createTxHash } from "@/actions/createTxHash";
-import { useContractContext, useMarketPlaceContext } from '@/components/hooks/use-context';
+import { useContractContext, useMarketPlaceContext } from "@/components/hooks/use-context";
 
 type BuyButtonProps = {
   nft: NFT | undefined;
@@ -186,7 +186,7 @@ export default function BuyButton({ nft, listings, auctionListing }: BuyButtonPr
             <h1 className="text-xl font-bold">{nft?.metadata.name}</h1>
             <p className="flex items-center gap-1 text-sm text-gray-400">
               {collection.name}
-              <MdVerified className=" text-blue-500" />
+              <MdVerified className="text-blue-500" />
             </p>
           </div>
         </div>
@@ -212,7 +212,7 @@ export default function BuyButton({ nft, listings, auctionListing }: BuyButtonPr
             <p className="text-gray-500">PHP {amountInPhp}</p>
           </div>
           <div className="my-6 flex justify-between px-4">
-            <p>Your MATIC balance</p>
+            <p>Your POL balance</p>
             <p>{balance ? `${parseFloat(balance.displayValue).toFixed(3)} ${balance.symbol}` : "Not Logged In"}</p>
           </div>
 
