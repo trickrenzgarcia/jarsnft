@@ -22,6 +22,8 @@ import DisplayBidders from "./DisplayBidders";
 import DisplayActivities from "./DisplayActivities";
 import NftMetadata from "./NftMetadata";
 import TiltCard from "./TiltCard";
+import { getMaticPriceInPHP } from "@/lib/coingecko";
+import { useState, useEffect } from "react";
 
 export default function NFTItem() {
   const router = useRouter();
@@ -29,6 +31,7 @@ export default function NFTItem() {
   const { marketPlaceContract, loadingMarketPlace, errorMarketPlace } = useMarketPlaceContext();
   const { address, tokenId, nft, loadingNFT, errorNFT, ownedNFTs, filteredNFT, connectedAddress } = useNFTContext();
   const { data: balance, isLoading: loadingBalance } = useBalance();
+  const [phpPrices, setPhpPrices] = useState<string[] | null>(null);
 
   const {
     data: directListings,
@@ -47,6 +50,22 @@ export default function NFTItem() {
     tokenContract: address,
     tokenId: tokenId,
   });
+
+  useEffect(() => {
+    async function fetchPrices() {
+      if (directListings) {
+        const pricesInPHP = await Promise.all(
+          directListings.map(async (listing) => {
+            const phpPrice = await getMaticPriceInPHP(listing.currencyValuePerToken.displayValue);
+            return phpPrice;
+          }),
+        );
+        setPhpPrices(pricesInPHP);
+      }
+    }
+
+    fetchPrices();
+  }, [directListings]);
 
   if (loadingCollection) {
     return <div>Loading Collection...</div>;
@@ -100,7 +119,12 @@ export default function NFTItem() {
                           <Image src="/assets/cryptocurrency/polygon-matic.png" width={20} height={20} alt="Polygon" />
                           <p className="flex flex-col text-2xl font-bold">
                             {directListings[0].currencyValuePerToken.displayValue} {directListings[0].currencyValuePerToken.symbol}
-                            <span className="text-xs font-normal text-gray-500 dark:text-gray-400"> (PHP {0})</span>
+                            {/* text-xs font-normal text-gray-500 dark:text-gray-400 */}
+                            {directListings.map((listing, index) => (
+                              <div key={listing.id} className="text-xs font-normal text-gray-500 dark:text-gray-400">
+                                <p>{phpPrices && phpPrices[index] ? `${phpPrices[index]} PHP` : "Loading PHP price..."}</p>
+                              </div>
+                            ))}
                           </p>
                         </div>
                       ) : auctionListings && auctionListings[0] ? (
