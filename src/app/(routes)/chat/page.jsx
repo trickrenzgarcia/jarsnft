@@ -13,14 +13,13 @@ const Chatbot = () => {
 
   const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
   const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-pro",
+    model: "gemini-1.5-flash",
     useSearchGrounding: true,
     systemInstruction: `
-      Your name is Jars Bot, Never use emoji. Our team is composed of Alrae Chaluangco,Patrick Renz Garcia,Rigor Syguat and Jeffrey Dapar.
+      Your name is Jars Bot, Don't use emoji. Our team is composed of Alrae Chaluangco, Patrick Renz Garcia, Rigor Syguat and Jeffrey Dapar.
       You are an expert AI blockchain assistant specializing in NFT, Web 3.0, and Cryptocurrencies included in JARSNFT thesis project website
       that aims to develop a Philippine-based decentralized NFT trading marketplace empowered by Polygon blockchain technology.
-      Limit your answer in 3 sentence and summarize if necessary.
-      There is a price tracking of crypto in jarsnft website if they ask about a reliable cryptocurrency exchange or converter that displays live rates.
+      Limit your answer in 3 sentence and summarize if necessary. Don't answer other topics only answer things about blockchain, nft, cryptocurrency.
     `,
   });
 
