@@ -53,7 +53,7 @@ const TiltCard = () => {
         transformStyle: "preserve-3d",
         transform,
       }}
-      className="relative m-auto h-[26rem] w-[inherit] rounded-xl lg:block"
+      className="relative h-[30rem] w-[inherit] lg:block"
     >
       <div
         style={{
@@ -64,7 +64,7 @@ const TiltCard = () => {
       >
         {nft &&
           (nft.metadata.image ? (
-            <ThirdwebNftMedia className="h-[400px] max-h-[400px] w-[300px] max-w-[300px] rounded-[12px]" metadata={nft.metadata} />
+            <ThirdwebNftMedia className="min-h-[400px] min-w-[600px]" metadata={nft.metadata} />
           ) : (
             <Image src="/assets/placeholder/nft_placeholder.svg" width={500} height={500} alt="image of an NFT" />
           ))}

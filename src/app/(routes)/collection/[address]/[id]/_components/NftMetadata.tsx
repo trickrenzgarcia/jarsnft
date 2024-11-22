@@ -25,14 +25,13 @@ export default function NftMetadata() {
   return (
     <Tabs variant="underlined" aria-label="Tabs variants" className="flex-col self-center sm:flex-row sm:self-start">
       <Tab key="Properties" title="Properties" className="w-full">
-        <Card className="rounded-lg bg-card p-2">
+        <Card className="rounded-lg border-2 bg-card p-2">
           <CardHeader className="flex gap-3">
             <LuTableProperties />
             <p className="text-md">Properties</p>
           </CardHeader>
           <Divider />
           <CardBody>
-            {/* @ts-ignore */}
             {nft &&
               nft.metadata.attributes &&
               (nft.metadata.attributes as NftAttributes[]).map((attr: NftAttributes, i: number) => (
@@ -41,7 +40,6 @@ export default function NftMetadata() {
                   <p className="text-lg font-semibold">{attr.value}</p>
                 </div>
               ))}
-            {/* @ts-ignore */}
             {nft && !nft.metadata.attributes && (
               <div className="text-gray-500 dark:text-gray-400">
                 <div className="flex justify-between gap-2 rounded-lg px-4 py-3 hover:bg-muted/50">
@@ -53,7 +51,7 @@ export default function NftMetadata() {
         </Card>
       </Tab>
       <Tab key="Token Details" title="Token Details" className="w-full">
-        <Card className="w-full rounded-lg bg-card p-2">
+        <Card className="w-full rounded-lg border-2 bg-card p-2">
           <CardHeader className="flex gap-3">
             <GrStatusInfo />
             <p className="text-md">Token Details</p>
@@ -63,24 +61,24 @@ export default function NftMetadata() {
             {nft && (
               <div className="text-gray-500 dark:text-gray-400">
                 <div className="flex justify-between gap-2 rounded-lg px-4 py-3 hover:bg-muted/50">
-                  <p className="">TOKEN ID</p>
+                  <p className="">Token Id :</p>
                   <p className="font-semibold">{nft.metadata.id}</p>
                 </div>
                 <div className="flex justify-between gap-2 rounded-lg px-4 py-3 hover:bg-muted/50">
-                  <p className="">BLOCKCHAIN</p>
+                  <p className="">Blockchain :</p>
                   <p className="font-semibold">{chain && chain.name}</p>
                 </div>
                 <div className="flex justify-between gap-2 rounded-lg px-4 py-3 hover:bg-muted/50">
-                  <p className="">TOKEN STANDARD</p>
+                  <p className="">Token Standard :</p>
                   <p className="font-semibold">{nft.type}</p>
                 </div>
                 <Divider />
                 <div className="flex justify-between gap-2 rounded-lg px-4 py-3 hover:bg-muted/50">
-                  <p className="">CONTRACT</p>
+                  <p className="">Contract: </p>
                   <p className="font-semibold hover:cursor-pointer hover:underline">{shortenAddress(address, 2, 4)}</p>
                 </div>
                 <div className="flex justify-between gap-2 rounded-lg px-4 py-3 hover:bg-muted/50">
-                  <p className="">CREATORS FEE</p>
+                  <p className="">Creators Fee: </p>
                   <p className="font-semibold">{collection && collection.seller_fee_basis_points / 100}%</p>
                 </div>
               </div>
@@ -89,7 +87,7 @@ export default function NftMetadata() {
         </Card>
       </Tab>
       <Tab key="Collection" title="Collection" className="w-full">
-        <Card className="w-full bg-card p-2">
+        <Card className="w-full border-2 bg-card p-2">
           <CardHeader className="flex gap-3">
             <BsCollection />
             <p className="text-md">Collection Info</p>
