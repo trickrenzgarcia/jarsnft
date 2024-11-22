@@ -43,7 +43,7 @@ getFloorPrice.get("/", async (c) => {
   const activeAuctions: EnglishAuction[] = JSON.parse(
     JSON.stringify(
       auctions
-        .filter((auction) => auction.assetContractAddress === "0x9448b8B775bC3E3B9452D5Ef08923DFDdD16F30c")
+        .filter((auction) => auction.assetContractAddress === schema.data)
         .filter((auction) => auction.status === "ACTIVE"),
       replacer,
     ),
@@ -51,7 +51,7 @@ getFloorPrice.get("/", async (c) => {
   const activeListings: DirectListing[] = JSON.parse(
     JSON.stringify(
       listings
-        .filter((listing) => listing.assetContractAddress === "0x9448b8B775bC3E3B9452D5Ef08923DFDdD16F30c")
+        .filter((listing) => listing.assetContractAddress === schema.data)
         .filter((listing) => listing.status === "ACTIVE"),
       replacer,
     ),
