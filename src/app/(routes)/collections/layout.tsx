@@ -7,6 +7,7 @@ export default function CollectionsLayout({ children }: { children: React.ReactN
       <Navbar />
       <div className="py-auto mx-auto max-w-screen-2xl overflow-hidden px-2">
         <main className="p-2">{children}</main>
+        <Footer/>
       </div>
     </>
   );
