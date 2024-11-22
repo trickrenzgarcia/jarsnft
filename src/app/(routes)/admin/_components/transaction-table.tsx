@@ -1,5 +1,6 @@
 "use client"
 
+import { useMarketPlaceContext } from '@/components/hooks/use-context'
 import {
   Table,
   TableBody,
@@ -9,8 +10,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { NFT_MARKETPLACE } from '@/lib/constant'
-import { useContract, useContractEvents } from '@thirdweb-dev/react'
+import { NewSaleEvent } from '@/types/event'
+import {  ContractEvent, useContractEvents } from '@thirdweb-dev/react'
+import { ethers } from 'ethers'
+import { useEffect, useState } from 'react'
 
 const transactions = [
   { id: '0x123...abc', from: '0xA1B...C2D', to: '0xE3F...G4H', nft: 'CryptoPunk #1234', price: '10.5 ETH', date: '2023-06-01' },
@@ -20,9 +23,68 @@ const transactions = [
   { id: '0xdef...mno', from: '0xG7H...I8J', to: '0xK9L...M0N', nft: 'CloneX #7890', price: '7.2 ETH', date: '2023-06-05' },
 ]
 
+type Transaction = {
+  transactionHash: string
+  from: string
+  to?: string
+  price: string
+  date: string
+  age: number
+}
+
 export function TransactionTable() {
-  const { contract } = useContract(NFT_MARKETPLACE, "marketplace-v3")
-  const { data: sales, isLoading: loadingSales, isError: errorSales } = useContractEvents(contract, "NewSale")
+  const { marketPlaceContract, loadingMarketPlace, errorMarketPlace } = useMarketPlaceContext()
+  const { data: sales, isLoading: loadingSales, isError: errorSales } = useContractEvents(marketPlaceContract, "NewSale")
+  const [transactions, setTransactions] = useState<Transaction[]>([])
+
+  useEffect(() => {
+    const getTransactions = async (txHash: string) => {
+      const provider = new ethers.providers.JsonRpcProvider("https://polygon-rpc.com")
+      
+      try {
+        const tx = await provider.getTransaction(txHash)
+
+        if(!tx) {
+          throw new Error("Transaction not found")
+        }
+
+        const block = await provider.getBlock(tx.blockNumber!)
+
+        if(!block) {
+          throw new Error("Block not found")
+        }
+
+        // Convert timestamp to date
+        const txDate = new Date(block.timestamp * 1000)
+
+        // Calculate age
+        const now = new Date()
+        const ageInMilliseconds = now.getTime() - txDate.getTime()
+        const ageInDays = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24))
+
+        // Set the transaction
+        setTransactions((prev) => [
+          ...prev,
+          {
+            transactionHash: tx.hash,
+            from: tx.from,
+            to: tx.to || "N/A", // Provide fallback for undefined
+            price: tx.value.toString(),
+            date: txDate.toISOString(),
+            age: ageInDays,
+          },
+        ]);
+      } catch(error) {
+        console.error("Error fetching transaction:", error);
+      }
+    }
+
+    if(sales) {
+      for(let i = 0; i < sales.length; i++) {
+        getTransactions(sales[i].transaction.transactionHash)
+      }
+    }
+  }, [sales])
 
   return (
     <div className="border-black bg-purple-300/70 dark:bg-[#404040] shadow-[rgba(0,0,15,1)_0px_6px_0px_0px] rounded-2xl">
@@ -32,19 +94,19 @@ export function TransactionTable() {
             <TableHead>Transaction ID</TableHead>
             <TableHead>From</TableHead>
             <TableHead>To</TableHead>
-            <TableHead>NFT</TableHead>
             <TableHead>Price</TableHead>
+            <TableHead>Age</TableHead>
             <TableHead>Date</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {sales && transactions.map((tx) => (
-            <TableRow key={tx.id}>
-              <TableCell className="font-mono">{tx.id}</TableCell>
+          {transactions && transactions.map((tx) => (
+            <TableRow key={tx.transactionHash}>
+              <TableCell className="font-mono">{tx.transactionHash}</TableCell>
               <TableCell className="font-mono">{tx.from}</TableCell>
               <TableCell className="font-mono">{tx.to}</TableCell>
-              <TableCell>{tx.nft}</TableCell>
               <TableCell>{tx.price}</TableCell>
+              <TableCell>{tx.age}</TableCell>
               <TableCell>{tx.date}</TableCell>
             </TableRow>
           ))}
