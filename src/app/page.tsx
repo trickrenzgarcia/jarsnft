@@ -2,15 +2,10 @@ import { Footer, Navbar } from "@/components/(layout)";
 import { Hero, Trend, ListComponents } from "@/components/(layout)/_main";
 import NFTCategories from "@/components/(layout)/_main/NFTCategories";
 import { Separator } from "@/components/ui/separator";
-import { JarsAPI } from "@/lib/api";
+import jars from "@/lib/api";
 import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
-
-const jars = new JarsAPI({
-  baseUrl: process.env.APP_URL,
-  secretKey: process.env.JWT_TOKEN
-})
 
 export default async function Home() {
   const t1 = await jars.collection.getTrending("art");
