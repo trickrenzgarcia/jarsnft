@@ -124,7 +124,7 @@ export default function NFTItem() {
                     </div>
                   </div>
                   <div className="w-full sm:w-1/4">
-                    {loadingDirectListings || loadingAuctionListings ? (
+                    {(directListings && loadingDirectListings) || (auctionListings && loadingAuctionListings) ? (
                       <div className="flex w-full flex-col gap-2">
                         <Skeleton className="h-10 w-full" />
                         <Skeleton className="h-10 w-full" />

@@ -73,8 +73,8 @@ export default function SearchInput(props: any) {
                 </div>
               ) : dataResults && dataResults.length > 0 ? (
                 <div className="flex flex-col">
-                  {dataResults.map((result) => (
-                    <SearchResult result={result} handleLinkClick={handleLinkClick} />
+                  {dataResults.map((result, i) => (
+                    <SearchResult key={i} result={result} handleLinkClick={handleLinkClick} />
                   ))}
                 </div>
               ) : (

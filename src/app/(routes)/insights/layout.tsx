@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  SideNavLeft,
-  SideNavRight,
-  LearnNavbar,
-  PageNextButton,
-} from "./_components";
+import { SideNavLeft, SideNavRight, LearnNavbar, PageNextButton } from "./_components";
 import { Footer } from "@/components/(layout)";
 import { leftNavList } from "./_metadata";
 import { usePathname } from "next/navigation";
@@ -31,20 +26,14 @@ export default function LearnLayout({ children }: LearnProps) {
       {item.child.map((childItem, childIndex) =>
         // check for child sub topic
         path === childItem.href && childIndex < item.child.length - 1 ? (
-          <PageNextButton
-            key={childIndex}
-            title={Capitalize(item.child[childIndex + 1].name)}
-            href={item.child[childIndex + 1].href}
-          />
+          <PageNextButton key={childIndex} title={Capitalize(item.child[childIndex + 1].name)} href={item.child[childIndex + 1].href} />
         ) : (
           // check on next topic
           path === childItem.href &&
           index < leftNavList.length - 1 && (
             <PageNextButton
               key={childIndex}
-              title={Capitalize(
-                leftNavList[(index + 1) % leftNavList.length].child[0].name,
-              )}
+              title={Capitalize(leftNavList[(index + 1) % leftNavList.length].child[0].name)}
               href={leftNavList[(index + 1) % leftNavList.length].child[0].href}
             />
           )
@@ -54,19 +43,16 @@ export default function LearnLayout({ children }: LearnProps) {
   ));
 
   return (
-    <main className="via-22% flex-1 from-[#131313] from-10% via-[#360a46] to-[#131313] to-25% dark:bg-gradient-to-bl ">
+    <main className="via-22% flex-1 from-[#131313] from-10% via-[#360a46] to-[#131313] to-25% dark:bg-gradient-to-bl">
       <LearnNavbar />
       <div className="flex-1 items-start border-t-2 xl:container lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-6 xl:grid-cols-[240px_minmax(0,1fr)] xl:gap-10">
         <SideBarHamburger />
         <SideNavLeft />
         <main className="container mt-5 lg:gap-10 xl:grid xl:grid-cols-[1fr_250px]">
-          <div className="min-w-full mt-[4.2rem] lg:mt-0">
-            <div className="lg:mt-4 lg:ml-5 xl:ml-0">
+          <div className="mt-[4.2rem] min-w-full lg:mt-0">
+            <div className="lg:ml-5 lg:mt-4 xl:ml-0">
               <PageNavTopic color="#c117ff" />
-              <div
-                key={key}
-                className="animate-once animate-duration-[1200ms] animate-ease-out animate-fade-left"
-              >
+              <div key={key} className="animate-once animate-duration-[1200ms] animate-ease-out animate-fade-left">
                 {children}
               </div>
               {nextBtn}
@@ -76,7 +62,6 @@ export default function LearnLayout({ children }: LearnProps) {
           <SideNavRight />
         </main>
       </div>
-      <Footer />
     </main>
   );
 }
