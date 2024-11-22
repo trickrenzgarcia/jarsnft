@@ -181,3 +181,11 @@ nfts.get("/activities", async (c) => {
 
   return c.json(events, 200);
 });
+
+nfts.get("/totalNfts", async (c) => {
+  const events = await db.query.nftEvents.findMany();
+
+  const mintedNfts = events.filter((event) => event.eventType === "TokensMinted");
+
+  return c.json(mintedNfts.length, 200);
+});

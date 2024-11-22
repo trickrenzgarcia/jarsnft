@@ -44,6 +44,8 @@ export function shortenAddress(address: string, char1: number = 6, char2: number
     const end = address.slice(-char2);
     // Return the shortened address
     return `${start}...${end}`;
+  } else if (address.length <= 2) {
+    return "N/A";
   } else {
     // If the address is shorter than 10 characters, return it as is
     return address;
@@ -183,6 +185,10 @@ export async function getOwners(contract: Readonly<ContractOptions<any>>) {
 
 export function polygonScan(address: string) {
   return `https://polygonscan.com/address/${address}`;
+}
+
+export function polygonScanTx(txHash: string) {
+  return `https://polygonscan.com/tx/${txHash}`;
 }
 
 export function shortenTxHash(txHash: string) {
