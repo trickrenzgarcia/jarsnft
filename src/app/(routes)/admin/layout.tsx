@@ -7,9 +7,24 @@ import AdminMenuToggle from './_components/admin-menu'
 import { Metadata } from 'next'
 import { AdminSidebar } from './_components/admin-sidebar'
 
-export const metadata: Metadata = {
-  title: 'JarsNFT | Admin Dashboard',
-  description: 'JarsNFT Admin Dashboard',
+export async function generateMetadata(): Promise<Metadata>{
+  const user = (await getUser()) as AuthUser
+
+  if(!user || !user.session) {
+    return {
+      title: 'JarsNFT | Page Not Found',
+    }
+  }
+
+  if(user.session.role !== 'admin') {
+    return {
+      title: 'JarsNFT | Page Not Found',
+    }
+  }
+
+  return {
+    title: 'JarsNFT | Admin Dashboard',
+  }
 }
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
