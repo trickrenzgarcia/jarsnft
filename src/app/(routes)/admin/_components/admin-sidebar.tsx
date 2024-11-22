@@ -1,19 +1,27 @@
 "use client"
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { LayoutDashboard, FileText, Users, Settings, LogOut } from 'lucide-react'
 import Image from 'next/image'
+import { useLogout } from '@thirdweb-dev/react'
 
 const sidebarItems = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
 ]
 
 export function AdminSidebar() {
+  const router = useRouter()
+  const { logout } = useLogout()
   const pathname = usePathname()
+
+  const handleLogout = async () => {
+    logout()
+    router.push('/')
+  }
 
   return (
     <div className="hidden border-r lg:block bg-[#F3F3F3] dark:bg-[#272727] transition-colors">
@@ -40,7 +48,7 @@ export function AdminSidebar() {
           </nav>
         </ScrollArea>
         <div className="mt-auto p-4">
-          <Button variant="ghost" className="w-full text-2xl hover:text-red-600 justify-center gap-4">
+          <Button variant="ghost" onClick={handleLogout} className="w-full text-2xl hover:text-red-600 justify-center gap-4">
             <LogOut className="text-2xl" />
             Log out
           </Button>

@@ -1,11 +1,16 @@
+"use client"
+
 import {
   Table,
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { NFT_MARKETPLACE } from '@/lib/constant'
+import { useContract, useContractEvents } from '@thirdweb-dev/react'
 
 const transactions = [
   { id: '0x123...abc', from: '0xA1B...C2D', to: '0xE3F...G4H', nft: 'CryptoPunk #1234', price: '10.5 ETH', date: '2023-06-01' },
@@ -16,6 +21,9 @@ const transactions = [
 ]
 
 export function TransactionTable() {
+  const { contract } = useContract(NFT_MARKETPLACE, "marketplace-v3")
+  const { data: sales, isLoading: loadingSales, isError: errorSales } = useContractEvents(contract, "NewSale")
+
   return (
     <div className="border-black bg-purple-300/70 dark:bg-[#404040] shadow-[rgba(0,0,15,1)_0px_6px_0px_0px] rounded-2xl">
       <Table>
@@ -30,7 +38,7 @@ export function TransactionTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {transactions.map((tx) => (
+          {sales && transactions.map((tx) => (
             <TableRow key={tx.id}>
               <TableCell className="font-mono">{tx.id}</TableCell>
               <TableCell className="font-mono">{tx.from}</TableCell>
