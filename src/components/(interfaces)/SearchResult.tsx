@@ -7,6 +7,7 @@ import { SiPolygon } from "react-icons/si";
 import { NFTCollection } from "@/types";
 import useTotalItems from "@/hooks/useTotalItems";
 import { Loader2 } from "lucide-react";
+import useVolumeAndSales from "@/hooks/useVolumeAndSales";
 
 export default function SearchResult({
   result,
@@ -16,6 +17,7 @@ export default function SearchResult({
   handleLinkClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }) {
   const { totalItems, isLoading: loadingTotalItems } = useTotalItems(result.contract);
+  const { totalVolume, isLoading: loadingVolumeSale } = useVolumeAndSales(result.contract);
 
   return (
     <Link key={result.contract} href={`/collection/${result.contract}`} className="cursor-pointer" onClick={handleLinkClick}>
@@ -38,7 +40,7 @@ export default function SearchResult({
         </div>
         <div className="ml-auto">
           <p className="text-sm text-gray-400">
-            {result.viewCount} {` POL`}
+            {loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalVolume ? `${totalVolume.toFixed(2)} POL` : "0"}
           </p>
         </div>
       </div>
