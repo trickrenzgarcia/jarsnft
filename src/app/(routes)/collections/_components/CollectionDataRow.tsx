@@ -40,14 +40,13 @@ export default function CollectionDataRow({ collection }: CollectionDataRowProps
         <p className="h-fit max-w-[3rem] truncate sm:max-w-[6rem]">{collection.name}</p>
       </div>
       <div>{loadingFloorPrice ? <Loader2 className="animate-spin" size={14} /> : floorPrice}</div> {/* Floor Price */}
-      <div className={hide()}>
-        {loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalVolume ? totalVolume.toFixed(2) : "0"}
-      </div>{" "}
+      <div className={hide()}>{loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalVolume ? totalVolume.toFixed(2) : "0"}</div>
       {/* Volume*/}
       <div className={hide()}>{loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalSales}</div> {/* Sales*/}
       <div className={hide()}>{loadingListedCount ? <Loader2 className="animate-spin" size={14} /> : listedCount} </div>
       <div className={hide()}>{loadingTotalItems ? <Loader2 className="animate-spin" size={14} /> : totalItems}</div> {/* Total Items */}
       <div className={hide()}>
+        {ownersLength}
         {/* {(() => {
           const owners = ownerCounts[collection.contract] || 0;
           const items = totalItems[collection.contract] || 0;
@@ -57,10 +56,9 @@ export default function CollectionDataRow({ collection }: CollectionDataRowProps
           const percentage = ((owners / items) * 100).toFixed(2);
           return `${owners} (${percentage}%)`;
         })()} */}
-        {ownersLength}
-      </div>{" "}
-      {/* Number of Owners */}
-      {/* <div className={hide()}>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div> NSFW */}
+      </div>
+      {/* Unique Owners */}
+      <div className={hide()}>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div>
       <div>{collection.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" /> : null}</div>
     </div>
   );

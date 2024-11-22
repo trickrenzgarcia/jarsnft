@@ -184,3 +184,7 @@ export async function getOwners(contract: Readonly<ContractOptions<any>>) {
 export function polygonScan(address: string) {
   return `https://polygonscan.com/address/${address}`;
 }
+
+export function shortenTxHash(txHash: string) {
+  return `${txHash.slice(0, 11)}...`;
+}

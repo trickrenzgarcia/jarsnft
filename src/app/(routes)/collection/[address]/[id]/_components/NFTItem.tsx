@@ -66,10 +66,6 @@ export default function NFTItem() {
     return <div>Error NFT...</div>;
   }
 
-  if (loadingAuctionListings || loadingDirectListings) {
-    return <div>Loading Listings...</div>;
-  }
-
   return (
     <div className="mt-4 flex flex-col">
       <div className="flex items-center gap-2">
@@ -80,43 +76,11 @@ export default function NFTItem() {
         <p className="hover:underline">
           <Link href={`/collection/${address}`}>{collection.name}</Link>
         </p>
-
-        {/* {collection.isVerified ? (
-        <TooltipMsg message="Verified">
-        <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
-          <MdVerified className="text-blue-500" />
-        </div>
-        </TooltipMsg>
-        ):`not verified`} */}
       </div>
-      <div className="mx-4 mt-4 flex flex-col items-start justify-around gap-8 md:flex-row">
+
+      <div className="flex flex-col items-start justify-around gap-8 p-6 md:flex-row">
         <div className="w-full md:w-[50svw] lg:w-[50svw] xl:w-[50svw]">
           <div className="flex w-full flex-col gap-4">
-            {nft ? <h1 className="text-4xl font-bold">{nft.metadata.name}</h1> : <Skeleton className="h-9 w-28" />}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <BoringAvatar name={nft?.owner} size={35} />
-                <div className="flex flex-col">
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Owned by</p>
-                  {nft ? (
-                    <Link
-                      href={polygonScan(directListings && directListings[0] ? directListings[0].creatorAddress : auctionListings && auctionListings[0] ? auctionListings[0].creatorAddress : nft.owner)}
-                    >
-                      <p className="cursor-pointer text-medium font-bold hover:underline">{shortenWalletAddress(nft.owner)}</p>
-                    </Link>
-                  ) : (
-                    <Skeleton className="h-4 w-8" />
-                  )}
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="flex gap-1">
-                  <FaRegEye className="text-2xl" />
-                  {/* <p>{views ? views.viewCount : "--"}</p> */}
-                </div>
-                {/* <Favorite favorite={likes} address={address} id={id} /> */}
-              </div>
-            </div>
             <Card>
               <CardContent className="w-full p-5">
                 <div className="flex basis-full flex-col items-start justify-between sm:flex-row sm:items-center">
@@ -213,6 +177,36 @@ export default function NFTItem() {
           </div>
         </div>
         <div className="flex w-full flex-col items-start justify-start gap-4 md:w-[350px] lg:w-[350px] xl:w-[24svw]">
+          {nft ? <h1 className="text-4xl font-bold">{nft.metadata.name}</h1> : <Skeleton className="h-9 w-28" />}
+          <div className="flex items-center gap-6">
+            <BoringAvatar name={nft?.owner} size={35} />
+            <div className="flex flex-col">
+              <p className="text-xs text-gray-500 dark:text-gray-400">Owned by</p>
+              {nft ? (
+                <Link
+                  href={polygonScan(
+                    directListings && directListings[0]
+                      ? directListings[0].creatorAddress
+                      : auctionListings && auctionListings[0]
+                        ? auctionListings[0].creatorAddress
+                        : nft.owner,
+                  )}
+                >
+                  <p className="cursor-pointer text-medium font-bold hover:underline">{shortenWalletAddress(nft.owner)}</p>
+                </Link>
+              ) : (
+                <Skeleton className="h-4 w-8" />
+              )}
+            </div>
+            <div>
+              <FaRegEye className="text-2xl" />
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="flex gap-1">{/* <p>{views ? views.viewCount : "--"}</p> */}</div>
+            {/* <Favorite favorite={likes} address={address} id={id} /> */}
+          </div>
+
           <NftMetadata />
           <DisplayActivities
             tokenId={tokenId}
