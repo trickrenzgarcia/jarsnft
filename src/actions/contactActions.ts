@@ -30,7 +30,7 @@ export async function sendEmail(data: ContactFormInputs) {
     try {
       const data = await resend.emails.send({
         from: 'JARS CLIENT <onboarding@resend.dev>',
-        to: ['patrickrenzg@gmail.com'],
+        to: ['alraeatwork@gmail.com'],
         subject: 'JARSNFT Form Submission',
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
         react: ContactFormEmail({ name, email, message })
