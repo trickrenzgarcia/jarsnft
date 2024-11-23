@@ -52,7 +52,7 @@ export default async function AdminPage() {
         <h1 className='text-2xl'>Dashboard</h1>
         <AdminMenuToggle className='md:hidden' />
       </div>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-6">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
         <Card className='bg-purple-300/70 dark:bg-[#404040] shadow-[rgba(0,0,15,1)_0px_6px_0px_0px] rounded-2xl'>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Fees Collected</CardTitle>
@@ -72,27 +72,6 @@ export default async function AdminPage() {
           </CardHeader>
           <CardContent className='p-4'>
             <TotalRevenue />
-          </CardContent>
-        </Card>
-        <Card className='bg-purple-300/70 dark:bg-[#404040] shadow-[rgba(0,0,15,1)_0px_6px_0px_0px] rounded-2xl'>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Collections</CardTitle>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="h-4 w-4 text-muted-foreground"
-            >
-              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-            </svg>
-            
-          </CardHeader>
-          <CardContent className='p-4'>
-            <div className="text-2xl font-bold">{0}</div>
           </CardContent>
         </Card>
         <Card className='bg-purple-300/70 dark:bg-[#404040] shadow-[rgba(0,0,15,1)_0px_6px_0px_0px] rounded-2xl'>
