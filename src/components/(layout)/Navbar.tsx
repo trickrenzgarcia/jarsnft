@@ -66,7 +66,9 @@ export default function Navbar() {
             <button onClick={handleSearchClick} className="cursor-pointer text-2xl xl:hidden">
               <ImSearch />
             </button>
-            <Login />
+            <div className='flex'>
+              <Login />
+            </div>
           </div>
         </div>
 

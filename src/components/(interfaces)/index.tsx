@@ -17,3 +17,4 @@ export { default as TooltipMsg } from "./TooltipMsg";
 export { default as AddressClipboard } from "./AddressClipboard";
 export { default as Hamburger } from "./Hamburger";
 export { default as SearchInput } from "./SearchInput";
+export { default as Notification } from "./Notification";

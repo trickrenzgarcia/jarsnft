@@ -30,6 +30,7 @@ app.route("/storage", router.storage);
 app.route("/search", router.search);
 app.route("/getFloorPrice", router.getFloorPrice);
 app.route("/getListedNfts", router.getListedNfts);
+app.route("/getNft", router.getNft);
 
 export const GET = handle(app);
 export const POST = handle(app);

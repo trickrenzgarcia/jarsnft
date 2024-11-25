@@ -12,3 +12,4 @@ export * from "./contracts";
 export * from "./search";
 export * from "./getFloorPrice";
 export * from "./getListedNfts";
+export * from "./getNft";

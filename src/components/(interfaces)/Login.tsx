@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser, useLogout, useAddress } from "@thirdweb-dev/react";
-import { ConnectWalletV4, CreateUserDialog, ProfileButton } from ".";
+import { ConnectWalletV4, CreateUserDialog, Notification, ProfileButton } from ".";
 import { ProfileQuery } from "@/types/users";
 import { Skeleton } from "../ui/skeleton";
 import { useEffect } from "react";
@@ -35,6 +35,7 @@ export default function Login() {
         <Skeleton className="h-[35px] w-[35px] rounded-full" />
       ) : isLoggedIn ? (
         <div className="flex items-center gap-2">
+          {isLoggedIn && user.data.session.isListed && address && <Notification />}
           {isLoggedIn && user.data.session.isListed && address && <ProfileButton />} {/* ProfileButton will only be shown if isLoggedIn is true */}
           <ConnectWalletV4 btnTitle="Connect" />
         </div>
