@@ -2,7 +2,7 @@ import Image from "next/image";
 import { P, H2, H4, UL } from "../../_components/TailwindTags";
 
 export const metadata = {
-  title: "NFT Safety | JarsNFT",
+  title: "NFT Safety",
   description: "How safe are my NFTs?",
   keywords: ["NFT", "Safety", "Security"],
 };

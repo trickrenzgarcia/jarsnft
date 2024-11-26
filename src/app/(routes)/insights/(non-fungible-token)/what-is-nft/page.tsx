@@ -3,7 +3,7 @@ import Image from "next/image";
 import { P, H1, H2 } from "../../_components/TailwindTags";
 
 export const metadata = {
-  title: "What is NFT | JarsNFT",
+  title: "What is NFT",
   description: "Learn what is NFT and how it works",
   keywords: ["NFT", "Non-fungible Token", "JarsNFT"],
 };

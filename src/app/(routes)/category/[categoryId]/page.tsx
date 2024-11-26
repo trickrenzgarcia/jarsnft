@@ -27,6 +27,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: title,
+    description: "Explore the latest collections in the NFT marketplace.",
+    keywords: ["NFT", "collections", "art", "photography", "pfp"],
   };
 }
 
