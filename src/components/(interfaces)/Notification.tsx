@@ -45,7 +45,7 @@ export default function Notification() {
       </PopoverTrigger>
       <PopoverContent className="w-80">
         <div className="flex flex-col">
-          <div className="flex items-center justify-start border-b border-gray-200 p-4 dark:border-gray-600">
+          <div className="flex items-center justify-start border-b border-gray-200 px-4 pb-2 dark:border-gray-600">
             <h3 className="text-lg font-semibold">Notifications</h3>
           </div>
           {loadingEvents && (
@@ -56,12 +56,21 @@ export default function Notification() {
           {events && auctionClosed && (
             <ScrollArea className="flex h-80 w-full flex-col p-4">
               {auctionClosed.map((event, index) => (
+                // (Suggestion: Linked directly to the nft they bid)
                 <Link href={polygonScanTx(event.transaction.transactionHash)} key={event.transaction.transactionHash}>
-                  <div className="flex items-center gap-2">
-                    {/* <Image src={''} alt='Pic' height={40} width={40} /> */}
-                    <div>
+                  <div className="mb-2 flex items-center gap-2">
+                    <Image src="/assets/ex2.png" alt="Pic" height={40} width={40} />
+                    {/* <div>
                       <p className="text-sm font-semibold">You have won the bidding</p>
                       <div className="flex items-center justify-between">
+                        <p className="text-xs text-gray-400 dark:text-gray-500">NFT Item</p>
+                        <p className="text-xs text-gray-400 dark:text-gray-500">Bid: 0.1 POL</p>
+                      </div>
+                    </div> */}
+                    {/* when notification is unread */}
+                    <div>
+                      <p className="text-sm font-extrabold">You have won the bidding</p>
+                      <div className="flex items-center justify-between font-bold">
                         <p className="text-xs text-gray-400 dark:text-gray-500">NFT Item</p>
                         <p className="text-xs text-gray-400 dark:text-gray-500">Bid: 0.1 POL</p>
                       </div>
