@@ -64,7 +64,7 @@ const TiltCard = () => {
       >
         {nft &&
           (nft.metadata.image ? (
-            <ThirdwebNftMedia className="min-h-[400px] min-w-[600px]" metadata={nft.metadata} />
+            <ThirdwebNftMedia className="min-h-[400px] max-w-[600px]" metadata={nft.metadata} />
           ) : (
             <Image src="/assets/placeholder/nft_placeholder.svg" width={500} height={500} alt="image of an NFT" />
           ))}

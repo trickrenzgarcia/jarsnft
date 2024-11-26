@@ -62,7 +62,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className="flex items-center md:gap-4 lg:gap-4">
+          <div className="flex items-center gap-2 lg:gap-4">
             <button onClick={handleSearchClick} className="cursor-pointer text-2xl xl:hidden">
               <ImSearch />
             </button>

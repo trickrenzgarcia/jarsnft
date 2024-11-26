@@ -60,21 +60,29 @@ export default function Notification() {
                 <Link href={polygonScanTx(event.transaction.transactionHash)} key={event.transaction.transactionHash}>
                   <div className="mb-2 flex items-center gap-2">
                     <Image src="/assets/ex2.png" alt="Pic" height={40} width={40} />
+                    <div>
+                      <p className="text-sm font-semibold">You have won the bidding!</p>
+                      <div className="flex items-center justify-between">
+                        <p className="text-xs text-gray-400 dark:text-gray-500">NFT Item</p>
+                        <p className="text-xs text-gray-400 dark:text-gray-500">Bid: 0.1 POL</p>
+                      </div>
+                    </div>
+                    {/* when user lost the bidding */}
                     {/* <div>
-                      <p className="text-sm font-semibold">You have won the bidding</p>
+                      <p className="text-sm font-semibold">Sorry! Someone else won the bidding.</p>
                       <div className="flex items-center justify-between">
                         <p className="text-xs text-gray-400 dark:text-gray-500">NFT Item</p>
                         <p className="text-xs text-gray-400 dark:text-gray-500">Bid: 0.1 POL</p>
                       </div>
                     </div> */}
                     {/* when notification is unread */}
-                    <div>
+                    {/* <div>
                       <p className="text-sm font-extrabold">You have won the bidding</p>
                       <div className="flex items-center justify-between font-bold">
                         <p className="text-xs text-gray-400 dark:text-gray-500">NFT Item</p>
                         <p className="text-xs text-gray-400 dark:text-gray-500">Bid: 0.1 POL</p>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </Link>
               ))}
