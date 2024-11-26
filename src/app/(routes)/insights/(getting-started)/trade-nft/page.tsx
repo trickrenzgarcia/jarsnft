@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { P } from "../../_components/TailwindTags";
 
+export const metadata = {
+  title: "Trade NFT",
+  description: "Learn how to trade NFTs on JarsNFT",
+  keywords: ["Trade NFT", "NFT", "JarsNFT"],
+};
+
 export default function TradeNftPage() {
   return (
     <section>

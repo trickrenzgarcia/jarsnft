@@ -1,11 +1,10 @@
 import Image from "next/image";
 import { P, H1, H2, H3 } from "../../_components/TailwindTags";
-import { appConfig } from "@/lib/app.config";
 
 export const metadata = {
-  title: "Create your NFT | JarsNFT",
-  description: "Create your NFT on JarsNFT",
-  keywords: appConfig.keywords,
+  title: "Create NFT",
+  description: "Learn how to create NFTs on JarsNFT",
+  keywords: ["Create NFT", "NFT", "JarsNFT"],
 };
 
 export default function CreateNftPage() {

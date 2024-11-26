@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { P, H1, H2, H4, UL } from "../../_components/TailwindTags";
 
+export const metadata = {
+  title: "What Makes NFT Valuable",
+  description: "Learn what makes an NFT valuable",
+  keywords: ["NFT", "Valuable", "JarsNFT"],
+};
+
 export default function NFTValuablePage() {
   return (
     <section>

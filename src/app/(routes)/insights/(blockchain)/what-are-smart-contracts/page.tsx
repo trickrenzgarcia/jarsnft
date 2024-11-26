@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { P, H1, H2, H3, H4, OL, UL } from "../../_components/TailwindTags";
 
+export const metadata = {
+  title: "What are Smart Contracts?",
+  description: "Learn about smart contracts on the blockchain",
+  keywords: ["Smart Contracts", "Blockchain", "Ethereum"],
+};
+
 export default function WhatSmartContractPage() {
   return (
     <section>

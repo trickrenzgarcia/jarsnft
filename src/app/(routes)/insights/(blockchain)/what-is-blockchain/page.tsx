@@ -1,6 +1,12 @@
 import { P, H1, H2, UL, OL } from "../../_components/TailwindTags";
 import Image from "next/image";
 
+export const metadata = {
+  title: "What is the Blockchain?",
+  description: "Learn about the blockchain",
+  keywords: ["Blockchain", "Bitcoin", "Cryptocurrency"],
+};
+
 export default function WhatBlockchainPage() {
   return (
     <article>

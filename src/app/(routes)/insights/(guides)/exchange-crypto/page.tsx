@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { P, H1, H2, H3, OL, UL } from "../../_components/TailwindTags";
 
+export const metadata = {
+  title: "Exchange Cryptocurrency",
+  description: "Learn how to exchange cryptocurrency",
+  keywords: ["Exchange", "Cryptocurrency", "CoinsPH", "ByBit", "Binance"],
+};
+
 const cenExch = [
   {
     topic: "Binance",

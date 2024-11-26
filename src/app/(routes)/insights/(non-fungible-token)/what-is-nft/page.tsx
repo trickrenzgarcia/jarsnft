@@ -2,6 +2,12 @@ import React from "react";
 import Image from "next/image";
 import { P, H1, H2 } from "../../_components/TailwindTags";
 
+export const metadata = {
+  title: "What is NFT | JarsNFT",
+  description: "Learn what is NFT and how it works",
+  keywords: ["NFT", "Non-fungible Token", "JarsNFT"],
+};
+
 const page = () => {
   return (
     <article className="flex flex-col space-y-4">

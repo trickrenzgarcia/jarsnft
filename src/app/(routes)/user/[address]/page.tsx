@@ -12,10 +12,7 @@ type Props = {
   };
 };
 
-export async function generateMetadata(
-  { params: { address } }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata({ params: { address } }: Props, parent: ResolvingMetadata): Promise<Metadata> {
   const shortAddress = shortenAddress(address, 5, 3);
   const user = await jars.getUser(address);
   if (!user)
@@ -25,6 +22,8 @@ export async function generateMetadata(
 
   return {
     title: `${shortAddress} ${truncate(user.name, 12)} Profile | JarsNFT Marketplace`,
+    description: `View ${shortAddress} ${truncate(user.name, 12)}'s profile on JarsNFT Marketplace`,
+    keywords: ["User", "Profile", "NFT", "JarsNFT"],
   };
 }
 

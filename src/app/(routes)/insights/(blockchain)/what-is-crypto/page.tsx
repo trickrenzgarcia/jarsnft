@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { P, H1, H2, H4, UL } from "../../_components/TailwindTags";
 
+export const metadata = {
+  title: "What is Cryptocurrency?",
+  description: "Learn about cryptocurrency",
+  keywords: ["Cryptocurrency", "Bitcoin", "Blockchain"],
+};
+
 export default function WhatCryptoPage() {
   return (
     <section>

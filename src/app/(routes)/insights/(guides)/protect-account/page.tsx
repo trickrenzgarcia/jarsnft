@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { P, H1, H2, H4, UL, OL } from "../../_components/TailwindTags";
 
+export const metadata = {
+  title: "Protect Your Account",
+  description: "Learn how to protect your NFT account",
+  keywords: ["Protect Account", "NFT", "JarsNFT"],
+};
+
 export default function ProtectAccPage() {
   return (
     <section>

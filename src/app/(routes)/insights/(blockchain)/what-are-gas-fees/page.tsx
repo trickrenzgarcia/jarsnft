@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { P, H1, H2 } from "../../_components/TailwindTags";
 
+export const metadata = {
+  title: "What are Gas Fees?",
+  description: "Learn about gas fees on the blockchain",
+  keywords: ["Gas Fees", "Blockchain", "Ethereum"],
+};
+
 export default function WhatGasFeesPage() {
   return (
     <section>

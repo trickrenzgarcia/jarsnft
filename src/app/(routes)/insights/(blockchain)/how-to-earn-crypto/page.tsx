@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { P, H1, H2, H3, UL } from "../../_components/TailwindTags";
 
+export const metadata = {
+  title: "How to Earn Cryptocurrency",
+  description: "Learn how to earn cryptocurrency with JarsNFT",
+  keywords: ["Cryptocurrency", "Earning", "Mining", "Trading"],
+};
+
 export default function HowToEarnCrypto() {
   return (
     <section>
