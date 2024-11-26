@@ -23,12 +23,12 @@ const details = [
 export default function NFTBannerLoading() {
   return (
     <main className="flex w-full flex-col">
-      <div className="relative h-[200px] w-auto md:h-[400px]"></div>
-      <div className="absolute hidden h-[400px] w-full px-7 py-6 md:block">
+      <div className="relative h-[400px] w-auto"></div>
+      <div className="absolute h-[400px] w-full px-7 py-6 md:block">
         <section className="mb-4 flex justify-between">
           <div className="flex items-center gap-3">
             <Skeleton className="h-[125px] w-[125px] rounded-xl border" />
-            <div className={cn("flex w-[500px] flex-col gap-2", open_sans.className)}>
+            <div className={cn("flex max-w-[500px] flex-col gap-2", open_sans.className)}>
               <Skeleton className="h-7 w-40 border" />
               <Skeleton className="h-5 w-32 border" />
             </div>
