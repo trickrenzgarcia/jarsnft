@@ -5,7 +5,7 @@ import { ConnectWalletV4, CreateUserDialog, Notification, ProfileButton } from "
 import { ProfileQuery } from "@/types/users";
 import { Skeleton } from "../ui/skeleton";
 import { useEffect } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const { user, isLoading, isLoggedIn } = useUser() as ProfileQuery;
@@ -34,7 +34,7 @@ export default function Login() {
       {isLoading ? (
         <Skeleton className="h-[35px] w-[35px] rounded-full" />
       ) : isLoggedIn ? (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           {isLoggedIn && user.data.session.isListed && address && <Notification />}
           {isLoggedIn && user.data.session.isListed && address && <ProfileButton />} {/* ProfileButton will only be shown if isLoggedIn is true */}
           <ConnectWalletV4 btnTitle="Connect" />

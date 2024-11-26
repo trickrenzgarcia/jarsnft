@@ -27,7 +27,7 @@ export default function Navbar() {
 
       <nav className={cn(isSearchOpen && "hidden", "sticky top-0 z-40 w-full bg-background/80 backdrop-blur-md")}>
         <div className="flex w-full items-center justify-between gap-2 px-5 py-4 max-[415px]:py-2 md:px-10">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1 md:gap-4">
             <Hamburger />
             <Link href="/">
               <div className="mb-2 flex items-end">
@@ -62,11 +62,11 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4">
             <button onClick={handleSearchClick} className="cursor-pointer text-2xl xl:hidden">
               <ImSearch />
             </button>
-            <div className='flex'>
+            <div className="flex">
               <Login />
             </div>
           </div>
