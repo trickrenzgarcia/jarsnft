@@ -13,9 +13,14 @@ export const appConfig: AppConfig = {
     "unique artworks",
     "exclusive NFTs",
     "collectible tokens",
+    "digital art",
+    "NFTs",
+    "NFT",
+    "crypto collectibles",
+    "crypto art",
   ],
   url: {
-    base: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+    base: "https://jarsnft.com",
     author: "https://rwick.pro",
   },
   links: {

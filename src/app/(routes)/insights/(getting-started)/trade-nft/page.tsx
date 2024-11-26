@@ -1,13 +1,11 @@
 import Image from "next/image";
-import { P } from "../_components/TailwindTags";
+import { P } from "../../_components/TailwindTags";
 
 export default function TradeNftPage() {
   return (
     <section>
       <div id="summary">
-        <h1 className="my-4 text-4xl font-bold md:text-5xl">
-          How to Trade your NFTs
-        </h1>
+        <h1 className="my-4 text-4xl font-bold md:text-5xl">How to Trade your NFTs</h1>
         <h3 className="my-6 text-xl font-bold tracking-wider">{`Purchase or Sell you first NFT!`}</h3>
         <P>{`Buying or Selling NFTs is a vital knowledge that every beginner must have. In this article we will guide you on how to trade your NFTs in JARS NFT.`}</P>
       </div>
@@ -17,9 +15,7 @@ export default function TradeNftPage() {
         <P>
           {`The first thing in buying an NFT is to choose what kind of NFT you want to buy. There are many factors to consider when buying an NFT. As such, you can read more of it here in `}
           <span className="font-semibold text-[#A519D7] underline">
-            <a href="/insights/what-makes-nft-valuable">
-              What makes an NFT Valuable?
-            </a>
+            <a href="/insights/what-makes-nft-valuable">What makes an NFT Valuable?</a>
           </span>
         </P>
         <P>{`After selecting your desired NFT, you will be greeted by a similar page just like this:`}</P>
@@ -28,7 +24,7 @@ export default function TradeNftPage() {
           width={1920}
           height={1080}
           alt="Coinbase Download Extension"
-          className="mb-2 max-h-[50%] max-w-full "
+          className="mb-2 max-h-[50%] max-w-full"
         />
         <h3 className="my-6 text-xl font-bold tracking-wider">{`Step 2: Confirm Transaction`}</h3>
         <P>{` Click on 'Confirm and Pay' and after a while your metamask will prompt you to confirm the transaction.`}</P>
@@ -37,7 +33,7 @@ export default function TradeNftPage() {
           width={1920}
           height={1080}
           alt="Coinbase Download Extension"
-          className="mb-6 max-h-[50%] max-w-full "
+          className="mb-6 max-h-[50%] max-w-full"
         />
         <P>
           {` After all is done you can view your acquired NFT in your profile page. Or you can also `}
@@ -56,7 +52,7 @@ export default function TradeNftPage() {
           width={1920}
           height={1080}
           alt="Coinbase Download Extension"
-          className="mb-6 max-h-[50%] max-w-full "
+          className="mb-6 max-h-[50%] max-w-full"
         />
         <h3 className="my-6 text-xl font-bold tracking-wider">{`Step 2: Choose an NFT You Want to Sell`}</h3>
         <P>
@@ -70,11 +66,11 @@ export default function TradeNftPage() {
           width={1920}
           height={1080}
           alt="Coinbase Download Extension"
-          className="mb-6 max-h-[30%] max-w-full "
+          className="mb-6 max-h-[30%] max-w-full"
         />
         <P>{`For Direct Listing you only have to set a date on when the listing ends and Price of your NFT. `}</P>
         <P>{`For Auction you will also set the date for when the listing ends, while also setting up the starting bid and the buyout price of your NFT.`}</P>
-        <div className="flex flex-col lg:flex-row justify-center gap-5">
+        <div className="flex flex-col justify-center gap-5 lg:flex-row">
           <Image
             src="/assets/InsightsAsset/TradeNFT/JARS Sell 3.png"
             width={1920}
@@ -97,7 +93,7 @@ export default function TradeNftPage() {
           width={1920}
           height={1080}
           alt="Coinbase Download Extension"
-          className="mb-6 max-h-[50%] max-w-full "
+          className="mb-6 max-h-[50%] max-w-full"
         />
       </div>
     </section>

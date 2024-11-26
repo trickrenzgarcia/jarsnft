@@ -8,6 +8,14 @@ import { PageNavTopic } from "./_components/PageNavbar";
 import SideBarHamburger from "./_components/SideBarHamburger";
 import { useEffect, useState } from "react";
 import FAQsInsight from "./_components/FAQs";
+import { appConfig } from "@/lib/app.config";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Learn about JarsNFT | JarsNFT",
+  description: "Learn about JarsNFT",
+  keywords: appConfig.keywords,
+};
 
 type LearnProps = {
   children: React.ReactNode;

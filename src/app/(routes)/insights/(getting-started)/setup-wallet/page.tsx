@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { P } from "../_components/TailwindTags";
+import { P } from "../../_components/TailwindTags";
 
 const browsers = [
   { src: "/assets/browsers/Chrome.svg", alt: "chrome" },
@@ -52,24 +52,25 @@ export default function SetupWallet() {
   return (
     <section>
       <div id="overview">
-        <h1 className="mt-6 text-4xl font-bold md:text-5xl">
-          Setup your wallet
-        </h1>
-        <P>JARS NFT Marketplace supports various crypto wallet options that users can use to log in. To begin setting up your wallet, you will first need to choose which crypto wallet to use. We highly recommend <strong>Metamask</strong> and <strong>Coinbase</strong>.</P>
-        <div className="w-full flex-wrap flex justify-center gap-2 mb-4">
+        <h1 className="mt-6 text-4xl font-bold md:text-5xl">Setup your wallet</h1>
+        <P>
+          JARS NFT Marketplace supports various crypto wallet options that users can use to log in. To begin setting up your wallet, you will first
+          need to choose which crypto wallet to use. We highly recommend <strong>Metamask</strong> and <strong>Coinbase</strong>.
+        </P>
+        <div className="mb-4 flex w-full flex-wrap justify-center gap-2">
           <Image
             src="/assets/InsightsAsset/MetaMask_Fox.png"
             width={1920}
             height={1080}
             alt="Metamask Logo"
-            className=" max-h-[8rem] max-w-[8rem] rounded-lg"
+            className="max-h-[8rem] max-w-[8rem] rounded-lg"
           />
           <Image
             src="/assets/InsightsAsset/coinbase.png"
             width={1920}
             height={1080}
             alt="Coinbase Logo"
-            className=" max-h-[8rem] max-w-[8rem] rounded-lg"
+            className="max-h-[8rem] max-w-[8rem] rounded-lg"
           />
         </div>
         <div className="flex justify-center">
@@ -81,19 +82,14 @@ export default function SetupWallet() {
             className="mb-12 max-h-[80%] max-w-[70%] rounded-lg"
           />
         </div>
-        
-        <p className="my-2 leading-loose tracking-wide dark:text-gray-300">JARS supports various browsers, for best performance use <strong>Chrome, Firefox, </strong>
-        <strong>Brave</strong> for security then Opera and Edge</p>
-        <div className="flex flex-wrap w-full justify-center gap-4 my-4">
+
+        <p className="my-2 leading-loose tracking-wide dark:text-gray-300">
+          JARS supports various browsers, for best performance use <strong>Chrome, Firefox, </strong>
+          <strong>Brave</strong> for security then Opera and Edge
+        </p>
+        <div className="my-4 flex w-full flex-wrap justify-center gap-4">
           {browsers.map((browser, index) => (
-            <Image
-              key={index}
-              src={browser.src}
-              width={1920}
-              height={1080}
-              alt={browser.alt}
-              className=" h-[4rem] w-[4rem] rounded-lg"
-            />
+            <Image key={index} src={browser.src} width={1920} height={1080} alt={browser.alt} className="h-[4rem] w-[4rem] rounded-lg" />
           ))}
         </div>
       </div>
@@ -102,15 +98,11 @@ export default function SetupWallet() {
         <>
           <h2 className="my-6 text-3xl font-bold">How to Setup Metamask</h2>
           <P>{`A secured / popular cryptocurrency wallet browser extension that allows users to interact with the Ethereum or Polygon blockchain.`}</P>
-          <h3 className="my-6 text-xl font-bold tracking-wider">
-            Install Metamask To Your Browser
-          </h3>
+          <h3 className="my-6 text-xl font-bold tracking-wider">Install Metamask To Your Browser</h3>
           <P>
             {`To get started with Metamask, we must install the Metamask wallet extension in our browser. `}
             <span className="font-semibold text-[#A519D7] underline">
-              <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">
-                Download Here
-              </a>
+              <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">Download Here</a>
             </span>
           </P>
           <P>{`We will be redirected to this browser page, click Download and Add Extension to finish setting up our Metamask wallet.`}</P>
@@ -155,9 +147,7 @@ export default function SetupWallet() {
           </P>
         </>
         <>
-          <h3 className="my-6 text-xl font-bold tracking-wider">
-            Create your Wallet Account
-          </h3>
+          <h3 className="my-6 text-xl font-bold tracking-wider">Create your Wallet Account</h3>
           <P>{`After clicking the Create a new Wallet, we will be redirected with the following steps:`}</P>
           <div className="flex justify-center gap-5">
             <Image
@@ -176,14 +166,13 @@ export default function SetupWallet() {
             />
           </div>
           <P>Then continue with the following instructions by Metamask:</P>
-          <div className="flex justify-center gap-4">
-            {displayMetamaskCreate()}
-          </div>
-          <p className="text-red-600 my-2 leading-loose tracking-wide">Importantly, the <strong>SEED PHRASE</strong> is what you need to keep safe the most. Write it / Store it somewhere safe losing it means losing all your funds.</p>
+          <div className="flex justify-center gap-4">{displayMetamaskCreate()}</div>
+          <p className="my-2 leading-loose tracking-wide text-red-600">
+            Importantly, the <strong>SEED PHRASE</strong> is what you need to keep safe the most. Write it / Store it somewhere safe losing it means
+            losing all your funds.
+          </p>
         </>
-        <h3 className="my-6 text-xl font-bold tracking-wider">
-          Login your Existing Wallet Account
-        </h3>
+        <h3 className="my-6 text-xl font-bold tracking-wider">Login your Existing Wallet Account</h3>
         <P>{`When we try to login our Metamask Account from a different computer, it will require us to import our wallet using a seed phrase.
         Follow through the steps on how to Login our existing wallet.`}</P>
         <div className="flex flex-wrap justify-center gap-5">
@@ -213,9 +202,7 @@ export default function SetupWallet() {
           />
         </div>
         <div>
-          <h3 className="my-6 text-xl font-bold tracking-wider">
-            For Mobile Users 
-          </h3>
+          <h3 className="my-6 text-xl font-bold tracking-wider">For Mobile Users</h3>
           <P>{`Using Metamask in your mobile device also requires you to do the steps from above. To begin, you should start by downloading the Metamask App, it is advisable to download from your phone's appstore.
           Then follow the steps to create a new wallet or import an existing one.`}</P>
           <Image
@@ -223,19 +210,19 @@ export default function SetupWallet() {
             width={1920}
             height={1080}
             alt="Metamask Download Extension"
-            className="mb-2 max-h-[50%] max-w-[50%] mx-auto my-6 rounded-lg"
+            className="mx-auto my-6 mb-2 max-h-[50%] max-w-[50%] rounded-lg"
           />
-          <p className="text-red-600 my-6 leading-loose tracking-wide mb-4">strong reminder, <strong>BE CAREFUL</strong> in where you download the app from. Such risks involves phishing apps that may try to steal your wallet.</p>
+          <p className="my-6 mb-4 leading-loose tracking-wide text-red-600">
+            strong reminder, <strong>BE CAREFUL</strong> in where you download the app from. Such risks involves phishing apps that may try to steal
+            your wallet.
+          </p>
         </div>
-
       </div>
       <div id="coinbase">
         <hr />
         <h2 className="my-6 text-3xl font-bold">How to Setup Coinbase</h2>
         <P>{`A leading cryptocurrency exchange and wallet that enables users to easily buy, sell, and manage a wide range of digital assets with top-tier security and user-friendly features.`}</P>
-        <h3 className="my-6 text-xl font-bold tracking-wider">
-          Install Coinbase To Your Browser
-        </h3>
+        <h3 className="my-6 text-xl font-bold tracking-wider">Install Coinbase To Your Browser</h3>
         <P>
           {`To get started with Coinbase, we must install the Coinbase wallet extension in our browser. `}
           <span className="font-semibold text-[#A519D7] underline">
@@ -243,12 +230,9 @@ export default function SetupWallet() {
               Download Here
             </a>
           </span>
-          .
-          {` Checkout the other available platforms that you can Install coinbase from by `}
+          .{` Checkout the other available platforms that you can Install coinbase from by `}
           <span className="font-semibold text-[#A519D7] underline">
-            <a href="https://www.coinbase.com/wallet/downloads">
-              Clicking Here
-            </a>
+            <a href="https://www.coinbase.com/wallet/downloads">Clicking Here</a>
           </span>
           .
         </P>
@@ -284,14 +268,14 @@ export default function SetupWallet() {
             width={1920}
             height={1080}
             alt="Coinbase Login"
-            className="mb-2 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem] "
+            className="mb-2 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem]"
           />
           <Image
             src="/assets/InsightsAsset/CoinbaseImages/coinbase 4.png"
             width={1920}
             height={1080}
             alt="Coinbase Account"
-            className="mb-2 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem] "
+            className="mb-2 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem]"
           />
         </div>
         <P>
@@ -300,15 +284,11 @@ export default function SetupWallet() {
             {` We will be redirected to this page that allows us to Create or Import our wallet. After logging in, we will be redirected to our Wallet Account Page`}
           </span>
         </P>
-        <h3 className="my-6 text-xl font-bold tracking-wider">
-          Create your Wallet Account
-        </h3>
+        <h3 className="my-6 text-xl font-bold tracking-wider">Create your Wallet Account</h3>
         <P>{`After clicking the Create a new Wallet, we will be redirected with the following steps:`}</P>
         {displayCoinbaseCreate()}
         <P>{`Other wallets may have different procedures or features, but overall they all have the same requirements when creating our own wallet.`}</P>
-        <h3 className="my-6 text-xl font-bold tracking-wider">
-          Login your Existing Wallet Account
-        </h3>
+        <h3 className="my-6 text-xl font-bold tracking-wider">Login your Existing Wallet Account</h3>
         <P>{`As mentioned earlier, our Seed Phrase is must be stored where we can access it when we need to import our wallet to a new device or computer. For coinbase, these are the following steps:`}</P>
       </div>
       {displayCoinbaseImport()}
@@ -463,7 +443,7 @@ function displayMetamaskCreate() {
             width={1980}
             height={1080}
             quality={90}
-            className="m-5 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem] "
+            className="m-5 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem]"
           />
         </>
       ))}
@@ -482,7 +462,7 @@ function displayCoinbaseCreate() {
             width={1980}
             height={1080}
             quality={90}
-            className="m-5 max-h-full  max-w-[15rem] rounded-lg md:max-w-[20rem] "
+            className="m-5 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem]"
           />
         </>
       ))}
@@ -500,7 +480,7 @@ function displayCoinbaseImport() {
             width={1980}
             height={1080}
             quality={90}
-            className="m-5 max-h-full  max-w-[15rem] rounded-lg md:max-w-[20rem] "
+            className="m-5 max-h-full max-w-[15rem] rounded-lg md:max-w-[20rem]"
           />
         </>
       ))}

@@ -3,13 +3,11 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Your Profile | JarsNFT",
+  description: "Your Profile on JarsNFT",
+  keywords: ["Profile", "JarsNFT"],
 };
 
-export default function AccountLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AccountLayout({ children }: { children: React.ReactNode }) {
   return (
     <main className="">
       <Navbar />

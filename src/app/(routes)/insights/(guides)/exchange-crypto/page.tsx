@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { P, H1, H2, H3, OL, UL } from "../_components/TailwindTags";
+import { P, H1, H2, H3, OL, UL } from "../../_components/TailwindTags";
 
 const cenExch = [
   {

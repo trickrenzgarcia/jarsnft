@@ -19,6 +19,8 @@ export async function generateMetadata({ params: { address } }: CollectionParams
 
   return {
     title: `${collection.name} ${collection.symbol && `(${collection.symbol})`} | JarsNFT`,
+    description: collection.description,
+    keywords: [collection.name, collection.symbol, "NFT", "JarsNFT"],
   };
 }
 
