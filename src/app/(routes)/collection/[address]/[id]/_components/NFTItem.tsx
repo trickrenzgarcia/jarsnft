@@ -97,7 +97,7 @@ export default function NFTItem() {
           <Image className="size-12 rounded-full" src={collection.image} width={25} height={25} alt="" />
         )}
         <p className="hover:underline">
-          {loadingCollection ? <Skeleton className="h-[20px] w-20" /> : <Link href={`/collection/${address}`}>{collection.name}</Link>}
+          {loadingCollection ? <Skeleton className="h-[20px] w-64" /> : <Link href={`/collection/${address}`}>{collection.name}</Link>}
         </p>
       </div>
 
@@ -117,7 +117,7 @@ export default function NFTItem() {
                     </p>
                     <div className="flex flex-col justify-center gap-1">
                       {loadingDirectListings ? (
-                        <Skeleton className="h-10 w-28" />
+                        <Skeleton className="h-[32px] w-[119px]" />
                       ) : directListings && directListings[0] ? (
                         <div className="flex items-baseline gap-4">
                           <Image src="/assets/cryptocurrency/polygon-matic.png" width={20} height={20} alt="Polygon" />

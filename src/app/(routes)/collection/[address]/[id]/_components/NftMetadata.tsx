@@ -9,6 +9,7 @@ import { useChain } from "@thirdweb-dev/react";
 import { shortenAddress } from "@/lib/utils";
 import Image from "next/image";
 import { useContractContext, useNFTContext } from "@/components/hooks/use-context";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type NftAttributes = {
   trait_type: string;
@@ -20,7 +21,13 @@ export default function NftMetadata() {
   const { nft, loadingNFT, address } = useNFTContext();
   const chain = useChain();
 
-  if (loadingNFT) return <div>Loading...</div>;
+  if (loadingNFT)
+    return (
+      <div className="space-y-8">
+        <Skeleton className="h-[40px] w-[320px]" />
+        <Skeleton className="h-[93px] w-[453px]" />
+      </div>
+    );
 
   return (
     <Tabs variant="underlined" aria-label="Tabs variants" className="flex-col self-center sm:flex-row sm:self-start">
