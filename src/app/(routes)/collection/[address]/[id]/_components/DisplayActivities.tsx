@@ -8,10 +8,9 @@ import EventChip from "./EventChip";
 import Link from "next/link";
 import { displayName } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
-import { useContractEvents } from "@thirdweb-dev/react";
+import { useContract, useContractEvents } from "@thirdweb-dev/react";
 import { Button } from "@/components/ui/button";
 import { RiExternalLinkLine } from "react-icons/ri";
-import { useContractContext } from "@/components/hooks/use-context";
 import { Skeleton } from "@/components/ui/skeleton";
 
 type Props = {
@@ -23,15 +22,13 @@ type Props = {
 };
 
 export default function DisplayActivities({ tokenId, contractAddress, directListing, auctionListing, marketPlaceContract }: Props) {
-  const { contract } = useContractContext();
+  const { contract } = useContract(contractAddress);
   const { data: transfers, isLoading: loadingTransfers } = useContractEvents(contract, "Transfer", {
     queryFilter: {
       filters: {
         tokenId: tokenId,
       },
       order: "desc",
-      fromBlock: 0,
-      toBlock: 10000000,
     },
   });
 
