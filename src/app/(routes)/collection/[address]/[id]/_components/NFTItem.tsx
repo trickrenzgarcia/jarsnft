@@ -97,7 +97,7 @@ export default function NFTItem() {
           <Image className="size-12 rounded-full" src={collection.image} width={25} height={25} alt="" />
         )}
         <p className="hover:underline">
-          {loadingCollection ? <Skeleton className="h-[20px] w-64" /> : <Link href={`/collection/${address}`}>{collection.name}</Link>}
+          {loadingCollection ? <Skeleton className="h-[20px] w-20" /> : <Link href={`/collection/${address}`}>{collection.name}</Link>}
         </p>
       </div>
 
@@ -205,7 +205,7 @@ export default function NFTItem() {
           </div>
         </div>
         <div className="flex w-full flex-col items-start justify-start gap-4 md:w-[350px] lg:w-[350px] xl:w-[24svw]">
-          {nft ? <h1 className="text-4xl font-bold">{nft.metadata.name}</h1> : <Skeleton className="h-[40px] w-28" />}
+          {nft ? <h1 className="text-4xl font-bold">{nft.metadata.name}</h1> : <Skeleton className="h-[40px] w-64" />}
           <div className="flex items-center gap-6">
             <BoringAvatar name={nft?.owner} size={35} />
             <div className="flex flex-col">
