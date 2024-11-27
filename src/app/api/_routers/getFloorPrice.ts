@@ -42,17 +42,13 @@ getFloorPrice.get("/", async (c) => {
 
   const activeAuctions: EnglishAuction[] = JSON.parse(
     JSON.stringify(
-      auctions
-        .filter((auction) => auction.assetContractAddress === schema.data)
-        .filter((auction) => auction.status === "ACTIVE"),
+      auctions.filter((auction) => auction.assetContractAddress === schema.data).filter((auction) => auction.status === "ACTIVE"),
       replacer,
     ),
   );
   const activeListings: DirectListing[] = JSON.parse(
     JSON.stringify(
-      listings
-        .filter((listing) => listing.assetContractAddress === schema.data)
-        .filter((listing) => listing.status === "ACTIVE"),
+      listings.filter((listing) => listing.assetContractAddress === schema.data).filter((listing) => listing.status === "ACTIVE"),
       replacer,
     ),
   );
@@ -65,7 +61,7 @@ getFloorPrice.get("/", async (c) => {
   const checkIfNullAuctions = activeAuctionFloorPrice === Infinity; // Check if there are no active auctions
   const checkIfNullListings = activeListingFloorPrice === Infinity; // Check if there are no active listings
 
-  if (checkIfNullAuctions && checkIfNullListings) return c.json("N/A", 200);
+  if (checkIfNullAuctions && checkIfNullListings) return c.json("--", 200);
   else if (activeAuctionFloorPrice === 0) return c.json(activeListingFloorPrice, 200);
   else if (activeListingFloorPrice === 0) return c.json(activeAuctionFloorPrice, 200);
   else {
