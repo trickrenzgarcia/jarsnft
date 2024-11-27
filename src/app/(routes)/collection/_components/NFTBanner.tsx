@@ -137,7 +137,7 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
               alt=""
               className="aspect-square rounded-xl border bg-background object-fill"
             />
-            <div className="text-sm lg:text-4xl">
+            <div className="flex flex-col justify-around gap-2 text-sm lg:text-4xl">
               <div className="flex w-full items-center gap-1 text-2xl font-semibold">
                 <div className="flex flex-row">
                   <h2>{metadata.name}</h2>
