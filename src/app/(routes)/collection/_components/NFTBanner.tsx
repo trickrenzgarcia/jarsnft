@@ -55,61 +55,61 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
 
   useEffect(() => {
     const listingCount = (directListings?.length || 0) + (auctionListings?.length || 0);
-    if (sales && sales.length > 0) {
-      // const totalSalesPrice = sales.reduce((total, sale) => {
-      //   const price = BigNumber.from(sale.data.totalPricePaid);
-      //   return total.add(price);
-      // }, BigNumber.from(0));
+    // if (sales && sales.length > 0) {
+    // const totalSalesPrice = sales.reduce((total, sale) => {
+    //   const price = BigNumber.from(sale.data.totalPricePaid);
+    //   return total.add(price);
+    // }, BigNumber.from(0));
 
-      // const floorPrice = sales
-      //   .reduce((min, sale) => {
-      //     const price = BigNumber.from(sale.data.totalPricePaid);
-      //     return price.lt(min) ? price : min;
-      //   }, BigNumber.from(sales[0].data.totalPricePaid))
-      //   .toString();
+    // const floorPrice = sales
+    //   .reduce((min, sale) => {
+    //     const price = BigNumber.from(sale.data.totalPricePaid);
+    //     return price.lt(min) ? price : min;
+    //   }, BigNumber.from(sales[0].data.totalPricePaid))
+    //   .toString();
 
-      setDetails([
-        {
-          detail: "Total Volume",
-          // value: totalSalesPrice ? parseFloat(ethers.utils.formatEther(totalSalesPrice)) : 0,
-          value: totalVolume ? totalVolume : 0,
-          currency: "POL",
-        },
-        {
-          detail: "Floor Price",
-          // value: floorPrice ? parseFloat(ethers.utils.formatEther(floorPrice)) : 0,
-          value: floorPrice,
-          currency: "POL",
-        },
-        { detail: "Sales", value: totalSales },
-        {
-          detail: "Listed",
-          value: listingCount,
-        },
-        { detail: "Owners(Unique)", value: ownersLength },
-        { detail: "Royalty", value: collection.sellerFeeBasisPoints / 100 + "%" },
-      ]);
-    } else {
-      setDetails([
-        {
-          detail: "Total Volume",
-          value: 0,
-          currency: "POL",
-        },
-        {
-          detail: "Floor Price",
-          value: "--",
-          currency: "POL",
-        },
-        { detail: "Sales", value: totalSales },
-        {
-          detail: "Listed",
-          value: listingCount,
-        },
-        { detail: "Owners(Unique)", value: 0 },
-        { detail: "Royalty", value: collection.sellerFeeBasisPoints / 100 + "%" },
-      ]);
-    }
+    setDetails([
+      {
+        detail: "Total Volume",
+        // value: totalSalesPrice ? parseFloat(ethers.utils.formatEther(totalSalesPrice)) : 0,
+        value: totalVolume ? totalVolume : 0,
+        currency: "POL",
+      },
+      {
+        detail: "Floor Price",
+        // value: floorPrice ? parseFloat(ethers.utils.formatEther(floorPrice)) : 0,
+        value: floorPrice,
+        currency: "POL",
+      },
+      { detail: "Sales", value: totalSales },
+      {
+        detail: "Listed",
+        value: listingCount,
+      },
+      { detail: "Owners(Unique)", value: ownersLength },
+      { detail: "Royalty", value: collection.sellerFeeBasisPoints / 100 + "%" },
+    ]);
+    // } else {
+    //   setDetails([
+    //     {
+    //       detail: "Total Volume",
+    //       value: 0,
+    //       currency: "POL",
+    //     },
+    //     {
+    //       detail: "Floor Price",
+    //       value: "--",
+    //       currency: "POL",
+    //     },
+    //     { detail: "Sales", value: totalSales },
+    //     {
+    //       detail: "Listed",
+    //       value: listingCount,
+    //     },
+    //     { detail: "Owners(Unique)", value: 0 },
+    //     { detail: "Royalty", value: collection.sellerFeeBasisPoints / 100 + "%" },
+    //   ]);
+    // }
   }, [sales, address, collection, directListings, auctionListings]);
 
   // if (loadingMetadata || !metadata || salesLoading) {
