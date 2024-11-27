@@ -81,6 +81,7 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
           value: floorPrice,
           currency: "POL",
         },
+        { detail: "Sales", value: totalSales },
         {
           detail: "Listed",
           value: listingCount,
@@ -100,6 +101,7 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
           value: "--",
           currency: "POL",
         },
+        { detail: "Sales", value: totalSales },
         {
           detail: "Listed",
           value: listingCount,
@@ -110,15 +112,15 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
     }
   }, [sales, address, collection, directListings, auctionListings]);
 
-  if (loadingMetadata || !metadata || salesLoading) {
-    return <NFTBannerLoading />;
-  }
+  // if (loadingMetadata || !metadata || salesLoading) {
+  //   return <NFTBannerLoading />;
+  // }
 
   return (
     <main className="flex w-full flex-col bg-slate-600 text-white dark:bg-background">
       <div className="relative h-[400px] min-h-[200px] w-auto">
         <Image
-          src={metadata.image || "/assets/collection_banner_placeholder.png"}
+          src={metadata?.image || "/assets/collection_banner_placeholder.png"}
           fill
           style={{
             objectFit: "cover",
@@ -131,7 +133,7 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
         <section className="flex justify-between p-6">
           <div className="flex w-full items-center gap-3">
             <Image
-              src={metadata.image || "/assets/image_not_found.jpg"}
+              src={metadata?.image || "/assets/image_not_found.jpg"}
               width={125}
               height={125}
               alt=""
@@ -140,7 +142,7 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
             <div className="flex flex-col justify-around gap-2 text-sm lg:text-4xl">
               <div className="flex w-full items-center gap-1 text-2xl font-semibold">
                 <div className="flex flex-row">
-                  <h2>{metadata.name}</h2>
+                  <h2>{metadata?.name || "NFT Name"}</h2>
                   {collection.isVerified ? (
                     <TooltipMsg message="Verified">
                       <div className="cursor-pointer rounded-sm p-1 hover:bg-slate-500/30">
@@ -156,7 +158,7 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
         </section>
         <section className="mt-6 w-full justify-between px-6 lg:mt-4 lg:flex">
           <div className="h-[75px] overflow-x-hidden text-sm font-semibold dark:text-gray-300 lg:h-[160px] lg:w-[500px]">
-            <ReadMore id="collection-description" text={metadata.description || ""} amountOfWords={24} />
+            <ReadMore id="collection-description" text={metadata?.description || ""} amountOfWords={24} />
           </div>
           {/* Placeholder for data will get in Simplehash */}
           <div className="mt-8 flex items-end gap-4 overflow-x-auto">

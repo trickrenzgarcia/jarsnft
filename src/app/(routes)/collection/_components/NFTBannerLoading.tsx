@@ -8,7 +8,7 @@ import React from "react";
 const details = [
   {
     detail: "Total Volume",
-    value: 1,
+    value: 0,
     currency: "POL",
   },
   {
@@ -16,8 +16,10 @@ const details = [
     value: 1,
     currency: "POL",
   },
-  { detail: "Listed", value: 1 },
-  { detail: "Owners(Unique)", value: 1 },
+  { detail: "Sales", value: 0 },
+  { detail: "Listed", value: 0 },
+  { detail: "Owners(Unique)", value: 0 },
+  { detail: "Royalty", value: "0%" },
 ];
 
 export default function NFTBannerLoading() {
