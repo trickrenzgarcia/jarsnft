@@ -62,12 +62,17 @@ const TiltCard = () => {
         }}
         className="absolute inset-0 grid place-content-center rounded-xl"
       >
-        {nft &&
-          (nft.metadata.image ? (
-            <ThirdwebNftMedia className="min-h-[400px] max-w-[600px]" metadata={nft.metadata} />
-          ) : (
-            <Image src="/assets/placeholder/nft_placeholder.svg" width={500} height={500} alt="image of an NFT" />
-          ))}
+        {!nft ? (
+          <Image
+            src="/assets/placeholder/nft_placeholder.svg"
+            className="min-h-[400px] max-w-[600px]"
+            width={500}
+            height={500}
+            alt="image of an NFT"
+          />
+        ) : (
+          <ThirdwebNftMedia className="min-h-[400px] max-w-[600px]" metadata={nft.metadata} />
+        )}
       </div>
     </motion.div>
   );

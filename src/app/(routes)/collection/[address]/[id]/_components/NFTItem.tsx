@@ -10,7 +10,7 @@ import { useBalance, useValidDirectListings, useValidEnglishAuctions } from "@th
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { MdArrowBackIosNew, MdVerified } from "react-icons/md";
 import AuctionEndTime from "./AuctionEndTime";
@@ -67,23 +67,23 @@ export default function NFTItem() {
     fetchPrices();
   }, [directListings]);
 
-  if (loadingCollection) {
-    return <div>Loading Collection...</div>;
-  } else if (errorCollection) {
-    return <div>Error Collection...</div>;
-  }
+  // if (loadingCollection) {
+  //   return <div>Loading Collection...</div>;
+  // } else if (errorCollection) {
+  //   return <div>Error Collection...</div>;
+  // }
 
-  if (loadingMarketPlace) {
-    return <div>Loading MarketPlace...</div>;
-  } else if (errorMarketPlace) {
-    return <div>Error MarketPlace...</div>;
-  }
+  // if (loadingMarketPlace) {
+  //   return <div>Loading MarketPlace...</div>;
+  // } else if (errorMarketPlace) {
+  //   return <div>Error MarketPlace...</div>;
+  // }
 
-  if (loadingNFT) {
-    return <div>Loading NFT...</div>;
-  } else if (errorNFT) {
-    return <div>Error NFT...</div>;
-  }
+  // if (loadingNFT) {
+  //   return <div>Loading NFT...</div>;
+  // } else if (errorNFT) {
+  //   return <div>Error NFT...</div>;
+  // }
 
   return (
     <div className="mt-4 flex flex-col">
@@ -91,9 +91,13 @@ export default function NFTItem() {
         <Button variant="ghost" className="rounded-full px-3" onClick={(e) => router.back()}>
           <MdArrowBackIosNew className="text-medium" />
         </Button>
-        <Image className="rounded-full" src={collection.image} width={25} height={25} alt="" />
+        {loadingCollection ? (
+          <Skeleton className="size-12" />
+        ) : (
+          <Image className="size-12 rounded-full" src={collection.image} width={25} height={25} alt="" />
+        )}
         <p className="hover:underline">
-          <Link href={`/collection/${address}`}>{collection.name}</Link>
+          {loadingCollection ? <Skeleton className="h-[20px] w-20" /> : <Link href={`/collection/${address}`}>{collection.name}</Link>}
         </p>
       </div>
 
@@ -121,9 +125,9 @@ export default function NFTItem() {
                             {directListings[0].currencyValuePerToken.displayValue} {directListings[0].currencyValuePerToken.symbol}
                             {/* text-xs font-normal text-gray-500 dark:text-gray-400 */}
                             {directListings.map((listing, index) => (
-                              <div key={listing.id} className="text-xs font-normal text-gray-500 dark:text-gray-400">
+                              <span key={listing.id} className="text-xs font-normal text-gray-500 dark:text-gray-400">
                                 <p>{phpPrices && phpPrices[index] ? `${phpPrices[index]} PHP` : "Loading PHP price..."}</p>
-                              </div>
+                              </span>
                             ))}
                           </p>
                         </div>
@@ -148,12 +152,12 @@ export default function NFTItem() {
                     </div>
                   </div>
                   <div className="w-full sm:w-1/4">
-                    {(directListings && loadingDirectListings) || (auctionListings && loadingAuctionListings) ? (
+                    {/* {(directListings && loadingDirectListings) || (auctionListings && loadingAuctionListings) ? (
                       <div className="flex w-full flex-col gap-2">
                         <Skeleton className="h-10 w-full" />
                         <Skeleton className="h-10 w-full" />
-                      </div>
-                    ) : (
+                      </div> */}
+                    {
                       <div className="flex flex-col gap-3">
                         {filteredNFT && directListings && !directListings[0] ? (
                           <SellButton nft={nft} contractAddress={address} />
@@ -185,7 +189,7 @@ export default function NFTItem() {
                           />
                         )}
                       </div>
-                    )}
+                    }
                   </div>
                 </div>
               </CardContent>
@@ -201,7 +205,7 @@ export default function NFTItem() {
           </div>
         </div>
         <div className="flex w-full flex-col items-start justify-start gap-4 md:w-[350px] lg:w-[350px] xl:w-[24svw]">
-          {nft ? <h1 className="text-4xl font-bold">{nft.metadata.name}</h1> : <Skeleton className="h-9 w-28" />}
+          {nft ? <h1 className="text-4xl font-bold">{nft.metadata.name}</h1> : <Skeleton className="h-[40px] w-28" />}
           <div className="flex items-center gap-6">
             <BoringAvatar name={nft?.owner} size={35} />
             <div className="flex flex-col">
@@ -219,7 +223,7 @@ export default function NFTItem() {
                   <p className="cursor-pointer text-medium font-bold hover:underline">{shortenWalletAddress(nft.owner)}</p>
                 </Link>
               ) : (
-                <Skeleton className="h-4 w-8" />
+                <Skeleton className="h-[24px] w-[136px]" />
               )}
             </div>
             <div>
