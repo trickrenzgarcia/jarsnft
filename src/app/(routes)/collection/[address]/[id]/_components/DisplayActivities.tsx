@@ -90,7 +90,7 @@ export default function DisplayActivities({ tokenId, contractAddress, directList
               </div>
             ))
           ) : (
-            <div>No Bids</div>
+            <div>No Activities</div>
           )}
         </AccordionContent>
       </AccordionItem>
