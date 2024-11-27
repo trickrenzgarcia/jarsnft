@@ -97,7 +97,7 @@ export default function NFTItem() {
           <Image className="size-12 rounded-full" src={collection.image} width={25} height={25} alt="" />
         )}
         <p className="hover:underline">
-          {loadingCollection ? <Skeleton className="h-[20px] w-20" /> : <Link href={`/collection/${address}`}>{collection.name}</Link>}
+          {loadingCollection ? <Skeleton className="h-[20px] w-36" /> : <Link href={`/collection/${address}`}>{collection.name}</Link>}
         </p>
       </div>
 
