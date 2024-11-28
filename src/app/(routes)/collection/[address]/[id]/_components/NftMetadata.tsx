@@ -40,16 +40,16 @@ export default function NftMetadata() {
           <Divider />
           <CardBody>
             {nft &&
-              nft.metadata.attributes &&
+              (nft.metadata.attributes?.length as number) > 0 &&
               (nft.metadata.attributes as NftAttributes[]).map((attr: NftAttributes, i: number) => (
                 <div key={i} className="flex justify-between gap-2 rounded-lg px-4 py-3 text-gray-500 hover:bg-muted/50 dark:text-gray-400">
                   <p className="text-lg">{attr.trait_type}</p>
                   <p className="text-lg font-semibold">{attr.value}</p>
                 </div>
               ))}
-            {nft && !nft.metadata.attributes && (
+            {nft && (!nft.metadata.attributes || (nft.metadata.attributes?.length as number) < 1) && (
               <div className="text-gray-500 dark:text-gray-400">
-                <div className="flex justify-between gap-2 rounded-lg px-4 py-3 hover:bg-muted/50">
+                <div className="flex justify-center rounded-lg py-3 hover:bg-muted/50">
                   <p className="">NO PROPERTIES</p>
                 </div>
               </div>
@@ -73,7 +73,7 @@ export default function NftMetadata() {
                 </div>
                 <div className="flex justify-between gap-2 rounded-lg px-4 py-3 hover:bg-muted/50">
                   <p className="">Blockchain :</p>
-                  <p className="font-semibold">{chain && chain.name}</p>
+                  <p className="font-semibold">{chain ? chain.name : "Polygon Mainnet"}</p>
                 </div>
                 <div className="flex justify-between gap-2 rounded-lg px-4 py-3 hover:bg-muted/50">
                   <p className="">Token Standard :</p>
@@ -102,11 +102,11 @@ export default function NftMetadata() {
           <Divider />
           <CardBody>
             {collection && (
-              <div className="flex">
-                <div className="w-fit rounded-lg p-1 shadow-sm">
+              <div className="flex justify-start gap-4">
+                <div className="w-fit rounded-lg shadow-sm">
                   <Image src={collection.image} width={60} height={60} alt={collection.name} className="rounded-lg" />
                 </div>
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col">
                   <p className="font-bold">
                     {collection.name} {collection.symbol && `(${collection.symbol})`}
                   </p>
