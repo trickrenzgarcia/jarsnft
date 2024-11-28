@@ -1,13 +1,11 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { ThirdwebProvider as ThirdwebProviderV4 } from "@thirdweb-dev/react"
-import { Polygon } from '@thirdweb-dev/chains'
-import { TH_API_KEY, TH_AUTH_DOMAIN, TH_CLIENT_ID } from '@/lib/constant'
+import React from "react";
+import { ThirdwebProvider as ThirdwebProviderV4 } from "@thirdweb-dev/react";
+import { Polygon } from "@thirdweb-dev/chains";
+import { TH_API_KEY, TH_AUTH_DOMAIN, TH_CLIENT_ID } from "@/lib/constant";
 
-export default function ThirdwebProvider(
-  { children }: Readonly<{ children: React.ReactNode }>
-) {
+export default function ThirdwebProvider({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <ThirdwebProviderV4
       activeChain={Polygon}
@@ -15,10 +13,11 @@ export default function ThirdwebProvider(
       secretKey={TH_API_KEY}
       authConfig={{
         domain: TH_AUTH_DOMAIN,
-        authUrl: '/api/auth'
+        authUrl: "/api/auth",
       }}
+      autoConnectTimeout={Infinity}
     >
       {children}
     </ThirdwebProviderV4>
-  )
+  );
 }
