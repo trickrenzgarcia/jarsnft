@@ -61,15 +61,12 @@ export default function Footer() {
 
           <Separator className="h-[2px] w-full" />
 
-          {/* Copyright */}
-          <div className="my-4 p-2">
+          <div className="p-2">
             <ul className="flex flex-col items-center justify-between gap-8 md:flex-row md:gap-0">
-              {/* Left-side */}
               <li className="w-fit">
                 <div>© 2023 Alrae, Jeffrey, Patrick, Rigor</div>
               </li>
 
-              {/* Right-side */}
               <li className="w-fit">
                 <PrivacyTermsButtons />
               </li>
