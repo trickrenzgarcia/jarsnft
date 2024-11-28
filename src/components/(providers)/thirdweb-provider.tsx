@@ -15,7 +15,7 @@ export default function ThirdwebProvider({ children }: Readonly<{ children: Reac
         domain: TH_AUTH_DOMAIN,
         authUrl: "/api/auth",
       }}
-      autoConnectTimeout={Infinity}
+      autoConnectTimeout={99999999999999}
     >
       {children}
     </ThirdwebProviderV4>
