@@ -37,7 +37,13 @@ export default function NFTCard({ nft, price, isBidding, minimumBid = "N/A" }: N
         </CardDescription>
         <CardTitle className="flex flex-col items-center justify-center text-sm">
           <span className="truncate">{nft.metadata.name}</span>
-          {isBidding && <span className="text-xs text-muted-foreground">{`(For bidding)`}</span>}
+          {isBidding ? (
+            <span className="text-xs text-muted-foreground">{`(For bidding)`}</span>
+          ) : price ? (
+            <span className="text-xs text-muted-foreground">{`(For Listing)`}</span>
+          ) : (
+            <span className="text-xs text-muted-foreground">{`(Not Listed )`}</span>
+          )}
         </CardTitle>
       </CardContent>
 
@@ -45,18 +51,18 @@ export default function NFTCard({ nft, price, isBidding, minimumBid = "N/A" }: N
         <CardFooter className={cn("w-full rounded-sm bg-muted p-3 dark:bg-muted/30 sm:flex")}>
           {!isBidding ? (
             <div className="flex w-full flex-col items-center gap-1">
-              <p className="truncate text-xs text-muted-foreground">Price</p>
-              <p className="truncate text-sm font-semibold">{price}</p>
+              <p className="truncate text-xs text-muted-foreground">Current Price</p>
+              <p className="truncate text-sm font-semibold">{price + ` POL`} </p>
             </div>
           ) : (
-            <div className="flex w-full justify-around">
-              <div className="flex flex-col items-center gap-1">
-                <p className="truncate text-xs text-muted-foreground">Minimum Bid Price</p>
-                <p className="truncate text-sm font-semibold">{minimumBid}</p>
+            <div className="flex w-full justify-between">
+              <div className="flex flex-col items-start gap-1">
+                <p className="truncate text-xs text-muted-foreground">Min Bid Price</p>
+                <p className="truncate text-sm font-semibold">{minimumBid + ` POL`}</p>
               </div>
-              <div className="flex flex-col items-center gap-1">
-                <p className="truncate text-xs text-muted-foreground">Buyout Price</p>
-                <p className="truncate text-sm font-semibold">{price}</p>
+              <div className="flex flex-col items-end gap-1">
+                <p className="truncate text-xs text-muted-foreground">Price</p>
+                <p className="truncate text-sm font-semibold">{price + ` POL`}</p>
               </div>
             </div>
           )}
