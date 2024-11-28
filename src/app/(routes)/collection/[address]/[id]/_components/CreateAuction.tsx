@@ -66,7 +66,7 @@ export default function CreateAuction({ sellState, setSellState }: CreateAuction
       nftContractAddress: address,
       tokenId: tokenId,
       startTimestamp: new Date(),
-      endTimestamp: new Date(),
+      endTimestamp: addDays(new Date(), 1),
       floorPrice: "0",
       buyoutPrice: "0",
     },
