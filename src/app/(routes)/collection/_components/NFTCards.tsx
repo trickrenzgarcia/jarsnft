@@ -32,7 +32,7 @@ export default function NFTCards({ contractAddress }: { contractAddress: string 
 
         return (
           <Link key={i} href={`/collection/${contractAddress}/${nft.metadata.id}`}>
-            <NFTCard nft={nft} price={nftPrice} biddingStatus={hasBidding} minimumBid={minimumBid} />
+            <NFTCard nft={nft} price={nftPrice} isBidding={hasBidding} minimumBid={minimumBid} />
           </Link>
         );
       })}

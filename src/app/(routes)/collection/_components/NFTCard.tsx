@@ -7,11 +7,11 @@ type NFTCardProps = {
   nft: NFT;
   isHidePrice?: boolean;
   price: string | undefined;
-  biddingStatus: boolean;
+  isBidding: boolean;
   minimumBid: string | undefined;
 };
 
-export default function NFTCard({ nft, price, biddingStatus, minimumBid = "N/A" }: NFTCardProps) {
+export default function NFTCard({ nft, price, isBidding, minimumBid = "N/A" }: NFTCardProps) {
   return (
     <Card className="cursor-pointer rounded-lg border-2 bg-background p-2 hover:-translate-y-1 hover:border-zinc-200 dark:hover:border-violet-500">
       <CardHeader className="flex aspect-square items-center justify-center p-0">
@@ -35,15 +35,16 @@ export default function NFTCard({ nft, price, biddingStatus, minimumBid = "N/A" 
             {contractAddress}
           </Link> */}
         </CardDescription>
-        <CardTitle className="flex items-center justify-center text-sm">
+        <CardTitle className="flex flex-col items-center justify-center text-sm">
           <span className="truncate">{nft.metadata.name}</span>
+          {isBidding && <span className="text-xs text-muted-foreground">{`(For bidding)`}</span>}
         </CardTitle>
       </CardContent>
 
       {price && (
         <CardFooter className={cn("w-full rounded-sm bg-muted p-3 dark:bg-muted/30 sm:flex")}>
-          {!biddingStatus ? (
-            <div className="flex flex-col items-center gap-1 text-center">
+          {!isBidding ? (
+            <div className="flex w-full flex-col items-center gap-1">
               <p className="truncate text-xs text-muted-foreground">Price</p>
               <p className="truncate text-sm font-semibold">{price}</p>
             </div>
