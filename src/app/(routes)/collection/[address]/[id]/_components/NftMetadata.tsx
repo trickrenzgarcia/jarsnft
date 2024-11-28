@@ -73,7 +73,7 @@ export default function NftMetadata() {
                 </div>
                 <div className="flex justify-between gap-2 rounded-lg px-4 py-3 hover:bg-muted/50">
                   <p className="">Blockchain :</p>
-                  <p className="font-semibold">{chain ? chain.name : "Polygon Mainnet"}</p>
+                  <p className="font-semibold">Polygon Mainnet</p>
                 </div>
                 <div className="flex justify-between gap-2 rounded-lg px-4 py-3 hover:bg-muted/50">
                   <p className="">Token Standard :</p>
