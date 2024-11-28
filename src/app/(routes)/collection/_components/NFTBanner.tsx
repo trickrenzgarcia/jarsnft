@@ -129,7 +129,8 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
           className="opacity-65 blur-lg dark:opacity-30"
         />
       </div>
-      <div className="absolute block h-[26rem] w-full p-6 dark:shadow-[inset_0_-50px_100px_rgba(10,10,10,1)] sm:h-[410px]">
+      {/* <div className="absolute block h-[26rem] w-full p-6 dark:shadow-[inset_0_-50px_100px_rgba(10,10,10,1)] sm:h-[410px]"> */}
+      <div className="absolute block h-[26rem] w-full p-6 sm:h-[410px]">
         <section className="flex justify-between p-6">
           <div className="flex w-full items-center gap-3">
             <Image
