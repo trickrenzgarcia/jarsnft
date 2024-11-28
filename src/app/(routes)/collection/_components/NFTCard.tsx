@@ -6,9 +6,12 @@ import Image from "next/image";
 type NFTCardProps = {
   nft: NFT;
   isHidePrice?: boolean;
+  price: string | undefined;
+  biddingStatus: boolean;
+  minimumBid: string | undefined;
 };
 
-export default function NFTCard({ nft, isHidePrice = true }: NFTCardProps) {
+export default function NFTCard({ nft, price, biddingStatus, minimumBid = "N/A" }: NFTCardProps) {
   return (
     <Card className="cursor-pointer rounded-lg border-2 bg-background p-2 hover:-translate-y-1 hover:border-zinc-200 dark:hover:border-violet-500">
       <CardHeader className="flex aspect-square items-center justify-center p-0">
@@ -37,16 +40,27 @@ export default function NFTCard({ nft, isHidePrice = true }: NFTCardProps) {
         </CardTitle>
       </CardContent>
 
-      {/* <CardFooter className={cn(isHidePrice && "hidden", "w-full justify-between rounded-sm bg-muted p-3 dark:bg-muted/30 sm:flex")}>
-        <div className="flex flex-col items-start gap-1">
-          <p className="truncate text-xs text-muted-foreground">Price</p>
-          <p className="truncate text-sm font-semibold">100 POL</p>
-        </div>
-        <div className="flex flex-col items-end gap-1">
-          <p className="truncate text-xs text-muted-foreground">Highest Bid</p>
-          <p className="truncate text-sm font-semibold">100 POL</p>
-        </div>
-      </CardFooter> */}
+      {price && (
+        <CardFooter className={cn("w-full rounded-sm bg-muted p-3 dark:bg-muted/30 sm:flex")}>
+          {!biddingStatus ? (
+            <div className="flex flex-col items-center gap-1 text-center">
+              <p className="truncate text-xs text-muted-foreground">Price</p>
+              <p className="truncate text-sm font-semibold">{price}</p>
+            </div>
+          ) : (
+            <div className="flex w-full justify-around">
+              <div className="flex flex-col items-center gap-1">
+                <p className="truncate text-xs text-muted-foreground">Minimum Bid Price</p>
+                <p className="truncate text-sm font-semibold">{minimumBid}</p>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <p className="truncate text-xs text-muted-foreground">Buyout Price</p>
+                <p className="truncate text-sm font-semibold">{price}</p>
+              </div>
+            </div>
+          )}
+        </CardFooter>
+      )}
     </Card>
   );
 }
