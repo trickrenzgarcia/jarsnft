@@ -6,12 +6,13 @@ import { Button } from "@/components/ui/button";
 import { IoIosNotifications } from "react-icons/io";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
-import { ContractEvent, useAddress, useContract, useContractEvents } from "@thirdweb-dev/react";
+import { ContractEvent, useAddress, useContract, useContractEvents, useNFTs } from "@thirdweb-dev/react";
 import { NFT_MARKETPLACE } from "@/lib/constant";
 import { BigNumber } from "ethers";
 import { AiOutlineLoading } from "react-icons/ai";
 import Link from "next/link";
 import { polygonScanTx } from "@/lib/utils";
+import NotificationResult from "./NotificationResult";
 
 type AuctionEvent = {
   assetContract: string;
@@ -55,37 +56,9 @@ export default function Notification() {
           )}
           {events && auctionClosed && (
             <ScrollArea className="flex h-80 w-full flex-col p-4">
-              {auctionClosed.map((event, index) => (
-                // (Suggestion: Linked directly to the nft they bid)
-                <Link href={polygonScanTx(event.transaction.transactionHash)} key={event.transaction.transactionHash}>
-                  <div className="mb-2 flex items-center gap-2">
-                    <Image src="/assets/ex2.png" alt="Pic" height={40} width={40} />
-                    <div>
-                      <p className="text-sm font-semibold">You have won the bidding!</p>
-                      <div className="flex items-center justify-between">
-                        <p className="text-xs text-gray-400 dark:text-gray-500">NFT Item</p>
-                        <p className="text-xs text-gray-400 dark:text-gray-500">Bid: 0.1 POL</p>
-                      </div>
-                    </div>
-                    {/* when user lost the bidding */}
-                    {/* <div>
-                      <p className="text-sm font-semibold">Sorry! Someone else won the bidding.</p>
-                      <div className="flex items-center justify-between">
-                        <p className="text-xs text-gray-400 dark:text-gray-500">NFT Item</p>
-                        <p className="text-xs text-gray-400 dark:text-gray-500">Bid: 0.1 POL</p>
-                      </div>
-                    </div> */}
-                    {/* when notification is unread */}
-                    {/* <div>
-                      <p className="text-sm font-extrabold">You have won the bidding</p>
-                      <div className="flex items-center justify-between font-bold">
-                        <p className="text-xs text-gray-400 dark:text-gray-500">NFT Item</p>
-                        <p className="text-xs text-gray-400 dark:text-gray-500">Bid: 0.1 POL</p>
-                      </div>
-                    </div> */}
-                  </div>
-                </Link>
-              ))}
+              {auctionClosed.map((event, index) => {
+                return <NotificationResult event={event} key={index} />;
+              })}
             </ScrollArea>
           )}
           {/* Read all & Clear All */}

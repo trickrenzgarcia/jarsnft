@@ -1,33 +1,25 @@
-"use client"
+"use client";
 
-import { TooltipMsg } from '@/components/(interfaces)'
-import { useMarketPlaceContext } from '@/components/hooks/use-context'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-import { cn, polygonScan, polygonScanTx, shortenAddress, shortenTxHash } from '@/lib/utils'
-import { NewSaleEvent } from '@/types/event'
-import {  ContractEvent, useContractEvents } from '@thirdweb-dev/react'
-import { ethers } from 'ethers'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { TooltipMsg } from "@/components/(interfaces)";
+import { useMarketPlaceContext } from "@/components/hooks/use-context";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { cn, polygonScan, polygonScanTx, shortenAddress, shortenTxHash } from "@/lib/utils";
+import { NewSaleEvent } from "@/types/event";
+import { ContractEvent, useContractEvents } from "@thirdweb-dev/react";
+import { ethers } from "ethers";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { FaCopy, FaRegQuestionCircle, FaRegEye } from "react-icons/fa";
 
 export function TransactionTable() {
-  const { marketPlaceContract, loadingMarketPlace, errorMarketPlace } = useMarketPlaceContext()
-  const { data: sales, isLoading: loadingSales, isError: errorSales } = useContractEvents(marketPlaceContract, "NewSale")
-  const [searchTerm, setSearchTerm] = useState('');
-  const [currentPage, setCurrentPage] = useState(1)
+  const { marketPlaceContract, loadingMarketPlace, errorMarketPlace } = useMarketPlaceContext();
+  const { data: sales, isLoading: loadingSales, isError: errorSales } = useContractEvents(marketPlaceContract, "NewSale");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
   // Filtered sales based on the search term
@@ -37,15 +29,13 @@ export function TransactionTable() {
         const seller = sale.data.listingCreator.toLowerCase();
         const buyer = sale.data.buyer.toLowerCase();
         return (
-          transactionId.includes(searchTerm.toLowerCase()) ||
-          seller.includes(searchTerm.toLowerCase()) ||
-          buyer.includes(searchTerm.toLowerCase())
+          transactionId.includes(searchTerm.toLowerCase()) || seller.includes(searchTerm.toLowerCase()) || buyer.includes(searchTerm.toLowerCase())
         );
       })
     : [];
 
-  const totalPages = sales ? Math.ceil(sales.length / itemsPerPage): 1;
-  const paginatedSales = sales ? sales.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage): []
+  const totalPages = sales ? Math.ceil(sales.length / itemsPerPage) : 1;
+  const paginatedSales = sales ? sales.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage) : [];
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
@@ -59,21 +49,21 @@ export function TransactionTable() {
   };
 
   return (
-    <div className="border-black bg-purple-300/70 dark:bg-[#404040] shadow-[rgba(0,0,15,1)_0px_6px_0px_0px] rounded-2xl">
+    <div className="rounded-2xl border-black bg-purple-300/70 shadow-[rgba(0,0,15,1)_0px_6px_0px_0px] dark:bg-[#404040]">
       <div className="p-4">
         <Input
           type="text"
           placeholder="Search transactions..."
           value={searchTerm}
           onChange={handleSearchChange}
-          className="w-80 bg-[#EFE9F7] dark:bg-[#2E2E2F] rounded-xl"
+          className="w-80 rounded-xl bg-[#EFE9F7] dark:bg-[#2E2E2F]"
         />
       </div>
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className='w-10 max-w-10 flex items-center justify-center'>
-              <TooltipMsg message='Preview of the transaction' delay={250}>
+            <TableHead className="flex w-10 max-w-10 items-center justify-center">
+              <TooltipMsg message="Preview of the transaction" delay={250}>
                 <FaRegQuestionCircle />
               </TooltipMsg>
             </TableHead>
@@ -85,7 +75,11 @@ export function TransactionTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {loadingSales && <TableRow><TableCell colSpan={4}>Loading...</TableCell></TableRow>}
+          {loadingSales && (
+            <TableRow>
+              <TableCell colSpan={4}>Loading...</TableCell>
+            </TableRow>
+          )}
           {paginatedSales.length === 0 && !loadingSales && (
             <TableRow>
               <TableCell colSpan={6} className="text-center">
@@ -96,48 +90,48 @@ export function TransactionTable() {
 
           {filteredSales.map((sale) => (
             <TableRow key={sale.transaction.transactionHash}>
-              <TableCell className='w-10 max-w-10'>
+              <TableCell className="w-10 max-w-10">
                 <Popover>
                   <PopoverTrigger asChild>
-                    <button className='hover:cursor-pointer p-2 hover:bg-muted rounded-lg'>
+                    <button className="rounded-lg p-2 hover:cursor-pointer hover:bg-muted">
                       <FaRegEye />
                     </button>
                   </PopoverTrigger>
-                  <PopoverContent className='w-80'>
-                    <div className='flex flex-col gap-4 p-1'>
-                      <h1 className='font-bold'>Transaction Info</h1>
-                      <div className='flex flex-col'>
-                        <span className='font-semibold text-sm'>Block Number:</span>
-                        <span className='text-sm'>{sale.transaction.blockNumber}</span>
+                  <PopoverContent className="w-80">
+                    <div className="flex flex-col gap-4 p-1">
+                      <h1 className="font-bold">Transaction Info</h1>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-semibold">Block Number:</span>
+                        <span className="text-sm">{sale.transaction.blockNumber}</span>
                       </div>
-                      <div className='flex flex-col'>
-                        <span className='font-semibold text-sm'>Block Hash:</span>
-                        <span className='text-sm'>{shortenTxHash(sale.transaction.blockHash)}</span>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-semibold">Block Hash:</span>
+                        <span className="text-sm">{shortenTxHash(sale.transaction.blockHash)}</span>
                       </div>
                     </div>
                   </PopoverContent>
                 </Popover>
               </TableCell>
-              <TableCell className="font-mono flex items-center">
-                <Link href={polygonScanTx(sale.transaction.transactionHash)} target="_blank" className='hover:underline hover:text-blue-500'>
+              <TableCell className="flex items-center font-mono">
+                <Link href={polygonScanTx(sale.transaction.transactionHash)} target="_blank" className="hover:text-blue-500 hover:underline">
                   {shortenTxHash(sale.transaction.transactionHash)}
                 </Link>
-                <TooltipMsg message='Copy Transaction Hash' delay={350}>
-                  <FaCopy className='text-sm hover:cursor-pointer' onClick={() => navigator.clipboard.writeText(sale.transaction.transactionHash)}/>
+                <TooltipMsg message="Copy Transaction Hash" delay={350}>
+                  <FaCopy className="text-sm hover:cursor-pointer" onClick={() => navigator.clipboard.writeText(sale.transaction.transactionHash)} />
                 </TooltipMsg>
               </TableCell>
               <TableCell className="font-mono">
-                <Link href={polygonScan(sale.data.listingCreator)} target="_blank" className='hover:underline hover:text-blue-500'>
+                <Link href={polygonScan(sale.data.listingCreator)} target="_blank" className="hover:text-blue-500 hover:underline">
                   {shortenAddress(sale.data.listingCreator)}
                 </Link>
               </TableCell>
               <TableCell className="font-mono">
-                <Link href={polygonScan(sale.transaction.address)} target="_blank" className='hover:underline hover:text-blue-500'>
+                <Link href={polygonScan(sale.transaction.address)} target="_blank" className="hover:text-blue-500 hover:underline">
                   {shortenAddress(sale.transaction.address)}
                 </Link>
               </TableCell>
               <TableCell className="font-mono">
-                <Link href={polygonScan(sale.data.buyer)} target="_blank" className='hover:underline hover:text-blue-500'>
+                <Link href={polygonScan(sale.data.buyer)} target="_blank" className="hover:text-blue-500 hover:underline">
                   {shortenAddress(sale.data.buyer)}
                 </Link>
               </TableCell>
@@ -147,7 +141,7 @@ export function TransactionTable() {
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TableCell colSpan={6} className="text-center space-x-2">
+            <TableCell colSpan={6} className="space-x-2 text-center">
               <Button
                 className={cn("rounded-lg p-1", currentPage === 1 && "hidden")}
                 disabled={currentPage === 1}
@@ -170,5 +164,5 @@ export function TransactionTable() {
         </TableFooter>
       </Table>
     </div>
-  )
+  );
 }
