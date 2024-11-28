@@ -62,11 +62,11 @@ export default function Notification() {
             </ScrollArea>
           )}
           {/* Read all & Clear All */}
-          <div className="flex justify-between">
-            <Button variant="outline">Read All</Button>
-            {/* add dialog box for confirmation */}
-            <Button variant="outline">Clear All</Button>
-          </div>
+          {/* <div className="flex justify-between">
+            <Button variant="outline">Read All</Button> */}
+          {/* add dialog box for confirmation */}
+          {/* <Button variant="outline">Clear All</Button>
+          </div> */}
         </div>
       </PopoverContent>
     </Popover>
