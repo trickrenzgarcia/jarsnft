@@ -39,7 +39,7 @@ export default function NFTCard({ nft, price, isBidding, minimumBid = "N/A", loa
         </CardDescription>
         <CardTitle className="flex flex-col items-center justify-center text-sm">
           <span className="truncate">{nft.metadata.name}</span>
-          {isBidding ? (
+          {isBidding && !loadingAuctionListings && !loadingDirectListings ? (
             <span className="text-xs text-muted-foreground">{`(For bidding)`}</span>
           ) : price ? (
             <span className="text-xs text-muted-foreground">{`(For Listing)`}</span>
