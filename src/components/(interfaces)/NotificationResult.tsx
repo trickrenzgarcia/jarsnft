@@ -20,8 +20,8 @@ export default function NotificationResult({ event }: { event: ContractEvent<any
         <div>
           <p className="text-sm font-semibold">You have won the bidding!</p>
           <div className="flex items-center justify-between">
-            <p className="text-xs text-gray-400 dark:text-gray-500">{nft?.metadata.name}</p>
-            <p className="text-xs text-gray-400 dark:text-gray-500">Bid: {ethers.utils.formatEther(filteredSale?.data.totalPricePaid)} POL</p>
+            {nft && <p className="text-xs text-gray-400 dark:text-gray-500">{nft?.metadata.name}</p>}
+            {filteredSale && <p className="text-xs text-gray-400 dark:text-gray-500">Bid: {ethers.utils.formatEther(filteredSale?.data.totalPricePaid)} POL</p>}
           </div>
         </div>
         {/* when user lost the bidding */}
