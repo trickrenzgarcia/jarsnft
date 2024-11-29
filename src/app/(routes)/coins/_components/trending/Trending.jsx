@@ -7,6 +7,7 @@ import { getCoingeckoGlobalData } from "../../api/apiCoingecko";
 import { roundTwoDecimalPlaces } from "../../api/currencyFunctions";
 import { TbCaretUpFilled } from "react-icons/tb";
 import { TbCaretDownFilled } from "react-icons/tb";
+import { getNumberScale } from "@/lib/utils";
 
 const Trending = async () => {
   try {
@@ -19,10 +20,11 @@ const Trending = async () => {
 
     return (
       <>
-        <div className="mb-6 mt-10 flex flex-1 flex-col gap-4">
+        <div className="my-6 flex flex-1 flex-col gap-4">
           <h1 className="text-xl font-bold lg:text-4xl">Todays Cryptocurrency Prices by Market Cap</h1>
-          <h2 className="text-md flex items-center gap-1 font-semibold lg:text-3xl">
-            {`The Global Crypto Market Cap is ${usdCap}T,`} <span style={{ color: resultColor }}>{icon}</span>
+          <h2 className="text-md flex items-center gap-1 font-semibold text-gray-400 lg:text-2xl">
+            {`The Global Crypto Market Cap is ${usdCap}${getNumberScale(data.data.total_market_cap.usd)},`}{" "}
+            <span style={{ color: resultColor }}>{icon}</span>
             <span style={{ color: resultColor }}>{`a ${roundTwoDecimalPlaces(percentChange)}% ${result}`}</span> over the last day.
           </h2>
         </div>

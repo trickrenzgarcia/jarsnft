@@ -194,3 +194,12 @@ export function polygonScanTx(txHash: string) {
 export function shortenTxHash(txHash: string) {
   return `${txHash.slice(0, 11)}...`;
 }
+
+export const getNumberScale = (number: number) => {
+  const absNumber = Math.abs(number);
+  if (absNumber >= 1e12) return "T"; // Trillion
+  if (absNumber >= 1e9) return "B"; // Billion
+  if (absNumber >= 1e6) return "M"; // Million
+
+  return "";
+};

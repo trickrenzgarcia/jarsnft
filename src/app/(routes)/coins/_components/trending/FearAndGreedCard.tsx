@@ -11,11 +11,11 @@ type Props = {
 };
 
 export default async function FearAndGreedCard({ title, icon }: Props) {
-  const fearData = await fetch("https://api.alternative.me/fng/", {
+  const marketSentimentData = await fetch("https://api.alternative.me/fng/", {
     next: { revalidate: 300 },
   });
-  const fngData = await fearData.json();
-  const fng = fngData.data[0].value;
+  const marketSentiment = await marketSentimentData.json();
+  const sentiment = marketSentiment.data[0].value;
 
   const normalizeAngle = (value: number) => {
     const maxValue = 100;
@@ -25,20 +25,23 @@ export default async function FearAndGreedCard({ title, icon }: Props) {
     return normalizedAngle;
   };
 
-  const getFngCopy = () => {
-    if (fng <= 20) {
+  const FearGreedIndex = () => {
+    if (sentiment <= 20) {
       return "Extreme Fear";
-    } else if (fng <= 49) {
+    } else if (sentiment <= 49) {
       return "Fear";
-    } else if (fng === 50) {
+    } else if (sentiment === 50) {
       return "Neutral";
-    } else if (fng <= 69) {
+    } else if (sentiment <= 69) {
       return "Greed";
-    } else if (fng >= 80) {
+    } else if (sentiment <= 79) {
+      return "Very Greedy";
+    } else if (sentiment >= 80) {
       return "Extreme Greed";
     }
   };
-  const normalizedAngle = normalizeAngle(fng);
+
+  const normalizedAngle = normalizeAngle(sentiment);
 
   return (
     <div className={styles.trendingCard}>
@@ -58,8 +61,8 @@ export default async function FearAndGreedCard({ title, icon }: Props) {
             className="absolute left-[-5px] top-[82px] h-5 w-5 rounded-full border-2 border-white bg-gray-700"
           />
           <div className="-translate-y-1/6 absolute left-1/2 top-1/2 mb-2 flex -translate-x-1/2 flex-col items-center justify-center">
-            <p className="text-xl font-bold">{fng}</p>
-            <p className="whitespace-nowrap font-light">{getFngCopy()}</p>
+            <p className="text-xl font-bold">{sentiment}</p>
+            <p className="whitespace-nowrap font-light">{FearGreedIndex()}</p>
           </div>
           <Image src="/FNG.svg" alt="fng.svg" width={177} height={100} />
         </div>

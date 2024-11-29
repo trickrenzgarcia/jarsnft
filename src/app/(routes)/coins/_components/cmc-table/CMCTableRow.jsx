@@ -24,6 +24,7 @@ const CMCTableRow = ({
   circulatingSupply = "---",
   sparkline,
 }) => {
+  const formattedPrice = price !== "----" ? new Intl.NumberFormat("en-US").format(price) : "----";
   return (
     <tbody className="table-auto">
       <tr>
@@ -39,7 +40,7 @@ const CMCTableRow = ({
         )}
 
         <td>
-          {currency === "usd" ? "$" : "₱"} {price}
+          {currency === "usd" ? "$" : "₱"} {formattedPrice}
         </td>
         <td>
           <p className="flex w-full gap-1 text-center" style={hRate >= 0 ? { color: "#39dd15" } : { color: "#DC143C" }}>

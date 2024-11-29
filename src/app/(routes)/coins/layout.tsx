@@ -10,7 +10,7 @@ export default function CoinsLayout({ children }: { children: React.ReactNode })
   return (
     <>
       <Navbar />
-      <main className="container mx-auto my-auto">{children}</main>
+      <main className="container pb-1">{children}</main>
     </>
   );
 }
