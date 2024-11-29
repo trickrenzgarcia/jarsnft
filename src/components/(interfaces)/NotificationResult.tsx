@@ -3,6 +3,7 @@ import { ContractEvent, useContract, useContractEvents, useNFTs } from "@thirdwe
 import { ethers } from "ethers";
 import Image from "next/image";
 import Link from "next/link";
+import { Skeleton } from "../ui/skeleton";
 
 export default function NotificationResult({ event }: { event: ContractEvent<any> }) {
   const { contract: marketplaceContract, isLoading: loadingMarketplace, isError: errorMarketplace } = useContract(NFT_MARKETPLACE, "marketplace-v3");
@@ -11,10 +12,11 @@ export default function NotificationResult({ event }: { event: ContractEvent<any
   const { data: nfts, isError, isLoading: loadingNFTs } = useNFTs(nftContract);
   const nft = nfts?.find((nft) => nft.metadata.id === event.data.tokenId.toString());
   const filteredSale = sales?.find((sale) => sale.data.assetContract === event.data.assetContract);
-
+  
   return (
-    // (Suggestion: Linked directly to the nft they bid)
-    <Link href={`/collection/${event.data.assetContract}/${nft?.metadata.id}`} key={event.transaction.transactionHash}>
+    <>
+    {!loadingNFTs && filteredSale ? (
+      <Link href={`/collection/${event.data.assetContract}/${nft?.metadata.id}`} key={event.transaction.transactionHash}>
       <div className="hover:bg-current/75 mb-2 flex items-center gap-4">
         <Image src={(nft?.metadata.image as string) || "/assets/image_not_found.jpg"} alt="Pic" height={40} width={40} />
         <div>
@@ -42,5 +44,13 @@ export default function NotificationResult({ event }: { event: ContractEvent<any
                     </div> */}
       </div>
     </Link>
+    ) : (
+      <div className="space-y-3">
+        <Skeleton className="w-full h-12" />
+        <Skeleton className="w-full h-12" />
+        <Skeleton className="w-full h-12" />
+      </div>
+    )}
+    </>
   );
 }
