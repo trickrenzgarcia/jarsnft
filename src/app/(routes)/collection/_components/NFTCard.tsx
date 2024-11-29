@@ -9,9 +9,11 @@ type NFTCardProps = {
   price: string | undefined;
   isBidding: boolean;
   minimumBid: string | undefined;
+  loadingDirectListings: boolean;
+  loadingAuctionListings: boolean;
 };
 
-export default function NFTCard({ nft, price, isBidding, minimumBid = "N/A" }: NFTCardProps) {
+export default function NFTCard({ nft, price, isBidding, minimumBid = "N/A", loadingAuctionListings, loadingDirectListings }: NFTCardProps) {
   return (
     <Card className="cursor-pointer rounded-lg border-2 bg-background p-2 hover:-translate-y-1 hover:border-zinc-200 dark:hover:border-violet-500">
       <CardHeader className="flex aspect-square items-center justify-center p-0">
@@ -47,7 +49,11 @@ export default function NFTCard({ nft, price, isBidding, minimumBid = "N/A" }: N
         </CardTitle>
       </CardContent>
 
-      {price && (
+      {loadingAuctionListings || loadingDirectListings ? (
+        <CardFooter className="w-full rounded-sm bg-muted p-3 dark:bg-muted/30">
+          <p className="text-center text-sm font-semibold">Loading...</p>
+        </CardFooter>
+      ) : price && (
         <CardFooter className={cn("w-full rounded-sm bg-muted p-3 dark:bg-muted/30 sm:flex")}>
           {!isBidding ? (
             <div className="flex w-full flex-col items-center gap-1">

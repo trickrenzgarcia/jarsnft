@@ -10,7 +10,7 @@ import { weiToEth } from "@/lib/utils";
 
 export default function NFTCards({ contractAddress }: { contractAddress: string }) {
   const { nfts, loadingNfts, errorNfts } = useNFTsContext();
-  const { auctionListings, directListings } = useListingsContext();
+  const { auctionListings, directListings, loadingAuctionListings, loadingDirectListings } = useListingsContext();
 
   if (loadingNfts || !nfts) return <LoadingNFTCards />;
 
@@ -32,7 +32,9 @@ export default function NFTCards({ contractAddress }: { contractAddress: string 
 
         return (
           <Link key={i} href={`/collection/${contractAddress}/${nft.metadata.id}`}>
-            <NFTCard nft={nft} price={nftPrice} isBidding={hasBidding} minimumBid={minimumBid} />
+            <NFTCard nft={nft} price={nftPrice} isBidding={hasBidding} minimumBid={minimumBid}
+              loadingDirectListings={loadingDirectListings} loadingAuctionListings={loadingAuctionListings}
+            />
           </Link>
         );
       })}
