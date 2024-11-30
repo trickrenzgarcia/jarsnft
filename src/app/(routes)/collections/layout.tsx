@@ -16,6 +16,7 @@ export default function CollectionsLayout({ children }: { children: React.ReactN
       <div className="container">
         <main className="py-12">{children}</main>
       </div>
+      <Footer />
     </>
   );
 }
