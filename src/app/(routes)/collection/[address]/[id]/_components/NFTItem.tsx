@@ -143,6 +143,8 @@ export default function NFTItem() {
 
                           <AuctionEndTime endTimeInSeconds={auctionListings[0].endTimeInSeconds} />
                         </div>
+                      ) : loadingAuctionListings ? (
+                        <Skeleton className="h-[32px] w-[119px]" />
                       ) : (
                         <p className="text-2xl font-bold">
                           N/A

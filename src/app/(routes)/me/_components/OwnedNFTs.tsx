@@ -40,7 +40,7 @@ export default function OwnedNFTs({ nfts, userLoading, loadingNfts }: OwnedNFTsP
                         height={350}
                         src={nft.image_url || "/assets/placeholder/nft_placeholder.svg"}
                         alt={nft.name}
-                        className="hover:-translate-y-[2px] hover:border-2"
+                        className="object-cover hover:-translate-y-[2px] hover:border-2"
                       />
                     </Link>
                   </HoverCardTrigger>
