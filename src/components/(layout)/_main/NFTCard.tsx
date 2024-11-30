@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import useFloorPrice from "@/hooks/useFloorPrice";
 import useVolumeAndSales from "@/hooks/useVolumeAndSales";
-import { Loader2 } from "lucide-react";
+import { RefreshCcw } from "lucide-react";
 
 export default function NFTCard({ item }: { item: CollectionData }) {
   const { floorPrice, isLoading: loadingFloorPrice } = useFloorPrice(item.contract);
@@ -31,25 +31,24 @@ export default function NFTCard({ item }: { item: CollectionData }) {
           />
         </CardHeader>
 
-        <CardContent className="p-6">
+        <CardContent className="p-4">
           <CardTitle className="flex items-center justify-center gap-2">
-            <span className="truncate text-sm">{item.name}</span>
-            <span className="truncate text-sm">{item.symbol && `(${item.symbol})`}</span>
-            <span>{item.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" /> : null}</span>
+            <span className="truncate text-wrap text-sm tracking-tight">{item.name}</span>
+            <span>{item.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" /> : null}</span>
           </CardTitle>
         </CardContent>
 
-        <CardFooter className={cn("mt-2 flex w-full justify-between rounded-lg bg-muted p-3 dark:bg-muted/30")}>
+        <CardFooter className={cn("mt-2 flex w-full justify-between rounded-lg bg-[#121212] p-3 dark:bg-muted/30")}>
           <div className="flex flex-col items-start gap-1">
             <p className="truncate text-xs text-muted-foreground">Floor</p>
             <p className="truncate text-sm font-semibold">
-              {loadingFloorPrice ? <Loader2 className="animate-spin" size={14} /> : `${floorPrice} POL`}
+              {loadingFloorPrice ? <RefreshCcw className="animate-spin" size={14} /> : `${floorPrice} POL`}
             </p>
           </div>
           <div className="flex flex-col items-end gap-1">
-            <p className="truncate text-xs text-muted-foreground">Volume</p>
+            <p className="truncate text-xs text-muted-foreground">Total Volume</p>
             <p className="flex flex-row truncate text-sm font-semibold">
-              {loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalVolume ? `${totalVolume.toFixed(2)} POL` : "0"}
+              {loadingVolumeSale ? <RefreshCcw className="animate-spin" size={14} /> : totalVolume ? `${totalVolume.toFixed(2)} POL` : "0"}
             </p>
           </div>
         </CardFooter>

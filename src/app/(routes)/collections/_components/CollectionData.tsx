@@ -55,9 +55,9 @@ export default async function CollectionData({ searchParams }: { searchParams: {
 
   return (
     <div className="flex flex-col">
-      <div className="grid grid-cols-3 place-items-center space-x-4 p-4 lg:grid-cols-9">
-        <h3 className="mr-8">Name</h3>
-        <h3>Floor Price</h3>
+      <div className="grid grid-cols-3 place-items-center space-x-4 p-4 lg:grid-cols-10">
+        <h3 className="col-span-2">Name</h3>
+        <h3 className={hide()}>Floor Price</h3>
         <h3 className={hide()}>Volume</h3>
         <h3 className={hide()}>Sales</h3>
         <h3 className={hide()}>Listed</h3>

@@ -5,7 +5,6 @@ import { PrivacyTermsButtons, SocialLinkButtons, FooterColumn } from "../(interf
 import ContactForm from "@/components/(interfaces)/Contact-Form";
 
 export default function Footer() {
-  //#region Column links
   type LinkType = {
     href: string;
     description: string;
@@ -31,7 +30,6 @@ export default function Footer() {
   ];
 
   const companyLinks: Array<LinkType> = [{ href: "/about", description: "About" }];
-  //#region End
 
   return (
     <footer>
@@ -48,7 +46,6 @@ export default function Footer() {
               <ContactForm />
             </div>
 
-            {/* Column Links */}
             <div className="col-span-3 mb-5 grid grid-cols-2 gap-x-8 gap-y-16 md:col-span-2 md:grid-cols-4 md:gap-y-0">
               <FooterColumn titleName="Marketplace" linkArray={marketplaceLinks} />
               <FooterColumn titleName="Resource" linkArray={resourceLinks} />

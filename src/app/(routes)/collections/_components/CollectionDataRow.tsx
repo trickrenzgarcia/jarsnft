@@ -3,7 +3,7 @@
 import { CollectionData } from "@/types";
 import React, { use, useEffect } from "react";
 import Image from "next/image";
-import { CircleCheckBig, Loader2 } from "lucide-react";
+import { CircleCheckBig, RefreshCcw } from "lucide-react";
 import { getOwners, ipfsToHttps } from "@/lib/utils";
 import useFloorPrice from "@/hooks/useFloorPrice";
 import useVolumeAndSales from "@/hooks/useVolumeAndSales";
@@ -27,8 +27,8 @@ export default function CollectionDataRow({ collection }: CollectionDataRowProps
   };
 
   return (
-    <div className="grid grid-cols-3 place-items-center space-x-4 rounded-lg p-4 transition-background hover:bg-accent-foreground/15 lg:grid-cols-9">
-      <div className="mr-8 flex items-center gap-4 justify-self-start">
+    <div className="grid grid-cols-3 place-items-center space-x-4 rounded-lg p-0 transition-background hover:bg-accent-foreground/15 lg:grid-cols-10 lg:p-4">
+      <div className="col-span-2 flex w-full items-center gap-1 space-x-4">
         <Image
           src={ipfsToHttps(collection.image)}
           width={50}
@@ -37,17 +37,18 @@ export default function CollectionDataRow({ collection }: CollectionDataRowProps
           alt="logo of a collection"
           className="size-14 rounded-lg"
         />
-        <p className="h-fit max-w-[3rem] truncate sm:max-w-[6rem]">{collection.name}</p>
+        <p className="flex-1 sm:tracking-tighter">{collection.name}</p>
       </div>
-      <div>{loadingFloorPrice ? <Loader2 className="animate-spin" size={14} /> : floorPrice}</div> {/* Floor Price */}
-      <div className={hide()}>{loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalVolume ? totalVolume.toFixed(2) : "0"}</div>
-      {/* Volume*/}
-      <div className={hide()}>{loadingVolumeSale ? <Loader2 className="animate-spin" size={14} /> : totalSales}</div> {/* Sales*/}
-      <div className={hide()}>{loadingListedCount ? <Loader2 className="animate-spin" size={14} /> : listedCount} </div>
-      <div className={hide()}>{loadingTotalItems ? <Loader2 className="animate-spin" size={14} /> : totalItems}</div> {/* Total Items */}
+      <div className={hide()}>{loadingFloorPrice ? <RefreshCcw className="animate-spin" size={14} /> : floorPrice}</div> {/* Floor Price */}
       <div className={hide()}>
-        {ownersLength}
-        {/* {(() => {
+        {loadingVolumeSale ? <RefreshCcw className="animate-spin" size={14} /> : totalVolume ? totalVolume.toFixed(2) : "0"}
+      </div>{" "}
+      {/* Volume*/}
+      <div className={hide()}>{loadingVolumeSale ? <RefreshCcw className="animate-spin" size={14} /> : totalSales}</div> {/* Sales*/}
+      <div className={hide()}>{loadingListedCount ? <RefreshCcw className="animate-spin" size={14} /> : listedCount} </div> {/* Listed Items*/}
+      <div className={hide()}>{loadingTotalItems ? <RefreshCcw className="animate-spin" size={14} /> : totalItems}</div> {/* Total Items */}
+      <div className={hide()}>{ownersLength}</div>
+      {/* {(() => {
           const owners = ownerCounts[collection.contract] || 0;
           const items = totalItems[collection.contract] || 0;
           if (items === 0 || owners === 0) {
@@ -55,8 +56,7 @@ export default function CollectionDataRow({ collection }: CollectionDataRowProps
           }
           const percentage = ((owners / items) * 100).toFixed(2);
           return `${owners} (${percentage}%)`;
-        })()} */}
-      </div>
+      })()} */}
       {/* Unique Owners */}
       <div className={hide()}>{collection.isNsfw ? <CircleCheckBig color="#fd0d0d" /> : null}</div>
       <div>{collection.isVerified ? <Image src="/assets/verify.png" width={20} height={20} alt="verified logo" className="h-fit" /> : null}</div>

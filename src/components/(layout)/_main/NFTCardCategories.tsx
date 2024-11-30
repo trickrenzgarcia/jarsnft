@@ -25,7 +25,7 @@ export default function NFTCardCategories({ categoryLink, categoryName, image }:
       </CardContent>
 
       <CardFooter className="flex justify-center">
-        <p className="font-semibold">{categoryName}</p>
+        <p className="text-sm font-semibold lg:text-xl">{categoryName}</p>
       </CardFooter>
     </Card>
   );
