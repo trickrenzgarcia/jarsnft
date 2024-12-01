@@ -14,7 +14,7 @@ import {
   AlertDialogFooter,
 } from "@/components/ui/alert-dialog";
 import { type DirectListingV3, type NFT, ThirdwebNftMedia, Web3Button, useBalance, type EnglishAuction } from "@thirdweb-dev/react";
-import { MdVerified } from "react-icons/md";
+import { MdOutlineClose, MdVerified } from "react-icons/md";
 import { NFT_MARKETPLACE } from "@/lib/constant";
 import { LoginWelcomeScreen } from "@/components/(interfaces)";
 import { toast } from "sonner";
@@ -143,21 +143,23 @@ export default function BuyButton({ nft, listings, auctionListing }: BuyButtonPr
         <Button className="h-[3rem] w-full text-lg font-semibold">Buy Now</Button>
       </AlertDialogTrigger>
 
-      <AlertDialogContent className="w-[500px] min-w-[420px] p-0">
+      <AlertDialogContent className="w-4/5 p-0 sm:w-[500px] sm:min-w-[420px]">
         {/* Header */}
         <AlertDialogHeader className="px-8 pt-8">
           <div className="flex items-center justify-between">
             <AlertDialogTitle className="text-2xl font-bold">Checkout</AlertDialogTitle>
             <AlertDialogCancel className="rounded-full" disabled={buyState != "idle"}>
-              x
+              <MdOutlineClose className="size-5" />
             </AlertDialogCancel>
           </div>
 
-          <AlertDialogDescription>Verify your purchase here. Click &quot;CONFIRM AND PAY&quot; to proceed.</AlertDialogDescription>
+          <AlertDialogDescription className="hidden sm:block">
+            Verify your purchase here. Click &quot;CONFIRM AND PAY&quot; to proceed.
+          </AlertDialogDescription>
         </AlertDialogHeader>
 
         {/* Body */}
-        <div className="flex justify-between gap-5 px-8 py-4">
+        <div className="flex justify-center gap-5 px-8 py-4 sm:justify-between">
           {(nft?.metadata.image && (
             <ThirdwebNftMedia
               metadata={nft.metadata}
@@ -168,6 +170,7 @@ export default function BuyButton({ nft, listings, auctionListing }: BuyButtonPr
                 maxHeight: "100px",
                 minWidth: "100px",
                 minHeight: "100px",
+                objectFit: "cover",
               }}
               requireInteraction
               className="rounded-lg border border-accent bg-accent/50"
@@ -182,7 +185,7 @@ export default function BuyButton({ nft, listings, auctionListing }: BuyButtonPr
             />
           )}
 
-          <div className="flex w-full flex-col gap-2 py-4">
+          <div className="hidden w-full flex-col gap-2 py-4 sm:flex">
             <h1 className="text-xl font-bold">{nft?.metadata.name}</h1>
             <p className="flex items-center gap-1 text-sm text-gray-400">
               {collection.name}
@@ -192,28 +195,24 @@ export default function BuyButton({ nft, listings, auctionListing }: BuyButtonPr
         </div>
 
         {/* Footer */}
-        <AlertDialogFooter className="flex rounded-b-lg rounded-t-3xl bg-neutral-200 px-6 py-8 dark:bg-neutral-800 sm:flex-col sm:space-x-0">
-          <div className="flex justify-between px-4 text-xl font-bold">
+        <AlertDialogFooter className="flex flex-col rounded-b-lg rounded-t-3xl bg-neutral-200 px-6 py-8 dark:bg-neutral-800 sm:flex-col sm:space-x-0">
+          <div className="flex justify-between px-4 text-base font-bold sm:text-xl">
             <p>You pay</p>
             {listings && listings[0] ? (
-              <p>
-                {listings?.[0].currencyValuePerToken.displayValue} {listings?.[0].currencyValuePerToken.symbol}
-              </p>
+              <p>{listings?.[0].currencyValuePerToken.displayValue} POL</p>
             ) : auctionListing && auctionListing[0] ? (
-              <p>
-                {auctionListing[0].buyoutCurrencyValue.displayValue} {auctionListing[0].buyoutCurrencyValue.symbol}
-              </p>
+              <p>{auctionListing[0].buyoutCurrencyValue.displayValue} POL</p>
             ) : (
               <p>N/A</p>
             )}
           </div>
-          <div className="flex justify-between px-4">
+          <div className="flex justify-between px-4 text-xs sm:text-base">
             <p className="text-gray-500">For 1 NFT</p>
             <p className="text-gray-500">PHP {amountInPhp}</p>
           </div>
-          <div className="my-6 flex justify-between px-4">
-            <p>Your POL balance</p>
-            <p>{balance ? `${parseFloat(balance.displayValue).toFixed(3)} ${balance.symbol}` : "Not Logged In"}</p>
+          <div className="my-6 flex justify-between px-4 text-xs sm:text-base">
+            <p>Your POL balance:</p>
+            <p>{balance ? `${parseFloat(balance.displayValue).toFixed(3)} POL` : "Not Logged In"}</p>
           </div>
 
           {/* Buy button action */}

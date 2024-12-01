@@ -14,7 +14,7 @@ import {
   AlertDialogFooter,
 } from "@/components/ui/alert-dialog";
 import { type NFT, ThirdwebNftMedia, Web3Button, useBalance, type EnglishAuction } from "@thirdweb-dev/react";
-import { MdVerified } from "react-icons/md";
+import { MdOutlineClose, MdVerified } from "react-icons/md";
 import { NFT_MARKETPLACE } from "@/lib/constant";
 import { LoginWelcomeScreen } from "@/components/(interfaces)";
 import { toast } from "sonner";
@@ -148,21 +148,21 @@ export default function PlaceBidButton({ nft, auctionListing, loadingAuction }: 
         </Button>
       </AlertDialogTrigger>
 
-      <AlertDialogContent className="w-[500px] min-w-[420px] p-0">
+      <AlertDialogContent className="w-4/5 p-0 sm:w-[500px] sm:min-w-[420px]">
         {/* Header */}
         <AlertDialogHeader className="px-8 pt-8">
           <div className="flex items-center justify-between">
             <AlertDialogTitle className="text-2xl font-bold">Place a bid</AlertDialogTitle>
             <AlertDialogCancel className="rounded-full" disabled={bidState != "idle"}>
-              x
+              <MdOutlineClose className="size-5" />
             </AlertDialogCancel>
           </div>
 
-          <AlertDialogDescription>Make offer to this nft. Click &quot;PLACE BID&quot; to proceed.</AlertDialogDescription>
+          <AlertDialogDescription className="hidden sm:block">Make offer to this nft. Click &quot;PLACE BID&quot; to proceed.</AlertDialogDescription>
         </AlertDialogHeader>
 
         {/* Body */}
-        <div className="flex justify-between gap-5 px-8 py-4">
+        <div className="flex justify-center gap-5 px-8 py-4 sm:justify-between">
           {(nft?.metadata.image && (
             <ThirdwebNftMedia
               metadata={nft.metadata}
@@ -173,6 +173,7 @@ export default function PlaceBidButton({ nft, auctionListing, loadingAuction }: 
                 maxHeight: "100px",
                 minWidth: "100px",
                 minHeight: "100px",
+                objectFit: "cover",
               }}
               requireInteraction
               className="rounded-lg border border-accent bg-accent/50"
@@ -187,7 +188,7 @@ export default function PlaceBidButton({ nft, auctionListing, loadingAuction }: 
             />
           )}
 
-          <div className="flex w-full flex-col gap-2 py-4">
+          <div className="hidden w-full flex-col gap-2 py-4 sm:flex">
             <h1 className="text-xl font-bold">{nft?.metadata.name}</h1>
             <p className="flex items-center gap-1 text-sm text-gray-400">
               {collection.name}
@@ -197,24 +198,20 @@ export default function PlaceBidButton({ nft, auctionListing, loadingAuction }: 
         </div>
 
         {/* Footer */}
-        <AlertDialogFooter className="flex rounded-b-lg rounded-t-3xl bg-neutral-200 px-6 py-8 dark:bg-neutral-800 sm:flex-col sm:space-x-0">
-          <div className="flex justify-between px-4 text-xl font-bold">
+        <AlertDialogFooter className="flex flex-col rounded-b-lg rounded-t-3xl bg-neutral-200 px-6 py-8 dark:bg-neutral-800 sm:flex-col sm:space-x-0">
+          <div className="flex justify-between px-4 text-base font-bold sm:text-xl">
             <p>Minimum Bid</p>
-            {auctionListing && auctionListing[0] && (
-              <p>
-                {auctionListing?.[0].minimumBidCurrencyValue.displayValue} {auctionListing?.[0].minimumBidCurrencyValue.symbol}
-              </p>
-            )}
+            {auctionListing && auctionListing[0] && <p>{auctionListing?.[0].minimumBidCurrencyValue.displayValue} POL</p>}
           </div>
-          <div className="flex justify-between px-4">
+          <div className="flex justify-between px-4 text-xs sm:text-base">
             <p className="text-gray-500">For 1 NFT</p>
             <p className="text-gray-500">{minBidAmountInPhp && `PHP ${minBidAmountInPhp}`}</p>
           </div>
-          <div className="my-6 flex justify-between px-4">
+          <div className="my-6 flex justify-between px-4 text-xs sm:text-base">
             <p>Your POL balance</p>
-            <p>{balance ? `${parseFloat(balance.displayValue).toFixed(3)} ${balance.symbol}` : "Not Logged In"}</p>
+            <p>{balance ? `${parseFloat(balance.displayValue).toFixed(3)} POL` : "Not Logged In"}</p>
           </div>
-          <div>
+          <div className="px-4">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(handleOnSubmit)}>
                 <FormField
