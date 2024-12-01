@@ -2,15 +2,15 @@
 import React, { useState } from "react";
 import { CMCTableHeader, CMCTableRow, CurrencyToggleButton } from ".";
 import useAxios from "../../api/useAxios";
-import { MobileTableRow } from "./CMCTableRow";
+import { MobileTableRow, LoadingTableRow } from "./CMCTableRow";
 import { MobileTableHeader } from "./CMCTableHeader";
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
 const CMCTable = () => {
-  const apiKey = process.env.NEXT_PUBLIC_CG_API_KEY
+  const apiKey = process.env.NEXT_PUBLIC_CG_API_KEY;
   const [currency, setCurrency] = useState("usd");
-  const { response } = useAxios(
+  const { response, loading } = useAxios(
     `coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=7d&locale=en&x_cg_demo_api_key=${apiKey}`,
   );
   // Function to handle currency change
@@ -21,7 +21,7 @@ const CMCTable = () => {
   };
 
   return (
-    <div className="my-2 max-w-screen space-y-4 font-bold">
+    <div className="max-w-screen my-2 space-y-4 font-bold">
       <CurrencyToggleButton onClick={CurrencyChange} currency={currency} />
       <div className="hidden xl:block">
         <table className="w-full" style={{ borderCollapse: "unset", borderSpacing: "0 20px" }}>
@@ -48,7 +48,7 @@ const CMCTable = () => {
               );
             })
           ) : (
-            <></>
+            <LoadingTableRow />
           )}
         </table>
       </div>

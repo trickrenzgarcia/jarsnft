@@ -4,6 +4,7 @@ import { TbCaretDownFilled } from "react-icons/tb";
 import { roundTwoDecimalPlaces } from "../../api/currencyFunctions";
 import { currencyFormat } from "../../api/currencyFunctions";
 import { Sparklines, SparklinesLine } from "react-sparklines";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const styles = {
   tableRow: `mx-auto border-b border-gray-800 text-[0.93rem]`,
@@ -23,6 +24,7 @@ const CMCTableRow = ({
   volumeCryptoValue = "---",
   circulatingSupply = "---",
   sparkline,
+  loading,
 }) => {
   const formattedPrice = price !== "----" ? new Intl.NumberFormat("en-US").format(price) : "----";
   return (
@@ -81,6 +83,46 @@ const CMCTableRow = ({
     </tbody>
   );
 };
+
+export const LoadingTableRow = () => {
+  return (
+    <tbody className="table-auto">
+      {Array.from({ length: 10 }).map((_, index) => (
+        <tr key={index}>
+          <td></td>
+          <td>
+            <Skeleton className="h-[32px] w-[30px]" />
+          </td>
+          <td>
+            <Skeleton className="h-[32px] w-[140px]" />
+          </td>
+          <td>
+            <Skeleton className="h-[32px] w-[119px]" />
+          </td>
+          <td>
+            <Skeleton className="h-[32px] w-[119px]" />
+          </td>
+          <td>
+            <Skeleton className="h-[32px] w-[119px]" />
+          </td>
+          <td>
+            <Skeleton className="h-[32px] w-[160px]" />
+          </td>
+          <td>
+            <Skeleton className="h-[32px] w-[160px]" />
+          </td>
+          <td>
+            <Skeleton className="h-[32px] w-[130px]" />
+          </td>
+          <td>
+            <Skeleton className="h-[32px] w-[120px]" />
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  );
+};
+
 export const MobileTableRow = ({ starNum, coinName, coinIcon, currency, coinSymbol = "---", price = "----", hRate = "---" }) => {
   return (
     <tbody className={`${styles.tableRow}`}>
