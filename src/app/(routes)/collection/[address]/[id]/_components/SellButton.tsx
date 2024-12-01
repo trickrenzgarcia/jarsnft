@@ -16,7 +16,7 @@ import {
   AlertDialogTrigger,
   AlertDialogFooter,
 } from "@/components/ui/alert-dialog";
-import { MdVerified } from "react-icons/md";
+import { MdVerified, MdOutlineClose } from "react-icons/md";
 import { Card, CardBody, Tab, Tabs } from "@nextui-org/react";
 import CreateDirectListing from "./CreateDirectListing";
 import CreateAuction from "./CreateAuction";
@@ -40,20 +40,22 @@ export default function SellButton({ nft }: SellButtonProps) {
         <Button className="h-[3] w-full text-lg font-semibold">Sell</Button>
       </AlertDialogTrigger>
 
-      <AlertDialogContent className="w-3/4 p-0">
+      <AlertDialogContent className="w-4/5 rounded-lg p-0">
         {/* Header */}
         <AlertDialogHeader className="px-8 pt-8">
           <div className="flex items-center justify-between">
             <AlertDialogTitle className="text-2xl font-bold">Sell</AlertDialogTitle>
             <AlertDialogCancel className="rounded-full" disabled={sellState != "idle"}>
-              x
+              <MdOutlineClose className="size-5" />
             </AlertDialogCancel>
           </div>
-          <AlertDialogDescription>Enter the price of the item. Click &quot;CONFIRM AND SELL&quot; to proceed.</AlertDialogDescription>
+          <AlertDialogDescription className="hidden sm:block">
+            Enter the price of the item. Click &quot;CONFIRM AND SELL&quot; to proceed.
+          </AlertDialogDescription>
         </AlertDialogHeader>
 
         {/* Body */}
-        <div className="flex justify-between gap-5 px-8 py-4">
+        <div className="hidden justify-between gap-5 px-8 py-4 sm:flex">
           {(nft?.metadata.image && (
             <ThirdwebNftMedia
               metadata={nft.metadata}
