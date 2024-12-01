@@ -150,5 +150,24 @@ export const MobileTableRow = ({ starNum, coinName, coinIcon, currency, coinSymb
     </tbody>
   );
 };
+export const LoadingMobileTableRow = () => {
+  return (
+    <tbody className="table-auto">
+      {Array.from({ length: 10 }).map((_, index) => (
+        <tr key={index}>
+          <td>
+            <Skeleton className="h-[32px] w-[30px]" />
+          </td>
+          <td>
+            <Skeleton className="h-[32px] w-[140px]" />
+          </td>
+          <td className="flex justify-end">
+            <Skeleton className="h-[32px] w-[119px]" />
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  );
+};
 
 export default CMCTableRow;

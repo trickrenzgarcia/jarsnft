@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { CMCTableHeader, CMCTableRow, CurrencyToggleButton } from ".";
 import useAxios from "../../api/useAxios";
-import { MobileTableRow, LoadingTableRow } from "./CMCTableRow";
+import { MobileTableRow, LoadingTableRow, LoadingMobileTableRow } from "./CMCTableRow";
 import { MobileTableHeader } from "./CMCTableHeader";
 
 export const dynamic = "force-dynamic";
@@ -71,7 +71,7 @@ const CMCTable = () => {
             );
           })
         ) : (
-          <></>
+          <LoadingMobileTableRow />
         )}
       </table>
     </div>

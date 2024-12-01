@@ -20,7 +20,7 @@ const Trending = async () => {
 
     return (
       <>
-        <div className="my-6 flex flex-1 flex-col gap-4">
+        <div className="my-6 flex flex-1 flex-col gap-4 md:mt-2">
           <h1 className="text-xl font-bold lg:text-4xl">Todays Cryptocurrency Prices by Market Cap</h1>
           <h2 className="text-md flex items-center gap-1 font-semibold text-gray-400 lg:text-2xl">
             {`The Global Crypto Market Cap is ${usdCap}${getNumberScale(data.data.total_market_cap.usd)},`}{" "}

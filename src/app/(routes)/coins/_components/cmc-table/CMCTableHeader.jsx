@@ -36,7 +36,7 @@ const CMCTableHeader = () => {
 };
 export const MobileTableHeader = () => {
   return (
-    <tbody>
+    <tbody className="table-auto">
       <tr>
         <th className="text-start">
           <b># </b>
