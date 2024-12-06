@@ -1,5 +1,0 @@
-export { default as Hero } from "./Hero"
-export { default as NFTCarousel } from "./NFTCarousel"
-export { default as NFTCard } from "./NFTCard"
-export { default as Trend } from "./Trend"
-export { default as ListComponents } from "./ListComponents"
