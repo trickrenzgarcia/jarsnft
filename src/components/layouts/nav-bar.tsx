@@ -21,7 +21,7 @@ export default function NavBar() {
   const activeAccount = useActiveAccount()
 
   return (
-    <div className='flex items-center justify-between border-b py-2 px-4'>
+    <div className='flex items-center justify-between border-b py-2 px-4 bg-navbg'>
       <NavTitle />
 
       <div className='flex items-center'>
@@ -52,7 +52,8 @@ export default function NavBar() {
               borderRadius: '5px',
               borderColor: 'rgba(147, 51, 234, 0.2)',
               background: 'rgba(147, 51, 234, 0.2)'
-            }
+            },
+            render: () => <></>
           }}
           detailsModal={{
             connectedAccountAvatarUrl: `https://api.dicebear.com/9.x/thumbs/svg?seed=${activeAccount?.address}`,
