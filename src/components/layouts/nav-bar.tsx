@@ -53,7 +53,9 @@ export default function NavBar() {
               borderColor: 'rgba(147, 51, 234, 0.2)',
               background: 'rgba(147, 51, 234, 0.2)'
             },
-            render: () => <></>
+            render() {
+              return <></>
+            }
           }}
           detailsModal={{
             connectedAccountAvatarUrl: `https://api.dicebear.com/9.x/thumbs/svg?seed=${activeAccount?.address}`,

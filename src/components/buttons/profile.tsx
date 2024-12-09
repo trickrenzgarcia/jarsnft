@@ -13,6 +13,7 @@ import { defineChain } from 'thirdweb'
 import { Badge } from '../ui/badge'
 import Image from 'next/image'
 import { LogOut } from 'lucide-react'
+import { RiLoopRightLine } from "@remixicon/react"
 
 export default function ProfileButton() {
   const [open, setOpen] = useState(false)
@@ -35,7 +36,7 @@ export default function ProfileButton() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button variant="ghost" className='h-[45px] bg-muted/60 px-2'>
+        <Button variant="ghost" className='h-[45px] bg-muted/55 px-2'>
           <div className='relative'>
             <Avatar className='w-9 h-9'>
               <AvatarImage src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${0}`} alt="@user" />
@@ -46,6 +47,16 @@ export default function ProfileButton() {
                 <Image src={formatIPFS(chainMetadata.icon.url as string)} alt='' width={12} height={12} />
               </div>
             )}
+          </div>
+          <div className='flex flex-col items-start'>
+            <h1 className='font-bold'>{shortenAddress(activeAccount?.address as string, 3)}</h1>
+            <p className='text-xs'>
+              {loadingBalance ? 
+              <RiLoopRightLine
+                size={12}
+                className='animate-spin'
+              /> : balance && parseFloat(balance.displayValue).toFixed(3)} {balance && activeChain?.nativeCurrency?.symbol}
+            </p>
           </div>
         </Button>
       </DrawerTrigger>
