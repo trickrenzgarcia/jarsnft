@@ -2,7 +2,7 @@
 
 import client from '@/lib/client'
 import React, { PropsWithChildren, useState } from 'react'
-import { useActiveAccount, useActiveWallet, useActiveWalletChain, useChainMetadata, useDisconnect, useWalletBalance } from 'thirdweb/react'
+import { ChainIcon, ChainProvider, useActiveAccount, useActiveWallet, useActiveWalletChain, useChainMetadata, useDisconnect, useWalletBalance } from 'thirdweb/react'
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '../ui/drawer'
 import { shortenAddress } from 'thirdweb/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
@@ -11,7 +11,6 @@ import { useRouter } from 'next/navigation'
 import { cn, formatIPFS } from '@/lib/utils'
 import { defineChain } from 'thirdweb'
 import { Badge } from '../ui/badge'
-import Image from 'next/image'
 import { LogOut } from 'lucide-react'
 import { RiLoopRightLine } from "@remixicon/react"
 
@@ -39,13 +38,20 @@ export default function ProfileButton() {
         <Button variant="ghost" className='h-[45px] bg-muted/55 px-2'>
           <div className='relative'>
             <Avatar className='w-9 h-9'>
-              <AvatarImage src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${0}`} alt="@user" />
+              <AvatarImage src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${activeAccount?.address}`} alt="@user" />
               <AvatarFallback></AvatarFallback>
             </Avatar>
-            {chainMetadata && chainMetadata.icon && (
-              <div className='absolute flex items-center justify-center right-0 bottom-0 w-4 h-4 border-black bg-white rounded-full'>
-                <Image src={formatIPFS(chainMetadata.icon.url as string)} alt='' width={12} height={12} />
-              </div>
+            {activeChain && (
+              <ChainProvider chain={activeChain}>   
+                <div className='absolute flex items-center justify-center right-0 bottom-0 w-4 h-4 border-black bg-white rounded-full'>
+                  <ChainIcon client={client} width={12} height={12} loadingComponent={
+                    <RiLoopRightLine
+                      size={12}
+                      className='animate-spin'
+                    />
+                  } />
+                </div>
+              </ChainProvider>
             )}
           </div>
           <div className='flex flex-col items-start'>
