@@ -1,0 +1,57 @@
+.tag-list {
+  margin: 0;
+  padding-inline: 0;
+  list-style: none;
+}
+
+.tag-list li {
+  padding: 1rem;
+  background: hsl(var(--navbg));
+}
+
+.scroller {
+  margin-left: 5px;
+  margin-right: 5px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.scroller[data-animated="true"] {
+  overflow: hidden;
+  animation: none; /* Stop CSS animation */
+  /* -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+  mask: linear-gradient(90deg, transparent, white); */
+}
+
+.scroller[data-animated="true"] .scroller__inner {
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: scroll var(--_scroller_duration) linear infinite;
+  animation-play-state: running; /* Default state */
+}
+
+.scroller[data-animated="false"] .scroller__inner {
+  animation-play-state: paused; /* Pause the animation */
+}
+
+.scroller[data-duration="slow"] {
+  --_scroller_duration: 40s;
+}
+
+.scroller[data-duration="fast"] {
+  --_scroller_duration: 15s;
+}
+
+.scroller__inner {
+  width: max-content;
+  flex-wrap: nowrap;
+  display: flex;
+  transform: translateX(0); /* Initial position */
+  will-change: transform; /* Optimize for smoother animations */
+}
+
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}

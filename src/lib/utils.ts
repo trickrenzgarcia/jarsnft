@@ -9,3 +9,10 @@ export function cn(...inputs: ClassValue[]) {
 export function formatIPFS(ipfs: string) {
   return ipfs.replace("ipfs://", process.env.NEXT_PUBLIC_IPFS_GATEWAY!);
 }
+
+export function truncate(str: string, num: number) {
+  if (str.length <= num) {
+    return str;
+  }
+  return str.slice(0, num) + "...";
+}
