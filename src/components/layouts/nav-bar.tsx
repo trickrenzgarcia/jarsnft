@@ -21,7 +21,7 @@ export default function NavBar() {
   const activeAccount = useActiveAccount()
 
   return (
-    <div className='flex items-center justify-between border-b py-2 px-4 bg-navbg'>
+    <div className='flex items-center justify-between py-2 px-4 bg-navbg'>
       <NavTitle />
 
       <div className='flex items-center'>
@@ -39,8 +39,9 @@ export default function NavBar() {
               fontSize: '14px',
               borderRadius: '5px',
               minWidth: '100px',
-              height: '46px',
-              background: '#9333ea'
+              height: '40px',
+              background: '#3b82f6',
+              fontWeight: 'bold'
             }
           }}
           detailsButton={{

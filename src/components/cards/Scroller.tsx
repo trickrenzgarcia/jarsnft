@@ -1,4 +1,5 @@
 import { addAnimation } from '@/lib/scroller';
+import '@/css/scroller.css'
 import React from 'react'
 
 export type ScrollerProps = {

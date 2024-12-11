@@ -10,8 +10,6 @@
 }
 
 .scroller {
-  margin-left: 5px;
-  margin-right: 5px;
   max-width: 100%;
   overflow: hidden;
 }
@@ -35,7 +33,7 @@
 }
 
 .scroller[data-duration="slow"] {
-  --_scroller_duration: 40s;
+  --_scroller_duration: 120s;
 }
 
 .scroller[data-duration="fast"] {
