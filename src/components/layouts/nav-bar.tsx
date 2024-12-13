@@ -17,12 +17,29 @@ function NavTitle() {
   )
 }
 
+function NavMenu() {
+  return (
+    <div className='hidden md:flex gap-4'>
+      <Link href='/'>
+        Home
+      </Link>
+      <Link href='/create'>
+        Create
+      </Link>
+      <Link href='/market'>
+        Market
+      </Link>
+    </div>
+  )
+}
+
 export default function NavBar() {
   const activeAccount = useActiveAccount()
 
   return (
     <div className='flex items-center justify-between py-2 px-4 bg-navbg'>
       <NavTitle />
+      <NavMenu />
 
       <div className='flex items-center'>
         <ConnectWallet

@@ -2,8 +2,10 @@ export type TrendingCollectionsJSON = {
   next_cursor?: string;
   next?: string;
   previous?: string;
-  collections: TrendingCollection;
+  collections: TrendingCollection[];
 };
+
+export type TopCollectionsJSON = TrendingCollectionsJSON;
 
 export type TrendingCollection = {
   collection_id: string;

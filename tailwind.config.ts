@@ -57,6 +57,9 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        "inner-bottom": "inset 0px -30px 20px rgba(1, 1, 1, 0.8)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
