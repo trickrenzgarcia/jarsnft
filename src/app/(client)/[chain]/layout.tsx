@@ -2,7 +2,7 @@ import { metaAuthors, metaDescription, metaKeywords, metaName } from '@/lib/app-
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation';
 import { getChainMetadata } from 'thirdweb/chains'
-import { ethereum, polygon, base, blast, arbitrum, avalanche, optimism } from 'thirdweb/chains'
+import { ethereum, polygon, base, blast, arbitrum, avalanche, optimism, bsc } from 'thirdweb/chains'
 
 const supportedChains = {
   ethereum,
@@ -12,6 +12,7 @@ const supportedChains = {
   arbitrum,
   avalanche,
   optimism,
+  bsc
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ chain: string }> }): Promise<Metadata> {

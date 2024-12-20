@@ -1,22 +1,19 @@
 import CarouselComponent from '@/components/cards/CarouselComponent';
 import NavBar from '@/components/layouts/nav-bar';
-import TrendNFTsCarousel from '@/components/layouts/trend-nfts';
 import { Card, CardContent } from '@/components/ui/card';
 import { CarouselItem } from '@/components/ui/carousel';
-import { getTopCollections, getTrendingNFTs } from '@/lib/simple-hash';
+import { getTopCollections } from '@/lib/simple-hash';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function Home() {
-  const trendingNFTs = await getTrendingNFTs("ethereum");
-  const topCollections = await getTopCollections("ethereum");
+  const topCollections = await getTopCollections("ethereum,polygon");
   
   console.log(topCollections.collections);
 
   return (
     <div className=''>
       <NavBar />
-      <TrendNFTsCarousel trendingNFTs={trendingNFTs}/>
       <CarouselComponent 
         data={topCollections.collections}
         renderItem={(col) => (
