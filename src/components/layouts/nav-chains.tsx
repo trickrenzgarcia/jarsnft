@@ -49,9 +49,7 @@ export default function NavChains() {
           <CustomTooltip
             key={chain.slug}
             text={chain.name}
-            contentProps={{
-              className: "py-1 px-2"
-            }}
+            className="py-1 px-2"
           >
             <Button 
               variant="ghost"

@@ -6,14 +6,16 @@ import {
   CarouselPrevious
 } from '@/components/ui/carousel';
 
-type CarouselComponentProps<Item> = {
+type CarouselComponentProps<Item> = React.HTMLAttributes<HTMLDivElement> & {
   data: Item[];
+  title?: string;
   renderItem: (item: Item, index: number) => React.ReactNode;
-}
+};
 
-export default function CarouselComponent<ItemType>({ data, renderItem }: CarouselComponentProps<ItemType>) {
+export default function CarouselComponent<ItemType>({ data, title, renderItem, ...rest }: CarouselComponentProps<ItemType>) {
   return (
-    <div className='bg-gradient-to-b from-navbg via-violet-500 to-background px-2 md:px-6 py-6'>
+    <div {...rest}>
+      <h1 className='text-2xl font-bold my-4'>{title}</h1>
       <Carousel opts={{ align: "start" }}>
         <CarouselContent>
           {data.map((item, index) => renderItem(item, index))}

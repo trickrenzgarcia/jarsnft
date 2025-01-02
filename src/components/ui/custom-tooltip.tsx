@@ -4,15 +4,14 @@ import * as React from "react"
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip'
 
-type CustomTooltipProps = {
+type CustomTooltipProps = React.ComponentProps<typeof TooltipContent> & {
   text: string;
-  contentProps?: React.ComponentProps<typeof TooltipContent>;
 }
 
 export default function CustomTooltip({
   children,
-  contentProps,
-  text
+  text,
+  ...contentProps
 }: React.PropsWithChildren<CustomTooltipProps>)
 {
   return (

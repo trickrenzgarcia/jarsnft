@@ -19,7 +19,6 @@ export default function NavBar() {
         <NavMenu />
       </div>
       
-
       <div className='flex items-center'>
         <ConnectWallet
           connectModal={{

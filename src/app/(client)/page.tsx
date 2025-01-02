@@ -1,10 +1,11 @@
 import CarouselComponent from '@/components/cards/CarouselComponent';
 import NavBar from '@/components/layouts/nav-bar';
-import { Card, CardContent } from '@/components/ui/card';
 import { CarouselItem } from '@/components/ui/carousel';
+import { nftCollections } from '@/lib/fake-data';
 import { getTopCollections } from '@/lib/simple-hash';
-import Image from 'next/image';
 import Link from 'next/link';
+import NFTDropCard from '@/components/cards/NFTDropCard';
+import NFTHeroCard from '@/components/cards/NFTHeroCard';
 
 export default async function Home() {
   const topCollections = await getTopCollections("ethereum,polygon");
@@ -14,28 +15,28 @@ export default async function Home() {
   return (
     <div className=''>
       <NavBar />
-      <CarouselComponent 
+      
+      <CarouselComponent
+        className='bg-gradient-to-b from-navbg via-violet-500 to-background px-2 md:px-6 py-6'
         data={topCollections.collections}
         renderItem={(col) => (
           <CarouselItem key={col.collection_id} className="basis-1/2 md:basis-1/3 lg:basis-1/4">
             <Link href={`/${col.collection_details.chains[0]}/${col.payment_token.address ?? col.collection_details.metaplex_mint ?? col.collection_details.mpl_core_collection_address ?? col.collection_details.top_contracts[0].split('.')[1]}`} className="p-1">
-              <Card>
-                <CardContent className="flex w-full aspect-square p-0 overflow-hidden rounded-xl">
-                  <div className='relative w-full h-full z-10 group'>
-                    {col.collection_details.image_url && <Image
-                      src={col.collection_details.image_url} fill alt={`${col.collection_details.name}.${col.collection_id}`}
-                      className='object-cover rounded-xl select-none transition-transform duration-300 ease-in-out group-hover:scale-110'
-                    />}
-                    <div className='absolute flex p-4 shadow-inner-bottom items-end w-full h-full z-50 hover:bg-background/60'>
-                      <h1 className='font-bold text-xl select-none'>{col.collection_details.name}</h1>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <NFTHeroCard collection={col} />
             </Link>
           </CarouselItem>
       )}/>
 
+      <CarouselComponent
+        className='px-2 md:px-6 py-6'
+        data={nftCollections}
+        title='Latest NFT Drop'
+        renderItem={(col, i) => (
+          <CarouselItem key={i} className="basis-1/2 md:basis-1/3 lg:basis-1/5">
+            <NFTDropCard collection={col} />
+          </CarouselItem>
+        )}
+      />
     </div>
   );
 }
