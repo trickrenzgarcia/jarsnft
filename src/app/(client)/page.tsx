@@ -15,12 +15,12 @@ export default async function Home() {
   return (
     <div className=''>
       <NavBar />
-      
+
       <CarouselComponent
-        className='bg-gradient-to-b from-navbg via-violet-500 to-background px-2 md:px-6 py-6'
+        className='bg-gradient-to-b from-navbg via-violet-500 to-background pl-6 py-6'
         data={topCollections.collections}
         renderItem={(col) => (
-          <CarouselItem key={col.collection_id} className="basis-1/2 md:basis-1/3 lg:basis-1/4">
+          <CarouselItem key={col.collection_id} className="basis-[75%] sm:basis-[44%] md:basis-1/3 lg:basis-[23%]">
             <Link href={`/${col.collection_details.chains[0]}/${col.payment_token.address ?? col.collection_details.metaplex_mint ?? col.collection_details.mpl_core_collection_address ?? col.collection_details.top_contracts[0].split('.')[1]}`} className="p-1">
               <NFTHeroCard collection={col} />
             </Link>
