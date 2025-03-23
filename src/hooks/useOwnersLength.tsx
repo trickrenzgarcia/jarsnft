@@ -2,7 +2,7 @@ import { getOwners } from "@/lib/utils";
 import React, { useState } from "react";
 import { useEffect } from "react";
 
-export default function useOwnersLength(address: string) {
+export default function useOwnersLength(address: `0x${string}`) {
   const owners = getOwners({
     address: address,
     chain: { id: 137, rpc: `https://137.rpc.thirdweb.com/` },

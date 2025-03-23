@@ -26,7 +26,7 @@ export default function ConnectWallet() {
     createWallet("io.metamask"),
     createWallet("com.coinbase.wallet"),
     createWallet("com.roninchain.wallet"),
-    createWallet("com.binance"),
+    createWallet("com.binance.wallet"),
     createWallet("org.uniswap"),
     createWallet("com.bitget.web3"),
     createWallet("com.okex.wallet"),

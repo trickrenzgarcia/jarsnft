@@ -173,7 +173,7 @@ export function ipfsToHttps(ipfs: string) {
   return ipfs.replace("ipfs://", process.env.NEXT_PUBLIC_IPFS_GATEWAY);
 }
 
-export async function getOwners(contract: Readonly<ContractOptions<any>>) {
+export async function getOwners(contract: Readonly<ContractOptions<any, `0x${string}`>>) {
   const owners = await getAllOwners({
     contract,
     start: 0,

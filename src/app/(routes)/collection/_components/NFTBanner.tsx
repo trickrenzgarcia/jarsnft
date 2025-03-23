@@ -37,7 +37,7 @@ export default function NFTBanner({ address, collection }: NFTBannerProps) {
   const { contract } = useContract(address);
   const { data: metadata, isLoading: loadingMetadata, isError: errorMetadata } = useContractMetadata(contract);
   const { marketPlaceContract, loadingMarketPlace } = useMarketPlaceContext();
-  const { ownersLength } = useOwnersLength(collection.contract);
+  const { ownersLength } = useOwnersLength(collection.contract as any);
   const { floorPrice, isLoading: loadingFloorPrice } = useFloorPrice(address);
   const { totalVolume, totalSales, isLoading: loadingVolumeSale, isError } = useVolumeAndSales(address);
 

@@ -20,7 +20,7 @@ export default function CollectionDataRow({ collection }: CollectionDataRowProps
   const { totalVolume, totalSales, isLoading: loadingVolumeSale, isError } = useVolumeAndSales(collection.contract);
   const { listedCount, isLoading: loadingListedCount } = useListedNfts(collection.contract);
   const { totalItems, isLoading: loadingTotalItems } = useTotalItems(collection.contract);
-  const { ownersLength } = useOwnersLength(collection.contract);
+  const { ownersLength } = useOwnersLength(collection.contract as any);
 
   const hide = () => {
     return "hidden lg:inline-block";

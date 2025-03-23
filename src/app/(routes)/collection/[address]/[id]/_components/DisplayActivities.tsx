@@ -3,7 +3,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import type { DirectListingV3, EnglishAuction, MarketplaceV3, SmartContract } from "@thirdweb-dev/sdk";
 import React from "react";
-import { LuActivitySquare } from "react-icons/lu";
+import { LuSquareActivity } from "react-icons/lu";
 import EventChip from "./EventChip";
 import Link from "next/link";
 import { displayName } from "@/lib/utils";
@@ -39,7 +39,7 @@ export default function DisplayActivities({ tokenId, contractAddress, directList
       <AccordionItem value="item-1" className="border-0">
         <AccordionTrigger className="rounded-md border bg-card px-4">
           <div className="flex items-center gap-2">
-            <LuActivitySquare className="text-xl" />
+            <LuSquareActivity className="text-xl" />
             <p>NFT Activities</p>
           </div>
         </AccordionTrigger>
